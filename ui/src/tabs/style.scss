@@ -1,0 +1,33 @@
+.tabs-button-group {
+  @apply group p-0.5 rounded-lg flex bg-gray-100 hover:bg-gray-200;
+}
+
+.tabs-button {
+  @apply py-1.5 shadow-none border-none text-gray-600 group-hover:text-gray-900 focus:outline-none focus:ring-0 focus:ring-offset-0;
+
+  &,
+  &:hover {
+    @apply bg-transparent;
+  }
+
+  &:hover {
+    @apply text-gray-900;
+  }
+}
+
+.tabs-button-active {
+  @apply border border-gray-300 shadow-sm ring-1 ring-black ring-opacity-5 text-gray-900;
+
+  &,
+  &:hover {
+    @apply bg-white;
+  }
+}
+
+.tabs-pane {
+  @apply hidden;
+
+  &.tabs-pane-active {
+    @apply block;
+  }
+}

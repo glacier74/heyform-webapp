@@ -1,0 +1,24 @@
+.form-item {
+  @apply mb-6;
+}
+
+.form-item-label {
+  @apply block text-sm font-medium text-gray-700
+}
+
+.form-item-content {
+  @apply mt-1;
+
+  .radio-group,
+  .checkbox-group {
+    @apply mt-3;
+  }
+}
+
+.form-item-extra {
+  @apply mt-2 text-sm text-gray-500;
+}
+
+.form-item-error {
+  @apply mt-2 text-sm text-red-600;
+}

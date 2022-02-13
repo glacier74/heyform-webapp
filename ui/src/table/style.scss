@@ -1,0 +1,33 @@
+.table {
+  @apply min-w-full;
+}
+
+.table-head {
+  th {
+    @apply px-6 py-3 border-b border-gray-200 bg-transparent text-left text-xs text-gray-500 uppercase tracking-wider;
+
+    &.table-cell-center {
+      @apply text-center;
+    }
+
+    &.table-cell-right {
+      @apply text-right;
+    }
+  }
+}
+
+.table-body {
+  @apply divide-y divide-gray-100;
+
+  td {
+    @apply px-6 py-4 whitespace-nowrap font-medium text-left text-sm text-gray-500;
+
+    &.table-cell-center {
+      @apply text-center;
+    }
+
+    &.table-cell-right {
+      @apply text-right;
+    }
+  }
+}

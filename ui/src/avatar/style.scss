@@ -1,0 +1,31 @@
+.avatar {
+  @apply inline-flex items-center justify-center overflow-hidden bg-gray-100;
+
+  img {
+    @apply h-full w-full object-cover;
+  }
+
+  .avatar-text {
+    @apply text-lg font-medium leading-none text-gray-500;
+  }
+}
+
+.avatar-rounded {
+  @apply rounded-md;
+}
+
+.avatar-circular {
+  @apply rounded-full;
+}
+
+.avatar-placeholder {
+  @apply h-full w-full text-gray-300;
+}
+
+.avatar-group {
+  @apply flex -space-x-2 overflow-hidden;
+
+  .avatar {
+    @apply ring-2 ring-white;
+  }
+}

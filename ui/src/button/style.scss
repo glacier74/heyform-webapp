@@ -1,0 +1,76 @@
+.button {
+  @apply inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+
+  .spin,
+  .button-leading,
+  .button-trailing {
+    @apply h-5 w-5 text-gray-500;
+  }
+
+  .spin,
+  .button-leading {
+    @apply -ml-1 mr-2;
+  }
+
+  .button-trailing {
+    @apply ml-2 -mr-1;
+  }
+}
+
+.button-primary,
+.button-success,
+.button-danger {
+  @apply border-transparent;
+
+  &,
+  .spin,
+  .button-leading,
+  .button-trailing {
+    @apply text-white;
+  }
+}
+
+.button-primary {
+  @apply bg-blue-500 hover:bg-blue-600;
+}
+
+.button-success {
+  @apply bg-green-500 hover:bg-green-600;
+}
+
+.button-danger {
+  @apply bg-red-500 hover:bg-red-600;
+}
+
+.button-block {
+  @apply w-full;
+}
+
+.button-rounded {
+  @apply rounded-full;
+}
+
+.button-icon-only {
+  @apply p-2;
+
+  .spin,
+  .button-leading {
+    @apply m-0;
+  }
+}
+
+.button-group {
+  @apply relative z-0 inline-flex shadow-sm rounded-md;
+
+  & > .button {
+    @apply relative rounded-none shadow-none focus:z-10 focus:outline-none focus:ring-1 focus:ring-offset-0 focus:border-blue-500 -ml-px;
+
+    &:nth-of-type(1) {
+      @apply ml-0 rounded-l-md;
+    }
+
+    &:nth-last-of-type(1) {
+      @apply rounded-r-md;
+    }
+  }
+}

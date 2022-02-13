@@ -1,0 +1,22 @@
+.navigation {
+  @apply flex items-center text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-3 py-2 text-sm font-medium rounded-md;
+
+  svg {
+    @apply text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6;
+  }
+
+  &.active {
+    &,
+    &:hover {
+      @apply bg-gray-100 text-gray-900;
+
+      svg {
+        @apply text-gray-500;
+      }
+    }
+  }
+}
+
+.navigation-title {
+  @apply flex-auto truncate;
+}
