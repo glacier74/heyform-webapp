@@ -18,18 +18,12 @@ export default defineConfig({
       }
     ]
   },
+  esbuild: {
+    jsxInject: `import React from 'react'`
+  },
   build: {
     target: 'es2015',
-    assetsDir: 'static',
-    rollupOptions: {
-      external: ['react', 'react-dom'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM'
-        }
-      }
-    }
+    assetsDir: 'static'
   },
   server: {
     proxy: {
