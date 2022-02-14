@@ -17,8 +17,7 @@
     "build:cjs": "tsc -p tsconfig-build-cjs.json",
     "build:style": "sass src/style.scss lib/style.css",
     "type-check": "tsc --pretty --noEmit",
-    "lint": "eslint src --ext ts --ext tsx --ext js --fix",
-    "prebuild": "rimraf lib"
+    "lint": "eslint src --ext ts --ext tsx --ext js --fix"
   },
   "peerDependencies": {
     "@headlessui/react": "^1.4.3",
@@ -68,7 +67,6 @@
     "jest": "^27.4.7",
     "postcss": "^8.4.6",
     "prettier": "^2.5.1",
-    "rimraf": "^3.0.2",
     "sass": "^1.49.0",
     "tailwindcss": "2.2.19",
     "ts-jest": "^27.1.3",
