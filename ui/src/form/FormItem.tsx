@@ -12,9 +12,23 @@ export interface FormItemProps extends RcFieldProps {
   hideRequiredMark?: boolean
 }
 
-const FormItem: FC<FormItemProps> = ({ name, rules, label, extra, children, ...restProps }) => {
+const FormItem: FC<FormItemProps> = ({
+  name,
+  rules,
+  validateTrigger = ['onSubmit'],
+  label,
+  extra,
+  children,
+  ...restProps
+}) => {
   return (
-    <RcField name={name} rules={rules} validateFirst={false} {...restProps}>
+    <RcField
+      name={name}
+      rules={rules}
+      validateFirst={false}
+      validateTrigger={validateTrigger}
+      {...restProps}
+    >
       {(control, meta, form) => {
         const isHasError = meta.errors.length > 0
 

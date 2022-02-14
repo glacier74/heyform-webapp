@@ -1,10 +1,14 @@
+.table-container {
+  @apply min-w-full overflow-x-auto;
+}
+
 .table {
   @apply min-w-full;
 }
 
 .table-head {
   th {
-    @apply px-6 py-3 border-b border-gray-200 bg-transparent text-left text-xs text-gray-500 uppercase tracking-wider;
+    @apply px-6 py-3 border-b border-gray-100 bg-transparent font-medium text-left text-xs text-gray-500 uppercase tracking-wider;
 
     &.table-cell-center {
       @apply text-center;
@@ -29,5 +33,9 @@
     &.table-cell-right {
       @apply text-right;
     }
+  }
+
+  tr:hover {
+    @apply bg-gray-50;
   }
 }

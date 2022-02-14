@@ -1,65 +1,78 @@
 import clsx from 'clsx'
-import type { FC, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
-export interface TableColumn {
+export interface TableColumn<T extends IMapType> {
   key: string
   name: string
   width?: number | string
   align?: 'left' | 'center' | 'right'
   scOnly?: boolean
-  render?: (row: IMapType, column: TableColumn) => ReactNode
+  render?: (record: T, column: TableColumn<T>) => ReactNode
 }
 
-export interface TableProps extends IComponentProps {
-  columns: TableColumn[]
-  data?: IMapType[]
+export interface TableProps<T> extends IComponentProps {
+  columns: TableColumn<T>[]
+  data?: T[]
+  onRowClick?: (record: T) => void
 }
 
-const Table: FC<TableProps> = ({ className, columns, data = [], ...restProps }) => {
+function Table<T extends IMapType>({
+  className,
+  columns,
+  data = [],
+  onRowClick,
+  ...restProps
+}: TableProps<T>) {
+  function handleRowClick(record: T) {
+    onRowClick && onRowClick(record)
+  }
+
   return (
-    <table className={clsx('table', className)} {...restProps}>
-      <colgroup>
-        {columns.map(column => (
-          <col key={column.key} width={column.width} />
-        ))}
-      </colgroup>
-      <thead className="table-head">
-        <tr>
+    <div className={clsx('table-container', className)}>
+      <table className="table" {...restProps}>
+        <colgroup>
           {columns.map(column => (
-            <th
-              key={column.key}
-              className={clsx({
-                [`table-cell-${column.align}`]: column.align
-              })}
-            >
-              <span
-                className={clsx({
-                  'sr-only': column.scOnly
-                })}
-              >
-                {column.name}
-              </span>
-            </th>
+            <col key={column.key} width={column.width} />
           ))}
-        </tr>
-      </thead>
-      <tbody className="table-body">
-        {data.map(row => (
-          <tr key={row.id}>
+        </colgroup>
+        <thead className="table-head">
+          <tr>
             {columns.map(column => (
-              <td
+              <th
                 key={column.key}
                 className={clsx({
                   [`table-cell-${column.align}`]: column.align
                 })}
               >
-                {column.render ? column.render(row, column) : row[column.key]}
-              </td>
+                <span
+                  className={clsx({
+                    'sr-only': column.scOnly
+                  })}
+                >
+                  {column.name}
+                </span>
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody className="table-body">
+          {data.map(record => (
+            <tr key={record.id} onClick={() => handleRowClick(record)}>
+              {columns.map(column => (
+                <td
+                  key={column.key}
+                  className={clsx({
+                    [`table-cell-${column.align}`]: column.align
+                  })}
+                >
+                  {column.render ? column.render(record, column) : record[column.key]}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 

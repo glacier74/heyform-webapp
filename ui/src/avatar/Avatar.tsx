@@ -5,6 +5,7 @@ import { DefaultAvatarIcon } from '../icons'
 export interface AvatarProps extends IComponentProps {
   src?: string
   text?: string
+  retainLength?: number
   size?: number
   circular?: boolean
   rounded?: boolean
@@ -15,6 +16,7 @@ const Avatar: FC<AvatarProps> = ({
   style,
   src,
   text,
+  retainLength = 1,
   size = 60,
   circular,
   rounded,
@@ -37,7 +39,7 @@ const Avatar: FC<AvatarProps> = ({
       {src ? (
         <img src={src} />
       ) : text ? (
-        <span className="avatar-text">{text}</span>
+        <span className="avatar-text">{Array.from(text).slice(0, retainLength).join('')}</span>
       ) : (
         <DefaultAvatarIcon className="avatar-placeholder" />
       )}

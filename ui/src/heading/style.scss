@@ -16,11 +16,11 @@
 }
 
 .heading-title {
-  @apply text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate;
+  @apply text-2xl font-bold leading-7 text-gray-900 sm:truncate;
 }
 
 .heading-description {
-  @apply text-gray-500 mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:mt-0 sm:space-x-6;
+  @apply text-sm text-gray-500 mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:space-x-6;
 }
 
 .heading-actions {

@@ -12,7 +12,7 @@
   "types": "./lib/types/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "run-p build:cjs && npm run build:esm && npm run build:style",
+    "build": "run-p build:cjs build:esm build:style",
     "build:esm": "tsc -p tsconfig-build.json",
     "build:cjs": "tsc -p tsconfig-build-cjs.json",
     "build:style": "sass src/style.scss lib/style.css",

@@ -1,4 +1,7 @@
+import { UserService } from '@/service'
+import { useAsync } from '@/utils'
 import type { FC } from 'react'
+import { useStore } from '@/store'
 
 export const LayoutAuth: FC<IComponentProps> = ({ children }) => {
   return (
@@ -15,4 +18,15 @@ export const LayoutAuth: FC<IComponentProps> = ({ children }) => {
       </div>
     </div>
   )
+}
+
+export const AuthGuard: FC<IComponentProps> = ({ children }) => {
+  const userStore = useStore('userStore')
+
+  useAsync(async () => {
+    const result = await UserService.user()
+    userStore.setUser(result)
+  })
+
+  return children
 }

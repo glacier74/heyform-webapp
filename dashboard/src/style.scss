@@ -3,3 +3,25 @@
 body {
   @apply antialiased font-sans;
 }
+
+nav a {
+  &.active {
+    @apply bg-gray-100 text-gray-900 hover:bg-gray-100;
+
+    svg {
+      @apply text-gray-500;
+    }
+  }
+}
+
+.overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+.project-item {
+  &:hover {
+    .project-item-action {
+      display: block;
+    }
+  }
+}

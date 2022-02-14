@@ -1,4 +1,3 @@
-import { date } from '@hpnp/utils/date'
 import { isEqual, isValid } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 import cookies, { CookieAttributes } from 'js-cookie'

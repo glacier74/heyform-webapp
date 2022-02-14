@@ -1,2 +1,2 @@
-export * from './layout-auth'
 export * from './icons'
+export * from './layouts'

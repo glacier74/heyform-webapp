@@ -1,9 +1,15 @@
 import reactRefresh from '@vitejs/plugin-react-refresh'
+import legacy from '@vitejs/plugin-legacy'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  plugins: [reactRefresh()],
+  plugins: [
+    legacy({
+      targets: ['ie >= 11']
+    }),
+    reactRefresh()
+  ],
   resolve: {
     alias: [
       {
@@ -11,6 +17,18 @@ export default defineConfig({
         replacement: resolve(__dirname, 'src')
       }
     ]
+  },
+  build: {
+    target: 'es2015',
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM'
+        }
+      }
+    }
   },
   server: {
     proxy: {
