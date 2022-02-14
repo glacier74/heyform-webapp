@@ -8,10 +8,6 @@
     "ui",
     "dashboard"
   ],
-  "scripts": {
-    "build:ui": "yarn workspace @heyforms/ui build",
-    "build:dashboard": "yarn workspace heyform build"
-  },
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=14.0.0"

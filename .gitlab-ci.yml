@@ -28,8 +28,8 @@ development:
   script: |
     echo "=> Building"
     yarn install
-    yarn build:ui
-    yarn build:dashboard
+    yarn workspace @heyforms/ui build
+    yarn workspace heyform staging
 
     echo "=> Packing"
     mkdir -p tmp/view/
