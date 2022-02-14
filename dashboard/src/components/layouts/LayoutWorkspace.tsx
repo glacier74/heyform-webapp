@@ -69,7 +69,7 @@ const Nav: FC = observer(() => {
           Projects
         </h3>
         <div className="mt-1 space-y-1" aria-labelledby="projects-headline">
-          {workspaceStore.workspace.projects.map(project => (
+          {workspaceStore.workspace?.projects.map(project => (
             <Link
               to={`/workspace/${workspaceId}/project/${project.id}`}
               className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
@@ -149,7 +149,7 @@ const User: FC = observer(() => {
 
 export const WorkspaceGuard: FC<IComponentProps> = ({ children }) => {
   const workspaceStore = useStore('workspaceStore')
-  const { workspaceId } = useParam()
+  const { workspaceId, projectId } = useParam()
 
   useAsync(async () => {
     const result = await WorkspaceService.workspaces()
@@ -159,6 +159,10 @@ export const WorkspaceGuard: FC<IComponentProps> = ({ children }) => {
   useEffect(() => {
     workspaceStore.selectWorkspace(workspaceId)
   }, [workspaceId])
+
+  useEffect(() => {
+    workspaceStore.selectProject(projectId)
+  }, [projectId])
 
   return <AuthGuard>{children}</AuthGuard>
 }
@@ -173,7 +177,7 @@ export const LayoutWorkspace: FC<IComponentProps> = ({ children }) => {
           <Dialog
             as="div"
             static
-            className="fixed inset-0 flex z-40 md:hidden"
+            className="sidebar fixed inset-0 flex z-40 md:hidden"
             open={sidebarOpen}
             onClose={setSidebarOpen}
           >
@@ -237,7 +241,7 @@ export const LayoutWorkspace: FC<IComponentProps> = ({ children }) => {
         </Transition.Root>
 
         {/* Static sidebar for desktop */}
-        <div className="hidden md:flex md:flex-shrink-0">
+        <div className="sidebar hidden md:flex md:flex-shrink-0">
           <div className="flex flex-col w-64">
             {/* Sidebar component, swap this element with another sidebar if you like */}
             <div className="flex flex-col h-0 flex-1 border-r border-gray-200 bg-white">

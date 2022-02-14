@@ -4,12 +4,14 @@ body {
   @apply antialiased font-sans;
 }
 
-nav a {
-  &.active {
-    @apply bg-gray-100 text-gray-900 hover:bg-gray-100;
+.sidebar {
+  nav a {
+    &.active {
+      @apply bg-gray-100 text-gray-900 hover:bg-gray-100;
 
-    svg {
-      @apply text-gray-500;
+      svg {
+        @apply text-gray-500;
+      }
     }
   }
 }
@@ -23,5 +25,13 @@ nav a {
     .project-item-action {
       display: block;
     }
+  }
+}
+
+.member-manage {
+  @apply ml-2 w-8 h-8 p-1.5;
+
+  .button-leading {
+    @apply w-full h-full;
   }
 }

@@ -13,6 +13,9 @@ const Home = lazy(() => import('@/pages/home/Home'))
 const Workspace = lazy(() => import('@/pages/workspace/Workspace'))
 const Members = lazy(() => import('@/pages/workspace/Members'))
 
+/* Project */
+const Project = lazy(() => import('@/pages/project/Project'))
+
 const config: CustomRouteConfig[] = [
   /* Login */
   {
@@ -62,16 +65,23 @@ const config: CustomRouteConfig[] = [
     loginRequired: true,
     exact: true,
     layout: LayoutWorkspace,
-    component: Workspace,
-    title: 'Workspace'
+    component: Workspace
   },
   {
     path: '/workspace/:workspaceId/members',
     loginRequired: true,
     exact: true,
     layout: LayoutWorkspace,
-    component: Members,
-    title: 'Workspace'
+    component: Members
+  },
+
+  /* Project */
+  {
+    path: '/workspace/:workspaceId/project/:projectId',
+    loginRequired: true,
+    exact: true,
+    layout: LayoutWorkspace,
+    component: Project
   }
 ]
 

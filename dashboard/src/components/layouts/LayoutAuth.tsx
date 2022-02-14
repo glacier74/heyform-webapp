@@ -26,7 +26,7 @@ export const AuthGuard: FC<IComponentProps> = ({ children }) => {
   useAsync(async () => {
     const result = await UserService.user()
     userStore.setUser(result)
-  })
+  }, [])
 
   return children
 }

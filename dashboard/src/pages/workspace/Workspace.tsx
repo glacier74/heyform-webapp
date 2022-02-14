@@ -55,23 +55,23 @@ const Workspace = observer(() => {
   return (
     <div>
       <Heading
-        title={workspaceStore.workspace.name}
+        title={workspaceStore.workspace?.name}
         icon={
           <Avatar
-            src={workspaceStore.workspace.avatar}
-            text={workspaceStore.workspace.name}
+            src={workspaceStore.workspace?.avatar}
+            text={workspaceStore.workspace?.name}
             retainLength={2}
             size={54}
             rounded
             circular
           />
         }
-        description={`${workspaceStore.workspace.plan.name} plan | ${workspaceStore.workspace.memberCount} members`}
+        description={`${workspaceStore.workspace?.plan.name} plan | ${workspaceStore.workspace?.memberCount} members`}
         actions={<Button type="primary">Create project</Button>}
       />
       <div className="py-4">
         <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {workspaceStore.workspace.projects.map(project => (
+          {workspaceStore.workspace?.projects.map(project => (
             <Item key={project.id} project={project} users={workspaceStore.members} />
           ))}
         </ul>
