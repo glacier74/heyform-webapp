@@ -20,7 +20,7 @@
 }
 
 .heading-description {
-  @apply text-sm text-gray-500 mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:space-x-6;
+  @apply text-sm font-medium text-gray-500 mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:space-x-6;
 }
 
 .heading-actions {
