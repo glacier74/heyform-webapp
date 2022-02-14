@@ -27,6 +27,7 @@ development:
     - echo "$DEVELOP_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
   script: |
     echo "=> Building"
+    yarn install
     yarn build:ui
     yarn build:dashboard
 
