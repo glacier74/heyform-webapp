@@ -1,7 +1,7 @@
 import type { ProjectModel, UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsync, useParam } from '@/utils'
+import { useAsyncEffect, useParam } from '@/utils'
 import { DotsHorizontalIcon } from '@heroicons/react/outline'
 import { Avatar, Button, Heading } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
@@ -47,7 +47,7 @@ const Workspace = observer(() => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 
-  useAsync(async () => {
+  useAsyncEffect(async () => {
     const result = await WorkspaceService.members(workspaceId)
     workspaceStore.setMembers(workspaceId, result)
   }, [workspaceId])

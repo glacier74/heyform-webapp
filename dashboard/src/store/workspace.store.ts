@@ -1,4 +1,5 @@
-import { ProjectModel, UserModel, WorkspaceModel } from '@/models'
+import type { ProjectModel, UserModel, WorkspaceModel } from '@/models'
+import type { FormModel } from '@heyforms/shared-types-enums'
 import { isValidArray } from '@hpnp/utils/helper'
 import { makeAutoObservable } from 'mobx'
 import { mobxStorage } from './storage'
@@ -9,11 +10,17 @@ export class WorkspaceStore {
   // workspace member maps
   memberMaps: IMapType<UserModel[]> = {}
 
+  // project forms
+  formMaps: IMapType<FormModel[]> = {}
+
   // Current workspace
   currentWorkspaceId = ''
 
   // Current project
   currentProjectId = ''
+
+  // Current form
+  currentFormId = ''
 
   constructor() {
     makeAutoObservable(this)
@@ -35,6 +42,12 @@ export class WorkspaceStore {
   // Project of current workspace
   get project() {
     return this.workspace.projects.find(p => p.id === this.currentProjectId)
+  }
+
+  // Forms of current project
+  get forms() {
+    const forms = this.formMaps[this.currentProjectId]
+    return isValidArray(forms) ? forms : []
   }
 
   setWorkspaces(list: WorkspaceModel[]) {
@@ -90,6 +103,42 @@ export class WorkspaceStore {
 
     if (workspace) {
       workspace.projects = workspace.projects.filter(p => p.id !== projectId)
+    }
+  }
+
+  selectForm(formId: string) {
+    this.currentFormId = formId
+  }
+
+  setForms(projectId: string, forms: FormModel[]) {
+    this.formMaps[projectId] = forms
+  }
+
+  addForm(projectId: string, form: FormModel) {
+    const forms = this.formMaps[projectId]
+
+    if (isValidArray(forms)) {
+      forms.push(form)
+    }
+  }
+
+  updateForm(projectId: string, formId: string, updates: Partial<FormModel>) {
+    const forms = this.formMaps[projectId]
+
+    if (isValidArray(forms)) {
+      const form = forms.find(f => f.id === formId)
+
+      if (form) {
+        Object.assign(form, updates)
+      }
+    }
+  }
+
+  deleteForm(projectId: string, formId: string) {
+    let forms = this.formMaps[projectId]
+
+    if (isValidArray(forms)) {
+      forms = forms.filter(f => f.id !== formId)
     }
   }
 

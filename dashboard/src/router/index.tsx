@@ -78,28 +78,33 @@ const CustomRoute: FC<CustomRouteConfig> = ({
 
   useEffect(() => {
     if (title) {
-      document.title = `${title} | HeyForm`
+      document.title = `${title} · HeyForm`
     }
   }, [title])
 
   if (loginRequired) {
-    const next = window.location.pathname + window.location.search
-
-    return isLoggedIn ? children : <Redirect to={`/login?next=${encodeURIComponent(next)}`} />
+    if (isLoggedIn) {
+      return children
+    } else {
+      const redirectUri = window.location.pathname + window.location.search
+      return <Redirect to={`/login?redirect_uri=${encodeURIComponent(redirectUri)}`} />
+    }
   } else {
     return !isLoggedIn ? children : <Redirect to="/" />
   }
 }
 
-const sortedConfig = config.sort((i, j) => sortRoute(j.path, i.path))
+export default () => {
+  const routes = config.sort((i, j) => sortRoute(j.path, i.path))
 
-export default () => (
-  <BrowserRouter>
-    <Switch>
-      {sortedConfig.map(row => (
-        <CustomRoute key={row.path} {...row} />
-      ))}
-      <Redirect to="/" />
-    </Switch>
-  </BrowserRouter>
-)
+  return (
+    <BrowserRouter>
+      <Switch>
+        {routes.map(route => (
+          <CustomRoute key={route.path} {...route} />
+        ))}
+        <Redirect to="/" />
+      </Switch>
+    </BrowserRouter>
+  )
+}

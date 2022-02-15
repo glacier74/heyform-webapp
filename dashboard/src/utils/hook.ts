@@ -1,5 +1,8 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { parseNumber } from '@hpnp/utils'
+import { isArray, isEmpty, isObject, isValid } from '@hpnp/utils/helper'
+import { parse } from '@hpnp/utils/qs'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 
 export interface ParamsType {
   workspaceId: string
@@ -15,6 +18,67 @@ export function useParam(): ParamsType {
     projectId,
     formId
   }
+}
+
+export function useQuery(options?: IMapType): IMapType {
+  const location = useLocation()
+
+  return useMemo(() => {
+    const value = parse(location.search, {
+      decode: true,
+      separator: ','
+    })
+
+    if (options) {
+      Object.keys(options).forEach(key => {
+        let type: any
+        let defaultValue: any
+
+        if (isObject(options[key])) {
+          type = options[key].type
+          defaultValue = options[key].defaultValue
+        } else {
+          type = options[key]
+        }
+
+        if (isValid(value[key])) {
+          switch (type.name) {
+            case 'String':
+              value[key] = value[key]
+              break
+
+            case 'Number':
+              value[key] = parseNumber(value[key], defaultValue)
+              break
+
+            case 'Boolean':
+              value[key] = Boolean(value[key])
+              break
+
+            case 'Array':
+              value[key] = isArray(value[key]) ? value[key] : [value[key]]
+              break
+          }
+        }
+
+        if (isEmpty(value[key]) && defaultValue) {
+          value[key] = defaultValue
+        }
+      })
+    }
+
+    return value
+  }, [location])
+}
+
+export function useAsyncEffect<T>(asyncFunction: () => Promise<T>, deps: any[] = []) {
+  const execute = useCallback(() => {
+    return asyncFunction()
+  }, [asyncFunction])
+
+  useEffect(() => {
+    execute()
+  }, deps)
 }
 
 export type FetchStatus = 'idle' | 'pending' | 'success' | 'error'

@@ -1,23 +1,30 @@
-import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsync, useParam } from '@/utils'
+import { useParam } from '@/utils'
 import { Dialog, Transition } from '@headlessui/react'
 import {
   CogIcon,
   CreditCardIcon,
+  DocumentTextIcon,
+  GiftIcon,
   HomeIcon,
   MailIcon,
   MenuIcon,
+  PlayIcon,
+  QuestionMarkCircleIcon,
   UsersIcon,
   XIcon
 } from '@heroicons/react/outline'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { AuthGuard } from './LayoutAuth'
+import { WorkspaceGuard } from './WorkspaceGuard'
 
-const Nav: FC = observer(() => {
+interface NavProps {
+  onSettingsClick: () => void
+}
+
+const Nav: FC<NavProps> = observer(({ onSettingsClick }) => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 
@@ -53,13 +60,13 @@ const Nav: FC = observer(() => {
           <CreditCardIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
           Billing & Subscription
         </NavLink>
-        <NavLink
-          to={`/workspace/${workspaceId}/settings`}
-          className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+        <div
+          className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
+          onChange={onSettingsClick}
         >
           <CogIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
           Workspace settings
-        </NavLink>
+        </div>
       </div>
       <div className="mt-8">
         <h3
@@ -91,31 +98,29 @@ const Nav: FC = observer(() => {
             href="https://help.heyform.net"
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
+            <PlayIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
             <span className="truncate">Getting started</span>
           </a>
           <a
             href="https://help.heyform.net"
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
+            <QuestionMarkCircleIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
             <span className="truncate">Help center</span>
           </a>
           <a
             href="https://heyform.net/templates"
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
+            <DocumentTextIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
             <span className="truncate">Template gallery</span>
           </a>
           <a
             href="https://heyform.net/changelog"
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
+            <GiftIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
             <span className="truncate">Changelog</span>
-          </a>
-          <a
-            href="https://status.heyform.net"
-            className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
-          >
-            <span className="truncate">System status</span>
           </a>
         </div>
       </div>
@@ -147,28 +152,13 @@ const User: FC = observer(() => {
   )
 })
 
-export const WorkspaceGuard: FC<IComponentProps> = ({ children }) => {
-  const workspaceStore = useStore('workspaceStore')
-  const { workspaceId, projectId } = useParam()
-
-  useAsync(async () => {
-    const result = await WorkspaceService.workspaces()
-    workspaceStore.setWorkspaces(result)
-  }, [])
-
-  useEffect(() => {
-    workspaceStore.selectWorkspace(workspaceId)
-  }, [workspaceId])
-
-  useEffect(() => {
-    workspaceStore.selectProject(projectId)
-  }, [projectId])
-
-  return <AuthGuard>{children}</AuthGuard>
-}
-
-export const LayoutWorkspace: FC<IComponentProps> = ({ children }) => {
+export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [visible, setVisible] = useState(false)
+
+  function handleSettingsClick() {
+    setVisible(v => !v)
+  }
 
   return (
     <WorkspaceGuard>
@@ -229,7 +219,7 @@ export const LayoutWorkspace: FC<IComponentProps> = ({ children }) => {
                       alt="Workflow"
                     />
                   </div>
-                  <Nav />
+                  <Nav onSettingsClick={handleSettingsClick} />
                 </div>
                 <User />
               </div>
@@ -253,7 +243,7 @@ export const LayoutWorkspace: FC<IComponentProps> = ({ children }) => {
                     alt="Workflow"
                   />
                 </div>
-                <Nav />
+                <Nav onSettingsClick={handleSettingsClick} />
               </div>
               <User />
             </div>

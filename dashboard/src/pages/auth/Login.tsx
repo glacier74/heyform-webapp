@@ -18,7 +18,7 @@ const Login = () => {
 
     try {
       await AuthService.login(values.email, values.password)
-      window.location.href = '/'
+      window.location.href = window.sessionStorage.next || '/'
     } catch (err: any) {
       setError(err)
       setLoading(false)

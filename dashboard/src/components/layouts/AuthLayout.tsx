@@ -1,9 +1,6 @@
-import { UserService } from '@/service'
-import { useAsync } from '@/utils'
 import type { FC } from 'react'
-import { useStore } from '@/store'
 
-export const LayoutAuth: FC<IComponentProps> = ({ children }) => {
+export const AuthLayout: FC<IComponentProps> = ({ children }) => {
   return (
     <div className="min-h-screen bg-white flex">
       <div className="flex-1 flex flex-col justify-center">
@@ -18,15 +15,4 @@ export const LayoutAuth: FC<IComponentProps> = ({ children }) => {
       </div>
     </div>
   )
-}
-
-export const AuthGuard: FC<IComponentProps> = ({ children }) => {
-  const userStore = useStore('userStore')
-
-  useAsync(async () => {
-    const result = await UserService.user()
-    userStore.setUser(result)
-  }, [])
-
-  return children
 }

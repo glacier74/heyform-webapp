@@ -1,7 +1,7 @@
 import { UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsync, useParam } from '@/utils'
+import { useAsyncEffect, useParam } from '@/utils'
 import { DotsHorizontalIcon } from '@heroicons/react/outline'
 import { Avatar, Badge, Button, Heading, Table } from '@heyforms/ui'
 import { TableColumn } from '@heyforms/ui/lib/types/table'
@@ -19,7 +19,7 @@ const Members = observer(() => {
       key: 'id',
       name: 'Member',
       width: '40%',
-      render(record: UserModel) {
+      render(record) {
         return (
           <div className="flex items-center">
             <div className="flex-shrink-0">
@@ -48,7 +48,7 @@ const Members = observer(() => {
       key: 'role',
       name: 'Role',
       width: '30%',
-      render(record: UserModel) {
+      render(record) {
         if (record.id === workspaceStore.workspace.ownerId) {
           return <Badge type="green" text="Owner" />
         }
@@ -59,7 +59,7 @@ const Members = observer(() => {
       key: 'last_seen',
       name: 'Last seen',
       width: '20%',
-      render(record: UserModel) {
+      render(record) {
         if (record.lastSeenAt) {
           return timeago.format(record.lastSeenAt * 1_000)
         }
@@ -69,13 +69,13 @@ const Members = observer(() => {
       key: 'action',
       name: 'Action',
       align: 'right',
-      render(record: UserModel) {
+      render(record) {
         return <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
       }
     }
   ]
 
-  useAsync(async () => {
+  useAsyncEffect(async () => {
     const result = await WorkspaceService.members(workspaceId)
     workspaceStore.setMembers(workspaceId, result)
   }, [workspaceId])

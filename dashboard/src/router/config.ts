@@ -1,4 +1,4 @@
-import { AuthGuard, LayoutAuth, LayoutWorkspace } from '@/components'
+import { AuthGuard, AuthLayout, WorkspaceLayout } from '@/components'
 import { lazy } from 'react'
 import type { CustomRouteConfig } from './index'
 
@@ -13,6 +13,9 @@ const Home = lazy(() => import('@/pages/home/Home'))
 const Workspace = lazy(() => import('@/pages/workspace/Workspace'))
 const Members = lazy(() => import('@/pages/workspace/Members'))
 
+/* Audiences */
+const Contacts = lazy(() => import('@/pages/audiences/Contacts'))
+
 /* Project */
 const Project = lazy(() => import('@/pages/project/Project'))
 
@@ -21,7 +24,7 @@ const config: CustomRouteConfig[] = [
   {
     path: '/login',
     loginRequired: false,
-    layout: LayoutAuth,
+    layout: AuthLayout,
     component: Login,
     title: 'Login'
   },
@@ -29,7 +32,7 @@ const config: CustomRouteConfig[] = [
   {
     path: '/sign-up',
     loginRequired: false,
-    layout: LayoutAuth,
+    layout: AuthLayout,
     component: SignUp,
     title: 'Sign Up'
   },
@@ -37,7 +40,7 @@ const config: CustomRouteConfig[] = [
   {
     path: '/forgot-password',
     loginRequired: false,
-    layout: LayoutAuth,
+    layout: AuthLayout,
     component: ForgotPassword,
     title: 'Forgot Password'
   },
@@ -45,7 +48,7 @@ const config: CustomRouteConfig[] = [
   {
     path: '/reset/:token',
     loginRequired: false,
-    layout: LayoutAuth,
+    layout: AuthLayout,
     component: ResetPassword,
     title: 'Reset Password'
   },
@@ -64,15 +67,24 @@ const config: CustomRouteConfig[] = [
     path: '/workspace/:workspaceId',
     loginRequired: true,
     exact: true,
-    layout: LayoutWorkspace,
+    layout: WorkspaceLayout,
     component: Workspace
   },
   {
     path: '/workspace/:workspaceId/members',
     loginRequired: true,
     exact: true,
-    layout: LayoutWorkspace,
+    layout: WorkspaceLayout,
     component: Members
+  },
+
+  /* Audiences */
+  {
+    path: '/workspace/:workspaceId/audiences',
+    loginRequired: true,
+    exact: true,
+    layout: WorkspaceLayout,
+    component: Contacts
   },
 
   /* Project */
@@ -80,7 +92,7 @@ const config: CustomRouteConfig[] = [
     path: '/workspace/:workspaceId/project/:projectId',
     loginRequired: true,
     exact: true,
-    layout: LayoutWorkspace,
+    layout: WorkspaceLayout,
     component: Project
   }
 ]

@@ -1,6 +1,6 @@
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsync } from '@/utils'
+import { useAsyncEffect } from '@/utils'
 import { isEmpty, isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -10,7 +10,7 @@ const Home: FC = observer(() => {
   const history = useHistory()
   const workspaceStore = useStore('workspaceStore')
 
-  useAsync(async () => {
+  useAsyncEffect(async () => {
     let list = workspaceStore.list
     const currentWorkspaceId = workspaceStore.currentWorkspaceId
 
