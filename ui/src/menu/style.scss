@@ -1,0 +1,15 @@
+.menus {
+  @apply mt-2 w-56 py-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none;
+}
+
+.menu-item {
+  @apply group flex items-center px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100;
+
+  svg {
+    @apply mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500;
+  }
+}
+
+.menu-divider {
+  @apply my-1 h-px border-t border-gray-100;
+}

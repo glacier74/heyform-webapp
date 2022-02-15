@@ -12,11 +12,11 @@
 }
 
 .heading-icon {
-  @apply mr-3;
+  @apply mr-5;
 }
 
 .heading-title {
-  @apply text-2xl font-bold leading-7 text-gray-900 sm:truncate;
+  @apply text-3xl font-bold leading-7 text-gray-900 sm:truncate;
 }
 
 .heading-description {
@@ -24,5 +24,5 @@
 }
 
 .heading-actions {
-  @apply mt-5 flex lg:mt-0 lg:ml-4;
+  @apply mt-6 flex flex-col-reverse justify-items-stretch space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-x-reverse sm:space-y-0 sm:space-x-3 md:mt-0 md:flex-row md:space-x-3;
 }

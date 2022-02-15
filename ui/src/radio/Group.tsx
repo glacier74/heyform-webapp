@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import type { FC } from 'react'
+import { useCallback } from 'react'
 import Radio from './Radio'
 
 export interface RadioGroupProps extends Omit<IComponentProps, 'value' | 'onChange'> {
@@ -23,6 +24,8 @@ const Group: FC<RadioGroupProps> = ({
     }
   }
 
+  const handleChangeCallback = useCallback(handleChange, [])
+
   return (
     <div className={clsx('radio-group', className)} {...restProps}>
       {options?.map(option => (
@@ -31,7 +34,7 @@ const Group: FC<RadioGroupProps> = ({
           value={option.value}
           checked={value === option.value}
           disabled={'disabled' in option ? option.disabled : disabled}
-          onChange={handleChange}
+          onChange={handleChangeCallback}
         >
           {option.label}
         </Radio>

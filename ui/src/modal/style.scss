@@ -1,0 +1,97 @@
+.modal {
+  @apply fixed z-10 inset-0;
+}
+
+.modal-container {
+  @apply absolute inset-0 flex items-center justify-center p-4 sm:p-0 bg-gray-500 bg-opacity-75 transition ease-in-out duration-100;
+}
+
+.modal-body {
+  @apply bg-white rounded-lg px-4 pt-5 pb-4 text-left shadow-xl sm:align-middle sm:max-w-2xl sm:w-full sm:p-6 transition ease-in-out duration-100;
+}
+
+.modal-confirm {
+  .modal-body {
+    @apply sm:max-w-lg;
+  }
+}
+
+.modal-icon {
+  @apply mx-auto flex items-center justify-center h-12 w-12 rounded-full;
+
+  svg {
+    @apply h-6 w-6;
+  }
+}
+
+.modal-icon-primary {
+  @apply bg-blue-100;
+
+  svg {
+    @apply text-blue-600;
+  }
+}
+
+.modal-icon-success {
+  @apply bg-green-100;
+
+  svg {
+    @apply text-green-600;
+  }
+}
+
+.modal-icon-danger {
+  @apply bg-red-100;
+
+  svg {
+    @apply text-red-600;
+  }
+}
+
+.modal-content {
+  @apply mt-3 text-center sm:mt-5;
+}
+
+.modal-title {
+  @apply text-lg leading-6 font-medium text-gray-900;
+}
+
+.modal-description {
+  @apply mt-2 text-sm text-gray-500;
+}
+
+.modal-actions {
+  @apply mt-5 sm:mt-6 flex flex-col-reverse sm:flex-row sm:justify-between;
+
+  .button {
+    @apply w-full;
+
+    &:nth-of-type(2) {
+      @apply ml-0 mb-3 sm:ml-3 sm:mb-0;
+    }
+  }
+}
+
+.modal-popup-enter-active,
+.modal-popup-exit {
+  .modal-container,
+  .modal-body {
+    @apply opacity-100;
+  }
+
+  .modal-body {
+    @apply transform scale-100;
+  }
+}
+
+.modal-popup-enter,
+.modal-popup-exit-active {
+  .modal-container,
+  .modal-body {
+    @apply opacity-0;
+  }
+
+  .modal-body {
+    @apply transform scale-95;
+  }
+}

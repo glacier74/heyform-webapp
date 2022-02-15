@@ -35,3 +35,7 @@ export function useOnClickOutside(
     }
   }, [ref, handler])
 }
+
+export function useCallbackFunction(func: (...args: any[]) => any, deps = []) {
+  return useCallback(func, deps)
+}

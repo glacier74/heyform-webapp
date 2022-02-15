@@ -6,6 +6,7 @@ export interface SelectProps extends Omit<IComponentProps, 'value' | 'onChange'>
   isHasError?: boolean
   loading?: boolean
   disabled?: boolean
+  unmountOnExit?: boolean
   valueRender?: (option?: IOptionType) => JSX.Element
   placeholder?: string
   options?: IOptionType[]

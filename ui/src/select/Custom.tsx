@@ -2,7 +2,7 @@ import { SelectorIcon } from '@heroicons/react/outline'
 import { CheckIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
 import type { FC } from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { useOnClickOutside } from '../hook'
 import Spin from '../spin'
@@ -14,6 +14,7 @@ const Custom: FC<SelectProps> = ({
   isHasError,
   loading,
   disabled,
+  unmountOnExit = true,
   valueRender,
   options = [],
   placeholder,
@@ -46,6 +47,8 @@ const Custom: FC<SelectProps> = ({
     setSelected(option)
   }, [value])
 
+  const handleExitedCallback = useCallback(handleExited, [])
+
   return (
     <div
       ref={ref}
@@ -70,8 +73,8 @@ const Custom: FC<SelectProps> = ({
         in={isOpen}
         timeout={0}
         classNames="select-popup"
-        unmountOnExit
-        onExited={handleExited}
+        unmountOnExit={unmountOnExit}
+        onExited={handleExitedCallback}
       >
         <ul className="select-popup">
           {options.map(option => (
