@@ -16,15 +16,15 @@ import type { FC } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
 interface SidebarNavProps {
-  onSettingsClick: () => void
+  onWorkspaceSettingsOpen: () => void
 }
 
-export const SidebarNav: FC<SidebarNavProps> = observer(({ onSettingsClick }) => {
+export const SidebarNav: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }) => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 
   return (
-    <nav className="mt-5 flex-1 px-2 bg-white">
+    <nav className="scrollbar overflow-y-auto flex-1 mt-5 px-2 pb-4">
       <div className="space-y-1">
         <NavLink
           to={`/workspace/${workspaceId}`}
@@ -57,7 +57,7 @@ export const SidebarNav: FC<SidebarNavProps> = observer(({ onSettingsClick }) =>
         </NavLink>
         <div
           className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
-          onChange={onSettingsClick}
+          onClick={onWorkspaceSettingsOpen}
         >
           <CogIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
           Workspace settings

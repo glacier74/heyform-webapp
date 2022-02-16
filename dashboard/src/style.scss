@@ -39,6 +39,33 @@ body {
   }
 }
 
+.sidebar-popup-enter-active,
+.sidebar-popup-exit {
+  .sidebar-overlay {
+    @apply opacity-100;
+  }
+
+  .sidebar-wrapper {
+    @apply translate-x-0;
+  }
+}
+
+.sidebar-popup-enter,
+.sidebar-popup-exit-active,
+.sidebar-popup-exit-done {
+  .sidebar-overlay {
+    @apply opacity-0;
+  }
+
+  .sidebar-wrapper {
+    @apply -translate-x-full;
+  }
+}
+
+.sidebar-popup-exit-done {
+  @apply hidden;
+}
+
 .overflow-y-auto {
   -webkit-overflow-scrolling: touch;
 }
