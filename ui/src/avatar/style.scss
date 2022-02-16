@@ -1,12 +1,12 @@
 .avatar {
-  @apply inline-flex items-center justify-center overflow-hidden w-8 h-8 bg-gray-100;
+  @apply inline-flex items-center justify-center overflow-hidden w-8 h-8 bg-gray-200;
 
   img {
     @apply h-full w-full object-cover;
   }
 
   .avatar-text {
-    @apply text-lg font-medium leading-none text-gray-500;
+    @apply text-lg font-medium leading-none text-gray-600;
   }
 }
 
