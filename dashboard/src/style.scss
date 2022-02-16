@@ -20,6 +20,32 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+.workspace-switch {
+  .dropdown {
+    @apply block w-full;
+  }
+
+  .menus {
+    @apply w-full sm:w-80 py-4 -top-2;
+
+    .avatar-text {
+      @apply text-sm;
+    }
+  }
+
+  .button {
+    @apply flex w-full;
+
+    .avatar-text {
+      @apply text-sm;
+    }
+  }
+
+  .button-content {
+    @apply flex-auto text-left;
+  }
+}
+
 .project-item {
   &:hover {
     .project-item-action {
