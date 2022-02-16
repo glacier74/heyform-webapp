@@ -1,3 +1,4 @@
+import { WorkspaceIcon } from '@/components'
 import type { ProjectModel, UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
@@ -5,8 +6,8 @@ import { useAsyncEffect, useParam } from '@/utils'
 import { DotsHorizontalIcon } from '@heroicons/react/outline'
 import { Avatar, Button, Heading } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
-import { useMemo } from 'react'
 import type { FC } from 'react'
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 
 interface ItemProps {
@@ -59,8 +60,7 @@ const Workspace = observer(() => {
         icon={
           <Avatar
             src={workspaceStore.workspace?.avatar}
-            text={workspaceStore.workspace?.name}
-            retainLength={2}
+            defaultIcon={<WorkspaceIcon />}
             size={54}
             rounded
             circular

@@ -4,6 +4,29 @@ body {
   @apply antialiased font-sans;
 }
 
+/* Scrollbar styles */
+.scrollbar {
+  &::-webkit-scrollbar {
+    @apply appearance-none bg-transparent w-1.5 h-1.5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply hidden w-1.5 bg-gray-300 opacity-0;
+    border-radius: 0.1875rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply appearance-none hidden;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-track {
+      @apply block;
+    }
+  }
+}
+
 .sidebar {
   nav a {
     &.active {
@@ -49,7 +72,7 @@ body {
 .project-item {
   &:hover {
     .project-item-action {
-      display: block;
+      @apply block;
     }
   }
 }

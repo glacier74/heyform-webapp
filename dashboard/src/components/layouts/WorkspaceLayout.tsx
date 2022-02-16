@@ -3,16 +3,21 @@ import { Dialog, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import type { FC } from 'react'
 import { Fragment, useState } from 'react'
+import { WorkspaceSettings } from '../workspaceSettings'
 import { SidebarNav } from './SidebarNav'
 import { SidebarUser } from './SidebarUser'
 import { WorkspaceGuard } from './WorkspaceGuard'
 
 export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [visible, setVisible] = useState(false)
+  const [workspaceSettingsOpen, setWorkspaceSettingsOpen] = useState(false)
 
-  function handleSettingsClick() {
-    setVisible(v => !v)
+  function handleWorkspaceSettingsShow() {
+    setWorkspaceSettingsOpen(true)
+  }
+
+  function handleWorkspaceSettingsClose() {
+    setWorkspaceSettingsOpen(false)
   }
 
   return (
@@ -66,10 +71,10 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
                     </button>
                   </div>
                 </Transition.Child>
-                <div className="flex flex-1 flex-col h-0 pt-5 pb-4">
+                <div className="flex flex-1 flex-col h-0 pt-5">
                   <WorkspaceSwitch />
-                  <div className="flex-1 overflow-y-auto">
-                    <SidebarNav onSettingsClick={handleSettingsClick} />
+                  <div className="scrollbar flex-1 pb-4 overflow-y-auto">
+                    <SidebarNav onSettingsClick={handleWorkspaceSettingsShow} />
                   </div>
                 </div>
                 <SidebarUser />
@@ -85,10 +90,10 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
         <div className="sidebar hidden md:flex md:flex-shrink-0">
           <div className="flex flex-col w-64">
             <div className="flex flex-col h-0 flex-1 border-r border-gray-200 bg-white">
-              <div className="flex flex-1 flex-col h-0 pt-5 pb-4">
+              <div className="flex flex-1 flex-col h-0 pt-5">
                 <WorkspaceSwitch />
-                <div className="flex-1 overflow-y-auto">
-                  <SidebarNav onSettingsClick={handleSettingsClick} />
+                <div className="scrollbar flex-1 pb-4 overflow-y-auto">
+                  <SidebarNav onSettingsClick={handleWorkspaceSettingsShow} />
                 </div>
               </div>
               <SidebarUser />
@@ -113,6 +118,9 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
           </main>
         </div>
       </div>
+
+      {/* Workspace settings modal */}
+      <WorkspaceSettings visible={true} onClose={handleWorkspaceSettingsClose} />
     </WorkspaceGuard>
   )
 }
