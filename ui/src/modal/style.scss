@@ -7,7 +7,7 @@
 }
 
 .modal-body {
-  @apply bg-white rounded-lg px-4 pt-5 pb-4 text-left shadow-xl w-full sm:p-8 transition ease-in-out duration-100 overflow-y-auto;
+  @apply bg-white rounded-lg px-4 pt-5 pb-4 text-left shadow-xl w-full max-h-full sm:p-8 transition ease-in-out duration-100 overflow-y-auto;
 
   @media (min-width: 640px) {
     max-width: 40rem;

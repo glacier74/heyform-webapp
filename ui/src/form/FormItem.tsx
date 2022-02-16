@@ -13,6 +13,7 @@ export interface FormItemProps extends RcFieldProps {
 }
 
 const FormItem: FC<FormItemProps> = ({
+  className,
   name,
   rules,
   validateTrigger = ['onSubmit'],
@@ -45,7 +46,7 @@ const FormItem: FC<FormItemProps> = ({
 
         return (
           <div
-            className={clsx('form-item', {
+            className={clsx('form-item', className, {
               'form-item-error': isHasError
             })}
             data-name={name}

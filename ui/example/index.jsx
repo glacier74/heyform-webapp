@@ -156,6 +156,7 @@ const Standalone = () => {
           >
             <Input type="email" placeholder="Email" leading={<MailIcon />} />
           </Form.Item>
+          <Form.Switch name="active" label="Active" description="Please active your plan" />
           <Form.Item name="password" label="Password" rules={[{ required: true }]}>
             <Input.Password placeholder="password" leading={<LockClosedIcon />} />
           </Form.Item>

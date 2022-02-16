@@ -2,8 +2,32 @@
   @apply mb-6;
 }
 
+.form-inline {
+  @apply flex;
+
+  .form-item {
+    @apply flex-auto mb-0;
+  }
+}
+
 .form-item-label {
   @apply block text-sm font-medium text-gray-700
+}
+
+.form-switch-item-container {
+  @apply flex items-center justify-between;
+
+  .switch {
+    @apply ml-4;
+  }
+}
+
+.form-switch-item-left {
+  @apply flex flex-col;
+}
+
+.form-item-description {
+  @apply text-sm text-gray-500;
 }
 
 .form-item-content {
