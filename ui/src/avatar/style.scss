@@ -1,5 +1,5 @@
 .avatar {
-  @apply inline-flex items-center justify-center overflow-hidden bg-gray-100;
+  @apply inline-flex items-center justify-center overflow-hidden w-8 h-8 bg-gray-100;
 
   img {
     @apply h-full w-full object-cover;

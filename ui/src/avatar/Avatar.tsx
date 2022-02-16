@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import type { FC } from 'react'
+import type { FC, ReactNode } from 'react'
 import { DefaultAvatarIcon } from '../icons'
 
 export interface AvatarProps extends IComponentProps {
@@ -9,6 +9,7 @@ export interface AvatarProps extends IComponentProps {
   size?: number
   circular?: boolean
   rounded?: boolean
+  defaultIcon?: ReactNode
 }
 
 const Avatar: FC<AvatarProps> = ({
@@ -17,31 +18,33 @@ const Avatar: FC<AvatarProps> = ({
   src,
   text,
   retainLength = 1,
-  size = 60,
+  size = 32,
   circular,
   rounded,
+  defaultIcon,
   children,
   ...restProps
 }) => {
   return (
     <span
+      style={{
+        width: size,
+        height: size,
+        lineHeight: `${size}px`,
+        ...style
+      }}
       className={clsx('avatar', className, {
         'avatar-circular': circular,
         'avatar-rounded': rounded
       })}
-      style={{
-        width: size,
-        height: size,
-        ...style
-      }}
       {...restProps}
     >
       {src ? (
-        <img src={src} />
+        <img src={src} width={size * 2} height={size * 2} />
       ) : text ? (
         <span className="avatar-text">{Array.from(text).slice(0, retainLength).join('')}</span>
       ) : (
-        <DefaultAvatarIcon className="avatar-placeholder" />
+        defaultIcon || <DefaultAvatarIcon className="avatar-placeholder" />
       )}
     </span>
   )
