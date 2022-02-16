@@ -1,6 +1,5 @@
 import clsx from 'clsx'
-import type { FC, ReactNode } from 'react'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { useOnClickOutside } from '../hook'
 
@@ -8,6 +7,7 @@ export interface DropdownProps extends IComponentProps {
   visible?: boolean
   placement?: 'left' | 'right'
   disabled?: boolean
+  dismissOnClickInside?: boolean
   unmountOnExit?: boolean
   overlay: ReactNode
 }
@@ -17,6 +17,7 @@ const Dropdown: FC<DropdownProps> = ({
   visible = false,
   placement = 'right',
   disabled,
+  dismissOnClickInside = true,
   unmountOnExit = true,
   overlay,
   children,
@@ -30,12 +31,15 @@ const Dropdown: FC<DropdownProps> = ({
   }
 
   function handleClick() {
-    setIsOpen(v => !v)
+    if (dismissOnClickInside) {
+      setIsOpen(!isOpen)
+    }
   }
 
   // Hide the list when the user clicks outside it
   useOnClickOutside(ref, () => setIsOpen(false))
 
+  // Trigger dropdown open or not outside
   useEffect(() => {
     setIsOpen(visible)
   }, [visible])
@@ -46,10 +50,10 @@ const Dropdown: FC<DropdownProps> = ({
     <div
       ref={ref}
       className={clsx('dropdown', `dropdown-top-${placement}`, className)}
+      onClick={handleClick}
       {...restProps}
     >
-      <div onClick={handleClick}>{children}</div>
-
+      <div className="dropdown-trigger">{children}</div>
       <CSSTransition
         in={isOpen}
         timeout={0}

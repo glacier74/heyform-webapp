@@ -35,6 +35,67 @@ import { StrictMode, useMemo, useState } from 'react'
 import { ArchiveIcon, CodeIcon, EyeIcon, PlusIcon } from '@heroicons/react/outline'
 import '../src/style.scss'
 
+const DropdownElements = () => {
+  const [mv, setMv] = useState(true)
+
+  return (
+    <div className="mt-8 space-y-4 flex flex-col items-center justify-start sm:space-y-0 sm:flex-row sm:items-end sm:justify-around">
+      <Button onClick={() => setMv(!mv)}>Toggle</Button>
+
+      <Dropdown
+        visible={mv}
+        overlay={
+          <Menus>
+            <Menus.Item icon={<PencilIcon />} label="Edit" />
+            <Menus.Item icon={<DuplicateIcon />} label="Duplicate" />
+            <Menus.Divider />
+            <Menus.Item icon={<UserAddIcon />} label="Add user" />
+            <Menus.Item icon={<FolderRemoveIcon />} label="Move" />
+            <Menus.Divider />
+            <Menus.Item icon={<TrashIcon />} label="Delete" />
+          </Menus>
+        }
+      >
+        <Button trailing={<ChevronDownIcon />}>Options</Button>
+      </Dropdown>
+
+      <Dropdown
+        placement="left"
+        overlay={
+          <Menus
+            onClick={key => {
+              console.log(key)
+            }}
+          >
+            <Menus.Item name="Edit" icon={<PencilIcon />} label="Edit" />
+            <Menus.Item name="Duplicate" icon={<DuplicateIcon />} label="Duplicate" />
+            <Menus.Divider />
+            <Menus.Item name="Add user" icon={<UserAddIcon />} label="Add user" />
+            <Menus.Item name="Move" icon={<FolderRemoveIcon />} label="Move" />
+            <Menus.Divider />
+            <Menus.Item name="Delete" icon={<TrashIcon />} label="Delete" />
+          </Menus>
+        }
+      >
+        <Button trailing={<ChevronDownIcon />}>Options</Button>
+      </Dropdown>
+
+      <div>
+        <Button trailing={<ChevronDownIcon />}>Options</Button>
+        <Menus>
+          <Menus.Item icon={<PencilIcon />} label="Edit" />
+          <Menus.Item icon={<DuplicateIcon />} label="Duplicate" />
+          <Menus.Divider />
+          <Menus.Item icon={<UserAddIcon />} label="Add user" />
+          <Menus.Item icon={<FolderRemoveIcon />} label="Move" />
+          <Menus.Divider />
+          <Menus.Item icon={<TrashIcon />} label="Delete" />
+        </Menus>
+      </div>
+    </div>
+  )
+}
+
 const Standalone = () => {
   const [mv, setMv] = useState(false)
   const [cv, setcv] = useState(false)
@@ -191,57 +252,7 @@ const App = () => {
         <a href="#">Disqualified</a>
       </Navbar>
 
-      <div className="mt-8 space-y-4 flex flex-col items-center justify-start sm:space-y-0 sm:flex-row sm:items-end sm:justify-around">
-        <Dropdown
-          overlay={
-            <Menus>
-              <Menus.Item icon={<PencilIcon />} label="Edit" />
-              <Menus.Item icon={<DuplicateIcon />} label="Duplicate" />
-              <Menus.Divider />
-              <Menus.Item icon={<UserAddIcon />} label="Add user" />
-              <Menus.Item icon={<FolderRemoveIcon />} label="Move" />
-              <Menus.Divider />
-              <Menus.Item icon={<TrashIcon />} label="Delete" />
-            </Menus>
-          }
-        >
-          <Button trailing={<ChevronDownIcon />}>Options</Button>
-        </Dropdown>
-
-        <Dropdown
-          placement="left"
-          overlay={
-            <Menus
-              onClick={key => {
-                console.log(key)
-              }}
-            >
-              <Menus.Item name="Edit" icon={<PencilIcon />} label="Edit" />
-              <Menus.Item name="Duplicate" icon={<DuplicateIcon />} label="Duplicate" />
-              <Menus.Divider />
-              <Menus.Item name="Add user" icon={<UserAddIcon />} label="Add user" />
-              <Menus.Item name="Move" icon={<FolderRemoveIcon />} label="Move" />
-              <Menus.Divider />
-              <Menus.Item name="Delete" icon={<TrashIcon />} label="Delete" />
-            </Menus>
-          }
-        >
-          <Button trailing={<ChevronDownIcon />}>Options</Button>
-        </Dropdown>
-
-        <div>
-          <Button trailing={<ChevronDownIcon />}>Options</Button>
-          <Menus>
-            <Menus.Item icon={<PencilIcon />} label="Edit" />
-            <Menus.Item icon={<DuplicateIcon />} label="Duplicate" />
-            <Menus.Divider />
-            <Menus.Item icon={<UserAddIcon />} label="Add user" />
-            <Menus.Item icon={<FolderRemoveIcon />} label="Move" />
-            <Menus.Divider />
-            <Menus.Item icon={<TrashIcon />} label="Delete" />
-          </Menus>
-        </div>
-      </div>
+      <DropdownElements />
 
       <div className="mt-8">
         <Table
