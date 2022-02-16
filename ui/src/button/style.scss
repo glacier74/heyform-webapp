@@ -17,6 +17,10 @@
   }
 }
 
+.button-content {
+  @apply sm:truncate;
+}
+
 .button-primary,
 .button-success,
 .button-danger {

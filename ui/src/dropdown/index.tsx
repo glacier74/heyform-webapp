@@ -1,10 +1,11 @@
 import clsx from 'clsx'
 import type { FC, ReactNode } from 'react'
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { useOnClickOutside } from '../hook'
 
 export interface DropdownProps extends IComponentProps {
+  visible?: boolean
   placement?: 'left' | 'right'
   disabled?: boolean
   unmountOnExit?: boolean
@@ -13,6 +14,7 @@ export interface DropdownProps extends IComponentProps {
 
 const Dropdown: FC<DropdownProps> = ({
   className,
+  visible = false,
   placement = 'right',
   disabled,
   unmountOnExit = true,
@@ -21,7 +23,7 @@ const Dropdown: FC<DropdownProps> = ({
   ...restProps
 }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(visible)
 
   function handleExited() {
     setIsOpen(false)
@@ -33,6 +35,10 @@ const Dropdown: FC<DropdownProps> = ({
 
   // Hide the list when the user clicks outside it
   useOnClickOutside(ref, () => setIsOpen(false))
+
+  useEffect(() => {
+    setIsOpen(visible)
+  }, [visible])
 
   const handleExitedCallback = useCallback(handleExited, [])
 

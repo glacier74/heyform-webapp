@@ -39,7 +39,7 @@ const Button: FC<ButtonProps> = ({
       {...restProps}
     >
       {loading ? <Spin /> : leading && <span className="button-leading">{leading}</span>}
-      {children}
+      <span className="button-content">{children}</span>
       {trailing && <span className="button-trailing">{trailing}</span>}
     </button>
   )
