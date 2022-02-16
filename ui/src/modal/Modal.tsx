@@ -47,7 +47,7 @@ const Modal: FC<ModalProps> = ({
       <Portal visible={visible}>
         <div className={clsx('modal', className)} {...restProps}>
           <div className="modal-container">
-            <div ref={bodyRef} className="modal-body">
+            <div ref={bodyRef} className="modal-body scrollbar">
               {children}
             </div>
           </div>

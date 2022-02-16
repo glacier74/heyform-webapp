@@ -3,11 +3,15 @@
 }
 
 .modal-container {
-  @apply absolute inset-0 flex items-center justify-center p-4 sm:p-0 bg-gray-500 bg-opacity-75 transition ease-in-out duration-100;
+  @apply absolute inset-0 flex items-center justify-center p-4 sm:p-8 bg-gray-500 bg-opacity-75 transition ease-in-out duration-100;
 }
 
 .modal-body {
-  @apply bg-white rounded-lg px-4 pt-5 pb-4 text-left shadow-xl sm:align-middle sm:max-w-2xl sm:w-full sm:p-6 transition ease-in-out duration-100;
+  @apply bg-white rounded-lg px-4 pt-5 pb-4 text-left shadow-xl w-full sm:p-8 transition ease-in-out duration-100 overflow-y-auto;
+
+  @media (min-width: 640px) {
+    max-width: 40rem;
+  }
 }
 
 .modal-confirm {

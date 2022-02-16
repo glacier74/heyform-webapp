@@ -248,8 +248,6 @@ const App = () => {
         <a href="#" className="active">
           Interview
         </a>
-        <a href="#">Offer</a>
-        <a href="#">Disqualified</a>
       </Navbar>
 
       <DropdownElements />
