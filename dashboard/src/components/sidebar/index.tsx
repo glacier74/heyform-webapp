@@ -1,8 +1,8 @@
 import { XIcon } from '@heroicons/react/outline'
 import { CSSTransition } from '@heyforms/ui'
 import type { FC } from 'react'
-import { SidebarNav } from './SidebarNav'
-import { SidebarUser } from './SidebarUser'
+import { Navbar } from './Navbar'
+import { UserAccount } from './UserAccount'
 import { WorkspaceSwitch } from './WorkspaceSwitch'
 
 interface SidebarProps {
@@ -38,10 +38,10 @@ export const Sidebar: FC<SidebarProps> = ({
           <div className="sidebar-wrapper relative flex flex-col flex-1 max-w-xs w-full h-full bg-white transform-gpu transition-transform duration-300 ease-in-out">
             <div className="flex flex-1 flex-col h-0 pt-5">
               <WorkspaceSwitch onCreateWorkspace={onCreateWorkspace} />
-              <SidebarNav onWorkspaceSettingsOpen={onWorkspaceSettingsOpen} />
+              <Navbar onWorkspaceSettingsOpen={onWorkspaceSettingsOpen} />
             </div>
 
-            <SidebarUser onUserSettingsOpen={onUserSettingsOpen} />
+            <UserAccount onUserSettingsOpen={onUserSettingsOpen} />
 
             <div className="absolute top-0 right-0 -mr-12 pt-2 md:hidden">
               <button
@@ -62,9 +62,9 @@ export const Sidebar: FC<SidebarProps> = ({
         <div className="relative flex flex-col flex-1 w-64 h-full border-r border-gray-200 bg-white">
           <div className="flex flex-1 flex-col h-0 pt-5">
             <WorkspaceSwitch onCreateWorkspace={onCreateWorkspace} />
-            <SidebarNav onWorkspaceSettingsOpen={onWorkspaceSettingsOpen} />
+            <Navbar onWorkspaceSettingsOpen={onWorkspaceSettingsOpen} />
           </div>
-          <SidebarUser onUserSettingsOpen={onUserSettingsOpen} />
+          <UserAccount onUserSettingsOpen={onUserSettingsOpen} />
         </div>
       </div>
     </>

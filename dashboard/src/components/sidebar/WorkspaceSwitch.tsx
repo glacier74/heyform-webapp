@@ -82,7 +82,7 @@ export const WorkspaceSwitch: FC<WorkspaceSwitchProps> = observer(({ onCreateWor
           <span className="flex w-full justify-between items-center cursor-pointer">
             <span className="flex min-w-0 items-center justify-between space-x-3">
               <Avatar
-                className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"
+                className="w-10 h-10 rounded-full flex-shrink-0"
                 src={workspaceStore.workspace?.avatar}
                 defaultIcon={<WorkspaceIcon />}
                 size={40}

@@ -19,7 +19,7 @@ interface SidebarNavProps {
   onWorkspaceSettingsOpen: () => void
 }
 
-export const SidebarNav: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }) => {
+export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }) => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 

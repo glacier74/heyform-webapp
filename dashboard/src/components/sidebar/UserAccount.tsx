@@ -8,7 +8,7 @@ interface SidebarUserProps {
   onUserSettingsOpen: () => void
 }
 
-export const SidebarUser: FC<SidebarUserProps> = observer(({ onUserSettingsOpen }) => {
+export const UserAccount: FC<SidebarUserProps> = observer(({ onUserSettingsOpen }) => {
   const userStore = useStore('userStore')
 
   function handleMenuClick(name?: IKeyType) {
@@ -44,7 +44,7 @@ export const SidebarUser: FC<SidebarUserProps> = observer(({ onUserSettingsOpen 
             <img className="inline-block h-8 w-8 rounded-full" src={userStore.user.avatar} />
           </div>
           <div className="ml-3">
-            <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+            <p className="text-sm font-medium text-gray-700 truncate group-hover:text-gray-900">
               {userStore.user.name}
             </p>
             <p className="text-sm text-gray-500 group-hover:text-gray-700">View profile</p>

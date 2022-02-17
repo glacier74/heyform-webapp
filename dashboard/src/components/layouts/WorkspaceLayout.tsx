@@ -1,4 +1,5 @@
 import UserSettings from '@/pages/user/UserSettings'
+import CreateWorkspace from '@/pages/workspace/CreateWorkspace'
 import WorkspaceSettings from '@/pages/workspace/WorkspaceSettings'
 import { MenuIcon } from '@heroicons/react/outline'
 import type { FC } from 'react'
@@ -10,6 +11,7 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [workspaceSettingsOpen, setWorkspaceSettingsOpen] = useState(false)
   const [userSettingsOpen, setUserSettingsOpen] = useState(false)
+  const [createWorkspaceOpen, setCreateWorkspaceOpen] = useState(false)
 
   function handleSidebarOpen() {
     setSidebarOpen(true)
@@ -35,15 +37,23 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
     setUserSettingsOpen(false)
   }
 
+  function handleCreateWorkspaceOpen() {
+    setCreateWorkspaceOpen(true)
+  }
+
+  function handleCreateWorkspaceClose() {
+    setCreateWorkspaceOpen(false)
+  }
+
   return (
     <WorkspaceGuard>
       <div className="h-screen flex overflow-hidden bg-white">
         <Sidebar
           isOpen={sidebarOpen}
           onSidebarClose={handleSidebarClose}
-          onCreateWorkspace={console.log}
           onWorkspaceSettingsOpen={handleWorkspaceSettingsOpen}
           onUserSettingsOpen={handleUserSettingsOpen}
+          onCreateWorkspace={handleCreateWorkspaceOpen}
         />
 
         <div className="flex flex-col w-0 flex-1 overflow-hidden">
@@ -69,6 +79,9 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
 
       {/* User settings modal */}
       <UserSettings visible={userSettingsOpen} onClose={handleUserSettingsClose} />
+
+      {/* Create workspace modal */}
+      <CreateWorkspace visible={createWorkspaceOpen} onClose={handleCreateWorkspaceClose} />
     </WorkspaceGuard>
   )
 }
