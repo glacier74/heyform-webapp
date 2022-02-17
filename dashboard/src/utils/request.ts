@@ -20,7 +20,7 @@ const retryLink: any = new RetryLink({
   }
 })
 
-const timeoutLink = new ApolloLinkTimeout(30_000)
+const timeoutLink = new ApolloLinkTimeout(30000)
 
 const headerLink = setContext((_, { headers }) => {
   // get `User-ID` from local storage or cookie if it exists

@@ -75,6 +75,7 @@ export const SidebarNav: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOp
         <div className="mt-1 space-y-1" aria-labelledby="projects-headline">
           {workspaceStore.workspace?.projects.map(project => (
             <Link
+              key={project.id}
               to={`/workspace/${workspaceId}/project/${project.id}`}
               className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
             >

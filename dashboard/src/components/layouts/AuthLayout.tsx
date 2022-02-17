@@ -4,7 +4,7 @@ export const AuthLayout: FC<IComponentProps> = ({ children }) => {
   return (
     <div className="min-h-screen bg-white flex">
       <div className="flex-1 flex flex-col justify-center">
-        <div className="mx-auto w-full max-w-sm lg:w-96">{children}</div>
+        <div className="mx-auto w-full max-w-sm px-4 md:px-0 lg:w-96">{children}</div>
       </div>
       <div className="hidden lg:block relative w-0 flex-1">
         <img
