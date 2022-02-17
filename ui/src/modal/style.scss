@@ -7,7 +7,7 @@
 }
 
 .modal-wrapper {
-  @apply relative bg-white rounded-lg shadow-xl w-full max-h-full transition ease-in-out duration-100;
+  @apply flex flex-col relative bg-white rounded-lg shadow-xl w-full max-h-full transition ease-in-out duration-100;
 
   @media (min-width: 640px) {
     max-width: 40rem;
@@ -15,7 +15,7 @@
 }
 
 .modal-body {
-  @apply w-full h-full px-4 pt-5 pb-4 sm:p-8 text-left overflow-y-auto;
+  @apply flex-1 w-full h-full px-4 pt-5 pb-4 sm:p-8 text-left overflow-y-auto;
 }
 
 .modal-close-button {
