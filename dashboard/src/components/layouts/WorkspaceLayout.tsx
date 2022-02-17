@@ -1,13 +1,15 @@
-import { Sidebar } from '@/components/layouts/Sidebar'
+import UserSettings from '@/pages/user/UserSettings'
+import WorkspaceSettings from '@/pages/workspace/WorkspaceSettings'
 import { MenuIcon } from '@heroicons/react/outline'
 import type { FC } from 'react'
 import { useState } from 'react'
-import { WorkspaceSettings } from '../workspaceSettings'
+import { Sidebar } from '../sidebar'
 import { WorkspaceGuard } from './WorkspaceGuard'
 
 export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [workspaceSettingsOpen, setWorkspaceSettingsOpen] = useState(false)
+  const [userSettingsOpen, setUserSettingsOpen] = useState(false)
 
   function handleSidebarOpen() {
     setSidebarOpen(true)
@@ -25,6 +27,14 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
     setWorkspaceSettingsOpen(false)
   }
 
+  function handleUserSettingsOpen() {
+    setUserSettingsOpen(true)
+  }
+
+  function handleUserSettingsClose() {
+    setUserSettingsOpen(false)
+  }
+
   return (
     <WorkspaceGuard>
       <div className="h-screen flex overflow-hidden bg-white">
@@ -33,6 +43,7 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
           onSidebarClose={handleSidebarClose}
           onCreateWorkspace={console.log}
           onWorkspaceSettingsOpen={handleWorkspaceSettingsOpen}
+          onUserSettingsOpen={handleUserSettingsOpen}
         />
 
         <div className="flex flex-col w-0 flex-1 overflow-hidden">
@@ -55,6 +66,9 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
 
       {/* Workspace settings modal */}
       <WorkspaceSettings visible={workspaceSettingsOpen} onClose={handleWorkspaceSettingsClose} />
+
+      {/* User settings modal */}
+      <UserSettings visible={userSettingsOpen} onClose={handleUserSettingsClose} />
     </WorkspaceGuard>
   )
 }

@@ -16,6 +16,7 @@ const Home: FC = observer(() => {
 
     if (isEmpty(list)) {
       const result = await WorkspaceService.workspaces()
+      workspaceStore.setWorkspaces(result)
 
       if (isEmpty(result)) {
         return history.replace('/workspace/create')

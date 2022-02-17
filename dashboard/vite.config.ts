@@ -18,6 +18,10 @@ export default defineConfig({
       }
     ]
   },
+  define: {
+    // https://github.com/smnhgn/vite-plugin-package-version/blob/5baa976dbb22917a2bd00dfa25cf05774c229b1d/src/index.ts#L11
+    'import.meta.env.PACKAGE_VERSION': JSON.stringify(process.env.npm_package_version)
+  },
   esbuild: {
     jsxInject: `import React from 'react'`
   },
