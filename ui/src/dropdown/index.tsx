@@ -8,7 +8,6 @@ export interface DropdownProps extends IComponentProps {
   placement?: 'left' | 'right'
   disabled?: boolean
   dismissOnClickInside?: boolean
-  unmountOnExit?: boolean
   overlay: ReactNode
 }
 
@@ -18,7 +17,6 @@ const Dropdown: FC<DropdownProps> = ({
   placement = 'right',
   disabled,
   dismissOnClickInside = true,
-  unmountOnExit = true,
   overlay,
   children,
   ...restProps
@@ -58,7 +56,8 @@ const Dropdown: FC<DropdownProps> = ({
         in={isOpen}
         timeout={0}
         classNames="dropdown-popup"
-        unmountOnExit={unmountOnExit}
+        mountOnEnter={true}
+        unmountOnExit={false}
         onExited={handleExitedCallback}
       >
         {overlay}

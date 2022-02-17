@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import type { FC, ReactElement } from 'react'
-import { Children, cloneElement, memo } from 'react'
+import { Children, cloneElement } from 'react'
 
 export interface MenusProps extends Omit<IComponentProps<HTMLDivElement>, 'onClick'> {
   onClick?: (name?: IKeyType) => void
@@ -19,4 +19,4 @@ const Menus: FC<MenusProps> = ({ className, children, onClick, ...restProps }) =
   )
 }
 
-export default memo(Menus)
+export default Menus

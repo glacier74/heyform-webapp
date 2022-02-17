@@ -1,14 +1,17 @@
+import { XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
+import Button from '../button'
 import { useOnClickOutside } from '../hook'
 import Portal from '../portal'
 
 export interface ModalProps extends IComponentProps {
   visible?: boolean
   maskClosable?: boolean
-  loading?: boolean
+  showCloseIcon?: boolean
+  confirmLoading?: boolean
   unmountOnExit?: boolean
   onClose?: () => void
   onExited?: () => void
@@ -18,7 +21,8 @@ const Modal: FC<ModalProps> = ({
   className,
   visible,
   maskClosable = true,
-  loading = false,
+  showCloseIcon = false,
+  confirmLoading = false,
   unmountOnExit = true,
   children,
   onClose,
@@ -28,7 +32,7 @@ const Modal: FC<ModalProps> = ({
   const bodyRef = useRef<HTMLDivElement | null>(null)
 
   function handleClose() {
-    if (maskClosable && !loading) {
+    if (maskClosable && !confirmLoading) {
       onClose && onClose()
     }
   }
@@ -47,8 +51,17 @@ const Modal: FC<ModalProps> = ({
       <Portal visible={visible}>
         <div className={clsx('modal', className)} {...restProps}>
           <div className="modal-container">
-            <div ref={bodyRef} className="modal-body scrollbar">
-              {children}
+            <div ref={bodyRef} className="modal-wrapper">
+              <div className="modal-body scrollbar">
+                {showCloseIcon && (
+                  <Button.Link
+                    className="modal-close-button"
+                    leading={<XIcon aria-hidden="true" />}
+                    onClick={handleClose}
+                  />
+                )}
+                {children}
+              </div>
             </div>
           </div>
         </div>

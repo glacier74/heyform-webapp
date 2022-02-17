@@ -3,63 +3,53 @@ import type { CSSProperties } from 'react'
 export const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
 export const mousedownEvent = isTouchDevice ? 'touchstart' : 'mousedown'
 
-export const CSSTransitionTimeout = {
-  enter: 100,
-  exit: 100
+const PORTAL_SPACING_RATE = 4 / 5
+const DEFAULT_PORTAL_OPTIONS = {
+  top: 0,
+  bottom: 0,
+  leading: 0,
+  trailing: 0
 }
 
-export interface PopupStylesOptions {
-  stretch?: boolean
+export interface PortalOptions {
   top?: number
   bottom?: number
   leading?: number
   trailing?: number
 }
 
-const POPUP_SPACING_RATE = 4 / 5
-const POPUP_DEFAULT_OPTIONS: PopupStylesOptions = {
-  stretch: false,
-  top: 48,
-  bottom: 48,
-  leading: 48,
-  trailing: 48
-}
-
-export function popupStyles(rect: DOMRect, customOptions?: PopupStylesOptions): CSSProperties {
+export function portalStyle(rect: DOMRect, customOptions?: PortalOptions): CSSProperties {
   let styles: CSSProperties = {}
+
   const options = {
-    ...POPUP_DEFAULT_OPTIONS,
+    ...DEFAULT_PORTAL_OPTIONS,
     ...customOptions
   }
-
   const windowWidth = window.innerWidth
   const windowHeight = window.innerHeight
 
   const top = rect.top + rect.height
   const left = rect.left
+  console.log('rect', rect)
 
-  if (top > windowHeight * POPUP_SPACING_RATE) {
+  if (top > windowHeight * PORTAL_SPACING_RATE) {
     styles = {
       left: rect.left,
       bottom: windowHeight - rect.top,
-      maxHeight: rect.top - options.top!
+      maxHeight: rect.top - options.top
     }
   } else {
     styles = {
       top,
       left: rect.left,
-      maxHeight: windowHeight - top - options.bottom!
+      maxHeight: windowHeight - top - options.bottom
     }
   }
 
-  if (options.stretch) {
-    styles.width = rect.width
+  if (left > windowWidth * PORTAL_SPACING_RATE) {
+    styles.maxWidth = rect.left - options.leading
   } else {
-    if (left > windowWidth * POPUP_SPACING_RATE) {
-      styles.maxWidth = rect.left - options.leading!
-    } else {
-      styles.maxWidth = windowWidth - left - options.trailing!
-    }
+    styles.maxWidth = windowWidth - left - options.trailing
   }
 
   return styles

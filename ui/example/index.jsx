@@ -33,7 +33,7 @@ import {
 } from '@heroicons/react/solid'
 import { StrictMode, useMemo, useState } from 'react'
 import { ArchiveIcon, CodeIcon, EyeIcon, PlusIcon } from '@heroicons/react/outline'
-import '../src/style.scss'
+import './style.scss'
 
 const DropdownElements = () => {
   const [mv, setMv] = useState(true)
@@ -63,6 +63,7 @@ const DropdownElements = () => {
         placement="left"
         overlay={
           <Menus
+            className="right-0"
             onClick={key => {
               console.log(key)
             }}
@@ -80,18 +81,18 @@ const DropdownElements = () => {
         <Button trailing={<ChevronDownIcon />}>Options</Button>
       </Dropdown>
 
-      <div>
-        <Button trailing={<ChevronDownIcon />}>Options</Button>
-        <Menus>
-          <Menus.Item icon={<PencilIcon />} label="Edit" />
-          <Menus.Item icon={<DuplicateIcon />} label="Duplicate" />
-          <Menus.Divider />
-          <Menus.Item icon={<UserAddIcon />} label="Add user" />
-          <Menus.Item icon={<FolderRemoveIcon />} label="Move" />
-          <Menus.Divider />
-          <Menus.Item icon={<TrashIcon />} label="Delete" />
-        </Menus>
-      </div>
+      {/*<div>*/}
+      {/*  <Button trailing={<ChevronDownIcon />}>Options</Button>*/}
+      {/*  <Menus>*/}
+      {/*    <Menus.Item icon={<PencilIcon />} label="Edit" />*/}
+      {/*    <Menus.Item icon={<DuplicateIcon />} label="Duplicate" />*/}
+      {/*    <Menus.Divider />*/}
+      {/*    <Menus.Item icon={<UserAddIcon />} label="Add user" />*/}
+      {/*    <Menus.Item icon={<FolderRemoveIcon />} label="Move" />*/}
+      {/*    <Menus.Divider />*/}
+      {/*    <Menus.Item icon={<TrashIcon />} label="Delete" />*/}
+      {/*  </Menus>*/}
+      {/*</div>*/}
     </div>
   )
 }
@@ -143,76 +144,84 @@ const Standalone = () => {
         cancelLabel="Cancel"
         confirmLabel="Deactivate"
         onClose={() => setcv(false)}
+        onCancel={() => setcv(false)}
       />
 
-      <Modal visible={mv} onClose={() => setMv(false)}>
-        <Form onValuesChange={console.log} onFinish={console.log}>
-          <Form.Item
-            name="email"
-            label="Email"
-            extra="We'll only use this for spam."
-            validateTrigger="blur"
-            rules={[{ type: 'email', required: true }]}
-          >
-            <Input type="email" placeholder="Email" leading={<MailIcon />} />
-          </Form.Item>
-          <Form.Switch name="active" label="Active" description="Please active your plan" />
-          <Form.Item name="password" label="Password" rules={[{ required: true }]}>
-            <Input.Password placeholder="password" leading={<LockClosedIcon />} />
-          </Form.Item>
-          <Form.Item name="homepage" label="Homepage" rules={[{ required: true }]}>
-            <Input placeholder="example.com" leading="https://" />
-          </Form.Item>
-          <Form.Item name="price" label="Price" rules={[{ required: true }]}>
-            <Input placeholder="0.00" leading="$" trailing="USD" />
-          </Form.Item>
-          <Form.Item name="budget" label="Expected budget" rules={[{ required: true }]}>
-            <Radio.Group
-              options={[
-                {
-                  label: 'Less than $25K',
-                  value: 1
-                },
-                {
-                  label: '$25K – $50K',
-                  value: 2
-                },
-                {
-                  label: '$50K – $100K',
-                  value: 3
-                },
-                {
-                  label: '$100K+',
-                  value: 4
-                }
-              ]}
-            />
-          </Form.Item>
-          <Form.Item name="message" label="Message" rules={[{ required: true }]}>
-            <Input.Textarea />
-          </Form.Item>
-          <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
-            <Select
-              options={[
-                {
-                  label: 'Men',
-                  value: 'men'
-                },
-                {
-                  label: 'Women',
-                  value: 'women'
-                },
-                {
-                  label: 'Unknown',
-                  value: 'unknown'
-                }
-              ]}
-            />
-          </Form.Item>
-          <Button type="primary" htmlType="submit" block={true}>
-            Sign In
-          </Button>
-        </Form>
+      <Modal visible={mv} showCloseIcon={true} onClose={() => setMv(false)}>
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-lg leading-6 font-medium text-gray-900">Workspace Settings</h1>
+            <p className="mt-1 text-sm text-gray-500">Manage your workspace settings</p>
+          </div>
+
+          <Form onValuesChange={console.log} onFinish={console.log}>
+            <Form.Item
+              name="email"
+              label="Email"
+              extra="We'll only use this for spam."
+              validateTrigger="blur"
+              rules={[{ type: 'email', required: true }]}
+            >
+              <Input type="email" placeholder="Email" leading={<MailIcon />} />
+            </Form.Item>
+            <Form.Switch name="active" label="Active" description="Please active your plan" />
+            <Form.Item name="password" label="Password" rules={[{ required: true }]}>
+              <Input.Password placeholder="password" leading={<LockClosedIcon />} />
+            </Form.Item>
+            <Form.Item name="homepage" label="Homepage" rules={[{ required: true }]}>
+              <Input placeholder="example.com" leading="https://" />
+            </Form.Item>
+            <Form.Item name="price" label="Price" rules={[{ required: true }]}>
+              <Input placeholder="0.00" leading="$" trailing="USD" />
+            </Form.Item>
+            <Form.Item name="budget" label="Expected budget" rules={[{ required: true }]}>
+              <Radio.Group
+                options={[
+                  {
+                    label: 'Less than $25K',
+                    value: 1
+                  },
+                  {
+                    label: '$25K – $50K',
+                    value: 2
+                  },
+                  {
+                    label: '$50K – $100K',
+                    value: 3
+                  },
+                  {
+                    label: '$100K+',
+                    value: 4
+                  }
+                ]}
+              />
+            </Form.Item>
+            <Form.Item name="message" label="Message" rules={[{ required: true }]}>
+              <Input.Textarea />
+            </Form.Item>
+            <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
+              <Select
+                options={[
+                  {
+                    label: 'Men',
+                    value: 'men'
+                  },
+                  {
+                    label: 'Women',
+                    value: 'women'
+                  },
+                  {
+                    label: 'Unknown',
+                    value: 'unknown'
+                  }
+                ]}
+              />
+            </Form.Item>
+            <Button type="primary" htmlType="submit" block={true}>
+              Sign In
+            </Button>
+          </Form>
+        </div>
       </Modal>
     </>
   )

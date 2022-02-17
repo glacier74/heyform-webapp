@@ -17,6 +17,10 @@
   }
 }
 
+.button-link {
+  @apply p-0 bg-transparent border-none shadow-none;
+}
+
 .button-content {
   @apply sm:truncate;
 }

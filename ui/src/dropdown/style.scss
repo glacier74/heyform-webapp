@@ -31,3 +31,7 @@
 .dropdown-popup-exit-active {
   @apply transform opacity-0 scale-95;
 }
+
+.dropdown-popup-exit-done {
+  @apply hidden;
+}

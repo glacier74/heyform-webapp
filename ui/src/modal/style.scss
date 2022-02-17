@@ -1,21 +1,42 @@
 .modal {
-  @apply fixed z-10 inset-0;
+  @apply fixed z-50 inset-0;
 }
 
 .modal-container {
-  @apply absolute inset-0 flex items-center justify-center p-4 sm:p-8 bg-gray-500 bg-opacity-75 transition ease-in-out duration-100;
+  @apply absolute inset-0 flex items-center justify-center p-0 sm:p-8 bg-gray-500 bg-opacity-75 transition ease-in-out duration-100;
 }
 
-.modal-body {
-  @apply bg-white rounded-lg px-4 pt-5 pb-4 text-left shadow-xl w-full max-h-full sm:p-8 transition ease-in-out duration-100 overflow-y-auto;
+.modal-wrapper {
+  @apply relative bg-white rounded-lg shadow-xl w-full max-h-full transition ease-in-out duration-100;
 
   @media (min-width: 640px) {
     max-width: 40rem;
   }
 }
 
+.modal-body {
+  @apply w-full h-full px-4 pt-5 pb-4 sm:p-8 text-left overflow-y-auto;
+}
+
+.modal-close-button {
+  @apply absolute z-50 p-2 top-5 right-4 -mr-2 bg-white sm:top-8 sm:right-8;
+
+  .button-leading {
+    @apply w-6 h-6;
+  }
+}
+
 .modal-confirm {
-  .modal-body {
+  .modal-container {
+    @apply p-4;
+  }
+
+  .modal-wrapper {
+    @apply h-auto;
+  }
+
+  .modal-body,
+  .modal-wrapper {
     @apply sm:max-w-lg;
   }
 }
@@ -79,11 +100,11 @@
 .modal-popup-enter-active,
 .modal-popup-exit {
   .modal-container,
-  .modal-body {
+  .modal-wrapper {
     @apply opacity-100;
   }
 
-  .modal-body {
+  .modal-wrapper {
     @apply transform scale-100;
   }
 }

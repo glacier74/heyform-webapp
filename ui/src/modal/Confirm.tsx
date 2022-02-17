@@ -12,7 +12,6 @@ export interface ConfirmModalProps extends Omit<ModalProps, 'title'> {
   cancelLabel?: string
   confirmLabel?: string
   maskClosable?: boolean
-  loading?: boolean
   onCancel?: (event?: any) => void
   onConfirm?: (event?: any) => void
 }
@@ -24,21 +23,22 @@ const Confirm: FC<ConfirmModalProps> = ({
   description,
   cancelLabel,
   confirmLabel,
-  maskClosable,
-  loading,
+  confirmLoading,
+  maskClosable = true,
   onCancel,
   onConfirm,
+  onClose,
   ...restProps
 }) => {
   function handleCancelClick() {
-    if (!loading) {
+    if (!confirmLoading) {
       onCancel && onCancel()
     }
   }
 
   function handleClose() {
-    if (maskClosable) {
-      handleCancelClick()
+    if (maskClosable && !confirmLoading) {
+      onClose && onClose()
     }
   }
 
@@ -46,7 +46,7 @@ const Confirm: FC<ConfirmModalProps> = ({
     <Modal
       className="modal-confirm"
       maskClosable={maskClosable}
-      loading={loading}
+      confirmLoading={confirmLoading}
       onClose={handleClose}
       {...restProps}
     >
@@ -60,7 +60,7 @@ const Confirm: FC<ConfirmModalProps> = ({
       <div className="modal-actions">
         {cancelLabel && <Button onClick={handleCancelClick}>{cancelLabel}</Button>}
         {confirmLabel && (
-          <Button type={type} loading={loading} onClick={onConfirm}>
+          <Button type={type} loading={confirmLoading} onClick={onConfirm}>
             {confirmLabel}
           </Button>
         )}
