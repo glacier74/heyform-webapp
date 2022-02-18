@@ -1,10 +1,12 @@
-import { UserModel } from '@/models'
+import type { UserModel } from '@/models'
+import { InviteMember } from '@/pages/workspace/Members/InviteMember'
 import { WorkspaceService } from '@/service'
+import { useState } from 'react'
 import { useStore } from '@/store'
 import { useAsyncEffect, useParam } from '@/utils'
-import { DotsHorizontalIcon } from '@heroicons/react/outline'
-import { Avatar, Badge, Button, Heading, Table } from '@heyforms/ui'
-import { TableColumn } from '@heyforms/ui/lib/types/table'
+import { DotsHorizontalIcon, SwitchHorizontalIcon, TrashIcon } from '@heroicons/react/outline'
+import { Avatar, Badge, Button, Dropdown, Heading, Menus, Table } from '@heyforms/ui'
+import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { observer } from 'mobx-react-lite'
 import * as timeago from 'timeago.js'
 
@@ -12,6 +14,15 @@ const Members = observer(() => {
   const { workspaceId } = useParam()
   const userStore = useStore('userStore')
   const workspaceStore = useStore('workspaceStore')
+  const [inviteMemberOpen, setInviteMemberOpen] = useState(false)
+
+  function handleInviteMemberOpen() {
+    setInviteMemberOpen(true)
+  }
+
+  function handleInviteMemberClose() {
+    setInviteMemberOpen(false)
+  }
 
   // Table columns
   const columns: TableColumn<UserModel>[] = [
@@ -70,7 +81,22 @@ const Members = observer(() => {
       name: 'Action',
       align: 'right',
       render(record) {
-        return <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
+        return (
+          <Dropdown
+            overlay={
+              <Menus>
+                <Menus.Item
+                  name="transfer"
+                  icon={<SwitchHorizontalIcon />}
+                  label="Transfer ownership"
+                />
+                <Menus.Item name="delete" icon={<TrashIcon />} label="Delete" />
+              </Menus>
+            }
+          >
+            <Button.Link className="-m-3" leading={<DotsHorizontalIcon />} />
+          </Dropdown>
+        )
       }
     }
   ]
@@ -85,11 +111,17 @@ const Members = observer(() => {
       <Heading
         title="Members"
         description="Manage who has access to the workspace."
-        actions={<Button type="primary">Invite member</Button>}
+        actions={
+          <Button type="primary" onClick={handleInviteMemberOpen}>
+            Invite member
+          </Button>
+        }
       />
       <div className="py-4">
         <Table<UserModel> className="mt-8" columns={columns} data={workspaceStore.members} />
       </div>
+
+      <InviteMember visible={inviteMemberOpen} onClose={handleInviteMemberClose} />
     </div>
   )
 })

@@ -6,12 +6,7 @@ import { DeleteWorkspace } from './DeleteWorkspace'
 import { ExportData } from './ExportData'
 import { LogoUploader } from './LogoUploader'
 
-interface WorkspaceSettingsProps {
-  visible?: boolean
-  onClose?: () => void
-}
-
-const WorkspaceSettings: FC<WorkspaceSettingsProps> = ({ visible, onClose }) => {
+const WorkspaceSettings: FC<IModalProps> = ({ visible, onClose }) => {
   return (
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">

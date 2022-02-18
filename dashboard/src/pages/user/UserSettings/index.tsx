@@ -6,12 +6,7 @@ import { UserName } from './UserName'
 import { Password } from './Password'
 import { Account } from './Account'
 
-interface UserSettingsProps {
-  visible?: boolean
-  onClose?: () => void
-}
-
-const UserSettings: FC<UserSettingsProps> = ({ visible, onClose }) => {
+const UserSettings: FC<IModalProps> = ({ visible, onClose }) => {
   return (
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">

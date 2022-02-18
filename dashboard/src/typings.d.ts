@@ -13,4 +13,8 @@ declare global {
     value: IValueType
     disabled?: boolean
   }
+  interface IModalProps {
+    visible?: boolean
+    onClose?: () => void
+  }
 }

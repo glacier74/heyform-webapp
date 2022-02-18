@@ -11,4 +11,9 @@ export interface UserModel {
   status: number
   createdAt: string
   updatedAt: string
+
+  // Only for project members
+  isAssigned?: boolean
+  isOwner?: boolean
+  isSelf?: boolean
 }
