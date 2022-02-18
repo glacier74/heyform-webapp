@@ -1,10 +1,10 @@
+import { cacheNames, clientsClaim, setCacheNameDetails } from 'workbox-core'
 import {
-  precacheAndRoute,
   cleanupOutdatedCaches,
-  createHandlerBoundToURL
+  createHandlerBoundToURL,
+  precacheAndRoute
 } from 'workbox-precaching'
-import { registerRoute, NavigationRoute } from 'workbox-routing'
-import { setCacheNameDetails, cacheNames } from 'workbox-core'
+import { NavigationRoute, registerRoute } from 'workbox-routing'
 
 setCacheNameDetails({
   prefix: 'heyform',
@@ -14,7 +14,9 @@ setCacheNameDetails({
 })
 
 const __INDEX_HTML_CACHE = [{ url: '/index.html' }]
-const precaches = __INDEX_HTML_CACHE.concat(self.__WB_MANIFEST || [])
+const precaches = __INDEX_HTML_CACHE.concat(
+  (self.__WB_MANIFEST || []).filter(row => row.url.includes('index.html'))
+)
 
 // Skip waiting
 self.addEventListener('message', event => {
@@ -34,15 +36,17 @@ self.addEventListener('install', event => {
   )
 })
 
-// self.__WB_MANIFEST is default injection point
-precacheAndRoute(self.__WB_MANIFEST)
+precacheAndRoute(precaches)
 
 // clean old assets
 cleanupOutdatedCaches()
 
+//
+clientsClaim()
+
 // to allow work offline
 registerRoute(
-  new NavigationRoute(createHandlerBoundToURL('index.html'), {
+  new NavigationRoute(createHandlerBoundToURL('/index.html'), {
     denylist: [
       /\/sw\.js$/,
 

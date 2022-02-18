@@ -1349,7 +1349,7 @@
     "@babel/helper-module-imports" "^7.10.4"
     "@rollup/pluginutils" "^3.1.0"
 
-"@rollup/plugin-node-resolve@^11.2.1":
+"@rollup/plugin-node-resolve@^11.0.1", "@rollup/plugin-node-resolve@^11.2.1":
   version "11.2.1"
   resolved "http://npm.heyooo.com/@rollup%2fplugin-node-resolve/-/plugin-node-resolve-11.2.1.tgz#82aa59397a29cd4e13248b106e6a4a1880362a60"
   integrity sha512-yc2n43jcqVyGE2sqV5/YCmocy9ArjVAP/BeXyTtADTBBX6V0e5UMqwO8CdQ0kzjb6zu5P1qMzsScCMRvE9OlVg==
@@ -1365,6 +1365,14 @@
   version "2.4.2"
   resolved "http://npm.heyooo.com/@rollup%2fplugin-replace/-/plugin-replace-2.4.2.tgz#a2d539314fbc77c244858faa523012825068510a"
   integrity sha512-IGcu+cydlUMZ5En85jxHH4qj2hta/11BHq95iHEyb2sbgiN0eCdzvUcHw5gt9pBL5lTi4JDYJ1acCoMGpTvEZg==
+  dependencies:
+    "@rollup/pluginutils" "^3.1.0"
+    magic-string "^0.25.7"
+
+"@rollup/plugin-replace@^3.0.0":
+  version "3.1.0"
+  resolved "http://npm.heyooo.com/@rollup%2fplugin-replace/-/plugin-replace-3.1.0.tgz#d31e3a90c6b47064f3c9f2ce0ded5bcf0d3b82f6"
+  integrity sha512-pA3XRUrSKybVYqmH5TqWNZpGxF+VV+1GrYchKgCNIj2vsSOX7CVm2RCtx8p2nrC7xvkziYyK+lSi74T93MU3YA==
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     magic-string "^0.25.7"
@@ -5256,7 +5264,7 @@ prettier@^2.5.1:
   resolved "http://npm.heyooo.com/prettier/-/prettier-2.5.1.tgz#fff75fa9d519c54cf0fce328c1017d94546bc56a"
   integrity sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==
 
-pretty-bytes@^5.3.0, pretty-bytes@^5.6.0:
+pretty-bytes@^5.3.0, pretty-bytes@^5.5.0:
   version "5.6.0"
   resolved "http://npm.heyooo.com/pretty-bytes/-/pretty-bytes-5.6.0.tgz#356256f643804773c82f64723fe78c92c62beaeb"
   integrity sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==
@@ -5654,7 +5662,7 @@ rimraf@^3.0.0, rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-rollup-plugin-terser@^7.0.0:
+rollup-plugin-terser@^7.0.0, rollup-plugin-terser@^7.0.2:
   version "7.0.2"
   resolved "http://npm.heyooo.com/rollup-plugin-terser/-/rollup-plugin-terser-7.0.2.tgz#e8fbba4869981b2dc35ae7e8a502d5c6c04d324d"
   integrity sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==
@@ -5664,7 +5672,18 @@ rollup-plugin-terser@^7.0.0:
     serialize-javascript "^4.0.0"
     terser "^5.0.0"
 
-rollup@^2.43.1, rollup@^2.60.2:
+rollup-plugin-workbox@^6.2.0:
+  version "6.2.0"
+  resolved "http://npm.heyooo.com/rollup-plugin-workbox/-/rollup-plugin-workbox-6.2.0.tgz#f3aa8d4cb169332461b14d7acf470afaa71ec4bb"
+  integrity sha512-7v4X2uA88AGR69syAEMTrIW4+TQUid74zuQkFgTyCs8iuzBO6Dd9fB/P6eswmwd3J1F994c6eMHn7/hg3ZOvdw==
+  dependencies:
+    "@rollup/plugin-node-resolve" "^11.0.1"
+    "@rollup/plugin-replace" "^3.0.0"
+    pretty-bytes "^5.5.0"
+    rollup-plugin-terser "^7.0.2"
+    workbox-build "^6.2.4"
+
+rollup@^2.43.1:
   version "2.67.3"
   resolved "http://npm.heyooo.com/rollup/-/rollup-2.67.3.tgz#3f04391fc296f807d067c9081d173e0a33dbd37e"
   integrity sha512-G/x1vUwbGtP6O5ZM8/sWr8+p7YfZhI18pPqMRtMYMWSbHjKZ/ajHGiM+GWNTlWyOR0EHIdT8LHU+Z4ciIZ1oBw==
@@ -6487,18 +6506,6 @@ value-equal@^1.0.1:
   resolved "http://npm.heyooo.com/value-equal/-/value-equal-1.0.1.tgz#1e0b794c734c5c0cade179c437d356d931a34d6c"
   integrity sha512-NOJ6JZCAWr0zlxZt+xqCHNTEKOsrks2HQd4MqhP1qy4z1SkbEP467eNx6TgDKXMvUOb+OENfJCZwM+16n7fRfw==
 
-vite-plugin-pwa@^0.11.13:
-  version "0.11.13"
-  resolved "http://npm.heyooo.com/vite-plugin-pwa/-/vite-plugin-pwa-0.11.13.tgz#54ed80580b7d3e61aadcf4325fe9bc6f7ffce5db"
-  integrity sha512-Ssj14m3TRVLfkFEAWSMcFE2d1cSdEZyrVTzfY2lSL+umHYvcIFHVDAY143sygtBCb44OPczsAOmWwBTxwOvh7g==
-  dependencies:
-    debug "^4.3.3"
-    fast-glob "^3.2.7"
-    pretty-bytes "^5.6.0"
-    rollup "^2.60.2"
-    workbox-build "^6.4.2"
-    workbox-window "^6.4.2"
-
 vite@^2.8.0:
   version "2.8.1"
   resolved "http://npm.heyooo.com/vite/-/vite-2.8.1.tgz#4b2a42c1d01d6786a2a4c278cd0ba7223b8ec15c"
@@ -6639,7 +6646,7 @@ workbox-broadcast-update@6.4.2:
   dependencies:
     workbox-core "6.4.2"
 
-workbox-build@^6.4.2:
+workbox-build@^6.2.4:
   version "6.4.2"
   resolved "http://npm.heyooo.com/workbox-build/-/workbox-build-6.4.2.tgz#47f9baa946c3491533cd5ccb1f194a7160e8a6e3"
   integrity sha512-WMdYLhDIsuzViOTXDH+tJ1GijkFp5khSYolnxR/11zmfhNDtuo7jof72xPGFy+KRpsz6tug39RhivCj77qqO0w==
@@ -6775,7 +6782,7 @@ workbox-sw@6.4.2:
   resolved "http://npm.heyooo.com/workbox-sw/-/workbox-sw-6.4.2.tgz#9a6db5f74580915dc2f0dbd47d2ffe057c94a795"
   integrity sha512-A2qdu9TLktfIM5NE/8+yYwfWu+JgDaCkbo5ikrky2c7r9v2X6DcJ+zSLphNHHLwM/0eVk5XVf1mC5HGhYpMhhg==
 
-workbox-window@6.4.2, workbox-window@^6.4.2:
+workbox-window@6.4.2:
   version "6.4.2"
   resolved "http://npm.heyooo.com/workbox-window/-/workbox-window-6.4.2.tgz#5319a3e343fa1e4bd15a1f53a07b58999d064c8a"
   integrity sha512-KVyRKmrJg7iB+uym/B/CnEUEFG9CvnTU1Bq5xpXHbtgD9l+ShDekSl1wYpqw/O0JfeeQVOFb8CiNfvnwWwqnWQ==

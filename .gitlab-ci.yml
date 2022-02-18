@@ -35,6 +35,7 @@ development:
     mkdir -p tmp/view/
     mkdir -p tmp/static/
     cp dashboard/dist/*.html tmp/view/
+    cp dashboard/dist/sw.js tmp/static/sw.js
     cp -r dashboard/dist/static/* tmp/static/
 
     if [ -f d.tar.gz ]; then

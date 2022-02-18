@@ -1,41 +1,8 @@
 import legacy from '@vitejs/plugin-legacy'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { resolve } from 'path'
+import { injectManifest } from 'rollup-plugin-workbox'
 import { defineConfig } from 'vite'
-import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa'
-
-const pwaOptions: Partial<VitePWAOptions> = {
-  mode: 'development',
-  registerType: 'autoUpdate',
-  base: '/',
-  includeAssets: ['favicon.svg', 'favicon.ico', 'apple-touch-icon.png'],
-  srcDir: 'src',
-  filename: 'utils/sw.ts',
-  strategies: 'injectManifest',
-  manifest: {
-    name: 'HeyForm',
-    short_name: 'HeyForm',
-    theme_color: '#ffffff',
-    icons: [
-      {
-        src: 'pwa-192x192.png',
-        sizes: '192x192',
-        type: 'image/png',
-      },
-      {
-        src: '/pwa-512x512.png',
-        sizes: '512x512',
-        type: 'image/png'
-      },
-      {
-        src: 'pwa-512x512.png',
-        sizes: '512x512',
-        type: 'image/png',
-        purpose: 'any maskable',
-      }
-    ]
-  }
-}
 
 export default defineConfig({
   plugins: [
@@ -44,7 +11,13 @@ export default defineConfig({
       additionalLegacyPolyfills: ['regenerator-runtime/runtime']
     }),
     reactRefresh(),
-    VitePWA(pwaOptions)
+    // @ts-ignore
+    injectManifest({
+      swSrc: 'src/sw.js',
+      swDest: 'dist/sw.js',
+      globDirectory: 'dist',
+      mode: 'production'
+    })
   ],
   resolve: {
     alias: [
