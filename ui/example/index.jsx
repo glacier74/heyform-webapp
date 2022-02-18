@@ -11,6 +11,7 @@ import {
   Menus,
   Modal,
   Navbar,
+  Popup,
   Radio,
   Select,
   Switch,
@@ -36,31 +37,50 @@ import { ArchiveIcon, CodeIcon, EyeIcon, PlusIcon } from '@heroicons/react/outli
 import './style.scss'
 
 const DropdownElements = () => {
-  const [mv, setMv] = useState(true)
+  const [mv, setMv] = useState(false)
+  const [ref, setRef] = useState(null)
+  const MenuList = useMemo(() => {
+    return (
+      <Menus className="right-0">
+        <Menus.Item name="Edit" icon={<PencilIcon />} label="Edit" />
+        <Menus.Item name="Duplicate" icon={<DuplicateIcon />} label="Duplicate" />
+        <Menus.Divider />
+        <Menus.Item name="Add user" icon={<UserAddIcon />} label="Add user" />
+        <Menus.Item name="Move" icon={<FolderRemoveIcon />} label="Move" />
+        <Menus.Divider />
+        <Menus.Item name="Delete" icon={<TrashIcon />} label="Delete" />
+      </Menus>
+    )
+  }, [])
 
   return (
     <div className="mt-8 space-y-4 flex flex-col items-center justify-start sm:space-y-0 sm:flex-row sm:items-end sm:justify-around">
-      <Button onClick={() => setMv(!mv)}>Toggle</Button>
+      <button ref={setRef} className="button" onClick={() => setMv(!mv)}>
+        Options
+      </button>
 
-      <Dropdown
+      <Popup
         visible={mv}
-        overlay={
-          <Menus>
-            <Menus.Item icon={<PencilIcon />} label="Edit" />
-            <Menus.Item icon={<DuplicateIcon />} label="Duplicate" />
-            <Menus.Divider />
-            <Menus.Item icon={<UserAddIcon />} label="Add user" />
-            <Menus.Item icon={<FolderRemoveIcon />} label="Move" />
-            <Menus.Divider />
-            <Menus.Item icon={<TrashIcon />} label="Delete" />
-          </Menus>
-        }
+        referenceRef={ref}
+        popperOptions={{
+          placement: 'bottom-end',
+          strategy: 'fixed',
+          modifiers: [
+            {
+              name: 'computeStyles',
+              options: {
+                gpuAcceleration: false
+              }
+            }
+          ]
+        }}
+        onExited={() => setMv(false)}
       >
-        <Button trailing={<ChevronDownIcon />}>Options</Button>
-      </Dropdown>
+        {MenuList}
+      </Popup>
 
       <Dropdown
-        placement="left"
+        placement="top-start"
         overlay={
           <Menus
             className="right-0"
