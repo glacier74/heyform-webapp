@@ -65,8 +65,7 @@ registerRoute(
       /\/export\/submissions[^\/]+$/,
       /\/connect\/.*$/,
       /\/reset\/.*$/,
-      /\/verify\/.*$/,
-      /\/logout/
+      /\/verify\/.*$/
     ]
   })
 )
