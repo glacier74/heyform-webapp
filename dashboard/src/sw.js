@@ -14,9 +14,7 @@ setCacheNameDetails({
 })
 
 const __INDEX_HTML_CACHE = [{ url: '/index.html' }]
-const precaches = __INDEX_HTML_CACHE.concat(
-  (self.__WB_MANIFEST || []).filter(row => row.url.includes('index.html'))
-)
+const precaches = __INDEX_HTML_CACHE.concat(self.__WB_MANIFEST || [])
 
 // Skip waiting
 self.addEventListener('message', event => {

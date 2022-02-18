@@ -16,6 +16,7 @@ export default defineConfig({
       swSrc: 'src/sw.js',
       swDest: 'dist/sw.js',
       globDirectory: 'dist',
+      globIgnores: ['**/*.map', '**/*.webmanifest', '**/index.html', '**/sw.js'],
       mode: 'production'
     })
   ],
