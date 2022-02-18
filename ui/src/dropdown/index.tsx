@@ -1,11 +1,12 @@
+import type { Placement as PopperPlacement } from '@popperjs/core'
 import clsx from 'clsx'
-import { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
-import { CSSTransition } from 'react-transition-group'
-import { useOnClickOutside } from '../hook'
+import type { FC, ReactNode } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import Popup from '../popup'
 
 export interface DropdownProps extends IComponentProps {
   visible?: boolean
-  placement?: 'left' | 'right'
+  placement?: PopperPlacement
   disabled?: boolean
   dismissOnClickInside?: boolean
   overlay: ReactNode
@@ -14,14 +15,14 @@ export interface DropdownProps extends IComponentProps {
 const Dropdown: FC<DropdownProps> = ({
   className,
   visible = false,
-  placement = 'right',
+  placement = 'bottom-end',
   disabled,
   dismissOnClickInside = true,
   overlay,
   children,
   ...restProps
 }) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const [ref, setRef] = useState<HTMLDivElement | null>(null)
   const [isOpen, setIsOpen] = useState(visible)
 
   function handleExited() {
@@ -29,40 +30,59 @@ const Dropdown: FC<DropdownProps> = ({
   }
 
   function handleClick() {
-    if (dismissOnClickInside) {
-      setIsOpen(!isOpen)
-    }
+    setIsOpen(true)
   }
 
-  // Hide the list when the user clicks outside it
-  useOnClickOutside(ref, () => setIsOpen(false))
+  function handleDropdownClick() {
+    if (dismissOnClickInside) {
+      setIsOpen(false)
+    }
+  }
 
   // Trigger dropdown open or not outside
   useEffect(() => {
     setIsOpen(visible)
   }, [visible])
 
-  const handleExitedCallback = useCallback(handleExited, [])
+  const memoOverlay = useMemo(() => {
+    return (
+      <div className="dropdown-body" onClick={handleDropdownClick}>
+        {overlay}
+      </div>
+    )
+  }, [])
 
   return (
-    <div
-      ref={ref}
-      className={clsx('dropdown', `dropdown-top-${placement}`, className)}
-      onClick={handleClick}
-      {...restProps}
-    >
-      <div className="dropdown-trigger">{children}</div>
-      <CSSTransition
-        in={isOpen}
-        timeout={0}
-        classNames="dropdown-popup"
-        mountOnEnter={true}
-        unmountOnExit={false}
-        onExited={handleExitedCallback}
+    <>
+      <div
+        ref={setRef}
+        className={clsx('dropdown', className)}
+        onClick={handleClick}
+        {...restProps}
       >
-        {overlay}
-      </CSSTransition>
-    </div>
+        {children}
+      </div>
+
+      <Popup
+        visible={isOpen}
+        referenceRef={ref as Element}
+        popperOptions={{
+          placement,
+          strategy: 'fixed',
+          modifiers: [
+            {
+              name: 'computeStyles',
+              options: {
+                gpuAcceleration: false
+              }
+            }
+          ]
+        }}
+        onExited={handleExited}
+      >
+        {memoOverlay}
+      </Popup>
+    </>
   )
 }
 

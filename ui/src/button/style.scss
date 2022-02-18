@@ -1,5 +1,5 @@
 .button {
-  @apply inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm sm:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+  @apply inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm sm:text-sm font-medium rounded-md text-gray-700 bg-white;
 
   .spin,
   .button-leading,
@@ -14,6 +14,14 @@
 
   .button-trailing {
     @apply ml-2 -mr-1;
+  }
+
+  &[disabled] {
+    @apply opacity-50;
+  }
+
+  &:not(:disabled) {
+    @apply hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
   }
 }
 
@@ -39,15 +47,27 @@
 }
 
 .button-primary {
-  @apply bg-blue-500 hover:bg-blue-600;
+  @apply bg-blue-500;
+
+  &:not(:disabled) {
+    @apply hover:bg-blue-600 focus:ring-blue-500;
+  }
 }
 
 .button-success {
-  @apply bg-green-500 hover:bg-green-600;
+  @apply bg-green-500;
+
+  &:not(:disabled) {
+    @apply hover:bg-green-600 focus:ring-green-500;
+  }
 }
 
 .button-danger {
-  @apply bg-red-500 hover:bg-red-600;
+  @apply bg-red-500;
+
+  &:not(:disabled) {
+    @apply hover:bg-red-600 focus:ring-red-500;
+  }
 }
 
 .button-block {

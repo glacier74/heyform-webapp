@@ -11,6 +11,7 @@ export interface ConfirmModalProps extends Omit<ModalProps, 'title'> {
   description?: ReactNode
   cancelLabel?: string
   confirmLabel?: string
+  confirmDisabled?: boolean
   maskClosable?: boolean
   onCancel?: (event?: any) => void
   onConfirm?: (event?: any) => void
@@ -24,6 +25,7 @@ const Confirm: FC<ConfirmModalProps> = ({
   cancelLabel,
   confirmLabel,
   confirmLoading,
+  confirmDisabled,
   maskClosable = true,
   onCancel,
   onConfirm,
@@ -60,7 +62,12 @@ const Confirm: FC<ConfirmModalProps> = ({
       <div className="modal-actions">
         {cancelLabel && <Button onClick={handleCancelClick}>{cancelLabel}</Button>}
         {confirmLabel && (
-          <Button type={type} loading={confirmLoading} onClick={onConfirm}>
+          <Button
+            type={type}
+            loading={confirmLoading}
+            disabled={confirmDisabled}
+            onClick={onConfirm}
+          >
             {confirmLabel}
           </Button>
         )}

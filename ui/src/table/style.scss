@@ -9,6 +9,14 @@
 .table-head {
   th {
     @apply px-6 py-3 border-b border-gray-100 bg-transparent font-medium text-left text-xs text-gray-500 uppercase tracking-wider;
+
+    &.table-cell-center {
+      @apply text-center;
+    }
+
+    &.table-cell-right {
+      @apply text-right;
+    }
   }
 }
 
@@ -17,17 +25,17 @@
 
   td {
     @apply px-6 py-4 whitespace-nowrap font-medium text-left text-sm text-gray-500;
+
+    &.table-cell-center {
+      @apply text-center;
+    }
+
+    &.table-cell-right {
+      @apply text-right;
+    }
   }
 
   tr:hover {
     @apply bg-gray-50;
   }
-}
-
-.table-cell-center {
-  @apply flex justify-center text-center;
-}
-
-.table-cell-right {
-  @apply flex justify-end text-right;
 }

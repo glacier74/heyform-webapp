@@ -8,6 +8,7 @@ import { useOnClickOutside } from '../hook'
 import Portal from '../portal'
 
 export interface ModalProps extends IComponentProps {
+  wrapperClassName?: string
   visible?: boolean
   maskClosable?: boolean
   showCloseIcon?: boolean
@@ -19,6 +20,7 @@ export interface ModalProps extends IComponentProps {
 
 const Modal: FC<ModalProps> = ({
   className,
+  wrapperClassName,
   visible,
   maskClosable = true,
   showCloseIcon = false,
@@ -43,15 +45,15 @@ const Modal: FC<ModalProps> = ({
   return (
     <CSSTransition
       in={visible}
-      timeout={0}
-      classNames="modal-popup"
+      timeout={100}
+      classNames="popup-modal"
       unmountOnExit={unmountOnExit}
       onExited={onExited}
     >
       <Portal visible={visible}>
         <div className={clsx('modal', className)} {...restProps}>
           <div className="modal-container">
-            <div ref={bodyRef} className="modal-wrapper">
+            <div ref={bodyRef} className={clsx('modal-wrapper', wrapperClassName)}>
               <div className="modal-body scrollbar">
                 {showCloseIcon && (
                   <Button.Link

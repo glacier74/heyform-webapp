@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import type { FC, ReactNode } from 'react'
 
-export interface HeadingProps extends IComponentProps {
-  title?: string
+export interface HeadingProps extends Omit<IComponentProps, 'title'> {
+  title?: ReactNode
   icon?: ReactNode
   description?: ReactNode
   actions?: ReactNode

@@ -1,10 +1,9 @@
 import { SelectorIcon } from '@heroicons/react/outline'
 import { CheckIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
-import type { FC } from 'react'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { CSSTransition } from 'react-transition-group'
-import { useOnClickOutside } from '../hook'
+import type { CSSProperties, FC } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import Popup from '../popup'
 import Spin from '../spin'
 import type { SelectProps } from './Native'
 
@@ -14,7 +13,6 @@ const Custom: FC<SelectProps> = ({
   isHasError,
   loading,
   disabled,
-  unmountOnExit = true,
   valueRender,
   options = [],
   placeholder,
@@ -22,12 +20,13 @@ const Custom: FC<SelectProps> = ({
   onChange,
   ...restProps
 }) => {
-  const ref = useRef<HTMLDivElement>(null)
+  const [ref, setRef] = useState<HTMLDivElement | null>(null)
   const [selected, setSelected] = useState<IOptionType>()
   const [isOpen, setIsOpen] = useState(false)
+  const [triggerStyle, setTriggerStyle] = useState<CSSProperties>()
 
-  function handleButtonClick() {
-    setIsOpen(!isOpen)
+  function handleClick() {
+    setIsOpen(true)
   }
 
   function handleExited() {
@@ -35,71 +34,90 @@ const Custom: FC<SelectProps> = ({
   }
 
   function handleOptionClick(option: IOptionType) {
-    handleButtonClick()
+    handleExited()
     onChange && onChange(option.value)
   }
 
-  // Hide the list when the user clicks outside it
-  useOnClickOutside(ref, () => setIsOpen(false))
+  useEffect(() => {
+    if (isOpen) {
+      setTriggerStyle(ref?.getBoundingClientRect())
+    }
+  }, [isOpen])
 
   useEffect(() => {
     const option = options.find(row => row.value === value)
     setSelected(option)
   }, [value])
 
-  const handleExitedCallback = useCallback(handleExited, [])
+  const memoOverlay = useMemo(() => {
+    return (
+      <ul className="select-popup-content" style={{ width: triggerStyle?.width }}>
+        {options.map(option => (
+          <li
+            key={option.value as unknown as string}
+            className={clsx('select-option', {
+              'select-option-active': option.value === value
+            })}
+            onClick={() => handleOptionClick(option)}
+          >
+            {optionRender ? (
+              optionRender(option)
+            ) : (
+              <>
+                <span className="select-option-text">{option.label}</span>
+                <span className="select-option-checkmark">
+                  <CheckIcon />
+                </span>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+    )
+  }, [triggerStyle?.width])
 
   return (
-    <div
-      ref={ref}
-      className={clsx('select-wrapper', className, {
-        'select-error': isHasError
-      })}
-    >
-      <button
-        type="button"
-        className="select-button"
-        disabled={loading || disabled}
-        onClick={handleButtonClick}
-        {...restProps}
+    <>
+      <div
+        ref={setRef}
+        className={clsx('select-wrapper', className, {
+          'select-error': isHasError
+        })}
+        onClick={handleClick}
       >
-        <span className="select-value" placeholder={placeholder}>
-          {valueRender ? valueRender(selected) : selected?.label}
-        </span>
-        <span className="select-arrow-icon">{loading ? <Spin /> : <SelectorIcon />}</span>
-      </button>
+        <button
+          type="button"
+          className="select-button"
+          disabled={loading || disabled}
+          {...restProps}
+        >
+          <span className="select-value" placeholder={placeholder}>
+            {valueRender ? valueRender(selected) : selected?.label}
+          </span>
+          <span className="select-arrow-icon">{loading ? <Spin /> : <SelectorIcon />}</span>
+        </button>
+      </div>
 
-      <CSSTransition
-        in={isOpen}
-        timeout={0}
-        classNames="select-popup"
-        unmountOnExit={unmountOnExit}
-        onExited={handleExitedCallback}
+      <Popup
+        visible={isOpen}
+        referenceRef={ref as Element}
+        popperOptions={{
+          placement: 'bottom-start',
+          strategy: 'fixed',
+          modifiers: [
+            {
+              name: 'computeStyles',
+              options: {
+                gpuAcceleration: false
+              }
+            }
+          ]
+        }}
+        onExited={handleExited}
       >
-        <ul className="select-popup">
-          {options.map(option => (
-            <li
-              key={option.value as unknown as string}
-              className={clsx('select-option', {
-                'select-option-active': option.value === value
-              })}
-              onClick={() => handleOptionClick(option)}
-            >
-              {optionRender ? (
-                optionRender(option)
-              ) : (
-                <>
-                  <span className="select-option-text">{option.label}</span>
-                  <span className="select-option-checkmark">
-                    <CheckIcon />
-                  </span>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
-      </CSSTransition>
-    </div>
+        {memoOverlay}
+      </Popup>
+    </>
   )
 }
 

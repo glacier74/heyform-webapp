@@ -68,18 +68,8 @@
   }
 }
 
-.select-popup {
-  @apply absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm transition ease-in-out duration-100;
-}
-
-.select-popup-enter-active,
-.select-popup-exit {
-  @apply transform opacity-100 scale-100
-}
-
-.select-popup-enter,
-.select-popup-exit-active {
-  @apply transform opacity-0 scale-95
+.select-popup-content {
+  @apply bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm;
 }
 
 .select-option {

@@ -19,7 +19,7 @@
 }
 
 .modal-close-button {
-  @apply absolute z-50 p-2 top-5 right-4 -mr-2 bg-white sm:top-8 sm:right-8;
+  @apply absolute z-50 p-1.5 top-2 right-4 -mr-2.5 bg-white sm:top-8 sm:right-8;
 
   .button-leading {
     @apply w-6 h-6;
@@ -97,8 +97,8 @@
   }
 }
 
-.modal-popup-enter-active,
-.modal-popup-exit {
+.popup-modal-enter-active,
+.popup-modal-exit {
   .modal-container,
   .modal-wrapper {
     @apply opacity-100;
@@ -109,8 +109,8 @@
   }
 }
 
-.modal-popup-enter,
-.modal-popup-exit-active {
+.popup-modal-enter,
+.popup-modal-exit-active {
   .modal-container,
   .modal-body {
     @apply opacity-0;

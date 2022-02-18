@@ -8,10 +8,10 @@ export interface BadgeProps extends IComponentProps {
   text?: string
 }
 
-const Badge: FC<BadgeProps> = ({ type = 'gray', rounded, dot, text, ...restProps }) => {
+const Badge: FC<BadgeProps> = ({ className, type = 'gray', rounded, dot, text, ...restProps }) => {
   return (
     <span
-      className={clsx('badge', {
+      className={clsx('badge', className, {
         'badge-rounded': rounded,
         [`badge-${type}`]: type
       })}
