@@ -6,7 +6,8 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [
     legacy({
-      targets: ['ie >= 11']
+      targets: ['ie >= 11'],
+      additionalLegacyPolyfills: ['regenerator-runtime/runtime']
     }),
     reactRefresh()
   ],
@@ -27,7 +28,14 @@ export default defineConfig({
   },
   build: {
     target: 'es2015',
-    assetsDir: 'static'
+    assetsDir: 'static',
+    minify: 'terser',
+    terserOptions: {
+      ecma: 5,
+      format: {
+        comments: false
+      }
+    }
   },
   server: {
     proxy: {
