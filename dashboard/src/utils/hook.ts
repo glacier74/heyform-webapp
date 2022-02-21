@@ -85,11 +85,12 @@ export type FetchStatus = 'idle' | 'pending' | 'success' | 'error'
 
 // https://usehooks.com/useAsync/
 export function useAsync(
-  asyncFunction: () => Promise<unknown>,
-  deps: unknown[] = [],
+  asyncFunction: () => Promise<boolean>,
+  deps: any[] = [],
   immediate = true
 ) {
   const [status, setStatus] = useState<FetchStatus>('idle')
+  const [value, setValue] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
 
   // The execute function wraps asyncFunction and
@@ -101,7 +102,8 @@ export function useAsync(
     setError(null)
 
     return asyncFunction()
-      .then(() => {
+      .then(result => {
+        setValue(result)
         setStatus('success')
       })
       .catch((err: any) => {
@@ -111,7 +113,7 @@ export function useAsync(
   }, [asyncFunction])
 
   // Call execute if we want to fire it right away.
-  // Otherwise execute can be called later, such as
+  // Other wise execute can be called later, such as
   // in an onClick handler.
   useEffect(() => {
     if (immediate) {
@@ -119,5 +121,5 @@ export function useAsync(
     }
   }, [...deps, immediate])
 
-  return { execute, status, error }
+  return { execute, value, status, error }
 }

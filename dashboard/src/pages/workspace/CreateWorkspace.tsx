@@ -1,4 +1,4 @@
-import { Avatar, Button, Form, Input, Modal } from '@heyforms/ui'
+import { Avatar as UIAvatar, Avatar, Button, Form, Input, Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 
@@ -32,8 +32,11 @@ const CreateWorkspace: FC<CreateWorkspaceProps> = observer(({ visible, onClose }
             }
           >
             <div className="flex items-center">
-              <Avatar src="" size={48} circular rounded />
-              <Button className="ml-4">Upload</Button>
+              <UIAvatar src="" size={48} circular rounded />
+              <div className="ml-4 flex flex-auto items-center">
+                <Button>Change</Button>
+                <Button.Link className="ml-3 px-4 py-2">Remove</Button.Link>
+              </div>
             </div>
           </Form.Item>
           <Button type="primary" htmlType="submit">

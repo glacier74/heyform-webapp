@@ -150,8 +150,8 @@ export class WorkspaceService {
     })
   }
 
-  static cdnToken(workspaceId: string, filename: string, mime: string) {
-    return request.query({
+  static async cdnToken(workspaceId: string, filename: string, mime: string) {
+    const result = await request.query({
       query: WORKSPACE_CDN_TOKEN_GQL,
       variables: {
         input: {
@@ -161,6 +161,7 @@ export class WorkspaceService {
         }
       }
     })
+    return result.data.teamCdnToken
   }
 
   static refreshInvitationCode(teamId: string) {

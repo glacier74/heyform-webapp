@@ -1,4 +1,5 @@
 import { WorkspaceIcon } from '@/components'
+import { PhotoPicker } from '@/components/photoPicker'
 import type { ProjectModel, UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
@@ -7,8 +8,9 @@ import { DotsHorizontalIcon } from '@heroicons/react/outline'
 import { Avatar, Button, Heading } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import CreateProject from './CreateProject'
 
 interface ItemProps {
   project: ProjectModel
@@ -47,6 +49,15 @@ const Item: FC<ItemProps> = ({ project, users }) => {
 const Workspace = observer(() => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
+  const [createProjectOpen, setCreateProjectOpen] = useState(false)
+
+  function handleCreateProject() {
+    setCreateProjectOpen(true)
+  }
+
+  function handleCloseCreateProject() {
+    setCreateProjectOpen(false)
+  }
 
   useAsyncEffect(async () => {
     const result = await WorkspaceService.members(workspaceId)
@@ -67,8 +78,13 @@ const Workspace = observer(() => {
           />
         }
         description={`${workspaceStore.workspace?.plan.name} plan | ${workspaceStore.workspace?.memberCount} members`}
-        actions={<Button type="primary">Create project</Button>}
+        actions={
+          <Button type="primary" onClick={handleCreateProject}>
+            Create project
+          </Button>
+        }
       />
+      <PhotoPicker />
       <div className="py-4">
         <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {workspaceStore.workspace?.projects.map(project => (
@@ -76,6 +92,9 @@ const Workspace = observer(() => {
           ))}
         </ul>
       </div>
+
+      {/* Create project */}
+      <CreateProject visible={createProjectOpen} onClose={handleCloseCreateProject} />
     </div>
   )
 })

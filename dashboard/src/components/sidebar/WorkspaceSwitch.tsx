@@ -76,8 +76,14 @@ export const WorkspaceSwitch: FC<WorkspaceSwitchProps> = observer(({ onCreateWor
   )
 
   return (
-    <div className="workspace-switch px-2">
-      <Dropdown visible={visible} placement="left" overlay={Overlay}>
+    <div className="px-2">
+      <Dropdown
+        className="block w-full"
+        popupClassName="workspace-switch"
+        visible={visible}
+        placement="bottom-start"
+        overlay={Overlay}
+      >
         <button className="group w-full rounded-md text-sm text-left text-gray-700">
           <span className="flex w-full justify-between items-center cursor-pointer">
             <span className="flex min-w-0 items-center justify-between space-x-3">

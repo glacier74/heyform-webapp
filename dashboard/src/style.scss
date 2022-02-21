@@ -33,6 +33,22 @@ body {
   }
 }
 
+@keyframes skeleton {
+  from {
+    background-position: 100% 50%
+  }
+
+  to {
+    background-position: 0 50%
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 37%, #f3f4f6 63%);
+  background-size: 400% 100%;
+  animation: skeleton 1.4s ease infinite;
+}
+
 .sidebar {
   nav a {
     &.active {
@@ -77,12 +93,12 @@ body {
 }
 
 .workspace-switch {
-  .dropdown {
-    @apply block w-full;
-  }
-
   .menus {
-    @apply w-full sm:w-80 py-4 -top-2;
+    @apply w-full sm:w-80 2xl:w-96 py-4 -mt-12;
+
+    @media (min-width: 640px) {
+      width: 22.5rem;
+    }
 
     .avatar-text {
       @apply text-sm;
@@ -115,5 +131,11 @@ body {
 
   .button-leading {
     @apply w-full h-full;
+  }
+}
+
+.non-scaling-icon {
+  path {
+    vector-effect: non-scaling-stroke;
   }
 }

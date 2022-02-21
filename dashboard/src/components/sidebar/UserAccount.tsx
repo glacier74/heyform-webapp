@@ -38,7 +38,11 @@ export const UserAccount: FC<SidebarUserProps> = observer(({ onUserSettingsOpen 
 
   return (
     <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
-      <Dropdown className="flex-shrink-0 group block w-full" placement="left" overlay={Overlay}>
+      <Dropdown
+        className="flex-shrink-0 group block w-full"
+        placement="top-start"
+        overlay={Overlay}
+      >
         <div className="flex items-center cursor-pointer">
           <div>
             <img className="inline-block h-8 w-8 rounded-full" src={userStore.user.avatar} />

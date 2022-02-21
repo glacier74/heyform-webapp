@@ -87,8 +87,8 @@ export class UserService {
     })
   }
 
-  static cdnToken(filename: string, mime: string) {
-    return request.query({
+  static async cdnToken(filename: string, mime: string) {
+    const result = await request.query({
       query: USER_CDN_TOKEN_GQL,
       variables: {
         input: {
@@ -97,6 +97,7 @@ export class UserService {
         }
       }
     })
+    return result.data.userCdnToken
   }
 
   static userDeletionCode() {

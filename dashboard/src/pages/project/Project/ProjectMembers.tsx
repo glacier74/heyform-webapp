@@ -7,10 +7,11 @@ import type { FC } from 'react'
 
 interface MemberItemProps {
   member: UserModel
+  disabled?: boolean
   onClick: (member: UserModel) => void
 }
 
-const MemberItem: FC<MemberItemProps> = ({ member, onClick }) => {
+export const MemberItem: FC<MemberItemProps> = ({ member, disabled, onClick }) => {
   function handleClick() {
     onClick(member)
   }
@@ -29,7 +30,7 @@ const MemberItem: FC<MemberItemProps> = ({ member, onClick }) => {
       </div>
 
       {!(member.isSelf && member.isOwner) && (
-        <Button className="px-2.5 py-0.5" rounded onClick={handleClick}>
+        <Button className="px-2.5 py-0.5" rounded disabled={disabled} onClick={handleClick}>
           {member.isAssigned ? 'Remove' : 'Assign'}
         </Button>
       )}

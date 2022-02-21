@@ -1,5 +1,7 @@
 export * from './audience.service'
 export * from './auth.service'
 export * from './form.service'
+export * from './project.service'
+export * from './unsplash.service'
 export * from './user.service'
 export * from './workspace.service'
