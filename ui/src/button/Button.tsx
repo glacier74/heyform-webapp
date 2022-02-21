@@ -15,7 +15,7 @@ export interface ButtonProps
 
 const Button: FC<ButtonProps> = ({
   type,
-  htmlType,
+  htmlType = 'button',
   leading,
   trailing,
   loading,

@@ -25,10 +25,6 @@
   }
 }
 
-.button-link {
-  @apply p-0 bg-transparent border-none shadow-none;
-}
-
 .button-content {
   @apply sm:truncate;
 }
@@ -67,6 +63,34 @@
 
   &:not(:disabled) {
     @apply hover:bg-red-600 focus:ring-red-500;
+  }
+}
+
+.button-link {
+  @apply p-0 bg-transparent border-none shadow-none hover:text-gray-800 hover:bg-transparent;
+
+  &.button-primary {
+    @apply text-blue-500;
+
+    &:not(:disabled) {
+      @apply hover:text-blue-600 hover:bg-transparent;
+    }
+  }
+
+  &.button-success {
+    @apply text-green-500;
+
+    &:not(:disabled) {
+      @apply hover:text-green-600 hover:bg-transparent;
+    }
+  }
+
+  &.button-danger {
+    @apply text-red-500;
+
+    &:not(:disabled) {
+      @apply hover:text-red-600 hover:bg-transparent;
+    }
   }
 }
 

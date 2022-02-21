@@ -1,26 +1,19 @@
-.tabs-button-group {
-  @apply group p-0.5 rounded-lg flex bg-gray-100 hover:bg-gray-200;
+.tabs-navbar {
+  @apply border-b border-gray-200;
 }
 
-.tabs-button {
-  @apply py-1.5 shadow-none border-none text-gray-600 group-hover:text-gray-900 focus:outline-none focus:ring-0 focus:ring-offset-0;
-
-  &,
-  &:hover {
-    @apply bg-transparent;
-  }
-
-  &:hover {
-    @apply text-gray-900;
-  }
+.tabs-nav-links {
+  @apply -mb-px flex space-x-8;
 }
 
-.tabs-button-active {
-  @apply border border-gray-300 shadow-sm ring-1 ring-black ring-opacity-5 text-gray-900;
+.tabs-nav-link {
+  @apply border-transparent font-medium text-gray-500 hover:text-gray-700 hover:border-gray-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer;
+}
 
+.tabs-nav-link-active {
   &,
   &:hover {
-    @apply bg-white;
+    @apply border-blue-500 text-blue-600;
   }
 }
 

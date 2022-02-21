@@ -1,7 +1,6 @@
 import clsx from 'clsx'
-import type { FC, ReactElement, ReactNode } from 'react'
+import type { FC, ReactElement, MouseEvent } from 'react'
 import { Children, useMemo, useState } from 'react'
-import Button from '../button'
 import TabsPane from './Pane'
 
 export interface TabsProps extends Omit<IComponentProps, 'onChange'> {
@@ -9,41 +8,37 @@ export interface TabsProps extends Omit<IComponentProps, 'onChange'> {
   onChange?: (key: IKeyType) => void
 }
 
-export interface TabButtonProps extends Omit<IComponentProps, 'onClick'> {
+export interface TabLinkProps extends Omit<IComponentProps, 'onClick'> {
   tabKey: string
   title: string
   isActive?: boolean
   disabled?: boolean
-  leading?: ReactNode
   onClick?: (key: IKeyType) => void
 }
 
-const TabButton: FC<TabButtonProps> = ({
+const TabLink: FC<TabLinkProps> = ({
   tabKey,
   title,
   isActive,
   disabled,
-  leading,
   onClick,
   ...restProps
 }) => {
-  function handleClick() {
+  function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+    event.preventDefault()
     onClick && onClick(tabKey)
   }
 
   return (
-    <Button
-      className={clsx('tabs-button', {
-        'tabs-button-active': isActive
+    <a
+      className={clsx('tabs-nav-link', {
+        'tabs-nav-link-active': isActive
       })}
-      disabled={disabled}
-      leading={leading}
-      tabIndex={0}
       onClick={handleClick}
       {...restProps}
     >
       {title}
-    </Button>
+    </a>
   )
 }
 
@@ -68,18 +63,19 @@ const Tabs: FC<TabsProps> = ({ defaultActiveKey, onChange, children, className, 
 
   return (
     <div className={clsx('tabs-wrapper', className)} {...restProps}>
-      <div className="tabs-button-group">
-        {panes.map(node => (
-          <TabButton
-            key={node.key}
-            tabKey={node.key as string}
-            title={node.title}
-            leading={node.leading}
-            disabled={node.disabled}
-            isActive={node.key === activeKey}
-            onClick={handleClick}
-          />
-        ))}
+      <div className="tabs-navbar">
+        <div className="tabs-nav-links">
+          {panes.map(node => (
+            <TabLink
+              key={node.key}
+              tabKey={node.key as string}
+              title={node.title}
+              disabled={node.disabled}
+              isActive={node.key === activeKey}
+              onClick={handleClick}
+            />
+          ))}
+        </div>
       </div>
       <div className="tabs-pane-group">
         {panes.map(node => (

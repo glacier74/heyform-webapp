@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Popup from '../popup'
 
 export interface DropdownProps extends IComponentProps {
+  popupClassName?: string
   visible?: boolean
   placement?: PopperPlacement
   disabled?: boolean
@@ -14,6 +15,7 @@ export interface DropdownProps extends IComponentProps {
 
 const Dropdown: FC<DropdownProps> = ({
   className,
+  popupClassName,
   visible = false,
   placement = 'bottom-end',
   disabled,
@@ -65,6 +67,7 @@ const Dropdown: FC<DropdownProps> = ({
 
       <Popup
         visible={isOpen}
+        className={popupClassName}
         referenceRef={ref as Element}
         popperOptions={{
           placement,
