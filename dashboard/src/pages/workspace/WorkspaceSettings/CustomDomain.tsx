@@ -1,7 +1,55 @@
-import { SwitchField } from '@/components/SwitchField'
+import { SwitchField } from '@/components'
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { useParam } from '@/utils'
+import { Button, Form, Input } from '@heyforms/ui'
+import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
+import { useState } from 'react'
+import isFQDN from 'validator/lib/isFQDN'
 
-export const CustomDomain: FC = () => {
+export const CustomDomain: FC = observer(() => {
+  const { workspaceId } = useParam()
+  const workspaceStore = useStore('workspaceStore')
+
+  const [formLoading, setFormLoading] = useState(false)
+  const [formError, setFormError] = useState<Error | null>(null)
+
+  const [switchLoading, setSwitchLoading] = useState(false)
+  const [switchError, setSwitchError] = useState<Error | null>(null)
+
+  async function handleChange(enableCustomDomain: boolean) {
+    setSwitchLoading(true)
+    setSwitchError(null)
+
+    try {
+      await WorkspaceService.update({
+        teamId: workspaceId,
+        enableCustomDomain
+      })
+
+      workspaceStore.updateWorkspace(workspaceId, {
+        enableCustomDomain
+      })
+    } catch (err: any) {
+      setSwitchError(err)
+    }
+
+    setSwitchLoading(false)
+  }
+
+  async function handleFinish(values: IMapType) {
+    setFormLoading(true)
+    setFormError(null)
+
+    try {
+    } catch (err: any) {
+      setFormError(err)
+    }
+
+    setFormLoading(false)
+  }
+
   return (
     <div>
       <SwitchField
@@ -15,7 +63,45 @@ export const CustomDomain: FC = () => {
             .
           </>
         }
+        loading={switchLoading}
+        value={workspaceStore.workspace?.enableCustomDomain}
+        onChange={handleChange}
       />
+      {switchError && <div className="form-item-error">{switchError.message}</div>}
+
+      <div>
+        {workspaceStore.workspace?.enableCustomDomain && (
+          <Form
+            className="form-inline"
+            initialValues={{
+              hostname: workspaceStore.workspace?.customHostnames?.[0]?.hostname
+            }}
+            onFinish={handleFinish}
+          >
+            <Form.Item
+              name="hostname"
+              rules={[
+                {
+                  validator: async (rule, value) => {
+                    if (!isFQDN(value)) {
+                      throw new Error(rule.message as string)
+                    }
+                  },
+                  message: 'Invalid domain name'
+                }
+              ]}
+            >
+              <Input placeholder="eg: example.com" />
+            </Form.Item>
+
+            <Button className="mt-1 ml-3" htmlType="submit" loading={formLoading}>
+              Update
+            </Button>
+
+            {formError && <div className="form-item-error">{formError.message}</div>}
+          </Form>
+        )}
+      </div>
     </div>
   )
-}
+})

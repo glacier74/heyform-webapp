@@ -81,16 +81,14 @@ export function useAsyncEffect<T>(asyncFunction: () => Promise<T>, deps: any[] =
   }, deps)
 }
 
-export type FetchStatus = 'idle' | 'pending' | 'success' | 'error'
-
-// https://usehooks.com/useAsync/
-export function useAsync(
-  asyncFunction: () => Promise<boolean>,
-  deps: any[] = [],
-  immediate = true
+// Fork from https://usehooks.com/useAsync/
+export function useAsync<T = any>(
+  asyncFunction: () => Promise<T>,
+  initialResult: T,
+  deps: any[] = []
 ) {
-  const [status, setStatus] = useState<FetchStatus>('idle')
-  const [value, setValue] = useState<boolean>(false)
+  const [loading, setLoading] = useState(false)
+  const [result, setResult] = useState<T | null>(initialResult)
   const [error, setError] = useState<Error | null>(null)
 
   // The execute function wraps asyncFunction and
@@ -98,28 +96,20 @@ export function useAsync(
   // useCallback ensures the below useEffect is not called
   // on every render, but only if asyncFunction changes.
   const execute = useCallback(() => {
-    setStatus('pending')
+    setLoading(true)
     setError(null)
 
     return asyncFunction()
-      .then(result => {
-        setValue(result)
-        setStatus('success')
-      })
-      .catch((err: any) => {
-        setError(err)
-        setStatus('error')
+      .then(setResult)
+      .catch(setError)
+      .finally(() => {
+        setLoading(false)
       })
   }, [asyncFunction])
 
-  // Call execute if we want to fire it right away.
-  // Other wise execute can be called later, such as
-  // in an onClick handler.
   useEffect(() => {
-    if (immediate) {
-      execute()
-    }
-  }, [...deps, immediate])
+    execute()
+  }, deps)
 
-  return { execute, value, status, error }
+  return { result, loading, error }
 }

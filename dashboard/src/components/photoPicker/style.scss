@@ -15,30 +15,13 @@
     @apply px-4;
   }
 
+  .tabs-pane-group {
+    @apply h-96;
+    @extend .scrollbar;
+  }
+
   .tabs-pane {
-    @apply h-96 p-4 overflow-y-auto;
-
-    @media (min-width: 640px) {
-      &::-webkit-scrollbar {
-        @apply appearance-none bg-transparent w-1.5 h-1.5;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        @apply hidden w-1.5 bg-gray-300 opacity-0;
-        border-radius: 0.1875rem;
-      }
-
-      &::-webkit-scrollbar-track {
-        @apply appearance-none hidden;
-      }
-
-      &:hover {
-        &::-webkit-scrollbar-thumb,
-        &::-webkit-scrollbar-track {
-          @apply block;
-        }
-      }
-    }
+    @apply h-full p-4;
   }
 
   .drag-uploader {

@@ -1,6 +1,7 @@
 import { isEqual, isValid } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
-import cookies, { CookieAttributes } from 'js-cookie'
+import type { CookieAttributes } from 'js-cookie'
+import cookies from 'js-cookie'
 import store from 'store2'
 
 export const workspaceIdKey = 'HEYFORM_WORKSPACE_ID'
@@ -11,7 +12,7 @@ export const dangerZoneKey = 'HEYFORM_SUPERMAN'
 const cookieOptions: CookieAttributes = {
   expires: 365,
   sameSite: 'strict',
-  domain: import.meta.env.VITE_APP_COOKIE_DOMAIN as string,
+  domain: import.meta.env.VITE_COOKIE_DOMAIN as string,
   secure: import.meta.env.NODE_ENV === 'production'
 }
 
@@ -31,7 +32,7 @@ export function clearAuthState() {
   // Clear logged in cookie
   cookies.remove(loggedInKey, {
     path: '/',
-    domain: import.meta.env.VITE_APP_COOKIE_DOMAIN as string
+    domain: import.meta.env.VITE_COOKIE_DOMAIN as string
   })
 }
 

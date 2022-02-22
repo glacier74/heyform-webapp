@@ -8,7 +8,7 @@ import { register } from '@/utils/serviceWorker'
 import * as Sentry from '@sentry/react'
 import { Suspense } from 'react'
 import { render } from 'react-dom'
-import './style.scss'
+import './styles/index.scss'
 
 if (!getDeviceId()) {
   setDeviceId()

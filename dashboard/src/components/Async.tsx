@@ -1,6 +1,5 @@
-import { useAsync } from '@/utils'
-import clsx from 'clsx'
 import type { FC, ReactNode } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 interface AsyncProps extends IComponentProps {
   request: () => Promise<any>
@@ -24,14 +23,38 @@ export const Async: FC<AsyncProps> = ({
   errorRender,
   children
 }) => {
-  const { status, value, error } = useAsync(request, deps, immediate)
+  // Fork from https://usehooks.com/useAsync/
+  const [status, setStatus] = useState<'idle' | 'pending' | 'success' | 'error'>('idle')
+  const [result, setResult] = useState<boolean>(false)
+  const [error, setError] = useState<Error | null>(null)
+
+  const execute = useCallback(() => {
+    setStatus('pending')
+    setError(null)
+
+    return request()
+      .then(data => {
+        setResult(data)
+        setStatus('success')
+      })
+      .catch((err: any) => {
+        setError(err)
+        setStatus('error')
+      })
+  }, [request])
+
+  useEffect(() => {
+    if (immediate) {
+      execute()
+    }
+  }, deps.concat(immediate))
 
   return (
     <div className={className} style={style}>
       {status === 'idle' && cacheFirst && children}
       {status === 'pending' && (!cacheFirst ? skeleton : children)}
       {status === 'error' && (errorRender ? errorRender(error!) : children)}
-      {status === 'success' && (!value && emptyState ? emptyState : children)}
+      {status === 'success' && (!result && emptyState ? emptyState : children)}
     </div>
   )
 }

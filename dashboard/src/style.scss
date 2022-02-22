@@ -88,10 +88,6 @@ body {
   @apply hidden;
 }
 
-.overflow-y-auto {
-  -webkit-overflow-scrolling: touch;
-}
-
 .workspace-switch {
   .menus {
     @apply w-full sm:w-80 2xl:w-96 py-4 -mt-12;
@@ -134,7 +130,7 @@ body {
   }
 }
 
-.non-scaling-icon {
+.non-scaling-stroke {
   path {
     vector-effect: non-scaling-stroke;
   }

@@ -21,8 +21,8 @@ import {
 import { request } from '@/utils'
 
 export class WorkspaceService {
-  static create(name: string, avatar?: string) {
-    return request.mutate({
+  static async create(name: string, avatar?: string) {
+    const result = await request.mutate({
       mutation: CREATE_WORKSPACE_GQL,
       variables: {
         input: {
@@ -31,6 +31,7 @@ export class WorkspaceService {
         }
       }
     })
+    return result.data.createTeam
   }
 
   static publicDetail(teamId: string, inviteCode: string) {
@@ -45,7 +46,7 @@ export class WorkspaceService {
     })
   }
 
-  static update(input: { teamId: string; name?: string; avatar?: string; customDomain?: string }) {
+  static update(input: { teamId: string } & IMapType) {
     return request.mutate({
       mutation: UPDATE_WORKSPACE_GQL,
       variables: {

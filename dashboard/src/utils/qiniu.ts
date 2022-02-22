@@ -21,15 +21,6 @@ export class Qiniu {
     this.onProgress = onProgress
   }
 
-  static init(
-    file: File,
-    key: string,
-    token: string,
-    onProgress?: (percent: number) => void
-  ): Qiniu {
-    return new Qiniu(file, key, token, onProgress)
-  }
-
   upload() {
     return new Promise((resolve, reject) => {
       this.subscription = this.observable.subscribe(

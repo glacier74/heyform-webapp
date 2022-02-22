@@ -19,6 +19,10 @@ interface WorkspaceSwitchProps {
   onCreateWorkspace: () => void
 }
 
+interface WorkspaceListProps {
+  onClose: () => void
+}
+
 const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
   const { workspaceId } = useParam()
 
@@ -45,26 +49,69 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
         <p className="text-sm text-gray-500 truncate">{`${workspace.plan.name} plan | ${workspace.memberCount} members`}</p>
       </div>
 
-      {workspaceId === workspace.id && <CheckCircleIcon className="w-5 h-5 text-blue-500" />}
+      {workspaceId === workspace.id && <CheckCircleIcon className="w-6 h-6 text-blue-500" />}
     </div>
   )
 }
 
-export const WorkspaceSwitch: FC<WorkspaceSwitchProps> = observer(({ onCreateWorkspace }) => {
+const WorkspaceList: FC<WorkspaceListProps> = observer(({ onClose }) => {
   const history = useHistory()
-  const [visible, setVisible] = useState(false)
   const workspaceStore = useStore('workspaceStore')
 
   function handleClick(workspace: WorkspaceModel) {
-    setVisible(false)
+    onClose()
     history.push(`/workspace/${workspace.id}`)
+  }
+
+  return (
+    <>
+      {workspaceStore.list.map(workspace => (
+        <WorkspaceItem key={workspace.id} workspace={workspace} onClick={handleClick} />
+      ))}
+    </>
+  )
+})
+
+const CurrentWorkspace = observer(() => {
+  const workspaceStore = useStore('workspaceStore')
+
+  return (
+    <button className="group w-full rounded-md text-sm text-left text-gray-700">
+      <span className="flex w-full justify-between items-center cursor-pointer">
+        <span className="flex min-w-0 items-center justify-between space-x-3">
+          <Avatar
+            className="w-10 h-10 rounded-full flex-shrink-0"
+            src={workspaceStore.workspace?.avatar}
+            defaultIcon={<WorkspaceIcon />}
+            size={40}
+            rounded
+            circular
+          />
+          <span className="flex-1 flex flex-col min-w-0">
+            <span className="text-gray-900 text-sm font-medium truncate">
+              {workspaceStore.workspace?.name}
+            </span>
+            <span className="text-gray-500 text-sm truncate">
+              {workspaceStore.workspace?.plan.name} plan
+            </span>
+          </span>
+        </span>
+        <SelectorIcon className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
+      </span>
+    </button>
+  )
+})
+
+export const WorkspaceSwitch: FC<WorkspaceSwitchProps> = ({ onCreateWorkspace }) => {
+  const [visible, setVisible] = useState(false)
+
+  function handleClose() {
+    setVisible(false)
   }
 
   const Overlay = (
     <div className="menus">
-      {workspaceStore.list.map(workspace => (
-        <WorkspaceItem key={workspace.id} workspace={workspace} onClick={handleClick} />
-      ))}
+      <WorkspaceList onClose={handleClose} />
       <Menus.Divider />
       <Menus.Item
         name="create"
@@ -84,30 +131,8 @@ export const WorkspaceSwitch: FC<WorkspaceSwitchProps> = observer(({ onCreateWor
         placement="bottom-start"
         overlay={Overlay}
       >
-        <button className="group w-full rounded-md text-sm text-left text-gray-700">
-          <span className="flex w-full justify-between items-center cursor-pointer">
-            <span className="flex min-w-0 items-center justify-between space-x-3">
-              <Avatar
-                className="w-10 h-10 rounded-full flex-shrink-0"
-                src={workspaceStore.workspace?.avatar}
-                defaultIcon={<WorkspaceIcon />}
-                size={40}
-                rounded
-                circular
-              />
-              <span className="flex-1 flex flex-col min-w-0">
-                <span className="text-gray-900 text-sm font-medium truncate">
-                  {workspaceStore.workspace?.name}
-                </span>
-                <span className="text-gray-500 text-sm truncate">
-                  {workspaceStore.workspace?.plan.name} plan
-                </span>
-              </span>
-            </span>
-            <SelectorIcon className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
-          </span>
-        </button>
+        <CurrentWorkspace />
       </Dropdown>
     </div>
   )
-})
+}

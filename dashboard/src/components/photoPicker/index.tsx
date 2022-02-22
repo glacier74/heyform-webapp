@@ -18,14 +18,26 @@ export const PhotoPicker: FC<PhotoPickerProps> = ({
   onChange,
   ...restProps
 }) => {
+  function handleChange(src: string) {
+    onChange?.(src)
+    onClose?.()
+  }
+
   return (
-    <Modal className="photo-picker" visible={true} onClose={onClose} showCloseIcon {...restProps}>
+    <Modal
+      className="photo-picker"
+      visible={visible}
+      zIndex={50}
+      onClose={onClose}
+      showCloseIcon
+      {...restProps}
+    >
       <Tabs>
         <Tabs.Pane key="upload" title="Upload">
-          <DragUploader />
+          <DragUploader onChange={handleChange} />
         </Tabs.Pane>
         <Tabs.Pane key="unsplash" title="Unsplash">
-          <Unsplash onSelect={console.log} />
+          <Unsplash onChange={handleChange} />
         </Tabs.Pane>
       </Tabs>
     </Modal>

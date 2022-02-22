@@ -12,7 +12,6 @@ interface DragUploaderProps extends Omit<IComponentProps, 'onChange'> {
   value?: any
   accept?: string[]
   maxSize?: string
-  uploading?: boolean
   selectText?: string
   reselectText?: string
   uploadingText?: string
@@ -26,7 +25,6 @@ export const DragUploader: FC<DragUploaderProps> = ({
   value,
   accept = [],
   maxSize = '10MB',
-  uploading = false,
   selectText = 'Upload a file',
   reselectText = 'Re-select file to upload',
   uploadingText = 'Uploading',
@@ -70,7 +68,7 @@ export const DragUploader: FC<DragUploaderProps> = ({
       const { token, urlPrefix, key } = cdnTokenData
       const url = `${urlPrefix}/${key}`
 
-      const qc = Qiniu.init(f, key, token)
+      const qc = new Qiniu(f, key, token)
       await qc.upload()
 
       onChange && onChange(url)
@@ -137,13 +135,16 @@ export const DragUploader: FC<DragUploaderProps> = ({
       {file ? (
         <div className="flex justify-center w-full h-full px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
           <div className="flex flex-col justify-center space-y-1 text-center">
-            <DocumentIcon className="non-scaling-icon mx-auto h-12 w-12 text-gray-400" />
+            <DocumentIcon className="non-scaling-stroke mx-auto h-12 w-12 text-gray-400" />
             <p className="text-sm text-gray-600">
               {file!.name} <span>({formatBytes(file!.size)})</span>
             </p>
-            <Button.Link type="primary" loading={loading} onClick={handleOpen}>
-              {loading ? uploadingText : reselectText}
-            </Button.Link>
+            <div className="flex items-center justify-center text-sm">
+              <Button.Link type="primary" loading={loading} onClick={handleOpen}>
+                {loading ? uploadingText : reselectText}
+              </Button.Link>
+            </div>
+            {error && <p className="text-xs text-red-500">{error.message}</p>}
           </div>
         </div>
       ) : (
@@ -161,7 +162,7 @@ export const DragUploader: FC<DragUploaderProps> = ({
           onDragLeave={handleDrop}
         >
           <div className="flex flex-col justify-center space-y-1 text-center">
-            <UploadIcon className="non-scaling-icon mx-auto h-12 w-12 text-gray-400" />
+            <UploadIcon className="non-scaling-stroke mx-auto h-12 w-12 text-gray-400" />
             <div className="flex items-center justify-center text-sm text-gray-600">
               <Button.Link type="primary" onClick={handleOpen}>
                 {selectText}
@@ -169,7 +170,7 @@ export const DragUploader: FC<DragUploaderProps> = ({
               <p className="pl-1">or drag and drop</p>
             </div>
             {error ? (
-              <p className="text-xs text-red-500">{error}</p>
+              <p className="text-xs text-red-500">{error.message}</p>
             ) : (
               <p className="text-xs text-gray-500">PNG, JPG, GIF up to {maxSize}</p>
             )}

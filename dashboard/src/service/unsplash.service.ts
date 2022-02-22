@@ -9,7 +9,8 @@ export class UnsplashService {
         input: {
           keyword
         }
-      }
+      },
+      fetchPolicy: 'network-only'
     })
     return result.data.unsplashSearch
   }

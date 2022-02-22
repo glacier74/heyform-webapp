@@ -1,0 +1,23 @@
+@import "@heyforms/ui/lib/style.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply antialiased font-sans;
+}
+
+.overflow-y-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-body {
+  @extend .scrollbar;
+}
+
+.non-scaling-stroke {
+  path {
+    vector-effect: non-scaling-stroke;
+  }
+}

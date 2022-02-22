@@ -32,9 +32,9 @@ const headerLink = setContext((_, { headers }) => {
   }
 })
 
-const errorLink = onError(({ response, graphQLErrors, networkError, operation }) => {
-  if (graphQLErrors) {
-    const error: any = graphQLErrors[0]
+const errorLink = onError(({ response }) => {
+  if (isValid(response?.errors)) {
+    const error: any = response!.errors![0]
 
     if (isValid(error) && error.status === 401) {
       clearAuthState()
@@ -50,6 +50,5 @@ const cache = new InMemoryCache({
 
 export const request = new ApolloClient({
   link: from([retryLink, timeoutLink, headerLink, errorLink, uploadLink]),
-  cache,
-  connectToDevTools: true
+  cache
 })

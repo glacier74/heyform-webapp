@@ -157,7 +157,7 @@ const Project = observer(() => {
           <div className="mt-2 flex items-center">
             <Avatar.Group options={members} size={32} maximum={8} circular rounded />
             <Button
-              className="member-manage"
+              className="ml-2 w-8 h-8 p-1.5"
               leading={<DotsHorizontalIcon />}
               rounded
               onClick={handleProjectMembersOpen}

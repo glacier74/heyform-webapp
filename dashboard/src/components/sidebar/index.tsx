@@ -4,6 +4,7 @@ import type { FC } from 'react'
 import { Navbar } from './Navbar'
 import { UserAccount } from './UserAccount'
 import { WorkspaceSwitch } from './WorkspaceSwitch'
+import './index.scss'
 
 interface SidebarProps {
   isOpen?: boolean
