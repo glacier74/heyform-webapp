@@ -272,6 +272,18 @@ const App = () => {
         action={<Button leading={<DocumentAddIcon />}>Create Project</Button>}
       />
 
+      <Form.Custom
+        enableOnValuesChange={true}
+        submitText="Update"
+        request={async values => {
+          await new Promise(resolve => setTimeout(resolve, 1000))
+        }}
+      >
+        <Form.Item name="email" label="Email" validateTrigger="blur" rules={[{ required: true }]}>
+          <Input placeholder="Email" leading={<MailIcon />} />
+        </Form.Item>
+      </Form.Custom>
+
       <Navbar>
         <a href="#">Applied</a>
         <a href="#">Phone Screening</a>
