@@ -222,16 +222,4 @@ export class WorkspaceService {
       }
     })
   }
-
-  // static searchUnsplashPhoto(query: string, page: number) {
-  //   return request.query({
-  //     query: SEARCH_UNSPLASH_PHOTO_GQL,
-  //     variables: {
-  //       input: {
-  //         query,
-  //         page
-  //       }
-  //     }
-  //   })
-  // }
 }

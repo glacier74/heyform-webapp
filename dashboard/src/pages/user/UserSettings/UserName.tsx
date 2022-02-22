@@ -4,12 +4,18 @@ import type { FC } from 'react'
 export const UserName: FC = () => {
   return (
     <div>
-      <Form className="form-inline">
+      <Form.Custom
+        inline
+        submitText="Update"
+        submitOptions={{
+          className: 'mt-6 ml-3'
+        }}
+        request={console.log as any}
+      >
         <Form.Item name="name" label="Your name" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
-        <Button className="mt-6 ml-3">Update</Button>
-      </Form>
+      </Form.Custom>
     </div>
   )
 }

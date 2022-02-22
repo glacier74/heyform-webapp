@@ -1,28 +1,12 @@
 import { AppleIcon, GoogleIcon, LogoIcon } from '@/components'
 import { AuthService } from '@/service'
-import { Button, Checkbox, Form, Input } from '@heyforms/ui'
-import { useState } from 'react'
+import { Checkbox, Form, Input } from '@heyforms/ui'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<Error | null>(null)
-
   async function handleFinish(values: any) {
-    if (loading) {
-      return
-    }
-
-    setLoading(true)
-    setError(null)
-
-    try {
-      await AuthService.login(values.email, values.password)
-      window.location.href = window.sessionStorage.next || '/'
-    } catch (err: any) {
-      setError(err)
-      setLoading(false)
-    }
+    await AuthService.login(values.email, values.password)
+    window.location.href = window.sessionStorage.next || '/'
   }
 
   return (
@@ -71,7 +55,15 @@ const Login = () => {
         </div>
 
         <div className="mt-6">
-          <Form onFinish={handleFinish}>
+          <Form.Custom
+            submitText="Sign In"
+            submitOptions={{
+              type: 'primary',
+              className: 'mt-6',
+              block: true
+            }}
+            request={handleFinish}
+          >
             <Form.Item
               name="email"
               label="Email address"
@@ -98,19 +90,7 @@ const Login = () => {
                 </Link>
               </div>
             </div>
-
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="mt-6"
-              block={true}
-              loading={loading}
-            >
-              Sign In
-            </Button>
-
-            {error && <div className="form-item-error">{error.message}</div>}
-          </Form>
+          </Form.Custom>
         </div>
       </div>
     </div>

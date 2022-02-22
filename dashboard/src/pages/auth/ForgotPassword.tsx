@@ -15,15 +15,18 @@ const ForgotPassword = () => {
       </div>
 
       <div className="mt-8">
-        <Form>
+        <Form.Custom
+          submitText="Continue"
+          submitOptions={{
+            type: 'primary',
+            block: true
+          }}
+          request={console.log as any}
+        >
           <Form.Item name="email" label="Email address" rules={[{ type: 'email', required: true }]}>
             <Input type="email" />
           </Form.Item>
-
-          <Button type="primary" htmlType="submit" block={true}>
-            Continue
-          </Button>
-        </Form>
+        </Form.Custom>
 
         <div className="mt-6 text-center text-blue-600 hover:text-blue-500 sm:text-sm">
           <Link to="/login" className="inline-flex items-center">

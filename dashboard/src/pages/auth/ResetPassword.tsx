@@ -13,7 +13,10 @@ const ResetPassword = () => {
       </div>
 
       <div className="mt-8">
-        <Form>
+        <Form.Custom submitText="Continue" submitOptions={{
+          type: "primary",
+          block: true
+        }} request={console.log as any}>
           <Form.Item name="password" label="New password" rules={[{ required: true }]}>
             <Input.Password />
           </Form.Item>
@@ -25,11 +28,7 @@ const ResetPassword = () => {
           >
             <Input.Password />
           </Form.Item>
-
-          <Button type="primary" htmlType="submit" block={true}>
-            Continue
-          </Button>
-        </Form>
+        </Form.Custom>
       </div>
     </div>
   )

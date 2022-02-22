@@ -48,7 +48,15 @@ const SignUp = () => {
         </div>
 
         <div className="mt-6">
-          <Form onValuesChange={console.log}>
+          <Form.Custom
+            submitText="Sign Up"
+            submitOptions={{
+              type: 'primary',
+              className: 'mt-3',
+              block: true
+            }}
+            request={console.log as any}
+          >
             <Form.Item name="name" label="Name" rules={[{ required: true }]}>
               <Input />
             </Form.Item>
@@ -78,11 +86,7 @@ const SignUp = () => {
                 .
               </p>
             </div>
-
-            <Button type="primary" htmlType="submit" className="mt-3" block={true}>
-              Sign Up
-            </Button>
-          </Form>
+          </Form.Custom>
         </div>
       </div>
     </div>

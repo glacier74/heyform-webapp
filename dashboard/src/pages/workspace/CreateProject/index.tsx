@@ -49,18 +49,20 @@ const CreateProject: FC<IModalProps> = ({ visible, onClose }) => {
           </p>
         </div>
 
-        <Form onFinish={handleFinish}>
+        <Form.Custom
+          submitText="Create"
+          submitOptions={{
+            type: 'primary'
+          }}
+          request={handleFinish}
+        >
           <Form.Item name="name" label="Project name" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
           <Form.Item name="members" label="Assign members">
             <AssignMember />
           </Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>
-            Create
-          </Button>
-          {error && <div className="form-item-error">{error.message}</div>}
-        </Form>
+        </Form.Custom>
       </div>
     </Modal>
   )
