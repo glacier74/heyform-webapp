@@ -11,6 +11,7 @@ import {
   Menus,
   Modal,
   Navbar,
+  notification,
   Popup,
   Radio,
   Select,
@@ -247,12 +248,53 @@ const Standalone = () => {
   )
 }
 
+const Notificaiton = () => {
+  function handleLoading() {
+    notification.loading({
+      title: 'Loading',
+      message: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+      duration: 0
+    })
+  }
+
+  function handleSuccess() {
+    notification.success({
+      title: 'Success',
+      message: 'This is a success notification'
+    })
+  }
+
+  function handleError() {
+    notification.error({
+      title: 'Error',
+      message: 'This is an error notification'
+    })
+  }
+
+  function handleText() {
+    notification({
+      title: 'This is an text notification'
+    })
+  }
+
+  return (
+    <div className="space-x-6">
+      <Button onClick={handleLoading}>Loading</Button>
+      <Button onClick={handleSuccess}>Sucess</Button>
+      <Button onClick={handleError}>Error</Button>
+      <Button onClick={handleText}>Text</Button>
+    </div>
+  )
+}
+
 const App = () => {
   const [select, setSelect] = useState()
 
   return (
     <div className="container mx-auto">
       <Standalone />
+
+      <Notificaiton />
 
       <EmptyStates
         title="No projects"
