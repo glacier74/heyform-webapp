@@ -1,9 +1,9 @@
-.modal {
-  @apply fixed z-50 inset-0;
+.modal-mask {
+  @apply fixed inset-0 bg-gray-500 bg-opacity-75 transition ease-in-out duration-100;
 }
 
 .modal-container {
-  @apply absolute inset-0 flex items-center justify-center p-4 sm:p-8 bg-gray-500 bg-opacity-75 transition ease-in-out duration-100;
+  @apply fixed inset-0 flex items-center justify-center p-4 sm:p-8;
 }
 
 .modal-wrapper {
@@ -19,7 +19,7 @@
 }
 
 .modal-close-button {
-  @apply absolute z-50 p-1.5 top-2 right-4 -mr-2.5 bg-white sm:top-8 sm:right-8;
+  @apply absolute p-1.5 top-2 right-4 -mr-2.5 bg-white sm:top-8 sm:right-8;
 
   .button-leading {
     @apply w-6 h-6;
@@ -95,7 +95,7 @@
 
 .popup-modal-enter-active,
 .popup-modal-exit {
-  .modal-container,
+  .modal-mask,
   .modal-wrapper {
     @apply opacity-100;
   }
@@ -107,12 +107,12 @@
 
 .popup-modal-enter,
 .popup-modal-exit-active {
-  .modal-container,
-  .modal-body {
+  .modal-mask,
+  .modal-wrapper {
     @apply opacity-0;
   }
 
-  .modal-body {
+  .modal-wrapper {
     @apply transform scale-95;
   }
 }

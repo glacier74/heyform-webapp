@@ -1,9 +1,9 @@
 .popup-mask {
-  @apply fixed z-10 inset-0;
+  @apply fixed z-40 inset-0;
 }
 
 .popup-content {
-  @apply z-20 transition ease-in-out duration-100;
+  @apply z-50 transition ease-in-out duration-100;
 
   transform-origin: 0 0;
 }

@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import type { FC } from 'react'
-import { useState } from 'react'
 import Spin from '../spin'
 
 export interface SwitchProps extends Omit<IComponentProps, 'onChange'> {
@@ -12,16 +11,13 @@ export interface SwitchProps extends Omit<IComponentProps, 'onChange'> {
 
 const Switch: FC<SwitchProps> = ({
   className,
-  value: rawValue = false,
+  value = false,
   loading = false,
   disabled,
   onChange,
   ...restProps
 }) => {
-  const [value, setValue] = useState(rawValue)
-
   function handleClick() {
-    setValue(!value)
     onChange && onChange(!value)
   }
 
