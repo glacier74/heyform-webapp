@@ -273,7 +273,7 @@ const App = () => {
       />
 
       <Form.Custom
-        enableOnValuesChange={true}
+        onlySubmitOnValueChange={true}
         submitText="Update"
         request={async values => {
           await new Promise(resolve => setTimeout(resolve, 1000))

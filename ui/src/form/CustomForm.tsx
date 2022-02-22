@@ -10,17 +10,17 @@ import Button from '../button/Button'
 
 export interface CustomFormProps extends Partial<RcFieldFormProps> {
   inline?: boolean
-  enableOnValuesChange?: boolean
+  onlySubmitOnValueChange?: boolean
   showRequestError?: boolean
   submitText?: string
   submitOptions?: Partial<ButtonProps>
-  request: (values: IMapType) => Promise<any>
+  request: (values: any) => Promise<any>
 }
 
 const CustomForm: FC<CustomFormProps> = ({
   className,
   inline,
-  enableOnValuesChange = false,
+  onlySubmitOnValueChange = false,
   showRequestError = true,
   submitText,
   request,
@@ -28,11 +28,11 @@ const CustomForm: FC<CustomFormProps> = ({
   children,
   ...restProps
 }) => {
-  const [disabled, setDisabled] = useState(enableOnValuesChange)
+  const [disabled, setDisabled] = useState(onlySubmitOnValueChange)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
 
-  async function handleFinish(values: IMapType) {
+  async function handleFinish(values: any) {
     if (loading) {
       return
     }
@@ -49,9 +49,8 @@ const CustomForm: FC<CustomFormProps> = ({
     setLoading(false)
   }
 
-  function handleValuesChange(_: IMapType, values: IMapType) {
-    if (enableOnValuesChange) {
-      console.log(diff(restProps.initialValues!, values))
+  function handleValuesChange(_: any, values: any) {
+    if (onlySubmitOnValueChange) {
       setDisabled(isEmpty(diff(restProps.initialValues!, values)))
     }
   }

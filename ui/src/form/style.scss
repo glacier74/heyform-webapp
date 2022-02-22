@@ -3,10 +3,14 @@
 }
 
 .form-inline {
-  @apply flex;
+  @apply flex items-start;
 
   .form-item {
     @apply flex-1 mb-0;
+
+    &.form-item-error {
+      @apply mt-0;
+    }
 
     input,
     textarea {
