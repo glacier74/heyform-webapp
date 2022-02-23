@@ -1,9 +1,8 @@
-import { Avatar, Button, Modal, Tabs } from '@heyforms/ui'
-import clsx from 'clsx'
+import { Modal, Tabs } from '@heyforms/ui'
 import type { FC } from 'react'
 import { DragUploader } from './DragUploader'
-import { Unsplash } from './Unsplash'
 import './style.scss'
+import { Unsplash } from './Unsplash'
 
 interface PhotoPickerProps extends Omit<IComponentProps, 'onChange'>, IModalProps {
   value?: string
@@ -27,7 +26,6 @@ export const PhotoPicker: FC<PhotoPickerProps> = ({
     <Modal
       className="photo-picker"
       visible={visible}
-      zIndex={50}
       onClose={onClose}
       showCloseIcon
       {...restProps}

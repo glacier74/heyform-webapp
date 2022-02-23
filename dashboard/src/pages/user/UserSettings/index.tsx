@@ -1,10 +1,10 @@
 import { Modal } from '@heyforms/ui'
 import type { FC } from 'react'
+import { Account } from './Account'
 import { Avatar } from './Avatar'
 import { EmailAddress } from './EmailAddress'
-import { UserName } from './UserName'
 import { Password } from './Password'
-import { Account } from './Account'
+import { UserName } from './UserName'
 
 const UserSettings: FC<IModalProps> = ({ visible, onClose }) => {
   return (

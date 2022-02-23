@@ -4,7 +4,7 @@ import { SearchIcon } from '@heroicons/react/outline'
 import type { UnsplashImage } from '@heyforms/shared-types-enums'
 import { Input } from '@heyforms/ui'
 import type { FC } from 'react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 interface UnsplashProps {
   onChange: (src: string) => void

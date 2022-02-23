@@ -33,7 +33,7 @@ export const ExportData: FC = () => {
       </p>
       <div className="mt-3">
         <Button loading={loading} onClick={handleClick}>
-          Request you data
+          Request your data
         </Button>
         {error && <div className="form-item-error">{error.message}</div>}
       </div>

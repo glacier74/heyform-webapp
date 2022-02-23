@@ -1,5 +1,4 @@
 import { WorkspaceIcon } from '@/components'
-import { PhotoPicker } from '@/components/photoPicker'
 import type { ProjectModel, UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'

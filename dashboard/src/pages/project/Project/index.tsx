@@ -9,7 +9,7 @@ import {
   TrashIcon
 } from '@heroicons/react/outline'
 import type { FormModel } from '@heyforms/shared-types-enums'
-import { Avatar, Button, Dropdown, Heading, Menus, Navbar, Table } from '@heyforms/ui'
+import { Avatar, Badge, Button, Dropdown, Heading, Menus, Navbar, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { observer } from 'mobx-react-lite'
 import { useMemo, useState } from 'react'
@@ -18,6 +18,7 @@ import * as timeago from 'timeago.js'
 import { DeleteProject } from './DeleteProject'
 import { ProjectMembers } from './ProjectMembers'
 import { RenameProject } from './RenameProject'
+import './index.scss'
 
 const Project = observer(() => {
   const { workspaceId, projectId } = useParam()
@@ -33,7 +34,7 @@ const Project = observer(() => {
         src: m.avatar,
         text: m.name
       }))
-  }, [workspaceStore.project, workspaceStore.members])
+  }, [workspaceStore.project?.members, workspaceStore.members])
 
   function handleProjectMembersOpen() {
     setProjectMembersOpen(true)
@@ -77,7 +78,7 @@ const Project = observer(() => {
   const columns: TableColumn<FormModel>[] = [
     {
       key: 'id',
-      name: 'Member',
+      name: 'Form name',
       width: '40%',
       render(record) {
         return (
@@ -99,7 +100,15 @@ const Project = observer(() => {
       name: 'Status',
       width: '30%',
       render(record) {
-        return record.status
+        if (record.draft) {
+          return <Badge className="form-status" text="Draft" dot />
+        } else if (record.suspended) {
+          return <Badge className="form-status" type="red" text="Suspended" dot />
+        } else if (record.settings?.active) {
+          return <Badge className="form-status" type="blue" text="Active" dot />
+        } else {
+          return <Badge className="form-status" text="Closed" dot />
+        }
       }
     },
     {
@@ -141,7 +150,7 @@ const Project = observer(() => {
           <div className="flex items-center">
             <span>{workspaceStore.project?.name}</span>
             <Dropdown
-              placement="left"
+              placement="bottom-start"
               overlay={
                 <Menus onClick={handleMenuClick}>
                   <Menus.Item name="rename" icon={<PencilIcon />} label="Rename" />

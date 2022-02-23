@@ -72,6 +72,7 @@ export class WorkspaceStore {
 
   deleteWorkspace(workspaceId: string) {
     this.list = this.list.filter(w => w.id !== workspaceId)
+    this.currentWorkspaceId = ''
   }
 
   selectProject(projectId: string) {
@@ -103,6 +104,34 @@ export class WorkspaceStore {
 
     if (workspace) {
       workspace.projects = workspace.projects.filter(p => p.id !== projectId)
+    }
+  }
+
+  addProjectMember(workspaceId: string, projectId: string, memberId: string) {
+    const workspace = this.list.find(w => w.id === workspaceId)
+
+    if (workspace) {
+      const project = workspace.projects.find(p => p.id === projectId)
+
+      if (project) {
+        Object.assign(project, {
+          members: [...project.members, memberId]
+        })
+      }
+    }
+  }
+
+  deleteProjectMember(workspaceId: string, projectId: string, memberId: string) {
+    const workspace = this.list.find(w => w.id === workspaceId)
+
+    if (workspace) {
+      const project = workspace.projects.find(p => p.id === projectId)
+
+      if (project) {
+        Object.assign(project, {
+          members: project.members.filter(m => m !== memberId)
+        })
+      }
     }
   }
 
@@ -146,7 +175,7 @@ export class WorkspaceStore {
     this.memberMaps[id] = members
   }
 
-  deleteMembers(id: string, memberId: string) {
+  deleteMember(id: string, memberId: string) {
     const members = this.memberMaps[id]
 
     if (isValidArray(members)) {

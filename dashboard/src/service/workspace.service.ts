@@ -188,8 +188,8 @@ export class WorkspaceService {
     })
   }
 
-  static addCustomHostname(teamId: string, hostname: string) {
-    return request.mutate({
+  static async addCustomHostname(teamId: string, hostname: string) {
+    const result = await request.mutate({
       mutation: ADD_CUSTOM_HOSTNAME_GQL,
       variables: {
         input: {
@@ -198,10 +198,11 @@ export class WorkspaceService {
         }
       }
     })
+    return result.data.addCustomHostname
   }
 
-  static checkCustomHostname(teamId: string, hostname: string) {
-    return request.mutate({
+  static async checkCustomHostname(teamId: string, hostname: string) {
+    const result = await request.mutate({
       mutation: CHECK_CUSTOM_HOSTNAME_GQL,
       variables: {
         input: {
@@ -210,6 +211,7 @@ export class WorkspaceService {
         }
       }
     })
+    return result.data.checkCustomHostname
   }
 
   static exportData(teamId: string) {

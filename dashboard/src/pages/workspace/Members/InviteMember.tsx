@@ -1,14 +1,46 @@
+import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { Button, Form, Input } from '@heyforms/ui'
-import { Modal } from '@heyforms/ui/src'
+import { useParam } from '@/utils'
+import { Button, Form, Input, Modal, notification, useForm } from '@heyforms/ui'
+import { isEmpty, isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
+import { useState } from 'react'
 
 export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => {
+  const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
+  const [form] = useForm()
+
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<Error | null>(null)
+
+  async function handleFinish(values: any) {
+    const emails = values.emails.filter((e: string) => isValid(e))
+
+    if (isEmpty(emails)) {
+      setError(new Error('Please enter at least one valid email address'))
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      await WorkspaceService.sendInvites(workspaceId, emails)
+      form.resetFields()
+
+      notification.success({
+        title: 'Invitations have been sent'
+      })
+    } catch (err: any) {
+      setError(err)
+    }
+
+    setLoading(false)
+  }
 
   return (
-    <Modal wrapperClassName="max-w-md" visible={visible} onClose={onClose} showCloseIcon>
+    <Modal contentClassName="max-w-md" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
           <h1 className="text-lg leading-6 font-medium text-gray-900">
@@ -24,6 +56,8 @@ export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => 
           initialValues={{
             emails: ['', '', '']
           }}
+          form={form}
+          onFinish={handleFinish}
         >
           <Form.List name="emails">
             {(fields, { add }) => {
@@ -50,10 +84,12 @@ export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => 
 
                   <div className="flex items-center justify-between">
                     <Button.Link onClick={handleAdd}>Add more</Button.Link>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" loading={loading}>
                       Send Invitations
                     </Button>
                   </div>
+
+                  {error && <div className="form-item-error">{error.message}</div>}
                 </div>
               )
             }}

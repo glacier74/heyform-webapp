@@ -1,4 +1,4 @@
-import { Button, Form, Input } from '@heyforms/ui'
+import { Form, Input } from '@heyforms/ui'
 import type { FC } from 'react'
 
 export const UserName: FC = () => {

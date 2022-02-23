@@ -10,7 +10,7 @@
     "build": "vite build",
     "staging": "vite build --mode staging",
     "type-check": "tsc --pretty --noEmit",
-    "lint": "eslint src --ext ts --ext tsx --ext js --fix",
+    "lint": "eslint src --ext ts --ext tsx --fix",
     "precommit": "lint-staged"
   },
   "husky": {

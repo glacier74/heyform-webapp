@@ -1,5 +1,5 @@
 import { AppleIcon, GoogleIcon, LogoIcon } from '@/components'
-import { Button, Form, Input } from '@heyforms/ui'
+import { Form, Input } from '@heyforms/ui'
 
 const SignUp = () => {
   return (

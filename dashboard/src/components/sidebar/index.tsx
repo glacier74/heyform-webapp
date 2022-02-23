@@ -1,10 +1,10 @@
 import { XIcon } from '@heroicons/react/outline'
 import { CSSTransition } from '@heyforms/ui'
 import type { FC } from 'react'
+import './index.scss'
 import { Navbar } from './Navbar'
 import { UserAccount } from './UserAccount'
 import { WorkspaceSwitch } from './WorkspaceSwitch'
-import './index.scss'
 
 interface SidebarProps {
   isOpen?: boolean

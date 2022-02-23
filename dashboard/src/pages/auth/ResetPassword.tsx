@@ -1,5 +1,5 @@
 import { LogoIcon } from '@/components'
-import { Button, Form, Input } from '@heyforms/ui'
+import { Form, Input } from '@heyforms/ui'
 
 const ResetPassword = () => {
   return (
@@ -13,10 +13,14 @@ const ResetPassword = () => {
       </div>
 
       <div className="mt-8">
-        <Form.Custom submitText="Continue" submitOptions={{
-          type: "primary",
-          block: true
-        }} request={console.log as any}>
+        <Form.Custom
+          submitText="Continue"
+          submitOptions={{
+            type: 'primary',
+            block: true
+          }}
+          request={console.log as any}
+        >
           <Form.Item name="password" label="New password" rules={[{ required: true }]}>
             <Input.Password />
           </Form.Item>

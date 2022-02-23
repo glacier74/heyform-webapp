@@ -1,6 +1,6 @@
 import { LogoIcon } from '@/components'
-import { Button, Form, Input } from '@heyforms/ui'
 import { ChevronLeftIcon } from '@heroicons/react/outline'
+import { Form, Input } from '@heyforms/ui'
 import { Link } from 'react-router-dom'
 
 const ForgotPassword = () => {

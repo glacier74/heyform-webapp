@@ -1,5 +1,5 @@
 import { UserService, WorkspaceService } from '@/service'
-import { stopPropagation, useParam, Qiniu } from '@/utils'
+import { Qiniu, stopPropagation, useParam } from '@/utils'
 import { DocumentIcon, UploadIcon } from '@heroicons/react/outline'
 import { Button } from '@heyforms/ui'
 import { formatBytes, parseBytes } from '@hpnp/utils'
