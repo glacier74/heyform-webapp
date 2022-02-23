@@ -33,7 +33,7 @@ import {
   TrashIcon,
   UserAddIcon
 } from '@heroicons/react/solid'
-import { StrictMode, useMemo, useState } from 'react'
+import { StrictMode, useEffect, useMemo, useState } from 'react'
 import { ArchiveIcon, CodeIcon, EyeIcon, PlusIcon } from '@heroicons/react/outline'
 import './style.scss'
 
@@ -175,6 +175,15 @@ const Standalone = () => {
             <p className="mt-1 text-sm text-gray-500">Manage your workspace settings</p>
           </div>
 
+          <Button
+            className="block ml-3"
+            type="primary"
+            leading={<MailIcon />}
+            onClick={() => setcv(true)}
+          >
+            Open modal
+          </Button>
+
           <Form onValuesChange={console.log} onFinish={console.log}>
             <Form.Item
               name="email"
@@ -252,7 +261,8 @@ const Notificaiton = () => {
   function handleLoading() {
     notification.loading({
       title: 'Loading',
-      message: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+      message:
+        'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
       duration: 0
     })
   }

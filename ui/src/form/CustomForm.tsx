@@ -66,7 +66,13 @@ const CustomForm: FC<CustomFormProps> = ({
     >
       {children}
 
-      <Button htmlType="submit" loading={loading} disabled={loading || disabled} {...submitOptions}>
+      <Button
+        className="form-submit-button"
+        htmlType="submit"
+        loading={loading}
+        disabled={loading || disabled}
+        {...submitOptions}
+      >
         {submitText}
       </Button>
 

@@ -55,3 +55,7 @@
 .form-item-error {
   @apply mt-2 text-sm text-red-600;
 }
+
+.form-submit-button {
+  @apply block sm:inline-block;
+}

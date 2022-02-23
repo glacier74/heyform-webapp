@@ -1,6 +1,5 @@
 .notification-root {
-  @apply fixed top-0 right-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start;
-  z-index: 100;
+  @apply fixed z-50 top-0 right-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start;
 }
 
 .notification {

@@ -1,12 +1,12 @@
 .modal-mask {
-  @apply fixed inset-0 bg-gray-500 bg-opacity-75 transition ease-in-out duration-100;
+  @apply fixed inset-0 z-10 bg-gray-500 bg-opacity-75 transition ease-in-out duration-100;
 }
 
 .modal-container {
-  @apply fixed inset-0 flex items-center justify-center p-4 sm:p-8;
+  @apply fixed inset-0 z-10 flex items-center justify-center p-4 sm:p-8;
 }
 
-.modal-wrapper {
+.modal-content {
   @apply flex flex-col relative bg-white rounded-lg shadow-xl w-full max-h-full transition ease-in-out duration-100;
 
   @media (min-width: 640px) {
@@ -27,12 +27,12 @@
 }
 
 .modal-confirm {
-  .modal-wrapper {
+  .modal-content {
     @apply h-auto;
   }
 
   .modal-body,
-  .modal-wrapper {
+  .modal-content {
     @apply sm:max-w-lg;
   }
 }
@@ -69,7 +69,7 @@
   }
 }
 
-.modal-content {
+.modal-confirm-body {
   @apply mt-3 text-center sm:mt-5;
 }
 
@@ -93,26 +93,26 @@
   }
 }
 
-.popup-modal-enter-active,
-.popup-modal-exit {
+.modal-transition-enter-active,
+.modal-transition-exit {
   .modal-mask,
-  .modal-wrapper {
+  .modal-content {
     @apply opacity-100;
   }
 
-  .modal-wrapper {
+  .modal-content {
     @apply transform scale-100;
   }
 }
 
-.popup-modal-enter,
-.popup-modal-exit-active {
+.modal-transition-enter,
+.modal-transition-exit-active {
   .modal-mask,
-  .modal-wrapper {
+  .modal-content {
     @apply opacity-0;
   }
 
-  .modal-wrapper {
+  .modal-content {
     @apply transform scale-95;
   }
 }

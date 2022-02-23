@@ -55,7 +55,7 @@ const Confirm: FC<ConfirmModalProps> = ({
       <div className={clsx('modal-icon', `modal-icon-${type}`)}>
         {type === 'success' ? <CheckIcon /> : <ExclamationIcon />}
       </div>
-      <div className="modal-content">
+      <div className="modal-confirm-body">
         <h3 className="modal-title">{title}</h3>
         <div className="modal-description">{description}</div>
       </div>

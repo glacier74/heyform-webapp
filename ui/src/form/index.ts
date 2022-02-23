@@ -7,6 +7,8 @@ import FormItem from './FormItem'
 import type { SwitchItemProps } from './SwitchItem'
 import SwitchItem from './SwitchItem'
 
+export { useForm } from 'rc-field-form'
+
 type ExportFormType = typeof Form & {
   Item: FC<FormItemProps>
   Switch: FC<SwitchItemProps>

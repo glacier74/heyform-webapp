@@ -5,7 +5,7 @@ import {
   XIcon
 } from '@heroicons/react/outline'
 import { nanoid } from '@hpnp/utils'
-import type { FC, ReactNode } from 'react'
+import type { FC, ReactNode, RefObject } from 'react'
 import { createRef, forwardRef, useEffect, useImperativeHandle, useMemo, useState } from 'react'
 import { render } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
@@ -65,7 +65,7 @@ const Notification: FC<NotificationProps> = ({
     <CSSTransition
       classNames="notification-transition"
       in={visible}
-      timeout={100}
+      timeout={60}
       unmountOnExit={true}
       onExited={handleExited}
     >
@@ -118,15 +118,19 @@ const NotificationList = forwardRef<NotificationListProps, any>((_, ref) => {
   )
 })
 
-// Initialize the notification list
-const container = document.createElement('div')
-container.className = 'notification-root'
-document.body.appendChild(container)
-
-const ref = createRef<NotificationListProps>()
-render(<NotificationList ref={ref} />, container)
+let ref: RefObject<NotificationListProps>
 
 function notification(options: NotificationOptions) {
+  // Setup the notification list
+  if (!ref || !ref.current) {
+    const container = document.createElement('div')
+    container.className = 'notification-root'
+    document.body.appendChild(container)
+
+    ref = createRef<NotificationListProps>()
+    render(<NotificationList ref={ref} />, container)
+  }
+
   const id = nanoid(6)
 
   ref.current?.add({
