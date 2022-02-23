@@ -12,6 +12,10 @@
   @media (min-width: 640px) {
     max-width: 40rem;
   }
+
+  .form-submit-button {
+    @apply w-full sm:w-auto;
+  }
 }
 
 .modal-body {

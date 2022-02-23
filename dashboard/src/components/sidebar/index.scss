@@ -34,15 +34,22 @@
 }
 
 .sidebar-popup-exit-done {
-  @apply hidden;
+  @apply hidden #{!important};
 }
 
 .workspace-switch {
+  .popup-mask,
+  .popup-content {
+    @apply z-50;
+  }
+
   .menus {
+    @extend .scrollbar;
     @apply w-full sm:w-80 2xl:w-96 py-4 -mt-12;
 
     @media (min-width: 640px) {
       width: 22.5rem;
+      max-height: 80vh;
     }
 
     .avatar-text {
