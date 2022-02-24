@@ -1,5 +1,5 @@
 import { parseNumber } from '@hpnp/utils'
-import { isArray, isEmpty, isObject, isValid } from '@hpnp/utils/helper'
+import { isArray, isEmpty, isNil, isObject, isValid } from '@hpnp/utils/helper'
 import { parse } from '@hpnp/utils/qs'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
@@ -41,7 +41,7 @@ export function useQuery(options?: IMapType): IMapType {
           type = options[key]
         }
 
-        if (isValid(value[key])) {
+        if (!isNil(value[key])) {
           switch (type.name) {
             case 'String':
               value[key] = value[key]
@@ -56,7 +56,7 @@ export function useQuery(options?: IMapType): IMapType {
               break
 
             case 'Array':
-              value[key] = isArray(value[key]) ? value[key] : [value[key]]
+              value[key] = (isArray(value[key]) ? value[key] : [value[key]]).filter(isValid)
               break
           }
         }

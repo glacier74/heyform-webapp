@@ -3,7 +3,7 @@
   overflow-y: overlay;
   scrollbar-gutter: stable;
 
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     &::-webkit-scrollbar {
       @apply appearance-none bg-transparent w-1.5 h-1.5;
     }

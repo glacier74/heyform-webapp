@@ -38,7 +38,7 @@ export const DeleteMember: FC<DeleteMemberProps> = ({ visible, member, onClose }
     <Modal.Confirm
       type="danger"
       visible={visible}
-      title={`Are you sure you want to remove '${member?.name}'?`}
+      title="Are you sure you want to remove this member?"
       description={
         <div className="space-y-2">
           <p>

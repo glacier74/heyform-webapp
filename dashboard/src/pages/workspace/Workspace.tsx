@@ -1,7 +1,5 @@
 import { WorkspaceIcon } from '@/components'
 import type { ProjectModel, UserModel } from '@/models'
-import { DeleteProject } from '@/pages/project/Project/DeleteProject'
-import { RenameProject } from '@/pages/project/Project/RenameProject'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useAsyncEffect, useParam } from '@/utils'
@@ -12,6 +10,8 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useMemo, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { DeleteProject } from '../project/layout/DeleteProject'
+import { RenameProject } from '../project/layout/RenameProject'
 import CreateProject from './CreateProject'
 
 interface ItemProps {

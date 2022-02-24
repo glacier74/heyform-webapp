@@ -123,7 +123,7 @@ const Members = observer(() => {
           setMember(record)
 
           switch (name) {
-            case 'delete':
+            case 'remove':
               setDeleteMemberOpen(true)
               break
 
@@ -144,7 +144,7 @@ const Members = observer(() => {
               icon={<SwitchHorizontalIcon />}
               label="Transfer ownership"
             />
-            <Menus.Item name="delete" icon={<TrashIcon />} label="Delete" />
+            <Menus.Item name="remove" icon={<TrashIcon />} label="Remove" />
           </Menus>
         )
 

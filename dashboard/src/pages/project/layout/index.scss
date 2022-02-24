@@ -13,3 +13,11 @@
     }
   }
 }
+
+.empty-states-container {
+  height: calc(100vh - 23.625rem);
+
+  @media (min-width: 768px) {
+    height: calc(100vh - 18.75rem);
+  }
+}

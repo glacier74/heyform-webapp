@@ -10,7 +10,7 @@ body {
 
 /* Scrollbar styles */
 .scrollbar {
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     &::-webkit-scrollbar {
       @apply appearance-none bg-transparent w-1.5 h-1.5;
     }
@@ -92,7 +92,7 @@ body {
   .menus {
     @apply w-full sm:w-80 2xl:w-96 py-4 -mt-12;
 
-    @media (min-width: 640px) {
+    @media (min-width: 768px) {
       width: 22.5rem;
     }
 

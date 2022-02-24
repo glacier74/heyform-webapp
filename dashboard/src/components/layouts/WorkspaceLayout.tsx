@@ -6,6 +6,7 @@ import type { FC } from 'react'
 import { useState } from 'react'
 import { Sidebar } from '../sidebar'
 import { WorkspaceGuard } from './WorkspaceGuard'
+import './index.scss'
 
 export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -47,7 +48,7 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
 
   return (
     <WorkspaceGuard>
-      <div className="h-screen flex overflow-hidden bg-white">
+      <div className="w-full bg-white">
         <Sidebar
           isOpen={sidebarOpen}
           onSidebarClose={handleSidebarClose}
@@ -56,7 +57,7 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
           onCreateWorkspace={handleCreateWorkspaceOpen}
         />
 
-        <div className="flex flex-col w-0 flex-1 overflow-hidden">
+        <div className="workspace-container">
           <div className="md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
             <button
               className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"

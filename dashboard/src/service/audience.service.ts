@@ -79,12 +79,13 @@ export class AudienceService {
   }
 
   static async groups(input: { teamId: string; keyword?: string; page: number; limit: number }) {
-    return request.query({
+    const result = await request.query({
       query: GROUPS_GQL,
       variables: {
         input
       }
     })
+    return result.data.groups
   }
 
   static async createGroup(input: { teamId: string; name: string }) {

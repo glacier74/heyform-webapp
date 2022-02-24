@@ -59,7 +59,7 @@ export const Sidebar: FC<SidebarProps> = ({
       </CSSTransition>
 
       {/* Sidebar for desktop */}
-      <div className="sidebar hidden md:flex md:flex-shrink-0">
+      <div className="sidebar fixed inset-0 hidden md:flex md:flex-shrink-0">
         <div className="relative flex flex-col flex-1 w-64 h-full border-r border-gray-200 bg-white">
           <div className="flex flex-1 flex-col h-0 pt-5">
             <WorkspaceSwitch onCreateWorkspace={onCreateWorkspace} />

@@ -18,6 +18,7 @@ const Contacts = lazy(() => import('@/pages/audiences/Contacts'))
 
 /* Project */
 const Project = lazy(() => import('@/pages/project/Project'))
+const Trash = lazy(() => import('@/pages/project/Trash'))
 
 const config: CustomRouteConfig[] = [
   /* Login */
@@ -71,7 +72,7 @@ const config: CustomRouteConfig[] = [
     component: Workspace
   },
   {
-    path: '/workspace/:workspaceId/members',
+    path: '/workspace/:workspaceId/member',
     loginRequired: true,
     exact: true,
     layout: WorkspaceLayout,
@@ -80,7 +81,7 @@ const config: CustomRouteConfig[] = [
 
   /* Audiences */
   {
-    path: '/workspace/:workspaceId/audiences',
+    path: '/workspace/:workspaceId/audience',
     loginRequired: true,
     exact: true,
     layout: WorkspaceLayout,
@@ -94,6 +95,13 @@ const config: CustomRouteConfig[] = [
     exact: true,
     layout: WorkspaceLayout,
     component: Project
+  },
+  {
+    path: '/workspace/:workspaceId/project/:projectId/trash',
+    loginRequired: true,
+    exact: true,
+    layout: WorkspaceLayout,
+    component: Trash
   }
 ]
 

@@ -1,4 +1,8 @@
 .sidebar {
+  @media (min-width: 768px) {
+    width: 16rem;
+  }
+
   nav a {
     &.active {
       @apply bg-gray-100 text-gray-900 hover:bg-gray-100;
@@ -47,7 +51,7 @@
     @extend .scrollbar;
     @apply w-full sm:w-80 2xl:w-96 py-4 -mt-12;
 
-    @media (min-width: 640px) {
+    @media (min-width: 768px) {
       width: 22.5rem;
       max-height: 80vh;
     }

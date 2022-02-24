@@ -1,25 +1,31 @@
+import { Async } from '@/components'
 import type { ContactModel } from '@/models'
 import { AudienceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect, useParam, useQuery } from '@/utils'
-import { DotsHorizontalIcon } from '@heroicons/react/outline'
-import { Avatar, Heading, Navbar, Table } from '@heyforms/ui'
+import { urlBuilder, useAsyncEffect, useParam, useQuery } from '@/utils'
+import { DotsHorizontalIcon, SearchIcon } from '@heroicons/react/outline'
+import { Avatar, Button, Heading, Input, Navbar, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
+import { ContactFilter } from './ContactFilter'
+import { Skeleton } from './Skeleton'
 
 const Contacts = observer(() => {
   const { workspaceId } = useParam()
+  const history = useHistory()
   const workspaceStore = useStore('workspaceStore')
-  const { keyword, groupIds, page } = useQuery({
+
+  const { keyword, groups, page } = useQuery({
     keyword: String,
-    groupIds: Array,
+    groups: Array,
     page: {
       type: Number,
       default: 1
     }
   })
+
   const [total, setTotal] = useState(0)
   const [contacts, setContacts] = useState<ContactModel[]>([])
 
@@ -71,16 +77,24 @@ const Contacts = observer(() => {
       key: 'action',
       name: 'Action',
       align: 'right',
-      render(record) {
+      render() {
         return <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
       }
     }
   ]
 
-  useAsyncEffect(async () => {
+  function handleGroupChange(newGroups: string[]) {
+    const url = urlBuilder(`/workspace/${workspaceId}/audience`, {
+      keyword,
+      groups: newGroups
+    })
+    history.push(url)
+  }
+
+  async function request() {
     const result = await AudienceService.contacts({
       teamId: workspaceId,
-      groupIds,
+      groupIds: groups,
       keyword,
       page,
       limit: 20
@@ -88,7 +102,7 @@ const Contacts = observer(() => {
 
     setTotal(result.total)
     setContacts(result.contacts)
-  }, [page, keyword, groupIds])
+  }
 
   return (
     <div>
@@ -101,7 +115,21 @@ const Contacts = observer(() => {
           <NavLink to={`/workspace/${workspaceId}/audiences/groups`}>Groups</NavLink>
         </Navbar>
 
-        <Table<ContactModel> className="mt-8" columns={columns} data={contacts} />
+        <div className="mt-8 lg:flex lg:items-center lg:justify-between">
+          <div className="flex items-center space-x-2">
+            <Input className="w-full md:w-96" leading={<SearchIcon />} />
+            <ContactFilter value={groups} onChange={handleGroupChange} />
+          </div>
+
+          <div className="mt-6 flex flex-col justify-items-stretch space-x-0 space-y-4 md:space-y-0 md:space-x-3 lg:mt-0 md:flex-row">
+            <Button type="primary">Add contact</Button>
+            <Button>Import</Button>
+          </div>
+        </div>
+
+        <Async request={request} deps={[page, keyword, groups]} skeleton={<Skeleton />}>
+          <Table<ContactModel> className="mt-8" columns={columns} data={contacts} />
+        </Async>
       </div>
     </div>
   )

@@ -45,7 +45,7 @@ export const TransferWorkspace: FC<TransferWorkspaceProps> = ({ visible, member,
     <Modal.Confirm
       type="danger"
       visible={visible}
-      title={`Are you sure you want to transfer the workspace to '${member?.name}'?`}
+      title="Are you sure you want to transfer this workspace?"
       description={
         <div className="space-y-2">
           <p>
