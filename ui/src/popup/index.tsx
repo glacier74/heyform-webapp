@@ -5,6 +5,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { usePopper } from 'react-popper'
 import { CSSTransition } from 'react-transition-group'
 import Portal from '../portal'
+import { stopEvent } from '../utils'
 
 export interface PopupProps extends Omit<IComponentProps, 'children'> {
   visible?: boolean
@@ -39,7 +40,9 @@ const Popup: FC<PopupProps> = ({
     onExited?.()
   }
 
-  function handleMaskClick() {
+  function handleMaskClick(event: any) {
+    stopEvent(event)
+
     if (maskClosable) {
       handleExited()
     }

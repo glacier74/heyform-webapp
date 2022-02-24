@@ -2,9 +2,10 @@ import { SelectorIcon } from '@heroicons/react/outline'
 import { CheckIcon } from '@heroicons/react/solid'
 import clsx from 'clsx'
 import type { CSSProperties, FC } from 'react'
-import { useEffect, useMemo, useState } from 'react'
+import { MouseEvent, useEffect, useMemo, useState } from 'react'
 import Popup from '../popup'
 import Spin from '../spin'
+import { stopEvent } from '../utils'
 import type { SelectProps } from './Native'
 
 const Custom: FC<SelectProps> = ({
@@ -25,7 +26,8 @@ const Custom: FC<SelectProps> = ({
   const [isOpen, setIsOpen] = useState(false)
   const [triggerStyle, setTriggerStyle] = useState<CSSProperties>()
 
-  function handleClick() {
+  function handleClick(event: MouseEvent<HTMLDivElement>) {
+    stopEvent(event)
     setIsOpen(true)
   }
 
@@ -33,7 +35,8 @@ const Custom: FC<SelectProps> = ({
     setIsOpen(false)
   }
 
-  function handleOptionClick(option: IOptionType) {
+  function handleOptionClick(option: IOptionType, event: MouseEvent<HTMLLIElement>) {
+    stopEvent(event)
     handleExited()
     onChange && onChange(option.value)
   }
@@ -58,7 +61,7 @@ const Custom: FC<SelectProps> = ({
             className={clsx('select-option', {
               'select-option-active': option.value === value
             })}
-            onClick={() => handleOptionClick(option)}
+            onClick={event => handleOptionClick(option, event)}
           >
             {optionRender ? (
               optionRender(option)

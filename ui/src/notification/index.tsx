@@ -6,7 +6,7 @@ import {
 } from '@heroicons/react/outline'
 import { nanoid } from '@hpnp/utils'
 import type { FC, ReactNode, RefObject } from 'react'
-import { createRef, forwardRef, useEffect, useImperativeHandle, useMemo, useState } from 'react'
+import { createRef, forwardRef, useEffect, useImperativeHandle, useState } from 'react'
 import { render } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
 import Button from '../button'

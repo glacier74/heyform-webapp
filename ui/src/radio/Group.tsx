@@ -12,7 +12,7 @@ export interface RadioGroupProps extends Omit<IComponentProps, 'value' | 'onChan
 
 const Group: FC<RadioGroupProps> = ({
   className,
-  value = [],
+  value,
   options,
   disabled,
   onChange,

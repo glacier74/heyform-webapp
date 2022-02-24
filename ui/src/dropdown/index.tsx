@@ -1,8 +1,9 @@
 import type { Placement as PopperPlacement } from '@popperjs/core'
 import clsx from 'clsx'
-import type { FC, ReactNode } from 'react'
+import type { FC, MouseEvent, ReactNode } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import Popup from '../popup'
+import { stopEvent } from '../utils'
 
 export interface DropdownProps extends IComponentProps {
   popupClassName?: string
@@ -11,6 +12,7 @@ export interface DropdownProps extends IComponentProps {
   disabled?: boolean
   dismissOnClickInside?: boolean
   overlay: ReactNode
+  onVisibleChange?: (visible: boolean) => void
 }
 
 const Dropdown: FC<DropdownProps> = ({
@@ -22,6 +24,7 @@ const Dropdown: FC<DropdownProps> = ({
   dismissOnClickInside = true,
   overlay,
   children,
+  onVisibleChange,
   ...restProps
 }) => {
   const [ref, setRef] = useState<HTMLDivElement | null>(null)
@@ -31,11 +34,14 @@ const Dropdown: FC<DropdownProps> = ({
     setIsOpen(false)
   }
 
-  function handleClick() {
+  function handleClick(event: MouseEvent<HTMLDivElement>) {
+    stopEvent(event)
     setIsOpen(true)
   }
 
-  function handleDropdownClick() {
+  function handleDropdownClick(event: MouseEvent<HTMLDivElement>) {
+    stopEvent(event)
+
     if (dismissOnClickInside) {
       setIsOpen(false)
     }
@@ -45,6 +51,11 @@ const Dropdown: FC<DropdownProps> = ({
   useEffect(() => {
     setIsOpen(visible)
   }, [visible])
+
+  // Visible change callback
+  useEffect(() => {
+    onVisibleChange?.(isOpen)
+  }, [isOpen])
 
   const memoOverlay = useMemo(() => {
     return (

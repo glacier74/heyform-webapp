@@ -1,11 +1,11 @@
 import { XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import type { FC } from 'react'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import Button from '../button'
 import Portal from '../portal'
-import { KeyCode } from '../utils'
+import { KeyCode, stopEvent, stopPropagation } from '../utils'
 
 export interface ModalProps extends IComponentProps {
   contentClassName?: string
@@ -41,7 +41,7 @@ const Modal: FC<ModalProps> = ({
   }
 
   function handleMaskClick(event: any) {
-    event.stopPropagation()
+    stopPropagation(event)
 
     if (!ref.current || ref.current.contains(event.target as Node)) {
       return
@@ -52,7 +52,7 @@ const Modal: FC<ModalProps> = ({
 
   function handleKeyDown(event: any) {
     if (event.keyCode === KeyCode.ESC) {
-      event.stopPropagation()
+      stopPropagation(event)
       handleClose()
     }
   }

@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import type { FC } from 'react'
-import Button from './Button'
 import type { ButtonProps } from './Button'
+import Button from './Button'
 
 const Link: FC<ButtonProps> = ({ className, children, ...restProps }) => {
   return (

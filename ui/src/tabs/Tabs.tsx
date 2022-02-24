@@ -1,6 +1,7 @@
 import clsx from 'clsx'
-import type { FC, ReactElement, MouseEvent } from 'react'
+import type { FC, MouseEvent, ReactElement } from 'react'
 import { Children, useMemo, useState } from 'react'
+import { stopPropagation } from '../utils'
 import TabsPane from './Pane'
 
 export interface TabsProps extends Omit<IComponentProps, 'onChange'> {
@@ -25,7 +26,7 @@ const TabLink: FC<TabLinkProps> = ({
   ...restProps
 }) => {
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
-    event.preventDefault()
+    stopPropagation(event)
     onClick && onClick(tabKey)
   }
 
