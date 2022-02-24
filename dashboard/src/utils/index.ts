@@ -1,5 +1,4 @@
 export * from './auth'
-export * from './helper'
 export * from './hook'
 export * from './qiniu'
 export * from './request'

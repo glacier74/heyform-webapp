@@ -1,7 +1,7 @@
 import { UserService, WorkspaceService } from '@/service'
-import { Qiniu, stopPropagation, useParam } from '@/utils'
+import { Qiniu, useParam } from '@/utils'
 import { DocumentIcon, UploadIcon } from '@heroicons/react/outline'
-import { Button } from '@heyforms/ui'
+import { Button, stopEvent } from '@heyforms/ui'
 import { formatBytes, parseBytes } from '@hpnp/utils'
 import { isValid } from '@hpnp/utils/helper'
 import clsx from 'clsx'
@@ -118,7 +118,7 @@ export const DragUploader: FC<DragUploaderProps> = ({
   }
 
   function handleOpen(event: MouseEvent) {
-    event.stopPropagation()
+    stopEvent(event)
     fileInputRef?.click()
   }
 
@@ -129,7 +129,7 @@ export const DragUploader: FC<DragUploaderProps> = ({
         type="file"
         ref={setFileInputRef}
         accept={accept.join(',')}
-        onClick={stopPropagation}
+        onClick={stopEvent}
         onChange={handleFileChange}
       />
       {file ? (

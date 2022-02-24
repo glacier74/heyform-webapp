@@ -13,16 +13,18 @@ import { Avatar, Badge, Button, Dropdown, Heading, Menus, Navbar, Table } from '
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { observer } from 'mobx-react-lite'
 import { useMemo, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import * as timeago from 'timeago.js'
 import { DeleteProject } from './DeleteProject'
+import './index.scss'
 import { ProjectMembers } from './ProjectMembers'
 import { RenameProject } from './RenameProject'
-import './index.scss'
 
 const Project = observer(() => {
+  const history = useHistory()
   const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
+
   const [projectMembersOpen, setProjectMembersOpen] = useState(false)
   const [deleteProjectOpen, setDeleteProjectOpen] = useState(false)
   const [renameProjectOpen, setRenameProjectOpen] = useState(false)
@@ -62,6 +64,10 @@ const Project = observer(() => {
         setDeleteProjectOpen(true)
         break
     }
+  }
+
+  function handleDeleteProjectComplete() {
+    history.replace(`/workspace/${workspaceId}`)
   }
 
   useAsyncEffect(async () => {
@@ -150,6 +156,7 @@ const Project = observer(() => {
           <div className="flex items-center">
             <span>{workspaceStore.project?.name}</span>
             <Dropdown
+              className="ml-1 p-1 rounded-md text-gray-500 hover:bg-gray-50 hover:text-gray-900 cursor-pointer"
               placement="bottom-start"
               overlay={
                 <Menus onClick={handleMenuClick}>
@@ -158,7 +165,7 @@ const Project = observer(() => {
                 </Menus>
               }
             >
-              <Button.Link leading={<ChevronDownIcon />} />
+              <ChevronDownIcon className="w-5 h-5" />
             </Dropdown>
           </div>
         }
@@ -190,10 +197,19 @@ const Project = observer(() => {
       <ProjectMembers visible={projectMembersOpen} onClose={handleProjectMembersClose} />
 
       {/* Rename project */}
-      <RenameProject visible={renameProjectOpen} onClose={handleRenameProjectClose} />
+      <RenameProject
+        visible={renameProjectOpen}
+        project={workspaceStore.project}
+        onClose={handleRenameProjectClose}
+      />
 
       {/* Delete project */}
-      <DeleteProject visible={deleteProjectOpen} onClose={handleDeleteProjectClose} />
+      <DeleteProject
+        visible={deleteProjectOpen}
+        project={workspaceStore.project}
+        onClose={handleDeleteProjectClose}
+        onComplete={handleDeleteProjectComplete}
+      />
     </div>
   )
 })

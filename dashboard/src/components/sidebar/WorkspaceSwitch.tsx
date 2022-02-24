@@ -46,7 +46,7 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
 
       <div className="ml-4 flex-auto">
         <p className="text-sm font-medium text-gray-700 truncate">{workspace.name}</p>
-        <p className="text-sm text-gray-500 truncate">{`${workspace.plan.name} plan | ${workspace.memberCount} members`}</p>
+        <p className="text-sm text-gray-500 truncate">{`${workspace.plan.name} plan · ${workspace.memberCount} members`}</p>
       </div>
 
       {workspaceId === workspace.id && <CheckCircleIcon className="w-6 h-6 text-blue-500" />}

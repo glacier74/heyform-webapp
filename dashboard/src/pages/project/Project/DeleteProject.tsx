@@ -1,17 +1,25 @@
+import type { ProjectModel } from '@/models'
 import { ProjectService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
 import { Input, Modal } from '@heyforms/ui'
 import type { InputValue } from '@heyforms/ui/lib/types/input/Input'
 import { isEmpty } from '@hpnp/utils/helper'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 
-export const DeleteProject: FC<IModalProps> = observer(({ visible, onClose }) => {
-  const history = useHistory()
-  const { workspaceId, projectId } = useParam()
+interface DeleteProjectProps extends IModalProps {
+  project?: ProjectModel | null
+  onComplete?: () => void
+}
+
+export const DeleteProject: FC<DeleteProjectProps> = ({
+  visible,
+  project,
+  onComplete,
+  onClose
+}) => {
+  const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 
   const [isDisabled, setIsDisabled] = useState(true)
@@ -19,16 +27,17 @@ export const DeleteProject: FC<IModalProps> = observer(({ visible, onClose }) =>
   const [error, setError] = useState<Error | null>(null)
 
   function handleChange(value?: InputValue) {
-    setIsDisabled(isEmpty(value) || value !== workspaceStore.project?.name)
+    setIsDisabled(isEmpty(value) || value !== project?.name)
   }
 
   async function handleConfirm() {
     setLoading(true)
 
     try {
-      await ProjectService.delete(projectId)
-      workspaceStore.deleteProject(workspaceId, projectId)
-      history.replace(`/workspace/${workspaceId}`)
+      await ProjectService.delete(project!.id)
+      workspaceStore.deleteProject(workspaceId, project!.id)
+
+      onComplete?.()
     } catch (err: any) {
       setError(err)
     }
@@ -51,10 +60,8 @@ export const DeleteProject: FC<IModalProps> = observer(({ visible, onClose }) =>
             Once you confirm to delete the project, you will no longer have access to the project
             data.
           </p>
-          <Input
-            placeholder={`Please type ${workspaceStore.project?.name} to confirm`}
-            onChange={handleChange}
-          />
+
+          <Input placeholder={`Please type ${project?.name} to confirm`} onChange={handleChange} />
 
           {error && <div className="form-item-error">{error.message}</div>}
         </div>
@@ -66,4 +73,4 @@ export const DeleteProject: FC<IModalProps> = observer(({ visible, onClose }) =>
       onConfirm={handleConfirm}
     />
   )
-})
+}

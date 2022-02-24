@@ -18,7 +18,7 @@ export const WorkspaceGuard: FC<IComponentProps> = ({ children }) => {
     workspaceStore.selectWorkspace(workspaceId)
 
     if (workspaceId) {
-      document.title = `${workspaceStore.workspace?.name} | HeyForm`
+      document.title = `${workspaceStore.workspace?.name} · HeyForm`
     }
   }, [workspaceId])
 

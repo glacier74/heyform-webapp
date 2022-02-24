@@ -1,17 +1,21 @@
+import type { ProjectModel } from '@/models'
 import { ProjectService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
 import { Form, Input, Modal } from '@heyforms/ui'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 
-export const RenameProject: FC<IModalProps> = observer(({ visible, onClose }) => {
-  const { workspaceId, projectId } = useParam()
+interface RenameProjectProps extends IModalProps {
+  project?: ProjectModel | null
+}
+
+export const RenameProject: FC<RenameProjectProps> = ({ visible, project, onClose }) => {
+  const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 
   async function handleUpdate(values: any) {
-    await ProjectService.rename(projectId, values.name)
-    workspaceStore.updateProject(workspaceId, projectId, values)
+    await ProjectService.rename(project!.id, values.name)
+    workspaceStore.updateProject(workspaceId, project!.id, values)
 
     onClose?.()
   }
@@ -25,7 +29,7 @@ export const RenameProject: FC<IModalProps> = observer(({ visible, onClose }) =>
 
         <Form.Custom
           initialValues={{
-            name: workspaceStore.project?.name
+            name: project?.name
           }}
           submitText="Update"
           submitOptions={{
@@ -41,4 +45,4 @@ export const RenameProject: FC<IModalProps> = observer(({ visible, onClose }) =>
       </div>
     </Modal>
   )
-})
+}
