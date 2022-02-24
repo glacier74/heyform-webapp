@@ -1,7 +1,7 @@
 import type { Options as PopperOptions } from '@popperjs/core/lib/types'
 import clsx from 'clsx'
 import type { FC, ReactNode } from 'react'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { usePopper } from 'react-popper'
 import { CSSTransition } from 'react-transition-group'
 import Portal from '../portal'
@@ -51,24 +51,22 @@ const Popup: FC<PopupProps> = ({
   const handleExitedCallback = useCallback(handleExited, [])
   const handleMaskClickCallback = useCallback(handleMaskClick, [])
 
-  const popupPortal = useMemo(() => {
-    return (
-      <div className={clsx('popup', className)} {...restProps}>
-        {mask && <div className="popup-mask" onClick={handleMaskClickCallback} />}
-        <div
-          ref={setPopperRef}
-          className={clsx('popup-content', `popup-placement-${popperOptions.placement}`)}
-          style={{
-            ...style,
-            ...styles.popper
-          }}
-          {...attributes.popper}
-        >
-          {children}
-        </div>
+  const popupPortal = (
+    <div className={clsx('popup', className)} {...restProps}>
+      {mask && <div className="popup-mask" onClick={handleMaskClickCallback} />}
+      <div
+        ref={setPopperRef}
+        className={clsx('popup-content', `popup-placement-${popperOptions.placement}`)}
+        style={{
+          ...style,
+          ...styles.popper
+        }}
+        {...attributes.popper}
+      >
+        {children}
       </div>
-    )
-  }, [styles.popper])
+    </div>
+  )
 
   return (
     <CSSTransition

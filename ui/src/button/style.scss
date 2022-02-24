@@ -20,6 +20,10 @@
     @apply -ml-1 mr-2;
   }
 
+  .button-leading {
+    @apply flex items-center;
+  }
+
   .button-trailing {
     @apply ml-2 -mr-1;
   }

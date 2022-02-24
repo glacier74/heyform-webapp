@@ -9,7 +9,7 @@
 .modal-content {
   @apply flex flex-col relative bg-white rounded-lg shadow-xl w-full max-h-full transition ease-in-out duration-100;
 
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     max-width: 40rem;
   }
 

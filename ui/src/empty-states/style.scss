@@ -13,7 +13,11 @@
 }
 
 .empty-states-description {
-  @apply mt-1 text-sm text-gray-500;
+  @apply mt-1 w-full mx-auto text-sm text-gray-500;
+
+  @media (min-width: 768px) {
+    width: 32rem;
+  }
 }
 
 .empty-states-action {

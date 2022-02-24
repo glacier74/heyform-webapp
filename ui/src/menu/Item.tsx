@@ -1,14 +1,24 @@
+import { CheckIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import type { FC, MouseEvent, ReactNode } from 'react'
 
 export interface MenuItemProps extends Omit<IComponentProps, 'onClick'> {
   icon?: ReactNode
   name?: IKeyType
-  label: string
+  label: ReactNode
+  isChecked?: boolean
   onClick?: (name?: IKeyType, event?: MouseEvent<HTMLDivElement>) => void
 }
 
-const MenuItem: FC<MenuItemProps> = ({ className, icon, name, label, onClick, ...restProps }) => {
+const MenuItem: FC<MenuItemProps> = ({
+  className,
+  icon,
+  name,
+  label,
+  isChecked,
+  onClick,
+  ...restProps
+}) => {
   function handleClick(event: MouseEvent<HTMLDivElement>) {
     onClick && onClick(name, event)
   }
@@ -20,8 +30,11 @@ const MenuItem: FC<MenuItemProps> = ({ className, icon, name, label, onClick, ..
       onClick={handleClick}
       {...restProps}
     >
-      {icon}
-      {label}
+      <div className="menu-item-content">
+        {icon}
+        <div className="menu-item-label">{label}</div>
+      </div>
+      {isChecked && <CheckIcon className="menu-item-checkmark" />}
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import type { Placement as PopperPlacement } from '@popperjs/core'
 import clsx from 'clsx'
 import type { FC, MouseEvent, ReactNode } from 'react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Popup from '../popup'
 import { stopEvent } from '../utils'
 
@@ -57,13 +57,11 @@ const Dropdown: FC<DropdownProps> = ({
     onVisibleChange?.(isOpen)
   }, [isOpen])
 
-  const memoOverlay = useMemo(() => {
-    return (
-      <div className="dropdown-body" onClick={handleDropdownClick}>
-        {overlay}
-      </div>
-    )
-  }, [])
+  const memoOverlay = (
+    <div className="dropdown-body" onClick={handleDropdownClick}>
+      {overlay}
+    </div>
+  )
 
   return (
     <>
