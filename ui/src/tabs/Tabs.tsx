@@ -59,7 +59,7 @@ const Tabs: FC<TabsProps> = ({ defaultActiveKey, onChange, children, className, 
 
   function handleClick(key: IKeyType) {
     setActiveKey(key)
-    onChange && onChange(key)
+    onChange?.(key)
   }
 
   return (

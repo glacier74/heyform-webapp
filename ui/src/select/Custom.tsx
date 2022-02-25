@@ -38,7 +38,7 @@ const Custom: FC<SelectProps> = ({
   function handleOptionClick(option: IOptionType, event: MouseEvent<HTMLLIElement>) {
     stopEvent(event)
     handleExited()
-    onChange && onChange(option.value)
+    onChange?.(option.value)
   }
 
   useEffect(() => {

@@ -19,7 +19,7 @@ const Radio: FC<RadioProps> = ({
 }) => {
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const isChecked = event.target.checked
-    onChange && onChange(isChecked, value)
+    onChange?.(isChecked, value)
   }
 
   return (

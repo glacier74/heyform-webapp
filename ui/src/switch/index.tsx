@@ -18,7 +18,7 @@ const Switch: FC<SwitchProps> = ({
   ...restProps
 }) => {
   function handleClick() {
-    onChange && onChange(!value)
+    onChange?.(!value)
   }
 
   return (

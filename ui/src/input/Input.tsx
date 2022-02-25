@@ -74,7 +74,7 @@ const Input: FC<InputProps> = ({
     }
 
     if (!lock.current) {
-      onChange && onChange(newValue)
+      onChange?.(newValue)
     }
   }
 

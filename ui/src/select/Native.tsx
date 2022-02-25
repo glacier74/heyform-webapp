@@ -24,7 +24,7 @@ const Native: FC<SelectProps> = ({
   ...restProps
 }) => {
   function handleChange(event: ChangeEvent<HTMLSelectElement>) {
-    onChange && onChange(event.target.value)
+    onChange?.(event.target.value)
   }
 
   return (

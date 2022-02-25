@@ -43,7 +43,7 @@ const Textarea: FC<TextareaProps> = ({
     }
 
     if (!lock.current) {
-      onChange && onChange(newValue)
+      onChange?.(newValue)
     }
   }
 
