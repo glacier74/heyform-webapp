@@ -23,10 +23,16 @@
 }
 
 .modal-close-button {
-  @apply absolute p-1.5 top-2 right-4 -mr-2.5 bg-white sm:top-8 sm:right-8;
+  @apply absolute p-1 top-2 right-4 -mr-0.5 bg-white sm:top-8 sm:right-8;
 
   .button-leading {
-    @apply w-6 h-6;
+    @apply w-6 h-6 text-gray-500;
+  }
+
+  &:hover {
+    .button-leading {
+      @apply text-gray-700;
+    }
   }
 }
 

@@ -34,7 +34,14 @@ import {
   UserAddIcon
 } from '@heroicons/react/solid'
 import { StrictMode, useEffect, useMemo, useState } from 'react'
-import { ArchiveIcon, CodeIcon, EyeIcon, PlusIcon } from '@heroicons/react/outline'
+import {
+  ArchiveIcon,
+  CheckCircleIcon,
+  CodeIcon,
+  CreditCardIcon,
+  EyeIcon,
+  PlusIcon
+} from '@heroicons/react/outline'
 import './style.scss'
 
 const DropdownElements = () => {
@@ -288,11 +295,15 @@ const Notificaiton = () => {
   }
 
   return (
-    <div className="space-x-6">
-      <Button onClick={handleLoading}>Loading</Button>
+    <div className="my-8 flex items-center space-x-6">
+      <Button leading={<CheckCircleIcon />} onClick={handleLoading}>
+        Loading
+      </Button>
       <Button onClick={handleSuccess}>Sucess</Button>
       <Button onClick={handleError}>Error</Button>
-      <Button onClick={handleText}>Text</Button>
+      <Button leading={<CreditCardIcon />} onClick={handleText}>
+        Text
+      </Button>
     </div>
   )
 }

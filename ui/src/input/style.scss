@@ -89,6 +89,12 @@
 
 .input-trailing {
   @apply pl-2;
+
+  &:hover {
+    svg {
+      @apply text-gray-700;
+    }
+  }
 }
 
 .input-password-toggle {

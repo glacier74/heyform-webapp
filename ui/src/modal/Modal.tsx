@@ -5,7 +5,7 @@ import { useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import Button from '../button'
 import Portal from '../portal'
-import { KeyCode, stopEvent, stopPropagation } from '../utils'
+import { KeyCode, stopPropagation } from '../utils'
 
 export interface ModalProps extends IComponentProps {
   contentClassName?: string
