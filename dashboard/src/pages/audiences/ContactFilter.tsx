@@ -13,7 +13,7 @@ interface ContactFilterProps {
 
 export const ContactFilter: FC<ContactFilterProps> = ({ value = [], onChange }) => {
   const { workspaceId } = useParam()
-  const [isOpen, setIsOpen] = useState(false)
+  const [visible, setVisible] = useState(false)
   const [groups, setGroups] = useState<GroupModel[]>([])
 
   function handleMenuClick(id?: IKeyType) {
@@ -23,7 +23,7 @@ export const ContactFilter: FC<ContactFilterProps> = ({ value = [], onChange }) 
       onChange([...value, id as string])
     }
 
-    setIsOpen(false)
+    setVisible(false)
   }
 
   useAsyncEffect(async () => {
@@ -57,8 +57,8 @@ export const ContactFilter: FC<ContactFilterProps> = ({ value = [], onChange }) 
       placement="bottom-start"
       overlay={Overlay}
       dismissOnClickInside={false}
-      visible={isOpen}
-      onVisibleChange={setIsOpen}
+      visible={visible}
+      onVisibleChange={setVisible}
     >
       <Button
         className="group text-gray-500 hover:text-gray-700"

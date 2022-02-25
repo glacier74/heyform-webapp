@@ -3,7 +3,7 @@
     width: 16rem;
   }
 
-  nav a {
+  a {
     &.active {
       @apply bg-gray-100 text-gray-900 hover:bg-gray-100;
 

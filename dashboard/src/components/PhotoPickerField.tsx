@@ -1,7 +1,7 @@
+import { useVisible } from '@/utils'
 import { Avatar, Button } from '@heyforms/ui'
 import clsx from 'clsx'
 import type { FC, ReactNode } from 'react'
-import { useState } from 'react'
 import { PhotoPicker } from './photoPicker'
 
 interface PhotoPickerFieldProps extends Omit<IComponentProps, 'onChange'> {
@@ -30,15 +30,15 @@ export const PhotoPickerField: FC<PhotoPickerFieldProps> = ({
   onRemove,
   ...restProps
 }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [visible, open, close] = useVisible()
 
   function handleClick() {
-    setIsOpen(true)
+    open()
     onVisibilityChange?.(true)
   }
 
   function handleClose() {
-    setIsOpen(false)
+    close()
     onVisibilityChange?.(false)
   }
 
@@ -70,7 +70,7 @@ export const PhotoPickerField: FC<PhotoPickerFieldProps> = ({
       </div>
 
       {/* Photo picker modal */}
-      <PhotoPicker visible={isOpen} onClose={handleClose} onChange={handleChange} {...restProps} />
+      <PhotoPicker visible={visible} onClose={handleClose} onChange={handleChange} {...restProps} />
     </>
   )
 }

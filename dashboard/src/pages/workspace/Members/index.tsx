@@ -1,7 +1,7 @@
 import type { UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect, useParam } from '@/utils'
+import { useAsyncEffect, useVisible, useParam } from '@/utils'
 import {
   DotsHorizontalIcon,
   LogoutIcon,
@@ -24,33 +24,10 @@ const Members = observer(() => {
   const workspaceStore = useStore('workspaceStore')
 
   const [member, setMember] = useState<UserModel | null>(null)
-  const [inviteMemberOpen, setInviteMemberOpen] = useState(false)
-  const [transferWorkspaceOpen, setTransferWorkspaceOpen] = useState(false)
-  const [deleteMemberOpen, setDeleteMemberOpen] = useState(false)
-  const [leaveWorkspaceOpen, setLeaveWorkspaceOpen] = useState(false)
-
-  function handleInviteMemberOpen() {
-    setInviteMemberOpen(true)
-  }
-
-  function handleInviteMemberClose() {
-    setInviteMemberOpen(false)
-  }
-
-  function handleTransferWorkspaceClose() {
-    setTransferWorkspaceOpen(false)
-    setMember(null)
-  }
-
-  function handleDeleteMemberClose() {
-    setDeleteMemberOpen(false)
-    setMember(null)
-  }
-
-  function handleLeaveWorkspaceClose() {
-    setLeaveWorkspaceOpen(false)
-    setMember(null)
-  }
+  const [inviteMemberVisible, openInviteMember, closeInviteMember] = useVisible()
+  const [transferWorkspaceVisible, openTransferWorkspace, closeTransferWorkspace] = useVisible()
+  const [deleteMemberVisible, openDeleteMember, closeDeleteMember] = useVisible()
+  const [leaveWorkspaceVisible, openLeaveWorkspace, closeLeaveWorkspace] = useVisible()
 
   // Table columns
   const columns: TableColumn<UserModel>[] = [
@@ -124,15 +101,15 @@ const Members = observer(() => {
 
           switch (name) {
             case 'remove':
-              setDeleteMemberOpen(true)
+              openDeleteMember()
               break
 
             case 'transfer':
-              setTransferWorkspaceOpen(true)
+              openTransferWorkspace()
               break
 
             case 'leave':
-              setLeaveWorkspaceOpen(true)
+              openLeaveWorkspace()
               break
           }
         }
@@ -174,7 +151,7 @@ const Members = observer(() => {
         title="Members"
         description="Manage who has access to the workspace."
         actions={
-          <Button type="primary" onClick={handleInviteMemberOpen}>
+          <Button type="primary" onClick={openInviteMember}>
             Invite member
           </Button>
         }
@@ -184,20 +161,20 @@ const Members = observer(() => {
       </div>
 
       {/* Invite member */}
-      <InviteMember visible={inviteMemberOpen} onClose={handleInviteMemberClose} />
+      <InviteMember visible={inviteMemberVisible} onClose={closeInviteMember} />
 
       {/* Transfer workspace */}
       <TransferWorkspace
-        visible={transferWorkspaceOpen}
+        visible={transferWorkspaceVisible}
         member={member}
-        onClose={handleTransferWorkspaceClose}
+        onClose={closeTransferWorkspace}
       />
 
       {/* Delete member */}
-      <DeleteMember visible={deleteMemberOpen} member={member} onClose={handleDeleteMemberClose} />
+      <DeleteMember visible={deleteMemberVisible} member={member} onClose={closeDeleteMember} />
 
       {/* Leave workspace */}
-      <LeaveWorkspace visible={leaveWorkspaceOpen} onClose={handleLeaveWorkspaceClose} />
+      <LeaveWorkspace visible={leaveWorkspaceVisible} onClose={closeLeaveWorkspace} />
     </div>
   )
 })

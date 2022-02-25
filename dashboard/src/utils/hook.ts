@@ -113,3 +113,17 @@ export function useAsync<T = any>(
 
   return { result, loading, error }
 }
+
+export function useVisible(visible = false): [boolean, () => void, () => void] {
+  const [isOpen, setIsOpen] = useState(visible)
+
+  const open = useCallback(() => {
+    setIsOpen(true)
+  }, [])
+
+  const close = useCallback(() => {
+    setIsOpen(false)
+  }, [])
+
+  return [isOpen, open, close]
+}

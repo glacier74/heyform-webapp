@@ -1,6 +1,7 @@
 import UserSettings from '@/pages/user/UserSettings'
 import CreateWorkspace from '@/pages/workspace/CreateWorkspace'
 import WorkspaceSettings from '@/pages/workspace/WorkspaceSettings'
+import { useVisible } from '@/utils'
 import { MenuIcon } from '@heroicons/react/outline'
 import type { FC } from 'react'
 import { useState } from 'react'
@@ -10,9 +11,9 @@ import './index.scss'
 
 export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [workspaceSettingsOpen, setWorkspaceSettingsOpen] = useState(false)
-  const [userSettingsOpen, setUserSettingsOpen] = useState(false)
-  const [createWorkspaceOpen, setCreateWorkspaceOpen] = useState(false)
+  const [workspaceSettingsVisible, openWorkspaceSettings, closeWorkspaceSettings] = useVisible()
+  const [userSettingsVisible, openUserSettings, closeUserSettings] = useVisible()
+  const [createWorkspaceVisible, openCreateWorkspace, closeCreateWorkspace] = useVisible()
 
   function handleSidebarOpen() {
     setSidebarOpen(true)
@@ -22,39 +23,15 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
     setSidebarOpen(false)
   }
 
-  function handleWorkspaceSettingsOpen() {
-    setWorkspaceSettingsOpen(true)
-  }
-
-  function handleWorkspaceSettingsClose() {
-    setWorkspaceSettingsOpen(false)
-  }
-
-  function handleUserSettingsOpen() {
-    setUserSettingsOpen(true)
-  }
-
-  function handleUserSettingsClose() {
-    setUserSettingsOpen(false)
-  }
-
-  function handleCreateWorkspaceOpen() {
-    setCreateWorkspaceOpen(true)
-  }
-
-  function handleCreateWorkspaceClose() {
-    setCreateWorkspaceOpen(false)
-  }
-
   return (
     <WorkspaceGuard>
       <div className="w-full bg-white">
         <Sidebar
           isOpen={sidebarOpen}
           onSidebarClose={handleSidebarClose}
-          onWorkspaceSettingsOpen={handleWorkspaceSettingsOpen}
-          onUserSettingsOpen={handleUserSettingsOpen}
-          onCreateWorkspace={handleCreateWorkspaceOpen}
+          onWorkspaceSettingsOpen={openWorkspaceSettings}
+          onUserSettingsOpen={openUserSettings}
+          onCreateWorkspace={openCreateWorkspace}
         />
 
         <div className="workspace-container">
@@ -76,13 +53,13 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
       </div>
 
       {/* Workspace settings modal */}
-      <WorkspaceSettings visible={workspaceSettingsOpen} onClose={handleWorkspaceSettingsClose} />
+      <WorkspaceSettings visible={workspaceSettingsVisible} onClose={closeWorkspaceSettings} />
 
       {/* User settings modal */}
-      <UserSettings visible={userSettingsOpen} onClose={handleUserSettingsClose} />
+      <UserSettings visible={userSettingsVisible} onClose={closeUserSettings} />
 
       {/* Create workspace modal */}
-      <CreateWorkspace visible={createWorkspaceOpen} onClose={handleCreateWorkspaceClose} />
+      <CreateWorkspace visible={createWorkspaceVisible} onClose={closeCreateWorkspace} />
     </WorkspaceGuard>
   )
 }

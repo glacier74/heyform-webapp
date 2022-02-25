@@ -1,7 +1,7 @@
 import { SwitchField } from '@/components'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useParam } from '@/utils'
+import { useParam, useVisible } from '@/utils'
 import type { CF_DnsRecord } from '@heyforms/shared-types-enums'
 import { Badge, Button, Form, Input, Modal, notification, Table } from '@heyforms/ui'
 import { TableColumn } from '@heyforms/ui/lib/types/table'
@@ -150,7 +150,7 @@ export const CustomDomain: FC = observer(() => {
 
   const [switchLoading, setSwitchLoading] = useState(false)
   const [switchError, setSwitchError] = useState<Error | null>(null)
-  const [visible, setVisible] = useState(false)
+  const [visible, handleOpen, handleClose] = useVisible()
   const [hostname, setHostname] = useState<string>()
   const [dnsRecords, setDnsRecords] = useState<CustomDomainDnsRecord[]>([])
 
@@ -185,11 +185,7 @@ export const CustomDomain: FC = observer(() => {
 
     setHostname(values.hostname)
     setDnsRecords(result.dnsRecords)
-    setVisible(true)
-  }
-
-  function handleClose() {
-    setVisible(false)
+    handleOpen()
   }
 
   return (

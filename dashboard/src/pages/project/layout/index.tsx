@@ -1,6 +1,6 @@
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect, useParam } from '@/utils'
+import { useAsyncEffect, useVisible, useParam } from '@/utils'
 import {
   ChevronDownIcon,
   DotsHorizontalIcon,
@@ -10,7 +10,7 @@ import {
 import { Avatar, Button, Dropdown, Heading, Menus, Navbar } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
 import { DeleteProject } from './DeleteProject'
 import { ProjectMembers } from './ProjectMembers'
@@ -91,33 +91,9 @@ const ProjectLayout: FC<IComponentProps> = ({ children }) => {
   const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 
-  const [projectMembersOpen, setProjectMembersOpen] = useState(false)
-  const [deleteProjectOpen, setDeleteProjectOpen] = useState(false)
-  const [renameProjectOpen, setRenameProjectOpen] = useState(false)
-
-  function handleProjectMembersOpen() {
-    setProjectMembersOpen(true)
-  }
-
-  function handleProjectMembersClose() {
-    setProjectMembersOpen(false)
-  }
-
-  function handleRenameProjectOpen() {
-    setRenameProjectOpen(true)
-  }
-
-  function handleRenameProjectClose() {
-    setRenameProjectOpen(false)
-  }
-
-  function handleDeleteProjectOpen() {
-    setDeleteProjectOpen(true)
-  }
-
-  function handleDeleteProjectClose() {
-    setDeleteProjectOpen(false)
-  }
+  const [renameProjectVisible, openRenameProject, closeRenameProject] = useVisible()
+  const [deleteProjectVisible, openDeleteProject, closeDeleteProject] = useVisible()
+  const [projectMembersVisible, openProjectMembers, closeProjectMembers] = useVisible()
 
   function handleDeleteProjectComplete() {
     history.replace(`/workspace/${workspaceId}`)
@@ -126,9 +102,9 @@ const ProjectLayout: FC<IComponentProps> = ({ children }) => {
   return (
     <div>
       <Header
-        onRename={handleRenameProjectOpen}
-        onDelete={handleDeleteProjectOpen}
-        onMemberManage={handleProjectMembersOpen}
+        onRename={openRenameProject}
+        onDelete={openDeleteProject}
+        onMemberManage={openProjectMembers}
       />
 
       <div className="py-4">
@@ -143,20 +119,20 @@ const ProjectLayout: FC<IComponentProps> = ({ children }) => {
       </div>
 
       {/* Manage project */}
-      <ProjectMembers visible={projectMembersOpen} onClose={handleProjectMembersClose} />
+      <ProjectMembers visible={projectMembersVisible} onClose={closeProjectMembers} />
 
       {/* Rename project */}
       <RenameProject
-        visible={renameProjectOpen}
+        visible={renameProjectVisible}
         project={workspaceStore.project}
-        onClose={handleRenameProjectClose}
+        onClose={closeRenameProject}
       />
 
       {/* Delete project */}
       <DeleteProject
-        visible={deleteProjectOpen}
+        visible={deleteProjectVisible}
         project={workspaceStore.project}
-        onClose={handleDeleteProjectClose}
+        onClose={closeDeleteProject}
         onComplete={handleDeleteProjectComplete}
       />
     </div>

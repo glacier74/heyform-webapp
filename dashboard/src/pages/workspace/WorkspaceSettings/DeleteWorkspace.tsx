@@ -1,6 +1,6 @@
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useParam } from '@/utils'
+import { useParam, useVisible } from '@/utils'
 import { Button, Input, Modal } from '@heyforms/ui'
 import type { InputValue } from '@heyforms/ui/lib/types/input/Input'
 import { isEmpty } from '@hpnp/utils/helper'
@@ -70,15 +70,7 @@ const DeleteWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) =>
 })
 
 export const DeleteWorkspace: FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  function handleOpen() {
-    setIsOpen(true)
-  }
-
-  function handleClose() {
-    setIsOpen(false)
-  }
+  const [visible, handleOpen, handleClose] = useVisible()
 
   return (
     <div>
@@ -93,7 +85,7 @@ export const DeleteWorkspace: FC = () => {
         </Button>
       </div>
 
-      <DeleteWorkspaceModal visible={isOpen} onClose={handleClose} />
+      <DeleteWorkspaceModal visible={visible} onClose={handleClose} />
     </div>
   )
 }

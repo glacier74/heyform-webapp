@@ -2,7 +2,7 @@ import { WorkspaceIcon } from '@/components'
 import type { ProjectModel, UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect, useParam } from '@/utils'
+import { useAsyncEffect, useParam, useVisible } from '@/utils'
 import { DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import { Avatar, Button, Dropdown, Heading, Menus } from '@heyforms/ui'
 import clsx from 'clsx'
@@ -32,7 +32,7 @@ const Item: FC<ItemProps> = ({ project, users, onRename, onDelete }) => {
         text: u.name
       }))
   }, [project.members, users])
-  const [isOpen, setIsOpen] = useState(false)
+  const [visible, setVisible] = useState(false)
 
   function handleClick() {
     history.push(`/workspace/${workspaceId}/project/${project.id}`)
@@ -71,10 +71,10 @@ const Item: FC<ItemProps> = ({ project, users, onRename, onDelete }) => {
           <Avatar.Group options={members} size={32} maximum={8} circular rounded />
           <Dropdown
             className={clsx('opacity-0 group-hover:opacity-100 p-1 hover:bg-gray-100 rounded-md', {
-              'opacity-100': isOpen
+              'opacity-100': visible
             })}
             overlay={Overlay}
-            onVisibleChange={setIsOpen}
+            onVisibleChange={setVisible}
           >
             <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
           </Dropdown>
@@ -88,38 +88,10 @@ const Workspace = observer(() => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 
-  const [createProjectOpen, setCreateProjectOpen] = useState(false)
   const [project, setProject] = useState<ProjectModel | null>(null)
-  const [deleteProjectOpen, setDeleteProjectOpen] = useState(false)
-  const [renameProjectOpen, setRenameProjectOpen] = useState(false)
-
-  function handleCreateProject() {
-    setCreateProjectOpen(true)
-  }
-
-  function handleCloseCreateProject() {
-    setCreateProjectOpen(false)
-  }
-
-  function handleCloseDeleteProject() {
-    setDeleteProjectOpen(false)
-    setProject(null)
-  }
-
-  function handleCloseRenameProject() {
-    setRenameProjectOpen(false)
-    setProject(null)
-  }
-
-  function handleDeleteProject(currProj: ProjectModel) {
-    setProject(currProj)
-    setDeleteProjectOpen(true)
-  }
-
-  function handleRenameProject(currProj: ProjectModel) {
-    setProject(currProj)
-    setRenameProjectOpen(true)
-  }
+  const [createProjectVisible, openCreateProject, closeCreateProject] = useVisible()
+  const [deleteProjectVisible, openDeleteProject, closeDeleteProject] = useVisible()
+  const [renameProjectVisible, openRenameProject, closeRenameProject] = useVisible()
 
   useAsyncEffect(async () => {
     const result = await WorkspaceService.members(workspaceId)
@@ -141,7 +113,7 @@ const Workspace = observer(() => {
         }
         description={`${workspaceStore.workspace?.plan.name} plan · ${workspaceStore.workspace?.memberCount} members`}
         actions={
-          <Button type="primary" onClick={handleCreateProject}>
+          <Button type="primary" onClick={openCreateProject}>
             Create project
           </Button>
         }
@@ -153,29 +125,29 @@ const Workspace = observer(() => {
               key={proj.id}
               project={proj}
               users={workspaceStore.members}
-              onDelete={handleDeleteProject}
-              onRename={handleRenameProject}
+              onDelete={openDeleteProject}
+              onRename={openRenameProject}
             />
           ))}
         </ul>
       </div>
 
       {/* Create project */}
-      <CreateProject visible={createProjectOpen} onClose={handleCloseCreateProject} />
+      <CreateProject visible={createProjectVisible} onClose={closeCreateProject} />
 
       {/* Delete project */}
       <DeleteProject
-        visible={deleteProjectOpen}
+        visible={deleteProjectVisible}
         project={project}
-        onClose={handleCloseDeleteProject}
-        onComplete={handleCloseDeleteProject}
+        onClose={closeDeleteProject}
+        onComplete={closeDeleteProject}
       />
 
       {/* Rename project */}
       <RenameProject
-        visible={renameProjectOpen}
+        visible={renameProjectVisible}
         project={project}
-        onClose={handleCloseRenameProject}
+        onClose={closeRenameProject}
       />
     </div>
   )
