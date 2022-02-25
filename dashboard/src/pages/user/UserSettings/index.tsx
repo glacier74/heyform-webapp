@@ -1,7 +1,7 @@
 import { Modal } from '@heyforms/ui'
 import type { FC } from 'react'
-import { Account } from './Account'
 import { Avatar } from './Avatar'
+import { DeleteAccount } from './DeleteAccount'
 import { EmailAddress } from './EmailAddress'
 import { Password } from './Password'
 import { UserName } from './UserName'
@@ -30,7 +30,7 @@ const UserSettings: FC<IModalProps> = ({ visible, onClose }) => {
         <Password />
 
         {/* Delete account */}
-        <Account />
+        <DeleteAccount />
       </div>
     </Modal>
   )

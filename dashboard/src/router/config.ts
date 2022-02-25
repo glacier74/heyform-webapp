@@ -15,6 +15,7 @@ const Members = lazy(() => import('@/pages/workspace/Members'))
 
 /* Audiences */
 const Contacts = lazy(() => import('@/pages/audiences/Contacts'))
+const Groups = lazy(() => import('@/pages/audiences/Groups'))
 
 /* Project */
 const Project = lazy(() => import('@/pages/project/Project'))
@@ -86,6 +87,13 @@ const config: CustomRouteConfig[] = [
     exact: true,
     layout: WorkspaceLayout,
     component: Contacts
+  },
+  {
+    path: '/workspace/:workspaceId/audience/group',
+    loginRequired: true,
+    exact: true,
+    layout: WorkspaceLayout,
+    component: Groups
   },
 
   /* Project */

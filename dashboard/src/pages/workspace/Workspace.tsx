@@ -93,6 +93,16 @@ const Workspace = observer(() => {
   const [deleteProjectVisible, openDeleteProject, closeDeleteProject] = useVisible()
   const [renameProjectVisible, openRenameProject, closeRenameProject] = useVisible()
 
+  function handleDelete(proj: ProjectModel) {
+    setProject(proj)
+    openDeleteProject()
+  }
+
+  function handleRename(proj: ProjectModel) {
+    setProject(proj)
+    openRenameProject()
+  }
+
   useAsyncEffect(async () => {
     const result = await WorkspaceService.members(workspaceId)
     workspaceStore.setMembers(workspaceId, result)
@@ -125,8 +135,8 @@ const Workspace = observer(() => {
               key={proj.id}
               project={proj}
               users={workspaceStore.members}
-              onDelete={openDeleteProject}
-              onRename={openRenameProject}
+              onRename={handleRename}
+              onDelete={handleDelete}
             />
           ))}
         </ul>

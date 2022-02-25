@@ -5,6 +5,7 @@ export interface UserModel {
   avatar: string
   note: string
   lastSeenAt?: number
+  isSocialAccount?: boolean
   isEmailVerified?: boolean
   isDeletionScheduled?: boolean
   deletionScheduledAt?: number

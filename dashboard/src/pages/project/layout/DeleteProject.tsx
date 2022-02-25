@@ -10,7 +10,6 @@ import { useState } from 'react'
 
 interface DeleteProjectProps extends IModalProps {
   project?: ProjectModel | null
-  onComplete?: () => void
 }
 
 export const DeleteProject: FC<DeleteProjectProps> = ({

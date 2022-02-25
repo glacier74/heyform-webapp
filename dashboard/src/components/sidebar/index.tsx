@@ -31,7 +31,7 @@ export const Sidebar: FC<SidebarProps> = ({
         unmountOnExit={false}
         onExited={onSidebarClose}
       >
-        <div className="sidebar fixed inset-0 flex z-40 md:hidden">
+        <div className="sidebar fixed inset-0 flex z-10 md:hidden">
           <div
             className="sidebar-overlay fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity duration-300 ease-in-out"
             aria-hidden="true"

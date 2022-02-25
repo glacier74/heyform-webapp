@@ -17,5 +17,6 @@ declare global {
   interface IModalProps {
     visible?: boolean
     onClose?: () => void
+    onComplete?: () => void
   }
 }

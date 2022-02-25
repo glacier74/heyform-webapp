@@ -1,21 +1,19 @@
-import { Async } from '@/components'
+import { Async, Pagination } from '@/components'
 import type { ContactModel } from '@/models'
 import { AudienceService } from '@/service'
-import { useStore } from '@/store'
-import { urlBuilder, useAsyncEffect, useParam, useQuery } from '@/utils'
-import { DotsHorizontalIcon, SearchIcon } from '@heroicons/react/outline'
-import { Avatar, Button, Heading, Input, Navbar, Table } from '@heyforms/ui'
+import { urlBuilder, useParam, useQuery } from '@/utils'
+import { DotsHorizontalIcon } from '@heroicons/react/outline'
+import { Avatar, Button, Input, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
-import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
-import { NavLink, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import AudienceLayout from '../layout'
 import { ContactFilter } from './ContactFilter'
 import { Skeleton } from './Skeleton'
 
-const Contacts = observer(() => {
+const Contacts = () => {
   const { workspaceId } = useParam()
   const history = useHistory()
-  const workspaceStore = useStore('workspaceStore')
 
   const { keyword, groups, page } = useQuery({
     keyword: String,
@@ -83,12 +81,32 @@ const Contacts = observer(() => {
     }
   ]
 
+  function handleChange(query: IMapType) {
+    const url = urlBuilder(`/workspace/${workspaceId}/audience`, query)
+    history.push(url)
+  }
+
+  function handleKeywordChange(value: string) {
+    if (keyword !== value) {
+      handleChange({
+        keyword: value
+      })
+    }
+  }
+
+  function handlePageChange(currentPage: number) {
+    handleChange({
+      groups,
+      keyword,
+      page: currentPage
+    })
+  }
+
   function handleGroupChange(newGroups: string[]) {
-    const url = urlBuilder(`/workspace/${workspaceId}/audience`, {
+    handleChange({
       keyword,
       groups: newGroups
     })
-    history.push(url)
   }
 
   async function request() {
@@ -105,34 +123,26 @@ const Contacts = observer(() => {
   }
 
   return (
-    <div>
-      <Heading title="Audience" description="Create the right audience for accurate results" />
-      <div className="py-4">
-        <Navbar className="mt-4">
-          <NavLink to={`/workspace/${workspaceId}/audiences`} exact>
-            Contacts
-          </NavLink>
-          <NavLink to={`/workspace/${workspaceId}/audiences/groups`}>Groups</NavLink>
-        </Navbar>
-
-        <div className="mt-8 lg:flex lg:items-center lg:justify-between">
-          <div className="flex items-center space-x-2">
-            <Input className="w-full md:w-96" leading={<SearchIcon />} />
-            <ContactFilter value={groups} onChange={handleGroupChange} />
-          </div>
-
-          <div className="mt-6 flex flex-col justify-items-stretch space-x-0 space-y-4 md:space-y-0 md:space-x-3 lg:mt-0 md:flex-row">
-            <Button type="primary">Add contact</Button>
-            <Button>Import</Button>
-          </div>
+    <AudienceLayout>
+      <div className="mt-8 lg:flex lg:items-center lg:justify-between">
+        <div className="flex items-center space-x-2">
+          <Input.Search className="w-full md:w-96" onSearch={handleKeywordChange} />
+          <ContactFilter value={groups} onChange={handleGroupChange} />
         </div>
 
-        <Async request={request} deps={[page, keyword, groups]} skeleton={<Skeleton />}>
-          <Table<ContactModel> className="mt-8" columns={columns} data={contacts} />
-        </Async>
+        <div className="mt-6 flex flex-col justify-items-stretch space-x-0 space-y-4 md:space-y-0 md:space-x-3 lg:mt-0 md:flex-row">
+          <Button type="primary">Add contact</Button>
+          <Button>Import</Button>
+        </div>
       </div>
-    </div>
+
+      <Async request={request} deps={[page, keyword, groups]} skeleton={<Skeleton />}>
+        <Table<ContactModel> className="mt-8" columns={columns} data={contacts} />
+      </Async>
+
+      <Pagination total={total} page={page} pageSize={20} onChange={handlePageChange} />
+    </AudienceLayout>
   )
-})
+}
 
 export default Contacts

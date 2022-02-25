@@ -880,6 +880,7 @@ export const USER_DETAILS_GQL = gql`
       avatar
       lang
       isEmailVerified
+      isSocialAccount
       isDeletionScheduled
       deletionScheduledAt
     }

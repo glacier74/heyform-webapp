@@ -150,6 +150,7 @@ export const CustomDomain: FC = observer(() => {
 
   const [switchLoading, setSwitchLoading] = useState(false)
   const [switchError, setSwitchError] = useState<Error | null>(null)
+
   const [visible, handleOpen, handleClose] = useVisible()
   const [hostname, setHostname] = useState<string>()
   const [dnsRecords, setDnsRecords] = useState<CustomDomainDnsRecord[]>([])

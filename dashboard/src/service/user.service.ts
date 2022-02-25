@@ -100,13 +100,13 @@ export class UserService {
     return result.data.userCdnToken
   }
 
-  static userDeletionCode() {
+  static sendDeletionCode() {
     return request.query({
       query: USER_DELETION_CODE_GQL
     })
   }
 
-  static verifyUserDeletion(code: string) {
+  static verifyDeletionCode(code: string) {
     return request.mutate({
       mutation: VERIFY_USER_DELETION_GQL,
       variables: {
@@ -117,7 +117,7 @@ export class UserService {
     })
   }
 
-  static cancelUserDeletion() {
+  static cancelDeletion() {
     return request.mutate({
       mutation: CANCEL_USER_DELETION_GQL
     })

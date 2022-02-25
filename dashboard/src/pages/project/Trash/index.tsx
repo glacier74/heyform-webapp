@@ -2,7 +2,7 @@ import { Async, RestoreIcon } from '@/components'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
-import { DotsHorizontalIcon, PlusIcon, TrashIcon } from '@heroicons/react/outline'
+import { DotsHorizontalIcon, TrashIcon } from '@heroicons/react/outline'
 import { FormStatusEnum } from '@heyforms/shared-types-enums'
 import type { FormModel } from '@heyforms/shared-types-enums'
 import { Badge, Button, Dropdown, EmptyStates, Menus, Table } from '@heyforms/ui'
@@ -95,10 +95,9 @@ const Trash = observer(() => {
         emptyState={
           <div className="empty-states-container flex flex-col justify-center">
             <EmptyStates
-              icon={<PlusIcon className="non-scaling-stroke" />}
-              title="Don't have any forms in this project yet"
-              description="It's your one-stop solution for all form needs. Quickly build online forms without any coding or design experience."
-              action={<Button onClick={alert}>Create form</Button>}
+              icon={<TrashIcon className="non-scaling-stroke" />}
+              title="Don't have any forms in trash"
+              description="Forms will be permanently deleted from the trash after 30 days."
             />
           </div>
         }

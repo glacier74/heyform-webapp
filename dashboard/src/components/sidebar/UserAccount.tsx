@@ -30,7 +30,7 @@ export const UserAccount: FC<SidebarUserProps> = observer(({ onUserSettingsOpen 
       <Menus.Item name="logout" label="Logout" />
       <Menus.Divider />
       <Menus.Item
-        className="text-gray-500 hover:bg-transparent cursor-default"
+        className="text-gray-400 hover:bg-transparent cursor-default"
         label={`Version ${import.meta.env.PACKAGE_VERSION}`}
       />
     </Menus>
