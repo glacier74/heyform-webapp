@@ -1,21 +1,63 @@
 import { SelectorIcon } from '@heroicons/react/outline'
 import { CheckIcon } from '@heroicons/react/solid'
+import type { Options as PopperOptions } from '@popperjs/core/lib/types'
 import clsx from 'clsx'
-import type { CSSProperties, FC } from 'react'
-import { MouseEvent, useEffect, useMemo, useState } from 'react'
+import type { CSSProperties, FC, MouseEvent } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import Popup from '../popup'
 import Spin from '../spin'
 import { stopEvent } from '../utils'
 import type { SelectProps } from './Native'
 
+interface CustomOptionProps extends Pick<SelectProps, 'labelKey' | 'optionRender'> {
+  option: IOptionType
+  isActive?: boolean
+  onClick: (option: IOptionType) => void
+}
+
+export const CustomSelectOption: FC<CustomOptionProps> = ({
+  option,
+  labelKey = 'label',
+  isActive,
+  optionRender,
+  onClick
+}) => {
+  function handleClick(event: MouseEvent<HTMLLIElement>) {
+    stopEvent(event)
+    onClick(option)
+  }
+
+  return (
+    <li
+      className={clsx('select-option', {
+        'select-option-active': isActive
+      })}
+      onClick={handleClick}
+    >
+      {optionRender ? (
+        optionRender(option)
+      ) : (
+        <>
+          <span className="select-option-text">{option[labelKey]}</span>
+          <span className="select-option-checkmark">
+            <CheckIcon />
+          </span>
+        </>
+      )}
+    </li>
+  )
+}
+
 const Custom: FC<SelectProps> = ({
   className,
+  options = [],
+  labelKey = 'label',
+  valueKey = 'value',
   value,
   isHasError,
   loading,
   disabled,
   valueRender,
-  options = [],
   placeholder,
   optionRender,
   onChange,
@@ -25,6 +67,20 @@ const Custom: FC<SelectProps> = ({
   const [selected, setSelected] = useState<IOptionType>()
   const [isOpen, setIsOpen] = useState(false)
   const [triggerStyle, setTriggerStyle] = useState<CSSProperties>()
+  const popperOptions: Partial<PopperOptions> = useMemo(() => {
+    return {
+      placement: 'bottom-start',
+      strategy: 'fixed',
+      modifiers: [
+        {
+          name: 'computeStyles',
+          options: {
+            gpuAcceleration: false
+          }
+        }
+      ]
+    }
+  }, [])
 
   function handleClick(event: MouseEvent<HTMLDivElement>) {
     stopEvent(event)
@@ -35,11 +91,27 @@ const Custom: FC<SelectProps> = ({
     setIsOpen(false)
   }
 
-  function handleOptionClick(option: IOptionType, event: MouseEvent<HTMLLIElement>) {
-    stopEvent(event)
+  function handleOptionClick(option: IOptionType) {
     handleExited()
-    onChange?.(option.value)
+    onChange?.(option[valueKey])
   }
+
+  const handleExitedCallback = useCallback(handleExited, [])
+
+  const memoOverlay = useMemo(() => {
+    return (
+      <ul className="select-popup-content" style={{ width: triggerStyle?.width }}>
+        {options.map(option => (
+          <CustomSelectOption
+            key={option[valueKey] as string}
+            option={option}
+            isActive={option[valueKey] === value}
+            onClick={handleOptionClick}
+          />
+        ))}
+      </ul>
+    )
+  }, [options, value, triggerStyle?.width])
 
   useEffect(() => {
     if (isOpen) {
@@ -48,36 +120,9 @@ const Custom: FC<SelectProps> = ({
   }, [isOpen])
 
   useEffect(() => {
-    const option = options.find(row => row.value === value)
+    const option = options.find(row => row[valueKey] === value)
     setSelected(option)
   }, [value])
-
-  const memoOverlay = useMemo(() => {
-    return (
-      <ul className="select-popup-content" style={{ width: triggerStyle?.width }}>
-        {options.map(option => (
-          <li
-            key={option.value as unknown as string}
-            className={clsx('select-option', {
-              'select-option-active': option.value === value
-            })}
-            onClick={event => handleOptionClick(option, event)}
-          >
-            {optionRender ? (
-              optionRender(option)
-            ) : (
-              <>
-                <span className="select-option-text">{option.label}</span>
-                <span className="select-option-checkmark">
-                  <CheckIcon />
-                </span>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
-    )
-  }, [triggerStyle?.width])
 
   return (
     <>
@@ -95,7 +140,7 @@ const Custom: FC<SelectProps> = ({
           {...restProps}
         >
           <span className="select-value" placeholder={placeholder}>
-            {valueRender ? valueRender(selected) : selected?.label}
+            {valueRender ? valueRender(selected) : selected && selected[labelKey]}
           </span>
           <span className="select-arrow-icon">{loading ? <Spin /> : <SelectorIcon />}</span>
         </button>
@@ -104,19 +149,8 @@ const Custom: FC<SelectProps> = ({
       <Popup
         visible={isOpen}
         referenceRef={ref as Element}
-        popperOptions={{
-          placement: 'bottom-start',
-          strategy: 'fixed',
-          modifiers: [
-            {
-              name: 'computeStyles',
-              options: {
-                gpuAcceleration: false
-              }
-            }
-          ]
-        }}
-        onExited={handleExited}
+        popperOptions={popperOptions}
+        onExited={handleExitedCallback}
       >
         {memoOverlay}
       </Popup>

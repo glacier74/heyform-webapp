@@ -70,6 +70,10 @@
 
 .select-popup-content {
   @apply bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm;
+
+  .input-search {
+    @apply m-3;
+  }
 }
 
 .select-option {
@@ -105,4 +109,47 @@
   svg {
     @apply h-5 w-5;
   }
+}
+
+.multiple-select-button {
+  padding-top: 0.4375rem;
+  padding-bottom: 0.4375rem;
+}
+
+.multiple-select-value {
+  @extend .select-value;
+  @apply flex flex-wrap;
+  min-height: 1.25rem;
+}
+
+.multiple-item {
+  @apply relative inline-flex items-center rounded-full border border-gray-300 px-3;
+}
+
+.multiple-item-label {
+  @apply font-medium text-gray-900;
+}
+
+.multiple-item-remove {
+  @apply ml-1.5 -mr-1.5 p-0.5 rounded-md text-gray-500 text-gray-500 hover:bg-gray-50 hover:text-gray-900 cursor-pointer;
+
+  svg {
+    @apply w-4 h-4;
+  }
+}
+
+.multiple-create-option {
+  @apply flex items-center cursor-default select-none relative py-2 px-3 text-gray-900 hover:bg-gray-100;
+
+  .spin {
+    @apply ml-3 text-gray-500;
+  }
+}
+
+.multiple-create-content {
+  @apply flex-1 truncate;
+}
+
+.multiple-create-keyword {
+  @apply pl-1 font-bold;
 }

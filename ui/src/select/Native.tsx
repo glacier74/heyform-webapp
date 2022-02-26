@@ -2,24 +2,29 @@ import clsx from 'clsx'
 import type { ChangeEvent, FC } from 'react'
 
 export interface SelectProps extends Omit<IComponentProps, 'value' | 'onChange'> {
+  options?: IOptionType[]
+  labelKey?: keyof IOptionType
+  valueKey?: keyof IOptionType
   value?: IValueType
+  native?: boolean
   isHasError?: boolean
   loading?: boolean
   disabled?: boolean
   unmountOnExit?: boolean
   valueRender?: (option?: IOptionType) => JSX.Element
   placeholder?: string
-  options?: IOptionType[]
   optionRender?: (option: IOptionType) => JSX.Element
   onChange?: (value: IValueType) => void
 }
 
 const Native: FC<SelectProps> = ({
   className,
+  options = [],
+  labelKey = 'label',
+  valueKey = 'value',
   value,
   isHasError,
   placeholder,
-  options = [],
   onChange,
   ...restProps
 }) => {
@@ -38,8 +43,8 @@ const Native: FC<SelectProps> = ({
       {...restProps}
     >
       {options.map(option => (
-        <option key={option.value as unknown as string} value={option.value as unknown as string}>
-          {option.label}
+        <option key={option[valueKey] as string} value={option[valueKey] as string}>
+          {option[labelKey]}
         </option>
       ))}
     </select>
