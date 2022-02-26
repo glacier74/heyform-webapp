@@ -70,10 +70,6 @@
 
 .select-popup-content {
   @apply bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm;
-
-  .input-search {
-    @apply m-3;
-  }
 }
 
 .select-option {
@@ -114,6 +110,14 @@
 .multiple-select-button {
   padding-top: 0.4375rem;
   padding-bottom: 0.4375rem;
+
+  &.multiple-selected {
+    @apply pb-0;
+  }
+}
+
+.multiple-search {
+  @apply mx-3 my-2;
 }
 
 .multiple-select-value {
@@ -124,6 +128,8 @@
 
 .multiple-item {
   @apply relative inline-flex items-center rounded-full border border-gray-300 px-3;
+  margin-left: 0.4375rem;
+  margin-bottom: 0.4375rem;
 }
 
 .multiple-item-label {

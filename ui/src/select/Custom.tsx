@@ -6,7 +6,7 @@ import type { CSSProperties, FC, MouseEvent } from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Popup from '../popup'
 import Spin from '../spin'
-import { stopEvent } from '../utils'
+import { stopEvent, stopPropagation } from '../utils'
 import type { SelectProps } from './Native'
 
 interface CustomOptionProps extends Pick<SelectProps, 'labelKey' | 'optionRender'> {
@@ -22,8 +22,7 @@ export const CustomSelectOption: FC<CustomOptionProps> = ({
   optionRender,
   onClick
 }) => {
-  function handleClick(event: MouseEvent<HTMLLIElement>) {
-    stopEvent(event)
+  function handleClick() {
     onClick(option)
   }
 
@@ -64,9 +63,6 @@ const Custom: FC<SelectProps> = ({
   ...restProps
 }) => {
   const [ref, setRef] = useState<HTMLDivElement | null>(null)
-  const [selected, setSelected] = useState<IOptionType>()
-  const [isOpen, setIsOpen] = useState(false)
-  const [triggerStyle, setTriggerStyle] = useState<CSSProperties>()
   const popperOptions: Partial<PopperOptions> = useMemo(() => {
     return {
       placement: 'bottom-start',
@@ -81,6 +77,10 @@ const Custom: FC<SelectProps> = ({
       ]
     }
   }, [])
+
+  const [selected, setSelected] = useState<IOptionType>()
+  const [isOpen, setIsOpen] = useState(false)
+  const [triggerStyle, setTriggerStyle] = useState<CSSProperties>()
 
   function handleClick(event: MouseEvent<HTMLDivElement>) {
     stopEvent(event)
@@ -100,7 +100,11 @@ const Custom: FC<SelectProps> = ({
 
   const memoOverlay = useMemo(() => {
     return (
-      <ul className="select-popup-content" style={{ width: triggerStyle?.width }}>
+      <ul
+        className="select-popup-content"
+        style={{ width: triggerStyle?.width }}
+        onClick={stopPropagation}
+      >
         {options.map(option => (
           <CustomSelectOption
             key={option[valueKey] as string}

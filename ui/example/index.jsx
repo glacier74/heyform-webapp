@@ -33,7 +33,7 @@ import {
   TrashIcon,
   UserAddIcon
 } from '@heroicons/react/solid'
-import { StrictMode, useEffect, useMemo, useState } from 'react'
+import { StrictMode, useMemo, useState } from 'react'
 import {
   ArchiveIcon,
   CheckCircleIcon,
@@ -192,6 +192,24 @@ const Standalone = () => {
           </Button>
 
           <Form onValuesChange={console.log} onFinish={console.log}>
+            <Form.Item name="gender2" label="Category" rules={[{ required: true }]}>
+              <Select.Multiple
+                options={[
+                  {
+                    label: 'Men',
+                    value: 'men'
+                  },
+                  {
+                    label: 'Women',
+                    value: 'women'
+                  },
+                  {
+                    label: 'Unknown',
+                    value: 'unknown'
+                  }
+                ]}
+              />
+            </Form.Item>
             <Form.Item
               name="email"
               label="Email"
@@ -638,8 +656,8 @@ const App = () => {
 }
 
 render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-  document.getElementById('root')
+	<StrictMode>
+		<App/>
+	</StrictMode>,
+	document.getElementById('root')
 )

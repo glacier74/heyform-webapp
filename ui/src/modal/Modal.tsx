@@ -1,7 +1,7 @@
 import { XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import type { FC } from 'react'
-import { useRef } from 'react'
+import { useCallback, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import Button from '../button'
 import Portal from '../portal'
@@ -57,6 +57,8 @@ const Modal: FC<ModalProps> = ({
     }
   }
 
+  const handleCloseCallback = useCallback(handleClose, [])
+
   return (
     <CSSTransition
       in={visible}
@@ -67,7 +69,7 @@ const Modal: FC<ModalProps> = ({
     >
       <Portal visible={visible}>
         <div className={clsx('modal-root', className)} {...restProps}>
-          <div className="modal-mask" onClick={handleClose} />
+          <div className="modal-mask" onClick={handleCloseCallback} />
           <div
             className="modal-container"
             tabIndex={-1}
