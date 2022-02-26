@@ -1,28 +1,27 @@
-import { UserService, WorkspaceService } from '@/service'
-import { Qiniu, useParam } from '@/utils'
 import { DocumentIcon, UploadIcon } from '@heroicons/react/outline'
 import { Button, stopEvent } from '@heyforms/ui'
 import { formatBytes, parseBytes } from '@hpnp/utils'
-import { isValid } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { ChangeEvent, DragEvent, FC, MouseEvent } from 'react'
 import { useState } from 'react'
 
-interface DragUploaderProps extends Omit<IComponentProps, 'onChange'> {
-  value?: any
+export interface DragUploaderProps extends Omit<IComponentProps, 'onChange'> {
+  value?: File
+  loading?: boolean
+  error?: Error | null
   accept?: string[]
   maxSize?: string
   selectText?: string
   reselectText?: string
   uploadingText?: string
-  onChange?: (src: string) => void
+  onChange?: (file: File) => void
 }
-
-const ACCEPTED_MIMES = ['image/jpeg', 'image/png', 'image/bmp', 'image/gif']
 
 export const DragUploader: FC<DragUploaderProps> = ({
   className,
   value,
+  loading = false,
+  error,
   accept = [],
   maxSize = '10MB',
   selectText = 'Upload a file',
@@ -31,52 +30,24 @@ export const DragUploader: FC<DragUploaderProps> = ({
   onChange,
   ...restProps
 }) => {
-  const { workspaceId } = useParam()
   const [file, setFile] = useState<File | undefined>(value)
   const [fileInputRef, setFileInputRef] = useState<any>()
   const [dragRef, setDragRef] = useState<any>()
   const [dragoverRef, setDragoverRef] = useState<any>()
   const [dragging, setDragging] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<Error | null>(null)
+  const [internalError, setInternalError] = useState<Error | null>(null)
 
-  async function handleUpload(f: File) {
-    if (loading) {
-      return
-    }
-
+  function handleChange(f: File) {
     if (f.size > parseBytes(maxSize)!) {
-      return setError(new Error(`The selected file exceeds the ${maxSize} file limit`))
+      return setInternalError(new Error(`The selected file exceeds the ${maxSize} file limit`))
     }
 
-    if (!ACCEPTED_MIMES.includes(f.type)) {
-      return setError(new Error('Unsupported file type'))
+    if (!accept.includes(f.type)) {
+      return setInternalError(new Error('Unsupported file type'))
     }
 
     setFile(f)
-    setLoading(true)
-
-    try {
-      let cdnTokenData: any
-
-      if (isValid(workspaceId)) {
-        cdnTokenData = await WorkspaceService.cdnToken(workspaceId, f.name, f.type)
-      } else {
-        cdnTokenData = await UserService.cdnToken(f.name, f.type)
-      }
-
-      const { token, urlPrefix, key } = cdnTokenData
-      const url = `${urlPrefix}/${key}`
-
-      const qc = new Qiniu(f, key, token)
-      await qc.upload()
-
-      onChange && onChange(url)
-    } catch (err: any) {
-      setError(err)
-    }
-
-    setLoading(false)
+    onChange?.(f)
   }
 
   function handleDrop(event: DragEvent<HTMLDivElement>) {
@@ -102,14 +73,14 @@ export const DragUploader: FC<DragUploaderProps> = ({
     setDragoverRef(undefined)
     setDragging(false)
 
-    handleUpload(event.dataTransfer.files[0])
+    handleChange(event.dataTransfer.files[0])
   }
 
   function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
     const { files } = event.target
 
     if (files && files.length > 0) {
-      handleUpload(files[0])
+      handleChange(files[0])
     }
 
     if (fileInputRef) {
@@ -118,8 +89,8 @@ export const DragUploader: FC<DragUploaderProps> = ({
   }
 
   function handleOpen(event: MouseEvent) {
-    stopEvent(event)
     fileInputRef?.click()
+    stopEvent(event)
   }
 
   return (
@@ -129,7 +100,6 @@ export const DragUploader: FC<DragUploaderProps> = ({
         type="file"
         ref={setFileInputRef}
         accept={accept.join(',')}
-        onClick={stopEvent}
         onChange={handleFileChange}
       />
       {file ? (
@@ -169,8 +139,8 @@ export const DragUploader: FC<DragUploaderProps> = ({
               </Button.Link>
               <p className="pl-1">or drag and drop</p>
             </div>
-            {error ? (
-              <p className="text-xs text-red-500">{error.message}</p>
+            {error || internalError ? (
+              <p className="text-xs text-red-500">{error?.message || internalError?.message}</p>
             ) : (
               <p className="text-xs text-gray-500">PNG, JPG, GIF up to {maxSize}</p>
             )}

@@ -3,13 +3,14 @@ import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useAsyncEffect, useVisible, useParam } from '@/utils'
 import {
-  DotsHorizontalIcon,
-  LogoutIcon,
+  DotsHorizontalIcon, DuplicateIcon,
+  LogoutIcon, PencilIcon,
   SwitchHorizontalIcon,
   TrashIcon
 } from '@heroicons/react/outline'
 import { Avatar, Badge, Button, Dropdown, Heading, Menus, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
+import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import * as timeago from 'timeago.js'
@@ -132,8 +133,11 @@ const Members = observer(() => {
         )
 
         return (
-          <Dropdown overlay={workspaceStore.workspace.isOwner ? OwnerOverlay : MemberOverlay}>
-            <Button.Link className="-m-3" leading={<DotsHorizontalIcon />} />
+          <Dropdown
+            className="inline-flex p-1 hover:bg-gray-100 rounded-md cursor-pointer"
+            overlay={workspaceStore.workspace.isOwner ? OwnerOverlay : MemberOverlay}
+          >
+            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
           </Dropdown>
         )
       }

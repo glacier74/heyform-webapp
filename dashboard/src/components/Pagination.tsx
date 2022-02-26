@@ -39,14 +39,16 @@ export const Pagination: FC<PaginationProps> = ({ total, page = 1, pageSize = 20
           results
         </p>
       </div>
-      <div className="flex-1 flex justify-between sm:justify-end">
-        <Button disabled={page <= 1} onClick={handlePrevious}>
-          Previous
-        </Button>
-        <Button className="ml-3" disabled={page >= maxPage} onClick={handleNext}>
-          Next
-        </Button>
-      </div>
+      {maxPage > 1 && (
+        <div className="flex-1 flex justify-between sm:justify-end">
+          <Button disabled={page <= 1} onClick={handlePrevious}>
+            Previous
+          </Button>
+          <Button className="ml-3" disabled={page >= maxPage} onClick={handleNext}>
+            Next
+          </Button>
+        </div>
+      )}
     </nav>
   )
 }

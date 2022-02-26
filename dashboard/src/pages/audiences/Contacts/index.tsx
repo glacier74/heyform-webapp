@@ -1,14 +1,17 @@
 import { Async, Pagination } from '@/components'
 import type { ContactModel } from '@/models'
+import EditContact from '@/pages/audiences/Contacts/EditContact'
 import { AudienceService } from '@/service'
-import { urlBuilder, useParam, useQuery } from '@/utils'
-import { DotsHorizontalIcon } from '@heroicons/react/outline'
-import { Avatar, Button, Input, Table } from '@heyforms/ui'
+import { urlBuilder, useParam, useQuery, useVisible } from '@/utils'
+import { DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
+import { Avatar, Button, Dropdown, Input, Menus, notification, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import AudienceLayout from '../layout'
+import AddContact from './AddContact'
 import { ContactFilter } from './ContactFilter'
+import ImportContact from './ImportContact'
 import { Skeleton } from './Skeleton'
 
 const Contacts = () => {
@@ -26,6 +29,10 @@ const Contacts = () => {
 
   const [total, setTotal] = useState(0)
   const [contacts, setContacts] = useState<ContactModel[]>([])
+  const [contact, setContact] = useState<ContactModel | null>(null)
+  const [addContactVisible, openAddContact, closeAddContact] = useVisible()
+  const [importContactVisible, openImportContact, closeImportContact] = useVisible()
+  const [editContactVisible, openEditContact, closeEditContact] = useVisible()
 
   // Table columns
   const columns: TableColumn<ContactModel>[] = [
@@ -75,8 +82,56 @@ const Contacts = () => {
       key: 'action',
       name: 'Action',
       align: 'right',
-      render() {
-        return <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
+      render(record) {
+        async function handleDeleteContact() {
+          const loading = notification.loading({
+            title: 'Deleting contact...',
+            duration: 0
+          })
+
+          try {
+            await AudienceService.deleteContacts({
+              teamId: workspaceId,
+              contactIds: [record.id]
+            })
+
+            notification.success({
+              title: 'Contact has been deleted'
+            })
+          } catch (err: any) {
+            notification.error({
+              title: err.message
+            })
+          }
+
+          loading.dismiss()
+        }
+
+        function handleMenuClick(name?: IKeyType) {
+          switch (name) {
+            case 'edit':
+              setContact(record)
+              openEditContact()
+              break
+
+            case 'delete':
+              handleDeleteContact()
+              break
+          }
+        }
+
+        const Overlay = (
+          <Menus onClick={handleMenuClick}>
+            <Menus.Item name="edit" label="Edit" icon={<PencilIcon />} />
+            <Menus.Item name="delete" label="Delete" icon={<TrashIcon />} />
+          </Menus>
+        )
+
+        return (
+          <Dropdown className="p-1 hover:bg-gray-100 rounded-md cursor-pointer" overlay={Overlay}>
+            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
+          </Dropdown>
+        )
       }
     }
   ]
@@ -131,8 +186,10 @@ const Contacts = () => {
         </div>
 
         <div className="mt-6 flex flex-col justify-items-stretch space-x-0 space-y-4 md:space-y-0 md:space-x-3 lg:mt-0 md:flex-row">
-          <Button type="primary">Add contact</Button>
-          <Button>Import</Button>
+          <Button type="primary" onClick={openAddContact}>
+            Add contact
+          </Button>
+          <Button onClick={openImportContact}>Import</Button>
         </div>
       </div>
 
@@ -141,6 +198,12 @@ const Contacts = () => {
       </Async>
 
       <Pagination total={total} page={page} pageSize={20} onChange={handlePageChange} />
+
+      <AddContact visible={addContactVisible} onClose={closeAddContact} />
+
+      <ImportContact visible={importContactVisible} onClose={closeImportContact} />
+
+      <EditContact visible={editContactVisible} contact={contact} onClose={closeEditContact} />
     </AudienceLayout>
   )
 }

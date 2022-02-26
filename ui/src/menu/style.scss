@@ -8,6 +8,7 @@
 
 .menu-item-content {
   @apply flex items-center flex-1;
+  max-width: calc(100% - 2rem);
 
   svg {
     @apply mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500;

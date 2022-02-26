@@ -89,12 +89,13 @@ export class AudienceService {
   }
 
   static async createGroup(input: { teamId: string; name: string }) {
-    return request.mutate({
+    const result = await request.mutate({
       mutation: CREATE_GROUP_GQL,
       variables: {
         input
       }
     })
+    return result.data.createGroup
   }
 
   static async updateGroup(input: { teamId: string; name: string }) {

@@ -8,12 +8,7 @@ import type { FC } from 'react'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-interface CreateWorkspaceProps {
-  visible?: boolean
-  onClose?: () => void
-}
-
-const CreateWorkspace: FC<CreateWorkspaceProps> = observer(({ visible, onClose }) => {
+const CreateWorkspace: FC<IModalProps> = observer(({ visible, onClose }) => {
   const history = useHistory()
   const workspaceStore = useStore('workspaceStore')
 

@@ -1,6 +1,6 @@
 import { Modal, Tabs } from '@heyforms/ui'
 import type { FC } from 'react'
-import { DragUploader } from './DragUploader'
+import { QiniuUploader } from '../QiniuUploader'
 import './style.scss'
 import { Unsplash } from './Unsplash'
 
@@ -8,6 +8,8 @@ interface PhotoPickerProps extends Omit<IComponentProps, 'onChange'>, IModalProp
   value?: string
   onChange?: (value: string) => void
 }
+
+const ACCEPTED_MIMES = ['image/jpeg', 'image/png', 'image/bmp', 'image/gif']
 
 export const PhotoPicker: FC<PhotoPickerProps> = ({
   className,
@@ -32,7 +34,7 @@ export const PhotoPicker: FC<PhotoPickerProps> = ({
     >
       <Tabs>
         <Tabs.Pane key="upload" title="Upload">
-          <DragUploader onChange={handleChange} />
+          <QiniuUploader accept={ACCEPTED_MIMES} onChange={handleChange} />
         </Tabs.Pane>
         <Tabs.Pane key="unsplash" title="Unsplash">
           <Unsplash onChange={handleChange} />
