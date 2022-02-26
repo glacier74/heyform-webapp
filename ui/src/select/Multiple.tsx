@@ -85,10 +85,14 @@ const Multiple: FC<MultipleSelectProps> = ({
   const [isCreating, setIsCreating] = useState(false)
   const [error, setError] = useState<Error | null>(null)
 
-  const selected = useMemo(
-    () => value.map(row => rawOptions.find(o => o[valueKey] === row)).filter(Boolean),
-    [value, rawOptions]
-  )
+  const selected = useMemo(() => {
+    if (isValid(value)) {
+      return value!
+        .map(row => rawOptions.find(o => o[valueKey] === row))
+        .filter(Boolean) as IOptionType[]
+    }
+    return []
+  }, [value, rawOptions])
 
   function handleClick(event: MouseEvent<HTMLDivElement>) {
     stopEvent(event)
@@ -199,25 +203,6 @@ const Multiple: FC<MultipleSelectProps> = ({
       setIsNewOption(false)
     }
   }, [keyword, rawOptions])
-
-  // useEffect(() => {
-  //   console.log('value change', value)
-  //   // Update selected options when value changes
-  //   const newValue: IOptionType[] = []
-  //
-  //   if (isValidArray(value)) {
-  //     // Inorder to keep the order of the selected options
-  //     value!.forEach(row => {
-  //       const option = options.find(o => o[valueKey] === row)
-  //
-  //       if (option) {
-  //         newValue.push(option)
-  //       }
-  //     })
-  //   }
-  //
-  //   setSelected(newValue)
-  // }, [value])
 
   return (
     <>
