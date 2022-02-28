@@ -262,10 +262,21 @@ export const INVOICES_GQL = gql`
   }
 `
 
+export const APPLY_COUPON_GQL = gql`
+  query applyCoupon($input: ApplyCouponInput!) {
+    applyCoupon(input: $input) {
+      id
+      amountOff
+      percentOff
+    }
+  }
+`
+
 export const PAYMENT_GQL = gql`
   mutation payment($input: PaymentInput!) {
     payment(input: $input) {
       sessionId
+      note
     }
   }
 `
@@ -893,15 +904,21 @@ export const UPDATE_USER_DETAIL_GQL = gql`
   }
 `
 
-export const CHANGE_USER_EMAIL_GQL = gql`
-  mutation changeEmailAddress($input: ChangeEmailAddressInput!) {
-    changeEmailAddress(input: $input)
+export const CHANGE_EMAIL_CODE_GQL = gql`
+  query changeEmailCode($input: ChangeEmailCodeInput!) {
+    changeEmailCode(input: $input)
   }
 `
 
-export const VERIFY_USER_EMAIL_GQL = gql`
-  mutation verifyEmailAddress($input: VerifyEmailAddressInput!) {
-    verifyEmailAddress(input: $input)
+export const UPDATE_EMAIL_GQL = gql`
+  mutation updateEmail($input: UpdateEmailInput!) {
+    updateEmail(input: $input)
+  }
+`
+
+export const VERIFY_EMAIL_GQL = gql`
+  mutation verifyEmail($input: VerifyEmailInput!) {
+    verifyEmail(input: $input)
   }
 `
 
@@ -911,15 +928,9 @@ export const UPDATE_USER_PASSWORD_GQL = gql`
   }
 `
 
-export const RESEND_VERIFY_EMAIL_GQL = gql`
-  query resendVerifyEmail {
-    resendVerifyEmail
-  }
-`
-
-export const USER_DANGER_ZONE_GQL = gql`
-  query userSupermanMode($input: UserSupermanModeInput!) {
-    userSupermanMode(input: $input)
+export const EMAIL_VERIFICATION_CODE_GQL = gql`
+  query emailVerificationCode {
+    emailVerificationCode
   }
 `
 

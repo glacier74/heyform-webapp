@@ -1,3 +1,5 @@
+import { PlanCheck } from '@/components'
+import { PlanGradeEnum } from '@/models'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
 import {
@@ -13,7 +15,7 @@ import {
 } from '@heroicons/react/outline'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 interface SidebarNavProps {
   onWorkspaceSettingsOpen: () => void
@@ -34,13 +36,15 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
           <HomeIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
           Dashboard
         </NavLink>
-        <NavLink
-          to={`/workspace/${workspaceId}/member`}
-          className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-        >
-          <UsersIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-          Team members
-        </NavLink>
+        <PlanCheck permission={PlanGradeEnum.BASIC}>
+          <NavLink
+            to={`/workspace/${workspaceId}/member`}
+            className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+          >
+            <UsersIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
+            Team members
+          </NavLink>
+        </PlanCheck>
         <NavLink
           to={`/workspace/${workspaceId}/audience`}
           className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"

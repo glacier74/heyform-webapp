@@ -1,4 +1,5 @@
-import { SwitchField } from '@/components'
+import { PlanCheck, SwitchField } from '@/components'
+import { PlanGradeEnum } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useParam, useVisible } from '@/utils'
@@ -191,21 +192,24 @@ export const CustomDomain: FC = observer(() => {
 
   return (
     <div>
-      <SwitchField
-        label="Custom domain"
-        description={
-          <>
-            Custom domains allow you to make form accessible at your own, non-HeyForm domain names.{' '}
-            <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
-              Learn more about custom domain in docs
-            </a>
-            .
-          </>
-        }
-        loading={switchLoading}
-        value={workspaceStore.workspace?.enableCustomDomain}
-        onChange={handleChange}
-      />
+      <PlanCheck permission={PlanGradeEnum.PRO}>
+        <SwitchField
+          label="Custom domain"
+          description={
+            <>
+              Custom domains allow you to make form accessible at your own, non-HeyForm domain
+              names.{' '}
+              <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
+                Learn more about custom domain in docs
+              </a>
+              .
+            </>
+          }
+          loading={switchLoading}
+          value={workspaceStore.workspace?.enableCustomDomain}
+          onChange={handleChange}
+        />
+      </PlanCheck>
       {switchError && <div className="form-item-error">{switchError.message}</div>}
 
       <div>

@@ -1,8 +1,8 @@
-import type { ProjectModel, UserModel, WorkspaceModel } from '@/models'
+import type { PlanModel, ProjectModel, UserModel, WorkspaceModel } from '@/models'
 import type { FormModel } from '@heyforms/shared-types-enums'
 import { isValidArray } from '@hpnp/utils/helper'
 import { makeAutoObservable } from 'mobx'
-import { mobxStorage } from './storage'
+import { mobxStorage } from './mobxStorage'
 
 export class WorkspaceStore {
   list: WorkspaceModel[] = []
@@ -21,6 +21,9 @@ export class WorkspaceStore {
 
   // Current form
   currentFormId = ''
+
+  // Plans
+  plans: PlanModel[] = []
 
   constructor() {
     makeAutoObservable(this)
@@ -181,5 +184,9 @@ export class WorkspaceStore {
     if (isValidArray(members)) {
       this.memberMaps[id] = members.filter(m => m.id !== memberId)
     }
+  }
+
+  setPlans(plans: PlanModel[]) {
+    this.plans = plans
   }
 }

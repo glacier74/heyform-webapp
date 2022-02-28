@@ -10,8 +10,8 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useMemo, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { DeleteProject } from '../project/layout/DeleteProject'
-import { RenameProject } from '../project/layout/RenameProject'
+import { DeleteProject } from '../project/views/DeleteProject'
+import { RenameProject } from '../project/views/RenameProject'
 import CreateProject from './CreateProject'
 
 interface ItemProps {

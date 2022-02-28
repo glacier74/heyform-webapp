@@ -1,20 +1,20 @@
 import {
   CANCEL_USER_DELETION_GQL,
-  CHANGE_USER_EMAIL_GQL,
-  RESEND_VERIFY_EMAIL_GQL,
+  CHANGE_EMAIL_CODE_GQL,
+  EMAIL_VERIFICATION_CODE_GQL,
+  UPDATE_EMAIL_GQL,
   UPDATE_USER_DETAIL_GQL,
   UPDATE_USER_PASSWORD_GQL,
   USER_CDN_TOKEN_GQL,
-  USER_DANGER_ZONE_GQL,
   USER_DELETION_CODE_GQL,
   USER_DETAILS_GQL,
-  VERIFY_USER_DELETION_GQL,
-  VERIFY_USER_EMAIL_GQL
+  VERIFY_EMAIL_GQL,
+  VERIFY_USER_DELETION_GQL
 } from '@/consts'
 import { request } from '@/utils'
 
 export class UserService {
-  static async user() {
+  static async userDetail() {
     const result = await request.query({
       query: USER_DETAILS_GQL
     })
@@ -30,60 +30,57 @@ export class UserService {
     })
   }
 
-  static changeEmail(token: string, email: string) {
+  static changeEmailCode(password: string, email: string) {
     return request.mutate({
-      mutation: CHANGE_USER_EMAIL_GQL,
+      mutation: CHANGE_EMAIL_CODE_GQL,
       variables: {
         input: {
-          token,
+          password,
           email
         }
       }
     })
   }
 
-  static verifyEmail(token: string) {
+  static updateEmail(email: string, password: string, code: string) {
     return request.mutate({
-      mutation: VERIFY_USER_EMAIL_GQL,
+      mutation: UPDATE_EMAIL_GQL,
       variables: {
         input: {
-          token
+          email,
+          password,
+          code
         }
       }
     })
   }
 
-  static updatePassword(token: string, password: string) {
+  static verifyEmail(code: string) {
+    return request.mutate({
+      mutation: VERIFY_EMAIL_GQL,
+      variables: {
+        input: {
+          code
+        }
+      }
+    })
+  }
+
+  static updatePassword(currentPassword: string, newPassword: string) {
     return request.mutate({
       mutation: UPDATE_USER_PASSWORD_GQL,
       variables: {
         input: {
-          token,
-          password
+          currentPassword,
+          newPassword
         }
       }
     })
   }
 
-  static resendVerifyEmail(token: string) {
+  static emailVerificationCode() {
     return request.query({
-      query: RESEND_VERIFY_EMAIL_GQL,
-      variables: {
-        input: {
-          token
-        }
-      }
-    })
-  }
-
-  static dangerZone(password: string) {
-    return request.query({
-      query: USER_DANGER_ZONE_GQL,
-      variables: {
-        input: {
-          password
-        }
-      }
+      query: EMAIL_VERIFICATION_CODE_GQL
     })
   }
 

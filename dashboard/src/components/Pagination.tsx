@@ -27,6 +27,10 @@ export const Pagination: FC<PaginationProps> = ({ total, page = 1, pageSize = 20
     setEnd(Math.min(total, page * pageSize))
   }, [page, pageSize, total])
 
+  if (maxPage <= 1) {
+    return null
+  }
+
   return (
     <nav
       className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-100 sm:px-6"
@@ -39,16 +43,15 @@ export const Pagination: FC<PaginationProps> = ({ total, page = 1, pageSize = 20
           results
         </p>
       </div>
-      {maxPage > 1 && (
-        <div className="flex-1 flex justify-between sm:justify-end">
-          <Button disabled={page <= 1} onClick={handlePrevious}>
-            Previous
-          </Button>
-          <Button className="ml-3" disabled={page >= maxPage} onClick={handleNext}>
-            Next
-          </Button>
-        </div>
-      )}
+
+      <div className="flex-1 flex justify-between sm:justify-end">
+        <Button disabled={page <= 1} onClick={handlePrevious}>
+          Previous
+        </Button>
+        <Button className="ml-3" disabled={page >= maxPage} onClick={handleNext}>
+          Next
+        </Button>
+      </div>
     </nav>
   )
 }

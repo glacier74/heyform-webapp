@@ -74,8 +74,8 @@ export class WorkspaceService {
     return result.data.teams
   }
 
-  static subscription(teamId: string) {
-    return request.query({
+  static async subscription(teamId: string) {
+    const result = await request.query({
       query: WORKSPACE_SUBSCRIPTION_GQL,
       variables: {
         input: {
@@ -83,6 +83,7 @@ export class WorkspaceService {
         }
       }
     })
+    return result.data.teamSubscription
   }
 
   static async members(teamId: string) {
@@ -145,10 +146,11 @@ export class WorkspaceService {
     })
   }
 
-  static plans() {
-    return request.query({
+  static async plans() {
+    const result = await request.query({
       query: PLANS_GQL
     })
+    return result.data.plans
   }
 
   static async cdnToken(workspaceId: string, filename: string, mime: string) {

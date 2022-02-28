@@ -1,6 +1,6 @@
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect, useVisible, useParam } from '@/utils'
+import { useAsyncEffect, useParam, useVisible } from '@/utils'
 import {
   ChevronDownIcon,
   DotsHorizontalIcon,
@@ -13,9 +13,9 @@ import type { FC } from 'react'
 import { useMemo } from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
 import { DeleteProject } from './DeleteProject'
+import './index.scss'
 import { ProjectMembers } from './ProjectMembers'
 import { RenameProject } from './RenameProject'
-import './index.scss'
 
 interface HeaderProps {
   onRename: () => void
@@ -86,7 +86,7 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
   )
 })
 
-const ProjectLayout: FC<IComponentProps> = ({ children }) => {
+export const ProjectLayout: FC<IComponentProps> = ({ children }) => {
   const history = useHistory()
   const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
@@ -138,5 +138,3 @@ const ProjectLayout: FC<IComponentProps> = ({ children }) => {
     </div>
   )
 }
-
-export default ProjectLayout

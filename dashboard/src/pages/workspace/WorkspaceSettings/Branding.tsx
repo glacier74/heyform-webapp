@@ -1,4 +1,5 @@
-import { SwitchField } from '@/components'
+import { PlanCheck, SwitchField } from '@/components'
+import { PlanGradeEnum } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
@@ -64,23 +65,25 @@ export const Branding: FC = observer(() => {
         </Form.Item>
       </Form.Custom>
 
-      <SwitchField
-        className="mt-6"
-        label="Remove HeyForm branding"
-        description={
-          <>
-            To make HeyForm feel like it's completely owned by your brand, remove the HeyForm Logo
-            in the form footer.{' '}
-            <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
-              Learn more about remove branding in docs
-            </a>
-            .
-          </>
-        }
-        loading={switchLoading}
-        value={workspaceStore.workspace?.removeBranding}
-        onChange={handleChange}
-      />
+      <PlanCheck permission={PlanGradeEnum.BUSINESS}>
+        <SwitchField
+          className="mt-6"
+          label="Remove HeyForm branding"
+          description={
+            <>
+              To make HeyForm feel like it's completely owned by your brand, remove the HeyForm Logo
+              in the form footer.{' '}
+              <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
+                Learn more about remove branding in docs
+              </a>
+              .
+            </>
+          }
+          loading={switchLoading}
+          value={workspaceStore.workspace?.removeBranding}
+          onChange={handleChange}
+        />
+      </PlanCheck>
 
       {switchError && <div className="form-item-error">{switchError.message}</div>}
     </div>

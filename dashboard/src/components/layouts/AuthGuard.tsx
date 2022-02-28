@@ -1,3 +1,4 @@
+import { PlanModal } from '@/components'
 import { UserService } from '@/service'
 import { useStore } from '@/store'
 import { useAsyncEffect, useVisible } from '@/utils'
@@ -73,8 +74,12 @@ export const AuthGuard: FC<IComponentProps> = ({ children }) => {
   const userStore = useStore('userStore')
 
   useAsyncEffect(async () => {
-    const result = await UserService.user()
+    const result = await UserService.userDetail()
     userStore.setUser(result)
+
+    if (!result.isEmailVerified) {
+      window.location.href = '/verify-email'
+    }
   }, [])
 
   return (
@@ -83,6 +88,9 @@ export const AuthGuard: FC<IComponentProps> = ({ children }) => {
 
       {/* Popup a modal to warning the user who has scheduled account deletion */}
       <DeletionWarning />
+
+      {/* Popup a plan modal when user going to access features of premium plans */}
+      <PlanModal />
     </>
   )
 }

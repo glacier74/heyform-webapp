@@ -1,6 +1,7 @@
+import { UserService } from '@/service'
 import { useStore } from '@/store'
 import { useVisible } from '@/utils'
-import { Button, Form, Input, Modal } from '@heyforms/ui'
+import { Button, Form, Input, Modal, notification } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -9,11 +10,16 @@ import { useState } from 'react'
 const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
   const [values, setValues] = useState<IMapType>({})
 
-  function handleChange(_: unknown, newValues: IMapType) {
-    setValues(newValues)
+  function handleChange(_: unknown, val: IMapType) {
+    setValues(val)
   }
 
-  async function handleFinish() {
+  async function handleFinish(val: IMapType) {
+    await UserService.updatePassword(val.currentPassword, val.newPassword)
+
+    notification.success({
+      title: 'Your password has been changed'
+    })
     onClose?.()
   }
 
@@ -32,7 +38,7 @@ const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
           request={handleFinish}
           onValuesChange={handleChange}
         >
-          <Form.Item name="password" label="Current password" rules={[{ required: true }]}>
+          <Form.Item name="currentPassword" label="Current password" rules={[{ required: true }]}>
             <Input.Password />
           </Form.Item>
           <Form.Item
@@ -42,7 +48,9 @@ const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
               {
                 required: true,
                 pattern:
-                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[!#$%&()*+\-,.\/\\:<=>?@\[\]^_{|}~0-9a-zA-Z]{8,}$/
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[!#$%&()*+\-,.\/\\:<=>?@\[\]^_{|}~0-9a-zA-Z]{8,}$/,
+                message:
+                  'Your password must be at least 8 characters, and at least 1 uppercase, 1 lowercase and 1 number.'
               }
             ]}
           >

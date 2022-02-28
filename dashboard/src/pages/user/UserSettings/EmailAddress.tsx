@@ -1,3 +1,4 @@
+import { UserService } from '@/service'
 import { useStore } from '@/store'
 import { useVisible } from '@/utils'
 import { Button, Form, Input, Modal } from '@heyforms/ui'
@@ -5,18 +6,25 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 
-interface ChangeEmailProps extends Omit<IModalProps, 'onComplete'> {
-  onComplete?: (email: string) => void
+interface FormValues {
+  email: string
+  password: string
+}
+
+interface SendCodeProps extends Omit<IModalProps, 'onComplete'> {
+  onComplete?: (formValues: FormValues) => void
 }
 
 interface VerifyEmailProps extends IModalProps {
-  email?: string | null
+  formValues?: FormValues
 }
 
-const ChangeEmail: FC<ChangeEmailProps> = ({ visible, onClose, onComplete }) => {
-  async function handleFinish(values: IMapType) {
+const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) => {
+  async function handleFinish(values: FormValues) {
+    await UserService.changeEmailCode(values.password, values.email)
+
     onClose?.()
-    onComplete?.(values.email)
+    onComplete?.(values)
   }
 
   return (
@@ -52,8 +60,10 @@ const ChangeEmail: FC<ChangeEmailProps> = ({ visible, onClose, onComplete }) => 
   )
 }
 
-const VerifyEmail: FC<VerifyEmailProps> = ({ visible, email, onClose, onComplete }) => {
-  async function handleFinish() {
+const VerifyEmail: FC<VerifyEmailProps> = ({ visible, formValues, onClose, onComplete }) => {
+  async function handleFinish(values: IMapType) {
+    await UserService.updateEmail(formValues!.email, formValues!.password, values.code)
+
     onClose?.()
     onComplete?.()
   }
@@ -65,7 +75,7 @@ const VerifyEmail: FC<VerifyEmailProps> = ({ visible, email, onClose, onComplete
           <h1 className="text-lg leading-6 font-medium text-gray-900">Check your email</h1>
           <p className="mt-1 text-sm text-gray-500">
             We've sent you an email with a 6-digit verification code. Please check your inbox at{' '}
-            {email}.
+            {formValues?.email}.
           </p>
         </div>
 
@@ -87,13 +97,19 @@ const VerifyEmail: FC<VerifyEmailProps> = ({ visible, email, onClose, onComplete
 
 export const EmailAddress: FC = observer(() => {
   const userStore = useStore('userStore')
-  const [changeEmailVisible, openChangeEmail, closeChangeEmail] = useVisible()
+  const [sendCodeVisible, openSendCode, closeSendCode] = useVisible()
   const [verifyEmailVisible, openVerifyEmail, closeVerifyEmail] = useVisible()
-  const [newEmail, setNewEmail] = useState<string>()
+  const [formValues, setTempValues] = useState<FormValues>()
 
-  function handleComplete(email: string) {
-    setNewEmail(email)
+  function handleSendComplete(values: FormValues) {
+    setTempValues(values)
     openVerifyEmail()
+  }
+
+  function handleVerifyComplete() {
+    userStore.update({
+      email: formValues?.email
+    })
   }
 
   return (
@@ -103,18 +119,19 @@ export const EmailAddress: FC = observer(() => {
         <span>{userStore.user.email}</span>
 
         {!userStore.user.isSocialAccount && (
-          <Button.Link className="ml-2 text-blue-500" onClick={openChangeEmail}>
+          <Button.Link className="ml-2 text-blue-500" onClick={openSendCode}>
             Change email address
           </Button.Link>
         )}
       </p>
 
-      <ChangeEmail
-        visible={changeEmailVisible}
-        onClose={closeChangeEmail}
-        onComplete={handleComplete}
+      <SendCode visible={sendCodeVisible} onClose={closeSendCode} onComplete={handleSendComplete} />
+      <VerifyEmail
+        visible={verifyEmailVisible}
+        formValues={formValues}
+        onClose={closeVerifyEmail}
+        onComplete={handleVerifyComplete}
       />
-      <VerifyEmail visible={verifyEmailVisible} email={newEmail} onClose={closeVerifyEmail} />
     </div>
   )
 })

@@ -1,5 +1,4 @@
 import { Async, Pagination } from '@/components'
-import RenameGroup from '@/pages/audiences/Groups/RenameGroup'
 import { AudienceService } from '@/service'
 import { urlBuilder, useParam, useQuery, useVisible } from '@/utils'
 import { DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
@@ -8,8 +7,9 @@ import { Button, Dropdown, Input, Menus, notification, Table } from '@heyforms/u
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import AudienceLayout from '../layout'
+import { AudienceLayout } from '../views/AudienceLayout'
 import AddGroup from './AddGroup'
+import RenameGroup from './RenameGroup'
 import { Skeleton } from './Skeleton'
 
 const Groups = () => {

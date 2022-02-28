@@ -1,12 +1,23 @@
 import { AuthGuard, AuthLayout, WorkspaceLayout } from '@/components'
 import { lazy } from 'react'
-import type { CustomRouteConfig } from './index'
+
+export interface CustomRouteConfig {
+  path: string
+  exact?: boolean
+  title?: string
+  loginRequired?: boolean
+  layout: any
+  component: any
+}
 
 /* Auth */
 const Login = lazy(() => import('@/pages/auth/Login'))
 const SignUp = lazy(() => import('@/pages/auth/SignUp'))
 const ForgotPassword = lazy(() => import('@/pages/auth/ForgotPassword'))
 const ResetPassword = lazy(() => import('@/pages/auth/ResetPassword'))
+
+/* Verify email address */
+const VerifyEmail = lazy(() => import('@/pages/user/VerifyEmail'))
 
 /* Workspace */
 const Home = lazy(() => import('@/pages/home/Home'))
@@ -20,6 +31,10 @@ const Groups = lazy(() => import('@/pages/audiences/Groups'))
 /* Project */
 const Project = lazy(() => import('@/pages/project/Project'))
 const Trash = lazy(() => import('@/pages/project/Trash'))
+
+/* Billing */
+const Subscription = lazy(() => import('@/pages/billing/Subscription'))
+const Invoices = lazy(() => import('@/pages/billing/Invoices'))
 
 const config: CustomRouteConfig[] = [
   /* Login */
@@ -48,11 +63,20 @@ const config: CustomRouteConfig[] = [
   },
   /* Reset Password */
   {
-    path: '/reset/:token',
+    path: '/reset-password',
     loginRequired: false,
     layout: AuthLayout,
     component: ResetPassword,
     title: 'Reset Password'
+  },
+
+  /* Verify email address */
+  {
+    path: '/verify-email',
+    loginRequired: true,
+    exact: true,
+    layout: AuthLayout,
+    component: VerifyEmail
   },
 
   /* Home */
@@ -94,6 +118,22 @@ const config: CustomRouteConfig[] = [
     exact: true,
     layout: WorkspaceLayout,
     component: Groups
+  },
+
+  /* Billing */
+  {
+    path: '/workspace/:workspaceId/billing',
+    loginRequired: true,
+    exact: true,
+    layout: WorkspaceLayout,
+    component: Subscription
+  },
+  {
+    path: '/workspace/:workspaceId/billing/invoice',
+    loginRequired: true,
+    exact: true,
+    layout: WorkspaceLayout,
+    component: Invoices
   },
 
   /* Project */

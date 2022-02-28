@@ -1,22 +1,36 @@
 import { Async, Pagination } from '@/components'
 import type { ContactModel } from '@/models'
-import EditContact from '@/pages/audiences/Contacts/EditContact'
+import { PlanGradeEnum } from '@/models'
 import { AudienceService } from '@/service'
+import { useStore } from '@/store'
 import { urlBuilder, useParam, useQuery, useVisible } from '@/utils'
-import { DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
-import { Avatar, Button, Dropdown, Input, Menus, notification, Table } from '@heyforms/ui'
+import { AtSymbolIcon, DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
+import {
+  Avatar,
+  Button,
+  Dropdown,
+  EmptyStates,
+  Input,
+  Menus,
+  notification,
+  Table
+} from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
+import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import AudienceLayout from '../layout'
+import { AudienceLayout } from '../views/AudienceLayout'
 import AddContact from './AddContact'
 import { ContactFilter } from './ContactFilter'
+import EditContact from './EditContact'
 import ImportContact from './ImportContact'
 import { Skeleton } from './Skeleton'
 
 const Contacts = () => {
   const { workspaceId } = useParam()
   const history = useHistory()
+  const workspaceStore = useStore('workspaceStore')
+  const appStore = useStore('appStore')
 
   const { keyword, groups, page } = useQuery({
     keyword: String,
@@ -177,6 +191,25 @@ const Contacts = () => {
     setContacts(result.contacts)
   }
 
+  function handleOpenPlanModal() {
+    appStore.openPlanModal()
+  }
+
+  if (workspaceStore.workspace.plan.grade < PlanGradeEnum.BASIC) {
+    return (
+      <div className="w-full h-full">
+        <div className="empty-states-container flex flex-col justify-center">
+          <EmptyStates
+            icon={<AtSymbolIcon className="non-scaling-stroke" />}
+            title="You don't have any contacts yet"
+            description="Add people who needs to take part in the survey or data collection."
+            action={<Button onClick={handleOpenPlanModal}>Add contact</Button>}
+          />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <AudienceLayout>
       <div className="mt-8 lg:flex lg:items-center lg:justify-between">
@@ -193,7 +226,21 @@ const Contacts = () => {
         </div>
       </div>
 
-      <Async request={request} deps={[page, keyword, groups]} skeleton={<Skeleton />}>
+      <Async
+        request={request}
+        deps={[page, keyword, groups]}
+        skeleton={<Skeleton />}
+        emptyState={
+          <div className="empty-states-container flex flex-col justify-center">
+            <EmptyStates
+              icon={<AtSymbolIcon className="non-scaling-stroke" />}
+              title="You don't have any contacts yet"
+              description="Add people who needs to take part in the survey or data collection."
+              action={<Button onClick={openAddContact}>Add contact</Button>}
+            />
+          </div>
+        }
+      >
         <Table<ContactModel> className="mt-8" columns={columns} data={contacts} />
       </Async>
 
@@ -208,4 +255,4 @@ const Contacts = () => {
   )
 }
 
-export default Contacts
+export default observer(Contacts)

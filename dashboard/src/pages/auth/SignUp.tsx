@@ -1,7 +1,15 @@
-import { AppleIcon, GoogleIcon, LogoIcon } from '@/components'
+import { LogoIcon } from '@/components'
+import { AuthService } from '@/service'
 import { Form, Input } from '@heyforms/ui'
+import { Link } from 'react-router-dom'
+import { ThirdPartyLogin } from './views/ThirdPartyLogin'
 
 const SignUp = () => {
+  async function handleFinish(values: any) {
+    await AuthService.signUp(values)
+    window.location.href = window.sessionStorage.next || '/'
+  }
+
   return (
     <div>
       <div>
@@ -9,9 +17,9 @@ const SignUp = () => {
         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Create an account</h2>
         <p className="mt-2 text-sm text-gray-600">
           Or {''}
-          <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
+          <Link to="/" className="font-medium text-blue-600 hover:text-blue-500">
             sign in with existing one
-          </a>
+          </Link>
         </p>
       </div>
 
@@ -19,22 +27,7 @@ const SignUp = () => {
         <div>
           <div>
             <p className="text-sm font-medium text-gray-700">Sign up with</p>
-
-            <div className="mt-1 grid grid-cols-2 gap-2">
-              <div>
-                <div className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 cursor-pointer hover:bg-gray-50">
-                  <span className="sr-only">Sign up with Google</span>
-                  <GoogleIcon className="w-5 h-5" />
-                </div>
-              </div>
-
-              <div>
-                <div className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 cursor-pointer hover:bg-gray-50">
-                  <span className="sr-only">Sign up with Apple</span>
-                  <AppleIcon className="w-5 h-5" />
-                </div>
-              </div>
-            </div>
+            <ThirdPartyLogin />
           </div>
 
           <div className="mt-6 relative">
@@ -55,32 +48,56 @@ const SignUp = () => {
               className: 'mt-3',
               block: true
             }}
-            request={console.log as any}
+            request={handleFinish}
           >
-            <Form.Item name="name" label="Name" rules={[{ required: true }]}>
+            <Form.Item
+              name="name"
+              label="Name"
+              rules={[{ required: true, message: "Name can't be empty" }]}
+            >
               <Input />
             </Form.Item>
 
             <Form.Item
               name="email"
               label="Email address"
-              rules={[{ type: 'email', required: true }]}
+              rules={[{ type: 'email', required: true, message: 'Invalid email address' }]}
             >
               <Input type="email" />
             </Form.Item>
 
-            <Form.Item name="password" label="Password">
+            <Form.Item
+              name="password"
+              label="Password"
+              rules={[
+                {
+                  required: true,
+                  pattern:
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[!#$%&()*+\-,.\/\\:<=>?@\[\]^_{|}~0-9a-zA-Z]{8,}$/,
+                  message:
+                    'Your password must be at least 8 characters, and at least 1 uppercase, 1 lowercase and 1 number.'
+                }
+              ]}
+            >
               <Input.Password />
             </Form.Item>
 
             <div className="mt-6">
               <p className="text-sm text-gray-500">
                 By signing up, you agree to our{' '}
-                <a href="#" className="font-medium text-gray-700 underline">
+                <a
+                  href="https://community.heyform.net/t/terms-conditions/33"
+                  className="font-medium text-gray-700 underline"
+                  target="_blank"
+                >
                   Terms of Service
                 </a>{' '}
                 and{' '}
-                <a href="#" className="font-medium text-gray-700 underline">
+                <a
+                  href="https://community.heyform.net/t/privacy-policy/34"
+                  className="font-medium text-gray-700 underline"
+                  target="_blank"
+                >
                   Privacy Policy
                 </a>
                 .

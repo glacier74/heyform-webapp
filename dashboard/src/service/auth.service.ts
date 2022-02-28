@@ -34,13 +34,14 @@ export class AuthService {
     })
   }
 
-  static resetPassword(token: string, password: string) {
+  static resetPassword(email: string, password: string, code: string) {
     return request.mutate({
       mutation: RESET_PASSWORD_GQL,
       variables: {
         input: {
-          token,
-          password
+          email,
+          password,
+          code
         }
       }
     })

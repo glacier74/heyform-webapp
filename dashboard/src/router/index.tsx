@@ -2,16 +2,8 @@ import { getAuthState } from '@/utils'
 import type { FC } from 'react'
 import { useEffect } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import type { CustomRouteConfig } from './config'
 import config from './config'
-
-export interface CustomRouteConfig {
-  path: string
-  exact?: boolean
-  title?: string
-  loginRequired?: boolean
-  layout: any
-  component: any
-}
 
 /*!
  * route-order https://github.com/sfrdmn/node-route-order

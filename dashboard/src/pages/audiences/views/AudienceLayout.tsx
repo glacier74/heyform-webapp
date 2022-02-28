@@ -3,7 +3,7 @@ import { Heading, Navbar } from '@heyforms/ui'
 import type { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 
-const AudienceLayout: FC<IComponentProps> = ({ children }) => {
+export const AudienceLayout: FC<IComponentProps> = ({ children }) => {
   const { workspaceId } = useParam()
 
   return (
@@ -23,5 +23,3 @@ const AudienceLayout: FC<IComponentProps> = ({ children }) => {
     </div>
   )
 }
-
-export default AudienceLayout

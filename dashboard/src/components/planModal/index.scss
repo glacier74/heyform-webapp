@@ -1,0 +1,28 @@
+.plan-modal {
+  .modal-container {
+    @apply p-0;
+  }
+
+  .modal-content {
+    @apply p-0 w-full max-w-full h-full bg-white;
+    overflow-y: auto;
+    overflow-y: overlay;
+    scrollbar-gutter: stable;
+  }
+
+  .modal-body {
+    @apply max-w-7xl mx-auto h-auto flex-none px-4 py-4 sm:px-6 md:px-8;
+  }
+
+  .modal-close-button {
+    @apply fixed top-16 right-16 z-50;
+  }
+
+  .plans-heading {
+    @apply hidden;
+  }
+
+  tbody {
+    border-top: none;
+  }
+}
