@@ -25,3 +25,29 @@
     @apply translate-x-5;
   }
 }
+
+.switch-group {
+  @apply group inline-flex p-0.5 rounded-lg bg-gray-100 hover:bg-gray-200;
+}
+
+.switch-button {
+  @apply py-1.5 shadow-none border-none text-gray-600 group-hover:text-gray-900 focus:outline-none focus:ring-0 focus:ring-offset-0;
+
+  &,
+  &:hover {
+    @apply bg-transparent;
+  }
+
+  &:hover {
+    @apply text-gray-900;
+  }
+}
+
+.switch-button-active {
+  @apply border border-gray-300 shadow-sm ring-1 ring-black ring-opacity-5 text-gray-900;
+
+  &,
+  &:hover {
+    @apply bg-white;
+  }
+}

@@ -4,11 +4,11 @@ import Group from './Group'
 import type { RadioProps } from './Radio'
 import Radio from './Radio'
 
-type ExportCheckboxType = FC<RadioProps> & {
+type ExportRadioType = FC<RadioProps> & {
   Group: FC<RadioGroupProps>
 }
 
-const ExportCheckbox = Radio as ExportCheckboxType
-ExportCheckbox.Group = Group
+const ExportRadio = Radio as ExportRadioType
+ExportRadio.Group = Group
 
-export default ExportCheckbox
+export default ExportRadio
