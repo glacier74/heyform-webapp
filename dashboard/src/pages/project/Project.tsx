@@ -3,10 +3,10 @@ import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
 import {
+  ClipboardCheckIcon,
   DotsHorizontalIcon,
   DuplicateIcon,
   PencilIcon,
-  PlusIcon,
   TrashIcon
 } from '@heroicons/react/outline'
 import type { FormModel } from '@heyforms/shared-types-enums'
@@ -108,14 +108,13 @@ const Project = observer(() => {
         deps={[projectId]}
         skeleton={<Skeleton />}
         emptyState={
-          <div className="empty-states-container flex flex-col justify-center">
-            <EmptyStates
-              icon={<PlusIcon className="non-scaling-stroke" />}
-              title="Don't have any forms in this project yet"
-              description="It's your one-stop solution for all form needs. Quickly build online forms without any coding or design experience."
-              action={<Button onClick={alert}>Create form</Button>}
-            />
-          </div>
+          <EmptyStates
+            className="empty-states-fit"
+            icon={<ClipboardCheckIcon className="non-scaling-stroke" />}
+            title="Don't have any forms in this project yet"
+            description="It's your one-stop solution for all form needs. Quickly build online forms without any coding or design experience."
+            action={<Button onClick={alert}>Create form</Button>}
+          />
         }
       >
         <Table<FormModel> className="mt-8" columns={columns} data={workspaceStore.forms} />

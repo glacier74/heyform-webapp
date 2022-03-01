@@ -16,6 +16,9 @@ const SignUp = lazy(() => import('@/pages/auth/SignUp'))
 const ForgotPassword = lazy(() => import('@/pages/auth/ForgotPassword'))
 const ResetPassword = lazy(() => import('@/pages/auth/ResetPassword'))
 
+/* Join workspace */
+const JoinWorkspace = lazy(() => import('@/pages/workspace/JoinWorkspace'))
+
 /* Verify email address */
 const VerifyEmail = lazy(() => import('@/pages/user/VerifyEmail'))
 
@@ -102,6 +105,15 @@ const config: CustomRouteConfig[] = [
     exact: true,
     layout: WorkspaceLayout,
     component: Members
+  },
+
+  /* Join workspace with invite code */
+  {
+    path: '/workspace/:workspaceId/invitation/:inviteCode',
+    exact: true,
+    loginRequired: true,
+    layout: AuthLayout,
+    component: JoinWorkspace
   },
 
   /* Audiences */

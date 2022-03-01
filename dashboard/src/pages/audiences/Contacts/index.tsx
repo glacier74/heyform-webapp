@@ -4,7 +4,7 @@ import { PlanGradeEnum } from '@/models'
 import { AudienceService } from '@/service'
 import { useStore } from '@/store'
 import { urlBuilder, useParam, useQuery, useVisible } from '@/utils'
-import { AtSymbolIcon, DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
+import { DotsHorizontalIcon, MailIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import {
   Avatar,
   Button,
@@ -197,48 +197,46 @@ const Contacts = () => {
 
   if (workspaceStore.workspace.plan.grade < PlanGradeEnum.BASIC) {
     return (
-      <div className="w-full h-full">
-        <div className="empty-states-container flex flex-col justify-center">
-          <EmptyStates
-            icon={<AtSymbolIcon className="non-scaling-stroke" />}
-            title="You don't have any contacts yet"
-            description="Add people who needs to take part in the survey or data collection."
-            action={<Button onClick={handleOpenPlanModal}>Add contact</Button>}
-          />
-        </div>
-      </div>
+      <EmptyStates
+        className="empty-states-full"
+        icon={<MailIcon className="non-scaling-stroke" />}
+        title="You don't have any contacts yet"
+        description="Add people who needs to take part in the survey or data collection."
+        action={<Button onClick={handleOpenPlanModal}>Add contact</Button>}
+      />
     )
   }
 
   return (
     <AudienceLayout>
-      <div className="mt-8 lg:flex lg:items-center lg:justify-between">
-        <div className="flex items-center space-x-2">
-          <Input.Search className="w-full md:w-96" onSearch={handleKeywordChange} />
-          <ContactFilter value={groups} onChange={handleGroupChange} />
-        </div>
+      {contacts.length > 0 && (
+        <div className="mt-8 lg:flex lg:items-center lg:justify-between">
+          <div className="flex items-center space-x-2">
+            <Input.Search className="w-full md:w-96" onSearch={handleKeywordChange} />
+            <ContactFilter value={groups} onChange={handleGroupChange} />
+          </div>
 
-        <div className="mt-6 flex flex-col justify-items-stretch space-x-0 space-y-4 md:space-y-0 md:space-x-3 lg:mt-0 md:flex-row">
-          <Button type="primary" onClick={openAddContact}>
-            Add contact
-          </Button>
-          <Button onClick={openImportContact}>Import</Button>
+          <div className="mt-6 flex flex-col justify-items-stretch space-x-0 space-y-4 md:space-y-0 md:space-x-3 lg:mt-0 md:flex-row">
+            <Button type="primary" onClick={openAddContact}>
+              Add contact
+            </Button>
+            <Button onClick={openImportContact}>Import</Button>
+          </div>
         </div>
-      </div>
+      )}
 
       <Async
         request={request}
         deps={[page, keyword, groups]}
         skeleton={<Skeleton />}
         emptyState={
-          <div className="empty-states-container flex flex-col justify-center">
-            <EmptyStates
-              icon={<AtSymbolIcon className="non-scaling-stroke" />}
-              title="You don't have any contacts yet"
-              description="Add people who needs to take part in the survey or data collection."
-              action={<Button onClick={openAddContact}>Add contact</Button>}
-            />
-          </div>
+          <EmptyStates
+            className="empty-states-fit"
+            icon={<MailIcon className="non-scaling-stroke" />}
+            title="You don't have any contacts yet"
+            description="Add people who needs to take part in the survey or data collection."
+            action={<Button onClick={openAddContact}>Add contact</Button>}
+          />
         }
       >
         <Table<ContactModel> className="mt-8" columns={columns} data={contacts} />

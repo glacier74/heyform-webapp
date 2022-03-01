@@ -2,6 +2,7 @@ import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
 import { Button, Form, Input, Modal, notification, useForm } from '@heyforms/ui'
+import { unixDate } from '@hpnp/utils'
 import { isEmpty, isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -48,7 +49,11 @@ export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => 
           </h1>
           <p className="mt-1 text-sm text-gray-500">
             You can invite members to join the workspace by sending emails below. The invitation
-            expires on <span className="text-gray-700">2022-02-22 17:00</span>.
+            expires on{' '}
+            <span className="text-gray-700">
+              {unixDate(workspaceStore.workspace.inviteCodeExpireAt || 0).format('MMMM DD, YYYY')}
+            </span>
+            .
           </p>
         </div>
 

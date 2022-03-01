@@ -34,8 +34,8 @@ export class WorkspaceService {
     return result.data.createTeam
   }
 
-  static publicDetail(teamId: string, inviteCode: string) {
-    return request.query({
+  static async publicDetail(teamId: string, inviteCode: string) {
+    const result = await request.query({
       query: PUBLIC_WORKSPACE_DETAIL_GQL,
       variables: {
         input: {
@@ -44,6 +44,7 @@ export class WorkspaceService {
         }
       }
     })
+    return result.data.publicTeamDetail
   }
 
   static update(input: { teamId: string } & IMapType) {

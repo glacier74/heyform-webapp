@@ -1,10 +1,13 @@
 import { Async, Pagination } from '@/components'
+import { PlanGradeEnum } from '@/models'
 import { AudienceService } from '@/service'
+import { useStore } from '@/store'
 import { urlBuilder, useParam, useQuery, useVisible } from '@/utils'
-import { DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
+import { DotsHorizontalIcon, FolderOpenIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import type { GroupModel } from '@heyforms/shared-types-enums'
-import { Button, Dropdown, Input, Menus, notification, Table } from '@heyforms/ui'
+import { Button, Dropdown, EmptyStates, Input, Menus, notification, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
+import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { AudienceLayout } from '../views/AudienceLayout'
@@ -15,6 +18,8 @@ import { Skeleton } from './Skeleton'
 const Groups = () => {
   const { workspaceId } = useParam()
   const history = useHistory()
+  const workspaceStore = useStore('workspaceStore')
+  const appStore = useStore('appStore')
 
   const [total, setTotal] = useState(0)
   const [groups, setGroups] = useState<GroupModel[]>([])
@@ -135,16 +140,47 @@ const Groups = () => {
     return groups.length
   }
 
+  function handleOpenPlanModal() {
+    appStore.openPlanModal()
+  }
+
+  if (workspaceStore.workspace.plan.grade < PlanGradeEnum.BASIC) {
+    return (
+      <EmptyStates
+        className="empty-states-full"
+        icon={<FolderOpenIcon className="non-scaling-stroke" />}
+        title="You don't have any groups yet"
+        description="You can organize your contacts into groups to work with them more easily."
+        action={<Button onClick={handleOpenPlanModal}>Add group</Button>}
+      />
+    )
+  }
+
   return (
     <AudienceLayout>
-      <div className="mt-8 lg:flex lg:items-center lg:justify-between">
-        <Input.Search className="w-full md:w-96" />
-        <Button className="mt-6 lg:mt-0 w-full md:w-auto" type="primary" onClick={openAddGroup}>
-          Add group
-        </Button>
-      </div>
+      {groups.length > 0 && (
+        <div className="mt-8 lg:flex lg:items-center lg:justify-between">
+          <Input.Search className="w-full md:w-96" />
+          <Button className="mt-6 lg:mt-0 w-full md:w-auto" type="primary" onClick={openAddGroup}>
+            Add group
+          </Button>
+        </div>
+      )}
 
-      <Async request={request} deps={[page, keyword]} skeleton={<Skeleton />}>
+      <Async
+        request={request}
+        deps={[page, keyword]}
+        skeleton={<Skeleton />}
+        emptyState={
+          <EmptyStates
+            className="empty-states-fit"
+            icon={<FolderOpenIcon className="non-scaling-stroke" />}
+            title="You don't have any groups yet"
+            description="You can organize your contacts into groups to work with them more easily."
+            action={<Button onClick={handleOpenPlanModal}>Add group</Button>}
+          />
+        }
+      >
         <Table<GroupModel> className="mt-8" columns={columns} data={groups} />
       </Async>
 
@@ -157,4 +193,4 @@ const Groups = () => {
   )
 }
 
-export default Groups
+export default observer(Groups)

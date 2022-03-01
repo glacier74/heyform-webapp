@@ -27,10 +27,6 @@ const AddGroup: FC<IModalProps> = ({ visible, onClose }) => {
           <p className="mt-1 mr-8 text-sm text-gray-500">
             You can organize your contacts into groups to work with them more easily.
           </p>
-          <p className="mt-1 mr-8 text-sm text-gray-500">
-            For example, if you regularly email people in a school group or on your cycling team,
-            you can create a group and address your email to the group instead of each person.
-          </p>
         </div>
 
         <Form.Custom

@@ -58,13 +58,12 @@ const Invoices = () => {
         deps={[]}
         skeleton={<Skeleton />}
         emptyState={
-          <div className="empty-states-container flex flex-col justify-center">
-            <EmptyStates
-              icon={<CreditCardIcon className="non-scaling-stroke" />}
-              title="You haven't been billed yet"
-              description="Once we send you a bill, the details will show here."
-            />
-          </div>
+          <EmptyStates
+            className="empty-states-fit"
+            icon={<CreditCardIcon className="non-scaling-stroke" />}
+            title="You haven't been billed yet"
+            description="Once we send you a bill, the details will show here."
+          />
         }
       >
         <Table<InvoiceModel> className="mt-8" columns={columns} data={invoices} />

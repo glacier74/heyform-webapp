@@ -3,8 +3,8 @@ import type { ProjectModel, UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useAsyncEffect, useParam, useVisible } from '@/utils'
-import { DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
-import { Avatar, Button, Dropdown, Heading, Menus } from '@heyforms/ui'
+import { CollectionIcon, DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
+import { Avatar, Button, Dropdown, EmptyStates, Heading, Menus } from '@heyforms/ui'
 import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -123,23 +123,36 @@ const Workspace = observer(() => {
         }
         description={`${workspaceStore.workspace?.plan.name} plan · ${workspaceStore.workspace?.memberCount} members`}
         actions={
-          <Button type="primary" onClick={openCreateProject}>
-            Create project
-          </Button>
+          workspaceStore.workspace?.projects.length > 0 && (
+            <Button type="primary" onClick={openCreateProject}>
+              Create project
+            </Button>
+          )
         }
       />
+
       <div className="py-4">
-        <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {workspaceStore.workspace?.projects.map(proj => (
-            <Item
-              key={proj.id}
-              project={proj}
-              users={workspaceStore.members}
-              onRename={handleRename}
-              onDelete={handleDelete}
-            />
-          ))}
-        </ul>
+        {workspaceStore.workspace?.projects.length > 0 ? (
+          <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {workspaceStore.workspace?.projects.map(proj => (
+              <Item
+                key={proj.id}
+                project={proj}
+                users={workspaceStore.members}
+                onRename={handleRename}
+                onDelete={handleDelete}
+              />
+            ))}
+          </ul>
+        ) : (
+          <EmptyStates
+            className="empty-states-fit mt-8"
+            icon={<CollectionIcon className="non-scaling-stroke" />}
+            title="You don't have any projects yet"
+            description="Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations."
+            action={<Button onClick={openCreateProject}>Create project</Button>}
+          />
+        )}
       </div>
 
       {/* Create project */}

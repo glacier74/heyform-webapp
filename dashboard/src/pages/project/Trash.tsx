@@ -93,13 +93,12 @@ const Trash = observer(() => {
         deps={[projectId]}
         skeleton={<Skeleton />}
         emptyState={
-          <div className="empty-states-container flex flex-col justify-center">
-            <EmptyStates
-              icon={<TrashIcon className="non-scaling-stroke" />}
-              title="Don't have any forms in trash"
-              description="Forms will be permanently deleted from the trash after 30 days."
-            />
-          </div>
+          <EmptyStates
+            className="empty-states-fit"
+            icon={<TrashIcon className="non-scaling-stroke" />}
+            title="Don't have any forms in trash"
+            description="Forms will be permanently deleted from the trash after 30 days."
+          />
         }
       >
         <Table<FormModel> className="mt-8" columns={columns} data={workspaceStore.forms} />
