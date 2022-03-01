@@ -5,8 +5,9 @@
   "license": "private",
   "private": true,
   "workspaces": [
+    "dashboard",
     "ui",
-    "dashboard"
+    "vite-plugin-upload"
   ],
   "engines": {
     "npm": ">=7.0.0",
