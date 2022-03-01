@@ -1,4 +1,4 @@
-import uploadPlugin, { UploaderZone } from '@heyforms/vite-plugin-upload'
+import uploadPlugin, { UploadZone } from '@heyforms/vite-plugin-upload'
 import legacy from '@vitejs/plugin-legacy'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { resolve } from 'path'
@@ -29,7 +29,7 @@ export default defineConfig({
       bucket: 'heyform',
       overrides: true,
       parallelCount: 2,
-      zone: UploaderZone.na0,
+      zone: UploadZone.na0,
       debug: true
     }),
     // @ts-ignore
