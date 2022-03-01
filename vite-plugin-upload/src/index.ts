@@ -1,4 +1,4 @@
-import * as Uploader from '@hpnp/qiniu-uploader'
+import Uploader from '@hpnp/qiniu-uploader'
 
 export interface UploadPluginOptions {
   envFile?: string
@@ -20,7 +20,7 @@ export const UploadZone = Uploader.zone as {
   na0: any
 }
 
-export default function uploadPlugin(options: UploadPluginOptions) {
+export default function uploadPlugin(options: UploadPluginOptions): any {
   return {
     name: 'upload-plugin',
     apply: 'build',

@@ -11,10 +11,9 @@
     "removeComments": true,
     "declarationMap": true,
     "declaration": true,
-    "declarationDir": "lib/types",
-    "outDir": "lib/esm",
-    "target": "es2016",
-    "module": "esnext",
+    "outDir": "lib",
+    "target": "es2017",
+    "module": "commonjs",
     "moduleResolution": "node"
   },
   "include": [
