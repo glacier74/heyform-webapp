@@ -28,6 +28,7 @@ development:
   script: |
     echo "=> Building"
     yarn install
+    yarn workspace @heyforms/vite-plugin-upload build
     yarn workspace @heyforms/ui build
     yarn workspace heyform staging
 
