@@ -1,16 +1,36 @@
+import uploadPlugin from '@heyforms/vite-plugin-upload'
 import legacy from '@vitejs/plugin-legacy'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { resolve } from 'path'
+import externalGlobals from 'rollup-plugin-external-globals'
 import { injectManifest } from 'rollup-plugin-workbox'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
+    reactRefresh(),
     legacy({
       targets: ['ie >= 11'],
       additionalLegacyPolyfills: ['regenerator-runtime/runtime']
     }),
-    reactRefresh(),
+    // @ts-ignore
+    uploadPlugin({
+      envFile: '.qiniurc',
+      prefix: 'webapp/',
+      base: 'dist/',
+      glob: 'dist/**',
+      globIgnore: [
+        'dist/**/*.map',
+        'dist/**/*.html',
+        'dist/asset-manifest.json',
+        'dist/static/manifest.webmanifest',
+        'dist/sw.js'
+      ],
+      bucket: 'heyform',
+      overrides: true,
+      parallelCount: 2,
+      debug: true
+    }),
     // @ts-ignore
     injectManifest({
       swSrc: 'src/sw.js',
@@ -53,6 +73,14 @@ export default defineConfig({
       format: {
         comments: false
       }
+    },
+    rollupOptions: {
+      plugins: [
+        externalGlobals({
+          react: 'React',
+          'react-dom': 'ReactDOM'
+        })
+      ]
     }
   },
   server: {

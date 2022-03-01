@@ -1,10 +1,5 @@
-import { cacheNames, clientsClaim, setCacheNameDetails } from 'workbox-core'
-import {
-  cleanupOutdatedCaches,
-  createHandlerBoundToURL,
-  precacheAndRoute
-} from 'workbox-precaching'
-import { NavigationRoute, registerRoute } from 'workbox-routing'
+/* eslint-disable */
+importScripts('https://cdnjs.cloudflare.com/ajax/libs/workbox-sw/6.5.0/workbox-sw.min.js')
 
 setCacheNameDetails({
   prefix: 'heyform',
@@ -28,42 +23,35 @@ self.addEventListener('message', event => {
 self.addEventListener('install', event => {
   event.waitUntil(
     caches
-      .open(cacheNames.precache)
+      .open(workbox.core.cacheNames.precache)
       .then(cache => cache.addAll(Array.from(new Set(precaches.map(c => c.url)))))
       .then(() => self.skipWaiting())
   )
 })
 
-precacheAndRoute(precaches)
+workbox.core.clientsClaim()
+workbox.precaching.precacheAndRoute(precaches)
 
-// clean old assets
-cleanupOutdatedCaches()
+const handler = workbox.precaching.createHandlerBoundToURL('/index.html')
+const navigationRoute = new workbox.routing.NavigationRoute(handler, {
+  denylist: [
+    /\/sw\.js$/,
 
-//
-clientsClaim()
+    // Public form
+    /\/f\/[^\/]+$/,
+    /\/f\/[^\/]+\/(e\.js)$/i,
+    /\/go\/[^\/]+$/,
+    /\/go\/[^\/]+\/(e\.js)$/i,
 
-// to allow work offline
-registerRoute(
-  new NavigationRoute(createHandlerBoundToURL('/index.html'), {
-    denylist: [
-      /\/sw\.js$/,
+    // Embed form
+    /\/embed.*$/,
 
-      // Public form
-      /\/f\/[^\/]+$/,
-      /\/f\/[^\/]+\/(e\.js)$/i,
-      /\/go\/[^\/]+$/,
-      /\/go\/[^\/]+\/(e\.js)$/i,
+    // Open App authorize
+    /\/oauth\/authorize\/.*$/i,
 
-      // Embed form
-      /\/embed.*$/,
-
-      // Open App authorize
-      /\/oauth\/authorize\/.*$/i,
-
-      /\/export\/submissions[^\/]+$/,
-      /\/connect\/.*$/,
-      /\/reset\/.*$/,
-      /\/verify\/.*$/
-    ]
-  })
-)
+    /\/export\/submissions[^\/]+$/,
+    /\/connect\/.*$/,
+    /\/logout/
+  ]
+})
+workbox.routing.registerRoute(navigationRoute)
