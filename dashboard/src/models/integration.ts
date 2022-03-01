@@ -40,13 +40,13 @@ export interface AppModel {
   avatar?: string
   homepage?: string
   helpLinkUrl?: string
-  attributes?: AnyMap
+  attributes?: IMapType
   integration?: IntegrationModel
   status: AppStatusEnum
 }
 
 export interface IntegrationModel {
   appId: string
-  attributes?: AnyMap
+  attributes?: IMapType
   status: number
 }

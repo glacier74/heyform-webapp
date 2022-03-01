@@ -1,5 +1,5 @@
-import { FieldKindEnum } from '@/models'
-import { ReactNode } from 'react'
+import { FieldKindEnum } from '@heyforms/shared-types-enums'
+import type { ReactNode } from 'react'
 
 export interface FieldItemProps {
   kind: FieldKindEnum
