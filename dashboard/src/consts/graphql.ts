@@ -331,41 +331,8 @@ export const TEMPLATE_DETAIL_GQL = gql`
         title
         description
         kind
-        validations {
-          required
-          min
-          max
-          matchExpected
-        }
-        properties {
-          showButton
-          buttonText
-          hideMarks
-          allowOther
-          allowMultiple
-          choices {
-            id
-            label
-            image
-            color
-            score
-            isExpected
-          }
-          other
-          numberPreRow
-          shape
-          total
-          start
-          leftLabel
-          centerLabel
-          rightLabel
-          defaultCountryCode
-          currency
-          price
-          format
-          use12Hours
-          score
-        }
+        validations
+        properties
       }
       themeSettings {
         themeId

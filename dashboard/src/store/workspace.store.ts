@@ -10,7 +10,7 @@ export class WorkspaceStore {
   // workspace member maps
   memberMaps: IMapType<UserModel[]> = {}
 
-  // project forms
+  // project form
   formMaps: IMapType<FormModel[]> = {}
 
   // Current workspace

@@ -189,6 +189,8 @@ const Contacts = () => {
 
     setTotal(result.total)
     setContacts(result.contacts)
+
+    return result.contacts.length > 0
   }
 
   function handleOpenPlanModal() {

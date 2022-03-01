@@ -4,6 +4,8 @@ import { parse } from 'papaparse'
 
 export function csvParse<T = IMapType>(file: File): Promise<T[]> {
   return new Promise((resolve, reject) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     parse(file, {
       complete(result: ParseResult<T>) {
         if (isValidArray(result.errors)) {

@@ -137,7 +137,7 @@ const Groups = () => {
     setTotal(result.total)
     setGroups(result.groups)
 
-    return groups.length
+    return result.groups.length > 0
   }
 
   function handleOpenPlanModal() {

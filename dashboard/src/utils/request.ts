@@ -1,5 +1,5 @@
 import { clearAuthState, getDeviceId } from '@/utils'
-import { ApolloClient, from, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloQueryResult, from, InMemoryCache } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { isValid } from '@hpnp/utils/helper'
@@ -48,7 +48,25 @@ const cache = new InMemoryCache({
   addTypename: false
 })
 
-export const request = new ApolloClient({
-  link: from([retryLink, timeoutLink, headerLink, errorLink, uploadLink]),
+const client = new ApolloClient({
+  link: from([retryLink, timeoutLink, uploadLink, headerLink, errorLink]),
   cache
 })
+
+// https://github.com/apollographql/apollo-client/issues/5903
+function responseInterceptor<T = any>(response: ApolloQueryResult<T>): T {
+  const operationName = Object.keys(response)[0]
+  return JSON.parse(JSON.stringify((response as any)[operationName]))
+}
+
+export const request = {
+  async mutate<T = any>(options: any): Promise<T> {
+    const result = await client.mutate(options)
+    return responseInterceptor<T>(result.data)
+  },
+
+  async query<T = any>(options: any): Promise<T> {
+    const result = await client.query(options)
+    return responseInterceptor<T>(result.data)
+  }
+}

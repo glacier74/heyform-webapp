@@ -1,4 +1,5 @@
 import { AuthGuard, AuthLayout, WorkspaceLayout } from '@/components'
+import { FormGuardLayout, FormLayout, WorkspaceGuardLayout } from '@/legacy_pages/layouts'
 import { lazy } from 'react'
 
 export interface CustomRouteConfig {
@@ -38,6 +39,19 @@ const Trash = lazy(() => import('@/pages/project/Trash'))
 /* Billing */
 const Subscription = lazy(() => import('@/pages/billing/Subscription'))
 const Invoices = lazy(() => import('@/pages/billing/Invoices'))
+
+/* Form */
+const CreateForm = lazy(() => import('@/legacy_pages/pages/CreateForm'))
+const ImportForm = lazy(() => import('@/legacy_pages/pages/ImportForm'))
+const Templates = lazy(() => import('@/legacy_pages/pages/Templates'))
+const TemplatePreview = lazy(() => import('@/legacy_pages/pages/TemplatePreview'))
+const FormBuilder = lazy(() => import('@/legacy_pages/pages/FormBuilder'))
+const Integration = lazy(() => import('@/legacy_pages/pages/Integration'))
+const Share = lazy(() => import('@/legacy_pages/pages/Share'))
+const Analytics = lazy(() => import('@/legacy_pages/pages/Analytics'))
+const Report = lazy(() => import('@/legacy_pages/pages/Report'))
+const Submissions = lazy(() => import('@/legacy_pages/pages/Submissions'))
+const FormSettings = lazy(() => import('@/legacy_pages/pages/FormSettings'))
 
 const config: CustomRouteConfig[] = [
   /* Login */
@@ -162,6 +176,83 @@ const config: CustomRouteConfig[] = [
     exact: true,
     layout: WorkspaceLayout,
     component: Trash
+  },
+
+  /* Form */
+  {
+    path: '/workspace/:workspaceId/project/:projectId/form/create',
+    exact: true,
+    layout: WorkspaceGuardLayout,
+    component: CreateForm
+  },
+  {
+    path: '/workspace/:workspaceId/project/:projectId/form/import',
+    exact: true,
+    layout: WorkspaceGuardLayout,
+    component: ImportForm
+  },
+  {
+    path: '/workspace/:workspaceId/project/:projectId/templates',
+    exact: true,
+    layout: WorkspaceGuardLayout,
+    component: Templates,
+    title: 'Templates'
+  },
+  {
+    path: '/workspace/:workspaceId/project/:projectId/template/:templateId',
+    exact: true,
+    layout: WorkspaceGuardLayout,
+    component: TemplatePreview
+  },
+
+  /* Compose */
+  {
+    path: '/workspace/:workspaceId/project/:projectId/form/:formId/create',
+    exact: true,
+    layout: FormLayout,
+    component: FormBuilder
+  },
+  {
+    path: '/workspace/:workspaceId/project/:projectId/form/:formId/connect',
+    exact: true,
+    layout: FormLayout,
+    component: Integration
+  },
+  {
+    path: '/workspace/:workspaceId/project/:projectId/form/:formId/share',
+    exact: true,
+    layout: FormLayout,
+    component: Share
+  },
+  {
+    path: '/workspace/:workspaceId/project/:projectId/form/:formId/results',
+    exact: true,
+    layout: FormLayout,
+    component: Analytics
+  },
+  {
+    path: '/workspace/:workspaceId/project/:projectId/form/:formId/results/report',
+    exact: true,
+    layout: FormLayout,
+    component: Report
+  },
+  {
+    path: '/workspace/:workspaceId/project/:projectId/form/:formId/results/submissions',
+    exact: true,
+    layout: FormLayout,
+    component: Submissions
+  },
+  {
+    path: '/workspace/:workspaceId/project/:projectId/form/:formId/results/submissions/:category',
+    exact: true,
+    layout: FormLayout,
+    component: Submissions
+  },
+  {
+    path: '/workspace/:workspaceId/project/:projectId/form/:formId/settings',
+    exact: true,
+    layout: FormGuardLayout,
+    component: FormSettings
   }
 ]
 

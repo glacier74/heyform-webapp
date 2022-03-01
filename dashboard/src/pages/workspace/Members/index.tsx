@@ -3,8 +3,10 @@ import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useAsyncEffect, useVisible, useParam } from '@/utils'
 import {
-  DotsHorizontalIcon, DuplicateIcon,
-  LogoutIcon, PencilIcon,
+  DotsHorizontalIcon,
+  DuplicateIcon,
+  LogoutIcon,
+  PencilIcon,
   SwitchHorizontalIcon,
   TrashIcon
 } from '@heroicons/react/outline'

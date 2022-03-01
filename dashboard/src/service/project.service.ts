@@ -11,7 +11,7 @@ import { request } from '@/utils'
 
 export class ProjectService {
   static async create(teamId: string, name: string, memberIds?: string[]) {
-    const result = await request.mutate({
+    return request.mutate({
       mutation: CREATE_PROJECT_GQL,
       variables: {
         input: {
@@ -21,7 +21,6 @@ export class ProjectService {
         }
       }
     })
-    return result.data.createProject
   }
 
   static rename(projectId: string, name?: string, memberIds?: string[]) {

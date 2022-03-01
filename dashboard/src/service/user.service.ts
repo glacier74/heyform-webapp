@@ -15,10 +15,9 @@ import { request } from '@/utils'
 
 export class UserService {
   static async userDetail() {
-    const result = await request.query({
+    return request.query({
       query: USER_DETAILS_GQL
     })
-    return result.data.userDetail
   }
 
   static update(input: { name?: string; avatar?: string; restoreGravatar?: boolean }) {
@@ -85,7 +84,7 @@ export class UserService {
   }
 
   static async cdnToken(filename: string, mime: string) {
-    const result = await request.query({
+    return request.query({
       query: USER_CDN_TOKEN_GQL,
       variables: {
         input: {
@@ -94,7 +93,6 @@ export class UserService {
         }
       }
     })
-    return result.data.userCdnToken
   }
 
   static sendDeletionCode() {

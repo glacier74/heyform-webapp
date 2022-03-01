@@ -22,7 +22,7 @@ import { request } from '@/utils'
 
 export class WorkspaceService {
   static async create(name: string, avatar?: string) {
-    const result = await request.mutate({
+    return request.mutate({
       mutation: CREATE_WORKSPACE_GQL,
       variables: {
         input: {
@@ -31,11 +31,10 @@ export class WorkspaceService {
         }
       }
     })
-    return result.data.createTeam
   }
 
   static async publicDetail(teamId: string, inviteCode: string) {
-    const result = await request.query({
+    return request.query({
       query: PUBLIC_WORKSPACE_DETAIL_GQL,
       variables: {
         input: {
@@ -44,7 +43,6 @@ export class WorkspaceService {
         }
       }
     })
-    return result.data.publicTeamDetail
   }
 
   static update(input: { teamId: string } & IMapType) {
@@ -68,15 +66,14 @@ export class WorkspaceService {
   }
 
   static async workspaces() {
-    const result = await request.query({
+    return request.query({
       query: WORKSPACES_GQL,
       fetchPolicy: 'network-only'
     })
-    return result.data.teams
   }
 
   static async subscription(teamId: string) {
-    const result = await request.query({
+    return request.query({
       query: WORKSPACE_SUBSCRIPTION_GQL,
       variables: {
         input: {
@@ -84,11 +81,10 @@ export class WorkspaceService {
         }
       }
     })
-    return result.data.teamSubscription
   }
 
   static async members(teamId: string) {
-    const result = await request.query({
+    return request.query({
       query: WORKSPACE_MEMBERS_GQL,
       variables: {
         input: {
@@ -97,7 +93,6 @@ export class WorkspaceService {
       },
       fetchPolicy: 'network-only'
     })
-    return result.data.teamMembers
   }
 
   static removeMember(teamId: string, memberId: string) {
@@ -148,14 +143,13 @@ export class WorkspaceService {
   }
 
   static async plans() {
-    const result = await request.query({
+    return request.query({
       query: PLANS_GQL
     })
-    return result.data.plans
   }
 
   static async cdnToken(workspaceId: string, filename: string, mime: string) {
-    const result = await request.query({
+    return request.query({
       query: WORKSPACE_CDN_TOKEN_GQL,
       variables: {
         input: {
@@ -165,7 +159,6 @@ export class WorkspaceService {
         }
       }
     })
-    return result.data.teamCdnToken
   }
 
   static refreshInvitationCode(teamId: string) {
@@ -192,7 +185,7 @@ export class WorkspaceService {
   }
 
   static async addCustomHostname(teamId: string, hostname: string) {
-    const result = await request.mutate({
+    return request.mutate({
       mutation: ADD_CUSTOM_HOSTNAME_GQL,
       variables: {
         input: {
@@ -201,11 +194,10 @@ export class WorkspaceService {
         }
       }
     })
-    return result.data.addCustomHostname
   }
 
   static async checkCustomHostname(teamId: string, hostname: string) {
-    const result = await request.mutate({
+    return request.mutate({
       mutation: CHECK_CUSTOM_HOSTNAME_GQL,
       variables: {
         input: {
@@ -214,7 +206,6 @@ export class WorkspaceService {
         }
       }
     })
-    return result.data.checkCustomHostname
   }
 
   static exportData(teamId: string) {

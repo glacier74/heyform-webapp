@@ -20,13 +20,12 @@ export class AudienceService {
     page: number
     limit: number
   }) {
-    const result = await request.query({
+    return request.query({
       query: CONTACTS_GQL,
       variables: {
         input
       }
     })
-    return result.data.contacts
   }
 
   static async createContact(input: {
@@ -79,23 +78,21 @@ export class AudienceService {
   }
 
   static async groups(input: { teamId: string; keyword?: string; page: number; limit: number }) {
-    const result = await request.query({
+    return request.query({
       query: GROUPS_GQL,
       variables: {
         input
       }
     })
-    return result.data.groups
   }
 
   static async createGroup(input: { teamId: string; name: string }) {
-    const result = await request.mutate({
+    return request.mutate({
       mutation: CREATE_GROUP_GQL,
       variables: {
         input
       }
     })
-    return result.data.createGroup
   }
 
   static async updateGroup(input: { teamId: string; name: string }) {

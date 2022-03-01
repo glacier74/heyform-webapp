@@ -32,7 +32,7 @@ import {
 
 export class FormService {
   static async forms(projectId: string, status = FormStatusEnum.NORMAL) {
-    const result = await request.query({
+    return request.query({
       query: FORMS_GQL,
       variables: {
         input: {
@@ -42,7 +42,6 @@ export class FormService {
       },
       fetchPolicy: 'network-only'
     })
-    return result.data.forms
   }
 
   static create(input: {
@@ -87,7 +86,7 @@ export class FormService {
   //   })
   // }
 
-  static analytic(formId: string, range: number) {
+  static async analytic(formId: string, range: number) {
     return request.query({
       query: FORM_ANALYTIC_GQL,
       variables: {
@@ -100,7 +99,7 @@ export class FormService {
     })
   }
 
-  static report(formId: string) {
+  static async report(formId: string) {
     return request.query({
       query: FORM_REPORT_GQL,
       variables: {
@@ -219,7 +218,7 @@ export class FormService {
     })
   }
 
-  static integrations(formId: string) {
+  static async integrations(formId: string) {
     return request.query({
       query: FORM_INTEGRATIONS_GQL,
       variables: {

@@ -8,6 +8,7 @@ import 'react-app-polyfill/ie11'
 import 'react-app-polyfill/stable'
 import { render } from 'react-dom'
 import 'unfetch/polyfill/polyfill.mjs'
+import '@/legacy_pages/i18n'
 import './styles/index.scss'
 
 if (!getDeviceId()) {

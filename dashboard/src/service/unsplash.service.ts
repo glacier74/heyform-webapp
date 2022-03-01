@@ -3,7 +3,7 @@ import { request } from '@/utils'
 
 export class UnsplashService {
   static async search(keyword?: string) {
-    const result = await request.query({
+    return request.query({
       query: UNSPLASH_SEARCH_GQL,
       variables: {
         input: {
@@ -12,7 +12,6 @@ export class UnsplashService {
       },
       fetchPolicy: 'network-only'
     })
-    return result.data.unsplashSearch
   }
 
   static trackDownload(downloadUrl: string) {

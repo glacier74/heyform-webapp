@@ -15,13 +15,12 @@ export class PaymentService {
     billingCycle: BillingCycleEnum
     code: string
   }) {
-    const result = await request.mutate({
+    return request.mutate({
       mutation: APPLY_COUPON_GQL,
       variables: {
         input
       }
     })
-    return result.data.applyCoupon
   }
 
   static async payment(input: {
@@ -30,17 +29,16 @@ export class PaymentService {
     billingCycle: BillingCycleEnum
     code?: string | null
   }) {
-    const result = await request.mutate({
+    return request.mutate({
       mutation: PAYMENT_GQL,
       variables: {
         input
       }
     })
-    return result.data.payment
   }
 
   static async invoices(teamId: string) {
-    const result = await request.query({
+    return request.query({
       query: INVOICES_GQL,
       variables: {
         input: {
@@ -48,7 +46,6 @@ export class PaymentService {
         }
       }
     })
-    return result.data.invoices
   }
 
   static cancelSubscription(teamId: string) {
