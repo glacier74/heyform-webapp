@@ -27,6 +27,7 @@ development:
     - echo "$DEVELOP_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
   script: |
     echo "=> Building"
+    echo "${QINIU_CONFIG}" > dashboard/.qiniurc
     yarn install
     yarn workspace @heyforms/ui build
     yarn workspace heyform staging
