@@ -49,7 +49,9 @@ const cache = new InMemoryCache({
 })
 
 const client = new ApolloClient({
-  link: from([retryLink, timeoutLink, uploadLink, headerLink, errorLink]),
+  // https://stackoverflow.com/a/58736777
+  // Put uploadLink to the end
+  link: from([retryLink, timeoutLink, headerLink, errorLink, uploadLink]),
   connectToDevTools: false,
   cache
 })
