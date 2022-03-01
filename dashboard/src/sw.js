@@ -1,7 +1,7 @@
 /* eslint-disable */
 importScripts('https://cdnjs.cloudflare.com/ajax/libs/workbox-sw/6.5.0/workbox-sw.min.js')
 
-setCacheNameDetails({
+workbox.core.setCacheNameDetails({
   prefix: 'heyform',
   suffix: `v2022.1`,
   precache: 'precache',

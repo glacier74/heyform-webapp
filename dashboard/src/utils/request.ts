@@ -50,6 +50,7 @@ const cache = new InMemoryCache({
 
 const client = new ApolloClient({
   link: from([retryLink, timeoutLink, uploadLink, headerLink, errorLink]),
+  connectToDevTools: false,
   cache
 })
 
