@@ -5,7 +5,7 @@ function uploadPlugin(options) {
     name: "upload-plugin",
     apply: "build",
     closeBundle() {
-      new Uploader(options);
+      new Uploader(options).start();
     },
   };
 }
