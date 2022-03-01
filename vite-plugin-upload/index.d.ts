@@ -11,4 +11,6 @@ export interface UploadPluginOptions {
   debug?: true;
 }
 
+export declare const UploaderZone: any;
+
 export default function uploadPlugin(options: UploadPluginOptions): any;

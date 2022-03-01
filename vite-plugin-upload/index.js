@@ -10,4 +10,6 @@ function uploadPlugin(options) {
   };
 }
 
+exports.UploaderZone = Uploader.zone;
+exports.default = uploadPlugin;
 module.exports = uploadPlugin;
