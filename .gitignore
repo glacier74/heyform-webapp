@@ -12,6 +12,7 @@ build/
 lib/
 dist/
 *.local
+.qiniurc
 
 # misc
 .DS_Store
