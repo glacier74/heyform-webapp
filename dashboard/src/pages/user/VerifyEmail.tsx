@@ -1,18 +1,42 @@
 import { LogoIcon } from '@/components'
+import {
+  FormValues,
+  SendCode,
+  VerifyEmail as VerifyEmailModal
+} from '@/pages/user/UserSettings/EmailAddress'
 import { UserService } from '@/service'
 import { useStore } from '@/store'
+import { useRouter, useVisible } from '@/utils'
 import { Button, Form, Input, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 
 const VerifyEmail: FC = () => {
+  const router = useRouter()
   const userStore = useStore('userStore')
   const [loading, setLoading] = useState(false)
 
+  const [sendCodeVisible, openSendCode, closeSendCode] = useVisible()
+  const [verifyEmailVisible, openVerifyEmail, closeVerifyEmail] = useVisible()
+  const [formValues, setTempValues] = useState<FormValues>()
+
   async function handleFinish(values: IMapType) {
     await UserService.verifyEmail(values.code)
-    window.location.href = '/'
+    router.redirect()
+  }
+
+  function handleSendComplete(values: FormValues) {
+    setTempValues(values)
+    openVerifyEmail()
+  }
+
+  function handleVerifyComplete() {
+    userStore.update({
+      email: formValues?.email,
+      isEmailVerified: true
+    })
+    router.redirect()
   }
 
   async function handleSendEmail() {
@@ -41,6 +65,10 @@ const VerifyEmail: FC = () => {
         <p className="mt-2 text-sm text-gray-600">
           We've sent you an email with a 6-digit verification code. Please check your inbox at{' '}
           <span className="font-medium text-gray-700">{userStore.user.email}</span>.
+        </p>
+        <p className="mt-2 text-sm text-gray-600">
+          Made a typo on email address? <Button.Link onClick={openSendCode}>click here</Button.Link>{' '}
+          to change it.
         </p>
       </div>
 
@@ -76,6 +104,14 @@ const VerifyEmail: FC = () => {
           </div>
         </div>
       </div>
+
+      <SendCode visible={sendCodeVisible} onClose={closeSendCode} onComplete={handleSendComplete} />
+      <VerifyEmailModal
+        visible={verifyEmailVisible}
+        formValues={formValues}
+        onClose={closeVerifyEmail}
+        onComplete={handleVerifyComplete}
+      />
     </div>
   )
 }

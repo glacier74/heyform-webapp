@@ -1,13 +1,15 @@
-import { LogoIcon } from '@/components'
+import { LogoIcon, RedirectUriLink } from '@/components'
 import { AuthService } from '@/service'
+import { useRouter } from '@/utils'
 import { Checkbox, Form, Input } from '@heyforms/ui'
-import { Link } from 'react-router-dom'
 import { ThirdPartyLogin } from './views/ThirdPartyLogin'
 
 const Login = () => {
+  const router = useRouter()
+
   async function handleFinish(values: any) {
     await AuthService.login(values.email, values.password)
-    window.location.href = window.sessionStorage.next || '/'
+    router.redirect()
   }
 
   return (
@@ -17,9 +19,12 @@ const Login = () => {
         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
         <p className="mt-2 text-sm text-gray-600">
           Or {''}
-          <Link to="/sign-up" className="font-medium text-blue-600 hover:text-blue-500">
+          <RedirectUriLink
+            href="/sign-up"
+            className="font-medium text-blue-600 hover:text-blue-500"
+          >
             start your free trial
-          </Link>
+          </RedirectUriLink>
         </p>
       </div>
 
@@ -68,12 +73,12 @@ const Login = () => {
               </div>
 
               <div className="text-sm">
-                <Link
-                  to="/forgot-password"
+                <RedirectUriLink
+                  href="/forgot-password"
                   className="font-medium text-blue-600 hover:text-blue-500"
                 >
                   Forgot your password?
-                </Link>
+                </RedirectUriLink>
               </div>
             </div>
           </Form.Custom>

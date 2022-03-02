@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 
-interface FormValues {
+export interface FormValues {
   email: string
   password: string
 }
@@ -19,7 +19,7 @@ interface VerifyEmailProps extends IModalProps {
   formValues?: FormValues
 }
 
-const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) => {
+export const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) => {
   async function handleFinish(values: FormValues) {
     await UserService.changeEmailCode(values.password, values.email)
 
@@ -60,7 +60,7 @@ const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) => {
   )
 }
 
-const VerifyEmail: FC<VerifyEmailProps> = ({ visible, formValues, onClose, onComplete }) => {
+export const VerifyEmail: FC<VerifyEmailProps> = ({ visible, formValues, onClose, onComplete }) => {
   async function handleFinish(values: IMapType) {
     await UserService.updateEmail(formValues!.email, formValues!.password, values.code)
 

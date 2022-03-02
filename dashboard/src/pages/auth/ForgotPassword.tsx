@@ -1,19 +1,19 @@
-import { LogoIcon } from '@/components'
+import { LogoIcon, RedirectUriLink } from '@/components'
 import { AuthService } from '@/service'
 import { useStore } from '@/store'
+import { useRouter } from '@/utils'
 import { ChevronLeftIcon } from '@heroicons/react/outline'
 import { Form, Input } from '@heyforms/ui'
-import { Link, useHistory } from 'react-router-dom'
 
 const ForgotPassword = () => {
-  const history = useHistory()
+  const router = useRouter()
   const appStore = useStore('appStore')
 
   async function handleFinish(values: IMapType) {
     await AuthService.sendResetEmail(values.email)
     appStore.resetPasswordEmail = values.email
 
-    history.push('/reset-password')
+    router.push('/reset-password')
   }
 
   return (
@@ -41,9 +41,9 @@ const ForgotPassword = () => {
         </Form.Custom>
 
         <div className="mt-6 text-center text-blue-600 hover:text-blue-500 sm:text-sm">
-          <Link to="/login" className="inline-flex items-center">
+          <RedirectUriLink href="/login" className="inline-flex items-center">
             <ChevronLeftIcon className="w-5 h-5" /> Back to sign in
-          </Link>
+          </RedirectUriLink>
         </div>
       </div>
     </div>

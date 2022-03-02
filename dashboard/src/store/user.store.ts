@@ -7,7 +7,7 @@ export class UserStore {
 
   constructor() {
     makeAutoObservable(this)
-    mobxStorage(this, 'US')
+    mobxStorage(this, 'UserStore')
   }
 
   setUser(user: UserModel) {

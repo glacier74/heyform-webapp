@@ -1,8 +1,15 @@
 import { AppleIcon, GoogleIcon } from '@/components'
-import { getDeviceId } from '@/utils'
+import { getDeviceId, redirectUriKey, setCookie, useQuery } from '@/utils'
+import { isValid } from '@hpnp/utils/helper'
 
 export const ThirdPartyLogin = () => {
+  const query = useQuery()
+
   function handleRedirect(type: string) {
+    if (isValid(query.redirect_uri)) {
+      setCookie(redirectUriKey, query.redirect_uri)
+    }
+
     const state = getDeviceId()
     window.location.href = `/connect/${type}?state=${state}`
   }

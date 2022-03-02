@@ -1,8 +1,9 @@
+import { urlBuilder } from '@/utils/helper'
 import { parseNumber } from '@hpnp/utils'
 import { isArray, isEmpty, isNil, isObject, isValid } from '@hpnp/utils/helper'
 import { parse } from '@hpnp/utils/qs'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useHistory, useLocation, useParams } from 'react-router-dom'
 
 export interface ParamsType {
   workspaceId: string
@@ -130,4 +131,24 @@ export function useVisible(visible = false): [boolean, () => void, () => void] {
   }, [])
 
   return [isOpen, open, close]
+}
+
+export function useRouter() {
+  const query = useQuery()
+  const history = useHistory()
+
+  const push = useCallback((url: string, params?: IMapType) => {
+    history.push(
+      urlBuilder(url, {
+        ...query,
+        ...params
+      })
+    )
+  }, [])
+
+  const redirect = useCallback((url?: string) => {
+    window.location.href = query.redirect_uri || url || '/'
+  }, [])
+
+  return { push, redirect }
 }

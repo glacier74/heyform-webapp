@@ -15,7 +15,7 @@ export const FormLayout: FC = ({ children }) => {
       <FormGuardLayout>
         <StyledFlex column={true}>
           <FormNavbar />
-          <Content className="content">{children}</Content>
+          <Content className="content scrollbar">{children}</Content>
         </StyledFlex>
         <FormPreviewModal />
         <FormSettings />
@@ -44,7 +44,5 @@ const StyledFlex = styled(Flex)`
 
 const Content = styled.div`
   flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
   background: #fafbfc;
 `

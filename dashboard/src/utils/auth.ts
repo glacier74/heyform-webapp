@@ -7,7 +7,7 @@ import store from 'store2'
 export const workspaceIdKey = 'HEYFORM_WORKSPACE_ID'
 export const deviceIdKey = 'HEYFORM_USER_ID'
 export const loggedInKey = 'HEYFORM_LOGGED_IN'
-export const dangerZoneKey = 'HEYFORM_SUPERMAN'
+export const redirectUriKey = 'HEYFORM_REDIRECT_URI'
 
 const cookieOptions: CookieAttributes = {
   expires: 365,
@@ -16,8 +16,16 @@ const cookieOptions: CookieAttributes = {
   secure: import.meta.env.NODE_ENV === 'production'
 }
 
+export function setCookie(key: string, value: string, options = cookieOptions) {
+  cookies.set(key, value, options)
+}
+
+export function getCookie(key: string) {
+  return cookies.get(key)
+}
+
 export function getAuthState() {
-  const value = cookies.get(loggedInKey)
+  const value = getCookie(loggedInKey)
   return isValid(value)
 }
 
@@ -38,11 +46,11 @@ export function clearAuthState() {
 
 export function getDeviceId() {
   const storage = store.get(deviceIdKey)
-  const cookie = cookies.get(deviceIdKey)
+  const cookie = getCookie(deviceIdKey)
 
   if (isValid(storage)) {
     if (!isEqual(storage, cookie)) {
-      cookies.set(deviceIdKey, storage, cookieOptions)
+      setCookie(deviceIdKey, storage)
     }
     return storage
   } else if (isValid(cookie)) {
@@ -54,6 +62,6 @@ export function getDeviceId() {
 export function setDeviceId() {
   const deviceId = nanoid(8)
 
-  cookies.set(deviceIdKey, deviceId, cookieOptions)
+  setCookie(deviceIdKey, deviceId)
   store.set(deviceIdKey, deviceId)
 }

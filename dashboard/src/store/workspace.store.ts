@@ -27,7 +27,7 @@ export class WorkspaceStore {
 
   constructor() {
     makeAutoObservable(this)
-    mobxStorage(this, 'WS')
+    mobxStorage(this, 'WorkspaceStore')
   }
 
   // Current workspace
@@ -44,7 +44,7 @@ export class WorkspaceStore {
 
   // Project of current workspace
   get project() {
-    return this.workspace.projects.find(p => p.id === this.currentProjectId)
+    return this.workspace?.projects.find(p => p.id === this.currentProjectId)
   }
 
   // Forms of current project

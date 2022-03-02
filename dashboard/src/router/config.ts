@@ -92,7 +92,8 @@ const config: CustomRouteConfig[] = [
     loginRequired: true,
     exact: true,
     layout: AuthLayout,
-    component: VerifyEmail
+    component: VerifyEmail,
+    title: 'Verify email address'
   },
 
   /* Home */

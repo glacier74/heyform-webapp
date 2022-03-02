@@ -1,12 +1,14 @@
 import { LogoIcon } from '@/components'
 import { AuthService } from '@/service'
 import { useStore } from '@/store'
+import { useRouter } from '@/utils'
 import { Form, Input } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 
 const ResetPassword = () => {
+  const router = useRouter()
   const appStore = useStore('appStore')
   const [values, setValues] = useState<IMapType>({})
 
@@ -16,7 +18,7 @@ const ResetPassword = () => {
 
   async function handleFinish(val: IMapType) {
     await AuthService.resetPassword(appStore.resetPasswordEmail, val.newPassword, val.code)
-    window.location.href = '/login'
+    router.push('/login')
   }
 
   return (
