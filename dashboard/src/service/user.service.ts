@@ -97,7 +97,8 @@ export class UserService {
 
   static sendDeletionCode() {
     return request.query({
-      query: USER_DELETION_CODE_GQL
+      query: USER_DELETION_CODE_GQL,
+      fetchPolicy: 'network-only'
     })
   }
 
