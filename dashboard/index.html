@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8"/>
   <link href="https://cdn.heyformhq.com" rel="dns-prefetch">
   <link href="https://storage-us.heyformhq.com" rel="dns-prefetch">
   <link href="https://cdnjs.cloudflare.com" rel="dns-prefetch">
   <link href="https://js.stripe.com" rel="dns-prefetch">
   <link href="https://fonts.googleapis.com" rel="dns-prefetch">
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <link href="/static/favicon.svg" rel="icon" type="image/svg+xml">
   <link href="/static/favicon.ico" rel="alternate icon" sizes="16x16" type="image/png">
   <link href="/static/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
@@ -19,15 +19,80 @@
   <meta content="HeyForm" name="apple-mobile-web-app-title">
   <meta content="telephone=no,email=no" name="format-detection">
   <meta content="on" http-equiv="x-dns-prefetch-control">
-  <link href="/static/manifest.webmanifest" rel="manifest" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="/static/manifest.webmanifest" rel="manifest"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <title>HeyForm</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #root:not(:empty) + #loading {
+      display: none;
+    }
+
+    @-webkit-keyframes loading-spin {
+      to {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn);
+      }
+    }
+
+    @keyframes loading-spin {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+
+    #loading {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #loading .loading-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: #2563eb;
+      -webkit-animation: loading-spin 1s linear infinite;
+      animation: loading-spin 1s linear infinite;
+    }
+
+    #loading .loading-icon circle {
+      opacity: 0.25;
+    }
+
+    #loading .loading-icon path {
+      opacity: 0.75;
+    }
+  </style>
 </head>
 <body>
 <div id="root"></div>
+<div id="loading">
+  <svg class="loading-icon" fill="none" viewBox="0 0 24 24"
+       xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+    <path
+      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      fill="currentColor"></path>
+  </svg>
+</div>
 <script src="./src/main.tsx" type="module"></script>
 </body>
 </html>
