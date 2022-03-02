@@ -30,6 +30,7 @@ development:
     echo "${QINIU_CONFIG}" > dashboard/.qiniurc
     yarn install
     yarn workspace @heyforms/vite-plugin-font-optimization build
+    yarn workspace @heyforms/vite-plugin-html-injection build
     yarn workspace @heyforms/vite-plugin-upload build
     yarn workspace @heyforms/ui build
     yarn workspace heyform staging
