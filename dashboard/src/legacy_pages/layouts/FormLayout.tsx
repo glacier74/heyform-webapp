@@ -1,6 +1,7 @@
 import { WorkspaceGuard } from '@/components'
 import { FormNavbar, GlobalStyle } from '@/legacy_pages/components'
 import { FormPreviewModal } from '@/legacy_pages/components/FormPreviewModal'
+import FormSettings from '@/legacy_pages/pages/FormSettings'
 import { Flex } from '@heyui/component'
 import { FC } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
@@ -17,6 +18,7 @@ export const FormLayout: FC = ({ children }) => {
           <Content className="content">{children}</Content>
         </StyledFlex>
         <FormPreviewModal />
+        <FormSettings />
       </FormGuardLayout>
     </ThemeProvider>
   )

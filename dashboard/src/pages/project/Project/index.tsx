@@ -76,6 +76,10 @@ const Project = observer(() => {
     loading.dismiss()
   }
 
+  function handleCreateForm() {
+    history.push(`/workspace/${workspaceId}/project/${projectId}/form/create`)
+  }
+
   // Table columns
   const columns: TableColumn<FormModel>[] = [
     {
@@ -175,7 +179,7 @@ const Project = observer(() => {
             icon={<ClipboardCheckIcon className="non-scaling-stroke" />}
             title="Don't have any forms in this project yet"
             description="It's your one-stop solution for all form needs. Quickly build online forms without any coding or design experience."
-            action={<Button onClick={alert}>Create form</Button>}
+            action={<Button onClick={handleCreateForm}>Create form</Button>}
           />
         }
       >

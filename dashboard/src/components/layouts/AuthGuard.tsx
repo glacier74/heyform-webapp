@@ -1,4 +1,5 @@
 import { PlanModal } from '@/components'
+import UserSettings from '@/pages/user/UserSettings'
 import { UserService } from '@/service'
 import { useStore } from '@/store'
 import { useAsyncEffect, useVisible } from '@/utils'
@@ -91,6 +92,9 @@ export const AuthGuard: FC<IComponentProps> = ({ children }) => {
 
       {/* Popup a plan modal when user going to access features of premium plans */}
       <PlanModal />
+
+      {/* User settings popup */}
+      <UserSettings />
     </>
   )
 }

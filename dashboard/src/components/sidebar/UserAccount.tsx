@@ -4,17 +4,14 @@ import { Dropdown, Menus } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 
-interface SidebarUserProps {
-  onUserSettingsOpen: () => void
-}
-
-export const UserAccount: FC<SidebarUserProps> = observer(({ onUserSettingsOpen }) => {
+export const UserAccount: FC = observer(() => {
   const userStore = useStore('userStore')
+  const appStore = useStore('appStore')
 
   function handleMenuClick(name?: IKeyType) {
     switch (name) {
       case 'accountSettings':
-        onUserSettingsOpen()
+        appStore.isUserSettingsOpen = true
         break
 
       case 'logout':

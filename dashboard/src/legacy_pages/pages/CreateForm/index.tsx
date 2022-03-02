@@ -2,16 +2,16 @@ import { Fetcher, Heading, SubHeading } from '@/legacy_pages/components'
 import { ClassicFormIcon, ImportFormIcon } from '@/legacy_pages/components/Icons'
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { TemplateModal } from '@/legacy_pages/models'
-import { FormService, TemplateService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService, TemplateService } from '@/service'
+import { useParam } from '@/utils'
 import { FormKindEnum, InteractiveModeEnum } from '@heyforms/shared-types-enums'
 import { Flex, message, Spin } from '@heyui/component'
 import { alpha } from '@hpnp/utils/color'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { MoreTemplates } from './views/MoreTemplates'
 import { TemplateItem } from './views/TemplateItem'
@@ -72,7 +72,7 @@ const CreateForm = observer(() => {
 
   return (
     <Container
-      navigateBackTitle={workspaceStore.workspace?.name}
+      navigateBackTitle={`${workspaceStore.project?.name} · ${workspaceStore.workspace?.name}`}
       onNavigateBack={handleNavigateBack}
     >
       <Heading

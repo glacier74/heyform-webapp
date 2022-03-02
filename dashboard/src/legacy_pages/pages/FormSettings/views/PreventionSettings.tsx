@@ -36,6 +36,10 @@ export const PreventionSettings: FC<PreventionSettingsProps> = ({
 
 const Container = styled(Flex)`
   margin-bottom: 24px;
+
+  .hey-select {
+    width: auto;
+  }
 `
 
 const Header = styled.div`

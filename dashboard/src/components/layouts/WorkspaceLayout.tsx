@@ -1,4 +1,3 @@
-import UserSettings from '@/pages/user/UserSettings'
 import CreateWorkspace from '@/pages/workspace/CreateWorkspace'
 import WorkspaceSettings from '@/pages/workspace/WorkspaceSettings'
 import { useVisible } from '@/utils'
@@ -6,13 +5,12 @@ import { MenuIcon } from '@heroicons/react/outline'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { Sidebar } from '../sidebar'
-import { WorkspaceGuard } from './WorkspaceGuard'
 import './index.scss'
+import { WorkspaceGuard } from './WorkspaceGuard'
 
 export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [workspaceSettingsVisible, openWorkspaceSettings, closeWorkspaceSettings] = useVisible()
-  const [userSettingsVisible, openUserSettings, closeUserSettings] = useVisible()
   const [createWorkspaceVisible, openCreateWorkspace, closeCreateWorkspace] = useVisible()
 
   function handleSidebarOpen() {
@@ -25,12 +23,11 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
 
   return (
     <WorkspaceGuard>
-      <div className="w-full bg-white">
+      <div className="w-full min-h-screen bg-white">
         <Sidebar
           isOpen={sidebarOpen}
           onSidebarClose={handleSidebarClose}
           onWorkspaceSettingsOpen={openWorkspaceSettings}
-          onUserSettingsOpen={openUserSettings}
           onCreateWorkspace={openCreateWorkspace}
         />
 
@@ -44,7 +41,7 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
               <MenuIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
+          <main className="relative z-0 focus:outline-none">
             <div className="py-6">
               <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 md:px-8">{children}</div>
             </div>
@@ -54,9 +51,6 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
 
       {/* Workspace settings modal */}
       <WorkspaceSettings visible={workspaceSettingsVisible} onClose={closeWorkspaceSettings} />
-
-      {/* User settings modal */}
-      <UserSettings visible={userSettingsVisible} onClose={closeUserSettings} />
 
       {/* Create workspace modal */}
       <CreateWorkspace visible={createWorkspaceVisible} onClose={closeCreateWorkspace} />

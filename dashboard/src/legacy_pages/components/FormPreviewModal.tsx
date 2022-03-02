@@ -1,11 +1,10 @@
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { useStore } from '@/legacy_pages/utils'
+import { useParam } from '@/utils'
 import { customTheme, FormRender } from '@heyforms/form-component'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { FC, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled, { ThemeProvider } from 'styled-components'
 
 export const FormPreviewModal: FC = observer(() => {
@@ -24,14 +23,14 @@ export const FormPreviewModal: FC = observer(() => {
   }, [formId])
 
   function handleClose() {
-    appStore.toggleFormPreview(false)
+    appStore.isFormPreviewOpen = false
   }
 
   function handleFinish() {}
 
   return (
     <>
-      {appStore.formPreviewVisible && (
+      {appStore.isFormPreviewOpen && (
         <Container>
           <StyledNavBarContainer
             close={true}
@@ -79,7 +78,8 @@ const StyledNavBarContainer = styled(NavBarContainer)<{
   .navbar {
     .hey-button {
       margin-top: 60px;
-      background: transparent;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 4px;
 
       &,
       svg {

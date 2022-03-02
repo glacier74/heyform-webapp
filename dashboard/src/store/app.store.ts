@@ -7,23 +7,16 @@ export class AppStore {
   // Plan modal is open or not
   isPlanModalOpen = false
 
+  // Form preview is open or not
+  isFormPreviewOpen = false
+
+  // Form settings is open or not
+  isFormSettingsOpen = false
+
+  // User settings is open or not
+  isUserSettingsOpen = false
+
   constructor() {
     makeAutoObservable(this)
-  }
-
-  setResetPasswordEmail(email: string) {
-    this.resetPasswordEmail = email
-  }
-
-  deleteResetPasswordEmail() {
-    this.resetPasswordEmail = ''
-  }
-
-  openPlanModal() {
-    this.isPlanModalOpen = true
-  }
-
-  closePlanModal() {
-    this.isPlanModalOpen = false
   }
 }

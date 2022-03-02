@@ -14,7 +14,7 @@ export const PlanCheck: FC<UpgradeButtonProps> = observer(({ permission, childre
 
   function handleClick(event: any) {
     event.stopPropagation()
-    appStore.openPlanModal()
+    appStore.isPlanModalOpen = true
   }
 
   return (

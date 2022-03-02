@@ -1,4 +1,4 @@
-import { SettingsIcon, UploadCloudIcon } from '@/legacy_pages/components/Icons'
+import { SettingsIcon } from '@/legacy_pages/components/Icons'
 import { useStore } from '@/legacy_pages/utils'
 import { FormModel } from '@heyforms/shared-types-enums'
 import { Button, Flex } from '@heyui/component'
@@ -6,8 +6,6 @@ import { EyeIcon } from '@heyui/icon'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface FormNavbarSharingProps {
@@ -25,17 +23,15 @@ const SyncStatusContainer = styled(Flex)`
 `
 
 export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form }) => {
-  const history = useHistory()
   const { t } = useTranslation()
-  const { workspaceId, projectId, formId } = useParam()
   const appStore = useStore('appStore')
 
   function handleClick() {
-    appStore.toggleFormPreview(true)
+    appStore.isFormPreviewOpen = true
   }
 
   function handleSettings() {
-    history.push(`/workspace/${workspaceId}/project/${projectId}/form/${formId}/settings`)
+    appStore.isFormSettingsOpen = true
   }
 
   return (

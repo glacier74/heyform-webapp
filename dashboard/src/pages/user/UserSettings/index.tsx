@@ -1,4 +1,6 @@
+import { useStore } from '@/store'
 import { Modal } from '@heyforms/ui'
+import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { Avatar } from './Avatar'
 import { DeleteAccount } from './DeleteAccount'
@@ -6,9 +8,15 @@ import { EmailAddress } from './EmailAddress'
 import { Password } from './Password'
 import { UserName } from './UserName'
 
-const UserSettings: FC<IModalProps> = ({ visible, onClose }) => {
+const UserSettings: FC = () => {
+  const appStore = useStore('appStore')
+
+  function handleClose() {
+    appStore.isUserSettingsOpen = false
+  }
+
   return (
-    <Modal visible={visible} onClose={onClose} showCloseIcon>
+    <Modal visible={appStore.isUserSettingsOpen} onClose={handleClose} showCloseIcon>
       <div className="space-y-6">
         <div>
           <h1 className="text-lg leading-6 font-medium text-gray-900">Account Settings</h1>
@@ -36,4 +44,4 @@ const UserSettings: FC<IModalProps> = ({ visible, onClose }) => {
   )
 }
 
-export default UserSettings
+export default observer(UserSettings)

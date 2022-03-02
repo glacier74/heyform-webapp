@@ -11,8 +11,8 @@ const ForgotPassword = () => {
 
   async function handleFinish(values: IMapType) {
     await AuthService.sendResetEmail(values.email)
+    appStore.resetPasswordEmail = values.email
 
-    appStore.setResetPasswordEmail(values.email)
     history.push('/reset-password')
   }
 

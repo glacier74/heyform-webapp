@@ -11,15 +11,13 @@ interface SidebarProps {
   onSidebarClose: () => void
   onCreateWorkspace: () => void
   onWorkspaceSettingsOpen: () => void
-  onUserSettingsOpen: () => void
 }
 
 export const Sidebar: FC<SidebarProps> = ({
   isOpen = false,
   onSidebarClose,
   onCreateWorkspace,
-  onWorkspaceSettingsOpen,
-  onUserSettingsOpen
+  onWorkspaceSettingsOpen
 }) => {
   return (
     <>
@@ -42,7 +40,7 @@ export const Sidebar: FC<SidebarProps> = ({
               <Navbar onWorkspaceSettingsOpen={onWorkspaceSettingsOpen} />
             </div>
 
-            <UserAccount onUserSettingsOpen={onUserSettingsOpen} />
+            <UserAccount />
 
             <div className="absolute top-0 right-0 -mr-12 pt-2 md:hidden">
               <button
@@ -65,7 +63,7 @@ export const Sidebar: FC<SidebarProps> = ({
             <WorkspaceSwitch onCreateWorkspace={onCreateWorkspace} />
             <Navbar onWorkspaceSettingsOpen={onWorkspaceSettingsOpen} />
           </div>
-          <UserAccount onUserSettingsOpen={onUserSettingsOpen} />
+          <UserAccount />
         </div>
       </div>
     </>

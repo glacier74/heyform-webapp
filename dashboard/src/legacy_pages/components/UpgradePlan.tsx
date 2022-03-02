@@ -18,7 +18,7 @@ export const UpgradePlan: FC<UpgradePlanProps> = observer(
 
     function handleClick(event: any) {
       event.stopPropagation()
-      appStore.openPlanModal()
+      appStore.isPlanModalOpen = true
     }
 
     return (

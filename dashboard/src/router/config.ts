@@ -1,5 +1,5 @@
 import { AuthGuard, AuthLayout, WorkspaceLayout } from '@/components'
-import { FormGuardLayout, FormLayout, WorkspaceGuardLayout } from '@/legacy_pages/layouts'
+import { FormLayout, WorkspaceGuardLayout } from '@/legacy_pages/layouts'
 import { lazy } from 'react'
 
 export interface CustomRouteConfig {
@@ -51,7 +51,6 @@ const Share = lazy(() => import('@/legacy_pages/pages/Share'))
 const Analytics = lazy(() => import('@/legacy_pages/pages/Analytics'))
 const Report = lazy(() => import('@/legacy_pages/pages/Report'))
 const Submissions = lazy(() => import('@/legacy_pages/pages/Submissions'))
-const FormSettings = lazy(() => import('@/legacy_pages/pages/FormSettings'))
 
 const config: CustomRouteConfig[] = [
   /* Login */
@@ -247,12 +246,6 @@ const config: CustomRouteConfig[] = [
     exact: true,
     layout: FormLayout,
     component: Submissions
-  },
-  {
-    path: '/workspace/:workspaceId/project/:projectId/form/:formId/settings',
-    exact: true,
-    layout: FormGuardLayout,
-    component: FormSettings
   }
 ]
 

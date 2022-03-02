@@ -3,14 +3,12 @@ import { TEMPLATE_CATEGORIES } from '@/legacy_pages/constants'
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { TemplateModal } from '@/legacy_pages/models'
 import { TemplateService } from '@/service'
-import { useStore } from '@/legacy_pages/utils'
+import { useParam } from '@/utils'
 import { Flex } from '@heyui/component'
 import { uniqueArray } from '@hpnp/utils/helper'
-import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { TemplateItem } from '../CreateForm/views/TemplateItem'
 
@@ -29,27 +27,25 @@ const CategoryItem: FC<CategoryItemProps> = ({ name }) => {
   return <CategoryLink onClick={handleClick}>{name}</CategoryLink>
 }
 
-const Templates = observer(() => {
+const Templates = () => {
   const history = useHistory()
   const { t } = useTranslation()
-  const workspaceStore = useStore('workspaceStore')
   const { workspaceId, projectId } = useParam()
-  const [categories, setCategories] = useState<string[]>(extractCategories())
+  const [categories, setCategories] = useState<string[]>([])
+  const [templates, setTemplates] = useState<TemplateModal[]>([])
+
+  function extractCategories(result: TemplateModal[]) {
+    const cats = uniqueArray(result.map(row => row.category))
+    return [...TEMPLATE_CATEGORIES, ...cats.filter(row => !TEMPLATE_CATEGORIES.includes(row))]
+  }
 
   async function fetchTemplates() {
     const result = await TemplateService.templates()
-    const templates: TemplateModal[] = result
 
-    workspaceStore.setTemplates(templates)
-    setCategories(extractCategories())
+    setTemplates(result)
+    setCategories(extractCategories(result))
 
     return result.length > 0
-  }
-
-  function extractCategories() {
-    const categories = uniqueArray(workspaceStore.templates.map(row => row.category))
-
-    return [...TEMPLATE_CATEGORIES, ...categories.filter(row => !TEMPLATE_CATEGORIES.includes(row))]
   }
 
   function handleNavigateBack() {
@@ -70,18 +66,18 @@ const Templates = observer(() => {
 
         <Body>
           <Heading>{t('Templates')}</Heading>
-          <Request fetch={fetchTemplates} useCache={workspaceStore.templates.length > 0}>
+          <Request fetch={fetchTemplates} useCache={templates.length > 0}>
             {categories.map((category, index) => (
               <div key={index}>
                 <StyledSubHeading id={category}>{category}</StyledSubHeading>
                 <Flex wrap="wrap" style={{ marginLeft: -16, marginRight: -16 }}>
-                  {workspaceStore.templates
+                  {templates
                     .filter(row => row.category === category)
-                    .map((template, index) => (
+                    .map(template => (
                       <TemplateItem
-                        key={index}
-                        workspaceId={workspaceStore.activeWorkspaceId!}
-                        projectId={workspaceStore.activeProjectId!}
+                        key={template.id}
+                        workspaceId={workspaceId}
+                        projectId={projectId}
                         template={template}
                       />
                     ))}
@@ -93,7 +89,7 @@ const Templates = observer(() => {
       </Flex>
     </Container>
   )
-})
+}
 
 export default Templates
 

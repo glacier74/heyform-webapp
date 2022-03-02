@@ -24,7 +24,8 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }) => {
-  const { workspaceId } = useParam()
+  const history = useHistory()
+  const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 
   const members = useMemo(() => {
@@ -44,6 +45,10 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
       case 'delete':
         return onDelete()
     }
+  }
+
+  function handleCreateForm() {
+    history.push(`/workspace/${workspaceId}/project/${projectId}/form/create`)
   }
 
   useAsyncEffect(async () => {
@@ -81,7 +86,11 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
           />
         </div>
       }
-      actions={<Button type="primary">Create form</Button>}
+      actions={
+        <Button type="primary" onClick={handleCreateForm}>
+          Create form
+        </Button>
+      }
     />
   )
 })

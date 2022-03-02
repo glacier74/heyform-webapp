@@ -8,6 +8,7 @@ import styled from 'styled-components'
 export const UserAvatar: FC<ComponentProps> = observer(({ className, style }) => {
   const history = useHistory()
   const userStore = useStore('userStore')
+  const appStore = useStore('appStore')
 
   const DropdownOverlay = (
     <StyledMenu onClick={handleClick}>
@@ -41,7 +42,7 @@ export const UserAvatar: FC<ComponentProps> = observer(({ className, style }) =>
         break
 
       case 'profile':
-        history.push(`/user/profile?next=${encodeURIComponent(window.location.pathname)}`)
+        appStore.isUserSettingsOpen = true
         break
 
       case 'logout':
@@ -60,13 +61,7 @@ export const UserAvatar: FC<ComponentProps> = observer(({ className, style }) =>
         }}
         overlay={DropdownOverlay}
       >
-        <StyledAvatar
-          image={userStore.details?.avatar}
-          text={userStore.details?.name}
-          imageWidth={60}
-          imageHeight={60}
-          round={true}
-        />
+        <img className="inline-block h-8 w-8 rounded-full" src={userStore.user.avatar} />
       </StyledDropdown>
     </Container>
   )

@@ -141,7 +141,7 @@ const Groups = () => {
   }
 
   function handleOpenPlanModal() {
-    appStore.openPlanModal()
+    appStore.isPlanModalOpen = true
   }
 
   if (workspaceStore.workspace.plan.grade < PlanGradeEnum.BASIC) {

@@ -9,7 +9,7 @@ export const PlanModal: FC = observer(() => {
   const appStore = useStore('appStore')
 
   function handleClose() {
-    appStore.closePlanModal()
+    appStore.isPlanModalOpen = false
   }
 
   return (

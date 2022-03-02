@@ -1,4 +1,6 @@
 .workspace-container {
+  @apply min-h-screen;
+
   @media (min-width: 768px) {
     padding-left: 16rem;
   }

@@ -1,9 +1,9 @@
 import { Heading, SubHeading } from '@/legacy_pages/components'
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
+import { useStore } from '@/store'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { Basic } from './views/Basic'
 import { DeleteForm } from './views/DeleteForm'
@@ -12,31 +12,44 @@ import { Protection } from './views/Protection'
 
 const FormSettings: FC = observer(() => {
   const { t } = useTranslation()
-  const history = useHistory()
+  const appStore = useStore('appStore')
 
   function handleClose() {
-    history.goBack()
+    appStore.isFormSettingsOpen = false
   }
 
   return (
-    <Container close={true} onClose={handleClose}>
-      <Content>
-        <Heading description={t('Manage your form settings')}>{t('Form')}</Heading>
+    <>
+      {appStore.isFormSettingsOpen && (
+        <Container close={true} onClose={handleClose}>
+          <Content>
+            <Heading description={t('Manage your form settings')}>{t('Form')}</Heading>
 
-        <FormStatus />
-        <Basic />
-        <Protection />
+            <FormStatus />
+            <Basic />
+            <Protection />
 
-        <SubHeading>{t('Extra')}</SubHeading>
-        <DeleteForm />
-      </Content>
-    </Container>
+            <SubHeading>{t('Extra')}</SubHeading>
+            <DeleteForm />
+          </Content>
+        </Container>
+      )}
+    </>
   )
 })
 
 export default FormSettings
 
 const Container = styled(NavBarContainer)`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 100;
+  overflow-y: auto;
+
   .content {
     width: 640px;
   }
