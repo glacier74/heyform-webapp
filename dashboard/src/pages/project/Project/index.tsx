@@ -11,7 +11,7 @@ import {
 } from '@heroicons/react/outline'
 import type { FormModel } from '@heyforms/shared-types-enums'
 import { FormStatusEnum } from '@heyforms/shared-types-enums'
-import { Badge, Button, Dropdown, EmptyStates, Menus, Table } from '@heyforms/ui'
+import { Badge, Button, Dropdown, EmptyStates, Menus, notification, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
@@ -23,7 +23,7 @@ import './index.scss'
 
 const Project = observer(() => {
   const history = useHistory()
-  const { projectId } = useParam()
+  const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 
   async function request() {
@@ -35,6 +35,45 @@ const Project = observer(() => {
 
   function handleRowClick(record: FormModel) {
     history.push(`/workspace/${record.teamId}/project/${record.projectId}/form/${record.id}/create`)
+  }
+
+  async function handleDuplicate(record: FormModel) {
+    const loading = notification.loading({
+      title: 'Duplicating form...'
+    })
+
+    try {
+      const result = await FormService.duplicate(record.id)
+      workspaceStore.addForm(projectId, {
+        ...record,
+        id: result
+      })
+
+      history.push(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
+    } catch (err: any) {
+      notification.error({
+        title: err.message
+      })
+    }
+
+    loading.dismiss()
+  }
+
+  async function handleDelete(record: FormModel) {
+    const loading = notification.loading({
+      title: 'Deleting form...'
+    })
+
+    try {
+      await FormService.moveToTrash(record.id)
+      workspaceStore.deleteForm(projectId, record.id)
+    } catch (err: any) {
+      notification.error({
+        title: err.message
+      })
+    }
+
+    loading.dismiss()
   }
 
   // Table columns
@@ -96,10 +135,11 @@ const Project = observer(() => {
               break
 
             case 'duplicate':
+              handleDuplicate(record)
               break
 
             case 'delete':
-              workspaceStore.deleteForm(projectId, record.id)
+              handleDelete(record)
               break
           }
         }

@@ -167,10 +167,10 @@ export class WorkspaceStore {
   }
 
   deleteForm(projectId: string, formId: string) {
-    let forms = this.formMaps[projectId]
+    const forms = this.formMaps[projectId]
 
     if (isValidArray(forms)) {
-      forms = forms.filter(f => f.id !== formId)
+      this.formMaps[projectId] = forms.filter(f => f.id !== formId)
     }
   }
 
