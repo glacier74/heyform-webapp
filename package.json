@@ -7,6 +7,8 @@
   "workspaces": [
     "dashboard",
     "ui",
+    "vite-plugin-font-optimization",
+    "vite-plugin-html-injection",
     "vite-plugin-upload"
   ],
   "engines": {
