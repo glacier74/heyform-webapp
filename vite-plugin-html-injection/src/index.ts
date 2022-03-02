@@ -11,8 +11,8 @@ export default function htmlInjectionPlugin(options: HTMLInjectionOptions): Plug
     name: 'html-injection-plugin',
 
     async transformIndexHtml(html: string) {
-      const openDelimiter = options.openDelimiter || '%'
-      const closeDelimiter = options.closeDelimiter || '%'
+      const openDelimiter = options.openDelimiter || '{'
+      const closeDelimiter = options.closeDelimiter || '}'
 
       Object.keys(options.variables).forEach(key => {
         const regex = new RegExp(`${openDelimiter}${key}${closeDelimiter}`, 'g')

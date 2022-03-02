@@ -1,3 +1,5 @@
+import fontOptimizationPlugin from '@heyforms/vite-plugin-font-optimization'
+import htmlInjectionPlugin from '@heyforms/vite-plugin-html-injection'
 import uploadPlugin, { UploadZone } from '@heyforms/vite-plugin-upload'
 import legacy from '@vitejs/plugin-legacy'
 import reactRefresh from '@vitejs/plugin-react-refresh'
@@ -16,7 +18,14 @@ export default ({ mode }: ConfigEnv) => {
       legacy({
         targets: ['defaults', 'not IE 11']
       }),
-      // @ts-ignore
+      htmlInjectionPlugin({
+        variables: env
+      }),
+      fontOptimizationPlugin({
+        fontFamilies: [
+          'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap'
+        ]
+      }),
       uploadPlugin({
         envFile: '.qiniurc',
         prefix: 'webapp/',
@@ -41,7 +50,10 @@ export default ({ mode }: ConfigEnv) => {
         swDest: 'dist/sw.js',
         globDirectory: 'dist',
         globIgnores: ['**/*.map', '**/*.webmanifest', '**/index.html', '**/sw.js'],
-        mode: 'production'
+        mode: 'production',
+        modifyURLPrefix: {
+          'static/': env.VITE_CDN_PREFIX_URI + 'static/'
+        }
       })
     ],
     resolve: {
