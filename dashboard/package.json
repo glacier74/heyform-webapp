@@ -33,8 +33,8 @@
   "dependencies": {
     "@apollo/client": "^3.5.9",
     "@heroicons/react": "^1.0.5",
-    "@heyforms/answer-utils": "^0.2.9",
-    "@heyforms/form-component": "^2022.2.1-patch1",
+    "@heyforms/answer-utils": "^0.2.10",
+    "@heyforms/form-component": "^2022.3.1-3",
     "@heyforms/shared-types-enums": "^3.11.2",
     "@heyforms/ui": "*",
     "@heyui/component": "^1.7.1",
@@ -76,9 +76,9 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "@heyforms/vite-plugin-upload": "*",
     "@heyforms/vite-plugin-font-optimization": "*",
     "@heyforms/vite-plugin-html-injection": "*",
+    "@heyforms/vite-plugin-upload": "*",
     "@types/apollo-upload-client": "^17.0.0",
     "@types/big.js": "^6.1.3",
     "@types/js-cookie": "^3.0.1",
