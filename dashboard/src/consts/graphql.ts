@@ -477,6 +477,7 @@ export const FORMS_GQL = gql`
           backgroundImage
         }
       }
+      draft
       retentionAt
       suspended
       status

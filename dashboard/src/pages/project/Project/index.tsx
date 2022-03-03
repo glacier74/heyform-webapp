@@ -1,7 +1,7 @@
 import { Async } from '@/components'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
-import { useParam } from '@/utils'
+import { useParam, useVisible } from '@/utils'
 import {
   ClipboardCheckIcon,
   DotsHorizontalIcon,
@@ -11,7 +11,16 @@ import {
 } from '@heroicons/react/outline'
 import type { FormModel } from '@heyforms/shared-types-enums'
 import { FormStatusEnum } from '@heyforms/shared-types-enums'
-import { Badge, Button, Dropdown, EmptyStates, Menus, notification, Table } from '@heyforms/ui'
+import {
+  Badge,
+  Button,
+  Dropdown,
+  EmptyStates,
+  Menus,
+  Modal,
+  notification,
+  Table
+} from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
@@ -25,6 +34,7 @@ const Project = observer(() => {
   const history = useHistory()
   const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
+  const [suspendModalVisible, openSuspendModal, closeSuspendModal] = useVisible()
 
   async function request() {
     const result = await FormService.forms(projectId, FormStatusEnum.NORMAL)
@@ -34,6 +44,10 @@ const Project = observer(() => {
   }
 
   function handleRowClick(record: FormModel) {
+    if (record.suspended) {
+      return openSuspendModal()
+    }
+
     history.push(`/workspace/${record.teamId}/project/${record.projectId}/form/${record.id}/create`)
   }
 
@@ -80,6 +94,10 @@ const Project = observer(() => {
     history.push(`/workspace/${workspaceId}/project/${projectId}/form/create`)
   }
 
+  function handleConfirm() {
+    window.location.href = 'https://my.heyform.net/f/E4MKK2hx'
+  }
+
   // Table columns
   const columns: TableColumn<FormModel>[] = [
     {
@@ -106,10 +124,10 @@ const Project = observer(() => {
       name: 'Status',
       width: '30%',
       render(record) {
-        if (record.draft) {
-          return <Badge className="form-status" text="Draft" dot />
-        } else if (record.suspended) {
+        if (record.suspended) {
           return <Badge className="form-status" type="red" text="Suspended" dot />
+        } else if (record.draft) {
+          return <Badge className="form-status" text="Draft" dot />
         } else if (record.settings?.active) {
           return <Badge className="form-status" type="blue" text="Active" dot />
         } else {
@@ -190,6 +208,18 @@ const Project = observer(() => {
           onRowClick={handleRowClick}
         />
       </Async>
+
+      <Modal.Confirm
+        type="danger"
+        visible={suspendModalVisible}
+        title="This form is suspended"
+        description="If you have any questions about suspend, please click the button below to contact us."
+        cancelLabel="Cancel"
+        confirmLabel="Contact us"
+        onClose={closeSuspendModal}
+        onCancel={closeSuspendModal}
+        onConfirm={handleConfirm}
+      />
     </ProjectLayout>
   )
 })
