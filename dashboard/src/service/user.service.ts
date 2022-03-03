@@ -41,13 +41,15 @@ export class UserService {
     })
   }
 
+  // @Discard at 3 Mar 2022
+  // Don't need to enter password when change email address
   static updateEmail(email: string, password: string, code: string) {
     return request.mutate({
       mutation: UPDATE_EMAIL_GQL,
       variables: {
         input: {
           email,
-          password,
+          // password,
           code
         }
       }

@@ -44,9 +44,11 @@ export const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) =>
           }}
           request={handleFinish}
         >
-          <Form.Item name="password" label="Password" rules={[{ required: true }]}>
-            <Input.Password />
-          </Form.Item>
+          {/* @Discard at 3 Mar 2022 */}
+          {/* Don't need to enter password when change email address */}
+          {/*<Form.Item name="password" label="Password" rules={[{ required: true }]}>*/}
+          {/*  <Input.Password />*/}
+          {/*</Form.Item>*/}
           <Form.Item
             name="email"
             label="New email address"
