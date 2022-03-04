@@ -4,7 +4,6 @@ import type { CookieAttributes } from 'js-cookie'
 import cookies from 'js-cookie'
 import store from 'store2'
 
-export const workspaceIdKey = 'HEYFORM_WORKSPACE_ID'
 export const deviceIdKey = 'HEYFORM_USER_ID'
 export const loggedInKey = 'HEYFORM_LOGGED_IN'
 export const redirectUriKey = 'HEYFORM_REDIRECT_URI'
@@ -60,7 +59,7 @@ export function getDeviceId() {
 }
 
 export function setDeviceId() {
-  const deviceId = nanoid(8)
+  const deviceId = nanoid(12)
 
   setCookie(deviceIdKey, deviceId)
   store.set(deviceIdKey, deviceId)

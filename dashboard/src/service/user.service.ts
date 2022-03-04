@@ -81,7 +81,8 @@ export class UserService {
 
   static emailVerificationCode() {
     return request.query({
-      query: EMAIL_VERIFICATION_CODE_GQL
+      query: EMAIL_VERIFICATION_CODE_GQL,
+      fetchPolicy: 'network-only'
     })
   }
 

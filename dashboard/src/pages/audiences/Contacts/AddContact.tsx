@@ -80,6 +80,7 @@ const AddContact: FC<IModalProps> = ({ visible, onClose }) => {
               options={groups as any}
               labelKey="name"
               valueKey="id"
+              searchPlaceholder="Find or create a group"
               createOptionLeading="Create new group"
               createRequest={handleCreateGroup}
             />

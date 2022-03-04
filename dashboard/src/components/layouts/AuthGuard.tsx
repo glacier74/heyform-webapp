@@ -45,6 +45,8 @@ const DeletionWarning: FC = observer(() => {
   useEffect(() => {
     if (userStore.user.isDeletionScheduled) {
       handleOpen()
+    } else {
+      handleClose()
     }
   }, [userStore.user.isDeletionScheduled])
 

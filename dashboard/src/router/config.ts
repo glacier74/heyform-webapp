@@ -128,7 +128,8 @@ const config: CustomRouteConfig[] = [
     exact: true,
     loginRequired: true,
     layout: AuthLayout,
-    component: JoinWorkspace
+    component: JoinWorkspace,
+    title: 'Form invitation'
   },
 
   /* Audiences */

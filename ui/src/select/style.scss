@@ -108,8 +108,7 @@
 }
 
 .multiple-select-button {
-  padding-top: 0.4375rem;
-  padding-bottom: 0.4375rem;
+  @apply py-2;
 
   &.multiple-selected {
     @apply pb-0;
@@ -128,7 +127,7 @@
 
 .multiple-item {
   @apply relative inline-flex items-center rounded-full border border-gray-300 px-3;
-  margin-left: 0.4375rem;
+  margin-right: 0.5rem;
   margin-bottom: 0.4375rem;
 }
 
