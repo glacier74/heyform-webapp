@@ -80,7 +80,11 @@
 }
 
 .modal-confirm-body {
-  @apply mt-3 text-center sm:mt-5;
+  @apply mt-3 sm:mt-5;
+
+  .modal-title {
+    @apply text-center;
+  }
 }
 
 .modal-title {
