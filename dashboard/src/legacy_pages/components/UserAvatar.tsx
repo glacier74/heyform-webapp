@@ -13,13 +13,13 @@ export const UserAvatar: FC<ComponentProps> = observer(({ className, style }) =>
   const DropdownOverlay = (
     <StyledMenu onClick={handleClick}>
       <Menu.Item name="profile">
-        <span>My Profile</span>
+        <span>Account settings</span>
       </Menu.Item>
       <Menu.Item name="help">
-        <span>Help Center</span>
+        <span>Help center</span>
       </Menu.Item>
       <Menu.Item name="contact">
-        <span>Contact Us</span>
+        <span>Contact us</span>
       </Menu.Item>
       <VersionItem>
         <span>Version {import.meta.env.PACKAGE_VERSION}</span>

@@ -10,9 +10,6 @@ export class AppStore {
   // Form preview is open or not
   isFormPreviewOpen = false
 
-  // Form settings is open or not
-  isFormSettingsOpen = false
-
   // User settings is open or not
   isUserSettingsOpen = false
 

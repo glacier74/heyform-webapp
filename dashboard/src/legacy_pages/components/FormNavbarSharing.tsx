@@ -1,10 +1,11 @@
 import { SettingsIcon } from '@/legacy_pages/components/Icons'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
 import { FormModel } from '@heyforms/shared-types-enums'
-import { Button, Flex } from '@heyui/component'
+import { Button, Flex, message } from '@heyui/component'
 import { EyeIcon } from '@heyui/icon'
 import { observer } from 'mobx-react-lite'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -25,13 +26,31 @@ const SyncStatusContainer = styled(Flex)`
 export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form }) => {
   const { t } = useTranslation()
   const appStore = useStore('appStore')
+  const formStore = useStore('formStore')
+  const [loading, setLoading] = useState(false)
 
   function handleClick() {
     appStore.isFormPreviewOpen = true
   }
 
-  function handleSettings() {
-    appStore.isFormSettingsOpen = true
+  async function handlePublish() {
+    if (loading) {
+      return
+    }
+    setLoading(true)
+
+    try {
+      await FormService.update(form!.id, {
+        active: true
+      })
+      formStore.updateSettings({
+        active: true
+      })
+    } catch (err: any) {
+      message.error('Failed to publish form')
+    }
+
+    setLoading(false)
   }
 
   return (
@@ -40,9 +59,15 @@ export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form })
         {t('Preview')}
       </Button>
 
-      <Button size="small" ghost={true} icon={<SettingsIcon />} onClick={handleSettings}>
-        {t('Settings')}
-      </Button>
+      {formStore.current?.settings?.active ? (
+        <Button size="small" ghost={true} disabled={true}>
+          {t('Published')}
+        </Button>
+      ) : (
+        <Button size="small" type="primary" loading={loading} onClick={handlePublish}>
+          {t('Publish')}
+        </Button>
+      )}
     </Container>
   )
 })
@@ -53,18 +78,25 @@ const Container = styled(Flex)`
   button {
     margin-right: 12px;
     border: none;
-    background: #f3f3f3;
 
     &:hover {
       box-shadow: 0px 23px 44px rgb(176 183 195 / 14%);
     }
 
-    svg {
-      width: 22px;
-      height: 22px;
-      margin-left: -2px;
-      padding: 2px;
-      color: #8a94a6;
+    &.hey-button-ghost {
+      background: #f3f3f3;
+
+      svg {
+        width: 22px;
+        height: 22px;
+        margin-left: -2px;
+        padding: 2px;
+        color: #8a94a6;
+      }
+
+      &[disabled] {
+        color: #37352f;
+      }
     }
   }
 `

@@ -43,6 +43,9 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
         <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}>
           {t('Results')}
         </NavLink>
+        <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/settings`}>
+          {t('Settings')}
+        </NavLink>
       </Nav>
       <Right>
         <FormNavbarSharing form={formStore.current} />
