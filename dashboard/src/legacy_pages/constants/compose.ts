@@ -215,6 +215,7 @@ export const ANSWER_FONT_SIZES_OPTIONS: OptionType[] = [14, 16, 18, 20, 22, 24, 
 )
 
 export const GOOGLE_FONTS = [
+  'Public Sans',
   'Inter',
   'Montserrat',
   'Alegreya',
@@ -274,7 +275,7 @@ export const FONT_FAMILY_OPTIONS: OptionType[] = [
 
 export const FORM_THEMES: FormThemeV2[] = [
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: '#FFF',
@@ -288,7 +289,7 @@ export const FORM_THEMES: FormThemeV2[] = [
     buttonText: '#fff'
   },
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: 'rgb(38, 49, 126)',
@@ -302,7 +303,7 @@ export const FORM_THEMES: FormThemeV2[] = [
     buttonText: 'rgb(38, 49, 126)'
   },
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: '#FFF',
@@ -316,7 +317,7 @@ export const FORM_THEMES: FormThemeV2[] = [
     buttonText: '#FFF'
   },
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: 'rgb(38, 38, 38)',
@@ -330,7 +331,7 @@ export const FORM_THEMES: FormThemeV2[] = [
     buttonText: 'rgb(38, 38, 38)'
   },
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: 'rgb(64, 142, 145)',
@@ -344,7 +345,7 @@ export const FORM_THEMES: FormThemeV2[] = [
     buttonText: 'rgb(64, 142, 145)'
   },
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: 'rgb(249, 205, 72)',
@@ -358,7 +359,7 @@ export const FORM_THEMES: FormThemeV2[] = [
     buttonText: '#fff'
   },
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: 'rgb(254, 180, 148)',
@@ -372,7 +373,7 @@ export const FORM_THEMES: FormThemeV2[] = [
     buttonText: '#fff'
   },
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: 'rgb(250, 250, 250)',
@@ -386,7 +387,7 @@ export const FORM_THEMES: FormThemeV2[] = [
     buttonText: '#fff'
   },
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: 'rgb(243, 249, 239)',
@@ -400,7 +401,7 @@ export const FORM_THEMES: FormThemeV2[] = [
     buttonText: '#fff'
   },
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: 'rgb(250, 238, 241)',
@@ -414,7 +415,7 @@ export const FORM_THEMES: FormThemeV2[] = [
     buttonText: '#fff'
   },
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: 'rgb(253, 248, 236)',
@@ -428,7 +429,7 @@ export const FORM_THEMES: FormThemeV2[] = [
     buttonText: '#fff'
   },
   {
-    fontFamily: 'Inter',
+    fontFamily: 'Public Sans',
     fontSize: '14px',
     lineHeight: '1.2857',
     background: 'rgb(131, 203, 204)',

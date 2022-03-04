@@ -51,7 +51,7 @@ export const theme: Theme = {
   text: 'rgb(55, 53, 47)',
 
   fontFamily:
-    'Inter, -apple-system, BlinkMacSystemFont, Helvetica, Roboto, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", STXihei, "Microsoft YaHei", SimHei, "WenQuanYi Micro Hei", serif',
+    'Public Sans, -apple-system, BlinkMacSystemFont, Helvetica, Roboto, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", STXihei, "Microsoft YaHei", SimHei, "WenQuanYi Micro Hei", serif',
   codeFontFamily: 'SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace',
   fontSize: '14px',
   lineHeight: (20 / 14) as any,
