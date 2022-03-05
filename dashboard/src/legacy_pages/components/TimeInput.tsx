@@ -6,8 +6,7 @@
  **/
 
 import { formatHs, hsToSecond } from '@/legacy_pages/utils'
-import { Flex, Input, InputProps, Select } from '@heyui/component'
-import { OptionType } from '@heyui/component'
+import { Flex, Input, InputProps, OptionType, Select } from '@heyui/component'
 import { isValid } from '@hpnp/utils/helper'
 import { FC, useEffect, useState } from 'react'
 import styled from 'styled-components'
@@ -74,7 +73,7 @@ export const TimeInput: FC<TimeInputProp> = ({
 const StyledInput = styled(Input)`
   &,
   input {
-    width: 60px !important;
+    width: 100px !important;
   }
 
   input {
@@ -85,6 +84,9 @@ const StyledInput = styled(Input)`
 const StyledSelect = styled(Select)`
   position: relative;
   width: 80px;
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 
   .hey-button {
     padding-left: 12px !important;

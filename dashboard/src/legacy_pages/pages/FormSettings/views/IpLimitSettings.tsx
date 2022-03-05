@@ -1,7 +1,8 @@
 import { NumberInput } from '@/legacy_pages/components/NumberInput'
 import { TimeInput } from '@/legacy_pages/components/TimeInput'
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import {
   Button,
   CheckboxValue,
@@ -11,14 +12,12 @@ import {
   FormItem,
   message,
   Radio,
+  RadioGroup,
   Switch
 } from '@heyui/component'
-import { RadioGroup } from '@heyui/component'
 import { isValid } from '@hpnp/utils/helper'
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface IpLimitSettingsProps extends ComponentProps {
@@ -134,7 +133,8 @@ export const IpLimitSettings: FC<IpLimitSettingsProps> = ({
                     {
                       required: true,
                       type: 'number',
-                      min: 1
+                      min: 1,
+                      message: "Total number can't be empty"
                     }
                   ]}
                 >
@@ -151,7 +151,8 @@ export const IpLimitSettings: FC<IpLimitSettingsProps> = ({
                     {
                       required: true,
                       type: 'number',
-                      min: 1
+                      min: 1,
+                      message: "Time can't be empty"
                     }
                   ]}
                 >

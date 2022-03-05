@@ -91,4 +91,10 @@ const Content = styled.div`
     height: 40px;
     padding: 10px 24px;
   }
+
+  .heyform-item-error {
+    .hey-select {
+      border-color: #ff1711;
+    }
+  }
 `

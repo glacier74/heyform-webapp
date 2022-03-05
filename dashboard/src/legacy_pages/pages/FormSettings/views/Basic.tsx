@@ -9,14 +9,13 @@ import { FormError, SubHeading } from '@/legacy_pages/components'
 import { TimeInput } from '@/legacy_pages/components/TimeInput'
 import { PlanPermissionBadge, UpgradePlan } from '@/legacy_pages/components/UpgradePlan'
 import { PlanGradeEnum } from '@/legacy_pages/models'
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { Button, Form, FormItem, Input, message, SwitchFormItem } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 export const Basic: FC = observer(() => {
@@ -96,7 +95,8 @@ export const Basic: FC = observer(() => {
               {
                 required: true,
                 type: 'number',
-                min: 1
+                min: 1,
+                message: 'Please enter a valid number'
               }
             ]}
           >
@@ -188,5 +188,5 @@ const Container = styled.div`
 const StyledFormItem = styled(SwitchFormItem)``
 
 const StyledTimeInput = styled(TimeInput)`
-  width: 80px;
+  width: 160px;
 `

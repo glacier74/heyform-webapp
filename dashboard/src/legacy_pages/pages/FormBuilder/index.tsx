@@ -1,11 +1,11 @@
 import { Request } from '@/legacy_pages/components'
 import Builder from '@/legacy_pages/pages/FormBuilder/builder'
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { FormModel } from '@heyforms/shared-types-enums'
 import { Flex } from '@heyui/component'
 import { FC, useEffect, useState } from 'react'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 import { Leftbar } from '../Compose/views/Leftbar'
 
@@ -28,7 +28,9 @@ const FormBuilder: FC = () => {
   return (
     <Container>
       <Leftbar />
-      <StyledRequest fetch={fetchFormDetail}>{form && <Builder form={form!} />}</StyledRequest>
+      <StyledRequest className="scrollbar" fetch={fetchFormDetail}>
+        {form && <Builder form={form!} />}
+      </StyledRequest>
     </Container>
   )
 }

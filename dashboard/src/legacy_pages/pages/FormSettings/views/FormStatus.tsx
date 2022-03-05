@@ -9,15 +9,14 @@ import { FormError, SubHeading } from '@/legacy_pages/components'
 import { DatetimePicker } from '@/legacy_pages/components/DatetimePicker'
 import { NumberInput } from '@/legacy_pages/components/NumberInput'
 import { TimeInput } from '@/legacy_pages/components/TimeInput'
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { Button, Flex, Form, FormItem, message, Switch, SwitchFormItem } from '@heyui/component'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 export const FormStatus: FC = observer(() => {
@@ -162,7 +161,8 @@ export const FormStatus: FC = observer(() => {
                 {
                   type: 'number',
                   required: true,
-                  min: 1
+                  min: 1,
+                  message: 'Please enter a valid number'
                 }
               ]}
             >
@@ -188,7 +188,8 @@ export const FormStatus: FC = observer(() => {
                   {
                     required: true,
                     type: 'number',
-                    min: 1
+                    min: 1,
+                    message: 'Please enter a valid number'
                   }
                 ]}
               >
@@ -201,7 +202,8 @@ export const FormStatus: FC = observer(() => {
                   {
                     required: true,
                     type: 'number',
-                    min: 1
+                    min: 1,
+                    message: 'Please enter a valid number'
                   }
                 ]}
               >
@@ -301,6 +303,6 @@ const StyledTimeInput = styled(TimeInput)`
 const NumberLimitItem = styled(FormItem)`
   &,
   input {
-    width: 120px;
+    width: 180px;
   }
 `

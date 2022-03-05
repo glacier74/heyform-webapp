@@ -1,11 +1,10 @@
 import { NumberInput } from '@/legacy_pages/components/NumberInput'
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { Button, ComponentProps, Flex, Form, FormItem, message, Switch } from '@heyui/component'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface MaximumLimitSettingsProps extends ComponentProps {
@@ -77,7 +76,8 @@ export const MaximumLimitSettings: FC<MaximumLimitSettingsProps> = ({
                 {
                   type: 'number',
                   required: true,
-                  min: 1
+                  min: 1,
+                  message: "Total number can't be empty"
                 }
               ]}
             >

@@ -1,11 +1,10 @@
 import { TimeInput } from '@/legacy_pages/components/TimeInput'
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { Button, ComponentProps, Flex, Form, FormItem, message, Switch } from '@heyui/component'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface TimeLimitSettingsProps extends ComponentProps {

@@ -1,5 +1,4 @@
 import { PlatteIcon, ThemeIcon } from '@/legacy_pages/components/Icons'
-import { ScrollBarStyle } from '@/legacy_pages/components/Style'
 import { UpgradePlan } from '@/legacy_pages/components/UpgradePlan'
 import { ComposeTabKeyEnum, PlanGradeEnum } from '@/legacy_pages/models'
 import { useStore } from '@/legacy_pages/utils'
@@ -16,7 +15,7 @@ const Pane: FC = observer(() => {
   const composeStore = useStore('composeStore')
 
   return (
-    <PaneContainer>
+    <PaneContainer className="scrollbar">
       {(() => {
         switch (composeStore.activeTab) {
           // @Discard at Jan 19, 2022 at Form Builder v2.0
@@ -98,7 +97,6 @@ const TabsContainer = styled.div`
 `
 
 const PaneContainer = styled.div`
-  ${ScrollBarStyle};
   flex: 1;
   padding: 0 12px;
   height: calc(100vh - 60px);
