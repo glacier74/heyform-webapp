@@ -1,71 +1,64 @@
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useParam, useVisible } from '@/utils'
-import { Button, Input, Modal } from '@heyforms/ui'
-import type { InputValue } from '@heyforms/ui/lib/types/input/Input'
-import { isEmpty } from '@hpnp/utils/helper'
+import { useAsyncEffect, useParam, useVisible } from '@/utils'
+import { Button, Form, Input, Modal, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 const DeleteWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) => {
   const { workspaceId } = useParam()
   const history = useHistory()
+  const userStore = useStore('userStore')
   const workspaceStore = useStore('workspaceStore')
 
-  const [isDisabled, setIsDisabled] = useState(true)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<Error | null>(null)
+  async function handleFinish(values: IMapType) {
+    await WorkspaceService.dissolve(workspaceId, values.code)
+    workspaceStore.deleteWorkspace(workspaceId)
 
-  function handleChange(value?: InputValue) {
-    setIsDisabled(isEmpty(value) || value !== workspaceStore.workspace?.name)
+    history.replace('/')
   }
 
-  async function handleConfirm() {
-    setLoading(true)
-    setError(null)
+  useAsyncEffect(async () => {
+    if (visible) {
+      await WorkspaceService.dissolveCode(workspaceId)
 
-    try {
-      await WorkspaceService.dissolve(workspaceId)
-
-      workspaceStore.deleteWorkspace(workspaceId)
-      history.replace('/')
-    } catch (err: any) {
-      setError(err)
+      notification.success({
+        title: `An email containing a verification code was sent to ${userStore.user.email}.`
+      })
     }
-
-    setLoading(false)
-  }
+  }, [visible])
 
   return (
-    <Modal.Confirm
-      type="danger"
-      visible={visible}
-      title="Are you sure you want to delete this workspace?"
-      description={
-        <div className="space-y-2">
-          <p>
-            Keep in mind this operation is irreversible and will permanently delete all the data
-            associated with this workspace.
-          </p>
-          <p>
-            Once you confirm to dissolve the workspace, you will no longer have access to the
-            workspace data.
-          </p>
-          <Input
-            placeholder={`Please type ${workspaceStore.workspace.name} to confirm`}
-            onChange={handleChange}
-          />
-          {error && <div className="form-item-error">{error.message}</div>}
+    <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">Dissolve workspace</h1>
+          <div className="space-y-2">
+            <p className="mt-1 text-sm text-gray-500">
+              Keep in mind this operation is irreversible and will permanently delete all the data
+              associated with this workspace.
+            </p>
+            <p className="mt-1 text-sm text-gray-500">
+              Once you confirm to dissolve the workspace, you will no longer have access to the
+              workspace data.
+            </p>
+          </div>
         </div>
-      }
-      confirmLabel="I understand, delete the workspace anyway"
-      confirmDisabled={loading || isDisabled}
-      confirmLoading={loading}
-      onClose={onClose}
-      onConfirm={handleConfirm}
-    />
+
+        <Form.Custom
+          submitText="Dissolve workspace"
+          submitOptions={{
+            type: 'danger'
+          }}
+          request={handleFinish}
+        >
+          <Form.Item name="code" label="Verification code" rules={[{ required: true }]}>
+            <Input />
+          </Form.Item>
+        </Form.Custom>
+      </div>
+    </Modal>
   )
 })
 

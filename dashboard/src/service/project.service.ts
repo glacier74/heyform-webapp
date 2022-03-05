@@ -1,6 +1,7 @@
 import {
   ADD_PROJECT_MEMBER_GQL,
   CREATE_PROJECT_GQL,
+  DELETE_PROJECT_CODE_GQL,
   DELETE_PROJECT_GQL,
   DELETE_PROJECT_MEMBER_GQL,
   EMPTY_TRASH_GQL,
@@ -47,12 +48,25 @@ export class ProjectService {
     })
   }
 
-  static delete(projectId: string) {
+  static deleteCode(projectId: string) {
+    return request.query({
+      query: DELETE_PROJECT_CODE_GQL,
+      variables: {
+        input: {
+          projectId
+        }
+      },
+      fetchPolicy: 'network-only'
+    })
+  }
+
+  static delete(projectId: string, code: string) {
     return request.mutate({
       mutation: DELETE_PROJECT_GQL,
       variables: {
         input: {
-          projectId
+          projectId,
+          code
         }
       }
     })

@@ -2,6 +2,7 @@ import {
   ADD_CUSTOM_HOSTNAME_GQL,
   CHECK_CUSTOM_HOSTNAME_GQL,
   CREATE_WORKSPACE_GQL,
+  DISSOLVE_WORKSPACE_CODE_GQL,
   DISSOLVE_WORKSPACE_GQL,
   EXPORT_WORKSPACE_DATA_GQL,
   INVITE_MEMBERS_GQL,
@@ -54,12 +55,25 @@ export class WorkspaceService {
     })
   }
 
-  static dissolve(teamId: string) {
+  static dissolveCode(teamId: string) {
+    return request.query({
+      query: DISSOLVE_WORKSPACE_CODE_GQL,
+      variables: {
+        input: {
+          teamId
+        }
+      },
+      fetchPolicy: 'network-only'
+    })
+  }
+
+  static dissolve(teamId: string, code: string) {
     return request.mutate({
       mutation: DISSOLVE_WORKSPACE_GQL,
       variables: {
         input: {
-          teamId
+          teamId,
+          code
         }
       }
     })

@@ -52,8 +52,14 @@ export const UPDATE_WORKSPACE_GQL = gql`
   }
 `
 
+export const DISSOLVE_WORKSPACE_CODE_GQL = gql`
+  query dissolveTeamCode($input: TeamDetailInput!) {
+    dissolveTeamCode(input: $input)
+  }
+`
+
 export const DISSOLVE_WORKSPACE_GQL = gql`
-  mutation dissolveTeam($input: TeamDetailInput!) {
+  mutation dissolveTeam($input: DissolveTeamInput!) {
     dissolveTeam(input: $input)
   }
 `
@@ -396,8 +402,14 @@ export const EMPTY_TRASH_GQL = gql`
   }
 `
 
+export const DELETE_PROJECT_CODE_GQL = gql`
+  query deleteProjectCode($input: ProjectDetailInput!) {
+    deleteProjectCode(input: $input)
+  }
+`
+
 export const DELETE_PROJECT_GQL = gql`
-  mutation deleteProject($input: ProjectDetailInput!) {
+  mutation deleteProject($input: DeleteProjectInput!) {
     deleteProject(input: $input)
   }
 `

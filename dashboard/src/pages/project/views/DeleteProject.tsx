@@ -1,12 +1,9 @@
 import type { ProjectModel } from '@/models'
 import { ProjectService } from '@/service'
 import { useStore } from '@/store'
-import { useParam } from '@/utils'
-import { Input, Modal } from '@heyforms/ui'
-import type { InputValue } from '@heyforms/ui/lib/types/input/Input'
-import { isEmpty } from '@hpnp/utils/helper'
+import { useAsyncEffect, useParam } from '@/utils'
+import { Form, Input, Modal, notification } from '@heyforms/ui'
 import type { FC } from 'react'
-import { useState } from 'react'
 
 interface DeleteProjectProps extends IModalProps {
   project?: ProjectModel | null
@@ -20,56 +17,54 @@ export const DeleteProject: FC<DeleteProjectProps> = ({
 }) => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
+  const userStore = useStore('userStore')
 
-  const [isDisabled, setIsDisabled] = useState(true)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<Error | null>(null)
+  async function handleFinish(values: IMapType) {
+    await ProjectService.delete(project!.id, values.code)
+    workspaceStore.deleteProject(workspaceId, project!.id)
 
-  function handleChange(value?: InputValue) {
-    setIsDisabled(isEmpty(value) || value !== project?.name)
+    onComplete?.()
   }
 
-  async function handleConfirm() {
-    setLoading(true)
+  useAsyncEffect(async () => {
+    if (visible) {
+      await ProjectService.deleteCode(project!.id)
 
-    try {
-      await ProjectService.delete(project!.id)
-      workspaceStore.deleteProject(workspaceId, project!.id)
-
-      onComplete?.()
-    } catch (err: any) {
-      setError(err)
+      notification.success({
+        title: `An email containing a verification code was sent to ${userStore.user.email}.`
+      })
     }
-
-    setLoading(false)
-  }
+  }, [visible])
 
   return (
-    <Modal.Confirm
-      type="danger"
-      visible={visible}
-      title="Are you sure you want to delete this project?"
-      description={
-        <div className="space-y-2">
-          <p>
-            Keep in mind this operation is irreversible and will permanently delete all the data
-            associated with this project.
-          </p>
-          <p>
-            Once you confirm to delete the project, you will no longer have access to the project
-            data.
-          </p>
-
-          <Input placeholder={`Please type ${project?.name} to confirm`} onChange={handleChange} />
-
-          {error && <div className="form-item-error">{error.message}</div>}
+    <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">Delete project</h1>
+          <div className="space-y-2">
+            <p className="mt-1 text-sm text-gray-500">
+              Keep in mind this operation is irreversible and will permanently delete all the data
+              associated with this project.
+            </p>
+            <p className="mt-1 text-sm text-gray-500">
+              Once you confirm to delete the project, you will no longer have access to the project
+              data.
+            </p>
+          </div>
         </div>
-      }
-      confirmLabel="I understand, delete the project anyway"
-      confirmDisabled={loading || isDisabled}
-      confirmLoading={loading}
-      onClose={onClose}
-      onConfirm={handleConfirm}
-    />
+
+        <Form.Custom
+          submitText="Delete project"
+          submitOptions={{
+            type: 'danger'
+          }}
+          request={handleFinish}
+        >
+          <Form.Item name="code" label="Verification code" rules={[{ required: true }]}>
+            <Input />
+          </Form.Item>
+        </Form.Custom>
+      </div>
+    </Modal>
   )
 }

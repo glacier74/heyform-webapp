@@ -52,20 +52,24 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
           <MailIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
           Audiences
         </NavLink>
-        <NavLink
-          to={`/workspace/${workspaceId}/billing`}
-          className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-        >
-          <CreditCardIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-          Billing & Subscription
-        </NavLink>
-        <div
-          className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
-          onClick={onWorkspaceSettingsOpen}
-        >
-          <CogIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-          Workspace settings
-        </div>
+        {workspaceStore.workspace?.isOwner && (
+          <>
+            <NavLink
+              to={`/workspace/${workspaceId}/billing`}
+              className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+            >
+              <CreditCardIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
+              Billing & Subscription
+            </NavLink>
+            <div
+              className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
+              onClick={onWorkspaceSettingsOpen}
+            >
+              <CogIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
+              Workspace settings
+            </div>
+          </>
+        )}
       </div>
 
       {/* Projects */}

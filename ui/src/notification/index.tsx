@@ -121,16 +121,6 @@ const NotificationList = forwardRef<NotificationListProps, any>((_, ref) => {
 let ref: RefObject<NotificationListProps>
 
 function notification(options: NotificationOptions) {
-  // Setup the notification list
-  if (!ref || !ref.current) {
-    const container = document.createElement('div')
-    container.className = 'notification-root'
-    document.body.appendChild(container)
-
-    ref = createRef<NotificationListProps>()
-    render(<NotificationList ref={ref} />, container)
-  }
-
   const id = nanoid(6)
 
   ref.current?.add({
@@ -142,6 +132,17 @@ function notification(options: NotificationOptions) {
     dismiss() {
       ref.current?.delete(id)
     }
+  }
+}
+
+notification.preload = () => {
+  if (!ref || !ref.current) {
+    const container = document.createElement('div')
+    container.className = 'notification-root'
+    document.body.appendChild(container)
+
+    ref = createRef<NotificationListProps>()
+    render(<NotificationList ref={ref} />, container)
   }
 }
 
@@ -173,5 +174,8 @@ notification.loading = (options: NotificationOptions) => {
     duration: 0
   })
 }
+
+// Preload notification list to optimize performance
+notification.preload()
 
 export default notification

@@ -17,11 +17,12 @@ import CreateProject from './CreateProject'
 interface ItemProps {
   project: ProjectModel
   users: UserModel[]
+  isOwner?: boolean
   onRename: (project: ProjectModel) => void
   onDelete: (project: ProjectModel) => void
 }
 
-const Item: FC<ItemProps> = ({ project, users, onRename, onDelete }) => {
+const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) => {
   const { workspaceId } = useParam()
   const history = useHistory()
   const members = useMemo(() => {
@@ -53,7 +54,7 @@ const Item: FC<ItemProps> = ({ project, users, onRename, onDelete }) => {
   const Overlay = (
     <Menus onClick={handleMenuClick}>
       <Menus.Item name="rename" label="Rename" icon={<PencilIcon />} />
-      <Menus.Item name="delete" label="Delete" icon={<TrashIcon />} />
+      {isOwner && <Menus.Item name="delete" label="Delete" icon={<TrashIcon />} />}
     </Menus>
   )
 
@@ -139,6 +140,7 @@ const Workspace = observer(() => {
                 key={proj.id}
                 project={proj}
                 users={workspaceStore.members}
+                isOwner={workspaceStore.workspace?.isOwner}
                 onRename={handleRename}
                 onDelete={handleDelete}
               />
