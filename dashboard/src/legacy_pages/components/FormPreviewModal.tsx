@@ -11,6 +11,7 @@ export const FormPreviewModal: FC = observer(() => {
   const { formId } = useParam()
   const appStore = useStore('appStore')
   const formStore = useStore('formStore')
+  const workspaceStore = useStore('workspaceStore')
   const composeStore = useStore('composeStore')
   const form: any = isValid(composeStore.form) ? composeStore.form : formStore.current || {}
   const theme = customTheme(form.themeSettings?.theme)
@@ -39,7 +40,10 @@ export const FormPreviewModal: FC = observer(() => {
           >
             <ThemeProvider theme={theme}>
               <StyledFormRender
-                form={form}
+                form={{
+                  ...form,
+                  removeBranding: workspaceStore.workspace.removeBranding
+                }}
                 theme={theme}
                 autoSave={false}
                 submitRequest={handleFinish}
