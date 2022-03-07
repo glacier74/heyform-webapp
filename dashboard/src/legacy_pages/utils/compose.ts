@@ -1,9 +1,10 @@
-import { FieldKindEnum, FormField, PlanGradeEnum, WorkspaceModel } from '@/legacy_pages/models'
+import { FieldKindEnum, FormField, WorkspaceModel } from '@/legacy_pages/models'
 import { RateIconShapeEnum } from '@heyforms/form-component'
 import { clone } from '@hpnp/utils/clone'
-import { isEmpty, isNil, isValidArray } from '@hpnp/utils/helper'
+import { isEmpty, isNil, isValid } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 import { copyObjectValues } from '@hpnp/utils/object'
+import isFQDN from 'validator/lib/isFQDN'
 
 export function formFieldToValues(field: FormField): IMapType {
   const values: IMapType = {
@@ -305,12 +306,12 @@ export function formSharingLinkUrl(workspace?: WorkspaceModel, formId?: string) 
   let urlPrefix = import.meta.env.VITE_HOMEPAGE
 
   if (
-    workspace?.plan.grade &&
-    workspace?.plan?.grade >= PlanGradeEnum.PRO &&
-    isValidArray(workspace?.customHostnames) &&
-    workspace?.enableCustomDomain
+    workspace?.plan?.customDomain &&
+    workspace?.enableCustomDomain &&
+    isValid(workspace?.customDomain) &&
+    isFQDN(workspace!.customDomain!)
   ) {
-    urlPrefix = `https://${workspace!.customHostnames![0].hostname}`
+    urlPrefix = `https://${workspace!.customDomain}`
   }
 
   return urlPrefix + `/f/${formId}`

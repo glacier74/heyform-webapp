@@ -41,7 +41,7 @@ export interface WorkspaceModel {
   ownerId: string
   avatar?: string
   enableCustomDomain?: boolean
-  customHostnames?: CustomHostnameModel[]
+  customDomain?: string
   removeBranding?: boolean
   inviteCode: string
   inviteCodeExpireAt?: number

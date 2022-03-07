@@ -78,10 +78,7 @@ export const WORKSPACES_GQL = gql`
       inviteCode
       inviteCodeExpireAt
       enableCustomDomain
-      customHostnames {
-        id
-        hostname
-      }
+      customDomain
       removeBranding
       createdAt
       projects {
@@ -181,27 +178,9 @@ export const RESET_WORKSPACE_INVITE_CODE_GQL = gql`
   }
 `
 
-export const ADD_CUSTOM_HOSTNAME_GQL = gql`
-  mutation addCustomHostname($input: AddCustomHostnameInput!) {
-    addCustomHostname(input: $input) {
-      status
-      dnsRecords {
-        type
-        name
-        value
-      }
-    }
-  }
-`
-
-export const CHECK_CUSTOM_HOSTNAME_GQL = gql`
-  mutation checkCustomHostname($input: AddCustomHostnameInput!) {
-    checkCustomHostname(input: $input) {
-      active
-      ssl
-      ownership
-      errors
-    }
+export const ADD_CUSTOM_DOMAIN_GQL = gql`
+  mutation addCustomDomain($input: AddCustomDomainInput!) {
+    addCustomDomain(input: $input)
   }
 `
 

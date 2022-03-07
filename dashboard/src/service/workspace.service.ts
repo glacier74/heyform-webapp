@@ -1,6 +1,5 @@
 import {
-  ADD_CUSTOM_HOSTNAME_GQL,
-  CHECK_CUSTOM_HOSTNAME_GQL,
+  ADD_CUSTOM_DOMAIN_GQL,
   CREATE_WORKSPACE_GQL,
   DISSOLVE_WORKSPACE_CODE_GQL,
   DISSOLVE_WORKSPACE_GQL,
@@ -198,25 +197,13 @@ export class WorkspaceService {
     })
   }
 
-  static async addCustomHostname(teamId: string, hostname: string) {
+  static async addCustomDomain(teamId: string, domain: string) {
     return request.mutate({
-      mutation: ADD_CUSTOM_HOSTNAME_GQL,
+      mutation: ADD_CUSTOM_DOMAIN_GQL,
       variables: {
         input: {
           teamId,
-          hostname
-        }
-      }
-    })
-  }
-
-  static async checkCustomHostname(teamId: string, hostname: string) {
-    return request.mutate({
-      mutation: CHECK_CUSTOM_HOSTNAME_GQL,
-      variables: {
-        input: {
-          teamId,
-          hostname
+          domain
         }
       }
     })

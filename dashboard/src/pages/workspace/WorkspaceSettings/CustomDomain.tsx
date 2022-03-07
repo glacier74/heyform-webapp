@@ -3,48 +3,32 @@ import { PlanGradeEnum } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useParam, useVisible } from '@/utils'
-import type { CF_DnsRecord } from '@heyforms/shared-types-enums'
-import { Badge, Button, Form, Input, Modal, notification, Table } from '@heyforms/ui'
-import { TableColumn } from '@heyforms/ui/lib/types/table'
+import { Button, Form, Input, Modal, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
-import { FC, useEffect, useRef, useState } from 'react'
+import type { FC } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import isFQDN from 'validator/lib/isFQDN'
 
-interface CustomDomainDnsRecord extends CF_DnsRecord {
-  isActive?: boolean
-}
-
 interface CustomDomainModalProps extends IModalProps {
-  hostname?: string
-  dnsRecords?: CustomDomainDnsRecord[]
+  domain?: string
 }
 
-const CustomDomainModal: FC<CustomDomainModalProps> = ({
-  visible,
-  hostname,
-  dnsRecords: rawDnsRecords = [],
-  onClose
-}) => {
+const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClose }) => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
-  const [dnsRecords, setDnsRecords] = useState<CustomDomainDnsRecord[]>([])
-  const isFirstRender = useRef(true)
+  const timerRef = useRef<any>()
 
-  async function checkDnsRecords() {
-    if (!hostname) {
+  async function handleAddDomain() {
+    if (!domain) {
       return
     }
 
     try {
-      const result = await WorkspaceService.checkCustomHostname(workspaceId, hostname!)
+      const result = await WorkspaceService.addCustomDomain(workspaceId, domain!)
 
-      if (result.active) {
+      if (result) {
         workspaceStore.updateWorkspace(workspaceId, {
-          customHostnames: [
-            {
-              hostname: hostname!
-            } as any
-          ]
+          customDomain: domain
         })
 
         // Close modal
@@ -54,71 +38,25 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({
           title: 'Custom domain has been updated'
         })
       }
-
-      const newDnsRecords = dnsRecords.map(record => {
-        switch (record.type) {
-          case 'CNAME':
-            record.isActive = result.ownership
-            break
-
-          case 'TXT':
-            record.isActive = result.ssl
-            break
-        }
-
-        return record
-      })
-
-      setDnsRecords(newDnsRecords)
     } catch (err: any) {
-      console.error(err)
+      notification.error({
+        title: err.message
+      })
     }
-
-    setTimeout(() => {
-      checkDnsRecords()
-    }, 2_000)
   }
 
   useEffect(() => {
-    setDnsRecords((rawDnsRecords as any) || [])
-  }, [rawDnsRecords])
-
-  useEffect(() => {
-    if (dnsRecords.length > 0 && isFirstRender.current) {
-      checkDnsRecords()
+    if (visible && domain) {
+      timerRef.current = setInterval(handleAddDomain, 2_000)
     }
-    isFirstRender.current = false
-  }, [dnsRecords, hostname])
 
-  // Table columns
-  const columns: TableColumn<CustomDomainDnsRecord>[] = [
-    {
-      key: 'type',
-      name: 'Type'
-    },
-    {
-      key: 'name',
-      name: 'Name'
-    },
-    {
-      key: 'value',
-      name: 'Content'
-    },
-    {
-      key: 'active',
-      name: 'Status',
-      render(record) {
-        return record.isActive ? (
-          <Badge type="green" text="Active" dot />
-        ) : (
-          <Badge type="red" text="Pending" dot />
-        )
-      }
+    return () => {
+      timerRef.current && clearInterval(timerRef.current)
     }
-  ]
+  }, [visible])
 
   return (
-    <Modal contentClassName="max-w-4xl" visible={visible} onClose={onClose} showCloseIcon>
+    <Modal contentClassName="max-w-2xl" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
           <h1 className="text-lg leading-6 font-medium text-gray-900">Custom domain</h1>
@@ -134,9 +72,24 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({
         </div>
 
         <div>
-          <Table<CF_DnsRecord> className="mt-8" columns={columns} data={dnsRecords} />
+          <table className="table mt-8">
+            <thead className="table-head">
+              <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Content</th>
+              </tr>
+            </thead>
+            <tbody className="table-body">
+              <tr>
+                <td>CNAME</td>
+                <td>{domain}</td>
+                <td>{import.meta.env.VITE_CUSTOM_DOMAIN_CNAME_PROXY}</td>
+              </tr>
+            </tbody>
+          </table>
 
-          <Button className="mt-4" block={true} loading={true} disabled={true}>
+          <Button className="mt-4" type="primary" loading={true} disabled={true}>
             Checking...
           </Button>
         </div>
@@ -153,8 +106,7 @@ export const CustomDomain: FC = observer(() => {
   const [switchError, setSwitchError] = useState<Error | null>(null)
 
   const [visible, handleOpen, handleClose] = useVisible()
-  const [hostname, setHostname] = useState<string>()
-  const [dnsRecords, setDnsRecords] = useState<CustomDomainDnsRecord[]>([])
+  const [domain, setDomain] = useState<string>()
 
   async function handleChange(enableCustomDomain: boolean) {
     setSwitchLoading(true)
@@ -177,16 +129,19 @@ export const CustomDomain: FC = observer(() => {
   }
 
   async function handleFinish(values: IMapType) {
-    const result = await WorkspaceService.addCustomHostname(workspaceId, values.hostname)
+    const result = await WorkspaceService.addCustomDomain(workspaceId, values.domain)
 
-    if (result.status === 'active') {
+    if (result) {
+      workspaceStore.updateWorkspace(workspaceId, {
+        customDomain: values.domain
+      })
+
       return notification.success({
         title: 'Custom domain has been updated'
       })
     }
 
-    setHostname(values.hostname)
-    setDnsRecords(result.dnsRecords)
+    setDomain(values.domain)
     handleOpen()
   }
 
@@ -217,7 +172,7 @@ export const CustomDomain: FC = observer(() => {
           <Form.Custom
             inline
             initialValues={{
-              hostname: workspaceStore.workspace?.customHostnames?.[0]?.hostname
+              domain: workspaceStore.workspace?.customDomain
             }}
             submitText="Update"
             submitOptions={{
@@ -227,7 +182,7 @@ export const CustomDomain: FC = observer(() => {
             request={handleFinish}
           >
             <Form.Item
-              name="hostname"
+              name="domain"
               rules={[
                 {
                   validator: async (rule, value) => {
@@ -239,18 +194,13 @@ export const CustomDomain: FC = observer(() => {
                 }
               ]}
             >
-              <Input placeholder="eg: example.com" />
+              <Input placeholder="eg: yourcustomdomain.com" />
             </Form.Item>
           </Form.Custom>
         )}
       </div>
 
-      <CustomDomainModal
-        visible={visible}
-        hostname={hostname}
-        dnsRecords={dnsRecords}
-        onClose={handleClose}
-      />
+      <CustomDomainModal visible={visible} domain={domain} onClose={handleClose} />
     </div>
   )
 })
