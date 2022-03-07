@@ -101,6 +101,7 @@ export const WORKSPACES_GQL = gql`
         submissionLimit
         storageLimit
         apiAccessLimit
+        customDomain
         grade
       }
       subscription {
