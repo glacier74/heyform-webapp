@@ -76,7 +76,6 @@
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "@heyforms/vite-plugin-font-optimization": "*",
     "@heyforms/vite-plugin-html-injection": "*",
     "@heyforms/vite-plugin-upload": "*",
     "@types/apollo-upload-client": "^17.0.0",
@@ -119,6 +118,7 @@
     "tailwindcss": "2.2.19",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.5",
-    "vite": "^2.8.0"
+    "vite": "^2.8.0",
+    "vite-plugin-font-optimization": "^0.0.2"
   }
 }

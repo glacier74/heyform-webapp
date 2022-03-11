@@ -1,4 +1,3 @@
-import fontOptimizationPlugin from '@heyforms/vite-plugin-font-optimization'
 import htmlInjectionPlugin from '@heyforms/vite-plugin-html-injection'
 import uploadPlugin, { UploadZone } from '@heyforms/vite-plugin-upload'
 import legacy from '@vitejs/plugin-legacy'
@@ -7,6 +6,7 @@ import { resolve } from 'path'
 import externalGlobals from 'rollup-plugin-external-globals'
 import { injectManifest } from 'rollup-plugin-workbox'
 import { ConfigEnv, loadEnv } from 'vite'
+import fontOptimizationPlugin from 'vite-plugin-font-optimization'
 
 export default ({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd())
@@ -21,11 +21,7 @@ export default ({ mode }: ConfigEnv) => {
       htmlInjectionPlugin({
         variables: env
       }),
-      fontOptimizationPlugin({
-        fontFamilies: [
-          'https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'
-        ]
-      }),
+      fontOptimizationPlugin(),
       uploadPlugin({
         envFile: '.qiniurc',
         prefix: 'webapp/',
