@@ -103,7 +103,8 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
         </h3>
         <div className="mt-1 space-y-1" aria-labelledby="resources-headline">
           <a
-            href="https://help.heyform.net"
+            href="https://community.heyform.net/c/getting-started/6"
+            target="_blank"
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
             <PlayIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
@@ -111,6 +112,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
           </a>
           <a
             href="https://help.heyform.net"
+            target="_blank"
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
             <QuestionMarkCircleIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
@@ -118,6 +120,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
           </a>
           <a
             href="https://heyform.net/templates"
+            target="_blank"
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
             <DocumentTextIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
@@ -125,6 +128,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
           </a>
           <a
             href="https://heyform.net/changelog"
+            target="_blank"
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
             <GiftIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />

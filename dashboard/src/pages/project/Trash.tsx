@@ -143,6 +143,17 @@ const Trash = observer(() => {
 
   return (
     <ProjectLayout>
+      <div className="mt-8 text-sm text-gray-700">
+        You can restore any file deleted in the last 30 days.{' '}
+        <a
+          href="https://help.heyform.net"
+          target="_blank"
+          className="text-blue-500 hover:text-blue-700"
+        >
+          Learn more
+        </a>
+      </div>
+
       <Async
         request={request}
         deps={[projectId]}
