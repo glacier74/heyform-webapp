@@ -19,7 +19,7 @@ const Home: FC = observer(() => {
       workspaceStore.setWorkspaces(result)
 
       if (isEmpty(result)) {
-        return history.replace('/workspace/create')
+        return history.replace('/setup')
       }
 
       list = result

@@ -25,6 +25,7 @@ const VerifyEmail = lazy(() => import('@/pages/user/VerifyEmail'))
 
 /* Workspace */
 const Home = lazy(() => import('@/pages/home/Home'))
+const Setup = lazy(() => import('@/pages/setup/Setup'))
 const Workspace = lazy(() => import('@/pages/workspace/Workspace'))
 const Members = lazy(() => import('@/pages/workspace/Members'))
 
@@ -104,6 +105,16 @@ const config: CustomRouteConfig[] = [
     exact: true,
     layout: AuthGuard,
     component: Home
+  },
+
+  /* Setup workspace if there is no one exists */
+  {
+    path: '/setup',
+    loginRequired: true,
+    exact: true,
+    layout: AuthLayout,
+    component: Setup,
+    title: 'Setup'
   },
 
   /* Workspace */
