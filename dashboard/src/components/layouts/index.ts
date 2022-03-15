@@ -1,3 +1,4 @@
+export * from './CommonLayout'
 export * from './AuthGuard'
 export * from './AuthLayout'
 export * from './WorkspaceGuard'

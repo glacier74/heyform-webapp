@@ -1,12 +1,12 @@
 import { Heading } from '@/legacy_pages/components/Heading'
-import { PublicLayout } from '@/legacy_pages/layouts'
+import { CommonLayout } from '@/legacy_pages/layouts'
 import { Flex } from '@heyui/component'
 import { FC } from 'react'
 import styled from 'styled-components'
 
 export const ErrorFallback: FC = () => {
   return (
-    <PublicLayout>
+    <CommonLayout>
       <Container>
         <Heading description="Server error occurred. We apologize and are fixing the problem. Please try again at a later stage.">
           Oops, something went wrong
@@ -18,7 +18,7 @@ export const ErrorFallback: FC = () => {
           Having trouble? <a href="https://my.heyform.net/f/E4MKK2hx">Send us a message</a>
         </ContactUs>
       </Container>
-    </PublicLayout>
+    </CommonLayout>
   )
 }
 

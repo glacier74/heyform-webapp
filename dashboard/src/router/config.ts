@@ -1,4 +1,4 @@
-import { AuthGuard, AuthLayout, WorkspaceLayout } from '@/components'
+import { AuthGuard, AuthLayout, CommonLayout, WorkspaceLayout } from '@/components'
 import { FormLayout, WorkspaceGuardLayout } from '@/legacy_pages/layouts'
 import { lazy } from 'react'
 
@@ -59,7 +59,7 @@ const config: CustomRouteConfig[] = [
   {
     path: '/login',
     loginRequired: false,
-    layout: AuthLayout,
+    layout: CommonLayout,
     component: Login,
     title: 'Login'
   },
@@ -67,7 +67,7 @@ const config: CustomRouteConfig[] = [
   {
     path: '/sign-up',
     loginRequired: false,
-    layout: AuthLayout,
+    layout: CommonLayout,
     component: SignUp,
     title: 'Sign Up'
   },
@@ -75,7 +75,7 @@ const config: CustomRouteConfig[] = [
   {
     path: '/forgot-password',
     loginRequired: false,
-    layout: AuthLayout,
+    layout: CommonLayout,
     component: ForgotPassword,
     title: 'Forgot Password'
   },
@@ -83,7 +83,7 @@ const config: CustomRouteConfig[] = [
   {
     path: '/reset-password',
     loginRequired: false,
-    layout: AuthLayout,
+    layout: CommonLayout,
     component: ResetPassword,
     title: 'Reset Password'
   },
