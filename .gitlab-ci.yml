@@ -65,7 +65,7 @@ release:
     - echo "$PRO_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
   script: |
     echo "=> Building"
-    echo "${QINIU_CONFIG}" >> .qiniurc
+    echo "${QINIU_CONFIG}" > dashboard/.qiniurc
     yarn install
     yarn workspace @heyforms/vite-plugin-html-injection build
     yarn workspace @heyforms/vite-plugin-upload build
