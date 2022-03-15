@@ -70,7 +70,7 @@ release:
     yarn workspace @heyforms/vite-plugin-html-injection build
     yarn workspace @heyforms/vite-plugin-upload build
     yarn workspace @heyforms/ui build
-    yarn workspace heyform staging
+    yarn workspace heyform build
 
     echo "=> Packing"
     mkdir -p tmp/view/
