@@ -1,11 +1,13 @@
 import { UserModel } from '@/models'
 import { makeAutoObservable } from 'mobx'
+import { mobxStorage } from './mobxStorage'
 
 export class UserStore {
   user = {} as UserModel
 
   constructor() {
     makeAutoObservable(this)
+    mobxStorage(this, 'UserStore')
   }
 
   setUser(user: UserModel) {
