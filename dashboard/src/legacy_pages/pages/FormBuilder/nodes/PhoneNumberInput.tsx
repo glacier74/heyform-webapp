@@ -10,7 +10,7 @@ export const PhoneNumberInput: FC<BlockProps> = props => {
       <PseudoPrefixInput
         icon={
           <Flex align="center">
-            <CountryFlag code={props.field.properties?.defaultCountryCode} />
+            <CountryFlag code={props.field.properties?.defaultCountryCode || 'US'} />
             <StyledArrowDownIcon />
           </Flex>
         }
