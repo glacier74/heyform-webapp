@@ -1,20 +1,37 @@
+import 'react-app-polyfill/ie11'
+import 'react-app-polyfill/stable'
+import 'unfetch/polyfill/polyfill.mjs'
+import '@/legacy_pages/i18n'
 import Router from '@/router'
 import { store, StoreProvider } from '@/store'
 import { getDeviceId, setDeviceId } from '@/utils'
 import { register } from '@/utils/serviceWorker'
+import { ApolloError } from '@apollo/client'
 import { EmojiSadIcon } from '@heroicons/react/outline'
 import { EmptyStates } from '@heyforms/ui'
 import * as Sentry from '@sentry/react'
+import { Integrations } from '@sentry/tracing'
 import { Suspense } from 'react'
-import 'react-app-polyfill/ie11'
-import 'react-app-polyfill/stable'
 import { render } from 'react-dom'
-import 'unfetch/polyfill/polyfill.mjs'
-import '@/legacy_pages/i18n'
 import './styles/index.scss'
 
 if (!getDeviceId()) {
   setDeviceId()
+}
+
+if (import.meta.env.PROD) {
+  Sentry.init({
+    dsn: import.meta.env.VITE_SENTRY_DSN as string,
+    release: import.meta.env.PACKAGE_VERSION as string,
+    integrations: [new Integrations.BrowserTracing()],
+    tracesSampleRate: 1.0,
+    beforeSend: (event, hit) => {
+      if (hit?.originalException instanceof ApolloError) {
+        return null
+      }
+      return event
+    }
+  })
 }
 
 const App = () => {
