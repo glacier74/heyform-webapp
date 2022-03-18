@@ -2,10 +2,12 @@ import { LogoIcon, RedirectUriLink } from '@/components'
 import { AuthService } from '@/service'
 import { useRouter } from '@/utils'
 import { Checkbox, Form, Input } from '@heyforms/ui'
+import { useTranslation } from 'react-i18next'
 import { ThirdPartyLogin } from './views/ThirdPartyLogin'
 
 const Login = () => {
   const router = useRouter()
+  const { t } = useTranslation()
 
   async function handleFinish(values: any) {
     await AuthService.login(values.email, values.password)
@@ -16,7 +18,7 @@ const Login = () => {
     <div>
       <div>
         <LogoIcon className="h-8 w-auto" />
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('login.signIn')}</h2>
         <p className="mt-2 text-sm text-gray-600">
           Or {''}
           <RedirectUriLink

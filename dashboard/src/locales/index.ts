@@ -1,7 +1,7 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import en from './en'
-import zh from './zh'
+import zhCn from './zhCn'
 
 const resources = {
   en: {
@@ -9,9 +9,9 @@ const resources = {
       ...en
     }
   },
-  zh: {
+  'zh-cn': {
     translation: {
-      ...zh
+      ...zhCn
     }
   }
 }
@@ -20,7 +20,7 @@ const supportedLngs = Object.keys(resources)
 i18n.use(initReactI18next).init({
   lowerCaseLng: true,
   resources,
-  lng: 'en',
+  lng: (import.meta.env.VITE_I18N_DEFAULT_LOCALE as string) || 'en',
   fallbackLng: supportedLngs[0],
   supportedLngs,
   interpolation: {

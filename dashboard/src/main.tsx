@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11'
 import 'react-app-polyfill/stable'
 import 'unfetch/polyfill/polyfill.mjs'
-import '@/legacy_pages/i18n'
+import '@/locales'
 import Router from '@/router'
 import { store, StoreProvider } from '@/store'
 import { getDeviceId, setDeviceId } from '@/utils'
