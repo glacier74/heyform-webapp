@@ -6,10 +6,13 @@ import { DownloadIcon } from '@heroicons/react/outline'
 import { Button, Form, Modal, notification, Select } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
 
 const ImportContact: FC<IModalProps> = ({ visible, onClose }) => {
   const { workspaceId } = useParam()
   const [groups, setGroups] = useState<GroupModel[]>([])
+  const { t } = useTranslation()
 
   async function handleFinish(values: any) {
     const result = (await csvParse<string[]>(values.file)).slice(1).filter(row => row.length > 1)
@@ -72,18 +75,19 @@ const ImportContact: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Import contacts</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('audiences.contact.importContact.Import')}</h1>
           <p className="mt-1 mr-8 text-sm text-gray-500">
-            You can bulk create contacts from CSV file.
+            {t('audiences.contact.importContact.CSVfile')}
           </p>
         </div>
 
         <div>
-          <div className="block text-sm font-medium text-gray-700">Download the template</div>
+          <div
+            className="block text-sm font-medium text-gray-700">{t('audiences.contact.importContact. download')}</div>
           <p className="mt-1 text-sm text-gray-500">
             The number of columns in your CSV should be the same as the example below.
           </p>
-          <Button className="mt-2" leading={<DownloadIcon />} onClick={handleDownload}>
+          <Button className="mt-2" leading={<DownloadIcon/>} onClick={handleDownload}>
             Download blank template
           </Button>
         </div>
@@ -124,7 +128,7 @@ const ImportContact: FC<IModalProps> = ({ visible, onClose }) => {
               }
             ]}
           >
-            <DragUploader accept={['text/csv', 'application/vnd.ms-excel']} maxSize="1MB" />
+            <DragUploader accept={['text/csv', 'application/vnd.ms-excel']} maxSize="1MB"/>
           </Form.Item>
         </Form.Custom>
       </div>
