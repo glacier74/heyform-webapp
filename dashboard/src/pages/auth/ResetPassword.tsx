@@ -6,11 +6,13 @@ import { Form, Input } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const ResetPassword = () => {
   const router = useRouter()
   const appStore = useStore('appStore')
   const [values, setValues] = useState<IMapType>({})
+  const { t } = useTranslation()
 
   function handleChange(_: unknown, val: IMapType) {
     setValues(val)
@@ -24,17 +26,18 @@ const ResetPassword = () => {
   return (
     <div>
       <div>
-        <LogoIcon className="h-8 w-auto" />
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Reset Password</h2>
+        <LogoIcon className="h-8 w-auto"/>
+        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('auth.resetPassword.reset')}</h2>
         <p className="mt-2 text-sm text-gray-600">
-          We've sent you an email with a 6-digit verification code. Please check your inbox at{' '}
+          {t('auth.resetPassword.sentEmail')}
+          {' '}
           <span className="font-medium text-gray-700">{appStore.resetPasswordEmail}</span>.
         </p>
       </div>
 
       <div className="mt-8">
         <Form.Custom
-          submitText="Continue"
+          submitText={t('auth.forgotPassword.continue')}
           submitOptions={{
             type: 'primary',
             block: true
@@ -44,31 +47,30 @@ const ResetPassword = () => {
         >
           <Form.Item
             name="code"
-            label="Verification code"
-            rules={[{ required: true, message: 'Invalid verification code' }]}
+            label={t('auth.resetPassword.verificationCode')}
+            rules={[{ required: true, message: t('auth.resetPassword.invalidCode') }]}
           >
-            <Input />
+            <Input/>
           </Form.Item>
 
           <Form.Item
             name="newPassword"
-            label="New password"
+            label={t('auth.resetPassword.newPassword')}
             rules={[
               {
                 required: true,
                 pattern:
                   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[!#$%&()*+\-,.\/\\:<=>?@\[\]^_{|}~0-9a-zA-Z]{8,}$/,
-                message:
-                  'Your password must be at least 8 characters, and at least 1 uppercase, 1 lowercase and 1 number.'
+                message: t('auth.resetPassword.passwordViolation')
               }
             ]}
           >
-            <Input.Password />
+            <Input.Password/>
           </Form.Item>
 
           <Form.Item
             name="repeatPassword"
-            label="Repeat password"
+            label={t('auth.resetPassword.repeatPassword')}
             rules={[
               {
                 validator: async (rule, value) => {
@@ -76,11 +78,11 @@ const ResetPassword = () => {
                     throw new Error(rule.message as string)
                   }
                 },
-                message: 'Your new password and repeat password do not match.'
+                message: t('auth.resetPassword.passwordMismatch')
               }
             ]}
           >
-            <Input.Password />
+            <Input.Password/>
           </Form.Item>
         </Form.Custom>
       </div>
