@@ -170,6 +170,14 @@ export default {
       workExplain: 'Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations.',
       createBottom: 'Create',
       assign: 'Assign members'
+    },
+    settings: {
+      up: 'Update',
+      nameW: 'Workspace name',
+      removeBranding: 'Remove HeyForm branding',
+      brandingExplain: 'To make HeyForm feel like it\'s completely owned by your brand, remove the HeyForm Logo in the form footer.',
+      learnMore: 'Learn more about remove branding in docs'
+
     }
   }
 

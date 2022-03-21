@@ -7,9 +7,11 @@ import { Form, Input } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const Branding: FC = observer(() => {
   const { workspaceId } = useParam()
+  const { t } = useTranslation()
   const workspaceStore = useStore('workspaceStore')
 
   const [switchLoading, setSwitchLoading] = useState(false)
@@ -53,28 +55,27 @@ export const Branding: FC = observer(() => {
         initialValues={{
           name: workspaceStore.workspace?.name
         }}
-        submitText="Update"
+        submitText={t('workspace.settings.up')}
         submitOptions={{
           className: 'mt-6 ml-3'
         }}
         onlySubmitOnValueChange={true}
         request={handleFinish}
       >
-        <Form.Item name="name" label="Workspace name" rules={[{ required: true }]}>
-          <Input />
+        <Form.Item name="name" label={t('workspace.settings.nameW')} rules={[{ required: true }]}>
+          <Input/>
         </Form.Item>
       </Form.Custom>
 
       <PlanCheck permission={PlanGradeEnum.BUSINESS}>
         <SwitchField
           className="mt-6"
-          label="Remove HeyForm branding"
+          label={t('workspace.settings.removeBranding')}
           description={
             <>
-              To make HeyForm feel like it's completely owned by your brand, remove the HeyForm Logo
-              in the form footer.{' '}
+              {t('workspace.settings.brandingExplain')}{' '}
               <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
-                Learn more about remove branding in docs
+                {t('workspace.settings.learnMore')}
               </a>
               .
             </>

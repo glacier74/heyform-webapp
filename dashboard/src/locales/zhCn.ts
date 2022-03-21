@@ -166,6 +166,11 @@ export default {
       workExplain: 'Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations.',
       createBottom: 'Create',
       assign: 'Assign members'
+    },
+    settings: {
+      up: 'Update',
+      nameW: 'Workspace name'
     }
+
   }
 }
