@@ -40,7 +40,7 @@ export default {
       newPassword: 'New password',
       repeatPassword: 'Repeat password',
       passwordViolation: 'Your password must be at least 8 characters, and at least 1 uppercase, 1 lowercase and 1 number.',
-      passwordMismatch: 'Your new password and repeat password do not match.'
+      passwordMismatch: 'Your new password and repeat password do not match.',
     }
 
   },
@@ -65,8 +65,44 @@ export default {
       importContact: {
         Import: 'Import contacts',
         CSVfile: 'You can bulk create contacts from CSV file.',
-        download: 'Download the template'
+        download: 'Download the template',
+        csv: 'The number of columns in your CSV should be the same as the example below.',
+        blankTemplate:'Download blank template',
+        imp:'Import',
+        groupSelect: "Select groups",
+        selectOne:'Select at least one group or create a new one',
+        uploadCsv:"Upload completed CSV file",
+        invaild:'Invalid CSV file'
+      },
+      editContact:{
+        detail:'Contact detail',
+        update:'Update contact',
+        selectGroup:'Select at least one group or create a new one',
+        name:'Full name',
+        nameNotempty:"Full name can't be empty",
+        phoneNottempty: "Phone number can't be empty"
       }
-    }
+    },
+    groups:{
+      addGroup:{
+        add:'Add group',
+        explain:'You can organize your contacts into groups to work with them more easily.',
+        Gname: 'Group name',
+        groupNottempty: "Group name can't be empty"
+
+    },
+      renameGroup:{
+        rename:'Rename group',
+        up:'Update'
+      },
+      contact:'Contacts'
   }
+},
+setup:{
+  createW:'Create a new workspace',
+  explain:'Workspaces are shared environments where members can collaborate. After create a workspace, you can invite others to join.',
+  name:'Workspace name',
+  logo:'Workspace logo',
+  create:'Create'
+}
 }

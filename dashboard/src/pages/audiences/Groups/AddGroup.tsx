@@ -2,9 +2,11 @@ import { AudienceService } from '@/service'
 import { useParam } from '@/utils'
 import { Form, Input, Modal, notification } from '@heyforms/ui'
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const AddGroup: FC<IModalProps> = ({ visible, onClose }) => {
   const { workspaceId } = useParam()
+  const { t } = useTranslation()
 
   async function handleFinish(values: any) {
     await AudienceService.createGroup({
@@ -23,14 +25,14 @@ const AddGroup: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal contentClassName="max-w-md" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Add group</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('audiences.groups.addGroup.add')}</h1>
           <p className="mt-1 mr-8 text-sm text-gray-500">
-            You can organize your contacts into groups to work with them more easily.
+           {t('audiences.groups.addGroup.explain')}
           </p>
         </div>
 
         <Form.Custom
-          submitText="Add group"
+          submitText={t('audiences.groups.addGroup.add')}
           submitOptions={{
             type: 'primary'
           }}
@@ -38,11 +40,11 @@ const AddGroup: FC<IModalProps> = ({ visible, onClose }) => {
         >
           <Form.Item
             name="name"
-            label="Group name"
+            label= {t('audiences.groups.addGroup.Gname')}
             rules={[
               {
                 required: true,
-                message: "Group name can't be empty"
+                message: t('audiences.groups.addGroup.groupNottempty')
               }
             ]}
           >

@@ -85,15 +85,16 @@ const ImportContact: FC<IModalProps> = ({ visible, onClose }) => {
           <div
             className="block text-sm font-medium text-gray-700">{t('audiences.contact.importContact. download')}</div>
           <p className="mt-1 text-sm text-gray-500">
-            The number of columns in your CSV should be the same as the example below.
+          {t('audiences.contact.importContact.csv')}
           </p>
           <Button className="mt-2" leading={<DownloadIcon/>} onClick={handleDownload}>
-            Download blank template
+            {t('audiences.contact.importContact.blankTemplate')}
+           
           </Button>
         </div>
 
         <Form.Custom
-          submitText="Import"
+          submitText={t('audiences.contact.importContact.imp')}
           submitOptions={{
             type: 'primary'
           }}
@@ -101,12 +102,12 @@ const ImportContact: FC<IModalProps> = ({ visible, onClose }) => {
         >
           <Form.Item
             name="groupIds"
-            label="Select groups"
+            label={t('audiences.contact.importContact.groupSelect')}
             rules={[
               {
                 required: true,
                 type: 'array',
-                message: 'Select at least one group or create a new one'
+                message: t('audiences.contact.importContact.selectOne')
               }
             ]}
           >
@@ -114,17 +115,17 @@ const ImportContact: FC<IModalProps> = ({ visible, onClose }) => {
               options={groups as any}
               labelKey="name"
               valueKey="id"
-              createOptionLeading="Create new group"
+              createOptionLeading={t('audiences.contact.addContact.createGroup')}
               createRequest={handleCreateGroup}
             />
           </Form.Item>
           <Form.Item
             name="file"
-            label="Upload completed CSV file"
+            label={t('audiences.contact.importContact.uploadCsv')}
             rules={[
               {
                 required: true,
-                message: 'Invalid CSV file'
+                message: t('audiences.contact.importContact.invaild')
               }
             ]}
           >

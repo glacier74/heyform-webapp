@@ -4,6 +4,7 @@ import { useAsyncEffect, useParam } from '@/utils'
 import { Form, Input, Modal, notification, Select, useForm } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface EditContactProps extends IModalProps {
   contact?: ContactModel | null
@@ -13,6 +14,8 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
   const { workspaceId } = useParam()
   const [form] = useForm()
   const [groups, setGroups] = useState<GroupModel[]>([])
+  const { t } = useTranslation()
+
 
   async function handleFinish(values: any) {
     await AudienceService.updateContact({
@@ -68,7 +71,7 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Contact detail</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('audiences.contact.editContact.detail')}</h1>
         </div>
 
         <Form.Custom
@@ -77,7 +80,7 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
             ...contact,
             groupIds: contact?.groups?.map(g => g.id)
           }}
-          submitText="Update contact"
+          submitText={t('update')}
           submitOptions={{
             type: 'primary'
           }}
@@ -85,12 +88,12 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
         >
           <Form.Item
             name="groupIds"
-            label="Groups"
+            label={t('audiences.contact.addContact.groups')}
             rules={[
               {
                 required: true,
                 type: 'array',
-                message: 'Select at least one group or create a new one'
+                message: t('audiences.contact.editContact.selectGroup')
               }
             ]}
           >
@@ -98,66 +101,68 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
               options={groups as any}
               labelKey="name"
               valueKey="id"
-              createOptionLeading="Create new group"
+              createOptionLeading={t('audiences.contact.addContact.createGroup')}
               createRequest={handleCreateGroup}
             />
           </Form.Item>
           <Form.Item
             name="fullName"
-            label="Full name"
+            label={t('audiences.contact.editContact.name')}
             rules={[
               {
                 required: true,
-                message: "Full name can't be empty"
+                message: t('audiences.contact.editContact.nameNotempty')
               }
             ]}
           >
-            <Input />
+            <Input/>
           </Form.Item>
           <Form.Item
             name="email"
-            label="Email address"
+            label={t('auto.signup.Email')}
             rules={[
               {
                 required: true,
                 type: 'email',
-                message: 'Invalid email address'
+                message: t('auto.signup.invalidEmail')
               }
             ]}
           >
-            <Input type="email" />
+            <Input type="email"/>
           </Form.Item>
           <Form.Item
             name="phoneNumber"
             label={
               <>
-                Phone number <span className="text-gray-500 text-sm">(optional)</span>
+                {t('audiences.contact.addContact.phnoeNumber')}<span
+                className="text-gray-500 text-sm">({t('audiences.contact.addContact.optional')})</span>
               </>
             }
             rules={[
               {
                 required: false,
-                message: "Phone number can't be empty"
+                message: t('audiences.contact.editContact.phoneNottempty')
               }
             ]}
           >
-            <Input />
+            <Input/>
           </Form.Item>
           <Form.Item
             name="jobTitle"
             label={
               <>
-                Job title <span className="text-gray-500 text-sm">(optional)</span>
+                {t('audiences.contact.addContact.jobTitle')} <span
+                className="text-gray-500 text-sm">({t('audiences.contact.addContact.optional')})</span>
               </>
             }
             rules={[
               {
                 required: false,
-                message: "Job title can't be empty"
+                message: t('audiences.contact.addContact.jobNotempty')
               }
             ]}
           >
-            <Input />
+            <Input/>
           </Form.Item>
         </Form.Custom>
       </div>
