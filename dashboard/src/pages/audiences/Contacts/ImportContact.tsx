@@ -35,7 +35,7 @@ const ImportContact: FC<IModalProps> = ({ visible, onClose }) => {
     })
 
     notification.success({
-      title: 'Contacts has been imported'
+      title: t('audiences.contact.importContact.successCreate')
     })
 
     onClose?.()
@@ -85,11 +85,11 @@ const ImportContact: FC<IModalProps> = ({ visible, onClose }) => {
           <div
             className="block text-sm font-medium text-gray-700">{t('audiences.contact.importContact. download')}</div>
           <p className="mt-1 text-sm text-gray-500">
-          {t('audiences.contact.importContact.csv')}
+            {t('audiences.contact.importContact.csv')}
           </p>
           <Button className="mt-2" leading={<DownloadIcon/>} onClick={handleDownload}>
             {t('audiences.contact.importContact.blankTemplate')}
-           
+
           </Button>
         </div>
 

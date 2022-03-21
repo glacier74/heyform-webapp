@@ -164,6 +164,12 @@ export default {
       transfer: 'Transfer'
 
 
+    },
+    workSpace: {
+      createP: 'Create a new project',
+      workExplain: 'Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations.',
+      createBottom: 'Create',
+      assign: 'Assign members'
     }
   }
 

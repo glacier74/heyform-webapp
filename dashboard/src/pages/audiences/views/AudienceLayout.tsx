@@ -10,7 +10,7 @@ export const AudienceLayout: FC<IComponentProps> = ({ children }) => {
 
   return (
     <div>
-      <Heading title="Audience" description="Create the right audience for accurate results"/>
+      <Heading title={t('audiences.Title')} description={t('audiences.subText')}/>
 
       <div className="py-4">
         <Navbar className="mt-4">
