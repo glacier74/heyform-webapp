@@ -7,6 +7,8 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+
 
 const Setup: FC = () => {
   const history = useHistory()
@@ -14,6 +16,8 @@ const Setup: FC = () => {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
+ 
+  const { t } = useTranslation()
 
   async function handleFinish(values: WorkspaceModel) {
     if (loading) {
@@ -35,23 +39,23 @@ const Setup: FC = () => {
       setLoading(false)
       setError(err)
     }
+    
   }
 
   return (
     <div>
       <div>
         <LogoIcon className="h-8 w-auto" />
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Create a new workspace</h2>
+        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('setup.createW')}</h2>
         <p className="mt-2 text-sm text-gray-600">
-          Workspaces are shared environments where members can collaborate. After create a
-          workspace, you can invite others to join.
+         {t('setup.explain')}
         </p>
       </div>
 
       <div className="mt-8">
         <div className="mt-6">
           <Form onFinish={handleFinish}>
-            <Form.Item name="name" label="Workspace name" rules={[{ required: true }]}>
+            <Form.Item name="name" label={t('setup.name')} rules={[{ required: true }]}>
               <Input />
             </Form.Item>
 
@@ -59,7 +63,7 @@ const Setup: FC = () => {
               name="avatar"
               label={
                 <>
-                  Workspace logo <span className="text-gray-500">(optional)</span>
+                  {t('setup.logo')} <span className="text-gray-500">({t('audiences.contact.addContact.optional')})</span>
                 </>
               }
             >
@@ -67,7 +71,7 @@ const Setup: FC = () => {
             </Form.Item>
 
             <Button type="primary" htmlType="submit" loading={loading}>
-              Create
+            {t('setup.createW')}
             </Button>
 
             {error && <div className="form-item-error">{error.message}</div>}
