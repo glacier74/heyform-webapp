@@ -7,11 +7,13 @@ import { isEmpty, isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
   const [form] = useForm()
+  const { t } = useTranslation()
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
@@ -20,7 +22,7 @@ export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => 
     const emails = values.emails.filter((e: string) => isValid(e))
 
     if (isEmpty(emails)) {
-      setError(new Error('Please enter at least one valid email address'))
+      setError(new Error(t('workspace.members.inputPrompt')))
       return
     }
 
@@ -31,7 +33,7 @@ export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => 
       form.resetFields()
 
       notification.success({
-        title: 'Invitations have been sent'
+        title: t('workspace.members.send')
       })
     } catch (err: any) {
       setError(err)
@@ -45,11 +47,11 @@ export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => 
       <div className="space-y-6">
         <div>
           <h1 className="text-lg leading-6 font-medium text-gray-900">
-            Invite members to <span>{workspaceStore.project?.name}</span>
+            {t('workspace.members.inviteMember')} <span>{workspaceStore.project?.name}</span>
           </h1>
           <p className="mt-1 text-sm text-gray-500">
-            You can invite members to join the workspace by sending emails below. The invitation
-            expires on{' '}
+            {t('workspace.members.inviteExplain')}
+            {' '}
             <span className="text-gray-700">
               {unixDate(workspaceStore.workspace.inviteCodeExpireAt || 0).format('MMMM DD, YYYY')}
             </span>
@@ -79,18 +81,18 @@ export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => 
                         {
                           type: 'email',
                           required: false,
-                          message: 'Invalid email address'
+                          message: t('auth.signup.invalidEmail')
                         }
                       ]}
                     >
-                      <Input placeholder="name@example.com" />
+                      <Input placeholder="name@example.com"/>
                     </Form.Item>
                   ))}
 
                   <div className="flex items-center justify-between">
-                    <Button.Link onClick={handleAdd}>Add more</Button.Link>
+                    <Button.Link onClick={handleAdd}>{t('workspace.members.Add')}</Button.Link>
                     <Button type="primary" htmlType="submit" loading={loading}>
-                      Send Invitations
+                      {t('workspace.members.sendBottom')}
                     </Button>
                   </div>
 

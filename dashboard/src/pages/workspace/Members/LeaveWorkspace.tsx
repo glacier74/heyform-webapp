@@ -1,10 +1,10 @@
-import type { UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
 import { Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 
 export const LeaveWorkspace: FC<IModalProps> = ({ visible, onClose }) => {
@@ -14,6 +14,7 @@ export const LeaveWorkspace: FC<IModalProps> = ({ visible, onClose }) => {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
+  const { t } = useTranslation()
 
   async function handleConfirm() {
     setLoading(true)
@@ -35,19 +36,18 @@ export const LeaveWorkspace: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal.Confirm
       type="danger"
       visible={visible}
-      title="Are you sure you want to leave the workspace?"
+      title={t('workspace.members.leave')}
       description={
         <div className="space-y-2">
           <p>
-            Once you confirm to leave this workspace, you will no longer have access to this
-            workspace data.
+            {t('workspace.members.leaveExplain')}
           </p>
 
           {error && <div className="form-item-error">{error.message}</div>}
         </div>
       }
-      cancelLabel="Cancel"
-      confirmLabel="Leave"
+      cancelLabel={t('project.trash.cancel')}
+      confirmLabel={t('workspace.members.bottomLeave')}
       confirmDisabled={loading}
       confirmLoading={loading}
       onClose={onClose}

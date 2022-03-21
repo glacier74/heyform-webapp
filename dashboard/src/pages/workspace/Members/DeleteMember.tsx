@@ -5,6 +5,7 @@ import { useParam } from '@/utils'
 import { Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface DeleteMemberProps extends IModalProps {
   member?: UserModel | null
@@ -16,6 +17,7 @@ export const DeleteMember: FC<DeleteMemberProps> = ({ visible, member, onClose }
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
+  const { t } = useTranslation()
 
   async function handleConfirm() {
     setLoading(true)
@@ -38,19 +40,18 @@ export const DeleteMember: FC<DeleteMemberProps> = ({ visible, member, onClose }
     <Modal.Confirm
       type="danger"
       visible={visible}
-      title="Are you sure you want to remove this member?"
+      title={t('workspace.members.delconfirm')}
       description={
         <div className="space-y-2">
           <p>
-            Once you confirm to remove this member, member will no longer have access to this
-            workspace data.
+            {t('workspace.members.delmember')}
           </p>
 
           {error && <div className="form-item-error">{error.message}</div>}
         </div>
       }
-      cancelLabel="Cancel"
-      confirmLabel="Remove"
+      cancelLabel={t('project.trash.cancel')}
+      confirmLabel={t('workspace.members.remove')}
       confirmDisabled={loading}
       confirmLoading={loading}
       onClose={onClose}

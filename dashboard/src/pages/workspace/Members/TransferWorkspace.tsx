@@ -5,6 +5,7 @@ import { useParam } from '@/utils'
 import { Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface TransferWorkspaceProps extends IModalProps {
   member?: UserModel | null
@@ -16,6 +17,7 @@ export const TransferWorkspace: FC<TransferWorkspaceProps> = ({ visible, member,
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
+  const { t } = useTranslation()
 
   async function handleConfirm() {
     setLoading(true)
@@ -45,19 +47,18 @@ export const TransferWorkspace: FC<TransferWorkspaceProps> = ({ visible, member,
     <Modal.Confirm
       type="danger"
       visible={visible}
-      title="Are you sure you want to transfer this workspace?"
+      title={t('workspace.members.transferTitle')}
       description={
         <div className="space-y-2">
           <p>
-            Once you confirm to transfer this workspace, you will no longer be the owner of this
-            workspace.
+            {t('workspace.members.transferWorkspace')}
           </p>
 
           {error && <div className="form-item-error">{error.message}</div>}
         </div>
       }
-      cancelLabel="Cancel"
-      confirmLabel="Transfer"
+      cancelLabel={t('project.trash.cancel')}
+      confirmLabel={t('workspace.members.transfer')}
       confirmDisabled={loading}
       confirmLoading={loading}
       onClose={onClose}

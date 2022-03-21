@@ -60,7 +60,8 @@ export default {
         optional: 'optional',
         phoneNotempty: 'Phone number can\'t be empty',
         jobTitle: ' Job title',
-        jobNotempty: 'Job title can\'t be empty'
+        jobNotempty: 'Job title can\'t be empty',
+        successCreate: 'Contact has been created'
       },
       importContact: {
         Import: 'Import contacts',
@@ -96,7 +97,9 @@ export default {
         up: 'Update'
       },
       contact: 'Contacts'
-    }
+    },
+    Title: 'Audience',
+    subText: 'Create the right audience for accurate results'
   },
   setup: {
     createW: 'Create a new workspace',
@@ -139,6 +142,30 @@ export default {
     }
 
 
+  },
+  workspace: {
+    members: {
+      delmember: 'Once you confirm to remove this member, member will no longer have access to this workspace data.',
+      delconfirm: 'Are you sure you want to remove this member?',
+      remove: 'Remove',
+      inputPrompt: 'Please enter at least one valid email address',
+      inviteMember: 'Invite members to',
+      send: 'Invitations have been send',
+      inviteExplain: 'You can invite members to join the workspace by sending emails below. The invitation expires on',
+      Add: 'Add more',
+      sendBottom: 'Send Invitations',
+      member: 'Members',
+      manage: 'Manage who has access to the workspace.',
+      leave: 'Are you sure you want to leave the workspace?',
+      leaveExplain: 'Once you confirm to leave this workspace, you will no longer have access to this workspace data.',
+      bottomLeave: 'Leave',
+      transferTitle: 'Are you sure you want to transfer this workspace?',
+      transferWorkspace: 'Once you confirm to transfer this workspace, you will no longer be the owner of this workspace.',
+      transfer: 'Transfer'
+
+
+    }
   }
+
 
 }

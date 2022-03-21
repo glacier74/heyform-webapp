@@ -1,20 +1,13 @@
 import type { UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect, useVisible, useParam } from '@/utils'
-import {
-  DotsHorizontalIcon,
-  DuplicateIcon,
-  LogoutIcon,
-  PencilIcon,
-  SwitchHorizontalIcon,
-  TrashIcon
-} from '@heroicons/react/outline'
+import { useAsyncEffect, useParam, useVisible } from '@/utils'
+import { DotsHorizontalIcon, LogoutIcon, SwitchHorizontalIcon, TrashIcon } from '@heroicons/react/outline'
 import { Avatar, Badge, Button, Dropdown, Heading, Menus, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
-import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import * as timeago from 'timeago.js'
 import { DeleteMember } from './DeleteMember'
 import { InviteMember } from './InviteMember'
@@ -31,6 +24,7 @@ const Members = observer(() => {
   const [transferWorkspaceVisible, openTransferWorkspace, closeTransferWorkspace] = useVisible()
   const [deleteMemberVisible, openDeleteMember, closeDeleteMember] = useVisible()
   const [leaveWorkspaceVisible, openLeaveWorkspace, closeLeaveWorkspace] = useVisible()
+  const { t } = useTranslation()
 
   // Table columns
   const columns: TableColumn<UserModel>[] = [
@@ -69,9 +63,9 @@ const Members = observer(() => {
       width: '30%',
       render(record) {
         if (record.id === workspaceStore.workspace.ownerId) {
-          return <Badge type="green" text="Owner" />
+          return <Badge type="green" text="Owner"/>
         }
-        return <Badge text="Member" />
+        return <Badge text="Member"/>
       }
     },
     {
@@ -121,16 +115,16 @@ const Members = observer(() => {
           <Menus onClick={handleMenuClick}>
             <Menus.Item
               name="transfer"
-              icon={<SwitchHorizontalIcon />}
+              icon={<SwitchHorizontalIcon/>}
               label="Transfer ownership"
             />
-            <Menus.Item name="remove" icon={<TrashIcon />} label="Remove" />
+            <Menus.Item name="remove" icon={<TrashIcon/>} label="Remove"/>
           </Menus>
         )
 
         const MemberOverlay = (
           <Menus onClick={handleMenuClick}>
-            <Menus.Item name="leave" icon={<LogoutIcon />} label="Leave workspace" />
+            <Menus.Item name="leave" icon={<LogoutIcon/>} label="Leave workspace"/>
           </Menus>
         )
 
@@ -139,7 +133,7 @@ const Members = observer(() => {
             className="inline-flex p-1 hover:bg-gray-100 rounded-md cursor-pointer"
             overlay={workspaceStore.workspace.isOwner ? OwnerOverlay : MemberOverlay}
           >
-            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
+            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900"/>
           </Dropdown>
         )
       }
@@ -154,8 +148,8 @@ const Members = observer(() => {
   return (
     <div>
       <Heading
-        title="Members"
-        description="Manage who has access to the workspace."
+        title={t('workspace.members.member')}
+        description={t('workspace.members.manage')}
         actions={
           <Button type="primary" onClick={openInviteMember}>
             Invite member
@@ -163,11 +157,11 @@ const Members = observer(() => {
         }
       />
       <div className="py-4">
-        <Table<UserModel> className="mt-8" columns={columns} data={workspaceStore.members} />
+        <Table<UserModel> className="mt-8" columns={columns} data={workspaceStore.members}/>
       </div>
 
       {/* Invite member */}
-      <InviteMember visible={inviteMemberVisible} onClose={closeInviteMember} />
+      <InviteMember visible={inviteMemberVisible} onClose={closeInviteMember}/>
 
       {/* Transfer workspace */}
       <TransferWorkspace
@@ -177,10 +171,10 @@ const Members = observer(() => {
       />
 
       {/* Delete member */}
-      <DeleteMember visible={deleteMemberVisible} member={member} onClose={closeDeleteMember} />
+      <DeleteMember visible={deleteMemberVisible} member={member} onClose={closeDeleteMember}/>
 
       {/* Leave workspace */}
-      <LeaveWorkspace visible={leaveWorkspaceVisible} onClose={closeLeaveWorkspace} />
+      <LeaveWorkspace visible={leaveWorkspaceVisible} onClose={closeLeaveWorkspace}/>
     </div>
   )
 })
