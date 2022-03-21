@@ -4,20 +4,23 @@ import { useStore } from '@/store'
 import { useAsyncEffect, useParam } from '@/utils'
 import { Form, Input, Modal, notification } from '@heyforms/ui'
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
+
 
 interface DeleteProjectProps extends IModalProps {
   project?: ProjectModel | null
 }
 
 export const DeleteProject: FC<DeleteProjectProps> = ({
-  visible,
-  project,
-  onComplete,
-  onClose
-}) => {
+                                                        visible,
+                                                        project,
+                                                        onComplete,
+                                                        onClose
+                                                      }) => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
   const userStore = useStore('userStore')
+  const { t } = useTranslation()
 
   async function handleFinish(values: IMapType) {
     await ProjectService.delete(project!.id, values.code)
@@ -40,15 +43,13 @@ export const DeleteProject: FC<DeleteProjectProps> = ({
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Delete project</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('project.deleteProject.del')}</h1>
           <div className="space-y-2">
             <p className="mt-1 text-sm text-gray-500">
-              Keep in mind this operation is irreversible and will permanently delete all the data
-              associated with this project.
+              {t('project.deleteProject.deleteExplain')}
             </p>
             <p className="mt-1 text-sm text-gray-500">
-              Once you confirm to delete the project, you will no longer have access to the project
-              data.
+              {t('project.deleteProject.deleteExplain2')}
             </p>
           </div>
         </div>
@@ -61,7 +62,7 @@ export const DeleteProject: FC<DeleteProjectProps> = ({
           request={handleFinish}
         >
           <Form.Item name="code" label="Verification code" rules={[{ required: true }]}>
-            <Input />
+            <Input/>
           </Form.Item>
         </Form.Custom>
       </div>

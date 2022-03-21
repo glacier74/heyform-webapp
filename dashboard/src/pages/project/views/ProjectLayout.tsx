@@ -1,16 +1,12 @@
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useAsyncEffect, useParam, useVisible } from '@/utils'
-import {
-  ChevronDownIcon,
-  DotsHorizontalIcon,
-  PencilIcon,
-  TrashIcon
-} from '@heroicons/react/outline'
+import { ChevronDownIcon, DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import { Avatar, Button, Dropdown, Heading, Menus, Navbar } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { NavLink, useHistory } from 'react-router-dom'
 import { DeleteProject } from './DeleteProject'
 import './index.scss'
@@ -27,6 +23,7 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
   const history = useHistory()
   const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
+  const { t } = useTranslation()
 
   const members = useMemo(() => {
     return workspaceStore.members
@@ -66,23 +63,23 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
             placement="bottom-start"
             overlay={
               <Menus onClick={handleMenuClick}>
-                <Menus.Item name="rename" icon={<PencilIcon />} label="Rename" />
+                <Menus.Item name="rename" icon={<PencilIcon/>} label={t('project.rename')}/>
                 {workspaceStore.workspace?.isOwner && (
-                  <Menus.Item name="delete" icon={<TrashIcon />} label="Delete" />
+                  <Menus.Item name="delete" icon={<TrashIcon/>} label={t('project.del')}/>
                 )}
               </Menus>
             }
           >
-            <ChevronDownIcon className="w-5 h-5" />
+            <ChevronDownIcon className="w-5 h-5"/>
           </Dropdown>
         </div>
       }
       description={
         <div className="mt-2 flex items-center">
-          <Avatar.Group options={members} size={32} maximum={8} circular rounded />
+          <Avatar.Group options={members} size={32} maximum={8} circular rounded/>
           <Button
             className="ml-2 w-8 h-8 p-1.5"
-            leading={<DotsHorizontalIcon />}
+            leading={<DotsHorizontalIcon/>}
             rounded
             onClick={onMemberManage}
           />
@@ -90,7 +87,7 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
       }
       actions={
         <Button type="primary" onClick={handleCreateForm}>
-          Create form
+          {t('project.bottom')}
         </Button>
       }
     />
@@ -105,6 +102,7 @@ export const ProjectLayout: FC<IComponentProps> = ({ children }) => {
   const [renameProjectVisible, openRenameProject, closeRenameProject] = useVisible()
   const [deleteProjectVisible, openDeleteProject, closeDeleteProject] = useVisible()
   const [projectMembersVisible, openProjectMembers, closeProjectMembers] = useVisible()
+  const { t } = useTranslation()
 
   function handleDeleteProjectComplete() {
     history.replace(`/workspace/${workspaceId}`)
@@ -121,16 +119,16 @@ export const ProjectLayout: FC<IComponentProps> = ({ children }) => {
       <div className="py-4">
         <Navbar className="mt-4">
           <NavLink to={`/workspace/${workspaceId}/project/${projectId}`} exact>
-            Forms
+            {t('project.forms')}
           </NavLink>
-          <NavLink to={`/workspace/${workspaceId}/project/${projectId}/trash`}>Trash</NavLink>
+          <NavLink to={`/workspace/${workspaceId}/project/${projectId}/trash`}>{t('project.Trash')}</NavLink>
         </Navbar>
 
         {children}
       </div>
 
       {/* Manage project */}
-      <ProjectMembers visible={projectMembersVisible} onClose={closeProjectMembers} />
+      <ProjectMembers visible={projectMembersVisible} onClose={closeProjectMembers}/>
 
       {/* Rename project */}
       <RenameProject

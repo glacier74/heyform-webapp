@@ -10,11 +10,13 @@ import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import * as timeago from 'timeago.js'
 import { ProjectLayout } from './views/ProjectLayout'
 import { Skeleton } from './views/Skeleton'
 
 const Trash = observer(() => {
+  const { t } = useTranslation()
   const { projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 
@@ -92,7 +94,7 @@ const Trash = observer(() => {
       name: 'Status',
       width: '30%',
       render() {
-        return <Badge className="form-status" text="Closed" dot />
+        return <Badge className="form-status" text="Closed" dot/>
       }
     },
     {
@@ -129,12 +131,12 @@ const Trash = observer(() => {
             placement="bottom-start"
             overlay={
               <Menus onClick={handleClick}>
-                <Menus.Item name="restore" icon={<RestoreIcon />} label="Restore" />
-                <Menus.Item name="delete" icon={<TrashIcon />} label="Delete forever" />
+                <Menus.Item name="restore" icon={<RestoreIcon/>} label={t('project.trash.restore')}/>
+                <Menus.Item name="delete" icon={<TrashIcon/>} label={t('project.trash.delForever')}/>
               </Menus>
             }
           >
-            <DotsHorizontalIcon className="w-5 h-5" />
+            <DotsHorizontalIcon className="w-5 h-5"/>
           </Dropdown>
         )
       }
@@ -144,39 +146,40 @@ const Trash = observer(() => {
   return (
     <ProjectLayout>
       <div className="mt-8 text-sm text-gray-700">
-        You can restore any file deleted in the last 30 days.{' '}
+        {t('project.trash.explain')}
+        {' '}
         <a
           href="https://help.heyform.net"
           target="_blank"
           className="text-blue-500 hover:text-blue-700"
         >
-          Learn more
+          {t('project.trash.link')}
         </a>
       </div>
 
       <Async
         request={request}
         deps={[projectId]}
-        skeleton={<Skeleton />}
+        skeleton={<Skeleton/>}
         emptyState={
           <EmptyStates
             className="empty-states-fit"
-            icon={<TrashIcon className="non-scaling-stroke" />}
-            title="Don't have any forms in trash"
-            description="Forms will be permanently deleted from the trash after 30 days."
+            icon={<TrashIcon className="non-scaling-stroke"/>}
+            title={t('project.trash.noForm')}
+            description={t('project.trash.daysExplain')}
           />
         }
       >
-        <Table<FormModel> className="mt-8" columns={columns} data={forms} />
+        <Table<FormModel> className="mt-8" columns={columns} data={forms}/>
       </Async>
 
       <Modal.Confirm
         type="danger"
         visible={deleteFormVisible}
-        title="Delete forever?"
-        description={`'${form?.name}' will be deleted forever and you won't be able to restore it.`}
-        cancelLabel="cancel"
-        confirmLabel="Delete"
+        title={t('project.trash.deleteForever')}
+        description={`'${form?.name}' ${t('project.trash.delForm')}`}
+        cancelLabel={t('project.trash.cancel')}
+        confirmLabel={t('project.del')}
         confirmLoading={loading}
         onCancel={closeDeleteForm}
         onClose={closeDeleteForm}

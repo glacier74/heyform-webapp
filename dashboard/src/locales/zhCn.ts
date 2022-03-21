@@ -99,6 +99,41 @@ export default {
       name: 'Workspace name',
       logo: 'Workspace logo',
       create: 'Create'
+    },
+    project: {
+      deleteProject: {
+        del: 'Delete project',
+        deleteExplain: 'Keep in mind this operation is irreversible and will permanently delete all the data associated with this project.',
+        deleteExplain2: ' Once you confirm to delete the project, you will no longer have access to the project data.'
+      },
+      rename: 'Rename',
+      del: 'Delete',
+      bottom: ' Create form',
+      forms: 'Forms',
+      Trash: 'Trash',
+      renameP: 'Rename this project',
+      update: 'Update',
+      projectName: 'Project name',
+      ProjectMembers: {
+        members: 'Members in this project',
+        explain: 'Assigned members can co-manage the activities here in this project.',
+        assigned: 'Assigned',
+        notassigned: 'Not assigned'
+      },
+      trash: {
+        restore: 'Restore',
+        delForever: 'Delete forever',
+        explain: 'You can restore any file deleted in the last 30 days.',
+        link: 'Learn more',
+        noForm: 'Don\'t have any forms in trash',
+        daysExplain: 'Forms will be permanently deleted from the trash after 30 days.',
+        delForm: 'will be deleted forever and you won\'t be able to restore it.',
+        deleteForever: 'Delete forever?',
+        cancel: 'Cancel'
+
+      }
+
+
     }
 
 

@@ -4,6 +4,7 @@ import { useStore } from '@/store'
 import { useParam } from '@/utils'
 import { Form, Input, Modal } from '@heyforms/ui'
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface RenameProjectProps extends IModalProps {
   project?: ProjectModel | null
@@ -12,6 +13,8 @@ interface RenameProjectProps extends IModalProps {
 export const RenameProject: FC<RenameProjectProps> = ({ visible, project, onClose }) => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
+  const { t } = useTranslation()
+
 
   async function handleUpdate(values: any) {
     await ProjectService.rename(project!.id, values.name)
@@ -24,22 +27,22 @@ export const RenameProject: FC<RenameProjectProps> = ({ visible, project, onClos
     <Modal contentClassName="max-w-md" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Rename this project</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('project.renameP')}</h1>
         </div>
 
         <Form.Custom
           initialValues={{
             name: project?.name
           }}
-          submitText="Update"
+          submitText={t('project.update')}
           submitOptions={{
             type: 'primary'
           }}
           onlySubmitOnValueChange={true}
           request={handleUpdate}
         >
-          <Form.Item name="name" label="Project name" rules={[{ required: true }]}>
-            <Input />
+          <Form.Item name="name" label={t('project.projectName')} rules={[{ required: true }]}>
+            <Input/>
           </Form.Item>
         </Form.Custom>
       </div>
