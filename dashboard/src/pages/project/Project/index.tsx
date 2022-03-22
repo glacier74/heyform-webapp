@@ -2,39 +2,27 @@ import { Async } from '@/components'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam, useVisible } from '@/utils'
-import {
-  ClipboardCheckIcon,
-  DotsHorizontalIcon,
-  DuplicateIcon,
-  PencilIcon,
-  TrashIcon
-} from '@heroicons/react/outline'
+import { ClipboardCheckIcon, DotsHorizontalIcon, DuplicateIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import type { FormModel } from '@heyforms/shared-types-enums'
 import { FormStatusEnum } from '@heyforms/shared-types-enums'
-import {
-  Badge,
-  Button,
-  Dropdown,
-  EmptyStates,
-  Menus,
-  Modal,
-  notification,
-  Table
-} from '@heyforms/ui'
+import { Badge, Button, Dropdown, EmptyStates, Menus, Modal, notification, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
+import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import * as timeago from 'timeago.js'
 import { ProjectLayout } from '../views/ProjectLayout'
 import { Skeleton } from '../views/Skeleton'
 import './index.scss'
 
+
 const Project = observer(() => {
   const history = useHistory()
   const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
   const [suspendModalVisible, openSuspendModal, closeSuspendModal] = useVisible()
+  const { t } = useTranslation()
 
   async function request() {
     const result = await FormService.forms(projectId, FormStatusEnum.NORMAL)
@@ -125,13 +113,13 @@ const Project = observer(() => {
       width: '30%',
       render(record) {
         if (record.suspended) {
-          return <Badge className="form-status" type="red" text="Suspended" dot />
+          return <Badge className="form-status" type="red" text={t('project.suspended')} dot/>
         } else if (record.draft) {
-          return <Badge className="form-status" text="Draft" dot />
+          return <Badge className="form-status" text={t('project.draft')} dot/>
         } else if (record.settings?.active) {
-          return <Badge className="form-status" type="blue" text="Active" dot />
+          return <Badge className="form-status" type="blue" text={t('project.active')} dot/>
         } else {
-          return <Badge className="form-status" text="Closed" dot />
+          return <Badge className="form-status" text={t('project.closed')} dot/>
         }
       }
     },
@@ -172,13 +160,13 @@ const Project = observer(() => {
             placement="bottom-start"
             overlay={
               <Menus onClick={handleClick}>
-                <Menus.Item name="edit" icon={<PencilIcon />} label="Edit" />
-                <Menus.Item name="duplicate" icon={<DuplicateIcon />} label="Duplicate" />
-                <Menus.Item name="delete" icon={<TrashIcon />} label="Delete" />
+                <Menus.Item name="edit" icon={<PencilIcon/>} label={t('project.edit')}/>
+                <Menus.Item name="duplicate" icon={<DuplicateIcon/>} label={t('project.dup')}/>
+                <Menus.Item name="delete" icon={<TrashIcon/>} label={t('project.del')}/>
               </Menus>
             }
           >
-            <DotsHorizontalIcon className="w-5 h-5" />
+            <DotsHorizontalIcon className="w-5 h-5"/>
           </Dropdown>
         )
       }
@@ -190,14 +178,14 @@ const Project = observer(() => {
       <Async
         request={request}
         deps={[projectId]}
-        skeleton={<Skeleton />}
+        skeleton={<Skeleton/>}
         emptyState={
           <EmptyStates
             className="empty-states-fit"
-            icon={<ClipboardCheckIcon className="non-scaling-stroke" />}
-            title="Don't have any forms in this project yet"
-            description="It's your one-stop solution for all form needs. Quickly build online forms without any coding or design experience."
-            action={<Button onClick={handleCreateForm}>Create form</Button>}
+            icon={<ClipboardCheckIcon className="non-scaling-stroke"/>}
+            title={t('project.noForm')}
+            description={t('project.text')}
+            action={<Button onClick={handleCreateForm}>{t('project.bottom')}</Button>}
           />
         }
       >
@@ -212,10 +200,10 @@ const Project = observer(() => {
       <Modal.Confirm
         type="danger"
         visible={suspendModalVisible}
-        title="This form is suspended"
-        description="If you have any questions about suspend, please click the button below to contact us."
-        cancelLabel="Cancel"
-        confirmLabel="Contact us"
+        title={t('project.suspendForm')}
+        description={t('project.suspendText')}
+        cancelLabel={t('project.trash.cancel')}
+        confirmLabel={t('project.contact')}
         onClose={closeSuspendModal}
         onCancel={closeSuspendModal}
         onConfirm={handleConfirm}

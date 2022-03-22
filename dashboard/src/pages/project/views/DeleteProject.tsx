@@ -34,7 +34,7 @@ export const DeleteProject: FC<DeleteProjectProps> = ({
       await ProjectService.deleteCode(project!.id)
 
       notification.success({
-        title: `An email containing a verification code was sent to ${userStore.user.email}.`
+        title: `${t('project.deleteProject.sendEmail')} ${userStore.user.email}.`
       })
     }
   }, [visible])
@@ -55,13 +55,13 @@ export const DeleteProject: FC<DeleteProjectProps> = ({
         </div>
 
         <Form.Custom
-          submitText="Delete project"
+          submitText={t('project.deleteProject.delBottom')}
           submitOptions={{
             type: 'danger'
           }}
           request={handleFinish}
         >
-          <Form.Item name="code" label="Verification code" rules={[{ required: true }]}>
+          <Form.Item name="code" label={t('project.deleteProject.code')} rules={[{ required: true }]}>
             <Input/>
           </Form.Item>
         </Form.Custom>

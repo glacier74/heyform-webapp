@@ -20,6 +20,7 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
   const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
   const [loading, setLoading] = useState(false)
+  const { t } = useTranslation()
 
 
   async function handleRemove() {
@@ -101,7 +102,7 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
           disabled={loading || disabled}
           onClick={handleClick}
         >
-          {member.isAssigned ? (member.isSelf ? 'Leave' : 'Remove') : 'Assign'}
+          {member.isAssigned ? (member.isSelf ? t('project.ProjectMembers.leave') : t('project.ProjectMembers.remove')) : t('project.ProjectMembers.assign')}
         </Button>
       )}
     </div>
