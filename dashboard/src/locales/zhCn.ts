@@ -256,6 +256,52 @@ export default {
       member: 'members',
       bottom: 'Join'
     }
+  },
+  user: {
+    settings: {
+      avatar: 'Avatar',
+      avatarText: 'Gravatar is used by default as your HeyForm avatar, you can upload your custom avatar here',
+      deletedAccount: {
+        sendEmail: 'An email containing a verification code was sent to',
+        del: 'Delete account',
+        delText: 'This action cannot be undone. This will permanently delete your entire account. All workspaces you created will be deleted, and you will be removed from all shared workspaces.',
+        delSure: 'If you are sure you want to proceed with the deletion of your account, please continue below.',
+        delBottom: 'Delete my account',
+        delCode: 'Verification code',
+        delAccount: 'Account deletion scheduled',
+        delSendEmail: 'We have scheduled your account deletion in 48 hours. You will receive an email confirmation when it has completed.',
+        loggedOut: 'You will now be logged out.',
+        delText2: 'This will permanently delete your entire account. All your forms, submissions and workspaces will be deleted',
+        danger: 'Danger zone'
+      },
+      emailAddress: {
+        change: 'Change your email address',
+        sendEmail: 'We will send you an email with a 6-digit verification code.',
+        newEmail: 'New email address',
+        checkEmail: 'Check your email',
+        code: 'We\'ve sent you an email with a 6-digit verification code. Please check your inbox at',
+        continue: 'Continue',
+        changeEmail: 'Change email address'
+      },
+      account: 'Account Settings',
+      accountText: 'Changes to account settings will apply to all of your workspaces.',
+      password: {
+        changeText: 'Your password has been changed',
+        changeP: 'Change password',
+        currentPassword: 'Current password',
+        newP: 'New password'
+      },
+      name: 'Your name'
+    },
+    verifyEmail: 'Verify your email address',
+    sendEmailText: 'We\'ve sent you an email with a 6-digit verification code. Please check your inbox at',
+    typoEmail: 'Made a typo on email address?',
+    click: 'click here',
+    change: 'to change it.',
+    text: 'Don\'t receive the code?',
+    resend: 'Resend'
+
+
   }
 
 }

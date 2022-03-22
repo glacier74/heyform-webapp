@@ -4,9 +4,11 @@ import { clearAuthState, useAsyncEffect, useVisible } from '@/utils'
 import { Button, Form, Input, Modal, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const VerifyEmail: FC<IModalProps> = observer(({ visible, onClose, onComplete }) => {
   const userStore = useStore('userStore')
+  const { t } = useTranslation()
 
   async function handleFinish(values: IMapType) {
     await UserService.verifyDeletionCode(values.code)
@@ -26,7 +28,7 @@ const VerifyEmail: FC<IModalProps> = observer(({ visible, onClose, onComplete })
       await UserService.sendDeletionCode()
 
       notification.success({
-        title: `An email containing a verification code was sent to ${userStore.user.email}.`
+        title: `${t('user.settings.deletedAccount.sendEmail')} ${userStore.user.email}.`
       })
     }
   }, [visible])
@@ -35,29 +37,26 @@ const VerifyEmail: FC<IModalProps> = observer(({ visible, onClose, onComplete })
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Delete account</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('user.settings.deletedAccount.del')}</h1>
           <div className="space-y-2">
             <p className="mt-1 text-sm text-gray-500">
-              This action cannot be undone. This will permanently delete your entire account. All
-              workspaces you created will be deleted, and you will be removed from all shared
-              workspaces.
+              {t('user.settings.deletedAccount.delText')}
             </p>
             <p className="mt-1 text-sm text-gray-500">
-              If you are sure you want to proceed with the deletion of your account, please continue
-              below.
+              {t('user.settings.deletedAccount.delSure')}
             </p>
           </div>
         </div>
 
         <Form.Custom
-          submitText="Delete my account"
+          submitText={t('user.settings.deletedAccount.delBottom')}
           submitOptions={{
             type: 'danger'
           }}
           request={handleFinish}
         >
-          <Form.Item name="code" label="Verification code" rules={[{ required: true }]}>
-            <Input />
+          <Form.Item name="code" label={t('user.settings.deletedAccount.delCode')} rules={[{ required: true }]}>
+            <Input/>
           </Form.Item>
         </Form.Custom>
       </div>
@@ -66,19 +65,19 @@ const VerifyEmail: FC<IModalProps> = observer(({ visible, onClose, onComplete })
 })
 
 const DeletionWarning: FC<IModalProps> = ({ visible }) => {
+  const { t } = useTranslation()
   return (
     <Modal.Confirm
       type="danger"
       visible={visible}
-      title="Account deletion scheduled"
+      title={t('user.settings.deletedAccount.delAccount')}
       maskClosable={false}
       description={
         <div className="space-y-2">
           <p>
-            We have scheduled your account deletion in 48 hours. You will receive an email
-            confirmation when it has completed.
+            {t('user.settings.deletedAccount.delSendEmail')}
           </p>
-          <p>You will now be logged out.</p>
+          <p>{t('user.settings.deletedAccount.loggedOut')}</p>
         </div>
       }
     />
@@ -88,17 +87,17 @@ const DeletionWarning: FC<IModalProps> = ({ visible }) => {
 export const DeleteAccount: FC = () => {
   const [verifyEmailVisible, openVerifyEmail, closeVerifyEmail] = useVisible()
   const [deletionWarningVisible, openDeletionWarning] = useVisible()
+  const { t } = useTranslation()
 
   return (
     <div>
-      <div className="block text-sm font-medium text-gray-700">Danger zone</div>
+      <div className="block text-sm font-medium text-gray-700">{t('user.settings.deletedAccount.danger')}</div>
       <p className="mt-1 text-sm text-gray-500">
-        This will permanently delete your entire account. All your forms, submissions and workspaces
-        will be deleted
+        {t('user.settings.deletedAccount.delText2')}
       </p>
       <div className="mt-3">
         <Button type="danger" onClick={openVerifyEmail}>
-          Delete account
+          {t('user.settings.deletedAccount.del')}
         </Button>
       </div>
 
@@ -107,7 +106,7 @@ export const DeleteAccount: FC = () => {
         onClose={closeVerifyEmail}
         onComplete={openDeletionWarning}
       />
-      <DeletionWarning visible={deletionWarningVisible} />
+      <DeletionWarning visible={deletionWarningVisible}/>
     </div>
   )
 }

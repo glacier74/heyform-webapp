@@ -2,6 +2,7 @@ import { useStore } from '@/store'
 import { Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Avatar } from './Avatar'
 import { DeleteAccount } from './DeleteAccount'
 import { EmailAddress } from './EmailAddress'
@@ -10,6 +11,7 @@ import { UserName } from './UserName'
 
 const UserSettings: FC = () => {
   const appStore = useStore('appStore')
+  const { t } = useTranslation()
 
   function handleClose() {
     appStore.isUserSettingsOpen = false
@@ -19,26 +21,26 @@ const UserSettings: FC = () => {
     <Modal visible={appStore.isUserSettingsOpen} onClose={handleClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Account Settings</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('user.settings.account')}</h1>
           <p className="mt-1 text-sm text-gray-500">
-            Changes to account settings will apply to all of your workspaces.
+            {t('user.settings.accountText')}
           </p>
         </div>
 
         {/* User avatar */}
-        <Avatar />
+        <Avatar/>
 
         {/* User name */}
-        <UserName />
+        <UserName/>
 
         {/* Email address */}
-        <EmailAddress />
+        <EmailAddress/>
 
         {/* Password */}
-        <Password />
+        <Password/>
 
         {/* Delete account */}
-        <DeleteAccount />
+        <DeleteAccount/>
       </div>
     </Modal>
   )

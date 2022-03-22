@@ -6,9 +6,11 @@ import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
   const [values, setValues] = useState<IMapType>({})
+  const { t } = useTranslation()
 
   function handleChange(_: unknown, val: IMapType) {
     setValues(val)
@@ -18,7 +20,7 @@ const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
     await UserService.updatePassword(val.currentPassword, val.newPassword)
 
     notification.success({
-      title: 'Your password has been changed'
+      title: t('user.settings.password.changeText')
     })
     onClose?.()
   }
@@ -27,7 +29,7 @@ const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Change password</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('user.settings.password.changeP')}</h1>
         </div>
 
         <Form.Custom
@@ -38,27 +40,28 @@ const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
           request={handleFinish}
           onValuesChange={handleChange}
         >
-          <Form.Item name="currentPassword" label="Current password" rules={[{ required: true }]}>
-            <Input.Password />
+          <Form.Item name="currentPassword" label={t('user.settings.password.currentPassword')}
+                     rules={[{ required: true }]}>
+            <Input.Password/>
           </Form.Item>
           <Form.Item
             name="newPassword"
-            label="New password"
+            label={t('user.settings.password.newP')}
             rules={[
               {
                 required: true,
                 pattern:
                   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[!#$%&()*+\-,.\/\\:<=>?@\[\]^_{|}~0-9a-zA-Z]{8,}$/,
                 message:
-                  'Your password must be at least 8 characters, and at least 1 uppercase, 1 lowercase and 1 number.'
+                  t('auth.signup.PasswordViolation')
               }
             ]}
           >
-            <Input.Password />
+            <Input.Password/>
           </Form.Item>
           <Form.Item
             name="repeatPassword"
-            label="Repeat password"
+            label={t('auth.resetPassword.repeatPassword')}
             rules={[
               {
                 validator: async (rule, value) => {
@@ -66,11 +69,11 @@ const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
                     throw new Error(rule.message as string)
                   }
                 },
-                message: 'Your new password and repeat password do not match.'
+                message: t('auth.resetPassword.passwordMismatch')
               }
             ]}
           >
-            <Input.Password />
+            <Input.Password/>
           </Form.Item>
         </Form.Custom>
       </div>
@@ -81,6 +84,7 @@ const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
 export const Password: FC = observer(() => {
   const userStore = useStore('userStore')
   const [visible, handleOpen, handleClose] = useVisible()
+  const { t } = useTranslation()
 
   if (userStore.user.isSocialAccount) {
     return null
@@ -88,14 +92,14 @@ export const Password: FC = observer(() => {
 
   return (
     <div>
-      <div className="block text-sm font-medium text-gray-700">Password</div>
+      <div className="block text-sm font-medium text-gray-700">{t('login.Password')}</div>
       <p className="mt-1 text-sm text-gray-500">
         <Button.Link className="text-blue-500" onClick={handleOpen}>
-          Change password
+          {t('user.settings.password.changeP')}
         </Button.Link>
       </p>
 
-      <ChangePassword visible={visible} onClose={handleClose} />
+      <ChangePassword visible={visible} onClose={handleClose}/>
     </div>
   )
 })

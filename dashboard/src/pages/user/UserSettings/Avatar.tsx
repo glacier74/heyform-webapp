@@ -4,12 +4,14 @@ import { useStore } from '@/store'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const Avatar: FC = observer(() => {
   const userStore = useStore('userStore')
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
+  const { t } = useTranslation()
 
   async function handleChange(avatar: string) {
     setLoading(true)
@@ -34,8 +36,8 @@ export const Avatar: FC = observer(() => {
     <div>
       <PhotoPickerField
         value={userStore.user?.avatar}
-        label="Avatar"
-        description="Gravatar is used by default as your HeyForm avatar, you can upload your custom avatar here"
+        label={t('user.settings.avatar')}
+        description={t('user.settings.avatarText')}
         changeLoading={loading}
         onChange={handleChange}
       />

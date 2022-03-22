@@ -3,9 +3,11 @@ import { useStore } from '@/store'
 import { Form, Input } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const UserName: FC = observer(() => {
   const userStore = useStore('userStore')
+  const { t } = useTranslation()
 
   async function handleFinish(values: IMapType) {
     await UserService.update(values)
@@ -19,14 +21,14 @@ export const UserName: FC = observer(() => {
         initialValues={{
           name: userStore.user.name
         }}
-        submitText="Update"
+        submitText={t('workspace.settings.up')}
         submitOptions={{
           className: 'mt-6 ml-3'
         }}
         request={handleFinish}
       >
-        <Form.Item name="name" label="Your name" rules={[{ required: true }]}>
-          <Input />
+        <Form.Item name="name" label={t('user.settings.name')} rules={[{ required: true }]}>
+          <Input/>
         </Form.Item>
       </Form.Custom>
     </div>

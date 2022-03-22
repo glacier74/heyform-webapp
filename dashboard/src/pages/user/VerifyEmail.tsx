@@ -1,9 +1,5 @@
 import { LogoIcon } from '@/components'
-import {
-  FormValues,
-  SendCode,
-  VerifyEmail as VerifyEmailModal
-} from '@/pages/user/UserSettings/EmailAddress'
+import { FormValues, SendCode, VerifyEmail as VerifyEmailModal } from '@/pages/user/UserSettings/EmailAddress'
 import { UserService } from '@/service'
 import { useStore } from '@/store'
 import { useRouter, useVisible } from '@/utils'
@@ -11,8 +7,10 @@ import { Button, Form, Input, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const VerifyEmail: FC = () => {
+  const { t } = useTranslation()
   const router = useRouter()
   const userStore = useStore('userStore')
   const [loading, setLoading] = useState(false)
@@ -20,6 +18,7 @@ const VerifyEmail: FC = () => {
   const [sendCodeVisible, openSendCode, closeSendCode] = useVisible()
   const [verifyEmailVisible, openVerifyEmail, closeVerifyEmail] = useVisible()
   const [formValues, setTempValues] = useState<FormValues>()
+
 
   async function handleFinish(values: IMapType) {
     await UserService.verifyEmail(values.code)
@@ -60,22 +59,22 @@ const VerifyEmail: FC = () => {
   return (
     <div>
       <div>
-        <LogoIcon className="h-8 w-auto" />
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Verify your email address</h2>
+        <LogoIcon className="h-8 w-auto"/>
+        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('user.verifyEmail')}</h2>
         <p className="mt-2 text-sm text-gray-600">
-          We've sent you an email with a 6-digit verification code. Please check your inbox at{' '}
+          {t('user.sendEmailText')}{' '}
           <span className="font-medium text-gray-700">{userStore.user.email}</span>.
         </p>
         <p className="mt-2 text-sm text-gray-600">
-          Made a typo on email address? <Button.Link onClick={openSendCode}>click here</Button.Link>{' '}
-          to change it.
+          {t('user.typoEmail')} <Button.Link onClick={openSendCode}>{t('user.click')}</Button.Link>{' '}
+          {t('user.change')}
         </p>
       </div>
 
       <div className="mt-8">
         <div className="mt-6">
           <Form.Custom
-            submitText="Continue"
+            submitText={t('auth.forgotPassword.continue')}
             submitOptions={{
               type: 'primary',
               block: true
@@ -84,28 +83,28 @@ const VerifyEmail: FC = () => {
           >
             <Form.Item
               name="code"
-              label="Verification code"
-              rules={[{ required: true, message: 'Invalid verification code' }]}
+              label={t('auth.resetPassword.verificationCode')}
+              rules={[{ required: true, message: t('auth.resetPassword.invalidCode') }]}
             >
-              <Input />
+              <Input/>
             </Form.Item>
           </Form.Custom>
 
           <div className="flex items-center justify-center mt-6 sm:text-sm">
-            Don't receive the code?{' '}
+            {t('user.text')}{' '}
             <Button.Link
               className="ml-2"
               type="primary"
               loading={loading}
               onClick={handleSendEmail}
             >
-              Resend
+              {t('user.resend')}
             </Button.Link>
           </div>
         </div>
       </div>
 
-      <SendCode visible={sendCodeVisible} onClose={closeSendCode} onComplete={handleSendComplete} />
+      <SendCode visible={sendCodeVisible} onClose={closeSendCode} onComplete={handleSendComplete}/>
       <VerifyEmailModal
         visible={verifyEmailVisible}
         formValues={formValues}

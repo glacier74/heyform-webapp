@@ -5,6 +5,8 @@ import { Button, Form, Input, Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
 
 export interface FormValues {
   email: string
@@ -27,13 +29,14 @@ export const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) =>
     onComplete?.(values)
   }
 
+  const { t } = useTranslation()
   return (
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Change your email address</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('user.settings.emailAddress.change')}</h1>
           <p className="mt-1 text-sm text-gray-500">
-            We will send you an email with a 6-digit verification code.
+            {t('user.settings.emailAddress.sendEmail')}
           </p>
         </div>
 
@@ -51,10 +54,10 @@ export const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) =>
           {/*</Form.Item>*/}
           <Form.Item
             name="email"
-            label="New email address"
+            label={t('user.settings.emailAddress.newEmail')}
             rules={[{ type: 'email', required: true }]}
           >
-            <Input type="email" />
+            <Input type="email"/>
           </Form.Item>
         </Form.Custom>
       </div>
@@ -70,26 +73,27 @@ export const VerifyEmail: FC<VerifyEmailProps> = ({ visible, formValues, onClose
     onComplete?.()
   }
 
+  const { t } = useTranslation()
   return (
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Check your email</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('user.settings.emailAddress.checkEmail')}</h1>
           <p className="mt-1 text-sm text-gray-500">
-            We've sent you an email with a 6-digit verification code. Please check your inbox at{' '}
+            {t('user.settings.emailAddress.code')}{' '}
             {formValues?.email}.
           </p>
         </div>
 
         <Form.Custom
-          submitText="Continue"
+          submitText={t('user.settings.emailAddress.continue')}
           submitOptions={{
             type: 'primary'
           }}
           request={handleFinish}
         >
           <Form.Item name="code" label="Verification code" rules={[{ required: true }]}>
-            <Input />
+            <Input/>
           </Form.Item>
         </Form.Custom>
       </div>
@@ -102,6 +106,7 @@ export const EmailAddress: FC = observer(() => {
   const [sendCodeVisible, openSendCode, closeSendCode] = useVisible()
   const [verifyEmailVisible, openVerifyEmail, closeVerifyEmail] = useVisible()
   const [formValues, setTempValues] = useState<FormValues>()
+  const { t } = useTranslation()
 
   function handleSendComplete(values: FormValues) {
     setTempValues(values)
@@ -116,18 +121,18 @@ export const EmailAddress: FC = observer(() => {
 
   return (
     <div>
-      <div className="block text-sm font-medium text-gray-700">Email address</div>
+      <div className="block text-sm font-medium text-gray-700">{t('login.Email')}</div>
       <p className="mt-1 text-sm text-gray-500">
         <span>{userStore.user.email}</span>
 
         {!userStore.user.isSocialAccount && (
           <Button.Link className="ml-2 text-blue-500" onClick={openSendCode}>
-            Change email address
+            {t('user.settings.emailAddress.changeEmail')}
           </Button.Link>
         )}
       </p>
 
-      <SendCode visible={sendCodeVisible} onClose={closeSendCode} onComplete={handleSendComplete} />
+      <SendCode visible={sendCodeVisible} onClose={closeSendCode} onComplete={handleSendComplete}/>
       <VerifyEmail
         visible={verifyEmailVisible}
         formValues={formValues}
