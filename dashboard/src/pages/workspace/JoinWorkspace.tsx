@@ -6,6 +6,7 @@ import { useParam } from '@/utils'
 import { Avatar, Button } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 
 const JoinWorkspace = () => {
@@ -15,6 +16,7 @@ const JoinWorkspace = () => {
   const [workspace, setWorkspace] = useState<WorkspaceModel | null>()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
+  const { t } = useTranslation()
 
   async function handleClick() {
     setLoading(true)
@@ -55,11 +57,11 @@ const JoinWorkspace = () => {
   return (
     <div>
       <div>
-        <LogoIcon className="h-8 w-auto" />
+        <LogoIcon className="h-8 w-auto"/>
         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-          You've been invited to {workspace?.owner?.name}'s workspace
+          {t('workspace.join.invited')} {workspace?.owner?.name}{t('workspace.join.UsernameAdd')}
         </h2>
-        <p className="mt-2 text-sm text-gray-600">Join the workspace and start working together!</p>
+        <p className="mt-2 text-sm text-gray-600">{t('workspace.join.joinText')}</p>
       </div>
 
       <div className="mt-8">
@@ -68,14 +70,14 @@ const JoinWorkspace = () => {
             <Avatar
               src={workspace?.avatar}
               size={48}
-              defaultIcon={<WorkspaceIcon />}
+              defaultIcon={<WorkspaceIcon/>}
               rounded
               circular
             />
 
             <div className="ml-4 flex-auto">
               <p className="text-sm font-medium text-gray-700 truncate">{workspace?.name}</p>
-              <p className="text-sm text-gray-500 truncate">{workspace?.memberCount} members</p>
+              <p className="text-sm text-gray-500 truncate">{workspace?.memberCount} {t('workspace.join.member')}</p>
             </div>
 
             <Button
@@ -85,7 +87,7 @@ const JoinWorkspace = () => {
               loading={loading}
               onClick={handleClick}
             >
-              Join
+              {t('workspace.join.bottom')}
             </Button>
           </div>
 

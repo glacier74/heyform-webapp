@@ -7,7 +7,9 @@ import { Button, Form, Input, Modal, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import isFQDN from 'validator/lib/isFQDN'
+
 
 interface CustomDomainModalProps extends IModalProps {
   domain?: string
@@ -17,6 +19,8 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
   const timerRef = useRef<any>()
+  const { t } = useTranslation()
+
 
   async function handleAddDomain() {
     if (!domain) {
@@ -35,7 +39,7 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
         onClose?.()
 
         return notification.success({
-          title: 'Custom domain has been updated'
+          title: t('workspace.settings.domainUp')
         })
       }
     } catch (err: any) {
@@ -59,13 +63,12 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
     <Modal contentClassName="max-w-2xl" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Custom domain</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('workspace.settings.customDomain')}</h1>
           <p className="mt-1 text-sm text-gray-500">
-            Custom domains allow you to make form accessible at your own, non-HeyForm domain names
-            (for example, yourcustomdomain.com). HeyForm supports all top-level domains in custom
-            domains.{' '}
+            {t('workspace.settings.domainExplain')}
+            {' '}
             <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
-              Learn more about custom domains
+              {t('workspace.settings.domainLink')}
             </a>
             .
           </p>
@@ -74,23 +77,23 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
         <div>
           <table className="table mt-8">
             <thead className="table-head">
-              <tr>
-                <th>Type</th>
-                <th>Name</th>
-                <th>Content</th>
-              </tr>
+            <tr>
+              <th>{t('workspace.settings.type')}</th>
+              <th>{t('workspace.settings.domainName')}</th>
+              <th>{t('workspace.settings.content')}</th>
+            </tr>
             </thead>
             <tbody className="table-body">
-              <tr>
-                <td>CNAME</td>
-                <td>{domain}</td>
-                <td>{import.meta.env.VITE_CUSTOM_DOMAIN_CNAME_PROXY}</td>
-              </tr>
+            <tr>
+              <td>{t('workspace.settings.cname')}</td>
+              <td>{domain}</td>
+              <td>{import.meta.env.VITE_CUSTOM_DOMAIN_CNAME_PROXY}</td>
+            </tr>
             </tbody>
           </table>
 
           <Button className="mt-4" type="primary" loading={true} disabled={true}>
-            Checking...
+            {t('workspace.settings.domainChecking')}...
           </Button>
         </div>
       </div>
@@ -107,6 +110,7 @@ export const CustomDomain: FC = observer(() => {
 
   const [visible, handleOpen, handleClose] = useVisible()
   const [domain, setDomain] = useState<string>()
+  const { t } = useTranslation()
 
   async function handleChange(enableCustomDomain: boolean) {
     setSwitchLoading(true)
@@ -137,7 +141,7 @@ export const CustomDomain: FC = observer(() => {
       })
 
       return notification.success({
-        title: 'Custom domain has been updated'
+        title: t('workspace.settings.domainUp')
       })
     }
 
@@ -149,13 +153,13 @@ export const CustomDomain: FC = observer(() => {
     <div>
       <PlanCheck permission={PlanGradeEnum.PRO}>
         <SwitchField
-          label="Custom domain"
+          label={t('workspace.settings.customDomain')}
           description={
             <>
-              Custom domains allow you to make form accessible at your own, non-HeyForm domain
-              names.{' '}
+              {t('workspace.settings.domainExplain2')}
+              {' '}
               <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
-                Learn more about custom domain in docs
+                {t('workspace.settings.domainLink')}
               </a>
               .
             </>
@@ -174,7 +178,7 @@ export const CustomDomain: FC = observer(() => {
             initialValues={{
               domain: workspaceStore.workspace?.customDomain
             }}
-            submitText="Update"
+            submitText={t('workspace.settings.up')}
             submitOptions={{
               className: 'mt-1 ml-3'
             }}
@@ -190,17 +194,17 @@ export const CustomDomain: FC = observer(() => {
                       throw new Error(rule.message as string)
                     }
                   },
-                  message: 'Invalid domain name'
+                  message: t('workspace.settings.invalid')
                 }
               ]}
             >
-              <Input placeholder="eg: yourcustomdomain.com" />
+              <Input placeholder={t('workspace.settings.domain')}/>
             </Form.Item>
           </Form.Custom>
         )}
       </div>
 
-      <CustomDomainModal visible={visible} domain={domain} onClose={handleClose} />
+      <CustomDomainModal visible={visible} domain={domain} onClose={handleClose}/>
     </div>
   )
 })

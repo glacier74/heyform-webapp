@@ -56,8 +56,8 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
 
   const Overlay = (
     <Menus onClick={handleMenuClick}>
-      <Menus.Item name="rename" label="Rename" icon={<PencilIcon/>}/>
-      {isOwner && <Menus.Item name="delete" label="Delete" icon={<TrashIcon/>}/>}
+      <Menus.Item name="rename" label={t('project.rename')} icon={<PencilIcon/>}/>
+      {isOwner && <Menus.Item name="delete" label={t('project.del')} icon={<TrashIcon/>}/>}
     </Menus>
   )
 
@@ -89,6 +89,7 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
 }
 
 const Workspace = observer(() => {
+  const { t } = useTranslation()
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
 
@@ -129,7 +130,7 @@ const Workspace = observer(() => {
         actions={
           workspaceStore.workspace?.projects.length > 0 && (
             <Button type="primary" onClick={openCreateProject}>
-              Create project
+              {t('workspace.workSpace.createP2')}
             </Button>
           )
         }
@@ -153,9 +154,9 @@ const Workspace = observer(() => {
           <EmptyStates
             className="empty-states-fit mt-8"
             icon={<CollectionIcon className="non-scaling-stroke"/>}
-            title="You don't have any projects yet"
-            description="Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations."
-            action={<Button onClick={openCreateProject}>Create project</Button>}
+            title={t('workspace.workSpace.noProject')}
+            description={t('workspace.workSpace.text')}
+            action={<Button onClick={openCreateProject}>{t('workspace.workSpace.createP2')}</Button>}
           />
         )}
       </div>

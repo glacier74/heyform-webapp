@@ -5,6 +5,8 @@ import { useParam } from '@/utils'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
 
 export const LogoUploader: FC = observer(() => {
   const { workspaceId } = useParam()
@@ -12,6 +14,7 @@ export const LogoUploader: FC = observer(() => {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
+  const { t } = useTranslation()
 
   async function handleChange(avatar: string) {
     setLoading(true)
@@ -37,9 +40,9 @@ export const LogoUploader: FC = observer(() => {
     <div>
       <PhotoPickerField
         value={workspaceStore.workspace?.avatar}
-        label="Logo"
-        description="Pick a logo for your workspace"
-        defaultIcon={<WorkspaceIcon />}
+        label={t('workspace.settings.logo')}
+        description={t('workspace.settings.pickLogo')}
+        defaultIcon={<WorkspaceIcon/>}
         changeLoading={loading}
         onChange={handleChange}
       />

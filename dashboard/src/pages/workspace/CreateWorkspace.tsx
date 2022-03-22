@@ -6,9 +6,12 @@ import { Button, Form, Input, Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 
+
 const CreateWorkspace: FC<IModalProps> = observer(({ visible, onClose }) => {
+  const { t } = useTranslation()
   const history = useHistory()
   const workspaceStore = useStore('workspaceStore')
 
@@ -49,31 +52,31 @@ const CreateWorkspace: FC<IModalProps> = observer(({ visible, onClose }) => {
     <Modal visible={visible} maskClosable={maskClosable} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">Create a new workspace</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('workspace.createWorkspace.newWorkspace')}</h1>
           <p className="mt-1 mr-8 text-sm text-gray-500">
-            Workspaces are shared environments where members can collaborate. After create a
-            workspace, you can invite others to join.
+            {t('workspace.createWorkspace.text')}
           </p>
         </div>
 
         <Form onFinish={handleFinish}>
-          <Form.Item name="name" label="Workspace name" rules={[{ required: true }]}>
-            <Input />
+          <Form.Item name="name" label={t('workspace.createWorkspace.name')} rules={[{ required: true }]}>
+            <Input/>
           </Form.Item>
 
           <Form.Item
             name="avatar"
             label={
               <>
-                Workspace logo <span className="text-gray-500">(optional)</span>
+                {t('workspace.createWorkspace.logo')} <span
+                className="text-gray-500">({t('audiences.contact.addContact.optional')})</span>
               </>
             }
           >
-            <PhotoPickerField onVisibilityChange={handleVisibilityChange} />
+            <PhotoPickerField onVisibilityChange={handleVisibilityChange}/>
           </Form.Item>
 
           <Button type="primary" htmlType="submit" loading={loading}>
-            Create
+            {t('workspace.createWorkspace.create')}
           </Button>
 
           {error && <div className="form-item-error">{error.message}</div>}

@@ -63,9 +63,9 @@ const Members = observer(() => {
       width: '30%',
       render(record) {
         if (record.id === workspaceStore.workspace.ownerId) {
-          return <Badge type="green" text="Owner"/>
+          return <Badge type="green" text={t('workspace.members.index.owner')}/>
         }
-        return <Badge text="Member"/>
+        return <Badge text={t('workspace.members.index.member')}/>
       }
     },
     {
@@ -116,15 +116,15 @@ const Members = observer(() => {
             <Menus.Item
               name="transfer"
               icon={<SwitchHorizontalIcon/>}
-              label="Transfer ownership"
+              label={t('workspace.members.index.transfer')}
             />
-            <Menus.Item name="remove" icon={<TrashIcon/>} label="Remove"/>
+            <Menus.Item name="remove" icon={<TrashIcon/>} label={t('workspace.members.remove')}/>
           </Menus>
         )
 
         const MemberOverlay = (
           <Menus onClick={handleMenuClick}>
-            <Menus.Item name="leave" icon={<LogoutIcon/>} label="Leave workspace"/>
+            <Menus.Item name="leave" icon={<LogoutIcon/>} label={t('workspace.members.index.leave')}/>
           </Menus>
         )
 
@@ -152,7 +152,7 @@ const Members = observer(() => {
         description={t('workspace.members.manage')}
         actions={
           <Button type="primary" onClick={openInviteMember}>
-            Invite member
+            {t('workspace.members.index.invite')}
           </Button>
         }
       />

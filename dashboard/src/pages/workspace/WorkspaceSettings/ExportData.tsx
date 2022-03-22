@@ -3,11 +3,13 @@ import { useParam } from '@/utils'
 import { Button, notification } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const ExportData: FC = () => {
   const { workspaceId } = useParam()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
+  const { t } = useTranslation()
 
   async function handleClick() {
     setLoading(true)
@@ -16,7 +18,7 @@ export const ExportData: FC = () => {
     try {
       await WorkspaceService.exportData(workspaceId)
       notification.success({
-        title: 'Once the export is ready, you will receive an email with the download link.'
+        title: t('workspace.settings.receive')
       })
     } catch (err: any) {
       setError(err)
@@ -27,13 +29,13 @@ export const ExportData: FC = () => {
 
   return (
     <div>
-      <div className="block text-sm font-medium text-gray-700">Export content</div>
+      <div className="block text-sm font-medium text-gray-700">{t('workspace.settings.export')}</div>
       <p className="mt-1 text-sm text-gray-500">
-        Get an email with all your forms, settings in one file.
+        {t('workspace.settings.getEmail')}
       </p>
       <div className="mt-3">
         <Button loading={loading} onClick={handleClick}>
-          Request your data
+          {t('workspace.settings.exportBottom')}
         </Button>
         {error && <div className="form-item-error">{error.message}</div>}
       </div>

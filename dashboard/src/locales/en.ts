@@ -82,6 +82,13 @@ export default {
         name: 'Full name',
         nameNotempty: 'Full name can\'t be empty',
         phoneNottempty: 'Phone number can\'t be empty'
+      },
+      index: {
+        delContact: 'Deleting contact...',
+        deleted: 'Contact has been deleted',
+        edit: 'Edit',
+        noContact: 'You don\'t have any contacts yet',
+        addPeople: 'Add people who needs to take part in the survey or data collection.'
       }
     },
     groups: {
@@ -96,7 +103,10 @@ export default {
         rename: 'Rename group',
         up: 'Update'
       },
-      contact: 'Contacts'
+      contact: 'Contacts',
+      noGroup: 'You don\'t have any groups yet',
+      explain: 'You can organize your contacts into groups to work with them more easily.'
+
     },
     Title: 'Audience',
     subText: 'Create the right audience for accurate results'
@@ -112,7 +122,10 @@ export default {
     deleteProject: {
       del: 'Delete project',
       deleteExplain: 'Keep in mind this operation is irreversible and will permanently delete all the data associated with this project.',
-      deleteExplain2: ' Once you confirm to delete the project, you will no longer have access to the project data.'
+      deleteExplain2: ' Once you confirm to delete the project, you will no longer have access to the project data.',
+      sendEmail: 'An email containing a verification code was sent to',
+      delBottom: 'Delete project',
+      code: 'Verification code'
     },
     rename: 'Rename',
     del: 'Delete',
@@ -122,11 +135,25 @@ export default {
     renameP: 'Rename this project',
     update: 'Update',
     projectName: 'Project name',
+    suspended: 'Suspended',
+    draft: 'Draft',
+    active: 'Active',
+    closed: 'Closed',
+    edit: 'Edit',
+    dup: 'Duplicate',
+    noForm: 'Don\'t have any forms in this project yet',
+    text: 'It\'s your one-stop solution for all form needs. Quickly build online forms without any coding or design experience.',
+    suspendForm: 'This form is suspended',
+    suspendText: 'If you have any questions about suspend, please click the button below to contact us.',
+    contact: 'Contact us',
     ProjectMembers: {
       members: 'Members in this project',
       explain: 'Assigned members can co-manage the activities here in this project.',
       assigned: 'Assigned',
-      notassigned: 'Not assigned'
+      notassigned: 'Not assigned',
+      leave: 'Leave',
+      remove: 'Remove',
+      assign: 'Assign'
     },
     trash: {
       restore: 'Restore',
@@ -161,7 +188,14 @@ export default {
       bottomLeave: 'Leave',
       transferTitle: 'Are you sure you want to transfer this workspace?',
       transferWorkspace: 'Once you confirm to transfer this workspace, you will no longer be the owner of this workspace.',
-      transfer: 'Transfer'
+      transfer: 'Transfer',
+      index: {
+        owner: 'Owner',
+        member: 'Member',
+        transfer: 'Transfer ownership',
+        leave: 'Leave workspace',
+        invite: 'Invite member'
+      }
 
 
     },
@@ -169,15 +203,62 @@ export default {
       createP: 'Create a new project',
       workExplain: 'Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations.',
       createBottom: 'Create',
-      assign: 'Assign members'
+      assign: 'Assign members',
+      createP2: 'Create project',
+      noProject: 'You don\'t have any projects yet',
+      text: 'Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations.'
+
     },
     settings: {
+      Wsettings: 'Workspace Settings',
+      subTitle: 'Manage your workspace settings',
       up: 'Update',
       nameW: 'Workspace name',
       removeBranding: 'Remove HeyForm branding',
       brandingExplain: 'To make HeyForm feel like it\'s completely owned by your brand, remove the HeyForm Logo in the form footer.',
-      learnMore: 'Learn more about remove branding in docs'
+      learnMore: 'Learn more about remove branding in docs',
+      customDomain: 'Custom domain',
+      domainExplain: 'Custom domains allow you to make form accessible at your own, non-HeyForm domain names (for example, yourcustomdomain.com). HeyForm supports all top-level domains in custom domains.',
+      domainExplain2: 'Custom domains allow you to make form accessible at your own, non-HeyForm domain names.',
+      domainLink: 'Learn more about custom domains',
+      domainChecking: 'Checking',
+      type: 'Type',
+      domainName: 'Name',
+      content: 'Content',
+      cname: 'CNAME',
+      domainUp: 'Custom domain has been updated',
+      invalid: 'Invalid domain name',
+      domain: 'eg: yourcustomdomain.com',
+      delWorksapce: {
+        sendEmail: 'An email containing a verification code was sent to',
+        dissolve: 'Dissolve workspace',
+        warning: 'Keep in mind this operation is irreversible and will permanently delete all the data associated with this workspace.',
+        warning2: 'Once you confirm to dissolve the workspace, you will no longer have access to the workspace data.',
+        warning3: 'By dissolving the team, all the forms and data will be erased and cannot be restored! Be cautious!'
+      },
+      receive: 'Once the export is ready, you will receive an email with the download link.',
+      export: 'Export content',
+      getEmail: 'Get an email with all your forms, settings in one file.',
+      exportBottom: 'Request your data',
 
+      logo: 'Logo',
+      pickLogo: 'Pick a logo for your workspace'
+
+
+    },
+    createWorkspace: {
+      newWorkspace: 'Create a new workspace',
+      text: 'Workspaces are shared environments where members can collaborate. After create a workspace, you can invite others to join.',
+      name: 'Workspace name',
+      logo: 'Workspace logo',
+      create: 'Create'
+    },
+    join: {
+      invited: 'You\'ve been invited to',
+      UsernameAdd: '\'s workspace',
+      joinText: 'Join the workspace and start working together!',
+      member: 'members',
+      bottom: 'Join'
     }
   }
 
