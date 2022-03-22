@@ -83,7 +83,7 @@ const ImportContact: FC<IModalProps> = ({ visible, onClose }) => {
 
         <div>
           <div
-            className="block text-sm font-medium text-gray-700">{t('audiences.contact.importContact. download')}</div>
+            className="block text-sm font-medium text-gray-700">{t('audiences.contact.importContact.download')}</div>
           <p className="mt-1 text-sm text-gray-500">
             {t('audiences.contact.importContact.csv')}
           </p>
