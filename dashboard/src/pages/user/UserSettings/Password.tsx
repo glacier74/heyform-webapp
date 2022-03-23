@@ -33,7 +33,7 @@ const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
         </div>
 
         <Form.Custom
-          submitText="Continue"
+          submitText={t('auth.forgotPassword.continue')}
           submitOptions={{
             type: 'primary'
           }}

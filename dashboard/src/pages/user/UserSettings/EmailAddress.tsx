@@ -41,7 +41,7 @@ export const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) =>
         </div>
 
         <Form.Custom
-          submitText="Send"
+          submitText={t('user.settings.emailAddress.send')}
           submitOptions={{
             type: 'primary'
           }}

@@ -5,6 +5,7 @@ import { uniqueArray } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface MemberItemProps {
   member: UserModel
@@ -16,6 +17,7 @@ export const MemberItem: FC<MemberItemProps> = ({ member, onClick }) => {
     onClick(member)
   }
 
+  const { t } = useTranslation()
   return (
     <div className="group flex items-center p-2.5 -mx-2.5 rounded-md text-sm text-gray-700 hover:bg-gray-50">
       <Avatar src={member.avatar} size={40} retainLength={2} rounded circular/>
@@ -23,8 +25,8 @@ export const MemberItem: FC<MemberItemProps> = ({ member, onClick }) => {
       <div className="ml-4 flex-auto">
         <p className="text-sm font-medium text-gray-700 truncate">
           {member.name}
-          {member.isSelf && ' (You)'}
-          {member.isOwner && <Badge className="ml-1" type="blue" text="Owner"/>}
+          {member.isSelf && t('project.ProjectMembers.you')}
+          {member.isOwner && <Badge className="ml-1" type="blue" text={t('workspace.members.index.owner')}/>}
         </p>
         <p className="text-sm text-gray-500 truncate">{member.email}</p>
       </div>

@@ -41,7 +41,7 @@ const Project = observer(() => {
 
   async function handleDuplicate(record: FormModel) {
     const loading = notification.loading({
-      title: 'Duplicating form...'
+      title: t('project.Duplicating')
     })
 
     try {
@@ -63,7 +63,7 @@ const Project = observer(() => {
 
   async function handleDelete(record: FormModel) {
     const loading = notification.loading({
-      title: 'Deleting form...'
+      title: t('project.Deleting')
     })
 
     try {
@@ -99,8 +99,8 @@ const Project = observer(() => {
             <p className="mt-0.5 flex items-center font-normal text-sm text-gray-500">
               <span className="truncate">
                 {record.submissionCount && record.submissionCount > 0
-                  ? `${record.submissionCount} submissions`
-                  : 'No submissions yet'}
+                  ? `${record.submissionCount} ${t('project.submissions')}`
+                  : t('project.NoSubmissions')}
               </span>
             </p>
           </div>

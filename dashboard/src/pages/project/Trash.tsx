@@ -35,7 +35,7 @@ const Trash = observer(() => {
 
   async function handleRestore(record: FormModel) {
     const l = notification.loading({
-      title: 'Restoring form'
+      title: t('project.trash.restoring')
     })
 
     try {
@@ -81,8 +81,8 @@ const Trash = observer(() => {
             <p className="mt-0.5 flex items-center font-normal text-sm text-gray-500">
               <span className="truncate">
                 {record.submissionCount && record.submissionCount > 0
-                  ? `${record.submissionCount} submissions`
-                  : 'No submissions yet'}
+                  ? `${record.submissionCount} ${t('project.submissions')}`
+                  : t('project.NoSubmissions')}
               </span>
             </p>
           </div>

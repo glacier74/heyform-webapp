@@ -29,7 +29,7 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
       workspaceStore.deleteProjectMember(workspaceId, projectId, member.id)
     } catch (err: any) {
       notification.error({
-        title: 'Failed to remove member',
+        title: t('project.ProjectMembers.removeMember'),
         message: err.message
       })
     }
@@ -41,7 +41,7 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
       workspaceStore.addProjectMember(workspaceId, projectId, member.id)
     } catch (err: any) {
       notification.error({
-        title: 'Failed to assign member',
+        title: t('project.ProjectMembers.assignMember'),
         message: err.message
       })
     }
@@ -53,13 +53,13 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
       workspaceStore.deleteProject(workspaceId, projectId)
 
       notification.success({
-        title: 'You have left the project'
+        title: t('project.ProjectMembers.leftP')
       })
 
       history.replace(`/workspace/${workspaceId}`)
     } catch (err: any) {
       notification.error({
-        title: 'Failed to leave this project',
+        title: t('project.ProjectMembers.leaveP'),
         message: err.message
       })
     }
@@ -88,8 +88,8 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
       <div className="ml-4 flex-auto">
         <p className="text-sm font-medium text-gray-700 truncate">
           {member.name}
-          {member.isSelf && ' (You)'}
-          {member.isOwner && <Badge className="ml-1" type="blue" text="Owner"/>}
+          {member.isSelf && t('project.ProjectMembers.you')}
+          {member.isOwner && <Badge className="ml-1" type="blue" text={t('workspace.members.index.owner')}/>}
         </p>
         <p className="text-sm text-gray-500 truncate">{member.email}</p>
       </div>

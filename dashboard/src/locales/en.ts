@@ -149,6 +149,8 @@ export default {
     suspendForm: 'This form is suspended',
     suspendText: 'If you have any questions about suspend, please click the button below to contact us.',
     contact: 'Contact us',
+    Deleting: 'Deleting form...',
+    Duplicating: 'Duplicating form...',
     ProjectMembers: {
       members: 'Members in this project',
       explain: 'Assigned members can co-manage the activities here in this project.',
@@ -156,7 +158,14 @@ export default {
       notassigned: 'Not assigned',
       leave: 'Leave',
       remove: 'Remove',
-      assign: 'Assign'
+      assign: 'Assign',
+      submissions: 'submissions',
+      NoSubmissions: 'No submissions yet',
+      removeMember: 'Failed to remove member',
+      assignMember: 'Failed to assign member',
+      leftP: 'You have left the project',
+      leaveP: 'Failed to leave this project',
+      you: ' (You)'
     },
     trash: {
       restore: 'Restore',
@@ -167,7 +176,8 @@ export default {
       daysExplain: 'Forms will be permanently deleted from the trash after 30 days.',
       delForm: 'will be deleted forever and you won\'t be able to restore it.',
       deleteForever: 'Delete forever?',
-      cancel: 'Cancel'
+      cancel: 'Cancel',
+      restoring: 'Restoring form'
 
     }
 
@@ -198,6 +208,7 @@ export default {
         transfer: 'Transfer ownership',
         leave: 'Leave workspace',
         invite: 'Invite member'
+
       }
 
 
@@ -288,7 +299,8 @@ export default {
         checkEmail: 'Check your email',
         code: 'We\'ve sent you an email with a 6-digit verification code. Please check your inbox at',
         continue: 'Continue',
-        changeEmail: 'Change email address'
+        changeEmail: 'Change email address',
+        send: 'Send'
       },
       account: 'Account Settings',
       accountText: 'Changes to account settings will apply to all of your workspaces.',
