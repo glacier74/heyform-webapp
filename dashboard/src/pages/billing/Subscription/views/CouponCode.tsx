@@ -3,6 +3,8 @@ import { PaymentService } from '@/service'
 import { useParam } from '@/utils'
 import { Form, Input, Modal } from '@heyforms/ui'
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
+
 
 interface CouponCodeProps extends Omit<IModalProps, 'onComplete'> {
   plan?: PlanModel | null
@@ -11,13 +13,14 @@ interface CouponCodeProps extends Omit<IModalProps, 'onComplete'> {
 }
 
 export const CouponCode: FC<CouponCodeProps> = ({
-  visible,
-  plan,
-  billingCycle,
-  onClose,
-  onComplete
-}) => {
+                                                  visible,
+                                                  plan,
+                                                  billingCycle,
+                                                  onClose,
+                                                  onComplete
+                                                }) => {
   const { workspaceId } = useParam()
+  const { t } = useTranslation()
 
   async function handleFinish(values: IMapType) {
     const result = await PaymentService.applyCoupon({
@@ -37,11 +40,11 @@ export const CouponCode: FC<CouponCodeProps> = ({
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <div className="text-lg leading-6 font-medium text-gray-900">Add coupon code</div>
+          <div className="text-lg leading-6 font-medium text-gray-900">{t('billing.addCode')}</div>
         </div>
 
         <Form.Custom
-          submitText="Apply"
+          submitText={t('billing.apply')}
           submitOptions={{
             type: 'primary',
             className: 'w-full'
@@ -50,10 +53,10 @@ export const CouponCode: FC<CouponCodeProps> = ({
         >
           <Form.Item
             name="code"
-            label="Coupon code"
-            rules={[{ required: true, message: "Coupon code can't be empty" }]}
+            label={t('billing.coupon')}
+            rules={[{ required: true, message: t('billing.noCode') }]}
           >
-            <Input />
+            <Input/>
           </Form.Item>
         </Form.Custom>
       </div>

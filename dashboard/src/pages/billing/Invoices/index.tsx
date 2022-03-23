@@ -8,11 +8,13 @@ import { EmptyStates, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { date } from '@hpnp/utils'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { BillingLayout } from '../views/BillingLayout'
 
 const Invoices = () => {
   const { workspaceId } = useParam()
   const [invoices, setInvoices] = useState<InvoiceModel[]>([])
+  const { t } = useTranslation()
 
   async function request() {
     const result = await PaymentService.invoices(workspaceId)
@@ -44,7 +46,7 @@ const Invoices = () => {
       render(record) {
         return (
           <a className="text-blue-600" href={record.pdfUrl!} target="_blank" rel="noreferrer">
-            View invoice
+            {t('billing.View')}
           </a>
         )
       }
@@ -56,17 +58,17 @@ const Invoices = () => {
       <Async
         request={request}
         deps={[]}
-        skeleton={<Skeleton />}
+        skeleton={<Skeleton/>}
         emptyState={
           <EmptyStates
             className="empty-states-fit"
-            icon={<CreditCardIcon className="non-scaling-stroke" />}
-            title="You haven't been billed yet"
-            description="Once we send you a bill, the details will show here."
+            icon={<CreditCardIcon className="non-scaling-stroke"/>}
+            title={t('billing.billed')}
+            description={t('billing.send')}
           />
         }
       >
-        <Table<InvoiceModel> className="mt-8" columns={columns} data={invoices} />
+        <Table<InvoiceModel> className="mt-8" columns={columns} data={invoices}/>
       </Async>
     </BillingLayout>
   )

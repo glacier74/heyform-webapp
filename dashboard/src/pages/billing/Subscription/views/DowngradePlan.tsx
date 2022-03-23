@@ -6,6 +6,7 @@ import { useParam } from '@/utils'
 import { Modal, notification } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface DowngradePlanProps extends IModalProps {
   plan?: PlanModel | null
@@ -15,6 +16,7 @@ interface DowngradePlanProps extends IModalProps {
 export const DowngradePlan: FC<DowngradePlanProps> = ({ visible, plan, billingCycle, onClose }) => {
   const workspaceStore = useStore('workspaceStore')
   const { workspaceId } = useParam()
+  const { t } = useTranslation()
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
@@ -51,18 +53,17 @@ export const DowngradePlan: FC<DowngradePlanProps> = ({ visible, plan, billingCy
     <Modal.Confirm
       type="danger"
       visible={visible}
-      title="Downgrade plan"
+      title={t('billing.downGrade')}
       description={
         <div className="space-y-6">
           <p>
-            Notice: once you confirm to downgrade the plan, your workspace will no longer be able to
-            access features of premium plans.
+            {t('billing.downText')}
           </p>
           {error && <div className="form-item-error">{error.message}</div>}
         </div>
       }
-      cancelLabel="Cancel"
-      confirmLabel="Downgrade"
+      cancelLabel={t('project.trash.cancel')}
+      confirmLabel={t('billing.Downgrade')}
       confirmDisabled={loading}
       confirmLoading={loading}
       onCancel={onClose}

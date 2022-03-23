@@ -9,8 +9,10 @@ import { DowngradePlan } from './DowngradePlan'
 import { PlanItem } from './PlanItem'
 import { UpgradePlan } from './UpgradePlan'
 
+
 export const Payment = observer(() => {
   const workspaceStore = useStore('workspaceStore')
+
 
   const [plan, setPlan] = useState<PlanModel | null>(null)
   const [billingCycle, setBillingCycle] = useState<BillingCycleEnum>(
@@ -34,7 +36,7 @@ export const Payment = observer(() => {
     <>
       <tr>
         <th className="py-8 text-sm font-medium text-gray-900 text-left align-top" scope="row">
-          <BillingCycleSwitch value={billingCycle} onChange={setBillingCycle} />
+          <BillingCycleSwitch value={billingCycle} onChange={setBillingCycle}/>
         </th>
 
         {workspaceStore.plans.map(row => (

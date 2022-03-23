@@ -7,6 +7,7 @@ import { Button, Modal, notification } from '@heyforms/ui'
 import Big from 'big.js'
 import type { FC } from 'react'
 import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { CouponCode } from './CouponCode'
 
 interface UpgradePlanProps extends IModalProps {
@@ -29,6 +30,7 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
 
   const [discount, setDiscount] = useState<Big | null>(null)
   const [couponCode, setCouponCode] = useState<string | null>(null)
+  const { t } = useTranslation()
 
   const price = useMemo(() => {
     const unit = new Big(plan?.prices.find(row => row.billingCycle === billingCycle)?.price || 0)
@@ -81,20 +83,21 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
     setLoading(false)
   }
 
+
   return (
     <>
       <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
         <div>
           <div>
-            <div className="text-lg leading-6 font-medium text-gray-900">Upgrade plan</div>
+            <div className="text-lg leading-6 font-medium text-gray-900">{t('billing.upPlan')}</div>
           </div>
 
           <div className="py-4 border-b border-gray-100">
             <div className="flex justify-between space-x-3">
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-gray-900 truncate">{plan?.name} plan</p>
+                <p className="text-sm font-medium text-gray-900 truncate">{plan?.name} {t('billing.plan')}</p>
                 <p className="text-sm text-gray-500 truncate">
-                  Billed {BILLING_CYCLE_MAPS[billingCycle]}
+                  {t('billing.Billed')} {BILLING_CYCLE_MAPS[billingCycle]}
                 </p>
               </div>
               <div className="flex-shrink-0 whitespace-nowrap text-sm text-gray-900">
@@ -105,12 +108,12 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
 
           <div className="py-4 border-b border-gray-100">
             <div className="flex justify-between text-sm text-gray-500">
-              <span>Subtotal</span>
+              <span>{t('billing.Subtotal')}</span>
               <span>${price.toFixed(2)}</span>
             </div>
             {discount && (
               <div className="mt-1 flex justify-between text-sm text-gray-500">
-                <span>Discount</span>
+                <span>{t('billing.Discount')}</span>
                 <span className="text-green-600">-${discount.toFixed(2)}</span>
               </div>
             )}
@@ -119,11 +122,11 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
           <div className="py-4">
             <div className="flex justify-between text-sm text-gray-700">
               <Button.Link className="underline" onClick={openCouponCode}>
-                Add coupon code
+                {t('billing.add')}
               </Button.Link>
             </div>
             <div className="mt-2 flex justify-between text-sm text-gray-900">
-              <span>Total</span>
+              <span>{t('billing.total')}</span>
               {discount ? (
                 <span>${price.minus(discount).toFixed(2)}</span>
               ) : (
@@ -133,7 +136,7 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
           </div>
 
           <Button className="w-full" type="primary" loading={loading} onClick={handleClick}>
-            Upgrade now
+            {t('billing.bottom')}
           </Button>
 
           {error && <p className="text-xs text-red-500">{error.message}</p>}

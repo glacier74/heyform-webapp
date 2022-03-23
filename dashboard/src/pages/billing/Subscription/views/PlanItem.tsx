@@ -3,6 +3,8 @@ import { BillingCycleEnum } from '@/models/invoice'
 import { Button } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+
 
 interface PlanItemProps {
   workspace?: WorkspaceModel
@@ -18,16 +20,17 @@ const BILLING_CYCLE_MAPS: any = {
 }
 
 export const PlanItem: FC<PlanItemProps> = ({
-  workspace,
-  plan,
-  billingCycle,
-  onUpgrade,
-  onDowngrade
-}) => {
+                                              workspace,
+                                              plan,
+                                              billingCycle,
+                                              onUpgrade,
+                                              onDowngrade
+                                            }) => {
   const price = useMemo(
     () => plan.prices.find(row => row.billingCycle === billingCycle)?.price || 0,
     [plan, billingCycle]
   )
+  const { t } = useTranslation()
 
   function handleUpgrade() {
     onUpgrade?.(plan)
@@ -44,7 +47,7 @@ export const PlanItem: FC<PlanItemProps> = ({
       return (
         <>
           <Button className="w-full" type="primary" onClick={handleUpgrade}>
-            Upgrade
+            {t('billing.upgrade')}
           </Button>
           <div className="mt-2 text-gray-400 text-xs text-center">
             {BILLING_CYCLE_MAPS[billingCycle]}
@@ -55,7 +58,7 @@ export const PlanItem: FC<PlanItemProps> = ({
       return (
         <>
           <Button className="w-full" type="primary" onClick={handleDowngrade}>
-            Downgrade
+            {t('billing.Downgrade')}
           </Button>
           <div className="mt-2 text-gray-400 text-xs text-center">
             {BILLING_CYCLE_MAPS[billingCycle]}
@@ -64,8 +67,9 @@ export const PlanItem: FC<PlanItemProps> = ({
       )
     } else {
       return (
-        <div className="px-4 py-2 border border-gray-100 sm:text-sm font-medium rounded-md text-gray-400 bg-white text-center">
-          Current plan
+        <div
+          className="px-4 py-2 border border-gray-100 sm:text-sm font-medium rounded-md text-gray-400 bg-white text-center">
+          {t('billing.current')}
         </div>
       )
     }
@@ -77,7 +81,7 @@ export const PlanItem: FC<PlanItemProps> = ({
         <div className="pb-4 text-md font-medium text-gray-900 text-left">{plan.name}</div>
         <p>
           <span className="text-4xl font-bold text-gray-900">${price}</span>
-          <span className="pl-2 text-base font-medium text-gray-500">per month</span>
+          <span className="pl-2 text-base font-medium text-gray-500">{t('billing.perMonth')}</span>
         </p>
         <div className="mt-4 lg:pr-12">{component}</div>
       </div>
