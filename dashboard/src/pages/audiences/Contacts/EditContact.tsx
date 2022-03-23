@@ -25,7 +25,7 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
     })
 
     notification.success({
-      title: 'Contact has been updated'
+      title: t('audiences.contact.editContact.contactUpdate')
     })
 
     onClose?.()

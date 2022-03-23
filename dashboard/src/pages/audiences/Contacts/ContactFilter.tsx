@@ -5,7 +5,6 @@ import type { GroupModel } from '@heyforms/shared-types-enums'
 import { Button, Dropdown, Menus } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 
 interface ContactFilterProps {
@@ -17,7 +16,6 @@ export const ContactFilter: FC<ContactFilterProps> = ({ value = [], onChange }) 
   const { workspaceId } = useParam()
   const [visible, setVisible] = useState(false)
   const [groups, setGroups] = useState<GroupModel[]>([])
-  const { t } = useTranslation()
 
 
   function handleMenuClick(id?: IKeyType) {

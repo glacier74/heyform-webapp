@@ -9,7 +9,9 @@ export default {
     or: 'Or',
     Email: 'Email address',
     Password: 'Password',
-    button: 'Sign In'
+    button: 'Sign In',
+    Google: 'Sign in with Google',
+    Apple: 'Sign in with Apple'
   },
   auth: {
     signup: {
@@ -81,7 +83,8 @@ export default {
         selectGroup: 'Select at least one group or create a new one',
         name: 'Full name',
         nameNotempty: 'Full name can\'t be empty',
-        phoneNottempty: 'Phone number can\'t be empty'
+        phoneNottempty: 'Phone number can\'t be empty',
+        contactUpdate: 'Contact has been updated'
       },
       index: {
         delContact: 'Deleting contact...',

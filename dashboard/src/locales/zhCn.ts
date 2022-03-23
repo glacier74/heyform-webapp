@@ -6,7 +6,12 @@ export default {
     continueWith: 'Or continue with',
     remberMe: 'Remember me',
     forgotPassword: 'Forgot your password?',
-    or: 'Or'
+    or: 'Or',
+    Email: 'Email address',
+    Password: 'Password',
+    button: 'Sign In',
+    Google: 'Sign in with Google',
+    Apple: 'Sign in with Apple'
   },
   auth: {
     signup: {
@@ -39,6 +44,7 @@ export default {
       passwordViolation: 'Your password must be at least 8 characters, and at least 1 uppercase, 1 lowercase and 1 number.',
       passwordMismatch: 'Your new password and repeat password do not match.'
     }
+
   },
   audiences: {
     contact: {
@@ -77,7 +83,8 @@ export default {
         selectGroup: 'Select at least one group or create a new one',
         name: 'Full name',
         nameNotempty: 'Full name can\'t be empty',
-        phoneNottempty: 'Phone number can\'t be empty'
+        phoneNottempty: 'Phone number can\'t be empty',
+        contactUpdate: 'Contact has been updated'
       },
       index: {
         delContact: 'Deleting contact...',
@@ -381,6 +388,5 @@ export default {
 
     }
   }
-
 
 }
