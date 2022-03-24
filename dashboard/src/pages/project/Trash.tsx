@@ -81,8 +81,8 @@ const Trash = observer(() => {
             <p className="mt-0.5 flex items-center font-normal text-sm text-gray-500">
               <span className="truncate">
                 {record.submissionCount && record.submissionCount > 0
-                  ? `${record.submissionCount} ${t('project.submissions')}`
-                  : t('project.NoSubmissions')}
+                  ? `${record.submissionCount} ${t('project.ProjectMembers.submissions')}`
+                  : t('project.ProjectMembers.NoSubmissions')}
               </span>
             </p>
           </div>
