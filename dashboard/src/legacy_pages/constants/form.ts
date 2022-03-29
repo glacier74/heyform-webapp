@@ -13,19 +13,19 @@ export const CAPTCHA_KIND_OPTIONS: OptionType[] = [
 export const FORM_ANALYTICS_OPTIONS: OptionType[] = [
   {
     id: 7,
-    label: 'Last week'
+    label: 'analytics.time.0'
   },
   {
     id: 30,
-    label: 'Last month'
+    label: 'analytics.time.1'
   },
   {
     id: 90,
-    label: 'Last 3 months'
+    label: 'analytics.time.2'
   },
   {
     id: 365,
-    label: 'Last year'
+    label: 'analytics.time.3'
   }
 ]
 

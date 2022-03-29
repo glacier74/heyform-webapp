@@ -1,8 +1,8 @@
+import { useParam } from '@/utils'
 import { ComponentProps, Flex } from '@heyui/component'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const ResultNavbar: FC<ComponentProps> = props => {
@@ -16,17 +16,17 @@ export const ResultNavbar: FC<ComponentProps> = props => {
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}
           exact={true}
         >
-          {t('Analytics')}
+          {t('analytics.Analytics')}
         </NavLink>
         <NavLink
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results/report`}
         >
-          {t('Report')}
+          {t('analytics.Report')}
         </NavLink>
         <NavLink
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results/submissions`}
         >
-          {t('Submissions')}
+          {t('analytics.Submissions')}
         </NavLink>
       </Wrapper>
     </Container>

@@ -445,7 +445,24 @@ export default {
     embedText: 'You can embed your form to your website using any method listed below.',
     Code: 'Code',
     shared: 'Form have been successfully shared',
-    fetchGroups: 'Failed to fetch audience groups'
+    fetchGroups: 'Failed to fetch audience groups',
+    Analytics: 'Analytics'
+  },
+  analytics: {
+    Analytics: 'Analytics',
+    Report: 'Report',
+    Submissions: 'Submissions',
+    Views: 'Views',
+    complete: 'Complete Rate',
+    Average: 'Average Duration',
+    topAudience: 'Top Audience Locations',
+    AnalyOverview: 'Analytics Overview',
+    time: [
+      'Last week',
+      'Last month',
+      'Last 3 months',
+      'Last year'
+    ]
   }
 
 }

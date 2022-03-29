@@ -446,7 +446,24 @@ export default {
     Code: '代码',
     shared: 'Form have been successfully shared',
     fetchGroups: 'Failed to fetch audience groups'
-  }
+  },
+  analytics: {
+    Analytics: '分析',
+    Report: '报告',
+    Submissions: '提交',
+    Views: '查看',
+    complete: '完成率',
+    Average: '平均时间',
+    topAudience: '热门受众地点',
+    AnalyOverview: '分析概览',
+    time: [
+      '最近一周',
+      '最近一月',
+      '最近三个月',
+      '最近一年',
 
+    ]
+
+  }
 
 }

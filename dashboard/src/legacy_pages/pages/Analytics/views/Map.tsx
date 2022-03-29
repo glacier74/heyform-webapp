@@ -1,14 +1,12 @@
 import { SubHeading } from '@/legacy_pages/components'
-import countries from '@/legacy_pages/pages/Analytics/views/WorldMap/countries'
 import countryMaps from '@/legacy_pages/pages/Analytics/views/WorldMap/countryMaps'
-import { SubmissionService } from '@/service'
 import { useAsyncEffect } from '@/legacy_pages/utils'
+import { SubmissionService } from '@/service'
+import { useParam } from '@/utils'
 import { Flex } from '@heyui/component'
 import { isValid } from '@hpnp/utils/helper'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 import { WorldMap } from './WorldMap'
 
@@ -106,7 +104,7 @@ export const Map: FC<MapProps> = ({ range }) => {
 
   return (
     <Container>
-      <SubHeading>{t('Top Audience Locations')}</SubHeading>
+      <SubHeading>{t('analytics.topAudience')}</SubHeading>
       <StyledFlex justify="space-between">
         <Left>
           <LeftWrapper>
@@ -115,7 +113,7 @@ export const Map: FC<MapProps> = ({ range }) => {
             ))}
           </LeftWrapper>
         </Left>
-        <WorldMap width={650} height={400} data={records} />
+        <WorldMap width={650} height={400} data={records}/>
       </StyledFlex>
     </Container>
   )

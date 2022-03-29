@@ -2,15 +2,14 @@ import { SubHeading } from '@/legacy_pages/components'
 import { DEFAULT_SUMMARY_DATA, FORM_ANALYTICS_OPTIONS } from '@/legacy_pages/constants'
 import { FormAnalyticsSummary } from '@/legacy_pages/models'
 import { Map, RangeProps } from '@/legacy_pages/pages/Analytics/views/Map'
-import { FormService } from '@/service'
 import { formatSeconds } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { ComponentProps, Flex, Select } from '@heyui/component'
 import { clone } from '@hpnp/utils/clone'
 import { isValid } from '@hpnp/utils/helper'
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface SummaryItemProps extends ComponentProps {
@@ -111,16 +110,16 @@ export const Summary: FC = () => {
           />
         }
       >
-        {t('Analytics Overview')}
+        {t('analytics.AnalyOverview')}
       </StyledSubHeading>
       <StyledFlex>
-        <SummaryItem count={summary.totalVisits} text={t('Views')} />
-        <SummaryItem count={summary.submissionCount} text={t('Submissions')} />
-        <SummaryItem count={`${summary.completeRate}%`} text={t('Complete Rate')} />
-        <SummaryItem count={summary.averageDuration} text={t('Average Duration')} />
+        <SummaryItem count={summary.totalVisits} text={t('analytics.Views')}/>
+        <SummaryItem count={summary.submissionCount} text={t('analytics.Submissions')}/>
+        <SummaryItem count={`${summary.completeRate}%`} text={t('analytics.complete')}/>
+        <SummaryItem count={summary.averageDuration} text={t('analytics.Average')}/>
       </StyledFlex>
 
-      <Map range={mapRange} />
+      <Map range={mapRange}/>
     </Container>
   )
 }
