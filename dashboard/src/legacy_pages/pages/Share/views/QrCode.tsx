@@ -30,18 +30,18 @@ export const QrCode: FC<QrCodeProps> = observer(({ visible, onVisibleChange }) =
           <Content>
             <Heading
               description={t(
-                'Scan the code to open the form. Work online and offline with a printer.'
+                'share.scanCode'
               )}
               style={{
                 textAlign: 'center'
               }}
             >
-              {t('Get QR code')}
+              {t('share.getCode')}
             </Heading>
           </Content>
 
           <CodeWrapper>
-            <QrCodeReact value={sharingLinkUrl} size={300} fgColor="#3F3F46" />
+            <QrCodeReact value={sharingLinkUrl} size={300} fgColor="#3F3F46"/>
           </CodeWrapper>
         </Container>
       )}

@@ -399,7 +399,31 @@ export default {
 
 
     }
+  },
+  share: {
+    embed: 'Embed in a web page',
+    Standard: 'Standard',
+    Mode: 'Mode',
+    scanCode: 'Scan the code to open the form. Work online and offline with a printer.',
+    getCode: 'Get QR code',
+    selectGroups: 'You can select groups below to share forms, you can also',
+    addContacts: 'add contacts',
+    Or: 'or organize them into',
+    ShareAudience: 'Share to audience',
+    groups: 'groups',
+    Groups: 'Groups',
+    noGroups: 'Groups can\'t be empty',
+    findGroup: 'Find or create group',
+    createGroup: 'Create new group',
+    Share: 'Share',
+    shareLin: 'Share by link',
+    enablePassword: 'Enable password access to the form',
+    Url: 'Public URL',
+    custom: 'Custom domain',
+    shareAudience: 'Share to audience',
+    sendForm: 'Send form to the right audience for accurate results. You can',
+    organize: 'or organize them into',
+    easilyShare: 'to share forms with them more easily without manually enter all the email addresses everytime.'
   }
-
 
 }

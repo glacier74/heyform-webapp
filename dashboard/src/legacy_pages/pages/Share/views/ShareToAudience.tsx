@@ -1,9 +1,8 @@
 import { AudienceFillIcon } from '@/legacy_pages/components/Icons'
+import { useParam } from '@/utils'
 import { Button, Flex } from '@heyui/component'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 import { ShareAudienceModal } from './ShareAudienceModal'
 
@@ -15,23 +14,23 @@ export const ShareToAudience: FC = () => {
   return (
     <Container>
       <Header align="center">
-        <AudienceFillIcon />
-        <span>{t('Share to audience')}</span>
+        <AudienceFillIcon/>
+        <span>{t('share.shareAudience')}</span>
       </Header>
       <Description>
-        {t('Send form to the right audience for accurate results. You can')}{' '}
-        <a href={`/workspace/${workspaceId}/audience`}>{t('add contacts')}</a>{' '}
-        {t('or organize them into')}{' '}
-        <a href={`/workspace/${workspaceId}/audience/groups`}>{t('groups')}</a>{' '}
+        {t('share.sendForm')}{' '}
+        <a href={`/workspace/${workspaceId}/audience`}>{t('share.addContacts')}</a>{' '}
+        {t('share.organize')}{' '}
+        <a href={`/workspace/${workspaceId}/audience/groups`}>{t('share.groups')}</a>{' '}
         {t(
-          'to share forms with them more easily without manually enter all the email addresses everytime.'
+          'share.easilyShare'
         )}
       </Description>
       <Button type="primary" block={true} onClick={() => setVisible(true)}>
-        {t('Share')}
+        {t('share.Share')}
       </Button>
 
-      <ShareAudienceModal visible={visible} onVisibleChange={setVisible} />
+      <ShareAudienceModal visible={visible} onVisibleChange={setVisible}/>
     </Container>
   )
 }

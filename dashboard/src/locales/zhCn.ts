@@ -399,6 +399,33 @@ export default {
 
 
     }
+  },
+  share: {
+    embed: '嵌入网页',
+    Standard: '标准',
+    Mode: '类型',
+    scanCode: '扫描二维码打开表单。使用打印机在线和离线工作。',
+    selectGroups: '您可以选择下方的群组分享表单，您也可以',
+    getCode: '获取二维码',
+    addContacts: '添加联系人',
+    Or: '或将它们组织成',
+    ShareAudience: '分享给受众',
+    groups: '群组',
+    Groups: '群组',
+    noGroups: '群组不能为空',
+    findGroup: '查找或创建群组',
+    createGroup: '新建群组',
+    Share: '分享',
+    shareLin: '通过链接分享',
+    enablePassword: '启用对表单的密码访问',
+    Url: '公共网址',
+    custom: '自定义域名',
+    shareAudience: '分享给受众',
+    sendForm: '将表单发送给合适的受众以获得准确的结果。你可以',
+    organize: '或将它们组织成',
+    easilyShare: '无需每次手动输入所有电子邮件地址，即可更轻松地与他们共享表单。'
+
+
   }
 
 

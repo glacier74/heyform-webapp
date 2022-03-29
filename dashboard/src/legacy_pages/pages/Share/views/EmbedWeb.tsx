@@ -17,25 +17,25 @@ export const EMBED_OPTIONS = [
     mode: EmbedModeEnums.STANDARD,
     title: 'Standard',
     description: 'Present HeyForm as part of your website',
-    icon: <EmbedStandardIcon />
+    icon: <EmbedStandardIcon/>
   },
   {
     mode: EmbedModeEnums.POPUP,
     title: 'Popup',
     description: 'HeyForm pops up in the center of the screen.',
-    icon: <EmbedPopupIcon />
+    icon: <EmbedPopupIcon/>
   },
   {
     mode: EmbedModeEnums.POPUP_OVER,
     title: 'Popup over',
     description: 'Floating popover when hits the button on the right corner.',
-    icon: <EmbedPopoverIcon />
+    icon: <EmbedPopoverIcon/>
   },
   {
     mode: EmbedModeEnums.SIDE_TAB,
     title: 'Side tab',
     description: 'Floating panel when hits the button on the right edge.',
-    icon: <EmbedSideTabIcon />
+    icon: <EmbedSideTabIcon/>
   }
 ]
 
@@ -52,8 +52,8 @@ export const EmbedWeb: FC = () => {
   return (
     <Container>
       <Header align="center">
-        <CodeFillIcon />
-        <span>{t('Embed in a web page')}</span>
+        <CodeFillIcon/>
+        <span>{t('share.embed')}</span>
       </Header>
 
       <ModeWrapper justify="space-between">

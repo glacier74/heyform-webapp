@@ -1,13 +1,12 @@
 import { Error, FormError, Heading } from '@/legacy_pages/components'
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { GroupModel } from '@/legacy_pages/models'
-import { AudienceService } from '@/service'
 import { useAsyncEffect } from '@/legacy_pages/utils'
+import { AudienceService } from '@/service'
+import { useParam } from '@/utils'
 import { Button, Form, FormItem, message, MultipleSelect } from '@heyui/component'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface ShareAudienceModalProps {
@@ -84,17 +83,17 @@ export const ShareAudienceModal: FC<ShareAudienceModalProps> = ({ visible, onVis
             <Heading
               description={
                 <>
-                  {t('You can select groups below to share forms, you can also')}{' '}
-                  <a href={`/workspace/${workspaceId}/audience`}>{t('add contacts')}</a>{' '}
-                  {t('or organize them into')}{' '}
-                  <a href={`/workspace/${workspaceId}/audience/groups`}>{t('groups')}</a>.
+                  {t('share.selectGroups')}{' '}
+                  <a href={`/workspace/${workspaceId}/audience`}>{t('share.addContacts')}</a>{' '}
+                  {t('share.Or')}
+                  <a href={`/workspace/${workspaceId}/audience/groups`}>{t('share.groups')}</a>.
                 </>
               }
               style={{
                 textAlign: 'center'
               }}
             >
-              {t('Share to audience')}
+              {t('share.ShareAudience')}
             </Heading>
 
             <Form
@@ -106,12 +105,12 @@ export const ShareAudienceModal: FC<ShareAudienceModalProps> = ({ visible, onVis
               <FormItem
                 className="item"
                 name="groupIds"
-                label={t('Groups')}
+                label={t('share.Groups')}
                 rules={[
                   {
                     required: true,
                     type: 'array',
-                    message: t("Groups can't be empty")
+                    message: t('share.noGroups')
                   }
                 ]}
                 labelClassName="label"
@@ -124,16 +123,16 @@ export const ShareAudienceModal: FC<ShareAudienceModalProps> = ({ visible, onVis
                   options={groups}
                   valueKey="id"
                   labelKey="name"
-                  placeholder={t('Find or create group')}
-                  newOptionsPrefix={t('Create new group')}
+                  placeholder={t('share.findGroup')}
+                  newOptionsPrefix={t('share.createGroup')}
                   disabled={pending}
                   onCreate={handleCreateGroup}
                 />
               </FormItem>
-              {error && <FormError error={error} />}
+              {error && <FormError error={error}/>}
               <FormItem>
                 <Button type="primary" htmlType="submit" block={true} loading={loading}>
-                  {t('Share')}
+                  {t('share.Share')}
                 </Button>
               </FormItem>
             </Form>

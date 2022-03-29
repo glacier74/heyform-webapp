@@ -2,12 +2,11 @@ import { CopyButton, Heading } from '@/legacy_pages/components'
 import { EmbedModeEnums } from '@/legacy_pages/constants'
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { EMBED_OPTIONS } from '@/legacy_pages/pages/Share/views/EmbedWeb'
+import { useParam } from '@/utils'
 import { Flex } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface EmbedWebModalProps {
@@ -51,13 +50,13 @@ export const EmbedWebModal: FC<EmbedWebModalProps> = observer(
                 textAlign: 'center'
               }}
             >
-              {t('Embed in a web page')}
+              {t('share.embed')}
             </Heading>
 
             <Content justify="space-between">
               <Sidebar>
                 <Group>
-                  <GroupHeader>{t('Mode')}</GroupHeader>
+                  <GroupHeader>{t('share.Mode')}</GroupHeader>
                   {EMBED_OPTIONS.map(row => (
                     <ModeItem
                       key={row.mode}
@@ -81,7 +80,7 @@ export const EmbedWebModal: FC<EmbedWebModalProps> = observer(
                 </Group>
               </Sidebar>
               <Preview>
-                <iframe src={iframeUrl} />
+                <iframe src={iframeUrl}/>
               </Preview>
             </Content>
           </Container>
@@ -148,8 +147,8 @@ const ModeItem = styled(Flex)<{
   }
 
   ${props =>
-    props.active &&
-    `
+  props.active &&
+  `
     color: #4e5d78;
     background: #fafbfc;
   `}
