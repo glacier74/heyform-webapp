@@ -79,7 +79,7 @@ export const ShareByLink: FC = observer(() => {
 
   function handleEmail() {
     const url = urlBuilder('mailto:', {
-      subject: 'Could you take a moment to fill in this heyform?',
+      subject: 'Cold you take a moment to fill in this heyform?',
       body: `We would really appreciate it if you filled in this form: ${sharingLinkUrl}. Thank you.`
     })
     window.open(url)

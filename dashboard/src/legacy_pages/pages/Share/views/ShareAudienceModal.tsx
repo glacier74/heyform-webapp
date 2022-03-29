@@ -34,7 +34,7 @@ export const ShareAudienceModal: FC<ShareAudienceModalProps> = ({ visible, onVis
         formId,
         groupIds: values.groupIds
       })
-      message.success('Form have been successfully shared')
+      message.success(t('share.shared'))
     } catch (err: any) {
       setError(err)
     }
@@ -68,7 +68,7 @@ export const ShareAudienceModal: FC<ShareAudienceModalProps> = ({ visible, onVis
         })
         setGroups(result.groups)
       } catch (err: any) {
-        message.error('Failed to fetch audience groups')
+        message.error(t('share.fetchGroups'))
       }
 
       setPending(false)

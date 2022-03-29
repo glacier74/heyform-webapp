@@ -423,7 +423,29 @@ export default {
     shareAudience: 'Share to audience',
     sendForm: 'Send form to the right audience for accurate results. You can',
     organize: 'or organize them into',
-    easilyShare: 'to share forms with them more easily without manually enter all the email addresses everytime.'
+    easilyShare: 'to share forms with them more easily without manually enter all the email addresses everytime.',
+    embedWeb: [
+      {
+        title: 'Standard',
+        description: 'Present HeyForm as part of your website'
+      },
+      {
+        title: 'Popup',
+        description: 'HeyForm pops up in the center of the screen.'
+      },
+      {
+        title: 'Popup over',
+        description: 'Floating popover when hits the button on the right corner.'
+      },
+      {
+        title: 'Side tab',
+        description: 'Floating panel when hits the button on the right edge.'
+      }
+    ],
+    embedText: 'You can embed your form to your website using any method listed below.',
+    Code: 'Code',
+    shared: 'Form have been successfully shared',
+    fetchGroups: 'Failed to fetch audience groups'
   }
 
 }

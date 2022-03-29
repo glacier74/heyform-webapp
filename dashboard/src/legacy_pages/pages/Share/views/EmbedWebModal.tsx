@@ -45,7 +45,7 @@ export const EmbedWebModal: FC<EmbedWebModalProps> = observer(
         {visible && (
           <Container close={true} onClose={handleClose}>
             <Heading
-              description="You can embed your form to your website using any method listed below."
+              description={t('share.embedText')}
               style={{
                 textAlign: 'center'
               }}
@@ -69,7 +69,7 @@ export const EmbedWebModal: FC<EmbedWebModalProps> = observer(
                   ))}
                 </Group>
                 <Group>
-                  <GroupHeader>{t('Code')}</GroupHeader>
+                  <GroupHeader>{t('share.Code')}</GroupHeader>
                   <Code>{code}</Code>
                   <CopyButton
                     text={code}

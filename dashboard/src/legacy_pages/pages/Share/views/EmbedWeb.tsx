@@ -15,26 +15,26 @@ import styled from 'styled-components'
 export const EMBED_OPTIONS = [
   {
     mode: EmbedModeEnums.STANDARD,
-    title: 'Standard',
-    description: 'Present HeyForm as part of your website',
+    title: 'share.embedWeb.0.title',
+    description: 'share.embedWeb.0.description',
     icon: <EmbedStandardIcon/>
   },
   {
     mode: EmbedModeEnums.POPUP,
-    title: 'Popup',
-    description: 'HeyForm pops up in the center of the screen.',
+    title: 'share.embedWeb.1.title',
+    description: 'share.embedWeb.1.description',
     icon: <EmbedPopupIcon/>
   },
   {
     mode: EmbedModeEnums.POPUP_OVER,
-    title: 'Popup over',
-    description: 'Floating popover when hits the button on the right corner.',
+    title: 'share.embedWeb.2.title',
+    description: 'share.embedWeb.2.description',
     icon: <EmbedPopoverIcon/>
   },
   {
     mode: EmbedModeEnums.SIDE_TAB,
-    title: 'Side tab',
-    description: 'Floating panel when hits the button on the right edge.',
+    title: 'share.embedWeb.3.title',
+    description: 'share.embedWeb.3.description',
     icon: <EmbedSideTabIcon/>
   }
 ]

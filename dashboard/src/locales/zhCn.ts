@@ -423,9 +423,29 @@ export default {
     shareAudience: '分享给受众',
     sendForm: '将表单发送给合适的受众以获得准确的结果。你可以',
     organize: '或将它们组织成',
-    easilyShare: '无需每次手动输入所有电子邮件地址，即可更轻松地与他们共享表单。'
-
-
+    easilyShare: '无需每次手动输入所有电子邮件地址，即可更轻松地与他们共享表单。',
+    embedWeb: [
+      {
+        title: '标准',
+        description: '将 HeyForm 作为您网站的一部分'
+      },
+      {
+        title: '弹出',
+        description: 'HeyForm 在屏幕中央弹出。'
+      },
+      {
+        title: '弹出窗口',
+        description: '点击右上角的按钮时浮动弹出窗口。'
+      },
+      {
+        title: '侧边标签',
+        description: '点击右边缘的按钮时浮动面板。'
+      }
+    ],
+    embedText: 'You can embed your form to your website using any method listed below.',
+    Code: '代码',
+    shared: 'Form have been successfully shared',
+    fetchGroups: 'Failed to fetch audience groups'
   }
 
 

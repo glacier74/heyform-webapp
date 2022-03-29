@@ -4,16 +4,16 @@ import { PaginationBar } from '@/legacy_pages/components/PaginationBar'
 import { SelectedPanel } from '@/legacy_pages/components/SelectedPanel'
 import { FormModel, SubmissionModel } from '@/legacy_pages/models'
 import { ResultNavbar } from '@/legacy_pages/pages/Analytics/views/ResultNavbar'
-import { FormService, SubmissionService } from '@/service'
 import { urlBuilder, useQuery } from '@/legacy_pages/utils'
+import { FormService, SubmissionService } from '@/service'
+import { useParam } from '@/utils'
 import { Answer, SubmissionCategoryEnum } from '@heyforms/shared-types-enums'
 import { Button, Flex, message } from '@heyui/component'
 import { isValid } from '@hpnp/utils/helper'
 import { parseNumber } from '@hpnp/utils/parse'
 import throttle from 'lodash/throttle'
 import { FC, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { CategorySelect } from './views/CategorySelect'
 import { ExportLink } from './views/ExportLink'
@@ -207,9 +207,9 @@ const Submissions: FC = () => {
       <Container>
         <Toolbar align="center" justify="space-between">
           <ToolbarLeft align="center">
-            <CategorySelect category={category} onChange={handleCategoryChange} />
+            <CategorySelect category={category} onChange={handleCategoryChange}/>
             {/*<CustomFields />*/}
-            <ExportLink />
+            <ExportLink/>
           </ToolbarLeft>
           <PaginationBar
             total={total}
@@ -224,7 +224,7 @@ const Submissions: FC = () => {
           deps={[category, page]}
           emptyNode={
             <EmptyDataView
-              icon={<BlankSubmissionIcon />}
+              icon={<BlankSubmissionIcon/>}
               text="There is no submission yet. You can share this form with more people."
             />
           }
