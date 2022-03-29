@@ -460,10 +460,19 @@ export default {
       '最近一周',
       '最近一月',
       '最近三个月',
-      '最近一年',
+      '最近一年'
 
     ]
 
+
+  },
+  report: {
+    Responses: '提交',
+    Questions: '问题',
+    Print: '打印',
+    responses: '提交',
+    seeAll: '查看所有 {{count}} 份提交'
   }
+
 
 }

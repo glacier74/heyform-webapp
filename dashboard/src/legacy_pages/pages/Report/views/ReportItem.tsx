@@ -46,7 +46,7 @@ const Choices: FC<ChoicesProps> = ({ chooses }) => {
               {row.label} · {total > 0 ? Math.round((row.count * 100) / total) : 0}%
             </ChoiceLabel>
             <ChoiceCount>
-              {row.count} {t('responses')}
+              {row.count} {t('report.responses')}
             </ChoiceCount>
           </Flex>
           <StyledProgress
@@ -106,7 +106,7 @@ const Rating: FC<RatingProps> = ({ length, leftLabel, rightLabel, chooses }) => 
                 {total > 0 ? Math.round((num * 100) / total) : 0}%
               </ChoiceLabel>
               <ChoiceCount>
-                {num} {t('responses')}
+                {num} {t('report.responses')}
               </ChoiceCount>
             </Flex>
             <StyledProgress
@@ -130,8 +130,8 @@ export const ReportItem: FC<ReportItemProps> = ({ index, response }) => {
         {index}. {response.title}
       </Title>
       <Description>
-        {response.count} {t('responses')}
-        <RatingAverage kind={response.kind} average={response.average} />
+        {response.count} {t('report.responses')}
+        <RatingAverage kind={response.kind} average={response.average}/>
       </Description>
       {(() => {
         switch (response.kind) {
@@ -140,7 +140,7 @@ export const ReportItem: FC<ReportItemProps> = ({ index, response }) => {
           case FieldKindEnum.MULTIPLE_CHOICE:
           case FieldKindEnum.PICTURE_CHOICE:
           case FieldKindEnum.DROPDOWN:
-            return <Choices chooses={response.chooses} />
+            return <Choices chooses={response.chooses}/>
 
           case FieldKindEnum.RATING:
           case FieldKindEnum.OPINION_SCALE:
@@ -154,7 +154,7 @@ export const ReportItem: FC<ReportItemProps> = ({ index, response }) => {
             )
 
           default:
-            return <AnswerList response={response} />
+            return <AnswerList response={response}/>
         }
       })()}
     </Container>

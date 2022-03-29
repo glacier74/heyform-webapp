@@ -1,6 +1,7 @@
 import { Flex } from '@heyui/component'
 import { PrinterIcon } from '@heyui/icon'
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 export const Print: FC = () => {
@@ -8,10 +9,12 @@ export const Print: FC = () => {
     window.print()
   }
 
+  const { t } = useTranslation()
+
   return (
     <Container role="button" ariaLabel="Print Report" align="center" onClick={handleClick}>
-      <StyledPrinterIcon />
-      Print
+      <StyledPrinterIcon/>
+      {t('report.Print')}
     </Container>
   )
 }

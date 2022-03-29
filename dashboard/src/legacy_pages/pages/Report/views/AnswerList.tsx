@@ -2,13 +2,12 @@ import { Fetcher, Heading } from '@/legacy_pages/components'
 import { PaginationBar } from '@/legacy_pages/components/PaginationBar'
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { SubmissionService } from '@/service'
+import { useParam } from '@/utils'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { Flex } from '@heyui/component'
 import { isValidArray } from '@hpnp/utils/helper'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 import * as timeago from 'timeago.js'
 import { ModalListSkeleton } from './ModalListSkeleton'
@@ -113,14 +112,14 @@ const AnswerModal: FC<AnswerModalProps> = ({ visible, response, onVisibleChange 
       {visible && (
         <ModalContainer close={true} onClose={handleClose}>
           <ModalContent>
-            <Heading style={{ textAlign: 'center' }}>{t('Responses')}</Heading>
+            <Heading style={{ textAlign: 'center' }}>{t('report.Responses')}</Heading>
           </ModalContent>
 
-          <Fetcher request={fetchAnswers} deps={[visible, page]} skeleton={<ModalListSkeleton />}>
+          <Fetcher request={fetchAnswers} deps={[visible, page]} skeleton={<ModalListSkeleton/>}>
             <ModalList>
               {answers.map(row => (
                 <Item key={row.submissionId} align="center">
-                  <AnswerValue answer={row} />
+                  <AnswerValue answer={row}/>
                   <ItemDate>{timeago.format(row.endAt! * 1_000)}</ItemDate>
                 </Item>
               ))}
@@ -193,16 +192,16 @@ export const AnswerList: FC<AnswerListProps> = ({ response }) => {
     <Container>
       {response.answers?.map(row => (
         <Item key={row.submissionId} align="center">
-          <AnswerValue answer={row} />
+          <AnswerValue answer={row}/>
           <ItemDate>{timeago.format(row.endAt! * 1_000)}</ItemDate>
         </Item>
       ))}
       {response.count > 5 && (
         <MoreAnswer onClick={handleClick}>
-          {t('See all {{count}} responses', { count: response.count })}
+          {t('report.seeAll', { count: response.count })}
         </MoreAnswer>
       )}
-      <AnswerModal response={response} visible={visible} onVisibleChange={setVisible} />
+      <AnswerModal response={response} visible={visible} onVisibleChange={setVisible}/>
     </Container>
   )
 }

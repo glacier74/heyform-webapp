@@ -462,7 +462,15 @@ export default {
       'Last month',
       'Last 3 months',
       'Last year'
-    ]
+    ],
+    Responses: 'Responses'
+  },
+  report: {
+    Responses: 'Responses',
+    Questions: 'Questions',
+    Print: 'Print',
+    responses: 'responses',
+    seeAll: 'See all {{count}} responses'
   }
 
 }

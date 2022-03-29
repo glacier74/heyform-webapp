@@ -24,7 +24,7 @@ export const FieldList: FC = observer(() => {
   return (
     <Container>
       <List>
-        <Header>{t('Questions')}</Header>
+        <Header>{t('report.Questions')}</Header>
         {fields?.map((row, index) => (
           <StyledLink key={row.id} onClick={() => handleClick(row.id)}>
             {index + 1}. {row.title}
