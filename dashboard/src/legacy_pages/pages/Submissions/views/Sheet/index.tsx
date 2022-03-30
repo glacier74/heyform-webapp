@@ -12,23 +12,23 @@ import { SheetRowModal } from './SheetRowModal'
 import { Column, ColumnOptions, SheetColumn, SheetProps } from './types'
 
 export const Sheet: FC<SheetProps> = ({
-  className,
-  style,
-  loading,
-  width = 200,
-  formFields,
-  selectedRows,
-  onSelectedRowsChange,
-  submissions,
-  onColumnResize,
-  onColumnHide,
-  onColumnPin,
-  onColumnUnpin,
-  onColumnAdd,
-  onColumnUpdate,
-  onColumnDelete,
-  onCellValueChange
-}) => {
+                                        className,
+                                        style,
+                                        loading,
+                                        width = 200,
+                                        formFields,
+                                        selectedRows,
+                                        onSelectedRowsChange,
+                                        submissions,
+                                        onColumnResize,
+                                        onColumnHide,
+                                        onColumnPin,
+                                        onColumnUnpin,
+                                        onColumnAdd,
+                                        onColumnUpdate,
+                                        onColumnDelete,
+                                        onCellValueChange
+                                      }) => {
   const dataGridRef = useRef<DataGridHandle | null>(null)
   const [modalVisible, setModalVisible] = useState(false)
   const [rowIdx, setRowIdx] = useState(0)

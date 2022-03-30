@@ -13,6 +13,7 @@ import { isValid } from '@hpnp/utils/helper'
 import { parseNumber } from '@hpnp/utils/parse'
 import throttle from 'lodash/throttle'
 import { FC, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { CategorySelect } from './views/CategorySelect'
@@ -32,6 +33,7 @@ const Submissions: FC = () => {
   const [total, setTotal] = useState(0)
   const [submissions, setSubmissions] = useState<SubmissionModel[]>([])
   const [deleting, setDeleting] = useState(false)
+  const { t } = useTranslation()
 
   async function fetchData() {
     const [res1, res2] = await Promise.all([
@@ -225,7 +227,7 @@ const Submissions: FC = () => {
           emptyNode={
             <EmptyDataView
               icon={<BlankSubmissionIcon/>}
-              text="There is no submission yet. You can share this form with more people."
+              text={t('report.noSubmission')}
             />
           }
         >
@@ -251,7 +253,7 @@ const Submissions: FC = () => {
           actions={
             <>
               <Button type="error" loading={deleting} onClick={handleDelete}>
-                Delete
+                {t('submissions.Delete')}
               </Button>
             </>
           }

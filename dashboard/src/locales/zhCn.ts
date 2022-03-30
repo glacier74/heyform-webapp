@@ -474,6 +474,14 @@ export default {
     seeAll: '查看所有 {{count}} 份提交',
     noSubmission: '还没有提交。您可以与更多人分享此表单。',
     average: '平均'
+  },
+  submissions: {
+    Inbox: '收件箱',
+    Spam: '垃圾提交',
+    export: '导出 CSV',
+    Delete: '删除',
+    selected: '选中',
+    Deselect: '取消全选'
   }
 
 

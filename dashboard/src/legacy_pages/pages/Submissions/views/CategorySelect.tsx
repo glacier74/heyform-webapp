@@ -10,10 +10,10 @@ interface CategorySelectProps {
 }
 
 const CATEGORY_MAPS = {
-  [SubmissionCategoryEnum.INBOX]: 'Inbox',
+  [SubmissionCategoryEnum.INBOX]: 'submissions.Inbox',
   [SubmissionCategoryEnum.ARCHIVE]: 'Archive',
   [SubmissionCategoryEnum.STARRED]: 'Starred',
-  [SubmissionCategoryEnum.SPAM]: 'Spam'
+  [SubmissionCategoryEnum.SPAM]: 'submissions.Spam'
 }
 
 export const CategorySelect: FC<CategorySelectProps> = ({ category: rowCategory, onChange }) => {

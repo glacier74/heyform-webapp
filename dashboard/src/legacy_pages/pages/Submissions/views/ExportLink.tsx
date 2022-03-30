@@ -1,11 +1,10 @@
 import { IconText } from '@/legacy_pages/components'
 import { PlanPermissionBadge, UpgradePlan } from '@/legacy_pages/components/UpgradePlan'
 import { PlanGradeEnum } from '@/legacy_pages/models'
+import { useParam } from '@/utils'
 import { DownloadIcon } from '@heyui/icon'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 export const ExportLink: FC = () => {
@@ -19,11 +18,11 @@ export const ExportLink: FC = () => {
   return (
     <UpgradePlan name="Basic" permission={PlanGradeEnum.BASIC}>
       <Container
-        icon={<DownloadIcon />}
+        icon={<DownloadIcon/>}
         text={
           <>
-            <span>{t('Export CSV')}</span>
-            <PlanPermissionBadge name="Basic" permission={PlanGradeEnum.BASIC} />
+            <span>{t('submissions.export')}</span>
+            <PlanPermissionBadge name="Basic" permission={PlanGradeEnum.BASIC}/>
           </>
         }
         onClick={handleClick}

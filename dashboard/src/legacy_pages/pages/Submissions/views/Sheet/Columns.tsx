@@ -3,7 +3,6 @@ import { SelectCellFormatter } from '@/legacy_pages/pages/Submissions/views/Shee
 import type { Column } from '@/legacy_pages/pages/Submissions/views/Sheet/types'
 import { stopPropagation } from '@/legacy_pages/pages/Submissions/views/Sheet/utils/domUtils'
 import { Checkbox, Flex } from '@heyui/component'
-import { MaximizeIcon } from '@heyui/icon'
 import styled from 'styled-components'
 
 export const SELECT_COLUMN_KEY = 'select-row'
@@ -54,7 +53,7 @@ export const SelectColumn: Column<any, any> = {
           />
         </Left>
         <Right align="center" onClick={handleExpand}>
-          <ExpandIcon className="heygrid-row-expand" />
+          <ExpandIcon className="heygrid-row-expand"/>
           {/*<StyledMaximizeIcon*/}
           {/*  className="heygrid-row-expand"*/}
           {/*  onClick={handleExpand}*/}

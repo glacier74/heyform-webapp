@@ -473,6 +473,14 @@ export default {
     seeAll: 'See all {{count}} responses',
     noSubmission: 'There is no submission yet. You can share this form with more people.',
     average: 'average'
+  },
+  submissions: {
+    Inbox: 'Inbox',
+    Spam: 'Spam',
+    export: 'Export CSV',
+    Delete: 'Delete',
+    selected: 'selected',
+    Deselect: 'Deselect all'
   }
 
 }
