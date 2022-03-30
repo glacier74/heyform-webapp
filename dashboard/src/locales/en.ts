@@ -470,7 +470,9 @@ export default {
     Questions: 'Questions',
     Print: 'Print',
     responses: 'responses',
-    seeAll: 'See all {{count}} responses'
+    seeAll: 'See all {{count}} responses',
+    noSubmission: 'There is no submission yet. You can share this form with more people.',
+    average: 'average'
   }
 
 }

@@ -471,7 +471,9 @@ export default {
     Questions: '问题',
     Print: '打印',
     responses: '提交',
-    seeAll: '查看所有 {{count}} 份提交'
+    seeAll: '查看所有 {{count}} 份提交',
+    noSubmission: '还没有提交。您可以与更多人分享此表单。',
+    average: '平均'
   }
 
 

@@ -2,8 +2,9 @@ import { EmptyDataView, Request, SubHeading } from '@/legacy_pages/components'
 import { BlankSubmissionIcon } from '@/legacy_pages/components/Icons'
 import { ResultNavbar } from '@/legacy_pages/pages/Analytics/views/ResultNavbar'
 import { FieldList } from '@/legacy_pages/pages/Report/views/FieldList'
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import {
   CHOICES_FIELD_KINDS,
   CUSTOM_COLUMN_CHOICE_KINDS,
@@ -17,8 +18,6 @@ import { pickValidValues } from '@hpnp/utils/object'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 import { ReportItem } from './views/ReportItem'
 
@@ -97,21 +96,21 @@ const Report: FC = observer(() => {
         }}
       />
       <Container>
-        <FieldList />
+        <FieldList/>
 
         <Body>
           <SubHeading
             action={
               <PrinterButton align="center" onClick={handlePrint}>
-                <PrinterIcon />
-                {t('Print')}
+                <PrinterIcon/>
+                {t('report.Print')}
               </PrinterButton>
             }
             style={{
               marginTop: 0
             }}
           >
-            {t('Report')}
+            {t('analytics.Report')}
           </SubHeading>
 
           <Request
@@ -119,13 +118,13 @@ const Report: FC = observer(() => {
             deps={[formStore.current]}
             emptyNode={
               <EmptyDataView
-                icon={<BlankSubmissionIcon />}
-                text={t('There is no submission yet. You can share this form with more people.')}
+                icon={<BlankSubmissionIcon/>}
+                text={t('report.noSubmission')}
               />
             }
           >
             {responses.map((row, index) => (
-              <ReportItem key={index} index={index + 1} response={row} />
+              <ReportItem key={index} index={index + 1} response={row}/>
             ))}
           </Request>
         </Body>

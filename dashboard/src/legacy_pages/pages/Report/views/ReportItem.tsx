@@ -75,8 +75,9 @@ const RatingLabel: FC<RatingLabelProps> = ({ index, length, leftLabel, rightLabe
 }
 
 const RatingAverage: FC<RatingAverageProps> = ({ kind, average }) => {
+  const { t } = useTranslation()
   return kind === FieldKindEnum.OPINION_SCALE || kind === FieldKindEnum.RATING ? (
-    <>{` · ${average} average`}</>
+    <>{` · ${average} ${t('report.average')}`}</>
   ) : (
     <></>
   )
