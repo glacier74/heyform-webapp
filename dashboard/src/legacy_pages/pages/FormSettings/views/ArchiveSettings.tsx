@@ -1,10 +1,9 @@
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { ComponentProps, Flex, message, Modal, Switch } from '@heyui/component'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface ArchiveSettingsProps extends ComponentProps {
@@ -54,22 +53,22 @@ export const ArchiveSettings: FC<ArchiveSettingsProps> = ({ value, ...restProps 
 
   return (
     <Container {...restProps}>
-      <Header>{t('Submission Archive')}</Header>
+      <Header>{t('formSettings.subArchive')}</Header>
       <Body>
         <Description>
-          {t("Disable the submission archive if you don't want HeyForm to store your submissions.")}
+          {t('formSettings.archiveText')}
         </Description>
-        <Switch value={value} loading={loading} disabled={loading} onChange={handleChange} />
+        <Switch value={value} loading={loading} disabled={loading} onChange={handleChange}/>
       </Body>
 
       <Modal.Confirm
         visible={visible}
-        title={t('Are you sure you want to disable Submission Archive?')}
+        title={t('formSettings.archive')}
         description={t(
-          'Once you confirm to disable Submission Archive, all submissions will be deleted.'
+          'formSettings.archiveConfirm'
         )}
-        cancel={t('Cancel')}
-        confirm={t('Disable')}
+        cancel={t('formSettings.Cancel')}
+        confirm={t('formSettings.Disable')}
         confirmType="error"
         confirmLoading={loading}
         onVisibleChange={setVisible}

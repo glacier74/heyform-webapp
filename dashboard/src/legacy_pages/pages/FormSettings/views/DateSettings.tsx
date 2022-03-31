@@ -1,12 +1,11 @@
 import { DatetimePicker } from '@/legacy_pages/components/DatetimePicker'
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { Button, ComponentProps, Flex, Form, FormItem, message, Switch } from '@heyui/component'
 import { isValid } from '@hpnp/utils/helper'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface DateSettingsProps extends ComponentProps {
@@ -16,11 +15,11 @@ interface DateSettingsProps extends ComponentProps {
 }
 
 export const DateSettings: FC<DateSettingsProps> = ({
-  value,
-  enabledAt,
-  closedAt,
-  ...restProps
-}) => {
+                                                      value,
+                                                      enabledAt,
+                                                      closedAt,
+                                                      ...restProps
+                                                    }) => {
   const { t } = useTranslation()
   const { formId } = useParam()
   const formStore = useStore('formStore')
@@ -63,7 +62,7 @@ export const DateSettings: FC<DateSettingsProps> = ({
       await FormService.update(formId, updates)
       formStore.updateSettings(updates)
 
-      message.success('Form settings have been successfully updated')
+      message.success(t('formSettings.formUpdated'))
     } catch (err: any) {
       message.error('Failed to update form settings')
     }
@@ -71,14 +70,14 @@ export const DateSettings: FC<DateSettingsProps> = ({
 
   return (
     <Container {...restProps}>
-      <Header>{t('Expiration date')}</Header>
+      <Header>{t('formSettings.expiration')}</Header>
       <Body>
         <Description>
           {t(
-            'When you want to receiving submissions within a certain date range, you can set the start and end dates below.'
+            'formSettings.expirationText'
           )}
         </Description>
-        <Switch value={value} loading={switchLoading} onChange={handleChange} />
+        <Switch value={value} loading={switchLoading} onChange={handleChange}/>
       </Body>
       {value && (
         <Footer>
@@ -108,7 +107,7 @@ export const DateSettings: FC<DateSettingsProps> = ({
                     {
                       validator: async (_, value) => {
                         if (isValid(values?.enabledAt) && value < values!.enabledAt!) {
-                          throw new Error('Close Date must come after Start Date')
+                          throw new Error(t('formSettings.dateErr'))
                         }
                       }
                     }

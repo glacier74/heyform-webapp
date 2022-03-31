@@ -13,10 +13,10 @@ interface TimeLimitSettingsProps extends ComponentProps {
 }
 
 export const TimeLimitSettings: FC<TimeLimitSettingsProps> = ({
-  value,
-  timeLimit,
-  ...restProps
-}) => {
+                                                                value,
+                                                                timeLimit,
+                                                                ...restProps
+                                                              }) => {
   const { t } = useTranslation()
   const { formId } = useParam()
   const formStore = useStore('formStore')
@@ -50,7 +50,7 @@ export const TimeLimitSettings: FC<TimeLimitSettingsProps> = ({
       await FormService.update(formId, updates)
       formStore.updateSettings(updates)
 
-      message.success('Form settings have been successfully updated')
+      message.success(t('formSettings.formUpdated'))
     } catch (err: any) {
       message.error('Failed to update form settings')
     }
@@ -58,12 +58,12 @@ export const TimeLimitSettings: FC<TimeLimitSettingsProps> = ({
 
   return (
     <Container {...restProps}>
-      <Header>{t('Time Limit')}</Header>
+      <Header>{t('formSettings.timeLimit')}</Header>
       <Body>
         <Description>
-          {t('You can set it below if you want to block submission when the time is up.')}
+          {t('formSettings.timeText')}
         </Description>
-        <Switch value={value} loading={switchLoading} onChange={handleChange} />
+        <Switch value={value} loading={switchLoading} onChange={handleChange}/>
       </Body>
       {value && (
         <Footer>
@@ -78,7 +78,7 @@ export const TimeLimitSettings: FC<TimeLimitSettingsProps> = ({
                 }
               ]}
             >
-              <TimeInput />
+              <TimeInput/>
             </InputFormItem>
             <FormItem>
               <StyledButton type="primary" htmlType="submit" loading={loading} size="small">

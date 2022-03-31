@@ -13,14 +13,14 @@ const FormSettings: FC = () => {
   return (
     <Container>
       <Content>
-        <Heading description={t('Manage your form settings')}>{t('Form')}</Heading>
+        <Heading description={t('formSettings.manageForm')}>{t('formSettings.Form')}</Heading>
 
-        <FormStatus />
-        <Basic />
-        <Protection />
+        <FormStatus/>
+        <Basic/>
+        <Protection/>
 
-        <SubHeading>{t('Extra')}</SubHeading>
-        <DeleteForm />
+        <SubHeading>{t('formSettings.Extra')}</SubHeading>
+        <DeleteForm/>
       </Content>
     </Container>
   )

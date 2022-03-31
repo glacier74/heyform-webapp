@@ -49,7 +49,7 @@ export const Basic: FC = observer(() => {
       await FormService.update(formId, allValues)
       formStore.updateSettings(allValues)
 
-      message.success('Form settings have been successfully updated')
+      message.success(t('formSettings.formUpdated'))
     } catch (err: any) {
       setError(err)
     }
@@ -63,7 +63,7 @@ export const Basic: FC = observer(() => {
 
   return (
     <Container>
-      <SubHeading>{t('Basic')}</SubHeading>
+      <SubHeading>{t('formSettings.Basic')}</SubHeading>
 
       <Form
         initialValues={formStore.current?.settings}
@@ -72,17 +72,17 @@ export const Basic: FC = observer(() => {
       >
         <StyledFormItem
           name="allowArchive"
-          label={t('Submission Archive')}
+          label={t('formSettings.subArchive')}
           description={t(
-            "Disable the submission archive if you don't want HeyForm to store your submissions."
+            'formSettings.archiveText'
           )}
         />
 
         <StyledFormItem
           name="enableTimeLimit"
-          label={t('Time Limit')}
+          label={t('formSettings.timeLimit')}
           description={t(
-            'You can set it below if you want to block submission when the time is up.'
+            'formSettings.timeText'
           )}
           style={{
             paddingBottom: values?.enableTimeLimit ? 0 : undefined
@@ -96,7 +96,7 @@ export const Basic: FC = observer(() => {
                 required: true,
                 type: 'number',
                 min: 1,
-                message: 'Please enter a valid number'
+                message: t('formSettings.dataError')
               }
             ]}
           >
@@ -104,15 +104,15 @@ export const Basic: FC = observer(() => {
               options={[
                 {
                   id: 'h',
-                  label: 'Hour'
+                  label: t('formSettings.Hour')
                 },
                 {
                   id: 'm',
-                  label: 'Minute'
+                  label: t('formSettings.Minute')
                 },
                 {
                   id: 's',
-                  label: 'Second'
+                  label: t('formSettings.Second')
                 }
               ]}
             />
@@ -121,9 +121,9 @@ export const Basic: FC = observer(() => {
 
         <StyledFormItem
           name="enableProgress"
-          label={t('Progress Bar')}
+          label={t('formSettings.progressBar')}
           description={t(
-            'You can easily let respondents know how close they are to completing your form.'
+            'formSettings.progressText'
           )}
         />
 
@@ -132,12 +132,12 @@ export const Basic: FC = observer(() => {
             name="redirectOnCompletion"
             label={
               <>
-                <span>{t('Redirect On Completion')}</span>
-                <PlanPermissionBadge name="Pro" permission={PlanGradeEnum.PRO} />
+                <span>{t('formSettings.Redirect')}</span>
+                <PlanPermissionBadge name="Pro" permission={PlanGradeEnum.PRO}/>
               </>
             }
             description={t(
-              "Take your respondents to another web page once they're done filling in your form."
+              'formSettings.redirectText'
             )}
             style={{
               paddingBottom: values?.redirectOnCompletion ? 0 : undefined
@@ -154,14 +154,14 @@ export const Basic: FC = observer(() => {
               }
             ]}
           >
-            <Input size="small" placeholder="eg: https://example.com" />
+            <Input size="small" placeholder="eg: https://example.com"/>
           </FormItem>
         )}
 
-        {error && <FormError error={error} />}
+        {error && <FormError error={error}/>}
         <FormItem>
           <Button type="primary" htmlType="submit" size="small" loading={loading}>
-            {t('Update')}
+            {t('formSettings.Update')}
           </Button>
         </FormItem>
       </Form>

@@ -1,11 +1,11 @@
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { Button, ComponentProps, Flex, message } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const DeleteForm: FC<ComponentProps> = observer(({ ...restProps }) => {
@@ -38,15 +38,15 @@ export const DeleteForm: FC<ComponentProps> = observer(({ ...restProps }) => {
 
   return (
     <Container {...restProps}>
-      <Header>{t('Delete this Form')}</Header>
+      <Header>{t('formSettings.deleteForm')}</Header>
       <Body>
         <Description>
           {t(
-            'Deleting the form will erase all traces of this form on our databases, including all the submissions.'
+            'formSettings.deleteFormText'
           )}
         </Description>
         <Button type="error" size="small" loading={loading} onClick={handleClick}>
-          {t('Delete')}
+          {t('submissions.Delete')}
         </Button>
       </Body>
     </Container>

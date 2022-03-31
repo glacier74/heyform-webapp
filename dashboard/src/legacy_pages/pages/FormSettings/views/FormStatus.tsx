@@ -61,7 +61,7 @@ export const FormStatus: FC = observer(() => {
       await FormService.update(formId, values)
       formStore.updateSettings(values)
 
-      message.success('Form settings have been successfully updated')
+      message.success(t('formSettings.formUpdated'))
     } catch (err: any) {
       setError(err)
     }
@@ -76,7 +76,7 @@ export const FormStatus: FC = observer(() => {
   return (
     <Container>
       <SwitchContainer align="center" justify="space-between">
-        <StyledSubHeading>{t('Form Status')}</StyledSubHeading>
+        <StyledSubHeading>{t('formSettings.status')}</StyledSubHeading>
         <Switch
           loading={loading}
           value={formStore.current?.settings?.active}
@@ -85,7 +85,7 @@ export const FormStatus: FC = observer(() => {
       </SwitchContainer>
       <Description>
         {t(
-          'You can disable this form to stop receiving new submissions and prevent public access to the form.'
+          'formSettings.disableForm'
         )}
       </Description>
 
@@ -97,9 +97,9 @@ export const FormStatus: FC = observer(() => {
         >
           <StyledFormItem
             name="enableExpirationDate"
-            label={t('Expiration date')}
+            label={t('formSettings.expiration')}
             description={t(
-              'When you want to receiving submissions within a certain date range, you can set the start and end dates below.'
+              'formSettings.expirationText'
             )}
             style={{
               paddingBottom: values?.enableExpirationDate ? 0 : undefined
@@ -120,7 +120,7 @@ export const FormStatus: FC = observer(() => {
                   timeFormat="hh:mm A"
                 />
               </FormItem>
-              <Divider>{t('to')}</Divider>
+              <Divider>{t('formSettings.to')}</Divider>
               <CloseDateFormItem
                 name="closedAt"
                 hideRequiredMark={true}
@@ -129,7 +129,7 @@ export const FormStatus: FC = observer(() => {
                   {
                     validator: async (_, value) => {
                       if (isValid(values?.enabledAt) && value < values!.enabledAt!) {
-                        throw new Error('Close Date must come after the Start Date')
+                        throw new Error(t('formSettings.dateErr'))
                       }
                     }
                   }
@@ -146,9 +146,9 @@ export const FormStatus: FC = observer(() => {
 
           <StyledFormItem
             name="enableQuotaLimit"
-            label={t('Submission Limit')}
+            label={t('formSettings.submission')}
             description={t(
-              'This allows you to set a specific total number of submissions allowed for your form.'
+              'formSettings.submissionText'
             )}
             style={{
               paddingBottom: values?.enableQuotaLimit ? 0 : undefined
@@ -162,19 +162,19 @@ export const FormStatus: FC = observer(() => {
                   type: 'number',
                   required: true,
                   min: 1,
-                  message: 'Please enter a valid number'
+                  message: t('formSettings.dataError')
                 }
               ]}
             >
-              <StyledNumberInput size="small" />
+              <StyledNumberInput size="small"/>
             </NumberLimitItem>
           )}
 
           <StyledFormItem
             name="enableIpLimit"
-            label={t('IP Address Limit')}
+            label={t('formSettings.IpLimit')}
             description={t(
-              'You can set it below if you want to limit the number of submitting times from a same IP address in a period.'
+              'formSettings.IpLimitText'
             )}
             style={{
               paddingBottom: values?.enableIpLimit ? 0 : undefined
@@ -189,11 +189,11 @@ export const FormStatus: FC = observer(() => {
                     required: true,
                     type: 'number',
                     min: 1,
-                    message: 'Please enter a valid number'
+                    message: t('formSettings.dataError')
                   }
                 ]}
               >
-                <StyledNumberInput />
+                <StyledNumberInput/>
               </NumberLimitItem>
               <Divider>times in every</Divider>
               <FormItem
@@ -203,7 +203,7 @@ export const FormStatus: FC = observer(() => {
                     required: true,
                     type: 'number',
                     min: 1,
-                    message: 'Please enter a valid number'
+                    message: t('formSettings.dataError')
                   }
                 ]}
               >
@@ -211,15 +211,15 @@ export const FormStatus: FC = observer(() => {
                   options={[
                     {
                       id: 'd',
-                      label: 'Day'
+                      label: t('formSettings.Day')
                     },
                     {
                       id: 'h',
-                      label: 'Hour'
+                      label: t('formSettings.Hour')
                     },
                     {
                       id: 'm',
-                      label: 'Minute'
+                      label: t('formSettings.Minute')
                     }
                   ]}
                 />
@@ -227,10 +227,10 @@ export const FormStatus: FC = observer(() => {
             </Flex>
           )}
 
-          {error && <FormError error={error} />}
+          {error && <FormError error={error}/>}
           <FormItem>
             <Button type="primary" htmlType="submit" size="small" loading={loading2}>
-              {t('Update')}
+              {t('formSettings.Update')}
             </Button>
           </FormItem>
         </Form>

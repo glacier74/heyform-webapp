@@ -11,17 +11,17 @@ interface PreventionSettingsProps extends ComponentProps {
 }
 
 export const PreventionSettings: FC<PreventionSettingsProps> = ({
-  value,
-  onChange,
-  ...restProps
-}) => {
+                                                                  value,
+                                                                  onChange,
+                                                                  ...restProps
+                                                                }) => {
   const { t } = useTranslation()
 
   return (
     <Container align="flex-end" {...restProps}>
       <Left>
-        <Header>{t('Bots Prevention')}</Header>
-        <Description>{t('Prevent bot submissions by enabling the captcha.')}</Description>
+        <Header>{t('formSettings.Bots')}</Header>
+        <Description>{t('formSettings.BotsText')}</Description>
       </Left>
       <Select
         value={value || CaptchaKindEnum.NONE}
