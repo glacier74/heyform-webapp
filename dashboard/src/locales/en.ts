@@ -523,6 +523,26 @@ export default {
     archiveConfirm: 'Once you confirm to disable Submission Archive, all submissions will be deleted.',
     Cancel: 'Cancel',
     Disable: 'Disable'
+  },
+  integration: {
+    Categories: 'Categories',
+    connectText: 'Connect your form data with other apps, get to the',
+    help: 'Help center',
+    helpApp: 'here to help you connect the apps.',
+    Integrations: 'Integrations',
+    AirtableText: 'Airtable uses simple token-based authentication. To generate or manage your API key,  visit your',
+    airtablePage: 'Airtable account page',
+    airtableLabel: 'Airtable API key',
+    AirtableId: 'Airtable base ID',
+    open: 'To obtain the ID of your Airtable base, open the',
+    airtableLink: 'Airtable API page',
+    airtableIDText: 'and click on the base that you want to use. You will find the ID of your base in the Introduction section.',
+    tableText: 'It\'s crucial to type the table name exactly as it appears in your Airtable base e.g. Table 1.',
+    tableText2: 'If you change the table name on Airtable, please update it here too, otherwise the integration won\'t work as expected.',
+    tableName: 'Table name',
+    mapFields: 'Map fields',
+    tableText3: 'Map HeyForm to Airtable fields. It\'s crucial to type the Airtable field names exactly as they appear in your table. If you change a field name on Airtable, please update it here too, otherwise the integration won\'t work as expected.'
+
   }
 
 }

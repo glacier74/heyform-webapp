@@ -1,12 +1,12 @@
 import { Fetcher, Heading, SubHeading } from '@/legacy_pages/components'
 import { INTEGRATION_CATEGORIES } from '@/legacy_pages/constants'
-import { AppService, FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { AppService, FormService } from '@/service'
+import { useParam } from '@/utils'
 import { Flex } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 import { AppItem } from './views/AppItem'
 import { IntegrationSkeleton } from './views/IntegrationSkeleton'
@@ -57,9 +57,9 @@ const Integration: FC = observer(() => {
     <Flex justify="center">
       <Sidebar>
         <CategoryList>
-          <CategoryHeader>{t('Categories')}</CategoryHeader>
+          <CategoryHeader>{t('integration.Categories')}</CategoryHeader>
           {INTEGRATION_CATEGORIES.map((name, index) => (
-            <CategoryItem key={index} name={name} />
+            <CategoryItem key={index} name={name}/>
           ))}
         </CategoryList>
       </Sidebar>
@@ -68,20 +68,20 @@ const Integration: FC = observer(() => {
         <Heading
           description={
             <>
-              {t('Connect your form data with other apps, get to the')}{' '}
-              <a href="https://help.heyform.net">{t('Help Center')}</a>{' '}
-              {t('here to help you connect the apps.')}
+              {t('integration.connectText')}{' '}
+              <a href="https://help.heyform.net">{t('integration.help')}</a>{' '}
+              {t('integration.helpApp')}
             </>
           }
         >
-          {t('Integrations')}
+          {t('integration.Integrations')}
         </Heading>
 
         <Fetcher
           request={fetchIntegrations}
           deps={[formId]}
           useCache={integrationStore.apps.length > 0}
-          skeleton={<IntegrationSkeleton />}
+          skeleton={<IntegrationSkeleton/>}
         >
           {INTEGRATION_CATEGORIES.map((category, index) => (
             <Group key={index}>
@@ -101,7 +101,7 @@ const Integration: FC = observer(() => {
         </Fetcher>
       </Body>
 
-      <Settings appId={selectedAppId} visible={visible} onVisibleChange={setVisible} />
+      <Settings appId={selectedAppId} visible={visible} onVisibleChange={setVisible}/>
     </Flex>
   )
 })

@@ -6,18 +6,17 @@
  **/
 
 import { MapFields } from '@/legacy_pages/pages/Integration/views/Settings/views/MapFields'
-import {
-  SettingsProps,
-  SettingsWrapper
-} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { useStore } from '@/legacy_pages/utils'
 import { FormItem, Input } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const Airtable: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const formStore = useStore('formStore')
   const formFields = formStore.current?.fields || []
+  const { t } = useTranslation()
 
   return (
     <SettingsWrapper
@@ -29,57 +28,53 @@ export const Airtable: FC<SettingsProps> = observer(({ app, onFinish }) => {
     >
       <FormItem
         name="apiKey"
-        label="Airtable API key"
+        label={t('integration.airtableLabel')}
         description={
           <>
-            Airtable uses simple token-based authentication. To generate or manage your API key,
-            visit your{' '}
+            {t('integration.AirtableText')}{' '}
             <a href="https://airtable.com/account" target="_blank" rel="noreferrer">
-              Airtable account page
+              {t('integration.airtablePage')}
             </a>
             .
           </>
         }
         rules={[{ required: true }]}
       >
-        <Input />
+        <Input/>
       </FormItem>
       <FormItem
         name="base"
-        label="Airtable base ID"
+        label={t(('integration.AirtableId'))}
         description={
           <>
-            To obtain the ID of your Airtable base, open the{' '}
+            {t('integration.open')}{' '}
             <a href="https://airtable.com/api" target="_blank" rel="noreferrer">
-              Airtable API page
+              {t('integration.airtableLink')}
             </a>{' '}
-            and click on the base that you want to use. You will find the ID of your base in the
-            Introduction section.
+            {t('integration.airtableIDText')}
           </>
         }
         rules={[{ required: true }]}
       >
-        <Input />
+        <Input/>
       </FormItem>
       <FormItem
         name="table"
-        label="Table name"
+        label={t('integration.tableName')}
         description={
           <>
-            It's crucial to type the table name exactly as it appears in your Airtable base e.g.
-            Table 1. <br />
-            If you change the table name on Airtable, please update it here too, otherwise the
-            integration won't work as expected.
+            {t('integration.tableText')} <br/>
+            {t('integration.tableText2')}
           </>
         }
         rules={[{ required: true }]}
       >
-        <Input />
+        <Input/>
       </FormItem>
       <MapFields
         name="fields"
-        label="Map fields"
-        description="Map HeyForm to Airtable fields. It's crucial to type the Airtable field names exactly as they appear in your table. If you change a field name on Airtable, please update it here too, otherwise the integration won't work as expected."
+        label={t('integration.mapFields')}
+        description={t('integration.tableText3')}
         leftOptions={formFields}
         leftLabelKey="title"
         leftPlaceholder="HeyForm question"

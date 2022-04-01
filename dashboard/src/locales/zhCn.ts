@@ -523,7 +523,28 @@ export default {
     submission: 'Submission Limit',
     submissionText: 'This allows you to set a specific total number of submissions allowed for your form.',
     IpLimit: 'IP Address Limit',
-    IpLimitText: 'You can set it below if you want to limit the number of submitting times from a same IP address in a period.',
+    IpLimitText: 'You can set it below if you want to limit the number of submitting times from a same IP address in a period.'
+
+
+  },
+  integration: {
+    Categories: '分类',
+    connectText: '将您的表单数据与其他应用程序连接，访问',
+    help: '帮助中心',
+    helpApp: '来帮助您连接应用程序。',
+    integrations: '集成',
+    AirtableText: 'Airtable uses simple token-based authentication. To generate or manage your API key,  visit your',
+    airtablePage: 'Airtable account page',
+    airtableLabel: 'Airtable API key',
+    AirtableId: 'Airtable base ID',
+    open: 'To obtain the ID of your Airtable base, open the',
+    airtableLink: 'Airtable API page',
+    airtableIDText: 'and click on the base that you want to use. You will find the ID of your base in the Introduction section.',
+    tableText: 'It\'s crucial to type the table name exactly as it appears in your Airtable base e.g. Table 1.',
+    tableText2: 'If you change the table name on Airtable, please update it here too, otherwise the integration won\'t work as expected.',
+    tableName: 'Table name',
+    mapFields: 'Map fields',
+    tableText3: 'Map HeyForm to Airtable fields. It\'s crucial to type the Airtable field names exactly as they appear in your table. If you change a field name on Airtable, please update it here too, otherwise the integration won\'t work as expected.'
 
 
   }

@@ -1,18 +1,12 @@
-import {
-  AppInternalTypeEnum,
-  AppModel,
-  AppStatusEnum,
-  IntegrationStatusEnum
-} from '@/legacy_pages/models'
+import { AppInternalTypeEnum, AppModel, AppStatusEnum, IntegrationStatusEnum } from '@/legacy_pages/models'
 import { IntegrationService } from '@/service'
+import { useParam } from '@/utils'
 import { Button, ComponentProps, Flex, Image, Switch } from '@heyui/component'
 import { ShareBoxIcon } from '@heyui/icon'
 import { isValid } from '@hpnp/utils/helper'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import LazyLoad from 'react-lazyload'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled, { css } from 'styled-components'
 
 interface AppItemProps extends ComponentProps {
@@ -73,14 +67,14 @@ const AppItemAction: FC<AppItemProps> = ({ app, onClick, onDelete }) => {
 
   if (app.internalType === AppInternalTypeEnum.OPEN_APP_OAUTH) {
     return (
-      <ConnectButton type="primary" icon={<ShareBoxIcon />} onClick={handleOpenHomepage}>
+      <ConnectButton type="primary" icon={<ShareBoxIcon/>} onClick={handleOpenHomepage}>
         {t('Connect')}
       </ConnectButton>
     )
   } else if (isIntegrated) {
     return (
       <Flex align="center">
-        <Switch value={active} loading={loading} onChange={handleUpdateStatus} />
+        <Switch value={active} loading={loading} onChange={handleUpdateStatus}/>
         <DeleteButton size="small" loading={loading2} onClick={handleDeleteSettings}>
           {t('Delete')}
         </DeleteButton>
@@ -106,14 +100,14 @@ export const AppItem: FC<AppItemProps> = ({ app, onClick, onDelete, ...restProps
     <Container {...restProps}>
       <AppInfo align="center">
         <LazyLoad scrollContainer=".content" height={120} once>
-          <Logo url={app.avatar!} width={120} height={120} />
+          <Logo url={app.avatar!} width={120} height={120}/>
         </LazyLoad>
         <Center>
           <Title>{t(app.name)}</Title>
           <Description>{t(app.description as any)}</Description>
         </Center>
         {app.status === AppStatusEnum.ACTIVE ? (
-          <AppItemAction app={app} onClick={handleClick} onDelete={onDelete} />
+          <AppItemAction app={app} onClick={handleClick} onDelete={onDelete}/>
         ) : (
           <ComingSoon>{t('Coming soon')}</ComingSoon>
         )}
