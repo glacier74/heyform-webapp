@@ -577,8 +577,24 @@ export default {
     selectLabel: 'Select Label (Optional)',
     selectMilestone: 'Select Milestone (Optional)',
     issueTitle: 'Issue title',
-    issueDescription: 'Issue description (Optional)'
-
+    issueDescription: 'Issue description (Optional)',
+    SelectOrganization: 'Select Organization',
+    selectRepository: 'Select Repository',
+    selectAssignee: 'Select Assignee (Optional)',
+    selectDrive: 'Select Drive',
+    selectGoogleDrive: 'You can select your own Google Drive or',
+    GoogleSharedDrives: 'Google Shared Drives',
+    with: 'which you are connected with.',
+    SelectFolder: 'Select Folder',
+    GoogleText: 'Folder where to place file if you have added a "File Upload" component in your form.',
+    SelectSpreadsheet: 'Select Spreadsheet',
+    SelectWorksheet: 'Select Worksheet',
+    MapFields: 'Map fields',
+    googleSheet: 'Map HeyForm to Google Sheets fields. If you change a field on Google Sheets, please update it here too, otherwise the integration won\'t work as expected.',
+    leftPlaceholder: 'HeyForm question',
+    rightPlaceholder: 'Google Sheets field',
+    leftTipText: 'Select HeyForm question',
+    rightTipText: 'Select Google Sheets field'
 
   }
 

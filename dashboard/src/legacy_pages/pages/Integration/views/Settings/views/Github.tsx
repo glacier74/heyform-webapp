@@ -77,7 +77,7 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
       <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
       <FormItem
         name="organization"
-        label="Select Organization"
+        label={t('integration.SelectOrganization')}
         description={
           <>{t('integration.githubConnect')}</>
         }
@@ -92,7 +92,7 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={!authorized}
         />
       </FormItem>
-      <FormItem name="repository" label="Select Repository" rules={[{ required: true }]}>
+      <FormItem name="repository" label={t('integration.selectRepository')} rules={[{ required: true }]}>
         <CustomSelect
           deps={[organization?.login]}
           fetch={fetchRepositories}
@@ -102,7 +102,7 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={isEmpty(organization?.login)}
         />
       </FormItem>
-      <FormItem name="assignee" label="Select Assignee (Optional)">
+      <FormItem name="assignee" label={t('integration.selectAssignee')}>
         <CustomSelect
           deps={[organization?.login, repository]}
           fetch={fetchAssignees}
@@ -113,7 +113,7 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={isEmpty(organization?.login) || isEmpty(repository)}
         />
       </FormItem>
-      <FormItem name="label" label="Select Label (Optional)">
+      <FormItem name="label" label={t('integration.selectLabel')}>
         <CustomSelect
           deps={[organization?.login, repository]}
           fetch={fetchLabels}
@@ -124,7 +124,7 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={isEmpty(organization?.login) || isEmpty(repository)}
         />
       </FormItem>
-      <FormItem name="milestone" label="Select Milestone (Optional)">
+      <FormItem name="milestone" label={t('integration.selectMilestone')}>
         <CustomSelect
           deps={[organization?.login, repository]}
           fetch={fetchMilestones}
@@ -134,10 +134,10 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={isEmpty(organization?.login) || isEmpty(repository)}
         />
       </FormItem>
-      <FormItem name="title" label="Issue title" rules={[{ required: true }]}>
+      <FormItem name="title" label={t('integration.issueTitle')} rules={[{ required: true }]}>
         <Select options={fields as any} labelKey="title" tipText="Select a question"/>
       </FormItem>
-      <FormItem name="body" label="Issue description (Optional)">
+      <FormItem name="body" label={t('integration.issueDescription')}>
         <Select options={fields as any} labelKey="title" tipText="Select a question"/>
       </FormItem>
     </SettingsWrapper>

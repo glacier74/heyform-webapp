@@ -6,23 +6,21 @@
  **/
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
-import {
-  SettingsProps,
-  SettingsWrapper
-} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { ThirdPartySignIn } from '@/legacy_pages/pages/Integration/views/Settings/views/ThirdPartySignIn'
 import { IntegrationService } from '@/service'
+import { useParam } from '@/utils'
 import { FormItem } from '@heyui/component'
 import { isNil } from '@hpnp/utils/helper'
 import { FC, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useTranslation } from 'react-i18next'
 
 export const GoogleDrive: FC<SettingsProps> = ({ app, onFinish }) => {
   const { formId } = useParam()
   const appId = app!.id
   const [authorized, setAuthorized] = useState(false)
   const [drive, setDrive] = useState<string | undefined>()
+  const { t } = useTranslation()
 
   async function fetchDrives() {
     const result = await IntegrationService.googleDriveList(formId, appId)
@@ -47,15 +45,15 @@ export const GoogleDrive: FC<SettingsProps> = ({ app, onFinish }) => {
 
   return (
     <SettingsWrapper app={app} onFinish={onFinish} onValuesChange={handleValuesChange}>
-      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest} />
+      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
       <FormItem
         name="drive"
-        label="Select Drive"
+        label={t('integration.selectDrive')}
         description={
           <>
-            You can select your own Google Drive or{' '}
-            <a href="https://support.google.com/a/users/answer/9310351">Google Shared Drives</a>{' '}
-            which you are connected with.
+            {t('integration.selectGoogleDrive')}{' '}
+            <a href="https://support.google.com/a/users/answer/9310351">{t('integration.GoogleSharedDrives')}</a>{' '}
+            {t('integration.with')}
           </>
         }
         rules={[{ required: true }]}
@@ -70,9 +68,9 @@ export const GoogleDrive: FC<SettingsProps> = ({ app, onFinish }) => {
       </FormItem>
       <FormItem
         name="folder"
-        label="Select Folder"
+        label={t('integration.SelectFolder')}
         description={
-          <>Folder where to place file if you have added a "File Upload" component in your form.</>
+          <>{t('integration.GoogleText')}</>
         }
         rules={[{ required: true }]}
       >

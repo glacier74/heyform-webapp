@@ -7,19 +7,16 @@
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
 import { MapFields } from '@/legacy_pages/pages/Integration/views/Settings/views/MapFields'
-import {
-  SettingsProps,
-  SettingsWrapper
-} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { ThirdPartySignIn } from '@/legacy_pages/pages/Integration/views/Settings/views/ThirdPartySignIn'
-import { IntegrationService } from '@/service'
 import { useAsyncEffect, useStore } from '@/legacy_pages/utils'
+import { IntegrationService } from '@/service'
+import { useParam } from '@/utils'
 import { FormItem } from '@heyui/component'
 import { isNil, isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useTranslation } from 'react-i18next'
 
 export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const { formId } = useParam()
@@ -32,6 +29,7 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const formFields = formStore.current?.fields || []
   const appId = app!.id
   const [sheetFields, setSheetFields] = useState<string[]>([])
+  const { t } = useTranslation()
 
   async function fetchDrives() {
     const result = await IntegrationService.googleDriveList(formId, appId)
@@ -104,15 +102,15 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
       }}
       onValuesChange={handleValuesChange}
     >
-      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest} />
+      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
       <FormItem
         name="drive"
-        label="Select Drive"
+        label={t('integration.selectDrive')}
         description={
           <>
-            You can select your own Google Drive or{' '}
-            <a href="https://support.google.com/a/users/answer/9310351">Google Shared Drives</a>{' '}
-            which you are connected with.
+            {t('integration.selectGoogleDrive')}{' '}
+            <a href="https://support.google.com/a/users/answer/9310351">{t('integration.GoogleSharedDrives')}</a>{' '}
+            {t('integration.with')}
           </>
         }
         rules={[{ required: true }]}
@@ -125,7 +123,7 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={!authorized}
         />
       </FormItem>
-      <FormItem name="spreadsheet" label="Select Spreadsheet" rules={[{ required: true }]}>
+      <FormItem name="spreadsheet" label={t('integration.SelectSpreadsheet')} rules={[{ required: true }]}>
         <CustomSelect
           deps={[drive]}
           fetch={fetchSheets}
@@ -134,7 +132,7 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={isNil(drive)}
         />
       </FormItem>
-      <FormItem name="worksheet" label="Select Worksheet" rules={[{ required: true }]}>
+      <FormItem name="worksheet" label={t('integration.SelectWorksheet')} rules={[{ required: true }]}>
         <CustomSelect
           deps={[spreadsheet]}
           fetch={fetchWorksheets}
@@ -146,17 +144,17 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
       </FormItem>
       <MapFields
         name="fields"
-        label="Map fields"
-        description="Map HeyForm to Google Sheets fields. If you change a field on Google Sheets, please update it here too, otherwise the integration won't work as expected."
+        label={t('integration.MapFields')}
+        description={t('integration.googleSheet')}
         leftOptions={formFields}
         leftLabelKey="title"
-        leftPlaceholder="HeyForm question"
-        leftTipText="Select HeyForm question"
+        leftPlaceholder={t('integration.leftPlaceholder')}
+        leftTipText={t('integration.leftTipText')}
         rightLoading={loading}
         rightOptions={sheetFields}
         rightLabelKey="name"
-        rightPlaceholder="Google Sheets field"
-        rightTipText="Select Google Sheets field"
+        rightPlaceholder={t('integration.rightPlaceholder')}
+        rightTipText={t('integration.rightTipText')}
       />
     </SettingsWrapper>
   )
