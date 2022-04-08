@@ -6,25 +6,23 @@
  **/
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
-import {
-  SettingsProps,
-  SettingsWrapper
-} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { ThirdPartySignIn } from '@/legacy_pages/pages/Integration/views/Settings/views/ThirdPartySignIn'
-import { IntegrationService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { IntegrationService } from '@/service'
+import { useParam } from '@/utils'
 import { FormItem, Select } from '@heyui/component'
 import { isEmpty } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useTranslation } from 'react-i18next'
 
 export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const { formId } = useParam()
   const appId = app!.id
   const formStore = useStore('formStore')
   const fields = formStore.current?.fields || []
+  const { t } = useTranslation()
 
   const [authorized, setAuthorized] = useState(false)
   const [organization, setOrganization] = useState<Record<string, any>>()
@@ -76,12 +74,12 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
 
   return (
     <SettingsWrapper app={app} onFinish={onFinish} onValuesChange={handleValuesChange}>
-      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest} />
+      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
       <FormItem
         name="organization"
         label="Select Organization"
         description={
-          <>You can select your own account or organizations which you are connected with.</>
+          <>{t('integration.githubConnect')}</>
         }
         rules={[{ required: true }]}
       >
@@ -137,10 +135,10 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
         />
       </FormItem>
       <FormItem name="title" label="Issue title" rules={[{ required: true }]}>
-        <Select options={fields as any} labelKey="title" tipText="Select a question" />
+        <Select options={fields as any} labelKey="title" tipText="Select a question"/>
       </FormItem>
       <FormItem name="body" label="Issue description (Optional)">
-        <Select options={fields as any} labelKey="title" tipText="Select a question" />
+        <Select options={fields as any} labelKey="title" tipText="Select a question"/>
       </FormItem>
     </SettingsWrapper>
   )

@@ -68,7 +68,7 @@ const AppItemAction: FC<AppItemProps> = ({ app, onClick, onDelete }) => {
   if (app.internalType === AppInternalTypeEnum.OPEN_APP_OAUTH) {
     return (
       <ConnectButton type="primary" icon={<ShareBoxIcon/>} onClick={handleOpenHomepage}>
-        {t('Connect')}
+        {t('integration.Connect')}
       </ConnectButton>
     )
   } else if (isIntegrated) {
@@ -76,14 +76,14 @@ const AppItemAction: FC<AppItemProps> = ({ app, onClick, onDelete }) => {
       <Flex align="center">
         <Switch value={active} loading={loading} onChange={handleUpdateStatus}/>
         <DeleteButton size="small" loading={loading2} onClick={handleDeleteSettings}>
-          {t('Delete')}
+          {t('submissions.Delete')}
         </DeleteButton>
       </Flex>
     )
   } else {
     return (
       <ConnectButton type="primary" onClick={onClick}>
-        {t('Connect')}
+        {t('integration.Connect')}
       </ConnectButton>
     )
   }
@@ -109,7 +109,7 @@ export const AppItem: FC<AppItemProps> = ({ app, onClick, onDelete, ...restProps
         {app.status === AppStatusEnum.ACTIVE ? (
           <AppItemAction app={app} onClick={handleClick} onDelete={onDelete}/>
         ) : (
-          <ComingSoon>{t('Coming soon')}</ComingSoon>
+          <ComingSoon>{t('integration.coming')}</ComingSoon>
         )}
       </AppInfo>
     </Container>

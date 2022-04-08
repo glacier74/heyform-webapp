@@ -6,21 +6,19 @@
  **/
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
-import {
-  SettingsProps,
-  SettingsWrapper
-} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { ThirdPartySignIn } from '@/legacy_pages/pages/Integration/views/Settings/views/ThirdPartySignIn'
 import { IntegrationService } from '@/service'
-import { FormItem } from '@heyui/component'
-import { FC, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import { useParam } from '@/utils'
+import { FormItem } from '@heyui/component'
+import { FC, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const Dropbox: FC<SettingsProps> = ({ app, onFinish }) => {
   const { formId } = useParam()
   const appId = app!.id
   const [authorized, setAuthorized] = useState(false)
+  const { t } = useTranslation()
 
   async function fetchFolders() {
     const result = await IntegrationService.dropboxFolders(formId, appId)
@@ -34,12 +32,12 @@ export const Dropbox: FC<SettingsProps> = ({ app, onFinish }) => {
 
   return (
     <SettingsWrapper app={app} onFinish={onFinish}>
-      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest} />
+      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
       <FormItem
         name="folder"
-        label="Select Folder"
+        label={t('integration.select')}
         description={
-          <>Folder where to place file if you have added a "File Upload" component in your form.</>
+          <>{t('integration.DropboxText')}</>
         }
         rules={[{ required: true }]}
       >

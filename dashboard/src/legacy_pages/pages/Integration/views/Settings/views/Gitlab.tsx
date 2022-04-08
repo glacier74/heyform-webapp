@@ -6,18 +6,15 @@
  **/
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
-import {
-  SettingsProps,
-  SettingsWrapper
-} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
-import { IntegrationService } from '@/service'
+import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { useStore } from '@/legacy_pages/utils'
+import { IntegrationService } from '@/service'
+import { useParam } from '@/utils'
 import { FormItem, Input, Select } from '@heyui/component'
 import { isEmpty, isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useTranslation } from 'react-i18next'
 
 export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const { formId } = useParam()
@@ -29,6 +26,7 @@ export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const [group, setGroup] = useState<Record<string, any>>()
   const [project, setProject] = useState<Record<string, any>>()
   const [authorized, setAuthorized] = useState(false)
+  const { t } = useTranslation()
 
   async function fetchGroups() {
     const result = await IntegrationService.gitlabGroups(formId, server!, token!)
@@ -73,38 +71,36 @@ export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
     <SettingsWrapper app={app} onFinish={onFinish} onValuesChange={handleValuesChange}>
       <FormItem
         name="server"
-        label="Server URL"
+        label={t('integration.ServerURL')}
         description={
           <>
-            The system URL is the URL you access the frontend of the system with. This can be
-            https://domain.com for example.
+            {t('integration.gitlabURL')}
           </>
         }
         rules={[{ type: 'url', required: true }]}
       >
-        <Input />
+        <Input/>
       </FormItem>
       <FormItem
         name="token"
-        label="Personal access tokens"
+        label={t('integration.tokens')}
         description={
           <>
-            To obtain the access token, open the https://domain.com/-/profile/personal_access_tokens
-            and add a new one. You can also visit the{' '}
+            {t('integration.obtainToken')}{' '}
             <a href="https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html">
-              help document
+              {t('integration.helpDocument')}
             </a>
             .
           </>
         }
         rules={[{ required: true }]}
       >
-        <Input />
+        <Input/>
       </FormItem>
       <FormItem
         name="group"
-        label="Select Group"
-        description={<>You can select your own group or groups which you are connected with.</>}
+        label={t('integration.SelectGroup')}
+        description={<>{t('integration.selectGroup')}</>}
         rules={[{ required: true }]}
       >
         <CustomSelect
@@ -115,7 +111,7 @@ export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={!authorized}
         />
       </FormItem>
-      <FormItem name="project" label="Select Project" rules={[{ required: true }]}>
+      <FormItem name="project" label={t('integration.selectProject')} rules={[{ required: true }]}>
         <CustomSelect
           deps={[group?.id]}
           fetch={fetchProjects}
@@ -124,7 +120,7 @@ export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={isEmpty(group?.id)}
         />
       </FormItem>
-      <FormItem name="member" label="Select Member (Optional)">
+      <FormItem name="member" label={t('integration.selectMember')}>
         <CustomSelect
           deps={[project?.id]}
           fetch={fetchMembers}
@@ -133,7 +129,7 @@ export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={isEmpty(project?.id)}
         />
       </FormItem>
-      <FormItem name="label" label="Select Label (Optional)">
+      <FormItem name="label" label={t('integration.selectLabel')}>
         <CustomSelect
           deps={[project?.id]}
           fetch={fetchLabels}
@@ -142,7 +138,7 @@ export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={isEmpty(project?.id)}
         />
       </FormItem>
-      <FormItem name="milestone" label="Select Milestone (Optional)">
+      <FormItem name="milestone" label={t('integration.selectMilestone')}>
         <CustomSelect
           deps={[project?.id]}
           fetch={fetchMilestones}
@@ -151,11 +147,11 @@ export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={isEmpty(project?.id)}
         />
       </FormItem>
-      <FormItem name="title" label="Issue title" rules={[{ required: true }]}>
-        <Select options={fields as any} labelKey="title" tipText="Select a question" />
+      <FormItem name="title" label={t('integration.issueTitle')} rules={[{ required: true }]}>
+        <Select options={fields as any} labelKey="title" tipText="Select a question"/>
       </FormItem>
-      <FormItem name="body" label="Issue description (Optional)">
-        <Select options={fields as any} labelKey="title" tipText="Select a question" />
+      <FormItem name="body" label={t('integration.issueDescription')}>
+        <Select options={fields as any} labelKey="title" tipText="Select a question"/>
       </FormItem>
     </SettingsWrapper>
   )

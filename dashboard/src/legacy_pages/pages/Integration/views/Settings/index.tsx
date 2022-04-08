@@ -1,23 +1,24 @@
 import { Request } from '@/legacy_pages/components'
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
+import { useStore } from '@/legacy_pages/utils'
+import { AppService, FormService } from '@/service'
+import { useParam } from '@/utils'
+import { observer } from 'mobx-react-lite'
+import { FC } from 'react'
+import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
+import { Airtable } from './views/Airtable'
+import { CommonSettings } from './views/CommonSettings'
 import { Dropbox } from './views/Dropbox'
 import { Github } from './views/Github'
 import { Gitlab } from './views/Gitlab'
-import { Airtable } from './views/Airtable'
-import { CommonSettings } from './views/CommonSettings'
 import { GoogleDrive } from './views/GoogleDrive'
 import { GoogleSheets } from './views/GoogleSheets'
 import { Hubspot } from './views/Hubspot'
 import { Mailchimp } from './views/Mailchimp'
 import { Monday } from './views/Monday'
 import { SupportPal } from './views/SupportPal'
-import { AppService, FormService } from '@/service'
-import { useStore } from '@/legacy_pages/utils'
-import { observer } from 'mobx-react-lite'
-import { FC } from 'react'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
-import styled from 'styled-components'
+
 
 interface SettingsProps {
   appId?: string
@@ -29,6 +30,7 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
   const { formId } = useParam()
   const integrationStore = useStore('integrationStore')
   const app = integrationStore.integratedApps.find(row => row.id === appId)
+  const { t } = useTranslation()
 
   async function fetchIntegrations() {
     const [result1, result2] = await Promise.all([
@@ -58,34 +60,34 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
             {(() => {
               switch (app?.uniqueId) {
                 case 'mailchimp':
-                  return <Mailchimp app={app} onFinish={handleClose} />
+                  return <Mailchimp app={app} onFinish={handleClose}/>
 
                 case 'googledrive':
-                  return <GoogleDrive app={app} onFinish={handleClose} />
+                  return <GoogleDrive app={app} onFinish={handleClose}/>
 
                 case 'googlesheets':
-                  return <GoogleSheets app={app} onFinish={handleClose} />
+                  return <GoogleSheets app={app} onFinish={handleClose}/>
 
                 case 'airtable':
-                  return <Airtable app={app} onFinish={handleClose} />
+                  return <Airtable app={app} onFinish={handleClose}/>
 
                 case 'hubspot':
-                  return <Hubspot app={app} onFinish={handleClose} />
+                  return <Hubspot app={app} onFinish={handleClose}/>
 
                 case 'monday':
-                  return <Monday app={app} onFinish={handleClose} />
+                  return <Monday app={app} onFinish={handleClose}/>
 
                 case 'supportpal':
-                  return <SupportPal app={app} onFinish={handleClose} />
+                  return <SupportPal app={app} onFinish={handleClose}/>
 
                 case 'github':
-                  return <Github app={app} onFinish={handleClose} />
+                  return <Github app={app} onFinish={handleClose}/>
 
                 case 'gitlab':
-                  return <Gitlab app={app} onFinish={handleClose} />
+                  return <Gitlab app={app} onFinish={handleClose}/>
 
                 case 'dropbox':
-                  return <Dropbox app={app} onFinish={handleClose} />
+                  return <Dropbox app={app} onFinish={handleClose}/>
 
                 case 'googleanalytics':
                   return (
@@ -95,17 +97,17 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
                       options={[
                         {
                           name: 'trackingCode',
-                          label: 'Tracking Code',
+                          label: t('integration.trackingCode'),
                           placeholder: 'e.g. UA-XXXXX-Y',
                           description: (
                             <>
-                              Copy and paste your Google Analytics tracking code below.{' '}
+                              {t('integration.copyGoogle')}{' '}
                               <a
                                 href="https://support.google.com/analytics/answer/1008080?hl=en#zippy=%2Cin-this-article"
                                 target="_blank"
                                 rel="noreferrer"
                               >
-                                How do I find my tracking code?
+                                {t('integration.link')}
                               </a>
                             </>
                           ),
@@ -127,17 +129,17 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
                       options={[
                         {
                           name: 'trackingCode',
-                          label: 'Pixel ID',
+                          label: t('integration.PixelID'),
                           placeholder: 'e.g. 100xxxxxxxxxxxxx',
                           description: (
                             <>
-                              Copy and paste your Facebook Pixel ID below.{' '}
+                              {t('integration.copyId')}{' '}
                               <a
                                 href="https://www.facebook.com/business/help/952192354843755?id=1205376682832142"
                                 target="_blank"
                                 rel="noreferrer"
                               >
-                                How do I find my Pixel ID?
+                                {t('integration.findId')}
                               </a>
                             </>
                           ),
@@ -159,7 +161,7 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
                       options={[
                         {
                           name: 'email',
-                          label: 'Email Address',
+                          label: t('login.Email'),
                           rules: [{ required: true, type: 'email' }]
                         }
                       ]}
@@ -174,18 +176,18 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
                       options={[
                         {
                           name: 'webhook',
-                          label: 'Webhook URL',
+                          label: t('integration.labelSlack'),
                           description: (
                             <>
-                              Add a{' '}
+                              {t('integration.addA')}{' '}
                               <a
                                 href="https://www.larksuite.com/hc/en-US/articles/360048487736#1.1%20Use%20custom%20bots%20in%20a%20group"
                                 target="_blank"
                                 rel="noreferrer"
                               >
-                                custom bots
+                                {t('integration.customBots')}
                               </a>{' '}
-                              in your group, and paste Webhook URL here from bot settings.
+                              {t('integration.customBotText')}
                             </>
                           ),
                           rules: [
@@ -207,18 +209,18 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
                       options={[
                         {
                           name: 'webhook',
-                          label: 'Webhook URL',
+                          label: t('integration.labelSlack'),
                           description: (
                             <>
-                              Create your{' '}
+                              {t('integration.createS')}{' '}
                               <a
                                 href="https://api.slack.com/apps/new"
                                 target="_blank"
                                 rel="noreferrer"
                               >
-                                Slack app
+                                {t('integration.appSlack')}
                               </a>
-                              , enable Incoming Webhooks and paste the Webhook URL here.
+                              ,{t('integration.pasteSlack')}
                             </>
                           ),
                           rules: [
@@ -240,15 +242,14 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
                       options={[
                         {
                           name: 'chatId',
-                          label: 'Chat ID',
+                          label: t('integration.chatId'),
                           description: (
                             <>
-                              Add{' '}
+                              {t('integration.Add')}{' '}
                               <a href="https://t.me/HeyForm_bot" target="_blank" rel="noreferrer">
                                 @HeyForm_bot
                               </a>{' '}
-                              to your Telegram group, type <code>/start@HeyForm_bot</code> in the
-                              group, you will receive a message with a Chat ID.
+                              {t('integration.toTele')} <code>/start@HeyForm_bot</code> {t('integration.inTele')}
                             </>
                           ),
                           rules: [
@@ -270,7 +271,7 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
                       options={[
                         {
                           name: 'webhook',
-                          label: 'Custom Webhook URL',
+                          label: t('integration.labelWeb'),
                           rules: [
                             {
                               type: 'url',
