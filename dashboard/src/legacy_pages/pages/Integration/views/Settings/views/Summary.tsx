@@ -24,9 +24,9 @@ export const Summary: FC<SummaryProps> = ({ app }) => {
   return (
     <Container>
       <Flex align="center" justify="center">
-        <StyledRoundLogo />
-        <StyledMoreIcon />
-        <ImageContainer url={app?.avatar!} width={120} height={120} />
+        <StyledRoundLogo/>
+        <StyledMoreIcon/>
+        <ImageContainer url={app?.avatar!} width={120} height={120}/>
       </Flex>
 
       <StyledHeading
@@ -34,7 +34,7 @@ export const Summary: FC<SummaryProps> = ({ app }) => {
           <>
             {app?.description}{' '}
             <a href={app?.helpLinkUrl} target="_blank" rel="noreferrer">
-              Learn about {app?.name} integration
+              {t('integration.LearnAbout')} {app?.name} {t('integration.integration')}
             </a>
           </>
         }
@@ -43,7 +43,7 @@ export const Summary: FC<SummaryProps> = ({ app }) => {
           textAlign: 'center'
         }}
       >
-        {t('Connect with')} {app?.name}
+        {t('integration.ConnectWith')} {app?.name}
       </StyledHeading>
     </Container>
   )

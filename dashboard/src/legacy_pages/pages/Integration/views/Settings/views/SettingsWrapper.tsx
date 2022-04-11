@@ -1,13 +1,12 @@
 import { FormError } from '@/legacy_pages/components'
 import { AppModel } from '@/legacy_pages/models'
 import { Summary } from '@/legacy_pages/pages/Integration/views/Settings/views/Summary'
-import { AppService, FormService, IntegrationService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { AppService, FormService, IntegrationService } from '@/service'
+import { useParam } from '@/utils'
 import { Button, Form } from '@heyui/component'
 import { FC, ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface Option {
@@ -31,12 +30,12 @@ interface SettingsWrapperProps extends SettingsProps {
 }
 
 export const SettingsWrapper: FC<SettingsWrapperProps> = ({
-  app,
-  initialValues,
-  onValuesChange,
-  onFinish,
-  children = []
-}) => {
+                                                            app,
+                                                            initialValues,
+                                                            onValuesChange,
+                                                            onFinish,
+                                                            children = []
+                                                          }) => {
   const { t } = useTranslation()
   const { formId } = useParam()
   const integrationStore = useStore('integrationStore')
@@ -77,12 +76,12 @@ export const SettingsWrapper: FC<SettingsWrapperProps> = ({
 
   return (
     <Container>
-      <Summary app={app} />
+      <Summary app={app}/>
       <Form initialValues={initialValues} onValuesChange={onValuesChange} onFinish={handleFinish}>
         {children}
-        {error && <FormError error={error} />}
+        {error && <FormError error={error}/>}
         <Button htmlType="submit" type="primary" block={true} loading={loading}>
-          {t('Connect with')} {app?.name}
+          {t('integration.ConnectWith')} {app?.name}
         </Button>
       </Form>
     </Container>

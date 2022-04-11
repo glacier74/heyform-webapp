@@ -6,15 +6,15 @@
  **/
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
-import { IntegrationService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { IntegrationService } from '@/service'
+import { useParam } from '@/utils'
+import { FormItem, Input, Select } from '@heyui/component'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
-import { SettingsProps, SettingsWrapper } from './SettingsWrapper'
-import { FormItem, Input, Select } from '@heyui/component'
 import { FC, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useTranslation } from 'react-i18next'
+import { SettingsProps, SettingsWrapper } from './SettingsWrapper'
 
 export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const { formId } = useParam()
@@ -25,6 +25,7 @@ export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const [token, setToken] = useState<string | null>()
   const [departmentId, setDepartmentId] = useState<number | null>()
   const [authorized, setAuthorized] = useState(false)
+  const { t } = useTranslation()
 
   async function fetchDepartments() {
     if (!authorized) {
@@ -74,26 +75,23 @@ export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
     <SettingsWrapper app={app} onFinish={onFinish} onValuesChange={handleValuesChange}>
       <FormItem
         name="systemURL"
-        label="System URL"
+        label={t('integration.SystemURL')}
         description={
           <>
-            The system URL is the URL you access the frontend of the system with. This can be
-            https://support.domain.com or https://domain.com/support for example. The URL may
-            require '/index.php' at the end of it if you do not have Pretty URLs enabled.
+            {t('integration.URLText')}
           </>
         }
         rules={[{ required: true }]}
       >
-        <Input />
+        <Input/>
       </FormItem>
       <FormItem
         name="token"
-        label="API Token"
+        label={t('integration.tokenAPT')}
         description={
           <>
-            Generate an API token by going to Settings -&gt; General -&gt; API Tokens in the
-            operator panel, making sure it has Read & Write access.
-            <br />
+            {t('integration.APIText')}
+            <br/>
             <a
               href="https://docs.supportpal.com/current/API+Tokens#CreatingOrUpdating"
               target="_blank"
@@ -106,45 +104,45 @@ export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
         }
         rules={[{ required: true }]}
       >
-        <Input />
+        <Input/>
       </FormItem>
-      <FormItem name="userName" label="User Name (optional)">
-        <Select options={formFields as any} labelKey="title" tipText="Select a question" />
+      <FormItem name="userName" label={t('integration.UserName')}>
+        <Select options={formFields as any} labelKey="title" tipText={t('integration.selectQuestion')}/>
       </FormItem>
-      <FormItem name="email" label="User Email (optional)">
-        <Select options={formFields as any} labelKey="title" tipText="Select a question" />
+      <FormItem name="email" label={t('integration.UserEmail')}>
+        <Select options={formFields as any} labelKey="title" tipText={t('integration.selectQuestion')}/>
       </FormItem>
-      <FormItem name="subject" label="Subject" rules={[{ required: true }]}>
-        <Select options={formFields as any} labelKey="title" tipText="Select a question" />
+      <FormItem name="subject" label={t('integration.Subject')} rules={[{ required: true }]}>
+        <Select options={formFields as any} labelKey="title" tipText={t('integration.selectQuestion')}/>
       </FormItem>
-      <FormItem name="text" label="Text" rules={[{ required: true }]}>
-        <Select options={formFields as any} labelKey="title" tipText="Select a question" />
+      <FormItem name="text" label={t('integration.Text')} rules={[{ required: true }]}>
+        <Select options={formFields as any} labelKey="title" tipText={t('integration.selectQuestion')}/>
       </FormItem>
-      <FormItem name="department" label="Department" rules={[{ required: true }]}>
+      <FormItem name="department" label={t('integration.Department')} rules={[{ required: true }]}>
         <CustomSelect
           deps={[formId, authorized]}
           fetch={fetchDepartments}
           labelKey="name"
           disabled={!authorized}
-          tipText="Choose department"
+          tipText={t('integration.department')}
         />
       </FormItem>
-      <FormItem name="priority" label="Priority" rules={[{ required: true }]}>
+      <FormItem name="priority" label={t('integration.Priority')} rules={[{ required: true }]}>
         <CustomSelect
           deps={[formId, authorized, departmentId]}
           fetch={fetchPriorities}
           labelKey="name"
           disabled={!authorized}
-          tipText="Choose priority"
+          tipText={t('integration.ChoosePriority')}
         />
       </FormItem>
-      <FormItem name="status" label="Status" rules={[{ required: true }]}>
+      <FormItem name="status" label={t('integration.Status')} rules={[{ required: true }]}>
         <CustomSelect
           deps={[formId, authorized]}
           fetch={fetchStatus}
           labelKey="name"
           disabled={!authorized}
-          tipText="Choose status"
+          tipText={t('integration.ChooseStatus')}
         />
       </FormItem>
     </SettingsWrapper>

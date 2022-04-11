@@ -7,19 +7,16 @@
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
 import { MapFields } from '@/legacy_pages/pages/Integration/views/Settings/views/MapFields'
-import {
-  SettingsProps,
-  SettingsWrapper
-} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { ThirdPartySignIn } from '@/legacy_pages/pages/Integration/views/Settings/views/ThirdPartySignIn'
-import { IntegrationService } from '@/service'
 import { useAsyncEffect, useStore } from '@/legacy_pages/utils'
+import { IntegrationService } from '@/service'
+import { useParam } from '@/utils'
 import { FormItem, Select } from '@heyui/component'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useTranslation } from 'react-i18next'
 
 export const Monday: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const { formId } = useParam()
@@ -30,6 +27,7 @@ export const Monday: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const [rightFields, setRightFields] = useState<string[]>([])
   const formStore = useStore('formStore')
   const formFields = formStore.current?.fields || []
+  const { t } = useTranslation()
 
   async function fetchBoards() {
     const result = await IntegrationService.mondayBoards(formId, appId)
@@ -76,42 +74,42 @@ export const Monday: FC<SettingsProps> = observer(({ app, onFinish }) => {
       }}
       onValuesChange={handleValuesChange}
     >
-      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest} />
-      <FormItem name="board" label="Board" rules={[{ required: true }]}>
+      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
+      <FormItem name="board" label={t('integration.Board')} rules={[{ required: true }]}>
         <CustomSelect
           deps={[authorized]}
           fetch={fetchBoards}
           labelKey="name"
-          tipText="Select a board"
+          tipText={t('integration.SelectBoard')}
           disabled={!authorized}
         />
       </FormItem>
-      <FormItem name="group" label="Group (Optional)">
+      <FormItem name="group" label={t('integration.Group')}>
         <CustomSelect
           deps={[board]}
           fetch={fetchGroups}
           labelKey="title"
-          tipText="Select a group"
+          tipText={t('integration.SelectBoard')}
           disabled={!board}
         />
       </FormItem>
-      <FormItem name="itemName" label="Item Name" rules={[{ required: true }]}>
-        <Select options={formFields as any} labelKey="title" />
+      <FormItem name="itemName" label={t('integration.ItemName')} rules={[{ required: true }]}>
+        <Select options={formFields as any} labelKey="title"/>
       </FormItem>
       <MapFields
         name="fields"
         required={false}
-        label="Column Values (Optional)"
-        description="Map HeyForm to Monday columns. If you change a column on Monday, please update it here too, otherwise the integration won't work as expected."
+        label={t('integration.ColumnValues')}
+        description={t('integration.mondayText')}
         leftOptions={formFields}
         leftLabelKey="title"
         leftPlaceholder="HeyForm question"
-        leftTipText="Select HeyForm question"
+        leftTipText={t('integration.leftTipText')}
         rightLoading={loading}
         rightOptions={rightFields}
         rightLabelKey="title"
         rightPlaceholder="Monday column"
-        rightTipText="Select Monday column"
+        rightTipText={t('integration.mondayColumn')}
       />
     </SettingsWrapper>
   )

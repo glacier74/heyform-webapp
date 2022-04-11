@@ -1,13 +1,12 @@
 import GoogleImage from '@/legacy_pages/assets/google.svg'
 import { AppModel } from '@/legacy_pages/models'
 import { commonCss } from '@/legacy_pages/pages/Integration/views/Settings/views/Summary'
-import { IntegrationService } from '@/service'
 import { usePopup } from '@/legacy_pages/utils'
+import { IntegrationService } from '@/service'
+import { useParam } from '@/utils'
 import { Button, Image } from '@heyui/component'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface ThirdPartySignInProps {
@@ -21,21 +20,22 @@ const LoginWithGoogle: FC = () => {
 
   return (
     <>
-      <img src={GoogleImage} width={20} height={20} style={{ marginRight: 12 }} alt="" />
-      {t('Login to Google')}
+      <img src={GoogleImage} width={20} height={20} style={{ marginRight: 12 }} alt=""/>
+      {t('integration.loginGoogle')}
     </>
   )
 }
 
 export const ThirdPartySignIn: FC<ThirdPartySignInProps> = ({
-  app,
-  authorized = false,
-  oauthRequest
-}) => {
+                                                              app,
+                                                              authorized = false,
+                                                              oauthRequest
+                                                            }) => {
   const { formId } = useParam()
   const appId = app!.id
   const [loading, setLoading] = useState(false)
   const [oauthUrl, setOauthUrl] = useState<string | undefined | null>()
+  const { t } = useTranslation()
 
   async function handleClick() {
     if (loading) {
@@ -57,15 +57,15 @@ export const ThirdPartySignIn: FC<ThirdPartySignInProps> = ({
 
   return (
     <Container>
-      <Heading>Authorization</Heading>
-      <SubHeading>First off all, please authorize HeyForm to access your data</SubHeading>
+      <Heading>{t('integration.Authorization')}</Heading>
+      <SubHeading>{t('integration.AuthorizationText')}</SubHeading>
       <Button onClick={handleClick} loading={loading} block={true} disabled={authorized}>
         {app?.uniqueId === 'googledrive' || app?.uniqueId === 'googlesheets' ? (
-          <LoginWithGoogle />
+          <LoginWithGoogle/>
         ) : (
           <>
-            <ImageContainer url={app?.avatar!} width={40} height={40} />
-            <span>{authorized ? 'Authorized' : <>Login to {app?.name}</>}</span>
+            <ImageContainer url={app?.avatar!} width={40} height={40}/>
+            <span>{authorized ? 'Authorized' : <>{t('integration.login')} {app?.name}</>}</span>
           </>
         )}
       </Button>
