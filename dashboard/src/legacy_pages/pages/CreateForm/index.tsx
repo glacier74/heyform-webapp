@@ -77,37 +77,37 @@ const CreateForm = observer(() => {
     >
       <Heading
         description={t(
-          "Choose a form type based on your purpose. Once a form is created, the form type can't be changed."
+          'createForm.typeText'
         )}
       >
-        {t('Create a new form')}
+        {t('improtForm.createForm')}
       </Heading>
 
-      <SubHeading>{t('Create a new form from scratch')}</SubHeading>
+      <SubHeading>{t('createForm.createNew')}</SubHeading>
       <Flex>
         <StartScratch align="center" justify="center" column={true} onClick={handleScratch}>
           <Flex align="center" justify="center" auto={true}>
-            <ClassicFormIcon />
+            <ClassicFormIcon/>
           </Flex>
-          <Text>{t('Classic Form')}</Text>
+          <Text>{t('createForm.ClassicForm')}</Text>
 
           {loading && (
             <Loader align="center" justify="center">
-              <Spin />
+              <Spin/>
             </Loader>
           )}
         </StartScratch>
 
         <StartScratch align="center" justify="center" column={true} onClick={handleImport}>
           <Flex align="center" justify="center" auto={true}>
-            <ImportFormIcon />
+            <ImportFormIcon/>
           </Flex>
-          <Text>{t('Import form from external URL')}</Text>
+          <Text>{t('createForm.URLForm')}</Text>
         </StartScratch>
       </Flex>
 
-      <SubHeading>{t('Create a new form from templates')}</SubHeading>
-      <Fetcher request={fetchTemplates} skeleton={<TemplateSkeleton />}>
+      <SubHeading>{t('createForm.templatesForm')}</SubHeading>
+      <Fetcher request={fetchTemplates} skeleton={<TemplateSkeleton/>}>
         <Flex wrap="wrap" style={{ marginLeft: -10, marginRight: -10 }}>
           {templates.map((template, index) => (
             <TemplateItem
@@ -117,7 +117,7 @@ const CreateForm = observer(() => {
               template={template}
             />
           ))}
-          <MoreTemplates />
+          <MoreTemplates/>
         </Flex>
       </Fetcher>
     </Container>

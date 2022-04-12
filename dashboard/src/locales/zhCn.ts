@@ -645,6 +645,19 @@ export default {
     formURL: '提供表单网址',
     enterURL: '请输入有效的链接'
 
+  },
+  template: {
+    Templates: '模板',
+    UseTemplate: '使用模板',
+    create: '创建一个新表单'
+  },
+  createForm: {
+    typeText: '根据您的目的选择表单类型。一旦创建了表单，就无法更改表单类型。',
+    createNew: '从头开始创建一个新表单',
+    ClassicForm: '传统表单',
+    templatesForm: '从模板创建新表单',
+    URLForm: '从外部网址导入表单'
+
   }
 
 

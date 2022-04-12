@@ -2,14 +2,14 @@ import { Request } from '@/legacy_pages/components'
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { TemplateModal } from '@/legacy_pages/models'
 import { TemplateService } from '@/service'
+import { useParam } from '@/utils'
 import { customTheme, FormRender } from '@heyforms/form-component'
 import { FormThemeV2 } from '@heyforms/shared-types-enums'
 import { Button, message } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useHistory } from 'react-router-dom'
 import styled, { ThemeProvider } from 'styled-components'
 
 const TemplatePreview = observer(() => {
@@ -45,7 +45,7 @@ const TemplatePreview = observer(() => {
   }
 
   function handleFinish() {
-    message.warn("Can't submit form in Preview mode")
+    message.warn('Can\'t submit form in Preview mode')
   }
 
   function handleNavigateBack() {
@@ -54,10 +54,10 @@ const TemplatePreview = observer(() => {
 
   return (
     <Container
-      navigateBackTitle={t('Templates')}
+      navigateBackTitle={t('template.Templates')}
       actions={
         <StyledButton type="primary" loading={loading} onClick={handleUse}>
-          {t('Use template')}
+          {t('template.UseTemplate')}
         </StyledButton>
       }
       onNavigateBack={handleNavigateBack}

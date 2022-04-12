@@ -53,19 +53,19 @@ const Templates = () => {
   }
 
   return (
-    <Container navigateBackTitle={t('Create a new form')} onNavigateBack={handleNavigateBack}>
+    <Container navigateBackTitle={t('template.create')} onNavigateBack={handleNavigateBack}>
       <Flex>
         <Sidebar>
           <CategoryList>
-            <CategoryHeader>{t('Categories')}</CategoryHeader>
+            <CategoryHeader>{t('integration.Categories')}</CategoryHeader>
             {categories.map((name, index) => (
-              <CategoryItem key={index} name={name} />
+              <CategoryItem key={index} name={name}/>
             ))}
           </CategoryList>
         </Sidebar>
 
         <Body>
-          <Heading>{t('Templates')}</Heading>
+          <Heading>{t('template.Templates')}</Heading>
           <Request fetch={fetchTemplates} useCache={templates.length > 0}>
             {categories.map((category, index) => (
               <div key={index}>

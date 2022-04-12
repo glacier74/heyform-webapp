@@ -6,11 +6,11 @@
  **/
 
 import { DangerIcon } from '@/legacy_pages/components/DangerIcon'
+import { useParam } from '@/utils'
 import { Button, Modal } from '@heyui/component'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const SuspendedModal: FC = () => {
@@ -28,7 +28,7 @@ export const SuspendedModal: FC = () => {
 
   return (
     <StyledModal
-      icon={<DangerIcon />}
+      icon={<DangerIcon/>}
       title={t('The form is suspended')}
       description="If you have any questions about suspend, please click the button below to contact us."
       visible={true}

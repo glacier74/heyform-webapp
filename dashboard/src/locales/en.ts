@@ -641,6 +641,19 @@ export default {
     Detect: 'Detect',
     formURL: 'Provide the form URL',
     enterURL: 'Please enter valid url'
+  },
+  template: {
+    Templates: 'Templates',
+    UseTemplate: 'Use template',
+    create: 'Create a new form'
+  },
+  createForm: {
+    typeText: 'Choose a form type based on your purpose. Once a form is created, the form type can\'t be changed.',
+    createNew: 'Create a new form from scratch',
+    ClassicForm: 'Classic Form',
+    templatesForm: 'Create a new form from templates',
+    URLForm: 'Import form from external URL'
+
   }
 
 }
