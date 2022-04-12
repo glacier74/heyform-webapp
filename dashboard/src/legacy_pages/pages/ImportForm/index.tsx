@@ -1,13 +1,13 @@
 import { Error, FormError, Heading } from '@/legacy_pages/components'
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { Button, Form, FormItem, Input } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 const ImportForm = observer(() => {
@@ -46,21 +46,21 @@ const ImportForm = observer(() => {
   }
 
   return (
-    <Container navigateBackTitle={t('Create a new form')} onNavigateBack={handleNavigateBack}>
-      <Heading description={t('Import your existing forms and customize them.')}>
-        {t('Import Form')}
+    <Container navigateBackTitle={t('improtForm.createForm')} onNavigateBack={handleNavigateBack}>
+      <Heading description={t('improtForm.importText')}>
+        {t('improtForm.ImportForm')}
       </Heading>
 
-      <Header>How it works</Header>
+      <Header>{t('improtForm.works')}</Header>
 
       <Tips>
         <p>
           {t(
-            'HeyForm will detect the form tag from the URL given just like a crawler, once a form tag is detected, the engine will try to parse the components and convert it into HeyForm blocks.'
+            'improtForm.Text'
           )}
         </p>
         <p>
-          {t("This is still a beta feature, we can't guarantee that it will be 100% effective.")}
+          {t('improtForm.testText')}
         </p>
       </Tips>
 
@@ -68,23 +68,23 @@ const ImportForm = observer(() => {
         <FormItem
           className="item"
           name="url"
-          label={t('Provide the form URL')}
+          label={t('improtForm.formURL')}
           rules={[
             {
               required: true,
               type: 'url',
-              message: 'Please enter valid url'
+              message: t('improtForm.enterURL')
             }
           ]}
           labelClassName="label"
           hideRequiredMark={true}
         >
-          <Input placeholder="https://www.example.com" />
+          <Input placeholder="https://www.example.com"/>
         </FormItem>
-        {error && <FormError error={error} />}
+        {error && <FormError error={error}/>}
         <FormItem>
           <Button type="primary" htmlType="submit" block={true} loading={loading}>
-            {t('Detect')}
+            {t('improtForm.Detect')}
           </Button>
         </FormItem>
       </Form>

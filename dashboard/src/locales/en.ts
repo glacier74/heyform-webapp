@@ -630,6 +630,17 @@ export default {
     AuthorizationText: 'First off all, please authorize HeyForm to access your data',
     login: 'Login to',
     loginGoogle: 'Login to Google'
+  },
+  improtForm: {
+    createForm: 'Create a new form',
+    importText: 'Import your existing forms and customize them.',
+    ImportForm: 'Import Form',
+    works: 'How it works',
+    Text: 'HeyForm will detect the form tag from the URL given just like a crawler, once a form tag is detected, the engine will try to parse the components and convert it into HeyForm blocks.',
+    testText: 'This is still a beta feature, we can\'t guarantee that it will be 100% effective.',
+    Detect: 'Detect',
+    formURL: 'Provide the form URL',
+    enterURL: 'Please enter valid url'
   }
 
 }

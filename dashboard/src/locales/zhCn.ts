@@ -634,6 +634,17 @@ export default {
     login: 'Login to',
     loginGoogle: 'Login to Google'
 
+  },
+  improtForm: {
+    createForm: '创建一个新表单',
+    importText: '导入您现有的表单并对其进行自定义。',
+    ImportForm: '导入表单',
+    Text: 'HeyForm 会像爬虫一样从给定的网址中检测表单标签，一旦检测到表单标签，引擎将尝试解析组件并将其转换为 HeyForm 块。',
+    testText: '这仍然是一个测试版功能，我们不能保证它会 100% 有效。',
+    Detect: '探测',
+    formURL: '提供表单网址',
+    enterURL: '请输入有效的链接'
+
   }
 
 
