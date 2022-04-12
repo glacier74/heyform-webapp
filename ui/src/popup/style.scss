@@ -3,7 +3,7 @@
 }
 
 .popup-content {
-  @apply z-20 transition ease-in-out duration-100;
+  @apply z-20 transition ease-in-out;
   transform-origin: 0 0;
 }
 
@@ -48,25 +48,21 @@
 }
 
 // Transaction
-.popup-transition-enter {
+.popup-transition-preEnter,
+.popup-transition-exiting {
   .popup-content {
     @apply transform opacity-0 scale-95;
   }
 }
 
-.popup-transition-enter-active {
+.popup-transition-preExit,
+.popup-transition-entering {
   .popup-content {
     @apply transform opacity-100 scale-100;
   }
 }
 
-.popup-transition-exit {
-  .popup-content {
-    @apply transform opacity-100 scale-100;
-  }
-}
-
-.popup-transition-exit-active {
+.popup-transition-exited {
   .popup-content {
     @apply transform opacity-0 scale-95;
   }

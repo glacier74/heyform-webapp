@@ -1,7 +1,10 @@
+import type { Placement as PopperPlacement } from '@popperjs/core/lib/enums'
 import clsx from 'clsx'
 import type { ChangeEvent, FC } from 'react'
 
 export interface SelectProps extends Omit<IComponentProps, 'value' | 'onChange'> {
+  popupClassName?: string
+  placement?: PopperPlacement
   options?: IOptionType[]
   labelKey?: keyof IOptionType
   valueKey?: keyof IOptionType
@@ -13,7 +16,8 @@ export interface SelectProps extends Omit<IComponentProps, 'value' | 'onChange'>
   unmountOnExit?: boolean
   valueRender?: (option?: IOptionType) => JSX.Element
   placeholder?: string
-  optionRender?: (option: IOptionType) => JSX.Element
+  optionRender?: (option: IOptionType, isActive?: boolean) => JSX.Element
+  onDropdownVisibleChange?: (isVisible: boolean) => void
   onChange?: (value: IValueType) => void
 }
 
@@ -35,9 +39,13 @@ const Native: FC<SelectProps> = ({
   return (
     <select
       value={value as unknown as string}
-      className={clsx('select', className, {
-        'select-error': isHasError
-      })}
+      className={clsx(
+        'select',
+        {
+          'select-error': isHasError
+        },
+        className
+      )}
       placeholder={placeholder}
       onChange={handleChange}
       {...restProps}

@@ -57,26 +57,31 @@ const CustomForm: FC<CustomFormProps> = ({
 
   return (
     <RcFieldForm
-      className={clsx(className, {
-        'form-inline': inline
-      })}
+      className={clsx(
+        {
+          'form-inline': inline
+        },
+        className
+      )}
       onValuesChange={handleValuesChange}
       onFinish={handleFinish}
       {...restProps}
     >
-      {children}
+      <>
+        {children}
 
-      <Button
-        className="form-submit-button"
-        htmlType="submit"
-        loading={loading}
-        disabled={loading || disabled}
-        {...submitOptions}
-      >
-        {submitText}
-      </Button>
+        <Button
+          className="form-submit-button"
+          htmlType="submit"
+          loading={loading}
+          disabled={loading || disabled}
+          {...submitOptions}
+        >
+          {submitText}
+        </Button>
 
-      {showRequestError && error && <div className="form-item-error">{error.message}</div>}
+        {showRequestError && error && <div className="form-item-error">{error.message}</div>}
+      </>
     </RcFieldForm>
   )
 }

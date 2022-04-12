@@ -55,18 +55,18 @@
 }
 
 // Transaction
-.notification-transition-enter {
+.notification-transition-preEnter {
   @apply transform-gpu opacity-0 -translate-y-full;
 }
 
-.notification-transition-enter-active {
+.notification-transition-entering {
   @apply transform-gpu opacity-100 translate-y-0;
 }
 
-.notification-transition-exit {
+.notification-transition-preExit {
   @apply transform-gpu opacity-100 translate-y-0;
 }
 
-.notification-transition-exit-active {
+.notification-transition-exiting {
   @apply transform-gpu opacity-0 -translate-y-full;
 }

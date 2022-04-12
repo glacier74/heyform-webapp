@@ -1,11 +1,15 @@
 import { CheckIcon } from '@heroicons/react/outline'
+import { isValid } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { FC, MouseEvent, ReactNode } from 'react'
+import { useContext, useEffect } from 'react'
+import { MenusStoreContext } from './context'
 
 export interface MenuItemProps extends Omit<IComponentProps, 'onClick'> {
   icon?: ReactNode
   name?: IKeyType
   label: ReactNode
+  disabled?: boolean
   isChecked?: boolean
   onClick?: (name?: IKeyType, event?: MouseEvent<HTMLDivElement>) => void
 }
@@ -15,17 +19,48 @@ const MenuItem: FC<MenuItemProps> = ({
   icon,
   name,
   label,
+  disabled = false,
   isChecked,
   onClick,
   ...restProps
 }) => {
+  const { state, dispatch } = useContext(MenusStoreContext)
+
   function handleClick(event: MouseEvent<HTMLDivElement>) {
-    onClick && onClick(name, event)
+    if (!disabled) {
+      onClick?.(name, event)
+      state.onClick?.(name)
+    }
   }
+
+  useEffect(() => {
+    if (isValid(name) && !disabled) {
+      dispatch({
+        type: 'register',
+        name: name!
+      })
+    }
+
+    return () => {
+      if (isValid(name) && !disabled) {
+        dispatch({
+          type: 'unregister',
+          name: name!
+        })
+      }
+    }
+  }, [])
 
   return (
     <div
-      className={clsx('menu-item', className)}
+      className={clsx(
+        'menu-item',
+        {
+          'menu-item-highlighted': !disabled && isValid(name) && state.highlighted === name,
+          'menu-item-disabled': disabled
+        },
+        className
+      )}
       role="menuitem"
       onClick={handleClick}
       {...restProps}

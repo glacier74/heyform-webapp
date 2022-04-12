@@ -1,0 +1,70 @@
+.tooltip {
+  @apply relative;
+
+  &:after {
+    @apply absolute px-2.5 py-1.5 z-50 text-center text-xs text-white break-words whitespace-pre pointer-events-none rounded opacity-0 hidden transition;
+    content: attr(data-tooltip);
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    background: #000;
+    animation-delay: 0.1s;
+  }
+
+  &:hover {
+    &:after {
+      @apply inline-block opacity-100;
+    }
+  }
+}
+
+.tooltip-bottom::after, .tooltip-bottom-end::after, .tooltip-bottom-start::after {
+  top: 100%;
+  right: 50%;
+  margin-top: 6px
+}
+
+.tooltip-bottom-end::after {
+  right: auto;
+  left: 50%;
+  margin-left: -16px
+}
+
+.tooltip-bottom-start::after {
+  margin-right: -16px
+}
+
+.tooltip-top::after, .tooltip-top-end::after, .tooltip-top-start::after {
+  right: 50%;
+  bottom: 100%;
+  margin-bottom: 6px
+}
+
+.tooltip-top-end::after {
+  right: auto;
+  left: 50%;
+  margin-left: -16px
+}
+
+.tooltip-top-start::after {
+  margin-right: -16px
+}
+
+.tooltip-bottom::after, .tooltip-top::after {
+  transform: translateX(50%)
+}
+
+.tooltip-left::after {
+  right: 100%;
+  bottom: 50%;
+  margin-right: 6px;
+  transform: translateY(50%)
+}
+
+.tooltip-right::after {
+  bottom: 50%;
+  left: 100%;
+  margin-left: 6px;
+  transform: translateY(50%)
+}

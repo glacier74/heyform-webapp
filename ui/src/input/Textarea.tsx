@@ -76,11 +76,15 @@ const Textarea: FC<TextareaProps> = ({
 
   return (
     <div
-      className={clsx('textarea', className, {
-        'input-focused': isFocused,
-        'textarea-disabled': disabled,
-        'input-has-error': isHasError
-      })}
+      className={clsx(
+        'textarea',
+        {
+          'input-focused': isFocused,
+          'textarea-disabled': disabled,
+          'input-has-error': isHasError
+        },
+        className
+      )}
       onMouseUp={handleMouseUp}
     >
       <textarea

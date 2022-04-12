@@ -5,10 +5,19 @@ import {
   XIcon
 } from '@heroicons/react/outline'
 import { nanoid } from '@hpnp/utils'
+import clsx from 'clsx'
 import type { FC, ReactNode, RefObject } from 'react'
-import { createRef, forwardRef, useEffect, useImperativeHandle, useState } from 'react'
-import { render } from 'react-dom'
-import { CSSTransition } from 'react-transition-group'
+import {
+  createRef,
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useState
+} from 'react'
+import { createRoot } from 'react-dom/client'
+import { useTransition } from 'react-transition-state'
 import Button from '../button'
 import Spin from '../spin'
 
@@ -37,24 +46,37 @@ const Notification: FC<NotificationProps> = ({
   duration = 8000,
   onExited
 }) => {
-  const [visible, setVisible] = useState(false)
+  function handleStateChange({ state }: any) {
+    if (state === 'unmounted') {
+      onExited?.(id!)
+    }
+  }
+
+  const [state, toggle] = useTransition({
+    timeout: 150,
+    initialEntered: false,
+    preEnter: true,
+    preExit: true,
+    unmountOnExit: true,
+    onChange: handleStateChange
+  })
 
   function handleClick() {
-    setVisible(false)
+    toggle(false)
   }
 
-  function handleExited() {
-    onExited && onExited(id!)
-  }
+  const CloseIcon = useMemo(() => <XIcon />, [])
+  const handleClickCallback = useCallback(handleClick, [])
 
   useEffect(() => {
-    setVisible(true)
+    toggle(true)
 
     if (duration > 0) {
       const timer = setTimeout(handleClick, duration)
 
       return () => {
         if (timer) {
+          handleClick()
           clearTimeout(timer)
         }
       }
@@ -62,26 +84,22 @@ const Notification: FC<NotificationProps> = ({
   }, [])
 
   return (
-    <CSSTransition
-      classNames="notification-transition"
-      in={visible}
-      timeout={60}
-      unmountOnExit={true}
-      onExited={handleExited}
-    >
-      <div className={`notification`}>
-        <div className="notification-wrapper">
-          {icon && <div className="notification-icon">{icon}</div>}
-          <div className="notification-body">
-            <p className="notification-title">{title}</p>
-            {message && <p className="notification-message">{message}</p>}
-          </div>
-          <div className="notification-close">
-            <Button.Link leading={<XIcon />} onClick={handleClick} />
+    <>
+      {state !== 'unmounted' && state !== 'exited' && (
+        <div className={clsx('notification', `notification-transition-${state}`)}>
+          <div className="notification-wrapper">
+            {icon && <div className="notification-icon">{icon}</div>}
+            <div className="notification-body">
+              <p className="notification-title">{title}</p>
+              {message && <p className="notification-message">{message}</p>}
+            </div>
+            <div className="notification-close">
+              <Button.Link leading={CloseIcon} onClick={handleClickCallback} />
+            </div>
           </div>
         </div>
-      </div>
-    </CSSTransition>
+      )}
+    </>
   )
 }
 
@@ -91,6 +109,8 @@ const NotificationList = forwardRef<NotificationListProps, any>((_, ref) => {
   function handleExited(id: string) {
     setOptions(options.filter(row => row.id !== id))
   }
+
+  const handleExitedCallback = useCallback(handleExited, [])
 
   useImperativeHandle(ref, () => {
     return {
@@ -112,7 +132,7 @@ const NotificationList = forwardRef<NotificationListProps, any>((_, ref) => {
   return (
     <div className="notification-list">
       {options.map(row => (
-        <Notification key={row.id} onExited={handleExited} {...row} />
+        <Notification key={row.id} onExited={handleExitedCallback} {...row} />
       ))}
     </div>
   )
@@ -138,11 +158,13 @@ function notification(options: NotificationOptions) {
 notification.preload = () => {
   if (!ref || !ref.current) {
     const container = document.createElement('div')
+    const root = createRoot(container)
+
     container.className = 'notification-root'
     document.body.appendChild(container)
 
     ref = createRef<NotificationListProps>()
-    render(<NotificationList ref={ref} />, container)
+    root.render(<NotificationList ref={ref} />)
   }
 }
 

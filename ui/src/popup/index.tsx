@@ -1,9 +1,9 @@
 import type { Options as PopperOptions } from '@popperjs/core/lib/types'
 import clsx from 'clsx'
 import type { FC, ReactNode } from 'react'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { usePopper } from 'react-popper'
-import { CSSTransition } from 'react-transition-group'
+import { useTransition } from 'react-transition-state'
 import Portal from '../portal'
 import { stopEvent } from '../utils'
 
@@ -34,55 +34,61 @@ const Popup: FC<PopupProps> = ({
   ...restProps
 }) => {
   const [popperRef, setPopperRef] = useState<HTMLDivElement | null>(null)
-  const { styles, attributes } = usePopper(referenceRef, popperRef, popperOptions)
+  const {
+    styles: { popper }
+  } = usePopper(referenceRef, popperRef, popperOptions)
 
-  function handleExited() {
-    onExited?.()
+  function handleStateChange({ state }: any) {
+    if (state === 'unmounted') {
+      onExited?.()
+    }
   }
+
+  const [state, toggle] = useTransition({
+    timeout: duration,
+    initialEntered: visible,
+    preEnter: true,
+    preExit: true,
+    unmountOnExit: true,
+    onChange: handleStateChange
+  })
 
   function handleMaskClick(event: any) {
     stopEvent(event)
 
     if (maskClosable) {
-      handleExited()
+      toggle(false)
     }
   }
 
-  const handleExitedCallback = useCallback(handleExited, [])
   const handleMaskClickCallback = useCallback(handleMaskClick, [])
+
+  useEffect(() => {
+    toggle(visible)
+  }, [visible])
 
   const memoPopup = useMemo(
     () => (
-      <div className={clsx('popup', className)} {...restProps}>
+      <div className={clsx('popup', `${transitionName}-${state}`, className)} {...restProps}>
         {mask && <div className="popup-mask" onClick={handleMaskClickCallback} />}
         <div
           ref={setPopperRef}
           className={clsx('popup-content', `popup-placement-${popperOptions.placement}`)}
           style={{
             ...style,
-            ...styles.popper
+            ...popper,
+            transitionDuration: `${duration}ms`
           }}
-          {...attributes.popper}
         >
           {children}
         </div>
       </div>
     ),
-    [children, styles, attributes]
+    [children, state, popper]
   )
   const memoPortal = useMemo(() => <Portal visible={true}>{memoPopup}</Portal>, [memoPopup])
 
-  return (
-    <CSSTransition
-      classNames={transitionName}
-      in={visible}
-      timeout={duration}
-      unmountOnExit={true}
-      onExited={handleExitedCallback}
-    >
-      {memoPortal}
-    </CSSTransition>
-  )
+  return <>{state !== 'unmounted' && state !== 'exited' && memoPortal}</>
 }
 
 export default Popup

@@ -29,12 +29,16 @@ const Button: FC<ButtonProps> = ({
   return (
     <button
       type={htmlType}
-      className={clsx('button', className, {
-        [`button-${type}`]: type,
-        'button-block': block,
-        'button-rounded': rounded,
-        'button-icon-only': !children && leading
-      })}
+      className={clsx(
+        'button',
+        {
+          [`button-${type}`]: type,
+          'button-block': block,
+          'button-rounded': rounded,
+          'button-icon-only': !children && leading
+        },
+        className
+      )}
       disabled={loading || disabled}
       {...restProps}
     >

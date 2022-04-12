@@ -1,4 +1,4 @@
-import { isNan, isString, isValid } from '@hpnp/utils/helper'
+import { isNan, isNil, isString, isValid } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { ChangeEvent, FC, InputHTMLAttributes, ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
@@ -10,6 +10,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   isHasError?: boolean
   leading?: ReactNode
   trailing?: ReactNode
+  maxLength?: number
   onChange?: (value?: InputValue) => void
   onFocus?: () => void
   onBlur?: () => void
@@ -25,6 +26,7 @@ const Input: FC<InputProps> = ({
   disabled,
   leading,
   trailing,
+  maxLength,
   value: rawValue = '',
   onChange,
   onFocus,
@@ -33,8 +35,11 @@ const Input: FC<InputProps> = ({
 }) => {
   const lock = useRef(false)
   const ref = useRef<HTMLInputElement>(null)
+  const isCountingEnabled = maxLength && maxLength > 0
+
   const [value, setValue] = useState<InputValue>(rawValue as InputValue)
   const [isFocused, setIsFocused] = useState(false)
+  const [length, setLength] = useState(0)
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     let newValue: InputValue = event.target.value
@@ -54,9 +59,20 @@ const Input: FC<InputProps> = ({
         newValue = rawValue as InputValue
       } else if (max && newValue > max) {
         newValue = max
-      } else if (min && newValue < min) {
-        newValue = min
+      } else if (!isNil(min) && newValue < min!) {
+        newValue = min!
       }
+    }
+
+    if (isCountingEnabled) {
+      let newLength = newValue.toString().length
+
+      if (newLength > maxLength) {
+        newLength = maxLength
+        newValue = newValue.toString().slice(0, maxLength)
+      }
+
+      setLength(newLength)
     }
 
     setValue(newValue)
@@ -107,11 +123,15 @@ const Input: FC<InputProps> = ({
 
   return (
     <div
-      className={clsx('input', className, {
-        'input-focused': isFocused,
-        'input-disabled': disabled,
-        'input-has-error': isHasError
-      })}
+      className={clsx(
+        'input',
+        {
+          'input-focused': isFocused,
+          'input-disabled': disabled,
+          'input-has-error': isHasError
+        },
+        className
+      )}
       onMouseUp={handleMouseUp}
     >
       {leading && (
@@ -133,6 +153,11 @@ const Input: FC<InputProps> = ({
         onChange={handleChange}
         {...restProps}
       />
+      {isCountingEnabled && (
+        <span className="input-counting">
+          {length}/{maxLength}
+        </span>
+      )}
       {trailing && (
         <span
           className={clsx('input-trailing', {

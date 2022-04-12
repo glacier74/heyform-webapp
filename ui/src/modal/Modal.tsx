@@ -1,8 +1,8 @@
 import { XIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import type { FC } from 'react'
-import { useCallback, useRef } from 'react'
-import { CSSTransition } from 'react-transition-group'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
+import { useTransition } from 'react-transition-state'
 import Button from '../button'
 import Portal from '../portal'
 import { KeyCode, stopPropagation } from '../utils'
@@ -13,6 +13,7 @@ export interface ModalProps extends IComponentProps {
   maskClosable?: boolean
   showCloseIcon?: boolean
   confirmLoading?: boolean
+  duration?: number
   unmountOnExit?: boolean
   onClose?: () => void
   onExited?: () => void
@@ -22,6 +23,7 @@ const Modal: FC<ModalProps> = ({
   className,
   contentClassName,
   visible,
+  duration = 150,
   maskClosable = true,
   showCloseIcon = false,
   confirmLoading = false,
@@ -57,43 +59,73 @@ const Modal: FC<ModalProps> = ({
     }
   }
 
-  const handleCloseCallback = useCallback(handleClose, [])
+  function handleStateChange({ state }: any) {
+    if (state === 'unmounted') {
+      onExited?.()
+    }
+  }
 
-  return (
-    <CSSTransition
-      in={visible}
-      timeout={100}
-      classNames="modal-transition"
-      unmountOnExit={unmountOnExit}
-      onExited={onExited}
-    >
-      <Portal visible={visible}>
-        <div className={clsx('modal-root', className)} {...restProps}>
-          <div className="modal-mask" onClick={handleCloseCallback} />
+  const [state, toggle] = useTransition({
+    timeout: duration,
+    initialEntered: visible,
+    preEnter: true,
+    preExit: true,
+    unmountOnExit,
+    onChange: handleStateChange
+  })
+
+  const handleCloseCallback = useCallback(handleClose, [])
+  const CloseIcon = useMemo(() => <XIcon onClick={handleCloseCallback} />, [])
+
+  const memoPopup = useMemo(
+    () => (
+      <div className={clsx('modal-root', `modal-transition-${state}`, className)} {...restProps}>
+        <div
+          className="modal-mask"
+          style={{
+            transitionDuration: `${duration}ms`
+          }}
+          onClick={handleCloseCallback}
+        />
+        <div
+          className="modal-container"
+          tabIndex={-1}
+          role="dialog"
+          onKeyDown={handleKeyDown}
+          onClick={handleMaskClick}
+        >
           <div
-            className="modal-container"
-            tabIndex={-1}
-            role="dialog"
-            onKeyDown={handleKeyDown}
-            onClick={handleMaskClick}
+            ref={ref}
+            className={clsx('modal-content', contentClassName)}
+            style={{
+              ...style,
+              transitionDuration: `${duration}ms`
+            }}
           >
-            <div ref={ref} className={clsx('modal-content', contentClassName)} style={style}>
-              <div className="modal-body">
-                {showCloseIcon && (
-                  <Button.Link
-                    className="modal-close-button"
-                    leading={<XIcon aria-hidden="true" />}
-                    onClick={handleClose}
-                  />
-                )}
-                {children}
-              </div>
+            <div className="modal-body">
+              {showCloseIcon && (
+                <Button.Link
+                  className="modal-close-button"
+                  leading={CloseIcon}
+                  onClick={handleCloseCallback}
+                />
+              )}
+              {children}
             </div>
           </div>
         </div>
-      </Portal>
-    </CSSTransition>
+      </div>
+    ),
+    [children, state]
   )
+
+  const memoPortal = useMemo(() => <Portal visible={true}>{memoPopup}</Portal>, [memoPopup])
+
+  useEffect(() => {
+    toggle(visible)
+  }, [visible])
+
+  return <>{state !== 'unmounted' && state !== 'exited' && memoPortal}</>
 }
 
 export default Modal

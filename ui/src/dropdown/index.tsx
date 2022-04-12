@@ -1,7 +1,7 @@
 import type { Placement as PopperPlacement } from '@popperjs/core'
 import clsx from 'clsx'
-import type { FC, MouseEvent, ReactNode } from 'react'
-import { useEffect, useState } from 'react'
+import type { FC, MouseEvent, ReactElement, ReactNode } from 'react'
+import { cloneElement, useCallback, useEffect, useState } from 'react'
 import Popup from '../popup'
 import { stopEvent } from '../utils'
 
@@ -11,8 +11,9 @@ export interface DropdownProps extends IComponentProps {
   placement?: PopperPlacement
   disabled?: boolean
   dismissOnClickInside?: boolean
+  duration?: number
   overlay: ReactNode
-  onVisibleChange?: (visible: boolean) => void
+  onDropdownVisibleChange?: (visible: boolean) => void
 }
 
 const Dropdown: FC<DropdownProps> = ({
@@ -21,10 +22,11 @@ const Dropdown: FC<DropdownProps> = ({
   visible = false,
   placement = 'bottom-end',
   disabled,
+  duration = 150,
   dismissOnClickInside = true,
   overlay,
   children,
-  onVisibleChange,
+  onDropdownVisibleChange,
   ...restProps
 }) => {
   const [ref, setRef] = useState<HTMLDivElement | null>(null)
@@ -47,6 +49,8 @@ const Dropdown: FC<DropdownProps> = ({
     }
   }
 
+  const handleExitedCallback = useCallback(handleExited, [])
+
   // Trigger dropdown open or not outside
   useEffect(() => {
     setIsOpen(visible)
@@ -54,12 +58,15 @@ const Dropdown: FC<DropdownProps> = ({
 
   // Visible change callback
   useEffect(() => {
-    onVisibleChange?.(isOpen)
+    onDropdownVisibleChange?.(isOpen)
   }, [isOpen])
 
   const memoOverlay = (
     <div className="dropdown-body" onClick={handleDropdownClick}>
-      {overlay}
+      {cloneElement(overlay as ReactElement, {
+        ...(overlay as ReactElement).props,
+        onExited: handleExitedCallback
+      })}
     </div>
   )
 
@@ -90,6 +97,7 @@ const Dropdown: FC<DropdownProps> = ({
             }
           ]
         }}
+        duration={duration}
         onExited={handleExited}
       >
         {memoOverlay}

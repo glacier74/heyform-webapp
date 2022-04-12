@@ -2,7 +2,7 @@ import { SelectorIcon } from '@heroicons/react/outline'
 import { CheckIcon } from '@heroicons/react/solid'
 import type { Options as PopperOptions } from '@popperjs/core/lib/types'
 import clsx from 'clsx'
-import type { CSSProperties, FC, MouseEvent } from 'react'
+import type { FC, MouseEvent } from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import Popup from '../popup'
 import Spin from '../spin'
@@ -34,13 +34,15 @@ export const CustomSelectOption: FC<CustomOptionProps> = ({
       onClick={handleClick}
     >
       {optionRender ? (
-        optionRender(option)
+        optionRender(option, isActive)
       ) : (
         <>
           <span className="select-option-text">{option[labelKey]}</span>
-          <span className="select-option-checkmark">
-            <CheckIcon />
-          </span>
+          {isActive && (
+            <span className="select-option-checkmark">
+              <CheckIcon />
+            </span>
+          )}
         </>
       )}
     </li>
@@ -49,6 +51,8 @@ export const CustomSelectOption: FC<CustomOptionProps> = ({
 
 const Custom: FC<SelectProps> = ({
   className,
+  popupClassName,
+  placement = 'bottom-start',
   options = [],
   labelKey = 'label',
   valueKey = 'value',
@@ -59,28 +63,27 @@ const Custom: FC<SelectProps> = ({
   valueRender,
   placeholder,
   optionRender,
+  onDropdownVisibleChange,
   onChange,
   ...restProps
 }) => {
   const [ref, setRef] = useState<HTMLDivElement | null>(null)
-  const popperOptions: Partial<PopperOptions> = useMemo(() => {
-    return {
-      placement: 'bottom-start',
-      strategy: 'fixed',
-      modifiers: [
-        {
-          name: 'computeStyles',
-          options: {
-            gpuAcceleration: false
-          }
+  const popperOptions: Partial<PopperOptions> = {
+    placement,
+    strategy: 'fixed',
+    modifiers: [
+      {
+        name: 'computeStyles',
+        options: {
+          gpuAcceleration: false
         }
-      ]
-    }
-  }, [])
+      }
+    ]
+  }
 
   const [selected, setSelected] = useState<IOptionType>()
   const [isOpen, setIsOpen] = useState(false)
-  const [triggerStyle, setTriggerStyle] = useState<CSSProperties>()
+  const [width, setWidth] = useState<number>()
 
   function handleClick(event: MouseEvent<HTMLDivElement>) {
     stopEvent(event)
@@ -101,26 +104,29 @@ const Custom: FC<SelectProps> = ({
   const memoOverlay = useMemo(() => {
     return (
       <ul
-        className="select-popup-content"
-        style={{ width: triggerStyle?.width }}
+        className={clsx('select-popup-content', popupClassName)}
+        style={{ width }}
         onClick={stopPropagation}
       >
         {options.map(option => (
           <CustomSelectOption
             key={option[valueKey] as string}
             option={option}
+            optionRender={optionRender}
             isActive={option[valueKey] === value}
             onClick={handleOptionClick}
           />
         ))}
       </ul>
     )
-  }, [options, value, triggerStyle?.width])
+  }, [options, value, width])
 
   useEffect(() => {
     if (isOpen) {
-      setTriggerStyle(ref?.getBoundingClientRect())
+      setWidth(ref?.getBoundingClientRect().width)
     }
+
+    onDropdownVisibleChange?.(isOpen)
   }, [isOpen])
 
   useEffect(() => {
@@ -132,9 +138,13 @@ const Custom: FC<SelectProps> = ({
     <>
       <div
         ref={setRef}
-        className={clsx('select-wrapper', className, {
-          'select-error': isHasError
-        })}
+        className={clsx(
+          'select-wrapper',
+          {
+            'select-error': isHasError
+          },
+          className
+        )}
         onClick={handleClick}
       >
         <button

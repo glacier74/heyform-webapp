@@ -19,7 +19,7 @@ import {
   Table,
   Tabs
 } from '../src'
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
@@ -655,9 +655,11 @@ const App = () => {
   )
 }
 
-render(
-	<StrictMode>
-		<App/>
-	</StrictMode>,
-	document.getElementById('root')
+const container = document.getElementById('root')
+const root = createRoot(container)
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
 )

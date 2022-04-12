@@ -46,9 +46,13 @@ const FormItem: FC<FormItemProps> = ({
 
         return (
           <div
-            className={clsx('form-item', className, {
-              'form-item-error': isHasError
-            })}
+            className={clsx(
+              'form-item',
+              {
+                'form-item-error': isHasError
+              },
+              className
+            )}
             data-name={name}
           >
             {label && (

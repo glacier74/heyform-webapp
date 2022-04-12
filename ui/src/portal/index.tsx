@@ -1,9 +1,10 @@
-import type { FC } from 'react'
+import type { FC, ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 
 export interface PortalProps {
   visible?: boolean
   container?: HTMLElement
+  children: ReactNode
 }
 
 const Portal: FC<PortalProps> = ({ visible, container, children }) => {

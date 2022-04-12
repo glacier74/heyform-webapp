@@ -34,9 +34,13 @@ const SwitchItem: FC<SwitchItemProps> = ({
 
         return (
           <div
-            className={clsx('form-item form-switch-item', className, {
-              'form-item-error': isHasError
-            })}
+            className={clsx(
+              'form-item form-switch-item',
+              {
+                'form-item-error': isHasError
+              },
+              className
+            )}
             data-name={name}
           >
             <div className="form-switch-item-container">

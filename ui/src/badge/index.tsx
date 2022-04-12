@@ -11,10 +11,14 @@ export interface BadgeProps extends IComponentProps {
 const Badge: FC<BadgeProps> = ({ className, type = 'gray', rounded, dot, text, ...restProps }) => {
   return (
     <span
-      className={clsx('badge', className, {
-        'badge-rounded': rounded,
-        [`badge-${type}`]: type
-      })}
+      className={clsx(
+        'badge',
+        {
+          'badge-rounded': rounded,
+          [`badge-${type}`]: type
+        },
+        className
+      )}
       {...restProps}
     >
       {dot && (

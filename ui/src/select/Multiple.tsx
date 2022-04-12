@@ -208,9 +208,13 @@ const Multiple: FC<MultipleSelectProps> = ({
     <>
       <div
         ref={setRef}
-        className={clsx('select-wrapper', className, {
-          'select-error': isHasError
-        })}
+        className={clsx(
+          'select-wrapper',
+          {
+            'select-error': isHasError
+          },
+          className
+        )}
         onClick={handleClick}
       >
         <button

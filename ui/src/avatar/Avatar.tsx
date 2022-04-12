@@ -33,10 +33,14 @@ const Avatar: FC<AvatarProps> = ({
         lineHeight: `${size}px`,
         ...style
       }}
-      className={clsx('avatar', className, {
-        'avatar-circular': circular,
-        'avatar-rounded': rounded
-      })}
+      className={clsx(
+        'avatar',
+        {
+          'avatar-circular': circular,
+          'avatar-rounded': rounded
+        },
+        className
+      )}
       {...restProps}
     >
       {src ? (

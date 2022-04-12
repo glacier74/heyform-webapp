@@ -1,5 +1,5 @@
 .modal-mask {
-  @apply fixed inset-0 z-10 bg-gray-500 bg-opacity-75 transition ease-in-out duration-100;
+  @apply fixed inset-0 z-10 bg-gray-500 bg-opacity-75 transition ease-in-out;
 }
 
 .modal-container {
@@ -7,7 +7,7 @@
 }
 
 .modal-content {
-  @apply flex flex-col relative bg-white rounded-lg shadow-xl w-full max-h-full transition ease-in-out duration-100;
+  @apply flex flex-col relative bg-white rounded-lg shadow-xl w-full max-h-full transition ease-in-out;
 
   @media (min-width: 768px) {
     max-width: 40rem;
@@ -107,8 +107,8 @@
   }
 }
 
-.modal-transition-enter-active,
-.modal-transition-exit {
+.modal-transition-entering,
+.modal-transition-preExit {
   .modal-mask,
   .modal-content {
     @apply opacity-100;
@@ -119,8 +119,9 @@
   }
 }
 
-.modal-transition-enter,
-.modal-transition-exit-active {
+.modal-transition-preEnter,
+.modal-transition-exiting,
+.modal-transition-exited {
   .modal-mask,
   .modal-content {
     @apply opacity-0;

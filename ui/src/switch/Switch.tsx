@@ -23,9 +23,13 @@ const Switch: FC<SwitchProps> = ({
 
   return (
     <button
-      className={clsx('switch', className, {
-        'switch-checked': value
-      })}
+      className={clsx(
+        'switch',
+        {
+          'switch-checked': value
+        },
+        className
+      )}
       role="switch"
       type="button"
       tabIndex={0}

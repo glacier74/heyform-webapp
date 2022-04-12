@@ -1,33 +1,26 @@
 import clsx from 'clsx'
-import type { FC, MouseEvent, ReactElement } from 'react'
-import { Children, useMemo, useState } from 'react'
+import type { FC, MouseEvent } from 'react'
+import { memo, useCallback, useContext, useMemo, useReducer } from 'react'
 import { stopPropagation } from '../utils'
-import TabsPane from './Pane'
+import { TabsStoreContext, tabsStoreReducer } from './context'
 
 export interface TabsProps extends Omit<IComponentProps, 'onChange'> {
-  defaultActiveKey?: IKeyType
+  defaultActiveName?: IKeyType
   onChange?: (key: IKeyType) => void
 }
 
 export interface TabLinkProps extends Omit<IComponentProps, 'onClick'> {
-  tabKey: string
+  name: string
   title: string
   isActive?: boolean
   disabled?: boolean
-  onClick?: (key: IKeyType) => void
+  onClick: (key: IKeyType) => void
 }
 
-const TabLink: FC<TabLinkProps> = ({
-  tabKey,
-  title,
-  isActive,
-  disabled,
-  onClick,
-  ...restProps
-}) => {
+const TabLink: FC<TabLinkProps> = ({ name, title, isActive, disabled, onClick, ...restProps }) => {
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
     stopPropagation(event)
-    onClick && onClick(tabKey)
+    onClick(name)
   }
 
   return (
@@ -43,49 +36,60 @@ const TabLink: FC<TabLinkProps> = ({
   )
 }
 
-const Tabs: FC<TabsProps> = ({ defaultActiveKey, onChange, children, className, ...restProps }) => {
-  const panes = useMemo(
-    () =>
-      Children.map(children as ReactElement[], node => ({
-        key: node.key,
-        title: node.props.title,
-        disabled: node.props.disabled,
-        leading: node.props.leading,
-        children: node.props.children
-      })),
-    []
-  )
-  const [activeKey, setActiveKey] = useState(defaultActiveKey || panes[0].key!)
+const TabLinkListComponent: FC = () => {
+  const { state, dispatch } = useContext(TabsStoreContext)
 
-  function handleClick(key: IKeyType) {
-    setActiveKey(key)
-    onChange?.(key)
+  function handleClick(name: IKeyType) {
+    dispatch({
+      type: 'setActive',
+      payload: name
+    })
+    state.onChange?.(name)
   }
 
+  const handleClickCallback = useCallback(handleClick, [])
+
   return (
-    <div className={clsx('tabs-wrapper', className)} {...restProps}>
-      <div className="tabs-navbar">
-        <div className="tabs-nav-links">
-          {panes.map(node => (
-            <TabLink
-              key={node.key}
-              tabKey={node.key as string}
-              title={node.title}
-              disabled={node.disabled}
-              isActive={node.key === activeKey}
-              onClick={handleClick}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="tabs-pane-group">
-        {panes.map(node => (
-          <TabsPane key={node.key!} isActive={node.key === activeKey}>
-            {node.children}
-          </TabsPane>
-        ))}
-      </div>
+    <div className="tabs-nav-links">
+      {state.tabs.map(tab => (
+        <TabLink
+          key={tab.name}
+          name={tab.name as string}
+          title={tab.title}
+          disabled={tab.disabled}
+          isActive={tab.name === state.activeName}
+          onClick={handleClickCallback}
+        />
+      ))}
     </div>
+  )
+}
+
+const TabLinkList = memo(TabLinkListComponent)
+
+const Tabs: FC<TabsProps> = ({
+  className,
+  defaultActiveName,
+  onChange,
+  children,
+  ...restProps
+}) => {
+  const [state, dispatch] = useReducer(tabsStoreReducer, {
+    tabs: [],
+    activeName: defaultActiveName,
+    onChange
+  })
+  const storeValue = useMemo(() => ({ state, dispatch }), [state])
+
+  return (
+    <TabsStoreContext.Provider value={storeValue}>
+      <div className={clsx('tabs-wrapper', className)} {...restProps}>
+        <div className="tabs-navbar">
+          <TabLinkList />
+        </div>
+        <div className="tabs-pane-group">{children}</div>
+      </div>
+    </TabsStoreContext.Provider>
   )
 }
 
