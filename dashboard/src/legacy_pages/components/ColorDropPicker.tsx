@@ -33,7 +33,7 @@ export const ColorDropPicker: FC<ColorPickerProps> = ({
         left: 12
       }}
       overlay={<StyledColorPicker value={value} presets={presets} onChange={handleChange} />}
-      onVisibleChange={handleVisibleChange}
+      onDropdownVisibleChange={handleVisibleChange}
     >
       <Container className={className} style={style} align="center" justify="space-between">
         <ColorValue style={{ background: value }} />

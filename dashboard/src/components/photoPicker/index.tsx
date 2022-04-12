@@ -33,10 +33,10 @@ export const PhotoPicker: FC<PhotoPickerProps> = ({
       {...restProps}
     >
       <Tabs>
-        <Tabs.Pane key="upload" title="Upload">
+        <Tabs.Pane name="upload" title="Upload">
           <QiniuUploader accept={ACCEPTED_MIMES} onChange={handleChange} />
         </Tabs.Pane>
-        <Tabs.Pane key="unsplash" title="Unsplash">
+        <Tabs.Pane name="unsplash" title="Unsplash">
           <Unsplash onChange={handleChange} />
         </Tabs.Pane>
       </Tabs>

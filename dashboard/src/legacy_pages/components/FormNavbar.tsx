@@ -48,8 +48,8 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
         </NavLink>
       </Nav>
       <Right>
-        <FormNavbarSharing form={formStore.current} />
-        <UserAvatar />
+        {/*<FormNavbarSharing form={formStore.current} />*/}
+        {/*<UserAvatar />*/}
       </Right>
     </Container>
   )

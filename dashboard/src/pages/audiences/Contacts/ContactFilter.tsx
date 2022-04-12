@@ -60,7 +60,7 @@ export const ContactFilter: FC<ContactFilterProps> = ({ value = [], onChange }) 
       overlay={Overlay}
       dismissOnClickInside={false}
       visible={visible}
-      onVisibleChange={setVisible}
+      onDropdownVisibleChange={setVisible}
     >
       <Button
         className="group text-gray-500 hover:text-gray-700"

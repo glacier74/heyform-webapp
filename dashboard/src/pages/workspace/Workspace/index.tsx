@@ -78,7 +78,7 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
               'opacity-100': visible
             })}
             overlay={Overlay}
-            onVisibleChange={setVisible}
+            onDropdownVisibleChange={setVisible}
           >
             <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900"/>
           </Dropdown>

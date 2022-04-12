@@ -1,45 +1,27 @@
-import { FieldKindEnum, FormField, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
+import type { FormField } from '@heyforms/shared-types-enums'
+import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { nanoid } from '@hpnp/utils/nanoid'
 
 export function getFieldFromKind(kind: FieldKindEnum | string): FormField {
   const field: FormField = {
     id: nanoid(12),
     kind: kind as FieldKindEnum,
-    title: ''
-  }
-
-  if (QUESTION_FIELD_KINDS.includes(field.kind)) {
-    field.validations = {
-      required: true
-    }
-    field.properties = {}
+    title: '',
+    description: '',
+    validations: {},
+    properties: {}
   }
 
   switch (kind) {
-    case FieldKindEnum.SINGLE_CHOICE:
-      field.properties!.allowMultiple = false
-      field.properties!.choiceStyle = 'list'
-      field.properties!.choices = [
-        {
-          id: nanoid(12),
-          label: ''
-        }
-      ]
-      break
-
     case FieldKindEnum.MULTIPLE_CHOICE:
-      field.properties!.allowMultiple = true
+    case FieldKindEnum.PICTURE_CHOICE:
+      field.properties!.allowMultiple = false
       field.properties!.choices = [
         {
           id: nanoid(12),
           label: ''
         }
       ]
-      break
-
-    case FieldKindEnum.PICTURE_CHOICE:
-      // Picture choice can't have any initial value cause every choice must have an image
-      field.properties!.choices = []
       break
 
     case FieldKindEnum.RATING:
@@ -65,25 +47,22 @@ export function getFieldFromKind(kind: FieldKindEnum | string): FormField {
       break
 
     case FieldKindEnum.DATE:
-      field.properties!.format = 'YYYY-MM-DD'
+      field.properties!.format = 'MM/DD/YYYY'
       break
 
     case FieldKindEnum.PHONE_NUMBER:
       field.properties!.defaultCountryCode = 'US'
       break
 
-    case FieldKindEnum.LEGAL_TERMS:
-      // @ts-ignore
-      field.body = ''
+    case FieldKindEnum.WELCOME:
+    case FieldKindEnum.STATEMENT:
+      field.properties!.buttonText = 'Next'
+      break
+
+    case FieldKindEnum.THANK_YOU:
+      field.properties!.buttonText = 'Create a heyform'
       break
   }
 
   return field
-}
-
-export function duplicateField(field: FormField): FormField {
-  return {
-    ...field,
-    id: nanoid(12)
-  }
 }

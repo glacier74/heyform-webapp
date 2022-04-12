@@ -1091,6 +1091,11 @@
   resolved "http://npm.heyooo.com/@heyforms%2fshared-types-enums/-/shared-types-enums-4.2.1.tgz#93e89be401a3139087558ad934ac90717a5829f1"
   integrity sha512-KuE/la/e3zkA42a3EDbXXAxBXEAZ9pn/VSw3WgBOsSQiLXUIU0Qvuy5vsD6PaWJooRXYhoDdGv/ux+M7IAU/Ow==
 
+"@heyforms/shared-types-enums@^4.2.2":
+  version "4.2.2"
+  resolved "http://npm.heyooo.com/@heyforms%2fshared-types-enums/-/shared-types-enums-4.2.2.tgz#cb0563840ef354dbef04952ca884dbc65db86548"
+  integrity sha512-KuapgNIRxMVkRS6/G+A0iHT5ln08PQBMIqiz32OyGErTSltgf4CXBAxTrmVNN9e82otyjYKsl3532MEY49RVoQ==
+
 "@heyui/component@^1.7.1":
   version "1.7.1"
   resolved "http://npm.heyooo.com/@heyui%2fcomponent/-/component-1.7.1.tgz#9238915b510b379e09d9d17b51f4afe187036083"
@@ -1765,10 +1770,10 @@
   resolved "http://npm.heyooo.com/@types%2fprop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react-dom@^17.0.11":
-  version "17.0.11"
-  resolved "http://npm.heyooo.com/@types%2freact-dom/-/react-dom-17.0.11.tgz#e1eadc3c5e86bdb5f7684e00274ae228e7bcc466"
-  integrity sha512-f96K3k+24RaLGVu/Y2Ng3e1EbZ8/cVJvypZWd7cy0ofCBaf2lcM46xNhycMZ2xGwbBjRql7hOlZ+e2WlJ5MH3Q==
+"@types/react-dom@^18.0.0":
+  version "18.0.0"
+  resolved "http://npm.heyooo.com/@types%2freact-dom/-/react-dom-18.0.0.tgz#b13f8d098e4b0c45df4f1ed123833143b0c71141"
+  integrity sha512-49897Y0UiCGmxZqpC8Blrf6meL8QUla6eb+BBhn69dTXlmuOlzkfr7HHY/O8J25e1lTUMs+YYxSlVDAaGHCOLg==
   dependencies:
     "@types/react" "*"
 
@@ -1803,7 +1808,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^17.0.38":
+"@types/react@*":
   version "17.0.39"
   resolved "http://npm.heyooo.com/@types%2freact/-/react-17.0.39.tgz#d0f4cde092502a6db00a1cded6e6bf2abb7633ce"
   integrity sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug==
@@ -1816,6 +1821,15 @@
   version "16.14.23"
   resolved "http://npm.heyooo.com/@types%2freact/-/react-16.14.23.tgz#37201b9f2324c5ff8fa4600dbf19079dfdffc880"
   integrity sha512-WngBZLuSkP4IAgPi0HOsGCHo6dn3CcuLQnCfC17VbA7YBgipZiZoTOhObwl/93DsFW0Y2a/ZXeonpW4DxirEJg==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@^18.0.2":
+  version "18.0.2"
+  resolved "http://npm.heyooo.com/@types%2freact/-/react-18.0.2.tgz#bc6a0572d434642ebe8b4ac0f121d18e2f2d8f7f"
+  integrity sha512-2poV9ReTwwV5ZNxkKyk7t6Vp/odeTfYI3vRjtDYWfUdEstx9mp26jzELfMBwV6gXg1irhHUnmZJH/dJW7xafcA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -6763,7 +6777,7 @@ react-textarea-autosize@^8.3.3:
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
 
-react-transition-group@^4.4.1:
+react-transition-group@^4.4.1, react-transition-group@^4.4.2:
   version "4.4.2"
   resolved "http://npm.heyooo.com/react-transition-group/-/react-transition-group-4.4.2.tgz#8b59a56f09ced7b55cbd53c36768b922890d5470"
   integrity sha512-/RNYfRAMlZwDSr6z4zNKV6xu53/e2BuaBbGhbyYIXTrmgu/bGHzmqOs7mJSJBHy9Ud+ApHx3QjrkKSp1pxvlFg==

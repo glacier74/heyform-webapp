@@ -1,5 +1,5 @@
 import { XIcon } from '@heroicons/react/outline'
-import { CSSTransition } from '@heyforms/ui'
+import { CSSTransition } from 'react-transition-group'
 import type { FC } from 'react'
 import './index.scss'
 import { Navbar } from './Navbar'

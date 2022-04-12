@@ -12,7 +12,8 @@ import { EmptyStates } from '@heyforms/ui'
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 import { Suspense } from 'react'
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client'
+import { StrictMode } from 'react'
 import './styles/index.scss'
 
 if (!getDeviceId()) {
@@ -58,4 +59,11 @@ const App = () => {
 // Register service worker
 register()
 
-render(<App />, document.getElementById('root'))
+const container = document.getElementById('root')!
+const root = createRoot(container)
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+)

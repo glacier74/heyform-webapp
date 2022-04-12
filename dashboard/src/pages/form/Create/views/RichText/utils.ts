@@ -1,6 +1,7 @@
-import { CSSProperties } from 'react'
+import { htmlUtils } from '@heyforms/answer-utils'
+import type { ClipboardEvent, CSSProperties } from 'react'
 
-export interface RichTextSelection {
+export interface RichTextTriggerSelection {
   anchorNode: Node
   startOffset?: number
   endOffset?: number
@@ -17,16 +18,16 @@ export function placeCaretAtEnd(el: HTMLElement) {
   const isTargetFocused = document.activeElement === el
 
   if (el && !isTargetFocused) {
-    const sel = window.getSelection()
+    const selection = window.getSelection()
 
-    if (sel) {
+    if (selection) {
       const range = document.createRange()
 
       range.selectNodeContents(el)
       range.collapse(false)
 
-      sel.removeAllRanges()
-      sel.addRange(range)
+      selection.removeAllRanges()
+      selection.addRange(range)
     }
 
     el.focus()
@@ -40,11 +41,42 @@ export function getCharInText(text: string, offset = 1) {
   return arr[pos]
 }
 
-export function getSelectionText() {
-  const position = getRichTextSelection()
+export function getTriggerSelection(): RichTextTriggerSelection | undefined {
+  const selection = window.getSelection()
 
-  if (position) {
-    const { anchorNode, startOffset } = position
+  if (selection) {
+    const anchorNode = selection.anchorNode
+
+    if (anchorNode != null) {
+      const range = selection.getRangeAt(0)
+      // getRangeAt may not exist, need alternative
+      const startOffset = range.cloneRange().startOffset
+
+      // Hack https://stackoverflow.com/a/62474614
+      let rect = range.getBoundingClientRect()
+
+      if (range.collapsed && rect.top === 0 && rect.left === 0) {
+        const tmpNode = document.createTextNode('\ufeff')
+        range.insertNode(tmpNode)
+
+        rect = range.getBoundingClientRect()
+        tmpNode.remove()
+      }
+
+      return {
+        anchorNode,
+        startOffset,
+        rect
+      }
+    }
+  }
+}
+
+export function getSelectionText() {
+  const triggerSelection = getTriggerSelection()
+
+  if (triggerSelection) {
+    const { anchorNode, startOffset } = triggerSelection
 
     if (anchorNode) {
       const content = anchorNode.textContent
@@ -86,42 +118,11 @@ export function getTextPrecedingAtTrigger(
   return result
 }
 
-export function getRichTextSelection(): RichTextSelection | undefined {
-  const sel = window.getSelection()
-
-  if (sel) {
-    const anchorNode = sel.anchorNode
-
-    if (anchorNode != null) {
-      const range = sel.getRangeAt(0)
-      // getRangeAt may not exist, need alternative
-      const startOffset = range.cloneRange().startOffset
-
-      // Hack https://stackoverflow.com/a/62474614
-      let rect = range.getBoundingClientRect()
-
-      if (range.collapsed && rect.top === 0 && rect.left === 0) {
-        const tmpNode = document.createTextNode('\ufeff')
-        range.insertNode(tmpNode)
-
-        rect = range.getBoundingClientRect()
-        tmpNode.remove()
-      }
-
-      return {
-        anchorNode,
-        startOffset,
-        rect
-      }
-    }
-  }
-}
-
 export function getCaretRect(selectedNodePosition: number) {
-  const sel = window.getSelection()
+  const selection = window.getSelection()
 
-  if (sel && sel.anchorNode) {
-    const range = sel.getRangeAt(selectedNodePosition)
+  if (selection && selection.anchorNode) {
+    const range = selection.getRangeAt(selectedNodePosition)
     return range.getBoundingClientRect()
   }
 }
@@ -131,24 +132,35 @@ export function insertClipboardText(event: any) {
   document.execCommand('insertText', false, clipboardData)
 }
 
+export function insertClipboardHTML(event: ClipboardEvent) {
+  const clipboardData = event.clipboardData.getData('text/html')
+  const purgedHTML = htmlUtils.purge(clipboardData, {
+    allowedBlockTags: ['div', 'p'],
+    allowedTags: ['text', 'span', 'bold', 'strong', 'code', 'b', 'i', 'u', 's'],
+    allowedAttributes: []
+  })
+
+  document.execCommand('insertHTML', false, purgedHTML)
+}
+
 export function replaceTriggerText(
-  el: HTMLElement,
-  selection: RichTextSelection,
+  target: HTMLElement,
+  triggerSelection: RichTextTriggerSelection,
   template: string
 ) {
-  const sel = window.getSelection()
+  const selection = window.getSelection()
 
-  if (sel) {
+  if (selection) {
     let range = document.createRange()
 
-    range.setStart(selection.anchorNode, selection.startOffset!)
-    range.setEnd(selection.anchorNode, selection.endOffset!)
+    range.setStart(triggerSelection.anchorNode, triggerSelection.startOffset!)
+    range.setEnd(triggerSelection.anchorNode, triggerSelection.endOffset!)
     range.deleteContents()
 
-    const el = document.createElement('div')
-    el.innerHTML = template
+    const temp = document.createElement('span')
+    temp.innerHTML = template
 
-    const nodes = Array.from(el.childNodes)
+    const nodes = Array.from(temp.childNodes)
     const lastNode = nodes[nodes.length - 1]
     const frag = document.createDocumentFragment()
 
@@ -162,10 +174,10 @@ export function replaceTriggerText(
     range = range.cloneRange()
     range.setStartAfter(lastNode)
     range.collapse(true)
-    sel.removeAllRanges()
-    sel.addRange(range)
+    selection.removeAllRanges()
+    selection.addRange(range)
 
-    el.focus()
+    target.focus()
   }
 }
 
@@ -176,9 +188,9 @@ export function pasteHtml(
   endOffset: number,
   html: string
 ) {
-  const sel = window.getSelection()
+  const selection = window.getSelection()
 
-  if (sel) {
+  if (selection) {
     let range = document.createRange()
 
     range.setStart(anchorNode, startOffset)
@@ -202,8 +214,8 @@ export function pasteHtml(
     range = range.cloneRange()
     range.setStartAfter(lastNode)
     range.collapse(true)
-    sel.removeAllRanges()
-    sel.addRange(range)
+    selection.removeAllRanges()
+    selection.addRange(range)
 
     ref.focus()
   }
@@ -231,4 +243,13 @@ export function getStyleFromRect(rect: DOMRect): CSSProperties {
   }
 
   return style
+}
+
+export function getRangeSelection(range: Range): Selection | null {
+  const sel = window.getSelection()
+
+  sel!.removeAllRanges()
+  sel!.addRange(range)
+
+  return sel
 }
