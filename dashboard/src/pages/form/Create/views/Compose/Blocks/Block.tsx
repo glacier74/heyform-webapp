@@ -1,6 +1,6 @@
 import { useStoreContext } from '@/pages/form/Create/store'
 import { RichText } from '@/pages/form/Create/views/RichText'
-import { FormField, FieldLayoutAlignEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
+import { FieldLayoutAlignEnum, FormField, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { isURL } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { FC } from 'react'
@@ -50,11 +50,11 @@ export const Block: FC<BlockProps> = ({ className, field, children, ...restProps
   // Reset RichText html
   useEffect(() => {
     if (titleRef.current) {
-      titleRef.current!.innerHTML = field.title as string
+      titleRef.current!.innerHTML = (field.title as string) || ''
     }
 
     if (descriptionRef.current) {
-      descriptionRef.current!.innerHTML = field.description as string
+      descriptionRef.current!.innerHTML = (field.description as string) || ''
     }
   }, [field.id])
 

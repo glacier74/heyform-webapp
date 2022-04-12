@@ -12,8 +12,8 @@ import type { BlockProps } from './Block'
 import { Block } from './Block'
 
 interface PictureChoiceItemProps {
-  choice: Choice
   index: number
+  choice: Choice
   enableRemove?: boolean
   onLabelChange: (id: string, label: string) => void
   onSelectImage: (id: string) => void
@@ -236,8 +236,8 @@ export const PictureChoice: FC<BlockProps> = ({ field, ...restProps }) => {
         {field.properties?.choices?.map((choice, index) => (
           <PictureChoiceItem
             key={choice.id}
-            choice={choice}
             index={index}
+            choice={choice}
             enableRemove={field.properties!.choices!.length > 1}
             onLabelChange={handleLabelChangeCallback}
             onSelectImage={handleSelectImageCallback}

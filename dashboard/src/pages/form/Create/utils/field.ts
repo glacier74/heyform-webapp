@@ -1,6 +1,21 @@
 import type { FormField } from '@heyforms/shared-types-enums'
-import { FieldKindEnum } from '@heyforms/shared-types-enums'
+import { FieldKindEnum, FORM_FIELD_KINDS } from '@heyforms/shared-types-enums'
+import { isValidArray } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
+
+export function parseFields(fields?: FormField[]): FormField[] {
+  const result = fields?.filter(f => FORM_FIELD_KINDS.includes(f.kind))
+
+  if (isValidArray(result)) {
+    return result!.map((f: any) => ({
+      ...f,
+      // Compatible with the data structure of the previous version
+      title: f.titleSchema || f.title
+    }))
+  }
+
+  return []
+}
 
 export function getFieldFromKind(kind: FieldKindEnum | string): FormField {
   const field: FormField = {

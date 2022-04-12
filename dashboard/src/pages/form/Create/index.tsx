@@ -1,13 +1,14 @@
+import { parseFields } from '@/pages/form/Create/utils'
 import { FormService } from '@/service'
 import { useAsyncEffect, useParam } from '@/utils'
-import { FORM_FIELD_KINDS } from '@heyforms/shared-types-enums'
+import type { FormModel } from '@heyforms/shared-types-enums'
 import { useMemo, useReducer } from 'react'
 import type { IState } from './store'
 import { StoreContext, storeReducer } from './store'
+import './style.scss'
 import { Compose } from './views/Compose'
 import { LeftSidebar } from './views/LeftSidebar'
 import { RightSidebar } from './views/RightSidebar'
-import './style.scss'
 
 const FormBuilder = () => (
   <div className="flex flex-1">
@@ -29,11 +30,16 @@ const FormCreate = () => {
   const store = useMemo(() => ({ state, dispatch }), [state])
 
   useAsyncEffect(async () => {
-    const result = await FormService.detail(formId)
+    const result: FormModel = await FormService.detail(formId)
+    const fields = parseFields(result.fields)
 
     dispatch({
       type: 'setFields',
-      payload: result.fields.filter(f => FORM_FIELD_KINDS.includes(f.kind))
+      payload: fields
+    })
+    dispatch({
+      type: 'selectField',
+      payload: fields[0]?.id
     })
   }, [formId])
 

@@ -1,5 +1,6 @@
 import { useStoreContext } from '@/pages/form/Create/store'
 import { XIcon } from '@heroicons/react/outline'
+import { Choice } from '@heyforms/shared-types-enums'
 import { Button, Input, KeyCode } from '@heyforms/ui'
 import { nanoid } from '@hpnp/utils/nanoid'
 import type { FC } from 'react'
@@ -8,18 +9,16 @@ import type { BlockProps } from './Block'
 import { Block } from './Block'
 
 interface MultipleChoiceItemProps {
-  id: string
   index: number
-  label?: string
+  choice: Choice
   enableRemove?: boolean
   onRemove: (id: string) => void
   onChange: (id: string, label: string) => void
 }
 
 const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
-  id,
   index,
-  label,
+  choice,
   enableRemove,
   onRemove,
   onChange
@@ -27,11 +26,11 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
   const [isFocused, setIsFocused] = useState(false)
 
   function handleRemove() {
-    onRemove(id)
+    onRemove(choice.id)
   }
 
   function handleChange(value: any) {
-    onChange(id, value)
+    onChange(choice.id, value)
   }
 
   function handleBlur() {
@@ -49,7 +48,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
           <div className="heyform-radio-hotkey">{String.fromCharCode(KeyCode.A + index)}</div>
           <div className="heyform-radio-label">
             <Input
-              value={label}
+              value={choice.label}
               placeholder={isFocused ? 'choice' : undefined}
               onBlur={handleBlur}
               onFocus={handleFocus}
@@ -136,8 +135,8 @@ export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
         {field.properties?.choices?.map((choice, index) => (
           <MultipleChoiceItem
             key={choice.id}
-            id={choice.id}
             index={index}
+            choice={choice}
             enableRemove={field.properties!.choices!.length > 1}
             onRemove={handleChoiceRemoveCallback}
             onChange={handleLabelChangeCallback}
