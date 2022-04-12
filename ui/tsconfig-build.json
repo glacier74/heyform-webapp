@@ -9,6 +9,7 @@
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "types": ["react"],
+    "skipLibCheck": true,
     "stripInternal": true,
     "removeComments": true,
     "declarationMap": true,
