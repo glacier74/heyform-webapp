@@ -28,7 +28,7 @@ const DeleteWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) =>
       await WorkspaceService.dissolveCode(workspaceId)
 
       notification.success({
-        title: `${t('workspace.settings.delWorksapce.sendEmail')} ${userStore.user.email}.`
+        title: `${t('workspace.settings.delWorkspace.sendEmail')} ${userStore.user.email}.`
       })
     }
   }, [visible])
@@ -38,20 +38,20 @@ const DeleteWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) =>
       <div className="space-y-6">
         <div>
           <h1 className="text-lg leading-6 font-medium text-gray-900">
-            {t('workspace.settings.delWorksapce.dissolve')}
+            {t('workspace.settings.delWorkspace.dissolve')}
           </h1>
           <div className="space-y-2">
             <p className="mt-1 text-sm text-gray-500">
-              {t('workspace.settings.delWorksapce.warning')}
+              {t('workspace.settings.delWorkspace.warning')}
             </p>
             <p className="mt-1 text-sm text-gray-500">
-              {t('workspace.settings.delWorksapce.warning2')}
+              {t('workspace.settings.delWorkspace.warning2')}
             </p>
           </div>
         </div>
 
         <Form.Custom
-          submitText={t('workspace.settings.delWorksapce.dissolve')}
+          submitText={t('workspace.settings.delWorkspace.dissolve')}
           submitOptions={{
             type: 'danger'
           }}
@@ -77,12 +77,12 @@ export const DeleteWorkspace: FC = () => {
   return (
     <div>
       <div className="block text-sm font-medium text-gray-700">
-        {t('workspace.settings.delWorksapce.dissolve')}
+        {t('workspace.settings.delWorkspace.dissolve')}
       </div>
-      <p className="mt-1 text-sm text-gray-500">{t('workspace.settings.delWorksapce.warning3')}</p>
+      <p className="mt-1 text-sm text-gray-500">{t('workspace.settings.delWorkspace.warning3')}</p>
       <div className="mt-3">
         <Button type="danger" onClick={handleOpen}>
-          {t('workspace.settings.delWorksapce.dissolve')}
+          {t('workspace.settings.delWorkspace.dissolve')}
         </Button>
       </div>
 

@@ -19,7 +19,6 @@ import { Mailchimp } from './views/Mailchimp'
 import { Monday } from './views/Monday'
 import { SupportPal } from './views/SupportPal'
 
-
 interface SettingsProps {
   appId?: string
   visible?: boolean
@@ -60,34 +59,34 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
             {(() => {
               switch (app?.uniqueId) {
                 case 'mailchimp':
-                  return <Mailchimp app={app} onFinish={handleClose}/>
+                  return <Mailchimp app={app} onFinish={handleClose} />
 
                 case 'googledrive':
-                  return <GoogleDrive app={app} onFinish={handleClose}/>
+                  return <GoogleDrive app={app} onFinish={handleClose} />
 
                 case 'googlesheets':
-                  return <GoogleSheets app={app} onFinish={handleClose}/>
+                  return <GoogleSheets app={app} onFinish={handleClose} />
 
                 case 'airtable':
-                  return <Airtable app={app} onFinish={handleClose}/>
+                  return <Airtable app={app} onFinish={handleClose} />
 
                 case 'hubspot':
-                  return <Hubspot app={app} onFinish={handleClose}/>
+                  return <Hubspot app={app} onFinish={handleClose} />
 
                 case 'monday':
-                  return <Monday app={app} onFinish={handleClose}/>
+                  return <Monday app={app} onFinish={handleClose} />
 
                 case 'supportpal':
-                  return <SupportPal app={app} onFinish={handleClose}/>
+                  return <SupportPal app={app} onFinish={handleClose} />
 
                 case 'github':
-                  return <Github app={app} onFinish={handleClose}/>
+                  return <Github app={app} onFinish={handleClose} />
 
                 case 'gitlab':
-                  return <Gitlab app={app} onFinish={handleClose}/>
+                  return <Gitlab app={app} onFinish={handleClose} />
 
                 case 'dropbox':
-                  return <Dropbox app={app} onFinish={handleClose}/>
+                  return <Dropbox app={app} onFinish={handleClose} />
 
                 case 'googleanalytics':
                   return (
@@ -249,7 +248,8 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
                               <a href="https://t.me/HeyForm_bot" target="_blank" rel="noreferrer">
                                 @HeyForm_bot
                               </a>{' '}
-                              {t('integration.toTele')} <code>/start@HeyForm_bot</code> {t('integration.inTele')}
+                              {t('integration.toTelegram')}
+                              <code>/start@HeyForm_bot</code> {t('integration.inTelegram')}
                             </>
                           ),
                           rules: [

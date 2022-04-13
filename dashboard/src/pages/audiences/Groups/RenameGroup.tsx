@@ -31,7 +31,9 @@ const RenameGroup: FC<RenameGroupProps> = ({ visible, group, onClose }) => {
     <Modal contentClassName="max-w-md" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('audiences.contact.renameGroup.rename')}</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('audiences.contact.renameGroup.rename')}
+          </h1>
         </div>
 
         <Form.Custom
@@ -44,15 +46,15 @@ const RenameGroup: FC<RenameGroupProps> = ({ visible, group, onClose }) => {
         >
           <Form.Item
             name="name"
-            label={t('audiences.groups.addGroup.Gname')}
+            label={t('audiences.groups.addGroup.  GroupName')}
             rules={[
               {
                 required: true,
-                message: t('audiences.groups.addGroup.groupNottempty')
+                message: t('audiences.groups.addGroup.groupNotEmpty')
               }
             ]}
           >
-            <Input />
+            <Input/>
           </Form.Item>
         </Form.Custom>
       </div>

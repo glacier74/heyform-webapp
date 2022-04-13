@@ -75,7 +75,7 @@ const CreateForm = observer(() => {
       navigateBackTitle={`${workspaceStore.project?.name} · ${workspaceStore.workspace?.name}`}
       onNavigateBack={handleNavigateBack}
     >
-      <Heading description={t('createForm.typeText')}>{t('improtForm.createForm')}</Heading>
+      <Heading description={t('createForm.typeText')}>{t('importForm.createForm')}</Heading>
 
       <SubHeading>{t('createForm.createNew')}</SubHeading>
       <Flex>

@@ -17,7 +17,7 @@ const Login = () => {
   return (
     <div>
       <div>
-        <LogoIcon className="h-8 w-auto"/>
+        <LogoIcon className="h-8 w-auto" />
         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('login.signIn')}</h2>
         <p className="mt-2 text-sm text-gray-600">
           {t('login.or')} {''}
@@ -34,12 +34,12 @@ const Login = () => {
         <div>
           <div>
             <p className="text-sm font-medium text-gray-700">{t('login.signWith')}</p>
-            <ThirdPartyLogin/>
+            <ThirdPartyLogin />
           </div>
 
           <div className="mt-6 relative">
             <div className="absolute inset-0 flex items-center" aria-hidden="true">
-              <div className="w-full border-t border-gray-300"/>
+              <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-2 bg-white text-gray-500">{t('login.continueWith')}</span>
@@ -62,16 +62,16 @@ const Login = () => {
               label={t('login.Email')}
               rules={[{ type: 'email', required: true }]}
             >
-              <Input type="email"/>
+              <Input type="email" />
             </Form.Item>
 
             <Form.Item name="password" label={t('login.Password')} rules={[{ required: true }]}>
-              <Input.Password/>
+              <Input.Password />
             </Form.Item>
 
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <Checkbox>{t('login.remberMe')}</Checkbox>
+                <Checkbox>{t('login.rememberMe')}</Checkbox>
               </div>
 
               <div className="text-sm">

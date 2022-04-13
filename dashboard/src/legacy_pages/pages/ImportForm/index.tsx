@@ -46,26 +46,26 @@ const ImportForm = observer(() => {
   }
 
   return (
-    <Container navigateBackTitle={t('improtForm.createForm')} onNavigateBack={handleNavigateBack}>
-      <Heading description={t('improtForm.importText')}>{t('improtForm.ImportForm')}</Heading>
+    <Container navigateBackTitle={t('importForm.createForm')} onNavigateBack={handleNavigateBack}>
+      <Heading description={t('importForm.importText')}>{t('importForm.ImportForm')}</Heading>
 
-      <Header>{t('improtForm.works')}</Header>
+      <Header>{t('importForm.works')}</Header>
 
       <Tips>
-        <p>{t('improtForm.Text')}</p>
-        <p>{t('improtForm.testText')}</p>
+        <p>{t('importForm.Text')}</p>
+        <p>{t('importForm.testText')}</p>
       </Tips>
 
       <Form style={{ marginTop: 32 }} onFinish={handleFinish}>
         <FormItem
           className="item"
           name="url"
-          label={t('improtForm.formURL')}
+          label={t('importForm.formURL')}
           rules={[
             {
               required: true,
               type: 'url',
-              message: t('improtForm.enterURL')
+              message: t('importForm.enterURL')
             }
           ]}
           labelClassName="label"
@@ -76,7 +76,7 @@ const ImportForm = observer(() => {
         {error && <FormError error={error} />}
         <FormItem>
           <Button type="primary" htmlType="submit" block={true} loading={loading}>
-            {t('improtForm.Detect')}
+            {t('importForm.Detect')}
           </Button>
         </FormItem>
       </Form>

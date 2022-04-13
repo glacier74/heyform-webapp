@@ -40,12 +40,10 @@ export const DeleteMember: FC<DeleteMemberProps> = ({ visible, member, onClose }
     <Modal.Confirm
       type="danger"
       visible={visible}
-      title={t('workspace.members.delconfirm')}
+      title={t('workspace.members.delConfirm')}
       description={
         <div className="space-y-2">
-          <p>
-            {t('workspace.members.delmember')}
-          </p>
+          <p>{t('workspace.members.delMember')}</p>
 
           {error && <div className="form-item-error">{error.message}</div>}
         </div>

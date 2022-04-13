@@ -25,9 +25,11 @@ const AddGroup: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal contentClassName="max-w-md" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('audiences.groups.addGroup.add')}</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('audiences.groups.addGroup.add')}
+          </h1>
           <p className="mt-1 mr-8 text-sm text-gray-500">
-           {t('audiences.groups.addGroup.explain')}
+            {t('audiences.groups.addGroup.explain')}
           </p>
         </div>
 
@@ -40,11 +42,11 @@ const AddGroup: FC<IModalProps> = ({ visible, onClose }) => {
         >
           <Form.Item
             name="name"
-            label= {t('audiences.groups.addGroup.Gname')}
+            label={t('audiences.groups.addGroup.  GroupName')}
             rules={[
               {
                 required: true,
-                message: t('audiences.groups.addGroup.groupNottempty')
+                message: t('audiences.groups.addGroup.groupNotEmpty')
               }
             ]}
           >

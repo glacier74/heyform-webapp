@@ -13,26 +13,28 @@ const WorkspaceSettings: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('workspace.settings.Wsettings')}</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('workspace.settings.WorkSettings')}
+          </h1>
           <p className="mt-1 text-sm text-gray-500">{t('workspace.settings.subTitle')}</p>
         </div>
 
         {/* Workspace avatar */}
-        <LogoUploader/>
+        <LogoUploader />
 
         {/* Workspace name and branding */}
-        <Branding/>
+        <Branding />
 
         {/* Custom domain */}
-        <CustomDomain/>
+        <CustomDomain />
 
-        <div className="mt-6 border-t border-t-blue-gray-200"/>
+        <div className="mt-6 border-t border-t-blue-gray-200" />
 
         {/* Export workspace data */}
-        <ExportData/>
+        <ExportData />
 
         {/* Delete workspace */}
-        <DeleteWorkspace/>
+        <DeleteWorkspace />
       </div>
     </Modal>
   )

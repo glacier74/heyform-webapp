@@ -54,7 +54,9 @@ const AddContact: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('audiences.contact.addContact.add')}</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('audiences.contact.addContact.add')}
+          </h1>
           <p className="mt-1 mr-8 text-sm text-gray-500">
             {t('audiences.contact.addContact.addPeople')}
           </p>
@@ -97,7 +99,7 @@ const AddContact: FC<IModalProps> = ({ visible, onClose }) => {
               }
             ]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
           <Form.Item
             name="email"
@@ -110,41 +112,45 @@ const AddContact: FC<IModalProps> = ({ visible, onClose }) => {
               }
             ]}
           >
-            <Input type="email"/>
+            <Input type="email" />
           </Form.Item>
           <Form.Item
             name="phoneNumber"
             label={
               <>
-                {t('audiences.contact.addContact.phnoeNumber')} <span
-                className="text-gray-500 text-sm">({t('audiences.contact.addContact.optional')})</span>
+                {t('audiences.contact.addContact.phoneNumber')}{' '}
+                <span className="text-gray-500 text-sm">
+                  ({t('audiences.contact.addContact.optional')})
+                </span>
               </>
             }
             rules={[
               {
                 required: false,
-                message: t('audiences.contact.addContact.phoneNotempty')
+                message: t('audiences.contact.addContact.phoneNotEmpty')
               }
             ]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
           <Form.Item
             name="jobTitle"
             label={
               <>
-                {t('audiences.contact.addContact.jobTitle')} <span
-                className="text-gray-500 text-sm">({t('audiences.contact.addContact.optional')})</span>
+                {t('audiences.contact.addContact.jobTitle')}{' '}
+                <span className="text-gray-500 text-sm">
+                  ({t('audiences.contact.addContact.optional')})
+                </span>
               </>
             }
             rules={[
               {
                 required: false,
-                message: t('audiences.contact.addContact.jobNotempty')
+                message: t('audiences.contact.addContact.jobNotEmpty')
               }
             ]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
         </Form.Custom>
       </div>

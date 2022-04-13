@@ -16,7 +16,6 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
   const [groups, setGroups] = useState<GroupModel[]>([])
   const { t } = useTranslation()
 
-
   async function handleFinish(values: any) {
     await AudienceService.updateContact({
       teamId: workspaceId,
@@ -71,7 +70,9 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('audiences.contact.editContact.detail')}</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('audiences.contact.editContact.detail')}
+          </h1>
         </div>
 
         <Form.Custom
@@ -111,11 +112,11 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
             rules={[
               {
                 required: true,
-                message: t('audiences.contact.editContact.nameNotempty')
+                message: t('audiences.contact.editContact.nameNotEmpty')
               }
             ]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
           <Form.Item
             name="email"
@@ -128,41 +129,45 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
               }
             ]}
           >
-            <Input type="email"/>
+            <Input type="email" />
           </Form.Item>
           <Form.Item
             name="phoneNumber"
             label={
               <>
-                {t('audiences.contact.addContact.phnoeNumber')}<span
-                className="text-gray-500 text-sm">({t('audiences.contact.addContact.optional')})</span>
+                {t('audiences.contact.addContact.phoneNumber')}
+                <span className="text-gray-500 text-sm">
+                  ({t('audiences.contact.addContact.optional')})
+                </span>
               </>
             }
             rules={[
               {
                 required: false,
-                message: t('audiences.contact.editContact.phoneNottempty')
+                message: t('audiences.contact.editContact.phoneNotEmpty')
               }
             ]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
           <Form.Item
             name="jobTitle"
             label={
               <>
-                {t('audiences.contact.addContact.jobTitle')} <span
-                className="text-gray-500 text-sm">({t('audiences.contact.addContact.optional')})</span>
+                {t('audiences.contact.addContact.jobTitle')}{' '}
+                <span className="text-gray-500 text-sm">
+                  ({t('audiences.contact.addContact.optional')})
+                </span>
               </>
             }
             rules={[
               {
                 required: false,
-                message: t('audiences.contact.addContact.jobNotempty')
+                message: t('audiences.contact.addContact.jobNotEmpty')
               }
             ]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
         </Form.Custom>
       </div>

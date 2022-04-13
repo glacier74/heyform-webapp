@@ -110,16 +110,16 @@ export const Summary: FC = () => {
           />
         }
       >
-        {t('analytics.AnalyOverview')}
+        {t('analytics.AnalyticsOverview')}
       </StyledSubHeading>
       <StyledFlex>
-        <SummaryItem count={summary.totalVisits} text={t('analytics.Views')}/>
-        <SummaryItem count={summary.submissionCount} text={t('analytics.Submissions')}/>
-        <SummaryItem count={`${summary.completeRate}%`} text={t('analytics.complete')}/>
-        <SummaryItem count={summary.averageDuration} text={t('analytics.Average')}/>
+        <SummaryItem count={summary.totalVisits} text={t('analytics.Views')} />
+        <SummaryItem count={summary.submissionCount} text={t('analytics.Submissions')} />
+        <SummaryItem count={`${summary.completeRate}%`} text={t('analytics.complete')} />
+        <SummaryItem count={summary.averageDuration} text={t('analytics.Average')} />
       </StyledFlex>
 
-      <Map range={mapRange}/>
+      <Map range={mapRange} />
     </Container>
   )
 }
