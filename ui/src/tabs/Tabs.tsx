@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import type { FC, MouseEvent } from 'react'
 import { memo, useCallback, useContext, useMemo, useReducer } from 'react'
 import { stopPropagation } from '../utils'
-import { TabsStoreContext, tabsStoreReducer } from './context'
+import { TabsStoreContext, TabsStoreReducer } from './context'
 
 export interface TabsProps extends Omit<IComponentProps, 'onChange'> {
   defaultActiveName?: IKeyType
@@ -74,7 +74,7 @@ const Tabs: FC<TabsProps> = ({
   children,
   ...restProps
 }) => {
-  const [state, dispatch] = useReducer(tabsStoreReducer, {
+  const [state, dispatch] = useReducer(TabsStoreReducer, {
     tabs: [],
     activeName: defaultActiveName,
     onChange

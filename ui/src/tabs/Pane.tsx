@@ -53,4 +53,4 @@ const TabsPane: FC<TabsPaneProps> = ({
   )
 }
 
-export default TabsPane
+export default TabsPane;

@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import type { FC } from 'react'
 import { useEffect, useMemo, useReducer } from 'react'
 import { KeyCode, preventDefault } from '../utils'
-import { MenusStoreContext, menusStoreReducer } from './context'
+import { MenusStoreContext, MenusStoreReducer } from './context'
 
 export interface MenusProps extends Omit<IComponentProps<HTMLDivElement>, 'onClick' | 'onSelect'> {
   keyboardInteraction?: boolean
@@ -20,7 +20,7 @@ const Menus: FC<MenusProps> = ({
   onExited,
   ...restProps
 }) => {
-  const [state, dispatch] = useReducer(menusStoreReducer, {
+  const [state, dispatch] = useReducer(MenusStoreReducer, {
     names: [],
     onClick
   })
@@ -37,7 +37,9 @@ const Menus: FC<MenusProps> = ({
 
     dispatch({
       type: 'highlight',
-      index
+      payload: {
+        index
+      }
     })
   }
 

@@ -37,7 +37,9 @@ const MenuItem: FC<MenuItemProps> = ({
     if (isValid(name) && !disabled) {
       dispatch({
         type: 'register',
-        name: name!
+        payload: {
+          name: name!
+        }
       })
     }
 
@@ -45,7 +47,9 @@ const MenuItem: FC<MenuItemProps> = ({
       if (isValid(name) && !disabled) {
         dispatch({
           type: 'unregister',
-          name: name!
+          payload: {
+            name: name!
+          }
         })
       }
     }
@@ -74,4 +78,4 @@ const MenuItem: FC<MenuItemProps> = ({
   )
 }
 
-export default MenuItem
+export default MenuItem;

@@ -1,6 +1,6 @@
 import { isEmpty } from '@hpnp/utils/helper'
-import type { StoreActions } from '../context'
-import { createStoreContext, createStoreReducer } from '../context'
+import { deepEqual } from 'fast-equals'
+import { createStoreContext, createStoreReducer } from '../store'
 import type { TabsPaneProps } from './Pane'
 
 type ITab = Pick<TabsPaneProps, 'name' | 'title' | 'disabled'>
@@ -11,13 +11,13 @@ interface IState {
   onChange?: (name: IKeyType) => void
 }
 
-const actions: StoreActions<IState> = {
+const actions: any = {
   register(state: IState, tab: ITab): IState {
     if (state.tabs.findIndex(t => t.name === tab.name) > -1) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       if (import.meta.env.DEV) {
-        console.warn(`Tabs.Pane "${tab.name}" already registered`)
+        console.warn('Tabs.Pane "${tab.name}" already registered')
       }
 
       return state
@@ -56,4 +56,6 @@ export const TabsStoreContext = createStoreContext<IState>({
   tabs: []
 })
 
-export const tabsStoreReducer = createStoreReducer<IState>(actions)
+export const TabsStoreReducer = createStoreReducer<IState>(actions, (state, newState) => {
+  return deepEqual(state, newState) ? state : newState
+})

@@ -643,10 +643,10 @@ const App = () => {
 
       <div className="mt-8 space-y-4 flex flex-col items-center justify-start sm:space-y-0 sm:flex-row sm:items-end sm:justify-around">
         <Tabs>
-          <Tabs.Pane key="preview" title="Preview" leading={<EyeIcon />}>
+          <Tabs.Pane name="preview" title="Preview" leading={<EyeIcon />}>
             Preview content
           </Tabs.Pane>
-          <Tabs.Pane key="code" title="Code" leading={<CodeIcon />}>
+          <Tabs.Pane name="code" title="Code" leading={<CodeIcon />}>
             Code content
           </Tabs.Pane>
         </Tabs>
@@ -655,10 +655,7 @@ const App = () => {
   )
 }
 
-const container = document.getElementById('root')
-const root = createRoot(container)
-
-root.render(
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
   </StrictMode>
