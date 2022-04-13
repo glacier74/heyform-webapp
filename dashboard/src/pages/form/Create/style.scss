@@ -77,6 +77,7 @@
 // Compose
 .compose {
   @apply flex-1 px-4 py-14 bg-gray-50;
+  font-family: var(--heyform-font-family);
 }
 
 .compose-container {
@@ -744,6 +745,10 @@
   &:nth-last-of-type(1) {
     @apply pb-4 border-none;
   }
+
+  .form-item:nth-last-of-type(1) {
+    @apply mb-0;
+  }
 }
 
 .right-sidebar-group-title {
@@ -828,4 +833,75 @@
 
 .right-sidebar-layout-item-active .right-sidebar-layout-container {
   @apply text-blue-600 border-blue-600;
+}
+
+.color-picker {
+  @apply px-2 py-1;
+
+  .button-trailing {
+    svg {
+      @apply w-4 h-4;
+    }
+  }
+}
+
+.color-picker-value {
+  @apply relative w-4 h-4 rounded-full;
+
+  &:after {
+    @apply absolute top-0 left-0 w-full h-full rounded-full border border-gray-900 border-opacity-20;
+    content: "";
+  }
+}
+
+.color-picker-popup {
+  @apply p-2;
+}
+
+.color-picker-saturation {
+  @apply relative h-32;
+}
+
+.color-picker-saturation-pointer {
+  @apply w-3 h-3 rounded-full cursor-move;
+  box-shadow: rgb(255, 255, 255) 0 0 0 3px, rgba(0, 0, 0, 0.3) 0 0 1px 1px inset, rgba(0, 0, 0, 0.4) 0 0 1px 2px;
+  transform: translate(-0.375rem, -0.375rem);
+}
+
+.color-picker-hue {
+  @apply relative mt-2 h-2;
+
+  .hue-horizontal {
+    @apply rounded;
+  }
+}
+
+.color-picker-hue-pointer {
+  @apply w-2 h-3 bg-white border border-gray-200 cursor-move;
+  transform: translate(-0.25rem, -0.125rem);
+}
+
+.color-picker-editable {
+  @apply flex items-center mt-2 rounded overflow-hidden;
+}
+
+.color-picker-preview {
+  @apply m-0 rounded rounded-r-none cursor-default;
+  width: 1.875rem;
+  height: 1.875rem;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px inset;
+}
+
+.color-picker-editable-input {
+  @apply flex-1;
+
+  & > div,
+  input {
+    @apply w-full;
+  }
+
+  input {
+    @apply py-1 px-2 text-sm border-gray-200 rounded rounded-l-none shadow focus:border-gray-300;
+    border-width: 1px 1px 1px 0;
+  }
 }

@@ -32,6 +32,7 @@ const ImageItem: FC<ImageItemProps> = ({ image, onChange }) => {
         <a
           className="absolute inset-x-0 bottom-0 px-2 py-1.5 text-xs text-white underline opacity-0 bg-gradient-to-t from-gray-800 group-hover:opacity-100 transition-opacity duration-100 ease-in-out"
           href={image.authorUrl}
+          target="_blank"
         >
           {image.author}
         </a>

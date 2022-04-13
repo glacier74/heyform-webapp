@@ -5,7 +5,7 @@ import { useStore } from '@/store'
 import { useAsyncEffect, useParam } from '@/utils'
 import { htmlUtils } from '@heyforms/answer-utils'
 import type { FormModel } from '@heyforms/shared-types-enums'
-import { message } from '@heyui/component'
+import { notification } from '@heyforms/ui'
 import { useEffect, useMemo, useReducer } from 'react'
 import type { IState } from './store'
 import { StoreContext, storeReducer } from './store'
@@ -61,7 +61,10 @@ const FormCreate = () => {
     try {
       await FormService.updateFormSchemas(formId, getUpdates())
     } catch (err: any) {
-      message.error(err.message)
+      notification.error({
+        message: 'Error',
+        title: err.message
+      })
     }
   }
 

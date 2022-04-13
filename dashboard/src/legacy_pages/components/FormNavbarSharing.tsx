@@ -101,6 +101,10 @@ const Container = styled(Flex)`
 const PreviewButton = styled(Button)`
   border-width: 1px;
 
+  .button-leading {
+    color: #111827;
+  }
+
   &:not(:disabled):hover {
     opacity: 0.8;
   }

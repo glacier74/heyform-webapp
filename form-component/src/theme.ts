@@ -1,8 +1,8 @@
 import type { FormThemeV3 } from '@heyforms/shared-types-enums'
 import { alpha } from '@hpnp/utils'
-import { isNil } from '@hpnp/utils/helper'
+import { isValid } from '@hpnp/utils/helper'
 
-const DEFAULT_THEME: FormThemeV3 = {
+export const DEFAULT_THEME: FormThemeV3 = {
   fontFamily: 'Public Sans',
   questionTextColor: '#000',
   answerTextColor: '#000',
@@ -11,8 +11,56 @@ const DEFAULT_THEME: FormThemeV3 = {
   backgroundColor: '#fff'
 }
 
+export const GOOGLE_FONTS = [
+  'Public Sans',
+  'Inter',
+  'Montserrat',
+  'Alegreya',
+  'B612',
+  'Muli',
+  'Titillium Web',
+  'Varela',
+  'Vollkorn',
+  'IBM Plex Mono',
+  'Crimson Text',
+  'Cairo',
+  'BioRhyme',
+  'Karla',
+  'Lora',
+  'Frank Ruhl Libre',
+  'Playfair Display',
+  'Archivo',
+  'Spectral',
+  'Fjalla One',
+  'Roboto',
+  'Rubik',
+  'Source Sans Pro',
+  'Cardo',
+  'Cormorant',
+  'Work Sans',
+  'Rakkas',
+  'Concert One',
+  'Yatra One',
+  'Arvo',
+  'Lato',
+  'Abril Fatface',
+  'Ubuntu',
+  'PT Serif',
+  'Old Standard TT',
+  'Oswald',
+  'Open Sans',
+  'Courier Prime',
+  'Poppins',
+  'Josefin Sans',
+  'Fira Sans',
+  'Nunito',
+  'Exo 2',
+  'Merriweather',
+  'Noto Sans'
+]
+
 export function getWebFontURL(fontName?: string) {
-  if (fontName) {
+  if (fontName && GOOGLE_FONTS.includes(fontName)) {
     return `https://fonts.googleapis.com/css2?family=${fontName.replace(/\s+/g, '+')}&display=swap`
   }
 }
@@ -24,12 +72,18 @@ export function loadWebFont(fontName?: string) {
     return
   }
 
-  const link = document.createElement('link')
+  let link = document.getElementById('heyform-webfont')
 
-  link.setAttribute('rel', 'stylesheet')
+  if (!link) {
+    link = document.createElement('link')
+
+    link.id = 'heyform-webfont'
+    link.setAttribute('rel', 'stylesheet')
+
+    document.head.appendChild(link)
+  }
+
   link.setAttribute('href', href)
-
-  document.head.appendChild(link)
 }
 
 export function getTheme(theme?: FormThemeV3): FormThemeV3 {
@@ -39,8 +93,17 @@ export function getTheme(theme?: FormThemeV3): FormThemeV3 {
   }
 }
 
-export function getThemeStyles(theme: FormThemeV3): string {
-  return `
+export function insertThemeStyle(theme: FormThemeV3) {
+  let style = document.getElementById('heyform-theme')
+
+  if (!style) {
+    style = document.createElement('style')
+    style.id = 'heyform-theme'
+
+    document.head.appendChild(style)
+  }
+
+  style.innerHTML = `
   html {
     --heyform-font-family: ${theme.fontFamily};
     --heyform-question-color: ${theme.questionTextColor};
@@ -67,12 +130,12 @@ export function getThemeStyles(theme: FormThemeV3): string {
     background-position: top;
     z-index: 2;
     background-color: var(--heyform-background-color);
-    ${theme.backgroundImage && `background-image: url(${theme.backgroundImage});`}
+    ${theme.backgroundImage ? `background-image: url(${theme.backgroundImage});` : ''}
   }
   
   ${
-    !isNil(theme.backgroundBrightness) &&
-    `
+    isValid(theme.backgroundBrightness)
+      ? `
     .heyform-theme-background:before {
       pointer-events: none;
       position: absolute;
@@ -85,6 +148,7 @@ export function getThemeStyles(theme: FormThemeV3): string {
       opacity: ${Math.abs(theme.backgroundBrightness! / 100)};
       background: ${theme.backgroundBrightness! > 0 ? '#fff' : '#000'};
     }`
+      : ''
   }
   `
 }

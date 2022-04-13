@@ -1,7 +1,6 @@
 import type { FormModel } from '@/legacy_pages/models'
+import { getTheme } from '@heyforms/form-component'
 import { makeAutoObservable } from 'mobx'
-
-const allowedBlockTags = ['div', 'p', 'br']
 
 export class FormStore {
   activeFormId?: string
@@ -10,6 +9,19 @@ export class FormStore {
 
   constructor() {
     makeAutoObservable(this)
+  }
+
+  get theme() {
+    return getTheme(this.current?.themeSettings?.theme)
+  }
+
+  updateTheme(updates: IMapType) {
+    this.current!.themeSettings = {
+      theme: {
+        ...this.theme,
+        ...updates
+      }
+    }
   }
 
   setCurrent(form?: FormModel) {
@@ -28,11 +40,9 @@ export class FormStore {
   }
 
   updateSettings(values: IMapType) {
-    if (this.current?.settings) {
-      this.current!.settings = {
-        ...this.current!.settings,
-        ...values
-      }
+    this.current!.settings = {
+      ...this.current!.settings,
+      ...values
     }
   }
 }
