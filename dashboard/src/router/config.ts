@@ -4,7 +4,6 @@ import { lazy } from 'react'
 
 export interface CustomRouteConfig {
   path: string
-  exact?: boolean
   title?: string
   loginRequired?: boolean
   layout: any
@@ -91,7 +90,6 @@ const config: CustomRouteConfig[] = [
   {
     path: '/verify-email',
     loginRequired: true,
-    exact: true,
     layout: AuthLayout,
     component: VerifyEmail,
     title: 'Verify email address'
@@ -101,7 +99,6 @@ const config: CustomRouteConfig[] = [
   {
     path: '/',
     loginRequired: true,
-    exact: true,
     layout: AuthGuard,
     component: Home
   },
@@ -110,7 +107,6 @@ const config: CustomRouteConfig[] = [
   {
     path: '/setup',
     loginRequired: true,
-    exact: true,
     layout: AuthLayout,
     component: Setup,
     title: 'Setup'
@@ -120,14 +116,12 @@ const config: CustomRouteConfig[] = [
   {
     path: '/workspace/:workspaceId',
     loginRequired: true,
-    exact: true,
     layout: WorkspaceLayout,
     component: Workspace
   },
   {
     path: '/workspace/:workspaceId/member',
     loginRequired: true,
-    exact: true,
     layout: WorkspaceLayout,
     component: Members
   },
@@ -135,7 +129,6 @@ const config: CustomRouteConfig[] = [
   /* Join workspace with invite code */
   {
     path: '/workspace/:workspaceId/invitation/:inviteCode',
-    exact: true,
     loginRequired: true,
     layout: AuthLayout,
     component: JoinWorkspace,
@@ -146,14 +139,12 @@ const config: CustomRouteConfig[] = [
   {
     path: '/workspace/:workspaceId/audience',
     loginRequired: true,
-    exact: true,
     layout: WorkspaceLayout,
     component: Contacts
   },
   {
     path: '/workspace/:workspaceId/audience/group',
     loginRequired: true,
-    exact: true,
     layout: WorkspaceLayout,
     component: Groups
   },
@@ -162,14 +153,12 @@ const config: CustomRouteConfig[] = [
   {
     path: '/workspace/:workspaceId/billing',
     loginRequired: true,
-    exact: true,
     layout: WorkspaceLayout,
     component: Subscription
   },
   {
     path: '/workspace/:workspaceId/billing/invoice',
     loginRequired: true,
-    exact: true,
     layout: WorkspaceLayout,
     component: Invoices
   },
@@ -178,14 +167,12 @@ const config: CustomRouteConfig[] = [
   {
     path: '/workspace/:workspaceId/project/:projectId',
     loginRequired: true,
-    exact: true,
     layout: WorkspaceLayout,
     component: Project
   },
   {
     path: '/workspace/:workspaceId/project/:projectId/trash',
     loginRequired: true,
-    exact: true,
     layout: WorkspaceLayout,
     component: Trash
   },
@@ -193,20 +180,17 @@ const config: CustomRouteConfig[] = [
   /* Form */
   {
     path: '/workspace/:workspaceId/project/:projectId/form/import',
-    exact: true,
     layout: WorkspaceGuardLayout,
     component: ImportForm
   },
   {
     path: '/workspace/:workspaceId/project/:projectId/templates',
-    exact: true,
     layout: WorkspaceGuardLayout,
     component: Templates,
     title: 'Templates'
   },
   {
     path: '/workspace/:workspaceId/project/:projectId/template/:templateId',
-    exact: true,
     layout: WorkspaceGuardLayout,
     component: TemplatePreview
   },
@@ -214,49 +198,41 @@ const config: CustomRouteConfig[] = [
   /* Compose */
   {
     path: '/workspace/:workspaceId/project/:projectId/form/:formId/create',
-    exact: true,
     layout: FormLayout,
     component: FormBuilder
   },
   {
     path: '/workspace/:workspaceId/project/:projectId/form/:formId/connect',
-    exact: true,
     layout: FormLayout,
     component: Integration
   },
   {
     path: '/workspace/:workspaceId/project/:projectId/form/:formId/share',
-    exact: true,
     layout: FormLayout,
     component: Share
   },
   {
     path: '/workspace/:workspaceId/project/:projectId/form/:formId/results',
-    exact: true,
     layout: FormLayout,
     component: Analytics
   },
   {
     path: '/workspace/:workspaceId/project/:projectId/form/:formId/results/report',
-    exact: true,
     layout: FormLayout,
     component: Report
   },
   {
     path: '/workspace/:workspaceId/project/:projectId/form/:formId/results/submissions',
-    exact: true,
     layout: FormLayout,
     component: Submissions
   },
   {
     path: '/workspace/:workspaceId/project/:projectId/form/:formId/results/submissions/:category',
-    exact: true,
     layout: FormLayout,
     component: Submissions
   },
   {
     path: '/workspace/:workspaceId/project/:projectId/form/:formId/settings',
-    exact: true,
     layout: FormLayout,
     component: FormSettings
   }

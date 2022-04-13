@@ -2,7 +2,7 @@ import { TemplateModal } from '@/legacy_pages/models'
 import { getResizeImageUrl } from '@/legacy_pages/utils'
 import { FC } from 'react'
 import LazyLoad from 'react-lazyload'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 interface TemplateItemProps {
@@ -12,7 +12,7 @@ interface TemplateItemProps {
 }
 
 export const TemplateItem: FC<TemplateItemProps> = ({ workspaceId, projectId, template }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const imageUrl = getResizeImageUrl(
     template.themeSettings?.theme?.backgroundImage!,
@@ -21,7 +21,7 @@ export const TemplateItem: FC<TemplateItemProps> = ({ workspaceId, projectId, te
   )
 
   function handlePreview() {
-    history.push(`/workspace/${workspaceId}/project/${projectId}/template/${template.id}`)
+    navigate(`/workspace/${workspaceId}/project/${projectId}/template/${template.id}`)
   }
 
   return (

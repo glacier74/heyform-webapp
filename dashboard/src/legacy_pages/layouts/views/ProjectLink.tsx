@@ -1,8 +1,8 @@
 import { FormError } from '@/legacy_pages/components'
 import { DangerIcon } from '@/legacy_pages/components/DangerIcon'
 import { ProjectModel } from '@/legacy_pages/models'
-import { ProjectService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { ProjectService } from '@/service'
 import {
   Button,
   ComponentProps,
@@ -18,7 +18,7 @@ import { MoreFillIcon } from '@heyui/icon'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 interface ProjectLinkProps extends ComponentProps {
@@ -33,7 +33,7 @@ export const ProjectLink: FC<ProjectLinkProps> = ({
   project,
   ...restProps
 }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const workspaceStore = useStore('workspaceStore')
   const appStore = useStore('appStore')
@@ -72,7 +72,9 @@ export const ProjectLink: FC<ProjectLinkProps> = ({
     try {
       await ProjectService.delete(project.id)
       workspaceStore.deleteProject(project.id)
-      history.replace(`/workspace/${project.teamId}`)
+      navigate(`/workspace/${project.teamId}`, {
+        replace: true
+      })
     } catch (err: any) {
       setLoading(false)
       setError(err)

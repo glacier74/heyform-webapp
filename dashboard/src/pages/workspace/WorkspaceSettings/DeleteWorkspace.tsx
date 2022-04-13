@@ -5,22 +5,22 @@ import { Button, Form, Input, Modal, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 
 const DeleteWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) => {
   const { workspaceId } = useParam()
-  const history = useHistory()
+  const navigate = useNavigate()
   const userStore = useStore('userStore')
   const workspaceStore = useStore('workspaceStore')
   const { t } = useTranslation()
-
 
   async function handleFinish(values: IMapType) {
     await WorkspaceService.dissolve(workspaceId, values.code)
     workspaceStore.deleteWorkspace(workspaceId)
 
-    history.replace('/')
+    navigate('/', {
+      replace: true
+    })
   }
 
   useAsyncEffect(async () => {
@@ -37,8 +37,9 @@ const DeleteWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) =>
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1
-            className="text-lg leading-6 font-medium text-gray-900">{t('workspace.settings.delWorksapce.dissolve')}</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('workspace.settings.delWorksapce.dissolve')}
+          </h1>
           <div className="space-y-2">
             <p className="mt-1 text-sm text-gray-500">
               {t('workspace.settings.delWorksapce.warning')}
@@ -56,8 +57,12 @@ const DeleteWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) =>
           }}
           request={handleFinish}
         >
-          <Form.Item name="code" label={t('project.deleteProject.code')} rules={[{ required: true }]}>
-            <Input/>
+          <Form.Item
+            name="code"
+            label={t('project.deleteProject.code')}
+            rules={[{ required: true }]}
+          >
+            <Input />
           </Form.Item>
         </Form.Custom>
       </div>
@@ -71,17 +76,17 @@ export const DeleteWorkspace: FC = () => {
 
   return (
     <div>
-      <div className="block text-sm font-medium text-gray-700">{t('workspace.settings.delWorksapce.dissolve')}</div>
-      <p className="mt-1 text-sm text-gray-500">
-        {t('workspace.settings.delWorksapce.warning3')}
-      </p>
+      <div className="block text-sm font-medium text-gray-700">
+        {t('workspace.settings.delWorksapce.dissolve')}
+      </div>
+      <p className="mt-1 text-sm text-gray-500">{t('workspace.settings.delWorksapce.warning3')}</p>
       <div className="mt-3">
         <Button type="danger" onClick={handleOpen}>
           {t('workspace.settings.delWorksapce.dissolve')}
         </Button>
       </div>
 
-      <DeleteWorkspaceModal visible={visible} onClose={handleClose}/>
+      <DeleteWorkspaceModal visible={visible} onClose={handleClose} />
     </div>
   )
 }

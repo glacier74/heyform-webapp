@@ -14,7 +14,7 @@ import { parseNumber } from '@hpnp/utils/parse'
 import throttle from 'lodash/throttle'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { CategorySelect } from './views/CategorySelect'
 import { ExportLink } from './views/ExportLink'
@@ -22,7 +22,7 @@ import { Sheet } from './views/Sheet'
 import { ColumnOptions, SheetColumn } from './views/Sheet/types'
 
 const Submissions: FC = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { workspaceId, projectId, formId, category: rawCategory } = useParam()
   const category: any = isValid(rawCategory) ? rawCategory : SubmissionCategoryEnum.INBOX
   const { page: rawPage } = useQuery()
@@ -154,7 +154,7 @@ const Submissions: FC = () => {
   }
 
   function handleCategoryChange(category: any) {
-    history.push(
+    navigate(
       `/workspace/${workspaceId}/project/${projectId}/form/${formId}/results/submissions/${category}`
     )
   }
@@ -166,7 +166,7 @@ const Submissions: FC = () => {
         page
       }
     )
-    history.push(url)
+    navigate(url)
   }
 
   function handleDeselectedRows() {
@@ -209,9 +209,9 @@ const Submissions: FC = () => {
       <Container>
         <Toolbar align="center" justify="space-between">
           <ToolbarLeft align="center">
-            <CategorySelect category={category} onChange={handleCategoryChange}/>
+            <CategorySelect category={category} onChange={handleCategoryChange} />
             {/*<CustomFields />*/}
-            <ExportLink/>
+            <ExportLink />
           </ToolbarLeft>
           <PaginationBar
             total={total}
@@ -225,10 +225,7 @@ const Submissions: FC = () => {
           fetch={fetchData}
           deps={[category, page]}
           emptyNode={
-            <EmptyDataView
-              icon={<BlankSubmissionIcon/>}
-              text={t('report.noSubmission')}
-            />
+            <EmptyDataView icon={<BlankSubmissionIcon />} text={t('report.noSubmission')} />
           }
         >
           <Sheet

@@ -9,11 +9,11 @@ import { Button, message } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled, { ThemeProvider } from 'styled-components'
 
 const TemplatePreview = observer(() => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const { workspaceId, projectId, templateId } = useParam()
   const [loading, setLoading] = useState(false)
@@ -37,7 +37,7 @@ const TemplatePreview = observer(() => {
     try {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const result = await TemplateService.useTemplate(projectId, template!.id)
-      history.push(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
+      navigate(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
     } catch (err: any) {
       message.error('Failed to use this template')
       setLoading(false)
@@ -45,11 +45,11 @@ const TemplatePreview = observer(() => {
   }
 
   function handleFinish() {
-    message.warn('Can\'t submit form in Preview mode')
+    message.warn("Can't submit form in Preview mode")
   }
 
   function handleNavigateBack() {
-    history.goBack()
+    navigate.goBack()
   }
 
   return (

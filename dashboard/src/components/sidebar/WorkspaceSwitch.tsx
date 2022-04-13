@@ -7,7 +7,7 @@ import { Avatar, Dropdown, Menus } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { WorkspaceIcon } from '../icons'
 
 interface WorkspaceItemProps {
@@ -55,12 +55,12 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
 }
 
 const WorkspaceList: FC<WorkspaceListProps> = observer(({ onClose }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const workspaceStore = useStore('workspaceStore')
 
   function handleClick(workspace: WorkspaceModel) {
     onClose()
-    history.push(`/workspace/${workspace.id}`)
+    navigate(`/workspace/${workspace.id}`)
   }
 
   return (

@@ -5,13 +5,13 @@ import { useParam } from '@/utils'
 import { Form, Input, Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AssignMember } from './AssignMember'
 
 const CreateProject: FC<IModalProps> = ({ visible, onClose }) => {
   const { t } = useTranslation()
   const { workspaceId } = useParam()
-  const history = useHistory()
+  const navigate = useNavigate()
   const workspaceStore = useStore('workspaceStore')
 
   async function handleFinish(values: ProjectModel) {
@@ -22,17 +22,17 @@ const CreateProject: FC<IModalProps> = ({ visible, onClose }) => {
       id: result
     })
 
-    history.push(`/workspace/${workspaceId}/project/${result}`)
+    navigate(`/workspace/${workspaceId}/project/${result}`)
   }
 
   return (
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('workspace.workSpace.createP')}</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            {t('workspace.workSpace.workExplain')}
-          </p>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('workspace.workSpace.createP')}
+          </h1>
+          <p className="mt-1 text-sm text-gray-500">{t('workspace.workSpace.workExplain')}</p>
         </div>
 
         <Form.Custom
@@ -43,10 +43,10 @@ const CreateProject: FC<IModalProps> = ({ visible, onClose }) => {
           request={handleFinish}
         >
           <Form.Item name="name" label={t('project.projectName')} rules={[{ required: true }]}>
-            <Input/>
+            <Input />
           </Form.Item>
           <Form.Item name="members" label={t('workspace.workSpace.assign')}>
-            <AssignMember/>
+            <AssignMember />
           </Form.Item>
         </Form.Custom>
       </div>

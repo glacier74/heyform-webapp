@@ -65,7 +65,7 @@
     "react-dom": "^18.0.0",
     "react-i18next": "^11.15.4",
     "react-lazyload": "^3.2.0",
-    "react-router-dom": "^5.3.0",
+    "react-router-dom": "^6.3.0",
     "react-sortablejs": "^6.1.1",
     "react-transition-group": "^4.4.2",
     "sortablejs": "^1.14.0",

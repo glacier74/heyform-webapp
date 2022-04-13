@@ -1,18 +1,18 @@
 import { Request } from '@/legacy_pages/components'
 import { TemplateModal } from '@/legacy_pages/models'
-import { TemplateService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { TemplateService } from '@/service'
+import { useParam } from '@/utils'
 import { FormRender } from '@heyforms/form-component'
 import { Button, Flex, message } from '@heyui/component'
 import { ArrowLeftSIcon } from '@heyui/icon'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const TemplateDetail = observer(() => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const workspaceStore = useStore('workspaceStore')
   const { templateId } = useParam()
   const [loading, setLoading] = useState(false)
@@ -36,7 +36,7 @@ const TemplateDetail = observer(() => {
       const projectId = workspaceStore.activeProjectId!
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const result = await TemplateService.useTemplate(projectId, template!.id)
-      history.push(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
+      navigate(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
     } catch (err: any) {
       message.error('Failed to use this template')
       setLoading(false)
@@ -48,7 +48,7 @@ const TemplateDetail = observer(() => {
   }
 
   function handleExitPreview() {
-    history.goBack()
+    navigate.goBack()
   }
 
   return (

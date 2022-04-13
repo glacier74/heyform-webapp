@@ -1,24 +1,22 @@
 import { useStore } from '@/legacy_pages/utils'
+import { useParam } from '@/utils'
 import { Button, ComponentProps, Flex } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { FormNavbarSharing } from './FormNavbarSharing'
 import { ArrowLeftIcon } from './Icons'
-import { UserAvatar } from './UserAvatar'
 
 export const FormNavbar: FC<ComponentProps> = observer(() => {
   const { t } = useTranslation()
   const { workspaceId, projectId, formId } = useParam()
   const workspaceStore = useStore('workspaceStore')
   const formStore = useStore('formStore')
-  const history = useHistory()
+  const navigate = useNavigate()
 
   function toProject() {
-    history.push(`/workspace/${workspaceId}/project/${projectId}`)
+    navigate(`/workspace/${workspaceId}/project/${projectId}`)
   }
 
   return (

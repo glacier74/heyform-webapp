@@ -2,11 +2,11 @@ import { clearAuthState, useStore } from '@/legacy_pages/utils'
 import { Avatar, ComponentProps, Dropdown, Menu } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const UserAvatar: FC<ComponentProps> = observer(({ className, style }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const userStore = useStore('userStore')
   const appStore = useStore('appStore')
 

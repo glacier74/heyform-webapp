@@ -7,8 +7,7 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 
 interface MemberItemProps {
   member: UserModel
@@ -16,12 +15,11 @@ interface MemberItemProps {
 }
 
 export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
   const [loading, setLoading] = useState(false)
   const { t } = useTranslation()
-
 
   async function handleRemove() {
     try {
@@ -56,7 +54,9 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
         title: t('project.ProjectMembers.leftP')
       })
 
-      history.replace(`/workspace/${workspaceId}`)
+      navigate(`/workspace/${workspaceId}`, {
+        replace: true
+      })
     } catch (err: any) {
       notification.error({
         title: t('project.ProjectMembers.leaveP'),
@@ -83,13 +83,15 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
 
   return (
     <div className="group flex items-center py-2.5 text-sm text-gray-700">
-      <Avatar src={member.avatar} size={40} retainLength={2} rounded circular/>
+      <Avatar src={member.avatar} size={40} retainLength={2} rounded circular />
 
       <div className="ml-4 flex-auto">
         <p className="text-sm font-medium text-gray-700 truncate">
           {member.name}
           {member.isSelf && t('project.ProjectMembers.you')}
-          {member.isOwner && <Badge className="ml-1" type="blue" text={t('workspace.members.index.owner')}/>}
+          {member.isOwner && (
+            <Badge className="ml-1" type="blue" text={t('workspace.members.index.owner')} />
+          )}
         </p>
         <p className="text-sm text-gray-500 truncate">{member.email}</p>
       </div>
@@ -102,7 +104,11 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
           disabled={loading || disabled}
           onClick={handleClick}
         >
-          {member.isAssigned ? (member.isSelf ? t('project.ProjectMembers.leave') : t('project.ProjectMembers.remove')) : t('project.ProjectMembers.assign')}
+          {member.isAssigned
+            ? member.isSelf
+              ? t('project.ProjectMembers.leave')
+              : t('project.ProjectMembers.remove')
+            : t('project.ProjectMembers.assign')}
         </Button>
       )}
     </div>
@@ -133,27 +139,31 @@ export const ProjectMembers: FC<IModalProps> = observer(({ visible, onClose }) =
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('project.ProjectMembers.members')}</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            {t('project.ProjectMembers.explain')}
-          </p>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('project.ProjectMembers.members')}
+          </h1>
+          <p className="mt-1 text-sm text-gray-500">{t('project.ProjectMembers.explain')}</p>
         </div>
 
         <div>
-          <div className="block text-sm font-medium text-gray-700">{t('project.ProjectMembers.assigned')}</div>
+          <div className="block text-sm font-medium text-gray-700">
+            {t('project.ProjectMembers.assigned')}
+          </div>
           <div>
             {assignedMembers.map(row => (
-              <MemberItem key={row.id} member={row}/>
+              <MemberItem key={row.id} member={row} />
             ))}
           </div>
         </div>
 
         {unassignedMembers.length > 0 && (
           <div className="opacity-70">
-            <div className="block text-sm font-medium text-gray-700">{t('project.ProjectMembers.notAssigned')}</div>
+            <div className="block text-sm font-medium text-gray-700">
+              {t('project.ProjectMembers.notAssigned')}
+            </div>
             <div>
               {unassignedMembers.map(row => (
-                <MemberItem key={row.id} member={row}/>
+                <MemberItem key={row.id} member={row} />
               ))}
             </div>
           </div>

@@ -1,17 +1,17 @@
+import { useParam } from '@/utils'
 import { Button } from '@heyui/component'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const MoreTemplates: FC = () => {
   const { t } = useTranslation()
   const { workspaceId, projectId } = useParam()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   function handlePreview() {
-    history.push(`/workspace/${workspaceId}/project/${projectId}/templates`)
+    navigate(`/workspace/${workspaceId}/project/${projectId}/templates`)
   }
 
   return (

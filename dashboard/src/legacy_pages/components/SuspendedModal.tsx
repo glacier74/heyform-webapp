@@ -10,16 +10,18 @@ import { useParam } from '@/utils'
 import { Button, Modal } from '@heyui/component'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const SuspendedModal: FC = () => {
   const { t } = useTranslation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const { workspaceId, projectId } = useParam()
 
   function handleClose() {
-    history.replace(`/workspace/${workspaceId}/project/${projectId}`)
+    navigate(`/workspace/${workspaceId}/project/${projectId}`, {
+      replace: true
+    })
   }
 
   function handleClick() {
@@ -28,7 +30,7 @@ export const SuspendedModal: FC = () => {
 
   return (
     <StyledModal
-      icon={<DangerIcon/>}
+      icon={<DangerIcon />}
       title={t('The form is suspended')}
       description="If you have any questions about suspend, please click the button below to contact us."
       visible={true}

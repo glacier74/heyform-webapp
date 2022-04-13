@@ -9,20 +9,20 @@ import {
 import { PlanPermissionBadge, UpgradePlan } from '@/legacy_pages/components/UpgradePlan'
 import { PlanGradeEnum } from '@/legacy_pages/models'
 import { useStore } from '@/legacy_pages/utils'
+import { useParam } from '@/utils'
 import { Flex } from '@heyui/component'
 import { AddIcon } from '@heyui/icon'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { ProjectLink } from './ProjectLink'
 import { SwitchWorkspace } from './SwitchWorkspace'
 
 export const WorkspaceSidebar: FC = observer(() => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const params = useParam()
   const workspaceStore = useStore('workspaceStore')
@@ -31,7 +31,7 @@ export const WorkspaceSidebar: FC = observer(() => {
     : params.workspaceId
 
   function handleCreateProject() {
-    history.push(`/workspace/${workspaceId}/project/create`)
+    navigate(`/workspace/${workspaceId}/project/create`)
   }
 
   return (

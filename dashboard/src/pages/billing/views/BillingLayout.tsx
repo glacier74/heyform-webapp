@@ -8,17 +8,16 @@ export const BillingLayout: FC<IComponentProps> = ({ children }) => {
   const { workspaceId } = useParam()
   const { t } = useTranslation()
 
-
   return (
     <div>
-      <Heading title={t('billing.Billing')} description={t('billing.invoices')}/>
+      <Heading title={t('billing.Billing')} description={t('billing.invoices')} />
 
       <div className="py-4">
         <Navbar className="mt-4">
-          <NavLink to={`/workspace/${workspaceId}/billing`} exact>
-            {t('billing.Subscription')}
+          <NavLink to={`/workspace/${workspaceId}/billing`}>{t('billing.Subscription')}</NavLink>
+          <NavLink to={`/workspace/${workspaceId}/billing/invoice`}>
+            {t('billing.Invoices')}
           </NavLink>
-          <NavLink to={`/workspace/${workspaceId}/billing/invoice`}>{t('billing.Invoices')}</NavLink>
         </Navbar>
 
         <div className="mt-8">{children}</div>

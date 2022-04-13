@@ -10,14 +10,16 @@ export const AudienceLayout: FC<IComponentProps> = ({ children }) => {
 
   return (
     <div>
-      <Heading title={t('audiences.Title')} description={t('audiences.subText')}/>
+      <Heading title={t('audiences.Title')} description={t('audiences.subText')} />
 
       <div className="py-4">
         <Navbar className="mt-4">
-          <NavLink to={`/workspace/${workspaceId}/audience`} exact>
+          <NavLink to={`/workspace/${workspaceId}/audience`}>
             {t('audiences.groups.contact')}
           </NavLink>
-          <NavLink to={`/workspace/${workspaceId}/audience/group`}>{t('audiences.contact.addContact.groups')}</NavLink>
+          <NavLink to={`/workspace/${workspaceId}/audience/group`}>
+            {t('audiences.contact.addContact.groups')}
+          </NavLink>
         </Navbar>
 
         {children}

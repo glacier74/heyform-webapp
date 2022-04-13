@@ -1,10 +1,10 @@
 import { TemplateModal } from '@/legacy_pages/models'
-import { TemplateService } from '@/service'
 import { getResizeImageUrl } from '@/legacy_pages/utils'
+import { TemplateService } from '@/service'
 import { Button, Flex, message } from '@heyui/component'
 import { FC, useState } from 'react'
 import LazyLoad from 'react-lazyload'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 interface TemplateItemProps {
@@ -14,13 +14,13 @@ interface TemplateItemProps {
 }
 
 export const TemplateItem: FC<TemplateItemProps> = ({ workspaceId, projectId, template }) => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
 
   const imageUrl = getResizeImageUrl(template.themeSettings?.theme?.backgroundImage!)
 
   function handlePreview() {
-    history.push(`/templates/${template.id}`)
+    navigate(`/templates/${template.id}`)
   }
 
   async function handleUse() {
@@ -33,7 +33,7 @@ export const TemplateItem: FC<TemplateItemProps> = ({ workspaceId, projectId, te
     try {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const result = await TemplateService.useTemplate(projectId, template!.id)
-      history.push(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
+      navigate(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
     } catch (err: any) {
       message.error('Failed to use this template')
       setLoading(false)

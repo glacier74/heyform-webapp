@@ -12,9 +12,8 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import CreateProject from './CreateProject'
-
 
 interface ItemProps {
   project: ProjectModel
@@ -26,7 +25,7 @@ interface ItemProps {
 
 const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) => {
   const { workspaceId } = useParam()
-  const history = useHistory()
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const members = useMemo(() => {
     return users
@@ -39,7 +38,7 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
   const [visible, setVisible] = useState(false)
 
   function handleClick() {
-    history.push(`/workspace/${workspaceId}/project/${project.id}`)
+    navigate(`/workspace/${workspaceId}/project/${project.id}`)
   }
 
   function handleMenuClick(name?: IKeyType) {
@@ -56,8 +55,8 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
 
   const Overlay = (
     <Menus onClick={handleMenuClick}>
-      <Menus.Item name="rename" label={t('project.rename')} icon={<PencilIcon/>}/>
-      {isOwner && <Menus.Item name="delete" label={t('project.del')} icon={<TrashIcon/>}/>}
+      <Menus.Item name="rename" label={t('project.rename')} icon={<PencilIcon />} />
+      {isOwner && <Menus.Item name="delete" label={t('project.del')} icon={<TrashIcon />} />}
     </Menus>
   )
 
@@ -72,7 +71,7 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
           {project.formCount > 0 ? `${project.formCount} forms` : 'No form yet'}
         </p>
         <div className="mt-4 flex items-center justify-between">
-          <Avatar.Group options={members} size={32} maximum={8} circular rounded/>
+          <Avatar.Group options={members} size={32} maximum={8} circular rounded />
           <Dropdown
             className={clsx('opacity-0 group-hover:opacity-100 p-1 hover:bg-gray-100 rounded-md', {
               'opacity-100': visible
@@ -80,7 +79,7 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
             overlay={Overlay}
             onDropdownVisibleChange={setVisible}
           >
-            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900"/>
+            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
           </Dropdown>
         </div>
       </div>
@@ -120,7 +119,7 @@ const Workspace = observer(() => {
         icon={
           <Avatar
             src={workspaceStore.workspace?.avatar}
-            defaultIcon={<WorkspaceIcon/>}
+            defaultIcon={<WorkspaceIcon />}
             size={54}
             rounded
             circular
@@ -153,16 +152,18 @@ const Workspace = observer(() => {
         ) : (
           <EmptyStates
             className="empty-states-fit mt-8"
-            icon={<CollectionIcon className="non-scaling-stroke"/>}
+            icon={<CollectionIcon className="non-scaling-stroke" />}
             title={t('workspace.workSpace.noProject')}
             description={t('workspace.workSpace.text')}
-            action={<Button onClick={openCreateProject}>{t('workspace.workSpace.createP2')}</Button>}
+            action={
+              <Button onClick={openCreateProject}>{t('workspace.workSpace.createP2')}</Button>
+            }
           />
         )}
       </div>
 
       {/* Create project */}
-      <CreateProject visible={createProjectVisible} onClose={closeCreateProject}/>
+      <CreateProject visible={createProjectVisible} onClose={closeCreateProject} />
 
       {/* Delete project */}
       <DeleteProject

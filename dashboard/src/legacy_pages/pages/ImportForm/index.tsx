@@ -7,11 +7,11 @@ import { Button, Form, FormItem, Input } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const ImportForm = observer(() => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const workspaceStore = useStore('workspaceStore')
   const { workspaceId, projectId } = useParam()
@@ -29,7 +29,7 @@ const ImportForm = observer(() => {
     try {
       const result = await FormService.import(projectId, values.url)
       fetchForms()
-      history.push(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
+      navigate(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
     } catch (err: any) {
       setError(err)
       setLoading(false)
@@ -42,26 +42,18 @@ const ImportForm = observer(() => {
   }
 
   function handleNavigateBack() {
-    history.goBack()
+    navigate.goBack()
   }
 
   return (
     <Container navigateBackTitle={t('improtForm.createForm')} onNavigateBack={handleNavigateBack}>
-      <Heading description={t('improtForm.importText')}>
-        {t('improtForm.ImportForm')}
-      </Heading>
+      <Heading description={t('improtForm.importText')}>{t('improtForm.ImportForm')}</Heading>
 
       <Header>{t('improtForm.works')}</Header>
 
       <Tips>
-        <p>
-          {t(
-            'improtForm.Text'
-          )}
-        </p>
-        <p>
-          {t('improtForm.testText')}
-        </p>
+        <p>{t('improtForm.Text')}</p>
+        <p>{t('improtForm.testText')}</p>
       </Tips>
 
       <Form style={{ marginTop: 32 }} onFinish={handleFinish}>
@@ -79,9 +71,9 @@ const ImportForm = observer(() => {
           labelClassName="label"
           hideRequiredMark={true}
         >
-          <Input placeholder="https://www.example.com"/>
+          <Input placeholder="https://www.example.com" />
         </FormItem>
-        {error && <FormError error={error}/>}
+        {error && <FormError error={error} />}
         <FormItem>
           <Button type="primary" htmlType="submit" block={true} loading={loading}>
             {t('improtForm.Detect')}

@@ -2,23 +2,37 @@ import { Async } from '@/components'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam, useVisible } from '@/utils'
-import { ClipboardCheckIcon, DotsHorizontalIcon, DuplicateIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
+import {
+  ClipboardCheckIcon,
+  DotsHorizontalIcon,
+  DuplicateIcon,
+  PencilIcon,
+  TrashIcon
+} from '@heroicons/react/outline'
 import type { FormModel } from '@heyforms/shared-types-enums'
 import { FormStatusEnum } from '@heyforms/shared-types-enums'
-import { Badge, Button, Dropdown, EmptyStates, Menus, Modal, notification, Table } from '@heyforms/ui'
+import {
+  Badge,
+  Button,
+  Dropdown,
+  EmptyStates,
+  Menus,
+  Modal,
+  notification,
+  Table
+} from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import * as timeago from 'timeago.js'
 import { ProjectLayout } from '../views/ProjectLayout'
 import { Skeleton } from '../views/Skeleton'
 import './index.scss'
 
-
 const Project = observer(() => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
   const [suspendModalVisible, openSuspendModal, closeSuspendModal] = useVisible()
@@ -36,7 +50,7 @@ const Project = observer(() => {
       return openSuspendModal()
     }
 
-    history.push(`/workspace/${record.teamId}/project/${record.projectId}/form/${record.id}/create`)
+    navigate(`/workspace/${record.teamId}/project/${record.projectId}/form/${record.id}/create`)
   }
 
   async function handleDuplicate(record: FormModel) {
@@ -51,7 +65,7 @@ const Project = observer(() => {
         id: result
       })
 
-      history.push(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
+      navigate(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
     } catch (err: any) {
       notification.error({
         title: err.message
@@ -79,7 +93,7 @@ const Project = observer(() => {
   }
 
   function handleCreateForm() {
-    history.push(`/workspace/${workspaceId}/project/${projectId}/form/create`)
+    navigate(`/workspace/${workspaceId}/project/${projectId}/form/create`)
   }
 
   function handleConfirm() {
@@ -113,13 +127,13 @@ const Project = observer(() => {
       width: '30%',
       render(record) {
         if (record.suspended) {
-          return <Badge className="form-status" type="red" text={t('project.suspended')} dot/>
+          return <Badge className="form-status" type="red" text={t('project.suspended')} dot />
         } else if (record.draft) {
-          return <Badge className="form-status" text={t('project.draft')} dot/>
+          return <Badge className="form-status" text={t('project.draft')} dot />
         } else if (record.settings?.active) {
-          return <Badge className="form-status" type="blue" text={t('project.active')} dot/>
+          return <Badge className="form-status" type="blue" text={t('project.active')} dot />
         } else {
-          return <Badge className="form-status" text={t('project.closed')} dot/>
+          return <Badge className="form-status" text={t('project.closed')} dot />
         }
       }
     },
@@ -160,13 +174,13 @@ const Project = observer(() => {
             placement="bottom-start"
             overlay={
               <Menus onClick={handleClick}>
-                <Menus.Item name="edit" icon={<PencilIcon/>} label={t('project.edit')}/>
-                <Menus.Item name="duplicate" icon={<DuplicateIcon/>} label={t('project.dup')}/>
-                <Menus.Item name="delete" icon={<TrashIcon/>} label={t('project.del')}/>
+                <Menus.Item name="edit" icon={<PencilIcon />} label={t('project.edit')} />
+                <Menus.Item name="duplicate" icon={<DuplicateIcon />} label={t('project.dup')} />
+                <Menus.Item name="delete" icon={<TrashIcon />} label={t('project.del')} />
               </Menus>
             }
           >
-            <DotsHorizontalIcon className="w-5 h-5"/>
+            <DotsHorizontalIcon className="w-5 h-5" />
           </Dropdown>
         )
       }
@@ -178,11 +192,11 @@ const Project = observer(() => {
       <Async
         request={request}
         deps={[projectId]}
-        skeleton={<Skeleton/>}
+        skeleton={<Skeleton />}
         emptyState={
           <EmptyStates
             className="empty-states-fit"
-            icon={<ClipboardCheckIcon className="non-scaling-stroke"/>}
+            icon={<ClipboardCheckIcon className="non-scaling-stroke" />}
             title={t('project.noForm')}
             description={t('project.text')}
             action={<Button onClick={handleCreateForm}>{t('project.bottom')}</Button>}

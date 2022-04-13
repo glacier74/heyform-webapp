@@ -5,14 +5,14 @@ import { Button, ComponentProps, Flex, message } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const DeleteForm: FC<ComponentProps> = observer(({ ...restProps }) => {
   const { t } = useTranslation()
   const { workspaceId, projectId, formId } = useParam()
 
-  const history = useHistory()
+  const navigate = useNavigate()
   const workspaceStore = useStore('workspaceStore')
   const formStore = useStore('formStore')
   const [loading, setLoading] = useState(false)
@@ -28,7 +28,9 @@ export const DeleteForm: FC<ComponentProps> = observer(({ ...restProps }) => {
       await FormService.moveToTrash(formId)
       workspaceStore.deleteForm(workspaceId, formId)
       formStore.selectForm(undefined)
-      history.replace(`/workspace/${workspaceId}/project/${projectId}`)
+      navigate(`/workspace/${workspaceId}/project/${projectId}`, {
+        replace: true
+      })
     } catch (err: any) {
       setLoading(false)
       console.error(err)
@@ -40,11 +42,7 @@ export const DeleteForm: FC<ComponentProps> = observer(({ ...restProps }) => {
     <Container {...restProps}>
       <Header>{t('formSettings.deleteForm')}</Header>
       <Body>
-        <Description>
-          {t(
-            'formSettings.deleteFormText'
-          )}
-        </Description>
+        <Description>{t('formSettings.deleteFormText')}</Description>
         <Button type="error" size="small" loading={loading} onClick={handleClick}>
           {t('submissions.Delete')}
         </Button>

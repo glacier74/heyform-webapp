@@ -6,17 +6,16 @@ import { Button, Form, Input } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-
+import { useNavigate } from 'react-router-dom'
 
 const Setup: FC = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const workspaceStore = useStore('workspaceStore')
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
- 
+
   const { t } = useTranslation()
 
   async function handleFinish(values: WorkspaceModel) {
@@ -34,12 +33,13 @@ const Setup: FC = () => {
       workspaceStore.setWorkspaces(workspaces)
 
       // Navigate to new created workspace page
-      history.replace(`/workspace/${result}`)
+      navigate(`/workspace/${result}`, {
+        replace: true
+      })
     } catch (err: any) {
       setLoading(false)
       setError(err)
     }
-    
   }
 
   return (
@@ -47,9 +47,7 @@ const Setup: FC = () => {
       <div>
         <LogoIcon className="h-8 w-auto" />
         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('setup.createW')}</h2>
-        <p className="mt-2 text-sm text-gray-600">
-         {t('setup.explain')}
-        </p>
+        <p className="mt-2 text-sm text-gray-600">{t('setup.explain')}</p>
       </div>
 
       <div className="mt-8">
@@ -63,7 +61,10 @@ const Setup: FC = () => {
               name="avatar"
               label={
                 <>
-                  {t('setup.logo')} <span className="text-gray-500">({t('audiences.contact.addContact.optional')})</span>
+                  {t('setup.logo')}{' '}
+                  <span className="text-gray-500">
+                    ({t('audiences.contact.addContact.optional')})
+                  </span>
                 </>
               }
             >
@@ -71,7 +72,7 @@ const Setup: FC = () => {
             </Form.Item>
 
             <Button type="primary" htmlType="submit" loading={loading}>
-            {t('setup.createW')}
+              {t('setup.createW')}
             </Button>
 
             {error && <div className="form-item-error">{error.message}</div>}

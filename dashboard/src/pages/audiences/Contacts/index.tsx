@@ -5,12 +5,21 @@ import { AudienceService } from '@/service'
 import { useStore } from '@/store'
 import { urlBuilder, useParam, useQuery, useVisible } from '@/utils'
 import { DotsHorizontalIcon, MailIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
-import { Avatar, Button, Dropdown, EmptyStates, Input, Menus, notification, Table } from '@heyforms/ui'
+import {
+  Avatar,
+  Button,
+  Dropdown,
+  EmptyStates,
+  Input,
+  Menus,
+  notification,
+  Table
+} from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AudienceLayout } from '../views/AudienceLayout'
 import AddContact from './AddContact'
 import { ContactFilter } from './ContactFilter'
@@ -18,13 +27,11 @@ import EditContact from './EditContact'
 import ImportContact from './ImportContact'
 import { Skeleton } from './Skeleton'
 
-
 const Contacts = () => {
   const { workspaceId } = useParam()
-  const history = useHistory()
+  const navigate = useNavigate()
   const workspaceStore = useStore('workspaceStore')
   const appStore = useStore('appStore')
-
 
   const { keyword, groups, page } = useQuery({
     keyword: String,
@@ -131,14 +138,18 @@ const Contacts = () => {
 
         const Overlay = (
           <Menus onClick={handleMenuClick}>
-            <Menus.Item name="edit" label={t('audiences.contact.index.edit')} icon={<PencilIcon/>}/>
-            <Menus.Item name="delete" label={t('project.del')} icon={<TrashIcon/>}/>
+            <Menus.Item
+              name="edit"
+              label={t('audiences.contact.index.edit')}
+              icon={<PencilIcon />}
+            />
+            <Menus.Item name="delete" label={t('project.del')} icon={<TrashIcon />} />
           </Menus>
         )
 
         return (
           <Dropdown className="p-1 hover:bg-gray-100 rounded-md cursor-pointer" overlay={Overlay}>
-            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900"/>
+            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
           </Dropdown>
         )
       }
@@ -147,7 +158,7 @@ const Contacts = () => {
 
   function handleChange(query: IMapType) {
     const url = urlBuilder(`/workspace/${workspaceId}/audience`, query)
-    history.push(url)
+    navigate(url)
   }
 
   function handleKeywordChange(value: string) {
@@ -196,10 +207,12 @@ const Contacts = () => {
     return (
       <EmptyStates
         className="empty-states-full"
-        icon={<MailIcon className="non-scaling-stroke"/>}
+        icon={<MailIcon className="non-scaling-stroke" />}
         title={t('audiences.contact.index.noContact')}
         description={t('audiences.contact.index.addPeople')}
-        action={<Button onClick={handleOpenPlanModal}>{t('audiences.contact.addContact.add')}</Button>}
+        action={
+          <Button onClick={handleOpenPlanModal}>{t('audiences.contact.addContact.add')}</Button>
+        }
       />
     )
   }
@@ -209,12 +222,11 @@ const Contacts = () => {
       {contacts.length > 0 && (
         <div className="mt-8 lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center space-x-2">
-            <Input.Search className="w-full md:w-96" onSearch={handleKeywordChange}/>
-            <ContactFilter value={groups} onChange={handleGroupChange}/>
+            <Input.Search className="w-full md:w-96" onSearch={handleKeywordChange} />
+            <ContactFilter value={groups} onChange={handleGroupChange} />
           </div>
 
-          <div
-            className="mt-6 flex flex-col justify-items-stretch space-x-0 space-y-4 md:space-y-0 md:space-x-3 lg:mt-0 md:flex-row">
+          <div className="mt-6 flex flex-col justify-items-stretch space-x-0 space-y-4 md:space-y-0 md:space-x-3 lg:mt-0 md:flex-row">
             <Button type="primary" onClick={openAddContact}>
               {t('audiences.contact.addContact.add')}
             </Button>
@@ -226,27 +238,29 @@ const Contacts = () => {
       <Async
         request={request}
         deps={[page, keyword, groups]}
-        skeleton={<Skeleton/>}
+        skeleton={<Skeleton />}
         emptyState={
           <EmptyStates
             className="empty-states-fit"
-            icon={<MailIcon className="non-scaling-stroke"/>}
+            icon={<MailIcon className="non-scaling-stroke" />}
             title={t('audiences.contact.index.noContact')}
             description={t('audiences.contact.index.addPeople')}
-            action={<Button onClick={openAddContact}>{t('audiences.contact.addContact.add')}</Button>}
+            action={
+              <Button onClick={openAddContact}>{t('audiences.contact.addContact.add')}</Button>
+            }
           />
         }
       >
-        <Table<ContactModel> className="mt-8" columns={columns} data={contacts}/>
+        <Table<ContactModel> className="mt-8" columns={columns} data={contacts} />
       </Async>
 
-      <Pagination total={total} page={page} pageSize={20} onChange={handlePageChange}/>
+      <Pagination total={total} page={page} pageSize={20} onChange={handlePageChange} />
 
-      <AddContact visible={addContactVisible} onClose={closeAddContact}/>
+      <AddContact visible={addContactVisible} onClose={closeAddContact} />
 
-      <ImportContact visible={importContactVisible} onClose={closeImportContact}/>
+      <ImportContact visible={importContactVisible} onClose={closeImportContact} />
 
-      <EditContact visible={editContactVisible} contact={contact} onClose={closeEditContact}/>
+      <EditContact visible={editContactVisible} contact={contact} onClose={closeEditContact} />
     </AudienceLayout>
   )
 }

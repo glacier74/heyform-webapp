@@ -7,12 +7,11 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 
 const CreateWorkspace: FC<IModalProps> = observer(({ visible, onClose }) => {
   const { t } = useTranslation()
-  const history = useHistory()
+  const navigate = useNavigate()
   const workspaceStore = useStore('workspaceStore')
 
   const [maskClosable, setMaskClosable] = useState(true)
@@ -37,7 +36,9 @@ const CreateWorkspace: FC<IModalProps> = observer(({ visible, onClose }) => {
       onClose?.()
 
       // Navigate to new created workspace page
-      history.replace(`/workspace/${result}`)
+      navigate(`/workspace/${result}`, {
+        replace: true
+      })
     } catch (err: any) {
       setLoading(false)
       setError(err)
@@ -52,27 +53,33 @@ const CreateWorkspace: FC<IModalProps> = observer(({ visible, onClose }) => {
     <Modal visible={visible} maskClosable={maskClosable} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('workspace.createWorkspace.newWorkspace')}</h1>
-          <p className="mt-1 mr-8 text-sm text-gray-500">
-            {t('workspace.createWorkspace.text')}
-          </p>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('workspace.createWorkspace.newWorkspace')}
+          </h1>
+          <p className="mt-1 mr-8 text-sm text-gray-500">{t('workspace.createWorkspace.text')}</p>
         </div>
 
         <Form onFinish={handleFinish}>
-          <Form.Item name="name" label={t('workspace.createWorkspace.name')} rules={[{ required: true }]}>
-            <Input/>
+          <Form.Item
+            name="name"
+            label={t('workspace.createWorkspace.name')}
+            rules={[{ required: true }]}
+          >
+            <Input />
           </Form.Item>
 
           <Form.Item
             name="avatar"
             label={
               <>
-                {t('workspace.createWorkspace.logo')} <span
-                className="text-gray-500">({t('audiences.contact.addContact.optional')})</span>
+                {t('workspace.createWorkspace.logo')}{' '}
+                <span className="text-gray-500">
+                  ({t('audiences.contact.addContact.optional')})
+                </span>
               </>
             }
           >
-            <PhotoPickerField onVisibilityChange={handleVisibilityChange}/>
+            <PhotoPickerField onVisibilityChange={handleVisibilityChange} />
           </Form.Item>
 
           <Button type="primary" htmlType="submit" loading={loading}>

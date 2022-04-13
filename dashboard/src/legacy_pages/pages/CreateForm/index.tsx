@@ -11,14 +11,14 @@ import { alpha } from '@hpnp/utils/color'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { MoreTemplates } from './views/MoreTemplates'
 import { TemplateItem } from './views/TemplateItem'
 import { TemplateSkeleton } from './views/TemplateSkeleton'
 
 const CreateForm = observer(() => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const workspaceStore = useStore('workspaceStore')
   const { workspaceId, projectId } = useParam()
@@ -41,7 +41,7 @@ const CreateForm = observer(() => {
         kind: FormKindEnum.SURVEY
       })
       fetchForms()
-      history.push(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
+      navigate(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
     } catch (err: any) {
       setLoading(false)
       console.error(err)
@@ -50,7 +50,7 @@ const CreateForm = observer(() => {
   }
 
   function handleImport() {
-    history.push(`/workspace/${workspaceId}/project/${projectId}/form/import`)
+    navigate(`/workspace/${workspaceId}/project/${projectId}/form/import`)
   }
 
   async function fetchForms() {
@@ -67,7 +67,7 @@ const CreateForm = observer(() => {
   }
 
   function handleNavigateBack() {
-    history.push(`/workspace/${workspaceId}/project/${projectId}`)
+    navigate(`/workspace/${workspaceId}/project/${projectId}`)
   }
 
   return (
@@ -75,39 +75,33 @@ const CreateForm = observer(() => {
       navigateBackTitle={`${workspaceStore.project?.name} · ${workspaceStore.workspace?.name}`}
       onNavigateBack={handleNavigateBack}
     >
-      <Heading
-        description={t(
-          'createForm.typeText'
-        )}
-      >
-        {t('improtForm.createForm')}
-      </Heading>
+      <Heading description={t('createForm.typeText')}>{t('improtForm.createForm')}</Heading>
 
       <SubHeading>{t('createForm.createNew')}</SubHeading>
       <Flex>
         <StartScratch align="center" justify="center" column={true} onClick={handleScratch}>
           <Flex align="center" justify="center" auto={true}>
-            <ClassicFormIcon/>
+            <ClassicFormIcon />
           </Flex>
           <Text>{t('createForm.ClassicForm')}</Text>
 
           {loading && (
             <Loader align="center" justify="center">
-              <Spin/>
+              <Spin />
             </Loader>
           )}
         </StartScratch>
 
         <StartScratch align="center" justify="center" column={true} onClick={handleImport}>
           <Flex align="center" justify="center" auto={true}>
-            <ImportFormIcon/>
+            <ImportFormIcon />
           </Flex>
           <Text>{t('createForm.URLForm')}</Text>
         </StartScratch>
       </Flex>
 
       <SubHeading>{t('createForm.templatesForm')}</SubHeading>
-      <Fetcher request={fetchTemplates} skeleton={<TemplateSkeleton/>}>
+      <Fetcher request={fetchTemplates} skeleton={<TemplateSkeleton />}>
         <Flex wrap="wrap" style={{ marginLeft: -10, marginRight: -10 }}>
           {templates.map((template, index) => (
             <TemplateItem
@@ -117,7 +111,7 @@ const CreateForm = observer(() => {
               template={template}
             />
           ))}
-          <MoreTemplates/>
+          <MoreTemplates />
         </Flex>
       </Fetcher>
     </Container>

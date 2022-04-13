@@ -1,9 +1,9 @@
-import { getAuthState } from '@/utils'
-import type { FC } from 'react'
-import { useEffect } from 'react'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-import type { CustomRouteConfig } from './config'
-import config from './config'
+import { getAuthState } from "@/utils";
+import type { FC } from "react";
+import { useEffect } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import type { CustomRouteConfig } from "./config";
+import config from "./config";
 
 /*!
  * route-order https://github.com/sfrdmn/node-route-order
@@ -52,8 +52,6 @@ function sortRoute(pathA: string, pathB: string) {
 }
 
 const CustomRoute: FC<CustomRouteConfig> = ({
-  path,
-  exact,
   loginRequired = true,
   layout: Layout,
   component: Component,
@@ -61,11 +59,9 @@ const CustomRoute: FC<CustomRouteConfig> = ({
 }) => {
   const isLoggedIn = getAuthState()
   const children = (
-    <Route path={path} exact={exact}>
-      <Layout>
-        <Component />
-      </Layout>
-    </Route>
+    <Layout>
+      <Component />
+    </Layout>
   )
 
   useEffect(() => {
@@ -79,10 +75,10 @@ const CustomRoute: FC<CustomRouteConfig> = ({
       return children
     } else {
       const redirectUri = window.location.pathname + window.location.search
-      return <Redirect to={`/login?redirect_uri=${encodeURIComponent(redirectUri)}`} />
+      return <Navigate to={`/login?redirect_uri=${encodeURIComponent(redirectUri)}`} replace />
     }
   } else {
-    return !isLoggedIn ? children : <Redirect to="/" />
+    return !isLoggedIn ? children : <Navigate to="/" replace />
   }
 }
 
@@ -91,12 +87,11 @@ export default () => {
 
   return (
     <BrowserRouter>
-      <Switch>
+      <Routes>
         {routes.map(route => (
-          <CustomRoute key={route.path} {...route} />
+          <Route key={route.path} path={route.path} element={<CustomRoute {...route} />} />
         ))}
-        <Redirect to="/" />
-      </Switch>
+      </Routes>
     </BrowserRouter>
   )
 }

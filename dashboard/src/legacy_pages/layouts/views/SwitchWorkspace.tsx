@@ -1,17 +1,17 @@
 import { AvatarText, IconText, WorkspaceLink } from '@/legacy_pages/components'
 import { AddIcon, LogoutIcon, SettingsIcon, UserIcon } from '@/legacy_pages/components/Icons'
 import { clearAuthState, useStore } from '@/legacy_pages/utils'
+import { useParam } from '@/utils'
 import { Dropdown, Flex, Menu } from '@heyui/component'
 import { ArrowDownSIcon } from '@heyui/icon'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory, useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const SwitchWorkspace: FC = observer(() => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
@@ -19,13 +19,13 @@ export const SwitchWorkspace: FC = observer(() => {
   function handleClick(name: any) {
     switch (name) {
       case 'createWorkspace':
-        return history.push('/setup')
+        return navigate('/setup')
 
       case 'workspaceSettings':
-        return history.push(`/workspace/${workspaceId}/settings`)
+        return navigate(`/workspace/${workspaceId}/settings`)
 
       case 'accountSettings':
-        return history.push(`/user/profile?next=${encodeURIComponent(window.location.pathname)}`)
+        return navigate(`/user/profile?next=${encodeURIComponent(window.location.pathname)}`)
 
       case 'logout':
         clearAuthState()

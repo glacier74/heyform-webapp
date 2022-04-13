@@ -7,10 +7,10 @@ import { Avatar, Button } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const JoinWorkspace = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const workspaceStore = useStore('workspaceStore')
   const { workspaceId, inviteCode } = useParam()
   const [workspace, setWorkspace] = useState<WorkspaceModel | null>()
@@ -29,7 +29,9 @@ const JoinWorkspace = () => {
       const result = await WorkspaceService.workspaces()
       workspaceStore.setWorkspaces(result)
 
-      history.replace(`/workspace/${workspaceId}`)
+      navigate(`/workspace/${workspaceId}`, {
+        replace: true
+      })
     } catch (err: any) {
       setLoading(false)
       setError(err)
@@ -57,9 +59,10 @@ const JoinWorkspace = () => {
   return (
     <div>
       <div>
-        <LogoIcon className="h-8 w-auto"/>
+        <LogoIcon className="h-8 w-auto" />
         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-          {t('workspace.join.invited')} {workspace?.owner?.name}{t('workspace.join.UsernameAdd')}
+          {t('workspace.join.invited')} {workspace?.owner?.name}
+          {t('workspace.join.UsernameAdd')}
         </h2>
         <p className="mt-2 text-sm text-gray-600">{t('workspace.join.joinText')}</p>
       </div>
@@ -70,14 +73,16 @@ const JoinWorkspace = () => {
             <Avatar
               src={workspace?.avatar}
               size={48}
-              defaultIcon={<WorkspaceIcon/>}
+              defaultIcon={<WorkspaceIcon />}
               rounded
               circular
             />
 
             <div className="ml-4 flex-auto">
               <p className="text-sm font-medium text-gray-700 truncate">{workspace?.name}</p>
-              <p className="text-sm text-gray-500 truncate">{workspace?.memberCount} {t('workspace.join.member')}</p>
+              <p className="text-sm text-gray-500 truncate">
+                {workspace?.memberCount} {t('workspace.join.member')}
+              </p>
             </div>
 
             <Button

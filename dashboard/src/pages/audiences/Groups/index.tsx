@@ -10,7 +10,7 @@ import type { TableColumn } from '@heyforms/ui/lib/types/table'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { AudienceLayout } from '../views/AudienceLayout'
 import AddGroup from './AddGroup'
 import RenameGroup from './RenameGroup'
@@ -18,7 +18,7 @@ import { Skeleton } from './Skeleton'
 
 const Groups = () => {
   const { workspaceId } = useParam()
-  const history = useHistory()
+  const navigate = useNavigate()
   const workspaceStore = useStore('workspaceStore')
   const appStore = useStore('appStore')
 
@@ -94,14 +94,14 @@ const Groups = () => {
 
         const Overlay = (
           <Menus onClick={handleMenuClick}>
-            <Menus.Item name="rename" label={t('project.rename')} icon={<PencilIcon/>}/>
-            <Menus.Item name="delete" label={t('project.del')} icon={<TrashIcon/>}/>
+            <Menus.Item name="rename" label={t('project.rename')} icon={<PencilIcon />} />
+            <Menus.Item name="delete" label={t('project.del')} icon={<TrashIcon />} />
           </Menus>
         )
 
         return (
           <Dropdown className="p-1 hover:bg-gray-100 rounded-md cursor-pointer" overlay={Overlay}>
-            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900"/>
+            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
           </Dropdown>
         )
       }
@@ -110,7 +110,7 @@ const Groups = () => {
 
   function handleChange(query: IMapType) {
     const url = urlBuilder(`/workspace/${workspaceId}/audience`, query)
-    history.push(url)
+    navigate(url)
   }
 
   function handleKeywordChange(value: string) {
@@ -150,7 +150,7 @@ const Groups = () => {
     return (
       <EmptyStates
         className="empty-states-full"
-        icon={<FolderOpenIcon className="non-scaling-stroke"/>}
+        icon={<FolderOpenIcon className="non-scaling-stroke" />}
         title={t('audiences.groups.noGroup')}
         description={t('audiences.groups.explain')}
         action={<Button onClick={handleOpenPlanModal}>{t('audiences.groups.addGroup.add')}</Button>}
@@ -162,7 +162,7 @@ const Groups = () => {
     <AudienceLayout>
       {groups.length > 0 && (
         <div className="mt-8 lg:flex lg:items-center lg:justify-between">
-          <Input.Search className="w-full md:w-96"/>
+          <Input.Search className="w-full md:w-96" />
           <Button className="mt-6 lg:mt-0 w-full md:w-auto" type="primary" onClick={openAddGroup}>
             Add group
           </Button>
@@ -172,25 +172,27 @@ const Groups = () => {
       <Async
         request={request}
         deps={[page, keyword]}
-        skeleton={<Skeleton/>}
+        skeleton={<Skeleton />}
         emptyState={
           <EmptyStates
             className="empty-states-fit"
-            icon={<FolderOpenIcon className="non-scaling-stroke"/>}
+            icon={<FolderOpenIcon className="non-scaling-stroke" />}
             title={t('audiences.groups.noGroup')}
             description={t('audiences.groups.explain')}
-            action={<Button onClick={handleOpenPlanModal}>{t('audiences.groups.addGroup.add')}</Button>}
+            action={
+              <Button onClick={handleOpenPlanModal}>{t('audiences.groups.addGroup.add')}</Button>
+            }
           />
         }
       >
-        <Table<GroupModel> className="mt-8" columns={columns} data={groups}/>
+        <Table<GroupModel> className="mt-8" columns={columns} data={groups} />
       </Async>
 
-      <Pagination total={total} page={page} pageSize={20} onChange={handlePageChange}/>
+      <Pagination total={total} page={page} pageSize={20} onChange={handlePageChange} />
 
-      <AddGroup visible={addGroupVisible} onClose={closeAddGroup}/>
+      <AddGroup visible={addGroupVisible} onClose={closeAddGroup} />
 
-      <RenameGroup visible={renameGroupVisible} group={group} onClose={closeRenameGroup}/>
+      <RenameGroup visible={renameGroupVisible} group={group} onClose={closeRenameGroup} />
     </AudienceLayout>
   )
 }

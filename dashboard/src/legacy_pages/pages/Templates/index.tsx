@@ -8,7 +8,7 @@ import { Flex } from '@heyui/component'
 import { uniqueArray } from '@hpnp/utils/helper'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { TemplateItem } from '../CreateForm/views/TemplateItem'
 
@@ -28,7 +28,7 @@ const CategoryItem: FC<CategoryItemProps> = ({ name }) => {
 }
 
 const Templates = () => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const { t } = useTranslation()
   const { workspaceId, projectId } = useParam()
   const [categories, setCategories] = useState<string[]>([])
@@ -49,7 +49,7 @@ const Templates = () => {
   }
 
   function handleNavigateBack() {
-    history.push(`/workspace/${workspaceId}/project/${projectId}/form/create`)
+    navigate(`/workspace/${workspaceId}/project/${projectId}/form/create`)
   }
 
   return (
@@ -59,7 +59,7 @@ const Templates = () => {
           <CategoryList>
             <CategoryHeader>{t('integration.Categories')}</CategoryHeader>
             {categories.map((name, index) => (
-              <CategoryItem key={index} name={name}/>
+              <CategoryItem key={index} name={name} />
             ))}
           </CategoryList>
         </Sidebar>

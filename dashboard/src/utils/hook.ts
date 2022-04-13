@@ -3,7 +3,7 @@ import { parseNumber } from '@hpnp/utils'
 import { isArray, isEmpty, isNil, isObject, isValid } from '@hpnp/utils/helper'
 import { parse } from '@hpnp/utils/qs'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useHistory, useLocation, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 export interface ParamsType {
   workspaceId: string
@@ -135,10 +135,10 @@ export function useVisible(visible = false): [boolean, () => void, () => void] {
 
 export function useRouter() {
   const query = useQuery()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   const push = useCallback((url: string, params?: IMapType) => {
-    history.push(
+    navigate(
       urlBuilder(url, {
         ...query,
         ...params

@@ -4,10 +4,10 @@ import { useAsyncEffect } from '@/utils'
 import { isEmpty, isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Home: FC = observer(() => {
-  const history = useHistory()
+  const navigate = useNavigate()
   const workspaceStore = useStore('workspaceStore')
 
   useAsyncEffect(async () => {
@@ -19,7 +19,9 @@ const Home: FC = observer(() => {
       workspaceStore.setWorkspaces(result)
 
       if (isEmpty(result)) {
-        return history.replace('/setup')
+        return navigate('/setup', {
+          replace: true
+        })
       }
 
       list = result
@@ -36,7 +38,9 @@ const Home: FC = observer(() => {
     }
 
     // Navigate to last visited workspace
-    history.replace(`/workspace/${workspaceId}`)
+    navigate(`/workspace/${workspaceId}`, {
+      replace: true
+    })
   }, [workspaceStore.list])
 
   return <></>
