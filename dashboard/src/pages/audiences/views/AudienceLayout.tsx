@@ -14,7 +14,7 @@ export const AudienceLayout: FC<IComponentProps> = ({ children }) => {
 
       <div className="py-4">
         <Navbar className="mt-4">
-          <NavLink to={`/workspace/${workspaceId}/audience`}>
+          <NavLink to={`/workspace/${workspaceId}/audience`} end={true}>
             {t('audiences.groups.contact')}
           </NavLink>
           <NavLink to={`/workspace/${workspaceId}/audience/group`}>

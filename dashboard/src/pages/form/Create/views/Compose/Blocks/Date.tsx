@@ -12,14 +12,14 @@ const DateItem: FC<DateItemProps> = ({ format }) => {
   const lowerFormatName = formatName.toLowerCase()
 
   return (
-    <div className={`heyform-date-item heyform-date-item-${lowerFormatName}`}>
-      <label htmlFor={`heyform-date-${lowerFormatName}`} className="heyform-date-label">
+    <div className={`builder-date-item builder-date-item-${lowerFormatName}`}>
+      <label htmlFor={`builder-date-${lowerFormatName}`} className="builder-date-label">
         {formatName}
       </label>
       <input
-        id={`heyform-date-${lowerFormatName}`}
+        id={`builder-date-${lowerFormatName}`}
         type="text"
-        className="heyform-input"
+        className="builder-input"
         placeholder={format}
         disabled={true}
       />
@@ -32,12 +32,12 @@ export const Date: FC<BlockProps> = ({ field, ...restProps }) => {
   const [x, y, z, divider] = DATE_FORMAT_MAPS[format]
 
   return (
-    <Block className="heyform-date" field={field} {...restProps}>
-      <div className="heyform-date-root">
+    <Block className="builder-date" field={field} {...restProps}>
+      <div className="builder-date-root">
         <DateItem format={x} />
-        <div className="heyform-date-divider">{divider}</div>
+        <div className="builder-date-divider">{divider}</div>
         <DateItem format={y} />
-        <div className="heyform-date-divider">{divider}</div>
+        <div className="builder-date-divider">{divider}</div>
         <DateItem format={z} />
       </div>
     </Block>

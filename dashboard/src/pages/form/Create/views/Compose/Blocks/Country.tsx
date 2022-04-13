@@ -5,7 +5,7 @@ import { Block } from './Block'
 
 export const Country: FC<BlockProps> = ({ field, ...restProps }) => {
   return (
-    <Block className="heyform-country" field={field} {...restProps}>
+    <Block className="builder-country" field={field} {...restProps}>
       <FakeSelect placeholder="Select a country" />
     </Block>
   )

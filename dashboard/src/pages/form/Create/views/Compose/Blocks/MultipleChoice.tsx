@@ -42,11 +42,11 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
   }
 
   return (
-    <div className="heyform-radio">
-      <div className="heyform-radio-container">
-        <div className="heyform-radio-content">
-          <div className="heyform-radio-hotkey">{String.fromCharCode(KeyCode.A + index)}</div>
-          <div className="heyform-radio-label">
+    <div className="builder-radio">
+      <div className="builder-radio-container">
+        <div className="builder-radio-content">
+          <div className="builder-radio-hotkey">{String.fromCharCode(KeyCode.A + index)}</div>
+          <div className="builder-radio-label">
             <Input
               value={choice.label}
               placeholder={isFocused ? 'choice' : undefined}
@@ -56,7 +56,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
             />
           </div>
           {enableRemove && (
-            <div className="heyform-radio-remove" onClick={handleRemove}>
+            <div className="builder-radio-remove" onClick={handleRemove}>
               <XIcon />
             </div>
           )}
@@ -130,8 +130,8 @@ export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
   const handleLabelChangeCallback = useCallback(handleLabelChange, [field.properties])
 
   return (
-    <Block className="heyform-multiple-choice" field={field} {...restProps}>
-      <div className="heyform-multiple-choice-list">
+    <Block className="builder-multiple-choice" field={field} {...restProps}>
+      <div className="builder-multiple-choice-list">
         {field.properties?.choices?.map((choice, index) => (
           <MultipleChoiceItem
             key={choice.id}
@@ -143,7 +143,7 @@ export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
           />
         ))}
       </div>
-      <div className="heyform-add-choice">
+      <div className="builder-add-choice">
         <Button.Link onClick={handleAddChoiceCallback}>Add choice</Button.Link>
       </div>
     </Block>

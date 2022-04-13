@@ -41,6 +41,7 @@ const Subscription = lazy(() => import('@/pages/billing/Subscription'))
 const Invoices = lazy(() => import('@/pages/billing/Invoices'))
 
 /* Form */
+const CreateForm = lazy(() => import('@/legacy_pages/pages/CreateForm'))
 const FormBuilder = lazy(() => import('@/pages/form/Create'))
 const ImportForm = lazy(() => import('@/legacy_pages/pages/ImportForm'))
 const Templates = lazy(() => import('@/legacy_pages/pages/Templates'))
@@ -178,6 +179,11 @@ const config: CustomRouteConfig[] = [
   },
 
   /* Form */
+  {
+    path: '/workspace/:workspaceId/project/:projectId/form/create',
+    layout: WorkspaceGuardLayout,
+    component: CreateForm
+  },
   {
     path: '/workspace/:workspaceId/project/:projectId/form/import',
     layout: WorkspaceGuardLayout,

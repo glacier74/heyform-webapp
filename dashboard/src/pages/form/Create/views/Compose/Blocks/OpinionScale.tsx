@@ -10,13 +10,13 @@ export const OpinionScale: FC<BlockProps> = ({ field, ...restProps }) => {
   }, [field.properties?.total])
 
   return (
-    <Block className="heyform-opinion-scale" field={field} {...restProps}>
+    <Block className="builder-opinion-scale" field={field} {...restProps}>
       <div className="flex items-center space-x-2">
         {indexes.map(index => (
           <FakeRadio label={index} key={index} />
         ))}
       </div>
-      <div className="heyform-opinion-scale-labels">
+      <div className="builder-opinion-scale-labels">
         <div className="flex-1 text-left">{field.properties?.leftLabel}</div>
         <div className="flex-1 text-center">{field.properties?.centerLabel}</div>
         <div className="flex-1 text-right">{field.properties?.rightLabel}</div>

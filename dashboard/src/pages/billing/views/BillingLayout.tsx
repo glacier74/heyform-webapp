@@ -14,7 +14,7 @@ export const BillingLayout: FC<IComponentProps> = ({ children }) => {
 
       <div className="py-4">
         <Navbar className="mt-4">
-          <NavLink to={`/workspace/${workspaceId}/billing`}>{t('billing.Subscription')}</NavLink>
+          <NavLink to={`/workspace/${workspaceId}/billing`} end={true}>{t('billing.Subscription')}</NavLink>
           <NavLink to={`/workspace/${workspaceId}/billing/invoice`}>
             {t('billing.Invoices')}
           </NavLink>

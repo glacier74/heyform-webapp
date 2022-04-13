@@ -6,6 +6,7 @@
   "private": true,
   "workspaces": [
     "dashboard",
+    "form-component",
     "ui",
     "vite-plugin-font-optimization",
     "vite-plugin-html-injection",

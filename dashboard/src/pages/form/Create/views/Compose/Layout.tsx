@@ -31,7 +31,7 @@ export const Layout: FC<LayoutProps> = ({ className, layout, ...restProps }) => 
   }
 
   return (
-    <div className={clsx('heyform-layout', className)} {...restProps}>
+    <div className={clsx('builder-layout', className)} {...restProps}>
       <img src={layout!.mediaUrl} style={filterStyle(layout?.brightness)} />
     </div>
   )

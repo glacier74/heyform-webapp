@@ -22,6 +22,8 @@ export const CoverImage: FC = () => {
   }
 
   function handleChange(value: string) {
+    console.log('field.id', field.id)
+
     dispatch({
       type: 'updateField',
       payload: {

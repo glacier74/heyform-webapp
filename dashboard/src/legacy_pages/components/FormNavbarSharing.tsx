@@ -1,8 +1,8 @@
-import { SettingsIcon } from '@/legacy_pages/components/Icons'
 import { useStore } from '@/legacy_pages/utils'
 import { FormService } from '@/service'
 import { FormModel } from '@heyforms/shared-types-enums'
-import { Button, Flex, message } from '@heyui/component'
+import { Button } from '@heyforms/ui'
+import { Flex, message } from '@heyui/component'
 import { EyeIcon } from '@heyui/icon'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
@@ -55,16 +55,14 @@ export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form })
 
   return (
     <Container align="center">
-      <Button size="small" ghost={true} icon={<EyeIcon />} onClick={handleClick}>
-        {t('Preview')}
-      </Button>
+      <PreviewButton className="button" leading={<EyeIcon />} onClick={handleClick} />
 
       {formStore.current?.settings?.active ? (
-        <Button size="small" ghost={true} disabled={true}>
+        <Button type="primary" disabled={true}>
           {t('Published')}
         </Button>
       ) : (
-        <Button size="small" type="primary" loading={loading} onClick={handlePublish}>
+        <Button type="primary" loading={loading} onClick={handlePublish}>
           {t('Publish')}
         </Button>
       )}
@@ -77,7 +75,6 @@ const Container = styled(Flex)`
 
   button {
     margin-right: 12px;
-    border: none;
 
     &:hover {
       box-shadow: 0px 23px 44px rgb(176 183 195 / 14%);
@@ -98,5 +95,13 @@ const Container = styled(Flex)`
         color: #37352f;
       }
     }
+  }
+`
+
+const PreviewButton = styled(Button)`
+  border-width: 1px;
+
+  &:not(:disabled):hover {
+    opacity: 0.8;
   }
 `

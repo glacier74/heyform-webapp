@@ -1,6 +1,3 @@
-import 'react-app-polyfill/ie11'
-import 'react-app-polyfill/stable'
-import 'unfetch/polyfill/polyfill.mjs'
 import '@/locales'
 import Router from '@/router'
 import { store, StoreProvider } from '@/store'
@@ -9,11 +6,11 @@ import { register } from '@/utils/serviceWorker'
 import { ApolloError } from '@apollo/client'
 import { EmojiSadIcon } from '@heroicons/react/outline'
 import { EmptyStates } from '@heyforms/ui'
-import * as Sentry from '@sentry/react'
+import { ErrorBoundary, init } from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
-import { Suspense } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
-import { StrictMode } from 'react'
+import 'unfetch/polyfill/polyfill.mjs'
 import './styles/index.scss'
 
 if (!getDeviceId()) {
@@ -21,7 +18,7 @@ if (!getDeviceId()) {
 }
 
 if (import.meta.env.PROD) {
-  Sentry.init({
+  init({
     dsn: import.meta.env.VITE_SENTRY_DSN as string,
     release: import.meta.env.PACKAGE_VERSION as string,
     integrations: [new Integrations.BrowserTracing()],
@@ -46,23 +43,20 @@ const App = () => {
   )
 
   return (
-    <Sentry.ErrorBoundary fallback={Fallback}>
+    <ErrorBoundary fallback={Fallback}>
       <Suspense fallback={<></>}>
         <StoreProvider value={store}>
           <Router />
         </StoreProvider>
       </Suspense>
-    </Sentry.ErrorBoundary>
+    </ErrorBoundary>
   )
 }
 
 // Register service worker
 register()
 
-const container = document.getElementById('root')!
-const root = createRoot(container)
-
-root.render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />
   </StrictMode>

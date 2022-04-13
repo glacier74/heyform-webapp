@@ -5,23 +5,63 @@
 
   @media (min-width: 768px) {
     &::-webkit-scrollbar {
-      @apply appearance-none bg-transparent w-1.5 h-1.5;
+      height: 12px;
+      width: 12px
     }
 
-    &::-webkit-scrollbar-thumb {
-      @apply hidden w-1.5 bg-gray-300;
-      border-radius: 0.1875rem;
+    &::-webkit-scrollbar-thumb:vertical {
+      background-color: transparent;
+      border-radius: 6px
     }
 
-    &::-webkit-scrollbar-track {
-      @apply appearance-none hidden;
+    &:hover::-webkit-scrollbar-thumb:vertical {
+      border: 3px solid transparent;
+      background-color: rgba(0, 0, 0, .2);
+      background-clip: content-box;
     }
 
-    &:hover {
-      &::-webkit-scrollbar-thumb,
-      &::-webkit-scrollbar-track {
-        @apply block;
-      }
+    &::-webkit-scrollbar-button:vertical {
+      display: block
+    }
+
+    &::-webkit-scrollbar-button:start:decrement {
+      display: block
+    }
+
+    &::-webkit-scrollbar-button:end:increment {
+      display: block
+    }
+
+    &::-webkit-scrollbar-button:vertical:start:increment {
+      display: none
+    }
+
+    &::-webkit-scrollbar-button:vertical:end:decrement {
+      display: none
+    }
+
+    &::-webkit-scrollbar-button:vertical:increment {
+      display: none
+    }
+
+    &::-webkit-scrollbar-button:vertical:decrement {
+      display: none
+    }
+
+    &::-webkit-scrollbar-track:vertical {
+      display: none
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      background-color: transparent
+    }
+
+    &::-webkit-scrollbar-corner:vertical {
+      background-color: transparent
+    }
+
+    &::-webkit-scrollbar-resizer:vertical {
+      background-color: transparent
     }
   }
 }

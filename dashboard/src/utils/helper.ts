@@ -41,3 +41,16 @@ export function redirectToStripeCheckout(sessionId: string) {
     })
   })
 }
+
+export function insertStyle(id: string, style: string) {
+  let styleElement = document.getElementById(id)
+
+  if (!styleElement) {
+    styleElement = document.createElement('style')
+    styleElement.id = id
+
+    document.head.appendChild(styleElement)
+  }
+
+  styleElement.innerHTML = style
+}

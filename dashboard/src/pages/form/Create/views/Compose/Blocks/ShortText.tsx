@@ -6,11 +6,11 @@ import { Block } from './Block'
 
 export const ShortText: FC<BlockProps> = ({ field, ...restProps }) => {
   return (
-    <Block className="heyform-short-text" field={field} {...restProps}>
-      <input type="text" className="heyform-input" placeholder="Your answer here" disabled={true} />
+    <Block className="builder-short-text" field={field} {...restProps}>
+      <input type="text" className="builder-input" placeholder="Your answer here" disabled={true} />
       <div className="mt-8">
         <Button
-          className="heyform-next-block-button"
+          className="builder-next-block-button"
           type="primary"
           trailing={<ChevronRightIcon />}
         >

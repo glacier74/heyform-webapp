@@ -77,18 +77,6 @@
 // Compose
 .compose {
   @apply flex-1 px-4 py-14 bg-gray-50;
-
-  --heyform-question-color: rgba(4, 135, 175, 1); /* 大标题 */
-  --heyform-description-color: rgba(4, 135, 175, 0.7); /* 小标题、描述文字 */
-  --heyform-label-color: rgba(4, 135, 175, 0.5); /* 说明文字 */
-  --heyform-answer-color: #f00; /* 选项文字颜色 */
-  --heyform-border-active-color: rgba(255, 0, 0, 0.8); /* 选中项边框、阴影颜色 */
-  --heyform-border-color: rgba(255, 0, 0, 0.6); /* 边框、阴影颜色 */
-  --heyform-answer-bg-active-color: rgba(255, 0, 0, 0.3); /* 背景高亮颜色 */
-  --heyform-answer-bg-color: rgba(255, 0, 0, 0.1); /* 背景颜色 */
-  --heyform-button-color: #f00;
-  --heyform-button-text-color: #fff;
-  --heyform-bg-color: #fffbeb;
 }
 
 .compose-container {
@@ -99,7 +87,7 @@
 
 // ----------------------------------------------------------------------------
 // Layout
-.heyform-layout {
+.builder-layout {
   @apply absolute rounded-lg pointer-events-none;
   z-index: 2;
 
@@ -109,21 +97,13 @@
 }
 
 .heyform-theme-background {
-  @apply absolute inset-0 bg-cover bg-top rounded-lg;
-  z-index: 2;
-  background-color: var(--heyform-bg-color);
-  background-image: url(https://images.unsplash.com/photo-1648740310988-0d58d5838dd8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80);
-
+  &,
   &:before {
-    @apply absolute inset-0 pointer-events-none rounded-lg;
-    content: "";
-    z-index: 2;
-    opacity: 0.95;
-    background: #fff;
+    @apply rounded-lg;
   }
 }
 
-.heyform-layout {
+.builder-layout {
   @apply absolute rounded-lg pointer-events-none;
   z-index: 4;
 
@@ -132,12 +112,12 @@
   }
 }
 
-.heyform-layout-cover {
+.builder-layout-cover {
   @apply inset-0;
 }
 
-.heyform-layout-float_left,
-.heyform-layout-float_right {
+.builder-layout-float_left,
+.builder-layout-float_right {
   @apply flex items-center justify-center;
 
   img {
@@ -145,34 +125,34 @@
   }
 }
 
-.heyform-layout-float_left,
-.heyform-layout-split_left {
+.builder-layout-float_left,
+.builder-layout-split_left {
   @apply left-0 top-0 w-1/2 h-full;
 }
 
-.heyform-layout-float_left {
+.builder-layout-float_left {
   padding-left: 5rem;
   padding-right: 3.5rem;
 }
 
-.heyform-layout-split_left {
+.builder-layout-split_left {
   img {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
 }
 
-.heyform-layout-float_right,
-.heyform-layout-split_right {
+.builder-layout-float_right,
+.builder-layout-split_right {
   @apply left-auto right-0 w-1/2 h-full;
 }
 
-.heyform-layout-float_right {
+.builder-layout-float_right {
   padding-left: 3.5rem;
   padding-right: 5rem;
 }
 
-.heyform-layout-split_right {
+.builder-layout-split_right {
   img {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -181,37 +161,37 @@
 
 // ----------------------------------------------------------------------------
 // Radio
-.heyform-radio {
+.builder-radio {
   @apply h-10 mb-2;
 }
 
-.heyform-radio-container {
+.builder-radio-container {
   @apply relative flex w-full h-full p-2 cursor-pointer rounded transition;
 
-  background-color: var(--heyform-answer-bg-color);
+  background-color: var(--heyform-answer-opacity-10-color);
   color: var(--heyform-answer-color);
-  box-shadow: var(--heyform-border-color) 0 0 0 1px inset;
+  box-shadow: var(--heyform-answer-opacity-60-color) 0 0 0 1px inset;
 
   &:hover {
-    background-color: var(--heyform-answer-bg-active-color);
+    background-color: var(--heyform-answer-opacity-30-color);
   }
 }
 
-.heyform-radio-content {
+.builder-radio-content {
   @apply flex flex-1 items-center;
 }
 
-.heyform-radio-hotkey {
+.builder-radio-hotkey {
   @apply flex items-center justify-center w-6 h-6 bg-white text-xs font-bold rounded-sm;
-  background-color: var(--heyform-bg-color);
-  box-shadow: var(--heyform-border-color) 0 0 0 1px inset;
+  background-color: var(--heyform-background-color);
+  box-shadow: var(--heyform-answer-opacity-60-color) 0 0 0 1px inset;
 }
 
-.heyform-radio-label {
+.builder-radio-label {
   @apply flex-1 ml-2 mr-2;
 }
 
-.heyform-radio-icon {
+.builder-radio-icon {
   @apply flex items-center justify-center;
 
   svg {
@@ -219,7 +199,7 @@
   }
 }
 
-.heyform-radio-image {
+.builder-radio-image {
   @apply flex w-full h-36 items-center justify-center;
 
   img {
@@ -227,49 +207,49 @@
   }
 }
 
-.heyform-radio-actions {
+.builder-radio-actions {
   @apply absolute right-3 top-3 space-x-2 hidden;
 
   .button {
     @apply p-1;
-    background-color: var(--heyform-border-color);
+    background-color: var(--heyform-answer-opacity-60-color);
 
     &:hover {
-      background-color: var(--heyform-border-active-color);
+      background-color: var(--heyform-answer-opacity-80-color);
     }
 
     &,
     .button-leading {
-      color: var(--heyform-bg-color);
+      color: var(--heyform-background-color);
     }
   }
 }
 
-.heyform-radio-trigger {
-  @extend .heyform-radio-image;
+.builder-radio-trigger {
+  @extend .builder-radio-image;
   @apply mb-2.5;
-  background-color: var(--heyform-answer-bg-color);
+  background-color: var(--heyform-answer-opacity-10-color);
 }
 
 // ----------------------------------------------------------------------------
 // Select
-.heyform-select {
+.builder-select {
   @apply w-full;
 }
 
-.heyform-select-container {
+.builder-select-container {
   @apply flex items-center pb-2 cursor-pointer;
   color: var(--heyform-answer-color);
-  border-bottom: 1px solid var(--heyform-border-active-color);
+  border-bottom: 1px solid var(--heyform-answer-opacity-80-color);
 }
 
-.heyform-select-value {
+.builder-select-value {
   @apply flex-1 text-2xl;
   color: var(--heyform-answer-color);
 
   &:before {
     content: attr(placeholder);
-    color: var(--heyform-answer-bg-active-color);
+    color: var(--heyform-answer-opacity-30-color);
     @apply absolute hidden truncate pointer-events-none text-2xl;
   }
 
@@ -283,7 +263,7 @@
   }
 }
 
-.heyform-select-arrow-icon {
+.builder-select-arrow-icon {
   svg {
     @apply w-6 h-6;
   }
@@ -291,22 +271,22 @@
 
 // ----------------------------------------------------------------------------
 // Block
-.heyform-block-container {
+.builder-block-container {
   @apply absolute inset-0 inset-0 px-20 z-10;
   @extend .scrollbar;
 
-  &.heyform-block-float_left,
-  &.heyform-block-split_left {
+  &.builder-block-float_left,
+  &.builder-block-split_left {
     @apply left-1/2 w-1/2;
   }
 
-  &.heyform-block-float_right,
-  &.heyform-block-split_right {
+  &.builder-block-float_right,
+  &.builder-block-split_right {
     @apply w-1/2;
   }
 }
 
-.heyform-block-image {
+.builder-block-image {
   @apply mb-8;
 
   img {
@@ -316,7 +296,7 @@
   }
 }
 
-.heyform-block {
+.builder-block {
   @apply w-full mx-auto;
   max-width: 45rem;
   padding-top: 7.5rem;
@@ -332,18 +312,18 @@
   }
 }
 
-.heyform-block-title {
+.builder-block-title {
   @apply text-2xl mb-1;
   color: var(--heyform-question-color);
 }
 
-.heyform-block-description {
+.builder-block-description {
   @apply text-lg;
   color: var(--heyform-description-color);
 }
 
-.heyform-block-title,
-.heyform-block-description {
+.builder-block-title,
+.builder-block-description {
   @apply relative outline-none;
 
   &:empty:before {
@@ -352,95 +332,140 @@
   }
 }
 
-.heyform-block-label {
+.builder-block-label {
   @apply text-base mb-1;
   color: var(--heyform-label-color);
 }
 
 
 // ----------------------------------------------------------------------------
+// Submit
+.builder-submit-container {
+  @apply flex items-center mt-8 transition-opacity duration-500;
+}
+
+.builder-submit-button {
+  @apply inline-flex items-center justify-between px-5 py-1.5 text-lg font-medium shadow-none outline-none rounded-md cursor-pointer;
+  min-width: 7.5rem;
+  background-color: var(--heyform-button-color);
+  color: var(--heyform-button-text-color);
+
+  svg {
+    @apply ml-2 -mr-1 h-5 w-5;
+  }
+}
+
+
+// ----------------------------------------------------------------------------
 // Welcome
-.heyform-empty-state {
-  .heyform-block-title,
-  .heyform-block-description {
+.builder-empty-state {
+  .builder-block-title {
+    @apply text-3xl mb-4;
+  }
+
+  .builder-submit-container {
+    @apply justify-center;
+  }
+
+  .builder-layout-inline img {
+    @apply rounded-none;
+  }
+}
+
+.builder-statement {
+  .builder-block-title,
+  .builder-block-description,
+  .builder-layout-inline {
+    @apply text-left;
+  }
+
+  .builder-submit-container {
+    @apply justify-start;
+  }
+}
+
+.builder-welcome,
+.builder-thank-you {
+  .builder-block-title,
+  .builder-block-description {
     @apply text-center;
 
-    &:empty:before {
-      @apply w-full left-0;
+    &:before {
+      transform: translateX(-50%);
     }
   }
 
-  .heyform-block-title {
-    @apply text-3xl mb-4;
+  .builder-submit-button {
+    @apply justify-center;
   }
 }
 
 // ----------------------------------------------------------------------------
 // Short text
-.heyform-input,
-.heyform-textarea {
+.builder-input,
+.builder-textarea {
   @apply w-full p-0 pb-2 border-none bg-transparent text-2xl transition outline-none shadow-none;
   color: var(--heyform-answer-color);
-  border-bottom: 1px solid var(--heyform-border-active-color);
+  border-bottom: 1px solid var(--heyform-answer-opacity-80-color);
 
   &:focus {
-    border-color: var(--heyform-border-active-color);
-    box-shadow: 0 1px 0 0 var(--heyform-border-active-color);
+    border-color: var(--heyform-answer-opacity-80-color);
+    box-shadow: 0 1px 0 0 var(--heyform-answer-opacity-80-color);
   }
 
   &::placeholder {
-    color: var(--heyform-answer-bg-active-color);
+    color: var(--heyform-answer-opacity-30-color);
   }
 }
 
 // ----------------------------------------------------------------------------
 // Long text
-.heyform-textarea {
+.builder-textarea {
   @apply h-10 resize-none;
 }
 
-.heyform-textarea-hit {
+.builder-textarea-hit {
   @apply mt-1.5 text-xs;
   color: var(--heyform-answer-color);
 }
 
 // ----------------------------------------------------------------------------
 // Opinion scale
-.heyform-opinion-scale {
-  .heyform-radio {
+.builder-opinion-scale {
+  .builder-radio {
     @apply flex-1 h-14;
   }
 
-  .heyform-radio-container {
+  .builder-radio-container {
     @apply h-full;
   }
 
-  .heyform-radio-label {
+  .builder-radio-label {
     text-align: center;
   }
 }
 
-.heyform-opinion-scale-labels {
+.builder-opinion-scale-labels {
   @apply flex items-center mt-1;
   color: var(--heyform-answer-color);
 }
 
 // ----------------------------------------------------------------------------
 // Multiple choice
-.heyform-multiple-choice-list {
+.builder-multiple-choice-list {
   @apply inline-flex flex-col;
   min-width: 10rem;
 
-  .heyform-radio-container:hover {
-    background-color: var(--heyform-answer-bg-color);
+  .builder-radio-container:hover {
+    background-color: var(--heyform-answer-opacity-10-color);
 
-    .heyform-radio-remove {
+    .builder-radio-remove {
       @apply opacity-100 visible;
     }
   }
 }
 
-.heyform-radio-label {
+.builder-radio-label {
   .input {
     @apply p-0;
   }
@@ -456,19 +481,19 @@
     color: var(--heyform-answer-color);
 
     &::placeholder {
-      color: var(--heyform-border-color);
+      color: var(--heyform-answer-opacity-60-color);
     }
   }
 }
 
-.heyform-radio-remove {
+.builder-radio-remove {
   @apply absolute w-6 h-6 p-0.5 -right-3 rounded-full border transition opacity-0 invisible;
-  background-color: var(--heyform-border-color);
+  background-color: var(--heyform-answer-opacity-60-color);
   border-color: var(--heyform-answer-color);
-  color: var(--heyform-bg-color);
+  color: var(--heyform-background-color);
 
   &:hover {
-    background-color: var(--heyform-border-active-color);
+    background-color: var(--heyform-answer-opacity-80-color);
   }
 
   svg {
@@ -478,51 +503,51 @@
 
 // ----------------------------------------------------------------------------
 // Picture choice
-.heyform-picture-choice-list {
+.builder-picture-choice-list {
   @apply flex flex-wrap -mx-1 -mb-2 items-stretch;
 
-  .heyform-radio-container:hover {
-    background-color: var(--heyform-answer-bg-color);
+  .builder-radio-container:hover {
+    background-color: var(--heyform-answer-opacity-10-color);
 
-    .heyform-radio-remove {
+    .builder-radio-remove {
       @apply opacity-100 visible;
     }
   }
 
-  .heyform-radio {
+  .builder-radio {
     @apply w-1/4 px-1 mb-2;
     height: 12rem;
 
     &:hover {
-      .heyform-radio-actions {
+      .builder-radio-actions {
         @apply block;
       }
     }
   }
 
-  .heyform-radio-container {
+  .builder-radio-container {
     @apply relative flex-col p-2.5 w-full;
   }
 
-  .heyform-radio-content {
+  .builder-radio-content {
     @apply w-full flex-none;
   }
 
-  .heyform-radio-image {
+  .builder-radio-image {
     @apply py-2.5;
 
     svg {
       @apply w-8 h-8;
-      color: var(--heyform-border-color);
+      color: var(--heyform-answer-opacity-60-color);
     }
   }
 
-  .heyform-radio-icon {
+  .builder-radio-icon {
     @apply absolute right-0 top-0;
 
     svg {
       @apply absolute top-1/2 left-1/2 -ml-7 mt-0.5;
-      color: var(--heyform-bg-color);
+      color: var(--heyform-background-color);
     }
 
     &:before {
@@ -536,34 +561,34 @@
     }
   }
 
-  .heyform-radio-remove {
+  .builder-radio-remove {
     @apply -top-3;
   }
 }
 
 // -----------------------------------------------------------------------------
 // File upload
-.heyform-file-uploader {
+.builder-file-uploader {
   @apply flex items-center justify-center h-72 rounded transition cursor-pointer;
   color: var(--heyform-answer-color);
   border: 1px dashed var(--heyform-answer-color);
-  background-color: var(--heyform-answer-bg-color);
+  background-color: var(--heyform-answer-opacity-10-color);
 
   &:hover {
-    background-color: var(--heyform-answer-bg-active-color);
+    background-color: var(--heyform-answer-opacity-30-color);
   }
 }
 
-.heyform-upload-wrapper {
+.builder-upload-wrapper {
   @apply flex flex-col items-center;
 }
 
-.heyform-upload-icon {
+.builder-upload-icon {
   @apply w-20 h-20;
-  color: var(--heyform-border-color);
+  color: var(--heyform-answer-opacity-60-color);
 }
 
-.heyform-upload-size-limit {
+.builder-upload-size-limit {
   @apply mt-4;
   color: var(--heyform-label-color);
 }
@@ -571,13 +596,13 @@
 
 // -----------------------------------------------------------------------------
 // Signature
-.heyform-signature-wrapper {
+.builder-signature-wrapper {
   @apply h-40 rounded;
   border: 1px dashed var(--heyform-answer-color);
-  background-color: var(--heyform-answer-bg-color);
+  background-color: var(--heyform-answer-opacity-10-color);
 }
 
-.heyform-signature-bottom {
+.builder-signature-bottom {
   @apply flex items-center justify-between mt-4;
   color: var(--heyform-label-color);
 }
@@ -585,7 +610,7 @@
 
 // ----------------------------------------------------------------------------
 // Rating
-.heyform-rating {
+.builder-rating {
   .rate {
     @apply space-x-2;
   }
@@ -594,27 +619,27 @@
     @apply flex flex-col w-16 cursor-pointer;
   }
 
-  .heyform-icon {
+  .builder-icon {
     @apply w-16 h-16 mb-2;
   }
 
-  .heyform-icon-stroke {
+  .builder-icon-stroke {
     stroke: var(--heyform-answer-color);
   }
 
   .rate-item-hover {
-    .heyform-icon-fill {
-      fill: var(--heyform-answer-bg-color);
+    .builder-icon-fill {
+      fill: var(--heyform-answer-opacity-10-color);
     }
   }
 
   .rate-item-active {
-    .heyform-icon-fill {
+    .builder-icon-fill {
       fill: var(--heyform-answer-color);
     }
   }
 
-  .heyform-rate-index {
+  .builder-rate-index {
     @apply block text-center;
     color: var(--heyform-answer-color);
   }
@@ -622,52 +647,47 @@
 
 // ----------------------------------------------------------------------------
 // Phone number
-.heyform-phone-number {
-  .heyform-input {
+.builder-phone-number {
+  .builder-input {
     @apply w-80 ml-4;
   }
 }
 
-.heyform-calling-code {
-  @apply flex items-center pt-2 pb-4 border-b cursor-pointer;
-  border-color: var(--heyform-border-color);
-
-  &:hover {
-    border-color: var(--heyform-border-active-color);
-    box-shadow: 0 1px 0 0 var(--heyform-border-active-color);
-  }
+.builder-calling-code {
+  @apply flex items-center pt-2 pb-4 border-b;
+  border-color: var(--heyform-answer-opacity-60-color);
 }
 
-.heyform-phone-arrow-icon {
+.builder-phone-arrow-icon {
   @apply ml-2 w-4 h-4;
   color: var(--heyform-answer-color);
 }
 
 // ----------------------------------------------------------------------------
 // Date
-.heyform-date-root {
+.builder-date-root {
   @apply flex items-end;
 }
 
-.heyform-date-item {
+.builder-date-item {
   @apply flex flex-col;
 }
 
-.heyform-date-label {
+.builder-date-label {
   @apply text-sm mb-2;
   color: var(--heyform-answer-color);
 }
 
-.heyform-date-item-month,
-.heyform-date-item-day {
+.builder-date-item-month,
+.builder-date-item-day {
   @apply w-12;
 }
 
-.heyform-date-item-year {
+.builder-date-item-year {
   @apply w-20;
 }
 
-.heyform-date-divider {
+.builder-date-divider {
   @apply text-2xl mb-2 mr-4 ml-5;
   color: var(--heyform-answer-color);
 }
@@ -741,7 +761,7 @@
     }
   }
 
-  .heyform-icon {
+  .builder-icon {
     @apply w-6 h-6 p-0.5 mr-1.5 text-gray-400;
   }
 
@@ -749,7 +769,7 @@
     @apply mr-2;
   }
 
-  .heyform-icon-stroke {
+  .builder-icon-stroke {
     stroke: currentColor;
     stroke-width: 0.125rem;
   }

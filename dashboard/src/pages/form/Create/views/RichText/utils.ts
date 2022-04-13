@@ -135,7 +135,6 @@ export function insertClipboardText(event: any) {
 export function insertClipboardHTML(event: ClipboardEvent) {
   const clipboardData = event.clipboardData.getData('text/html')
   const purgedHTML = htmlUtils.purge(clipboardData, {
-    allowedBlockTags: ['div', 'p'],
     allowedTags: ['text', 'span', 'bold', 'strong', 'code', 'b', 'i', 'u', 's'],
     allowedAttributes: []
   })

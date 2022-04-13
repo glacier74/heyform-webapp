@@ -1,7 +1,7 @@
-import { FormModel } from '@/legacy_pages/models'
-import { htmlUtils } from '@heyforms/answer-utils'
-import { isValidArray } from '@hpnp/utils/helper'
+import type { FormModel } from '@/legacy_pages/models'
 import { makeAutoObservable } from 'mobx'
+
+const allowedBlockTags = ['div', 'p', 'br']
 
 export class FormStore {
   activeFormId?: string
@@ -13,17 +13,6 @@ export class FormStore {
   }
 
   setCurrent(form?: FormModel) {
-    if (form) {
-      form.fields = form.fields?.map(row => {
-        if (isValidArray(row.titleSchema)) {
-          row.title = htmlUtils.serialize(row.titleSchema!, {
-            plain: true
-          })
-        }
-        return row
-      })
-    }
-
     this.current = form || ({} as any)
   }
 

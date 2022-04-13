@@ -3,27 +3,24 @@ import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { TemplateModal } from '@/legacy_pages/models'
 import { TemplateService } from '@/service'
 import { useParam } from '@/utils'
-import { customTheme, FormRender } from '@heyforms/form-component'
-import { FormThemeV2 } from '@heyforms/shared-types-enums'
+import { Renderer } from '@heyforms/form-component'
 import { Button, message } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 
 const TemplatePreview = observer(() => {
-  const navigate = useNavigate()
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { workspaceId, projectId, templateId } = useParam()
   const [loading, setLoading] = useState(false)
-  const [template, setTemplate] = useState<TemplateModal | Nil>(null)
-  const [theme, setTheme] = useState<FormThemeV2 | undefined>()
+  const [template, setTemplate] = useState<TemplateModal | null>(null)
 
   async function fetchTemplate() {
     const result = await TemplateService.detail(templateId)
     setTemplate(result)
-    setTheme(customTheme(result.themeSettings?.theme))
     return true
   }
 
@@ -44,12 +41,12 @@ const TemplatePreview = observer(() => {
     }
   }
 
-  function handleFinish() {
+  async function handleFinish() {
     message.warn("Can't submit form in Preview mode")
   }
 
   function handleNavigateBack() {
-    navigate.goBack()
+    navigate(`/workspace/${workspaceId}/project/${projectId}/templates`)
   }
 
   return (
@@ -63,13 +60,7 @@ const TemplatePreview = observer(() => {
       onNavigateBack={handleNavigateBack}
     >
       <StyledRequest fetch={fetchTemplate}>
-        <ThemeProvider theme={theme}>
-          <StyledFormRender
-            form={template as any}
-            theme={theme}
-            finishRequest={handleFinish as any}
-          />
-        </ThemeProvider>
+        <Renderer form={template as any} autoSave={false} onSubmit={handleFinish} />
       </StyledRequest>
     </Container>
   )
@@ -85,11 +76,7 @@ const Container = styled(NavBarContainer)`
 `
 
 const StyledRequest = styled(Request)`
-  min-height: 100vh;
-`
-
-const StyledFormRender = styled(FormRender)`
-  min-height: calc(100vh - 60px);
+  height: calc(100vh - 60px);
 `
 
 const StyledButton = styled(Button)`

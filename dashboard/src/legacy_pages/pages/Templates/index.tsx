@@ -56,7 +56,7 @@ const Templates = () => {
     <Container navigateBackTitle={t('template.create')} onNavigateBack={handleNavigateBack}>
       <Flex>
         <Sidebar>
-          <CategoryList>
+          <CategoryList className="scrollbar">
             <CategoryHeader>{t('integration.Categories')}</CategoryHeader>
             {categories.map((name, index) => (
               <CategoryItem key={index} name={name} />
@@ -104,6 +104,7 @@ const Container = styled(NavBarContainer)`
   .content {
     width: auto;
     padding-top: 40px;
+    overflow-x: hidden;
   }
 `
 

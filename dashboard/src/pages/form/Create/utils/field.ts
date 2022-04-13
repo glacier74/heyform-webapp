@@ -4,14 +4,20 @@ import { isValidArray } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 
 export function parseFields(fields?: FormField[]): FormField[] {
-  const result = fields?.filter(f => FORM_FIELD_KINDS.includes(f.kind))
+  const filtered = fields?.filter(f => FORM_FIELD_KINDS.includes(f.kind))
 
-  if (isValidArray(result)) {
-    return result!.map((f: any) => ({
-      ...f,
-      // Compatible with the data structure of the previous version
-      title: f.titleSchema || f.title
-    }))
+  if (isValidArray(filtered)) {
+    return filtered!.map((f: any) => {
+      const title = f.titleSchema || f.title
+
+      // Delete old properties
+      delete f.titleSchema
+
+      return {
+        ...f,
+        title
+      }
+    })
   }
 
   return []

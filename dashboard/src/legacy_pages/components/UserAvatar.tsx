@@ -1,5 +1,6 @@
 import { clearAuthState, useStore } from '@/legacy_pages/utils'
-import { Avatar, ComponentProps, Dropdown, Menu } from '@heyui/component'
+import { Dropdown } from '@heyforms/ui'
+import { Avatar, ComponentProps, Menu } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -54,15 +55,11 @@ export const UserAvatar: FC<ComponentProps> = observer(({ className, style }) =>
 
   return (
     <Container className={className} style={style}>
-      <StyledDropdown
-        placement="bottom-end"
-        offset={{
-          top: 14
-        }}
-        overlay={DropdownOverlay}
-      >
-        <img className="inline-block h-8 w-8 rounded-full" src={userStore.user.avatar} />
-      </StyledDropdown>
+      <Dropdown placement="bottom-end" overlay={DropdownOverlay}>
+        <span className="p-1 cursor-pointer">
+          <img className="inline-block h-8 w-8 rounded-full" src={userStore.user.avatar} />
+        </span>
+      </Dropdown>
     </Container>
   )
 })
@@ -79,11 +76,6 @@ const StyledAvatar = styled(Avatar)`
     width: 32px;
     height: 32px;
   }
-`
-
-const StyledDropdown = styled(Dropdown)`
-  padding: 0;
-  border: none;
 `
 
 const StyledMenu = styled(Menu)`

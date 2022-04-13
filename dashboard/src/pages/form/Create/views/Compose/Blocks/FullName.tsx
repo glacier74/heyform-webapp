@@ -6,14 +6,14 @@ import { Block } from './Block'
 
 export const FullName: FC<BlockProps> = ({ field, ...restProps }) => {
   return (
-    <Block className="heyform-full-name" field={field} {...restProps}>
+    <Block className="builder-full-name" field={field} {...restProps}>
       <div className="flex items-center space-x-4">
-        <input type="text" className="heyform-input" placeholder="First Name" />
-        <input type="text" className="heyform-input" placeholder="Last Name" />
+        <input type="text" className="builder-input" placeholder="First Name" disabled={true} />
+        <input type="text" className="builder-input" placeholder="Last Name" disabled={true} />
       </div>
       <div className="mt-8">
         <Button
-          className="heyform-next-block-button"
+          className="builder-next-block-button"
           type="primary"
           trailing={<ChevronRightIcon />}
         >

@@ -6,11 +6,16 @@ import { Block } from './Block'
 
 export const Number: FC<BlockProps> = ({ field, ...restProps }) => {
   return (
-    <Block className="heyform-number" field={field} {...restProps}>
-      <input type="number" className="heyform-input" placeholder="Your answer here" />
+    <Block className="builder-number" field={field} {...restProps}>
+      <input
+        type="number"
+        className="builder-input"
+        placeholder="Your answer here"
+        disabled={true}
+      />
       <div className="mt-8">
         <Button
-          className="heyform-next-block-button"
+          className="builder-next-block-button"
           type="primary"
           trailing={<ChevronRightIcon />}
         >

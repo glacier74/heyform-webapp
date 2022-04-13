@@ -1,0 +1,27 @@
+.form-preview-modal {
+  .modal-container {
+    @apply p-0;
+  }
+
+  .modal-content {
+    @apply p-0 w-full max-w-full h-full bg-white rounded-none;
+  }
+
+  .modal-body {
+    @apply p-0 w-full h-full;
+  }
+
+  .modal-close-button {
+    @apply fixed top-16 right-16 z-50;
+  }
+}
+
+
+.form-preview-header {
+  @apply flex items-center border-b border-gray-200;
+  height: 3.75rem;
+}
+
+.form-preview-body {
+  height: calc(100vh - 3.75rem);
+}

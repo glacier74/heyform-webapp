@@ -91,6 +91,7 @@ export default () => {
         {routes.map(route => (
           <Route key={route.path} path={route.path} element={<CustomRoute {...route} />} />
         ))}
+        <Route path="*" element={<Navigate to="/" replace />}></Route>
       </Routes>
     </BrowserRouter>
   )

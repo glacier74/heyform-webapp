@@ -1,20 +1,17 @@
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { useStore } from '@/legacy_pages/utils'
 import { useParam } from '@/utils'
-import { customTheme, FormRender } from '@heyforms/form-component'
-import { isValid } from '@hpnp/utils/helper'
+import { Renderer } from '@heyforms/form-component'
 import { observer } from 'mobx-react-lite'
 import { FC, useEffect } from 'react'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 
 export const FormPreviewModal: FC = observer(() => {
   const { formId } = useParam()
   const appStore = useStore('appStore')
   const formStore = useStore('formStore')
-  const workspaceStore = useStore('workspaceStore')
-  const composeStore = useStore('composeStore')
-  const form: any = isValid(composeStore.form) ? composeStore.form : formStore.current || {}
-  const theme = customTheme(form.themeSettings?.theme)
+  console.log('formStore', formStore)
+  const form: any = formStore.current || {}
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -27,7 +24,7 @@ export const FormPreviewModal: FC = observer(() => {
     appStore.isFormPreviewOpen = false
   }
 
-  function handleFinish() {}
+  async function handleFinish() {}
 
   return (
     <>
@@ -38,17 +35,7 @@ export const FormPreviewModal: FC = observer(() => {
             titleColor={form.themeSettings?.theme?.title}
             onClose={handleClose}
           >
-            <ThemeProvider theme={theme}>
-              <StyledFormRender
-                form={{
-                  ...form,
-                  removeBranding: workspaceStore.workspace.removeBranding
-                }}
-                theme={theme}
-                autoSave={false}
-                submitRequest={handleFinish}
-              />
-            </ThemeProvider>
+            <Renderer form={form} autoSave={false} onSubmit={handleFinish} />
           </StyledNavBarContainer>
         </Container>
       )}
@@ -100,8 +87,4 @@ const StyledNavBarContainer = styled(NavBarContainer)<{
       }
     }
   }
-`
-
-const StyledFormRender = styled(FormRender)`
-  min-height: 100vh;
 `

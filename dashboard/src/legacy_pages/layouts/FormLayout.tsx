@@ -1,6 +1,5 @@
-import { WorkspaceGuard } from '@/components'
+import { FormPreviewModal, WorkspaceGuard } from '@/components'
 import { FormNavbar, GlobalStyle } from '@/legacy_pages/components'
-import { FormPreviewModal } from '@/legacy_pages/components/FormPreviewModal'
 import { Flex } from '@heyui/component'
 import { FC } from 'react'
 import styled, { ThemeProvider } from 'styled-components'

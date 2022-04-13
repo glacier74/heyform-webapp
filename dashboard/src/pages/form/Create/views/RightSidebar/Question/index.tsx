@@ -11,10 +11,16 @@ export const Question: FC = () => {
   const { state } = useStoreContext()
   const field = state.selectedField
 
-  const memoTypeSelect = useMemo(() => <TypeSelect />, [field?.kind])
-  const memoSettings = useMemo(() => <Settings />, [field?.properties, field?.validations])
-  const memoCoverImage = useMemo(() => <CoverImage />, [field?.layout?.mediaUrl])
-  const memoLayout = useMemo(() => <Layout />, [field?.layout?.align, field?.layout?.brightness])
+  const memoTypeSelect = useMemo(() => <TypeSelect />, [field?.id, field?.kind])
+  const memoSettings = useMemo(
+    () => <Settings />,
+    [field?.id, field?.properties, field?.validations]
+  )
+  const memoCoverImage = useMemo(() => <CoverImage />, [field?.id, field?.layout?.mediaUrl])
+  const memoLayout = useMemo(
+    () => <Layout />,
+    [field?.id, field?.layout?.align, field?.layout?.brightness]
+  )
 
   if (isEmpty(field?.id)) {
     return null

@@ -1,3 +1,5 @@
+import { FormNavbarSharing } from '@/legacy_pages/components/FormNavbarSharing'
+import { UserAvatar } from '@/legacy_pages/components/UserAvatar'
 import { useStore } from '@/legacy_pages/utils'
 import { useParam } from '@/utils'
 import { Button, ComponentProps, Flex } from '@heyui/component'
@@ -46,8 +48,8 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
         </NavLink>
       </Nav>
       <Right>
-        {/*<FormNavbarSharing form={formStore.current} />*/}
-        {/*<UserAvatar />*/}
+        <FormNavbarSharing form={formStore.current} />
+        <UserAvatar />
       </Right>
     </Container>
   )

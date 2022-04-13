@@ -1,8 +1,9 @@
 import { FormCover } from '@/legacy_pages/pages/FormBuilder/nodes/FormCover'
 import { FormName } from '@/legacy_pages/pages/FormBuilder/nodes/FormName'
-import { FormService } from '@/service'
 import { loadFont, useStore } from '@/legacy_pages/utils'
 import { Queue } from '@/legacy_pages/utils/queue'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { htmlUtils } from '@heyforms/answer-utils'
 import { FieldKindEnum, FormField, FormModel } from '@heyforms/shared-types-enums'
 import { ComponentProps, message } from '@heyui/component'
@@ -10,8 +11,6 @@ import { alpha } from '@hpnp/utils/color'
 import { isURL, isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { FC, useEffect, useMemo, useReducer } from 'react'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import { ReactSortable } from 'react-sortablejs'
 import styled, { ThemeProvider } from 'styled-components'
 import {
@@ -238,9 +237,7 @@ const Editor: FC = () => {
       updates.welcomePage = {
         icon: state.welcome.icon,
         titleSchema: htmlUtils.parse(state.welcome.title!),
-        bodySchema: htmlUtils.parse(state.welcome.body!, {
-          allowedBlockTags: ['div', 'p', 'br']
-        })
+        bodySchema: htmlUtils.parse(state.welcome.body!)
       }
     }
 
@@ -248,9 +245,7 @@ const Editor: FC = () => {
       updates.thankYouPage = {
         icon: state.thankYou.icon,
         titleSchema: htmlUtils.parse(state.thankYou.title!),
-        bodySchema: htmlUtils.parse(state.thankYou.body!, {
-          allowedBlockTags: ['div', 'p', 'br']
-        })
+        bodySchema: htmlUtils.parse(state.thankYou.body!)
       }
     }
 

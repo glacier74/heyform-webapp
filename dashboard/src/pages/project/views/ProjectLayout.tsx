@@ -125,7 +125,7 @@ export const ProjectLayout: FC<IComponentProps> = ({ children }) => {
 
       <div className="py-4">
         <Navbar className="mt-4">
-          <NavLink to={`/workspace/${workspaceId}/project/${projectId}`}>
+          <NavLink to={`/workspace/${workspaceId}/project/${projectId}`} end={true}>
             {t('project.forms')}
           </NavLink>
           <NavLink to={`/workspace/${workspaceId}/project/${projectId}/trash`}>

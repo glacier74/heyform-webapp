@@ -63,30 +63,30 @@ export const Block: FC<BlockProps> = ({ className, field, children, ...restProps
       <div className="heyform-theme-background" />
 
       {field.layout?.align !== FieldLayoutAlignEnum.INLINE && (
-        <Layout className={`heyform-layout-${field.layout?.align}`} layout={field.layout} />
+        <Layout className={`builder-layout-${field.layout?.align}`} layout={field.layout} />
       )}
 
       <div
-        className={clsx('heyform-block-container', {
-          [`heyform-block-${field.layout?.align}`]: field.layout?.align
+        className={clsx('builder-block-container', {
+          [`builder-block-${field.layout?.align}`]: field.layout?.align
         })}
       >
         <div className="flex flex-col items-center justify-center min-h-full">
-          <div className={clsx('heyform-block', className)} {...restProps}>
+          <div className={clsx('builder-block', className)} {...restProps}>
             <div className="mb-10">
               {isLabelShow && (
-                <label className="heyform-block-label">
+                <label className="builder-block-label">
                   Question {field.index} {field.validations?.required && '*'}
                 </label>
               )}
               <RichText
-                className="heyform-block-title"
+                className="builder-block-title"
                 innerRef={titleRef as RefObject<HTMLDivElement>}
                 placeholder="Type a question"
                 onChange={handleTitleChangeCallback}
               />
               <RichText
-                className="heyform-block-description"
+                className="builder-block-description"
                 innerRef={descriptionRef as RefObject<HTMLDivElement>}
                 placeholder="Add description to your question (optional)"
                 onChange={handleDescriptionChangeCallback}
@@ -94,7 +94,7 @@ export const Block: FC<BlockProps> = ({ className, field, children, ...restProps
             </div>
 
             {isCoverShow && field.layout?.align === FieldLayoutAlignEnum.INLINE && (
-              <div className="heyform-block-image">
+              <div className="builder-block-image">
                 <img src={field.layout?.mediaUrl} />
               </div>
             )}
