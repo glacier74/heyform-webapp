@@ -21,7 +21,9 @@ export default ({ mode }: ConfigEnv) => {
       htmlInjectionPlugin({
         variables: env
       }),
-      fontOptimizationPlugin(),
+      fontOptimizationPlugin({
+        apply: 'build'
+      }),
       uploadPlugin({
         envFile: '.qiniurc',
         prefix: 'webapp/',
