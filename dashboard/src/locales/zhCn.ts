@@ -4,30 +4,30 @@ export default {
     startFree: 'start your free trial',
     signWith: 'Sign in with',
     continueWith: 'Or continue with',
-    rememberMe: 'Remember me',
+    rememberMe: '记住我',
     forgotPassword: 'Forgot your password?',
-    or: 'Or',
+    or: '或者',
     Email: '电子邮件地址',
-    Password: 'Password',
-    button: 'Sign In',
+    Password: '密码',
+    button: '登录',
     Google: 'Sign in with Google',
     Apple: 'Sign in with Apple'
   },
   auth: {
     signup: {
-      signUp: 'Create an account',
+      signUp: '创建帐户',
       signIn: 'sign in with existing one',
       signWith: 'Sign up with',
       continueWith: 'Or continue with',
       nameCant: "Name can't be empty",
-      invalidEmail: 'Invalid email address',
+      invalidEmail: '无效的电子邮件地址',
       PasswordViolation:
         'Your password must be at least 8 characters, and at least 1 uppercase, 1 lowercase and 1 number.',
-      agreeTo: 'By signing up, you agree to our',
-      terms: 'Terms of Service',
-      privacy: 'Privacy Policy',
-      and: 'and',
-      Email: 'Email address'
+      agreeTo: '通过注册，视为您同意我们的',
+      terms: '服务条款',
+      privacy: '隐私策略',
+      and: '和',
+      Email: '电子邮件地址'
     },
     forgotPassword: {
       forgot: 'Forgot Password?',
@@ -36,62 +36,62 @@ export default {
       continue: 'Continue'
     },
     resetPassword: {
-      reset: 'Reset Password',
+      reset: '重置密码',
       sentEmail:
         "We've sent you an email with a 6-digit verification code. Please check your inbox at",
       verificationCode: 'Verification code',
       invalidCode: 'Invalid verification code',
       newPassword: 'New password',
-      repeatPassword: 'Repeat password',
+      repeatPassword: '重置密码',
       passwordViolation:
         'Your password must be at least 8 characters, and at least 1 uppercase, 1 lowercase and 1 number.',
       passwordMismatch: 'Your new password and repeat password do not match.'
     }
   },
-  Audiences: {
+  audiences: {
     contact: {
       addContact: {
-        add: 'Add contact',
+        add: '新增联系人',
         addPeople: 'Add people who needs to take part in the survey or data collection.',
-        groups: 'Groups',
+        groups: '群组',
         selectGroup: 'Select at least one group or create a new one',
         findGroup: 'Find or create a group',
-        createGroup: 'Create new group',
-        fullName: 'Full name',
+        createGroup: '新建群组',
+        fullName: '姓名',
         notEmpty: "Full name can't be empty",
-        invalidEmail: 'Invalid email address',
-        phoneNumber: 'Phone number',
+        invalidEmail: '无效的电子邮件地址',
+        phoneNumber: '电话号码',
         optional: 'optional',
-        phoneNotEmpty: "Phone number can't be empty",
+        phoneNotEmpty: '电话号码不能为空',
         jobTitle: ' Job title',
-        jobNotEmpty: "Job title can't be empty",
+        jobNotEmpty: '职位不能为空',
         successCreate: 'Contact has been created'
       },
       importContact: {
-        Import: 'Import contacts',
-        CSVFile: 'You can bulk create contacts from CSV file.',
-        download: 'Download the template',
-        csv: 'The number of columns in your CSV should be the same as the example below.',
-        blankTemplate: 'Download blank template',
-        imp: 'Import',
+        Import: '导入联系人',
+        CSVFile: '您可以从 CSV 文件批量创建联系人',
+        download: '下载模板',
+        csv: 'CSV 中的列数应与以下示例相同',
+        blankTemplate: '下载空白模板',
+        imp: '导入',
         groupSelect: 'Select groups',
         selectOne: 'Select at least one group or create a new one',
-        uploadCsv: 'Upload completed CSV file',
-        invalid: 'Invalid CSV file'
+        uploadCsv: '上传完成的 CSV 文件',
+        invalid: '无效的 CSV 文件'
       },
       editContact: {
-        detail: 'Contact detail',
+        detail: '联系人详情',
         update: 'Update contact',
         selectGroup: 'Select at least one group or create a new one',
-        name: 'Full name',
-        nameNotEmpty: "Full name can't be empty",
-        phoneNotEmpty: "Phone number can't be empty",
+        name: '姓名',
+        nameNotEmpty: '姓名不能为空',
+        phoneNotEmpty: '电话号码不能为空',
         contactUpdate: 'Contact has been updated'
       },
       index: {
         delContact: 'Deleting contact...',
         deleted: 'Contact has been deleted',
-        edit: 'Edit',
+        edit: '编辑',
         noContact: "You don't have any contacts yet",
         addPeople: 'Add people who needs to take part in the survey or data collection.'
       }
@@ -99,54 +99,51 @@ export default {
     groups: {
       addGroup: {
         add: 'Add group',
-        explain: 'You can organize your contacts into groups to work with them more easily.',
-        GroupName: 'Group name',
-        groupNotEmpty: "Group name can't be empty"
+        explain: '您可以将联系人组织成组，以便更轻松地与他们合作。',
+        GroupName: '群组名称',
+        groupNotEmpty: '群组名称不能为空'
       },
       renameGroup: {
-        rename: 'Rename group',
-        up: 'Update'
+        rename: '重命名群组',
+        up: '更新'
       },
-      contact: 'Contacts',
+      contact: '联系人',
       noGroup: "You don't have any groups yet",
-      explain: 'You can organize your contacts into groups to work with them more easily.'
+      explain: '您可以将联系人组织成组，以便更轻松地与他们合作。'
     },
-    Title: 'Audience',
-    subText: 'Create the right audience for accurate results'
+    Title: '受众群体',
+    subText: '创建合适的受众以获得准确的结果'
   },
   setup: {
-    createW: 'Create a new workspace',
-    explain:
-      'Workspaces are shared environments where members can collaborate. After create a workspace, you can invite others to join.',
-    name: 'Workspace name',
+    createW: '创建新工作区',
+    explain: '工作区是成员可以协作的共享环境。创建工作区后，您可以邀请其他人加入。',
+    name: '工作区名称',
     logo: 'Workspace logo',
-    create: 'Create'
+    create: '新建'
   },
   project: {
     deleteProject: {
-      del: 'Delete project',
-      deleteExplain:
-        'Keep in mind this operation is irreversible and will permanently delete all the data associated with this project.',
-      deleteExplain2:
-        ' Once you confirm to delete the project, you will no longer have access to the project data.',
+      del: '删除项目',
+      deleteExplain: '请记住，此操作是不可逆的，并将永久删除与此项目相关的所有数据。',
+      deleteExplain2: '一旦您确认删除项目，您将无法再访问项目数据。',
       sendEmail: 'An email containing a verification code was sent to',
-      delBottom: 'Delete project',
+      delBottom: '删除项目',
       code: 'Verification code'
     },
-    rename: 'Rename',
-    del: 'Delete',
-    bottom: ' Create form',
-    forms: 'Forms',
-    Trash: 'Trash',
+    rename: '重命名',
+    del: '删除',
+    bottom: '新建表单',
+    forms: '表单',
+    Trash: '回收站',
     renameP: 'Rename this project',
-    update: 'Update',
-    projectName: 'Project name',
+    update: '更新',
+    projectName: '项目名称',
     suspended: 'Suspended',
     draft: 'Draft',
     active: 'Active',
     closed: 'Closed',
-    edit: 'Edit',
-    dup: 'Duplicate',
+    edit: '编辑',
+    dup: '复制',
     noForm: "Don't have any forms in this project yet",
     text: "It's your one-stop solution for all form needs. Quickly build online forms without any coding or design experience.",
     suspendForm: 'This form is suspended',
@@ -160,81 +157,78 @@ export default {
       explain: 'Assigned members can co-manage the activities here in this project.',
       assigned: 'Assigned',
       notAssigned: 'Not assigned',
-      leave: 'Leave',
-      remove: 'Remove',
+      leave: '离开',
+      remove: '移除',
       assign: 'Assign',
-      submissions: 'submissions',
+      submissions: '提交',
       NoSubmissions: 'No submissions yet',
       removeMember: 'Failed to remove member',
       assignMember: 'Failed to assign member',
       leftP: 'You have left the project',
       leaveP: 'Failed to leave this project',
-      you: ' (You)'
+      you: ' (你)'
     },
     trash: {
-      restore: 'Restore',
-      delForever: 'Delete forever',
+      restore: '还原',
+      delForever: '永久删除',
       explain: 'You can restore any file deleted in the last 30 days.',
-      link: 'Learn more',
+      link: '了解更多',
       noForm: "Don't have any forms in trash",
-      daysExplain: 'Forms will be permanently deleted from the trash after 30 days.',
+      daysExplain: '表单将在 30 天后从回收站中永久删除。',
       delForm: "will be deleted forever and you won't be able to restore it.",
       deleteForever: 'Delete forever?',
-      cancel: 'Cancel',
+      cancel: '取消',
       restoring: 'Restoring form'
     }
   },
   workspace: {
     members: {
-      delMember:
-        'Once you confirm to remove this member, member will no longer have access to this workspace data.',
+      delMember: '一旦您确认删除此成员，该成员将无法再访问此工作区数据。',
       delConfirm: 'Are you sure you want to remove this member?',
-      remove: 'Remove',
+      remove: '移除',
       inputPrompt: 'Please enter at least one valid email address',
-      inviteMember: 'Invite members to',
+      inviteMember: '邀请成员到',
       send: 'Invitations have been send',
       inviteExplain:
         'You can invite members to join the workspace by sending emails below. The invitation expires on',
-      Add: 'Add more',
-      sendBottom: 'Send Invitations',
-      member: 'Members',
+      Add: '添加更多',
+      sendBottom: '发送邀请',
+      member: '工作区成员',
       manage: 'Manage who has access to the workspace.',
-      leave: 'Are you sure you want to leave the workspace?',
-      leaveExplain:
-        'Once you confirm to leave this workspace, you will no longer have access to this workspace data.',
-      bottomLeave: 'Leave',
+      leave: '是否确实要离开工作区？',
+      leaveExplain: '一旦您确认离开此工作区，您将无法再访问此工作区数据。',
+      bottomLeave: '离开',
       transferTitle: 'Are you sure you want to transfer this workspace?',
-      transferWorkspace:
-        'Once you confirm to transfer this workspace, you will no longer be the owner of this workspace.',
-      transfer: 'Transfer',
+      transferWorkspace: '一旦您确认转移此工作区，您将不再是此工作区的所有者',
+      transfer: '转移',
       index: {
         owner: 'Owner',
-        member: 'Member',
-        transfer: 'Transfer ownership',
+        member: '成员',
+        transfer: '所有权转移',
         leave: 'Leave workspace',
-        invite: 'Invite member'
+        invite: '邀请成员'
       }
     },
     workSpace: {
       createP: 'Create a new project',
       workExplain:
         'Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations.',
-      createBottom: 'Create',
+      createBottom: '新建',
       assign: 'Assign members',
       createP2: 'Create project',
       noProject: "You don't have any projects yet",
       text: 'Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations.'
     },
     settings: {
-      WorkSettings: 'Workspace Settings',
-      subTitle: 'Manage your workspace settings',
-      up: 'Update',
-      nameW: 'Workspace name',
+      WorkSettings: '工作区设置',
+      subTitle: '管理您的工作区设置',
+      up: '更新',
+      nameW: '工作区名称',
       removeBranding: 'Remove HeyForm branding',
       brandingExplain:
         "To make HeyForm feel like it's completely owned by your brand, remove the HeyForm Logo in the form footer.",
       learnMore: 'Learn more about remove branding in docs',
-      customDomain: 'Custom domain',
+      customDomain: '自定义域名',
       domainExplain:
         'Custom domains allow you to make form accessible at your own, non-HeyForm domain names (for example, yourcustomdomain.com). HeyForm supports all top-level domains in custom domains.',
       domainExplain2:
@@ -242,7 +236,7 @@ export default {
       domainLink: 'Learn more about custom domains',
       domainChecking: 'Checking',
       type: 'Type',
-      domainName: 'Name',
+      domainName: '名称',
       content: 'Content',
       cname: 'CNAME',
       domainUp: 'Custom domain has been updated',
@@ -250,13 +244,10 @@ export default {
       domain: 'eg: yourcustomdomain.com',
       delWorkspace: {
         sendEmail: 'An email containing a verification code was sent to',
-        dissolve: 'Dissolve workspace',
-        warning:
-          'Keep in mind this operation is irreversible and will permanently delete all the data associated with this workspace.',
-        warning2:
-          'Once you confirm to dissolve the workspace, you will no longer have access to the workspace data.',
-        warning3:
-          'By dissolving the team, all the forms and data will be erased and cannot be restored! Be cautious!'
+        dissolve: '解散工作区',
+        warning: '请记住，此操作是不可逆的，并将永久删除与此工作区相关联的所有数据。',
+        warning2: '一旦确认要分解工作区，您将无法再访问工作区数据。',
+        warning3: '通过解散工作区，所有的表单和数据都将被擦除，无法恢复！要谨慎！'
       },
       receive: 'Once the export is ready, you will receive an email with the download link.',
       export: 'Export content',
@@ -264,28 +255,27 @@ export default {
       exportBottom: 'Request your data',
 
       logo: 'Logo',
-      pickLogo: 'Pick a logo for your workspace'
+      pickLogo: '为你的工作区挑选一个 Logo'
     },
     createWorkspace: {
-      newWorkspace: 'Create a new workspace',
-      text: 'Workspaces are shared environments where members can collaborate. After create a workspace, you can invite others to join.',
-      name: 'Workspace name',
+      newWorkspace: '创建新工作区',
+      text: '工作区是成员可以协作的共享环境。创建工作区后，您可以邀请其他人加入。',
+      name: '工作区名称',
       logo: 'Workspace logo',
-      create: 'Create'
+      create: '新建'
     },
     join: {
       invited: "You've been invited to",
       UsernameAdd: "'s workspace",
       joinText: 'Join the workspace and start working together!',
-      member: 'members',
-      bottom: 'Join'
+      member: '工作区成员',
+      bottom: '加入'
     }
   },
   user: {
     settings: {
       avatar: 'Avatar',
-      avatarText:
-        'Gravatar is used by default as your HeyForm avatar, you can upload your custom avatar here',
+      avatarText: 'Gravatar 默认作为您的嘿哟表单头像，您可以在这里上传您的自定义头像。',
       deletedAccount: {
         sendEmail: 'An email containing a verification code was sent to',
         del: 'Delete account',
@@ -301,7 +291,7 @@ export default {
         loggedOut: 'You will now be logged out.',
         delText2:
           'This will permanently delete your entire account. All your forms, submissions and workspaces will be deleted',
-        danger: 'Danger zone'
+        danger: '危险区域'
       },
       emailAddress: {
         change: 'Change your email address',
@@ -309,35 +299,35 @@ export default {
         newEmail: 'New email address',
         checkEmail: 'Check your email',
         code: "We've sent you an email with a 6-digit verification code. Please check your inbox at",
-        continue: 'Continue',
+        continue: '继续',
         changeEmail: 'Change email address',
-        send: 'Send'
+        send: '发送'
       },
-      account: 'Account Settings',
+      account: '帐户设置',
       accountText: 'Changes to account settings will apply to all of your workspaces.',
       password: {
         changeText: 'Your password has been changed',
-        changeP: 'Change password',
+        changeP: '修改密码',
         currentPassword: 'Current password',
         newP: 'New password'
       },
-      name: 'Your name'
+      name: '您的名字'
     },
-    verifyEmail: 'Verify your email address',
+    verifyEmail: '验证您的电子邮件地址',
     sendEmailText:
       "We've sent you an email with a 6-digit verification code. Please check your inbox at",
     typoEmail: 'Made a typo on email address?',
     click: 'click here',
     change: 'to change it.',
     text: "Don't receive the code?",
-    resend: 'Resend'
+    resend: '重新发送'
   },
   billing: {
     billed: "You haven't been billed yet",
     send: 'Once we send you a bill, the details will show here.',
-    monthly: 'Monthly',
-    annually: 'Annually',
-    cycle: 'Billing Cycle',
+    monthly: '按月',
+    annually: '按年',
+    cycle: '计费周期',
     addCode: 'Add coupon code',
     apply: 'Apply',
     noCode: "Coupon code can't be empty",
@@ -345,65 +335,65 @@ export default {
     downGrade: 'Downgrade plan',
     downText:
       'Notice: once you confirm to downgrade the plan, your workspace will no longer be able to access features of premium plans.',
-    Downgrade: 'Downgrade',
-    upgrade: 'Upgrade',
-    current: 'Current plan',
-    perMonth: 'per month',
-    member: 'Member',
-    audience: 'Audience',
-    storage: 'Storage',
-    planMay: 'Your plan may expire at',
-    noExpires: 'Your plan will never expires',
-    Plan: 'Plan',
-    form: 'Form',
+    Downgrade: '降级',
+    upgrade: '升级',
+    current: '当前套餐',
+    perMonth: '每月',
+    member: '工作区成员',
+    audience: '受众群体',
+    storage: '存储',
+    planMay: '您的套餐的到期时间为',
+    noExpires: '您的套餐将不会到期',
+    Plan: '套餐',
+    form: '表单',
     upPlan: 'Upgrade plan',
-    plan: 'plan',
+    plan: '套餐',
     Billed: 'Billed',
     Subtotal: 'Subtotal',
     Discount: 'Discount',
     add: 'Add coupon code',
     total: 'Total',
     bottom: 'Upgrade now',
-    Subscription: 'Subscription',
-    Invoices: 'Invoices',
-    View: 'View invoice',
-    Billing: 'Billing',
-    invoices: 'Manage your subscription and invoices',
+    Subscription: '订阅',
+    Invoices: '发票',
+    View: '查看账单',
+    Billing: '计费信息',
+    invoices: '管理您的订阅和发票',
     plans: {
       plan: 'Plans',
       usage: 'Usage',
       comparison: 'Pricing plan comparison',
-      unlimited: 'Unlimited',
-      questions: 'Number of questions per form',
-      formsN: 'Number of forms',
-      submissions: 'Number of submissions',
+      unlimited: '不限制',
+      questions: '每个表单的问题数',
+      formsN: '表单数量',
+      submissions: '提交数量',
       collaborators: 'Number of collaborators',
       contacts: 'Number of contacts',
       additional: 'Additional Seats Cost',
       seat1: '$3/seat/month',
       seat2: '$5/seat/month',
       seat3: '$8/seat/month',
-      reports: 'Reports',
-      storage: 'Storage',
+      reports: '报告',
+      storage: '存储',
       features: 'Features',
-      integrations: 'Integrations',
-      limited: 'Limited',
+      integrations: '集成',
+      limited: '有限制',
       integrations1: 'Limited (70% unlocked)',
       integrations2: 'Limited (85% unlocked)',
-      validation: 'Fields Validation',
-      anti: 'Anti spam and bots Prevention',
-      template: 'Access to Template Gallery',
-      embed: 'Embed to website',
+      validation: '字段验证',
+      anti: '反垃圾邮件和机器人预防',
+      template: '访问模板库',
+      embed: '嵌入到网站',
       submissionLimit: 'Close on submission limit',
       schedule: 'Schedule a close date',
-      URL: 'Custom URL redirects',
-      export: 'Export data to CSV',
-      Password: 'Password Protection',
-      customized: 'Theme Customization',
+      URL: '自定义网址重定向',
+      export: '将数据导出到 CSV',
+      Password: '口令保护',
+      customized: '主题定制',
       Thank: 'Custom Thank you page',
-      team: 'Team Collaboration',
-      customDomain: 'Custom Domain',
-      whitelabel: 'Whitelabel Branding',
+      team: '团队协作',
+      customDomain: '自定义域名',
+      whitelabel: '白色标签品牌',
       partial: 'Partial',
       support: 'Support',
       manager: 'Dedicated manager'
