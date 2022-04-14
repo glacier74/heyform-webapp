@@ -24,18 +24,18 @@ export function useChoicesOption(choices?: Choice[], randomize = false): any[] {
       return []
     }
 
-    let list = choices!.map((choice, index) => ({
-      keyName: String.fromCharCode(KeyCode.A + index),
-      label: choice.label,
-      value: choice.id,
-      image: choice.image
-    }))
+    let list = choices!
 
     if (randomize) {
       list = list.sort(() => Math.random() - 0.5)
     }
 
-    return list
+    return list.map((choice, index) => ({
+      keyName: String.fromCharCode(KeyCode.A + index),
+      label: choice.label,
+      value: choice.id,
+      image: choice.image
+    }))
   }, [choices])
 }
 
