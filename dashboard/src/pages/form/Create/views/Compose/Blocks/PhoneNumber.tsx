@@ -1,5 +1,6 @@
 import { COUNTRIES } from '@/pages/form/Create/consts'
-import { ChevronDownIcon } from '@heroicons/react/outline'
+import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
+import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 import { FlagIcon } from '../FlagIcon'
@@ -20,6 +21,7 @@ export const PhoneNumber: FC<BlockProps> = ({ field, ...restProps }) => {
         </div>
         <input type="text" className="builder-input" placeholder={placeholder} disabled={true} />
       </div>
+      <FakeSubmit text="Next" icon={<ChevronRightIcon />} />
     </Block>
   )
 }

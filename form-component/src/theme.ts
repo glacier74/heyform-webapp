@@ -65,7 +65,7 @@ export function getWebFontURL(fontName?: string) {
   }
 }
 
-export function loadWebFont(fontName?: string) {
+export function insertWebFont(fontName?: string) {
   const href = getWebFontURL(fontName)
 
   if (!href) {
@@ -127,7 +127,7 @@ export function insertThemeStyle(theme: FormThemeV3) {
     bottom: 0;
     left: 0;
     background-size: cover;
-    background-position: top;
+    background-position: center;
     z-index: 2;
     background-color: var(--heyform-background-color);
     ${theme.backgroundImage ? `background-image: url(${theme.backgroundImage});` : ''}

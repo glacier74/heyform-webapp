@@ -122,7 +122,8 @@
   @apply flex items-center justify-center;
 
   img {
-    @apply w-auto h-auto rounded-none;
+    @apply w-auto h-auto max-w-full rounded-none;
+    max-width: 70%;
   }
 }
 
@@ -904,4 +905,9 @@
     @apply py-1 px-2 text-sm border-gray-200 rounded rounded-l-none shadow focus:border-gray-300;
     border-width: 1px 1px 1px 0;
   }
+}
+
+.background-brightness-image {
+  @apply w-16 h-16 rounded object-cover;
+  aspect-ratio: 1/1;
 }

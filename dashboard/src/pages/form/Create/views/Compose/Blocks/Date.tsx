@@ -1,4 +1,6 @@
 import { DATE_FORMAT_MAPS, DATE_FORMAT_NAMES } from '@/pages/form/Create/consts'
+import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
+import { ChevronRightIcon } from '@heroicons/react/outline'
 import type { FC } from 'react'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
@@ -40,6 +42,7 @@ export const Date: FC<BlockProps> = ({ field, ...restProps }) => {
         <div className="builder-date-divider">{divider}</div>
         <DateItem format={z} />
       </div>
+      <FakeSubmit text="Next" icon={<ChevronRightIcon />} />
     </Block>
   )
 }

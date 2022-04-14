@@ -1,5 +1,6 @@
 import type { FormModel } from '@/legacy_pages/models'
 import { getTheme } from '@heyforms/form-component'
+import { FormThemeV3 } from '@heyforms/shared-types-enums'
 import { makeAutoObservable } from 'mobx'
 
 export class FormStore {
@@ -7,21 +8,25 @@ export class FormStore {
 
   current?: FormModel = {} as any
 
+  customTheme?: FormThemeV3
+
   constructor() {
     makeAutoObservable(this)
   }
 
   get theme() {
-    return getTheme(this.current?.themeSettings?.theme)
+    return getTheme(this.customTheme || this.current?.themeSettings?.theme)
   }
 
   updateTheme(updates: IMapType) {
-    this.current!.themeSettings = {
-      theme: {
-        ...this.theme,
-        ...updates
-      }
+    this.customTheme = {
+      ...this.customTheme,
+      ...updates
     }
+  }
+
+  clearCustomTheme() {
+    this.customTheme = undefined
   }
 
   setCurrent(form?: FormModel) {

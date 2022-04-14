@@ -1,1 +1,1 @@
-export function loadWebFont() {}
+export function insertWebFont() {}

@@ -1,18 +1,20 @@
 import { GOOGLE_FONTS_OPTIONS } from '@/consts'
 import { useStore } from '@/store'
-import { insertThemeStyle, loadWebFont } from '@heyforms/form-component'
-import { Button, Form, Select } from '@heyforms/ui'
+import { insertThemeStyle, insertWebFont } from '@heyforms/form-component'
+import { Button, Form, Select, stopPropagation, useForm } from '@heyforms/ui'
+import { isURL } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect } from 'react'
+import { BackgroundBrightness } from './BackgroundBrightness'
 import { BackgroundImage } from './BackgroundImage'
 import { ColorPickerField } from './ColorPickerField'
 
 export const Customize: FC = observer(() => {
   const formStore = useStore('formStore')
+  const [form] = useForm()
 
   function handleValuesChange(changedValues: any) {
-    console.log(changedValues)
     formStore.updateTheme(changedValues)
   }
 
@@ -20,14 +22,25 @@ export const Customize: FC = observer(() => {
     console.log(values)
   }
 
+  function handleRevert(event: any) {
+    stopPropagation(event)
+    formStore.clearCustomTheme()
+
+    setTimeout(() => {
+      form.setFieldsValue(formStore.theme)
+      form.resetFields()
+    }, 0)
+  }
+
   useEffect(() => {
-    loadWebFont(formStore.theme.fontFamily)
+    insertWebFont(formStore.theme.fontFamily)
     insertThemeStyle(formStore.theme)
   }, [formStore.theme])
 
   return (
     <div>
       <Form
+        form={form}
         initialValues={formStore.theme}
         onValuesChange={handleValuesChange}
         onFinish={handleFinish}
@@ -63,11 +76,23 @@ export const Customize: FC = observer(() => {
           </Form.Item>
         </div>
 
-        <BackgroundImage />
+        <div className="right-sidebar-group">
+          <Form.Item name="backgroundImage">
+            <BackgroundImage />
+          </Form.Item>
+        </div>
+
+        {isURL(formStore.theme.backgroundImage) && (
+          <div className="right-sidebar-group">
+            <Form.Item name="backgroundBrightness">
+              <BackgroundBrightness backgroundImage={formStore.theme.backgroundImage} />
+            </Form.Item>
+          </div>
+        )}
 
         <Form.Item className="right-sidebar-group">
           <div className="flex items-center">
-            <Button>Revert</Button>
+            <Button onClick={handleRevert}>Revert</Button>
             <Button className="ml-4 flex-1" type="primary" htmlType="submit">
               Save changes
             </Button>
