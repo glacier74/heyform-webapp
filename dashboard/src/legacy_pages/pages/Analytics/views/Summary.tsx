@@ -5,7 +5,8 @@ import { Map, RangeProps } from '@/legacy_pages/pages/Analytics/views/Map'
 import { formatSeconds } from '@/legacy_pages/utils'
 import { FormService } from '@/service'
 import { useParam } from '@/utils'
-import { ComponentProps, Flex, Select } from '@heyui/component'
+import { Select } from '@heyforms/ui'
+import { ComponentProps, Flex } from '@heyui/component'
 import { clone } from '@hpnp/utils/clone'
 import { isValid } from '@hpnp/utils/helper'
 import { FC, useEffect, useState } from 'react'
@@ -88,7 +89,7 @@ export const Summary: FC = () => {
     return data
   }
 
-  function handleRangeChange(range: string) {
+  function handleRangeChange(range: any) {
     setRange(parseInt(range))
   }
 
@@ -101,10 +102,9 @@ export const Summary: FC = () => {
       <StyledSubHeading
         action={
           <Select
-            size="small"
+            className="w-auto"
             value={range}
-            options={options}
-            allowClear={false}
+            options={options as any}
             loading={loading}
             onChange={handleRangeChange}
           />

@@ -27,6 +27,8 @@
     ]
   },
   "resolutions": {
+    "**/**/react": "^18.0.0",
+    "**/**/react-dom": "^18.0.0",
     "**/**/dayjs": "^1.10.7",
     "**/**/@hpnp/utils": "^2.9.1"
   },
@@ -37,7 +39,7 @@
     "@heyforms/form-component": "*",
     "@heyforms/shared-types-enums": "^4.2.2",
     "@heyforms/ui": "*",
-    "@heyui/component": "^1.7.1",
+    "@heyui/component": "^1.8.0",
     "@heyui/icon": "^1.28.1",
     "@hpnp/utils": "^2.9.1",
     "@sentry/react": "^6.17.7",

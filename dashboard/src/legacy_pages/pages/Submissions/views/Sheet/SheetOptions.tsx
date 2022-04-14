@@ -1,6 +1,7 @@
 import { FormError } from '@/legacy_pages/components'
 import { CUSTOM_COLUMN_CHOICE_KINDS, CUSTOM_COLUMN_KINDS } from '@heyforms/shared-types-enums'
-import { Button, Dropdown, Flex, Form, FormItem, Input, Menu, Select } from '@heyui/component'
+import { Dropdown } from '@heyforms/ui'
+import { Button, Flex, Form, FormItem, Input, Menu, Select } from '@heyui/component'
 // @ts-ignore
 import { COLOR_PALETTE } from '@heyui/component/esm/constants'
 import { ArrowDownSFillIcon, CheckIcon, CloseIcon } from '@heyui/icon'
@@ -33,7 +34,7 @@ const ColorSelector: FC<ColorSelectorProps> = ({ color, onChange }) => {
   )
 
   return (
-    <Dropdown popupZIndex={100} placement="right" mask={true} overlay={Overlay}>
+    <Dropdown placement="right" mask={true} overlay={Overlay}>
       <ColorContainer fillColor={color} isDark={isDarkColor(color)}>
         <ArrowDownSFillIcon />
       </ColorContainer>

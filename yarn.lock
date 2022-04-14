@@ -1043,22 +1043,22 @@
   resolved "http://npm.heyooo.com/@heyforms%2fshared-types-enums/-/shared-types-enums-4.2.2.tgz#cb0563840ef354dbef04952ca884dbc65db86548"
   integrity sha512-KuapgNIRxMVkRS6/G+A0iHT5ln08PQBMIqiz32OyGErTSltgf4CXBAxTrmVNN9e82otyjYKsl3532MEY49RVoQ==
 
-"@heyui/component@^1.7.1":
-  version "1.7.1"
-  resolved "http://npm.heyooo.com/@heyui%2fcomponent/-/component-1.7.1.tgz#9238915b510b379e09d9d17b51f4afe187036083"
-  integrity sha512-GWXVqVHHacDn7maPA+fTK00NEgzoC8ZMDIqkPPLNxmqydG3MeDSL8JcfipiE0/TVmgsoMIK2xwIdHgexo9rkjw==
+"@heyui/component@^1.8.0":
+  version "1.8.0"
+  resolved "http://npm.heyooo.com/@heyui%2fcomponent/-/component-1.8.0.tgz#f08042fa3bd120a75a332bf0700c2211f0116318"
+  integrity sha512-M4iBRc7D9FFq4wjz9ebTa4Yip2PIet5Thq85kUQRtX3Z8q5PDkKzrTqp86unYEJHS06gXe0B4oy+qokYMLCyjA==
   dependencies:
     "@heyui/icon" "^1.21.0"
     "@hpnp/utils" "^2.5.1"
     "@popperjs/core" "^2.9.2"
     clsx "^1.1.1"
     rc-field-form "^1.20.0"
-    react "^17.0.2"
-    react-dom "^17.0.2"
+    react "^18.0.0"
+    react-dom "^18.0.0"
     react-popper "^2.2.5"
     react-textarea-autosize "^8.3.3"
     react-transition-group "^4.4.1"
-    styled-components "^5.2.3"
+    styled-components "^5.3.5"
 
 "@heyui/icon@^1.21.0", "@heyui/icon@^1.28.1":
   version "1.28.1"
@@ -6425,15 +6425,6 @@ react-copy-to-clipboard@^5.0.4:
     copy-to-clipboard "^3"
     prop-types "^15.5.8"
 
-react-dom@^17.0.2:
-  version "17.0.2"
-  resolved "http://npm.heyooo.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
-  integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    scheduler "^0.20.2"
-
 react-dom@^18.0.0:
   version "18.0.0"
   resolved "http://npm.heyooo.com/react-dom/-/react-dom-18.0.0.tgz#26b88534f8f1dbb80853e1eabe752f24100d8023"
@@ -6555,14 +6546,6 @@ react-use@^17.3.2:
     throttle-debounce "^3.0.1"
     ts-easing "^0.2.0"
     tslib "^2.1.0"
-
-react@^17.0.2:
-  version "17.0.2"
-  resolved "http://npm.heyooo.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
-  integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 react@^18.0.0:
   version "18.0.0"
@@ -6879,14 +6862,6 @@ saxes@^5.0.1:
   integrity sha512-5LBh1Tls8c9xgGjw3QrMwETmTMVk0oFgvrFSvWx62llR2hcEInrKNZ2GZCCuuy2lvWrdl5jhbpeqc5hRYKFOcw==
   dependencies:
     xmlchars "^2.2.0"
-
-scheduler@^0.20.2:
-  version "0.20.2"
-  resolved "http://npm.heyooo.com/scheduler/-/scheduler-0.20.2.tgz#4baee39436e34aa93b4874bddcbf0fe8b8b50e91"
-  integrity sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 scheduler@^0.21.0:
   version "0.21.0"
@@ -7370,7 +7345,7 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   resolved "http://npm.heyooo.com/strip-json-comments/-/strip-json-comments-3.1.1.tgz#31f1281b3832630434831c310c01cccda8cbe006"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
-styled-components@^5.2.3, styled-components@^5.3.3:
+styled-components@^5.3.3, styled-components@^5.3.5:
   version "5.3.5"
   resolved "http://npm.heyooo.com/styled-components/-/styled-components-5.3.5.tgz#a750a398d01f1ca73af16a241dec3da6deae5ec4"
   integrity sha512-ndETJ9RKaaL6q41B69WudeqLzOpY1A/ET/glXkNZ2T7dPjPqpPCXXQjDFYZWwNnE5co0wX+gTCqx9mfxTmSIPg==

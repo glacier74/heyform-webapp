@@ -416,10 +416,8 @@ export const SheetRowModal: FC<SheetRowModalProps> = ({
                           return <></>
 
                         case FieldKindEnum.YES_NO:
-                        case FieldKindEnum.DROPDOWN:
                           return <DropdownItem row={row!} column={column} />
 
-                        case FieldKindEnum.SINGLE_CHOICE:
                         case FieldKindEnum.MULTIPLE_CHOICE:
                           return <MultipleChoiceItem row={row!} column={column} />
 
@@ -438,10 +436,6 @@ export const SheetRowModal: FC<SheetRowModalProps> = ({
                         case FieldKindEnum.DATE:
                         case FieldKindEnum.PHONE_NUMBER:
                           return <DateItem row={row!} column={column} />
-
-                        // Fieldset
-                        case FieldKindEnum.CODE_BLOCK:
-                          return <CodeBlockItem row={row!} column={column} />
 
                         case FieldKindEnum.COUNTRY:
                           return <OpinionScaleItem row={row!} column={column} />

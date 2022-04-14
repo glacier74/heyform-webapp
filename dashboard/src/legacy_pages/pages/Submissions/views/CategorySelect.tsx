@@ -1,5 +1,6 @@
 import { SubmissionCategoryEnum } from '@heyforms/shared-types-enums'
-import { Dropdown, Menu } from '@heyui/component'
+import { Dropdown } from '@heyforms/ui'
+import { Menu } from '@heyui/component'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -44,7 +45,7 @@ export const CategorySelect: FC<CategorySelectProps> = ({ category: rowCategory,
   }
 
   return (
-    <StyledDropdown overlay={DropdownOverlay} arrow={true}>
+    <StyledDropdown overlay={DropdownOverlay}>
       <Text>{t(CATEGORY_MAPS[category])}</Text>
     </StyledDropdown>
   )

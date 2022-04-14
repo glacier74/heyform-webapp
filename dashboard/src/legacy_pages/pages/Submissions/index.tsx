@@ -1,6 +1,6 @@
+import { Pagination } from '@/components'
 import { EmptyDataView, Request } from '@/legacy_pages/components'
 import { BlankSubmissionIcon } from '@/legacy_pages/components/Icons'
-import { PaginationBar } from '@/legacy_pages/components/PaginationBar'
 import { SelectedPanel } from '@/legacy_pages/components/SelectedPanel'
 import { FormModel, SubmissionModel } from '@/legacy_pages/models'
 import { ResultNavbar } from '@/legacy_pages/pages/Analytics/views/ResultNavbar'
@@ -213,12 +213,7 @@ const Submissions: FC = () => {
             {/*<CustomFields />*/}
             <ExportLink />
           </ToolbarLeft>
-          <PaginationBar
-            total={total}
-            page={page}
-            pageSize={pageSize}
-            onChange={handlePageChange}
-          />
+          <Pagination page={page} pageSize={pageSize} total={total} onChange={handlePageChange} />
         </Toolbar>
 
         <StyledRequest

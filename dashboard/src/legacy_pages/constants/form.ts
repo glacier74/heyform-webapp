@@ -12,19 +12,19 @@ export const CAPTCHA_KIND_OPTIONS: OptionType[] = [
 
 export const FORM_ANALYTICS_OPTIONS: OptionType[] = [
   {
-    id: 7,
+    value: 7,
     label: 'analytics.time.0'
   },
   {
-    id: 30,
+    value: 30,
     label: 'analytics.time.1'
   },
   {
-    id: 90,
+    value: 90,
     label: 'analytics.time.2'
   },
   {
-    id: 365,
+    value: 365,
     label: 'analytics.time.3'
   }
 ]
