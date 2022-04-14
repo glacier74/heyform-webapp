@@ -1,10 +1,11 @@
 import { useLockBodyScroll } from '@/legacy_pages/pages/FormBuilder/utils/hook'
 import { useStore } from '@/store'
 import { ArrowLeftIcon } from '@heroicons/react/outline'
-import { Renderer } from '@heyforms/form-component'
+import { insertThemeStyle, insertWebFont, Renderer } from '@heyforms/form-component'
 import { Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
+import { useEffect } from 'react'
 import './index.scss'
 
 export const FormPreviewModal: FC = observer(() => {
@@ -16,6 +17,13 @@ export const FormPreviewModal: FC = observer(() => {
   }
 
   useLockBodyScroll(appStore.isFormPreviewOpen)
+
+  useEffect(() => {
+    if (appStore.isFormPreviewOpen && formStore.current) {
+      insertWebFont(formStore.theme.fontFamily)
+      insertThemeStyle(formStore.theme)
+    }
+  }, [appStore.isFormPreviewOpen, formStore.current])
 
   return (
     <>
