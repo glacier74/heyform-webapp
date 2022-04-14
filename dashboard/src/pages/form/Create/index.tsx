@@ -1,36 +1,26 @@
+import { Async } from '@/components'
 import { Queue } from '@/legacy_pages/utils/queue'
-import { parseFields } from '@/pages/form/Create/utils'
+import { initFields } from '@/pages/form/Create/utils'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect, useParam } from '@/utils'
+import { useParam } from '@/utils'
 import { htmlUtils } from '@heyforms/answer-utils'
 import type { FormModel } from '@heyforms/shared-types-enums'
-import { notification } from '@heyforms/ui'
-import { useEffect, useMemo, useReducer } from 'react'
+import { notification, Spin } from '@heyforms/ui'
+import { FC, useEffect, useMemo, useReducer, useState } from 'react'
 import type { IState } from './store'
 import { StoreContext, storeReducer } from './store'
-import './style.scss'
 import { Compose } from './views/Compose'
 import { LeftSidebar } from './views/LeftSidebar'
 import { RightSidebar } from './views/RightSidebar'
+import './style.scss'
 
-const FormBuilder = () => (
-  <div className="form-builder flex flex-1">
-    <LeftSidebar />
-    <Compose />
-    <RightSidebar />
-  </div>
-)
-
-const FormCreate = () => {
-  const { formId } = useParam()
+const FormBuilder: FC<{ form: FormModel }> = ({ form }) => {
   const formStore = useStore('formStore')
-
   const initialState: IState = {
     version: 0,
-    fields: [],
     references: [],
-    questions: []
+    ...initFields(form.fields)
   }
   const [state, dispatch] = useReducer(storeReducer, initialState)
   const store = useMemo(() => ({ state, dispatch }), [state])
@@ -41,7 +31,7 @@ const FormCreate = () => {
       scheduleInterval: 1_000,
       taskIntervalTime: 10_000
     })
-  }, [formId])
+  }, [form.id])
 
   function getUpdates() {
     return {
@@ -59,7 +49,7 @@ const FormCreate = () => {
 
   async function syncForm() {
     try {
-      await FormService.updateFormSchemas(formId, getUpdates())
+      await FormService.updateFormSchemas(form.id, getUpdates())
     } catch (err: any) {
       notification.error({
         message: 'Error',
@@ -78,9 +68,11 @@ const FormCreate = () => {
     formStore.update(getUpdates())
 
     // Add to queue
-    queue.add(async () => {
-      await syncForm()
-    })
+    if (state.version > 0) {
+      queue.add(async () => {
+        await syncForm()
+      })
+    }
 
     document.addEventListener('visibilitychange', visibilityListener)
 
@@ -89,24 +81,37 @@ const FormCreate = () => {
     }
   }, [state.version])
 
-  useAsyncEffect(async () => {
-    const result: FormModel = await FormService.detail(formId)
-    const fields = parseFields(result.fields)
-
-    dispatch({
-      type: 'setFields',
-      payload: fields
-    })
-    dispatch({
-      type: 'selectField',
-      payload: fields[0]?.id
-    })
-  }, [formId])
-
   return (
     <StoreContext.Provider value={store}>
-      <FormBuilder />
+      <div className="form-builder flex flex-1">
+        <LeftSidebar />
+        <Compose />
+        <RightSidebar />
+      </div>
     </StoreContext.Provider>
+  )
+}
+
+const FormCreate = () => {
+  const { formId } = useParam()
+  const [form, setForm] = useState<FormModel>()
+
+  async function request() {
+    const result: FormModel = await FormService.detail(formId)
+    setForm(result)
+    return true
+  }
+
+  const Skeleton = (
+    <div className="h-full flex items-center justify-center text-blue-600">
+      <Spin />
+    </div>
+  )
+
+  return (
+    <Async className="h-full" request={request} skeleton={Skeleton} deps={[formId]}>
+      {form && <FormBuilder form={form!} />}
+    </Async>
   )
 }
 

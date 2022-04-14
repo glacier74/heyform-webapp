@@ -53,9 +53,6 @@ export const Customize: FC = observer(() => {
           <Form.Item name="questionTextColor">
             <ColorPickerField
               label="Questions"
-              onChange={v => {
-                console.log(v)
-              }}
             />
           </Form.Item>
 

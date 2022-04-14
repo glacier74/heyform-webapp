@@ -1,3 +1,4 @@
+import { serializeFields } from '@/pages/form/Create/utils'
 import { htmlUtils } from '@heyforms/answer-utils'
 import type { FormField } from '@heyforms/shared-types-enums'
 import { FieldKindEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
@@ -11,28 +12,7 @@ function getFieldIndex(fields: FormField[], id: string): number {
 }
 
 export function setFields(state: IState, rawFields: FormField[]): IState {
-  let fields: FormField[] = []
-  const questions: Partial<FormField>[] = []
-
-  fields = rawFields.map(f => {
-    if (isArray(f.title)) {
-      f.title = htmlUtils.serialize(f.title)
-    }
-
-    if (isArray(f.description)) {
-      f.description = htmlUtils.serialize(f.description)
-    }
-
-    if (QUESTION_FIELD_KINDS.includes(f.kind)) {
-      questions.push({
-        id: f.id,
-        kind: f.kind,
-        title: f.title!
-      })
-    }
-
-    return f
-  })
+  const { fields, questions } = serializeFields(rawFields)
 
   return {
     ...state,

@@ -14,7 +14,7 @@ export const ResultNavbar: FC<ComponentProps> = props => {
       <Wrapper align="center" {...props}>
         <NavLink
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}
-          exact={true}
+          end={true}
         >
           {t('analytics.Analytics')}
         </NavLink>

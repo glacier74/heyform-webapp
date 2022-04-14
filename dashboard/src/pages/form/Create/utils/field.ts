@@ -1,26 +1,66 @@
+import { htmlUtils } from '@heyforms/answer-utils'
 import type { FormField } from '@heyforms/shared-types-enums'
-import { FieldKindEnum, FORM_FIELD_KINDS } from '@heyforms/shared-types-enums'
-import { isValidArray } from '@hpnp/utils/helper'
+import { FieldKindEnum, FORM_FIELD_KINDS, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
+import { isArray, isValidArray } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 
-export function parseFields(fields?: FormField[]): FormField[] {
-  const filtered = fields?.filter(f => FORM_FIELD_KINDS.includes(f.kind))
+// TODO: remove in future
+const DISCARD_FIELD_KINDS = ['single_choice', 'dropdown']
+const FIELD_KINDS = [...DISCARD_FIELD_KINDS, ...FORM_FIELD_KINDS]
 
-  if (isValidArray(filtered)) {
-    return filtered!.map((f: any) => {
-      const title = f.titleSchema || f.title
+export function serializeFields(rawFields: FormField[]) {
+  const questions: Partial<FormField>[] = []
+  const fields = rawFields.map(f => {
+    if (isArray(f.title)) {
+      f.title = htmlUtils.serialize(f.title)
+    }
 
-      // Delete old properties
-      delete f.titleSchema
+    if (isArray(f.description)) {
+      f.description = htmlUtils.serialize(f.description)
+    }
 
-      return {
-        ...f,
-        title
+    if (QUESTION_FIELD_KINDS.includes(f.kind)) {
+      questions.push({
+        id: f.id,
+        kind: f.kind,
+        title: f.title!
+      })
+    }
+
+    return f
+  })
+
+  return {
+    questions,
+    fields
+  }
+}
+
+export function initFields(rawFields?: FormField[]) {
+  let list = rawFields?.filter(f => FIELD_KINDS.includes(f.kind)) || []
+
+  if (list.length > 0) {
+    list = list.map((f: any) => {
+      f.title = f.titleSchema || f.title
+
+      if (DISCARD_FIELD_KINDS.includes(f.kind)) {
+        f.kind = FieldKindEnum.MULTIPLE_CHOICE
       }
+
+      return f
     })
   }
 
-  return []
+  const { fields, questions } = serializeFields(list)
+  const selectedField = fields[0]
+  const selectedId = selectedField?.id
+
+  return {
+    fields,
+    questions,
+    selectedField,
+    selectedId
+  }
 }
 
 export function getFieldFromKind(kind: FieldKindEnum | string): FormField {

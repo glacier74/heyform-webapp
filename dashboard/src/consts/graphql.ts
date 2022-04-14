@@ -552,7 +552,6 @@ export const FORM_DETAIL_GQL = gql`
       teamId
       memberId
       name
-      nameSchema
       description
       interactiveMode
       kind
@@ -578,24 +577,15 @@ export const FORM_DETAIL_GQL = gql`
         ipLimitTime
         enableProgress
       }
-      welcomePage {
-        icon
-        titleSchema
-        bodySchema
-      }
-      thankYouPage {
-        icon
-        titleSchema
-        bodySchema
-      }
       fields {
         id
         title
         titleSchema
-        bodySchema
+        description
         kind
         validations
         properties
+        layout
       }
       fieldUpdateAt
       themeSettings {

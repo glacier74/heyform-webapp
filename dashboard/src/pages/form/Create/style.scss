@@ -423,7 +423,7 @@
 // ----------------------------------------------------------------------------
 // Long text
 .builder-textarea {
-  @apply h-10 resize-none;
+  @apply h-10 resize-none overflow-hidden;
 }
 
 .builder-textarea-hit {
