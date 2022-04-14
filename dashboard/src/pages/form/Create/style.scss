@@ -621,22 +621,22 @@
     @apply flex flex-col w-16 cursor-pointer;
   }
 
-  .builder-icon {
+  .heyform-icon {
     @apply w-16 h-16 mb-2;
   }
 
-  .builder-icon-stroke {
+  .heyform-icon-stroke {
     stroke: var(--heyform-answer-color);
   }
 
   .rate-item-hover {
-    .builder-icon-fill {
+    .heyform-icon-fill {
       fill: var(--heyform-answer-opacity-10-color);
     }
   }
 
   .rate-item-active {
-    .builder-icon-fill {
+    .heyform-icon-fill {
       fill: var(--heyform-answer-color);
     }
   }
@@ -767,7 +767,7 @@
     }
   }
 
-  .builder-icon {
+  .heyform-icon {
     @apply w-6 h-6 p-0.5 mr-1.5 text-gray-400;
   }
 
@@ -775,7 +775,7 @@
     @apply mr-2;
   }
 
-  .builder-icon-stroke {
+  .heyform-icon-stroke {
     stroke: currentColor;
     stroke-width: 0.125rem;
   }
