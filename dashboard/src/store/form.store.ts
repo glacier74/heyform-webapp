@@ -8,29 +8,30 @@ export class FormStore {
 
   current?: FormModel = {} as any
 
-  customTheme?: FormThemeV3
+  customTheme?: FormThemeV3 = {} as any
 
   constructor() {
     makeAutoObservable(this)
   }
 
   get theme() {
-    return getTheme(this.customTheme || this.current?.themeSettings?.theme)
-  }
-
-  updateTheme(updates: IMapType) {
-    this.customTheme = {
-      ...this.customTheme,
-      ...updates
-    }
-  }
-
-  clearCustomTheme() {
-    this.customTheme = undefined
+    return getTheme(this.current?.themeSettings?.theme)
   }
 
   setCurrent(form?: FormModel) {
     this.current = form || ({} as any)
+    this.customTheme = getTheme(form?.themeSettings?.theme)
+  }
+
+  updateCustomTheme(updates: IMapType) {
+    this.customTheme = getTheme({
+      ...this.customTheme,
+      ...updates
+    })
+  }
+
+  resetCustomTheme() {
+    this.customTheme = this.theme
   }
 
   selectForm(formId?: string) {

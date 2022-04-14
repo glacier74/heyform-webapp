@@ -1,31 +1,57 @@
 import { GOOGLE_FONTS_OPTIONS } from '@/consts'
+import { FormService } from '@/service'
 import { useStore } from '@/store'
+import { useParam } from '@/utils'
 import { insertThemeStyle, insertWebFont } from '@heyforms/form-component'
-import { Button, Form, Select, stopPropagation, useForm } from '@heyforms/ui'
+import { Button, Form, notification, Select, stopPropagation, useForm } from '@heyforms/ui'
+import { message } from '@heyui/component'
 import { isURL } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { BackgroundBrightness } from './BackgroundBrightness'
 import { BackgroundImage } from './BackgroundImage'
 import { ColorPickerField } from './ColorPickerField'
 
 export const Customize: FC = observer(() => {
+  const { formId } = useParam()
   const formStore = useStore('formStore')
   const [form] = useForm()
+  const [loading, setLoading] = useState(false)
 
   function handleValuesChange(changedValues: any) {
-    formStore.updateTheme(changedValues)
+    formStore.updateCustomTheme(changedValues)
   }
 
-  function handleFinish(values: any) {
-    console.log(values)
+  async function handleFinish(theme: any) {
+    if (loading) {
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      await FormService.updateTheme(formId, {
+        theme
+      })
+
+      notification.success({
+        title: 'Theme settings updated'
+      })
+    } catch (err: any) {
+      notification.error({
+        title: err.message
+      })
+    }
+
+    setLoading(false)
   }
 
   function handleRevert(event: any) {
     stopPropagation(event)
-    formStore.clearCustomTheme()
+    formStore.resetCustomTheme()
 
+    // Reset form theme
     setTimeout(() => {
       form.setFieldsValue(formStore.theme)
       form.resetFields()
@@ -33,15 +59,15 @@ export const Customize: FC = observer(() => {
   }
 
   useEffect(() => {
-    insertWebFont(formStore.theme.fontFamily)
-    insertThemeStyle(formStore.theme)
-  }, [formStore.theme])
+    insertWebFont(formStore.customTheme!.fontFamily)
+    insertThemeStyle(formStore.customTheme!)
+  }, [formStore.customTheme])
 
   return (
     <div>
       <Form
         form={form}
-        initialValues={formStore.theme}
+        initialValues={formStore.customTheme}
         onValuesChange={handleValuesChange}
         onFinish={handleFinish}
       >
@@ -51,9 +77,7 @@ export const Customize: FC = observer(() => {
           </Form.Item>
 
           <Form.Item name="questionTextColor">
-            <ColorPickerField
-              label="Questions"
-            />
+            <ColorPickerField label="Questions" />
           </Form.Item>
 
           <Form.Item name="answerTextColor">
@@ -79,10 +103,10 @@ export const Customize: FC = observer(() => {
           </Form.Item>
         </div>
 
-        {isURL(formStore.theme.backgroundImage) && (
+        {isURL(formStore.customTheme?.backgroundImage) && (
           <div className="right-sidebar-group">
             <Form.Item name="backgroundBrightness">
-              <BackgroundBrightness backgroundImage={formStore.theme.backgroundImage} />
+              <BackgroundBrightness backgroundImage={formStore.customTheme?.backgroundImage} />
             </Form.Item>
           </div>
         )}
@@ -90,7 +114,7 @@ export const Customize: FC = observer(() => {
         <Form.Item className="right-sidebar-group">
           <div className="flex items-center">
             <Button onClick={handleRevert}>Revert</Button>
-            <Button className="ml-4 flex-1" type="primary" htmlType="submit">
+            <Button className="ml-4 flex-1" type="primary" htmlType="submit" loading={loading}>
               Save changes
             </Button>
           </div>

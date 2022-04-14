@@ -20,8 +20,8 @@ export const FormPreviewModal: FC = observer(() => {
 
   useEffect(() => {
     if (appStore.isFormPreviewOpen && formStore.current) {
-      insertWebFont(formStore.theme.fontFamily)
-      insertThemeStyle(formStore.theme)
+      insertWebFont(formStore.customTheme!.fontFamily)
+      insertThemeStyle(formStore.customTheme!)
     }
   }, [appStore.isFormPreviewOpen, formStore.current])
 

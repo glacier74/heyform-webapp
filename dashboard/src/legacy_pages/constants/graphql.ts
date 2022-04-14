@@ -293,12 +293,6 @@ export const TEMPLATES_GQL = gql`
       description
       interactiveMode
       kind
-      themeSettings {
-        theme {
-          background
-          backgroundImage
-        }
-      }
       published
     }
   }
@@ -356,25 +350,7 @@ export const TEMPLATE_DETAIL_GQL = gql`
         }
       }
       themeSettings {
-        themeId
-        theme {
-          fontFamily
-          codeFontFamily
-          fontSize
-          lineHeight
-          smallFontSize
-          title
-          titleFontSize
-          background
-          backgroundImage
-          question
-          questionFontSize
-          answer
-          answerFontSize
-          button
-          buttonText
-          error
-        }
+        theme
       }
     }
   }
@@ -490,12 +466,6 @@ export const FORMS_GQL = gql`
         ipLimitCount
         ipLimitTime
         enableProgress
-      }
-      themeSettings {
-        theme {
-          background
-          backgroundImage
-        }
       }
       retentionAt
       suspended
@@ -626,25 +596,7 @@ export const FORM_DETAIL_GQL = gql`
       }
       fieldUpdateAt
       themeSettings {
-        themeId
-        theme {
-          fontFamily
-          codeFontFamily
-          fontSize
-          lineHeight
-          smallFontSize
-          title
-          titleFontSize
-          background
-          backgroundImage
-          question
-          questionFontSize
-          answer
-          answerFontSize
-          button
-          buttonText
-          error
-        }
+        theme
       }
       retentionAt
       suspended
