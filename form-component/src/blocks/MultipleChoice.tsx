@@ -8,7 +8,7 @@ import { useChoicesOption, useSelectionRange } from './hook'
 
 export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
   const { state } = useStore()
-  const options = useChoicesOption(field.properties?.choices)
+  const options = useChoicesOption(field.properties?.choices, field.properties?.randomize)
   const { min, max, allowMultiple } = useSelectionRange(
     field.properties?.allowMultiple,
     field.validations?.min,
@@ -32,7 +32,7 @@ export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
               required: field.validations?.required,
               type: 'array',
               min,
-              max,
+              max: max > 0 ? max : undefined,
               message: 'This field is required'
             }
           ]}
@@ -40,7 +40,7 @@ export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
           <RadioGroup
             options={options}
             allowMultiple={field.properties?.allowMultiple}
-            max={field.validations?.max}
+            max={field.validations?.max ?? 0}
           />
         </FormField>
       </Form>

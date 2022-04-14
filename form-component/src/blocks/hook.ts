@@ -18,18 +18,24 @@ function resetNumber(num?: number, defaultValue?: number): number {
   return defaultValue!
 }
 
-export function useChoicesOption(choices?: Choice[]): any[] {
+export function useChoicesOption(choices?: Choice[], randomize = false): any[] {
   return useMemo(() => {
     if (!isValidArray(choices)) {
       return []
     }
 
-    return choices!.map((choice, index) => ({
+    let list = choices!.map((choice, index) => ({
       keyName: String.fromCharCode(KeyCode.A + index),
       label: choice.label,
       value: choice.id,
       image: choice.image
     }))
+
+    if (randomize) {
+      list = list.sort(() => Math.random() - 0.5)
+    }
+
+    return list
   }, [choices])
 }
 

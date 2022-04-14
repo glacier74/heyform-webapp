@@ -18,7 +18,9 @@ export const FormField: FC<FormFieldProps> = ({ className, children, ...restProp
           <div className={clsx('heyform-form-field', className)}>
             {childNode}
             {meta.errors.length > 0 && (
-              <div className="heyform-form-field-error">{meta.errors[0]}</div>
+              <div className="mt-4">
+                <div className="heyform-form-field-error">{meta.errors[0]}</div>
+              </div>
             )}
           </div>
         )

@@ -147,8 +147,9 @@ export default {
       title: ['Multiple Choice'],
       description: null,
       kind: 'multiple_choice',
-      validations: { required: true },
+      validations: { required: true, min: null, max: null },
       properties: {
+        allowMultiple: true,
         choices: [
           {
             id: 'a',
