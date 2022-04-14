@@ -152,15 +152,15 @@ export default {
         choices: [
           {
             id: 'a',
-            label: 'Choice 1'
+            label: 'Lab (example: fume hood, work bench, biosafety cabinet)'
           },
           {
             id: 'b',
-            label: 'Choice 2'
+            label: 'Office (example: computer workstation)'
           },
           {
             id: 'c',
-            label: 'Choice 3'
+            label: 'Patient field study work'
           }
         ]
       }

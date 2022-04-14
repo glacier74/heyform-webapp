@@ -38,7 +38,6 @@ export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
           ]}
         >
           <RadioGroup
-            className="w-56"
             options={options}
             allowMultiple={field.properties?.allowMultiple}
             max={field.validations?.max}

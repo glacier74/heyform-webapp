@@ -70,11 +70,9 @@ export const Radio: FC<RadioProps> = ({
           {keyName && isHotkeyShow && <div className="heyform-radio-hotkey">{keyName}</div>}
           <div className="heyform-radio-label">{label}</div>
         </div>
-        {isChecked && (
-          <div className="heyform-radio-icon">
-            <CheckIcon />
-          </div>
-        )}
+        <div className="heyform-radio-icon">
+          <CheckIcon />
+        </div>
       </div>
     </div>
   )

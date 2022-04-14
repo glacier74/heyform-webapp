@@ -14,8 +14,19 @@ const ICON_MAPS: IMapType<ReactNode> = {
   star: <StarIcon />
 }
 
+function getShape(shape?: string) {
+  let name = 'start'
+
+  if (shape && Object.keys(ICON_MAPS).includes(shape)) {
+    name = shape
+  }
+
+  return name
+}
+
 export const Rating: FC<BlockProps> = ({ field, ...restProps }) => {
   const { state } = useStore()
+  const shape = getShape(field.properties?.shape)
 
   function getValues(values: any) {
     return values.input
@@ -24,7 +35,7 @@ export const Rating: FC<BlockProps> = ({ field, ...restProps }) => {
   function characterRender(index: number) {
     return (
       <>
-        {ICON_MAPS[field.properties?.shape || 'star']}
+        {ICON_MAPS[shape]}
         <span className="heyform-rate-index">{index}</span>
       </>
     )

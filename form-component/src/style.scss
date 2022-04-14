@@ -70,7 +70,8 @@
 // ----------------------------------------------------------------------------
 // Radio
 .heyform-radio {
-  @apply h-10 mb-2 cursor-pointer;
+  @apply mb-2 cursor-pointer;
+  min-height: 2.5rem;
 }
 
 .heyform-radio-container {
@@ -100,10 +101,16 @@
 }
 
 .heyform-radio-icon {
-  @apply flex items-center justify-center;
+  @apply flex items-center justify-center opacity-0 invisible;
 
   svg {
     @apply w-6 h-6;
+  }
+}
+
+.heyform-radio-selected {
+  .heyform-radio-icon {
+    @apply opacity-100 visible;
   }
 }
 
@@ -437,6 +444,10 @@
 // ----------------------------------------------------------------------------
 // Opinion scale
 .heyform-opinion-scale {
+  .heyform-radio-icon {
+    @apply hidden;
+  }
+
   .heyform-radio-group {
     @apply flex items-center space-x-2;
   }
@@ -458,10 +469,6 @@
       color: var(--heyform-background-color);
       background-color: var(--heyform-answer-color);
     }
-
-    .heyform-radio-icon {
-      @apply hidden;
-    }
   }
 }
 
@@ -472,16 +479,22 @@
 
 // ----------------------------------------------------------------------------
 // Multiple choice
-.heyform-multiple-choice-list {
-  @apply inline-flex flex-col;
-  min-width: 10rem;
+.heyform-multiple-choice {
+  .heyform-radio-group{
+    @apply inline-flex flex-col;
+    flex-flow: column wrap;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+  }
 
-  .heyform-radio-container:hover {
-    background-color: var(--heyform-answer-opacity-10-color);
+  .heyform-radio {
+    @apply w-auto max-w-full;
+  }
 
-    .heyform-radio-remove {
-      @apply opacity-100 visible;
-    }
+  .heyform-radio-container {
+    @apply inline-flex w-full;
+    min-width: 14rem;
+    max-width: 100%;
   }
 }
 
