@@ -33,6 +33,7 @@ development:
     yarn workspace @heyforms/vite-plugin-html-injection build
     yarn workspace @heyforms/vite-plugin-upload build
     yarn workspace @heyforms/ui build
+    yarn workspace @heyforms/form-component build
     yarn workspace heyform staging
 
     echo "=> Packing"
@@ -70,6 +71,7 @@ release:
     yarn workspace @heyforms/vite-plugin-html-injection build
     yarn workspace @heyforms/vite-plugin-upload build
     yarn workspace @heyforms/ui build
+    yarn workspace @heyforms/form-component build
     yarn workspace heyform build
 
     echo "=> Packing"
