@@ -3,7 +3,7 @@ import uploadPlugin, { UploadZone } from '@heyforms/vite-plugin-upload'
 import legacy from '@vitejs/plugin-legacy'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { resolve } from 'path'
-import externalGlobals from 'rollup-plugin-external-globals'
+// import externalGlobals from 'rollup-plugin-external-globals'
 import { injectManifest } from 'rollup-plugin-workbox'
 import { ConfigEnv, loadEnv } from 'vite'
 import fontOptimizationPlugin from 'vite-plugin-font-optimization'
@@ -88,14 +88,14 @@ export default ({ mode }: ConfigEnv) => {
           comments: false
         }
       },
-      rollupOptions: {
-        plugins: [
-          externalGlobals({
-            react: 'React',
-            'react-dom': 'ReactDOM'
-          })
-        ]
-      }
+      // rollupOptions: {
+      //   plugins: [
+      //     externalGlobals({
+      //       react: 'React',
+      //       'react-dom': 'ReactDOM'
+      //     })
+      //   ]
+      // }
     },
     server: {
       proxy: {

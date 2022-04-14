@@ -932,7 +932,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/standalone@^7.17.8":
+"@babel/standalone@^7.17.9":
   version "7.17.9"
   resolved "http://npm.heyooo.com/@babel%2fstandalone/-/standalone-7.17.9.tgz#208298055c70531a81759435e443586754d693f9"
   integrity sha512-9wL9AtDlga8avxUrBvQJmhUtJWrelsUL0uV+TcP+49Sb6Pj8/bNIzQzU4dDp0NAPOvnZR/7msFIKsKoCl/W1/w==
@@ -1028,9 +1028,9 @@
   integrity sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==
 
 "@heyforms/answer-utils@^0.3.1", "@heyforms/answer-utils@^0.3.2":
-  version "0.3.2"
-  resolved "http://npm.heyooo.com/@heyforms%2fanswer-utils/-/answer-utils-0.3.2.tgz#2f1d4c35b78d1f2d3460f9ef2e2980a5614bf675"
-  integrity sha512-0VPiFxC27sesH1BdmssZghqMH/9REp3/yqJLbr0Al2HYtICw4TefbHGoYOP6Slv1FLVvgJ/bU28HCBa8fW7lXg==
+  version "0.3.3"
+  resolved "http://npm.heyooo.com/@heyforms%2fanswer-utils/-/answer-utils-0.3.3.tgz#816ba4b1ea459de27700c2652f5d09a23bbd31cb"
+  integrity sha512-Aj9j5IQLro2KMEgc9HSuLS9CpCy3i3sYJ+Iig0b3Xn5DIiCLr0agcUzIJcenXNQmDqaO5gYoef4dIVyOb8YS7A==
   dependencies:
     "@heyforms/shared-types-enums" "^4.2.1"
     "@hpnp/utils" "^2.9.1"
@@ -1392,9 +1392,9 @@
     picomatch "^2.2.2"
 
 "@rollup/pluginutils@^4.0.0", "@rollup/pluginutils@^4.1.1":
-  version "4.2.0"
-  resolved "http://npm.heyooo.com/@rollup%2fpluginutils/-/pluginutils-4.2.0.tgz#a14bbd058fdbba0a5647143b16ed0d86fb60bd08"
-  integrity sha512-2WUyJNRkyH5p487pGnn4tWAsxhEFKN/pT8CMgHshd5H+IXkOnKvKZwsz5ZWz+YCXkleZRAU5kwbfgF8CPfDRqA==
+  version "4.2.1"
+  resolved "http://npm.heyooo.com/@rollup%2fpluginutils/-/pluginutils-4.2.1.tgz#e6c6c3aba0744edce3fb2074922d3776c0af2a6d"
+  integrity sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==
   dependencies:
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
@@ -1764,9 +1764,9 @@
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^18.0.0", "@types/react@^18.0.2":
-  version "18.0.3"
-  resolved "http://npm.heyooo.com/@types%2freact/-/react-18.0.3.tgz#baefa397561372015b9f8ba5bc83bc3f84ae8fcb"
-  integrity sha512-P8QUaMW4k+kH9aKNPl9b3XWcKMSSALYprLL8xpAMJOLUn3Pl6B+6nKC4F7dsk9oJPwkiRx+qlwhG/Zc1LxFVuQ==
+  version "18.0.4"
+  resolved "http://npm.heyooo.com/@types%2freact/-/react-18.0.4.tgz#88e9eddd8788fdf60dcf260b1cff2fb7487e4373"
+  integrity sha512-Zm4ryWh9xQbMX6ge7Ej/nS6VBoT+9wzvwd/hZ+9EONGjBkejyyvEKndZt/DZHHj1lSU/YeTPyJAn22S3GnYchQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -1925,11 +1925,11 @@
     eslint-visitor-keys "^3.0.0"
 
 "@vitejs/plugin-legacy@^1.7.1":
-  version "1.8.0"
-  resolved "http://npm.heyooo.com/@vitejs%2fplugin-legacy/-/plugin-legacy-1.8.0.tgz#6521e6de924641094aad5d804eaef3ac7db71284"
-  integrity sha512-S3+uL1zp8GLUbmJAQk2wQbZLTyISKRFSMBwCFI3XQVRD3OZshqkiPyOKdRiSPlP9HoGz+q90kk+1qPm1tJRqCg==
+  version "1.8.1"
+  resolved "http://npm.heyooo.com/@vitejs%2fplugin-legacy/-/plugin-legacy-1.8.1.tgz#9431a983f950b4343d5b80a1916f25cc03d6b9c4"
+  integrity sha512-kmBWKq7EeNvzS4AqPBqUKdoWG/NYQXh7StUFMWR3D21aN5Mfmar7CTO2a7K+bBxJH/vAL9gnnueA0wb7cycCmQ==
   dependencies:
-    "@babel/standalone" "^7.17.8"
+    "@babel/standalone" "^7.17.9"
     core-js "^3.21.1"
     magic-string "^0.26.1"
     regenerator-runtime "^0.13.9"
@@ -2569,9 +2569,9 @@ camelize@^1.0.0:
   integrity sha1-FkpUg+Yw+kMh5a8HAg5TGDGyYJs=
 
 caniuse-lite@^1.0.30001317:
-  version "1.0.30001328"
-  resolved "http://npm.heyooo.com/caniuse-lite/-/caniuse-lite-1.0.30001328.tgz#0ed7a2ca65ec45872c613630201644237ba1e329"
-  integrity sha512-Ue55jHkR/s4r00FLNiX+hGMMuwml/QGqqzVeMQ5thUewznU2EdULFvI3JR7JJid6OrjJNfFvHY2G2dIjmRaDDQ==
+  version "1.0.30001331"
+  resolved "http://npm.heyooo.com/caniuse-lite/-/caniuse-lite-1.0.30001331.tgz#41048f2a5cf0c3c6198f40207cd323388b3d4399"
+  integrity sha512-Y1xk6paHpUXKP/P6YjQv1xqyTbgAP05ycHBcRdQjTcyXlWol868sJJPlmk5ylOekw2BrucWes5jk+LvVd7WZ5Q==
 
 chalk@^2.0.0, chalk@^2.4.1:
   version "2.4.2"
@@ -2786,7 +2786,7 @@ convert-source-map@^1.4.0, convert-source-map@^1.6.0, convert-source-map@^1.7.0:
   dependencies:
     safe-buffer "~5.1.1"
 
-copy-to-clipboard@^3, copy-to-clipboard@^3.3.1:
+copy-to-clipboard@^3.3.1:
   version "3.3.1"
   resolved "http://npm.heyooo.com/copy-to-clipboard/-/copy-to-clipboard-3.3.1.tgz#115aa1a9998ffab6196f93076ad6da3b913662ae"
   integrity sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw==
@@ -6187,7 +6187,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.5.10, prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "http://npm.heyooo.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -6359,9 +6359,9 @@ rc-motion@^2.0.0:
     rc-util "^5.19.2"
 
 rc-picker@^2.6.4:
-  version "2.6.6"
-  resolved "http://npm.heyooo.com/rc-picker/-/rc-picker-2.6.6.tgz#2ac71924c748f66c01a179038469f5018f450cfb"
-  integrity sha512-fLyvTRF9Vaa6ftBF6VTWztYbuhNDh0+k9GOeJBD/TFrYleqWEmDs27/WHlCTE6R15/nQLryofvS31cNPSpD+OA==
+  version "2.6.7"
+  resolved "http://npm.heyooo.com/rc-picker/-/rc-picker-2.6.7.tgz#bdde4156e219ef36b0006b7d4d72020373f21229"
+  integrity sha512-+P2Grt0r2kmCkw2XTp9ew3zTCwBCFEOQLd5BYs+hFaGDSSZwEWJtlbGXAGqWnAUMFx6JrCsKYkDKXDxAWlRz3A==
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.1"
@@ -6418,12 +6418,12 @@ react-color@^2.19.3:
     tinycolor2 "^1.4.1"
 
 react-copy-to-clipboard@^5.0.4:
-  version "5.0.4"
-  resolved "http://npm.heyooo.com/react-copy-to-clipboard/-/react-copy-to-clipboard-5.0.4.tgz#42ec519b03eb9413b118af92d1780c403a5f19bf"
-  integrity sha512-IeVAiNVKjSPeGax/Gmkqfa/+PuMTBhutEvFUaMQLwE2tS0EXrAdgOpWDX26bWTXF3HrioorR7lr08NqeYUWQCQ==
+  version "5.1.0"
+  resolved "http://npm.heyooo.com/react-copy-to-clipboard/-/react-copy-to-clipboard-5.1.0.tgz#09aae5ec4c62750ccb2e6421a58725eabc41255c"
+  integrity sha512-k61RsNgAayIJNoy9yDsYzDe/yAZAzEbEgcz3DZMhF686LEyukcE1hzurxe85JandPUG+yTfGVFzuEw3xt8WP/A==
   dependencies:
-    copy-to-clipboard "^3"
-    prop-types "^15.5.8"
+    copy-to-clipboard "^3.3.1"
+    prop-types "^15.8.1"
 
 react-dom@^18.0.0:
   version "18.0.0"
@@ -6629,9 +6629,9 @@ regenerator-transform@^0.15.0:
     "@babel/runtime" "^7.8.4"
 
 regexp.prototype.flags@^1.4.1:
-  version "1.4.1"
-  resolved "http://npm.heyooo.com/regexp.prototype.flags/-/regexp.prototype.flags-1.4.1.tgz#b3f4c0059af9e47eca9f3f660e51d81307e72307"
-  integrity sha512-pMR7hBVUUGI7PMA37m2ofIdQCsomVnas+Jn5UPGAHQ+/LlwKm/aTLJHdasmHRzlfeZwHiAOaRSo2rbBDm3nNUQ==
+  version "1.4.2"
+  resolved "http://npm.heyooo.com/regexp.prototype.flags/-/regexp.prototype.flags-1.4.2.tgz#bf635117a2f4b755595ebb0c0ee2d2a49b2084db"
+  integrity sha512-Ynz8fTQW5/1elh+jWU2EDDzeoNbD0OQ0R+D1VJU5ATOkUaro4A9YEkdN2ODQl/8UQFPPpZNw91fOcLFamM7Pww==
   dependencies:
     call-bind "^1.0.2"
     define-properties "^1.1.3"
@@ -7914,9 +7914,9 @@ vite-plugin-font-optimization@^0.0.4:
     vite "^2.8.6"
 
 vite@^2.8.6, vite@^2.9.1:
-  version "2.9.1"
-  resolved "http://npm.heyooo.com/vite/-/vite-2.9.1.tgz#84bce95fae210a7beb566a0af06246748066b48f"
-  integrity sha512-vSlsSdOYGcYEJfkQ/NeLXgnRv5zZfpAsdztkIrs7AZHV8RCMZQkwjo4DS5BnrYTqoWqLoUe1Cah4aVO4oNNqCQ==
+  version "2.9.4"
+  resolved "http://npm.heyooo.com/vite/-/vite-2.9.4.tgz#3d1c5895ecacfcaf8e7e96316d4d4ca3dfbf983b"
+  integrity sha512-7pO6ruZMsyTpaPB7kGtW+yj15Ze5g+E4w4Ramk1sAJLIuI4uPd5sauqubmZNpq0Yc1vLVxoXRf2Uj+qWxk5aXw==
   dependencies:
     esbuild "^0.14.27"
     postcss "^8.4.12"
