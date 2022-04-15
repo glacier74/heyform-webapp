@@ -18,7 +18,7 @@ export const PlanCheck: FC<UpgradeButtonProps> = observer(({ permission, childre
   }
 
   return (
-    <div className="relative">
+    <div className="plan-check relative">
       {children}
       {grade < permission && (
         <div className="absolute inset-0 z-10 cursor-pointer" onClick={handleClick} />

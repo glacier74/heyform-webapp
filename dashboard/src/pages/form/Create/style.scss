@@ -722,15 +722,19 @@
     @apply px-4;
   }
 
-  .tabs-nav-links {
+  .tabs-nav-list {
     @apply space-x-0 justify-between;
   }
 
-  .tabs-nav-link {
-    @apply px-0;
+  .tabs-nav {
+    @apply p-0;
   }
 
-  .tabs-nav-link-active {
+  .plan-check {
+    @apply py-4;
+  }
+
+  .tabs-nav-active {
     @apply text-gray-900 border-gray-900;
   }
 

@@ -5,10 +5,12 @@ import { FieldList } from '@/legacy_pages/pages/Report/views/FieldList'
 import { useStore } from '@/legacy_pages/utils'
 import { FormService } from '@/service'
 import { useParam } from '@/utils'
+import { htmlUtils } from '@heyforms/answer-utils'
 import {
   CHOICES_FIELD_KINDS,
   CUSTOM_COLUMN_CHOICE_KINDS,
   FieldKindEnum,
+  QUESTION_FIELD_KINDS,
   STATEMENT_FIELD_KINDS
 } from '@heyforms/shared-types-enums'
 import { Flex } from '@heyui/component'
@@ -31,8 +33,8 @@ const Report: FC = observer(() => {
 
   async function fetchReport() {
     const result = await FormService.report(formId)
-    const fields = formStore.current?.fields?.filter(
-      field => !STATEMENT_FIELD_KINDS.includes(field.kind)
+    const fields = formStore.current?.fields?.filter(field =>
+      QUESTION_FIELD_KINDS.includes(field.kind)
     )
 
     if (isValidArray(fields)) {
@@ -66,7 +68,9 @@ const Report: FC = observer(() => {
           }
         }
 
-        response.title = field.title
+        response.title = isValidArray(field.title)
+          ? htmlUtils.plain(htmlUtils.serialize(field.title as any))
+          : field.title
         response.kind = field.kind
         response.properties = pickValidValues(field.properties as any, [
           'total',
@@ -96,13 +100,13 @@ const Report: FC = observer(() => {
         }}
       />
       <Container>
-        <FieldList/>
+        <FieldList />
 
         <Body>
           <SubHeading
             action={
               <PrinterButton align="center" onClick={handlePrint}>
-                <PrinterIcon/>
+                <PrinterIcon />
                 {t('report.Print')}
               </PrinterButton>
             }
@@ -117,14 +121,11 @@ const Report: FC = observer(() => {
             fetch={fetchReport}
             deps={[formStore.current]}
             emptyNode={
-              <EmptyDataView
-                icon={<BlankSubmissionIcon/>}
-                text={t('report.noSubmission')}
-              />
+              <EmptyDataView icon={<BlankSubmissionIcon />} text={t('report.noSubmission')} />
             }
           >
             {responses.map((row, index) => (
-              <ReportItem key={index} index={index + 1} response={row}/>
+              <ReportItem key={index} index={index + 1} response={row} />
             ))}
           </Request>
         </Body>

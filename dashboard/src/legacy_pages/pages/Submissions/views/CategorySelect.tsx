@@ -83,4 +83,6 @@ const StyledMenu = styled(Menu)`
 
 const Text = styled.div`
   width: 50px;
+  line-height: 40px;
+  cursor: pointer;
 `
