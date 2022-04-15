@@ -642,7 +642,14 @@ const App = () => {
       </div>
 
       <div className="mt-8 space-y-4 flex flex-col items-center justify-start sm:space-y-0 sm:flex-row sm:items-end sm:justify-around">
-        <Tabs>
+        <Tabs navRender={(tab, isActive) => {
+          return (
+            <div onClick={e => {
+              e.stopPropagation()
+              alert(tab.name)
+            }}>{tab.name}</div>
+          )
+        }}>
           <Tabs.Pane name="preview" title="Preview" leading={<EyeIcon />}>
             Preview content
           </Tabs.Pane>

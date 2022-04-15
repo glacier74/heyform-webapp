@@ -1,42 +1,44 @@
 import clsx from 'clsx'
-import type { FC, MouseEvent } from 'react'
+import type { FC, MouseEvent, ReactNode } from 'react'
 import { memo, useCallback, useContext, useMemo, useReducer } from 'react'
 import { stopPropagation } from '../utils'
 import { TabsStoreContext, TabsStoreReducer } from './context'
+import type { ITab } from './context'
 
 export interface TabsProps extends Omit<IComponentProps, 'onChange'> {
   defaultActiveName?: IKeyType
+  navRender?: (tab: ITab, isActive?: boolean) => ReactNode
   onChange?: (key: IKeyType) => void
 }
 
-export interface TabLinkProps extends Omit<IComponentProps, 'onClick'> {
-  name: string
-  title: string
+export interface TabNavProps
+  extends Omit<IComponentProps, 'onClick'>,
+    Pick<TabsProps, 'navRender'> {
+  tab: ITab
   isActive?: boolean
-  disabled?: boolean
   onClick: (key: IKeyType) => void
 }
 
-const TabLink: FC<TabLinkProps> = ({ name, title, isActive, disabled, onClick, ...restProps }) => {
-  function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+const Nav: FC<TabNavProps> = ({ tab, isActive, navRender, onClick, ...restProps }) => {
+  function handleClick(event: MouseEvent<HTMLDivElement>) {
     stopPropagation(event)
-    onClick(name)
+    onClick(tab.name)
   }
 
   return (
-    <a
-      className={clsx('tabs-nav-link', {
-        'tabs-nav-link-active': isActive
+    <div
+      className={clsx('tabs-nav', {
+        'tabs-nav-active': isActive
       })}
       onClick={handleClick}
       {...restProps}
     >
-      {title}
-    </a>
+      {navRender ? navRender(tab, isActive) : tab.title}
+    </div>
   )
 }
 
-const TabLinkListComponent: FC = () => {
+const ListComponent: FC<Pick<TabsProps, 'navRender'>> = ({ navRender }) => {
   const { state, dispatch } = useContext(TabsStoreContext)
 
   function handleClick(name: IKeyType) {
@@ -50,14 +52,13 @@ const TabLinkListComponent: FC = () => {
   const handleClickCallback = useCallback(handleClick, [])
 
   return (
-    <div className="tabs-nav-links">
+    <div className="tabs-nav-list">
       {state.tabs.map(tab => (
-        <TabLink
+        <Nav
           key={tab.name}
-          name={tab.name as string}
-          title={tab.title}
-          disabled={tab.disabled}
+          tab={tab}
           isActive={tab.name === state.activeName}
+          navRender={navRender}
           onClick={handleClickCallback}
         />
       ))}
@@ -65,13 +66,14 @@ const TabLinkListComponent: FC = () => {
   )
 }
 
-const TabLinkList = memo(TabLinkListComponent)
+const MemoList = memo(ListComponent)
 
 const Tabs: FC<TabsProps> = ({
   className,
   defaultActiveName,
-  onChange,
   children,
+  navRender,
+  onChange,
   ...restProps
 }) => {
   const [state, dispatch] = useReducer(TabsStoreReducer, {
@@ -85,7 +87,7 @@ const Tabs: FC<TabsProps> = ({
     <TabsStoreContext.Provider value={storeValue}>
       <div className={clsx('tabs-wrapper', className)} {...restProps}>
         <div className="tabs-navbar">
-          <TabLinkList />
+          <MemoList navRender={navRender} />
         </div>
         <div className="tabs-pane-group">{children}</div>
       </div>

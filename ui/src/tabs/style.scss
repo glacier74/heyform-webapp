@@ -2,15 +2,15 @@
   @apply border-b border-gray-200;
 }
 
-.tabs-nav-links {
+.tabs-nav-list {
   @apply -mb-px flex space-x-8;
 }
 
-.tabs-nav-link {
+.tabs-nav {
   @apply border-transparent font-medium text-gray-500 hover:text-gray-700 hover:border-gray-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer;
 }
 
-.tabs-nav-link-active {
+.tabs-nav-active {
   &,
   &:hover {
     @apply border-blue-600 text-blue-600;

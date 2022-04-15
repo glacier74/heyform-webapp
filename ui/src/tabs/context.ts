@@ -3,7 +3,7 @@ import { deepEqual } from 'fast-equals'
 import { createStoreContext, createStoreReducer } from '../store'
 import type { TabsPaneProps } from './Pane'
 
-type ITab = Pick<TabsPaneProps, 'name' | 'title' | 'disabled'>
+export type ITab = Pick<TabsPaneProps, 'name' | 'title' | 'disabled'>
 
 interface IState {
   tabs: ITab[]
