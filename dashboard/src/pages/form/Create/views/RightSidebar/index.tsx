@@ -1,7 +1,7 @@
 import { PlanCheck } from '@/components'
 import { PlanGradeEnum } from '@/models'
 import { Tabs } from '@heyforms/ui'
-import type { ITab } from '@heyforms/ui/lib/types/tabs/context'
+import type { ITab } from '@heyforms/ui/types/tabs/context'
 import { memo, useCallback } from 'react'
 import { Customize } from './Customize'
 import { Question } from './Question'

@@ -1,7 +1,7 @@
 import { PlusIcon } from '@heroicons/react/outline'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { Button, Dropdown, Input } from '@heyforms/ui'
-import type { InputValue } from '@heyforms/ui/lib/types/input/Input'
+import type { InputValue } from '@heyforms/ui/types/input/Input'
 import { isValid } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { FC } from 'react'

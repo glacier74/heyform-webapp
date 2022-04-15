@@ -21,7 +21,7 @@ import {
   notification,
   Table
 } from '@heyforms/ui'
-import type { TableColumn } from '@heyforms/ui/lib/types/table'
+import type { TableColumn } from '@heyforms/ui/types/table'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { useTranslation } from 'react-i18next'

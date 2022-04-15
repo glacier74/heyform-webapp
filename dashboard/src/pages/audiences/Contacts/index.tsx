@@ -15,7 +15,7 @@ import {
   notification,
   Table
 } from '@heyforms/ui'
-import type { TableColumn } from '@heyforms/ui/lib/types/table'
+import type { TableColumn } from '@heyforms/ui/types/table'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'

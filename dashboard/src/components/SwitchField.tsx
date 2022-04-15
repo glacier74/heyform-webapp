@@ -1,5 +1,5 @@
 import { Switch } from '@heyforms/ui'
-import { SwitchProps } from '@heyforms/ui/lib/types/switch/Switch'
+import { SwitchProps } from '@heyforms/ui/types/switch/Switch'
 import clsx from 'clsx'
 import type { FC, ReactNode } from 'react'
 
