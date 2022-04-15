@@ -9,47 +9,6 @@ body {
   @apply antialiased font-sans;
 }
 
-/* Scrollbar styles */
-.scrollbar {
-  @media (min-width: 768px) {
-    &::-webkit-scrollbar {
-      @apply appearance-none bg-transparent w-1.5 h-1.5;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      @apply hidden w-1.5 bg-gray-300 opacity-0;
-      border-radius: 0.1875rem;
-    }
-
-    &::-webkit-scrollbar-track {
-      @apply appearance-none hidden;
-    }
-
-    &:hover {
-      &::-webkit-scrollbar-thumb,
-      &::-webkit-scrollbar-track {
-        @apply block;
-      }
-    }
-  }
-}
-
-@keyframes skeleton {
-  from {
-    background-position: 100% 50%
-  }
-
-  to {
-    background-position: 0 50%
-  }
-}
-
-.skeleton {
-  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 37%, #f3f4f6 63%);
-  background-size: 400% 100%;
-  animation: skeleton 1.4s ease infinite;
-}
-
 .sidebar {
   nav a {
     &.active {
