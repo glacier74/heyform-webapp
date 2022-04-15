@@ -1027,10 +1027,10 @@
   resolved "http://npm.heyooo.com/@heroicons%2freact/-/react-1.0.6.tgz#35dd26987228b39ef2316db3b1245c42eb19e324"
   integrity sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==
 
-"@heyforms/answer-utils@^0.3.2":
-  version "0.3.3"
-  resolved "http://npm.heyooo.com/@heyforms%2fanswer-utils/-/answer-utils-0.3.3.tgz#816ba4b1ea459de27700c2652f5d09a23bbd31cb"
-  integrity sha512-Aj9j5IQLro2KMEgc9HSuLS9CpCy3i3sYJ+Iig0b3Xn5DIiCLr0agcUzIJcenXNQmDqaO5gYoef4dIVyOb8YS7A==
+"@heyforms/answer-utils@^0.3.6", "@heyforms/answer-utils@^0.3.7":
+  version "0.3.7"
+  resolved "http://npm.heyooo.com/@heyforms%2fanswer-utils/-/answer-utils-0.3.7.tgz#3d5284116cbbafe5ade17c5fdd217b69e6b9b42c"
+  integrity sha512-/Oe8I/uSAl5pIwn1J3cWe8fxp7XfwABtWU1oVLLd9TrQzaDpV/kCrbFEm03iBbPu1bW70TeoIM9CGszAOH1p5g==
   dependencies:
     "@heyforms/shared-types-enums" "^4.2.1"
     "@hpnp/utils" "^2.9.1"
@@ -1038,24 +1038,13 @@
     libphonenumber-js "^1.9.51"
     validator "^13.7.0"
 
-"@heyforms/answer-utils@^0.3.4":
-  version "0.3.4"
-  resolved "http://npm.heyooo.com/@heyforms%2fanswer-utils/-/answer-utils-0.3.4.tgz#9a9a0a86c9b89d7d5098c332489c708a9b8cb0ce"
-  integrity sha512-KqZ2WiYvMylVJ1bMTbe8yIFuX5krIO5gFwS3TZbN35SFDfmJbyWhjjcUCFSnmBIJHTCUMBQDkUsprMKUXNFoQg==
-  dependencies:
-    "@heyforms/shared-types-enums" "^4.2.1"
-    "@hpnp/utils" "^2.9.1"
-    html5parser "^2.0.2"
-    libphonenumber-js "^1.9.51"
-    validator "^13.7.0"
-
-"@heyforms/form-component@^2022.4.1":
-  version "2022.4.1"
-  resolved "http://npm.heyooo.com/@heyforms%2fform-component/-/form-component-2022.4.1.tgz#36df22dc5719f4858bce5a28d1094fee807728ce"
-  integrity sha512-NlpTwG+whgBn2kmoN/UZ3380+P8qd6KX9b3+1+62IFm6eZH0iWD28S0O+rTLSpGFE9DQQnBCP6MOgXWBNyATRg==
+"@heyforms/form-component@^2022.4.1-4":
+  version "2022.4.1-4"
+  resolved "http://npm.heyooo.com/@heyforms%2fform-component/-/form-component-2022.4.1-4.tgz#750d723fb8fa079c9ef5230adc0b2b71ca761791"
+  integrity sha512-QZGAzxBIOC487yrZggSSvZShAf18SSVImi0qUFiYUVeSygP3GWIiJp0jYJ9aFqKpAsLeWqT7QYuPReGJzwVXRA==
   dependencies:
     "@heroicons/react" "^1.0.5"
-    "@heyforms/answer-utils" "^0.3.4"
+    "@heyforms/answer-utils" "^0.3.6"
     "@heyforms/shared-types-enums" "^4.2.1"
     "@heyforms/ui" "*"
     "@hpnp/utils" "^2.8.0"
@@ -1074,10 +1063,29 @@
   resolved "http://npm.heyooo.com/@heyforms%2fshared-types-enums/-/shared-types-enums-4.2.2.tgz#cb0563840ef354dbef04952ca884dbc65db86548"
   integrity sha512-KuapgNIRxMVkRS6/G+A0iHT5ln08PQBMIqiz32OyGErTSltgf4CXBAxTrmVNN9e82otyjYKsl3532MEY49RVoQ==
 
-"@heyforms/ui@*", "@heyforms/ui@^2022.4.1":
+"@heyforms/ui@*":
   version "2022.4.1"
   resolved "http://npm.heyooo.com/@heyforms%2fui/-/ui-2022.4.1.tgz#73ded024eaac4cde130b357a49aad2c9e36350c0"
   integrity sha512-/CKxmbz1N6NWEZ+baAOf2FFHfQ1ma5mkXKq4C/sX4GK/NSYcv2Dq04yw/P4XvNelaKV5aAfd29rJLFSMF/Lfag==
+  dependencies:
+    "@headlessui/react" "^1.4.3"
+    "@heroicons/react" "^1.0.5"
+    "@hpnp/utils" "^2.9.1"
+    "@popperjs/core" "^2.11.2"
+    "@tailwindcss/forms" "^0.4.0"
+    clsx "^1.1.1"
+    fast-equals "^3.0.1"
+    rc-field-form "^1.22.1"
+    react "^18.0.0"
+    react-dom "^18.0.0"
+    react-popper "^2.2.5"
+    react-transition-state "^1.1.4"
+    react-use "^17.3.2"
+
+"@heyforms/ui@^2022.4.1-2":
+  version "2022.4.1-2"
+  resolved "http://npm.heyooo.com/@heyforms%2fui/-/ui-2022.4.1-2.tgz#174f26caa56a3fd9e40716e7387a7696024b26c8"
+  integrity sha512-y3CWnHfFUh1i7atU5i16iaAknGGK9FRkKN1TAq+dgGbjjq+IF0Om9TWpsoaJ7RP8wjv8rO4mWdeYlMu6qWlhVQ==
   dependencies:
     "@headlessui/react" "^1.4.3"
     "@heroicons/react" "^1.0.5"
