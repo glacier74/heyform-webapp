@@ -128,7 +128,7 @@ const Project = observer(() => {
       render(record) {
         if (record.suspended) {
           return <Badge className="form-status" type="red" text={t('project.suspended')} dot />
-        } else if (record.draft) {
+        } else if (record.draft && !record.settings?.active) {
           return <Badge className="form-status" text={t('project.draft')} dot />
         } else if (record.settings?.active) {
           return <Badge className="form-status" type="blue" text={t('project.active')} dot />
