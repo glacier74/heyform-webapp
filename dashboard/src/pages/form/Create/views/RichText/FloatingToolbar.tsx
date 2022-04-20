@@ -76,8 +76,9 @@ export const FloatingToolbar: FC<FloatingToolbarProps> = ({
             leading={<UnderlineIcon className="text-gray-700" />}
             onClick={handleUnderline}
           />
-          <Button.Link leading={<LinkIcon className="text-gray-700" />} />
-          <Button.Link leading={<UnlinkIcon className="text-gray-700" />} />
+          {/* TODO - add link support */}
+          {/*<Button.Link leading={<LinkIcon className="text-gray-700" />} />*/}
+          {/*<Button.Link leading={<UnlinkIcon className="text-gray-700" />} />*/}
         </div>
       </div>
     </Portal>
