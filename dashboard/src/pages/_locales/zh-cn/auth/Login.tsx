@@ -20,15 +20,6 @@ const Login = () => {
       <div>
         <LogoIcon className="h-8 w-auto" />
         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('login.signIn')}</h2>
-        <p className="mt-2 text-sm text-gray-600">
-          {t('login.or')} {''}
-          <RedirectUriLink
-            href="/sign-up"
-            className="font-medium text-blue-600 hover:text-blue-500"
-          >
-            {t('login.startFree')}
-          </RedirectUriLink>
-        </p>
       </div>
 
       <div className="mt-8">
@@ -70,7 +61,7 @@ const Login = () => {
             <Form.Item name="code" label={t('login.Code')} rules={[{ required: true }]}>
               <Input
                 trailing={
-                  <Button.Link className="mobile-verification-code">
+                  <Button.Link type="primary" className="mobile-verification-code">
                     {t('login.GetCode')}
                   </Button.Link>
                 }

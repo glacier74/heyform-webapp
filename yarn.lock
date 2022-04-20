@@ -1082,10 +1082,10 @@
     react-transition-state "^1.1.4"
     react-use "^17.3.2"
 
-"@heyforms/ui@^2022.4.1-2":
-  version "2022.4.1-2"
-  resolved "http://npm.heyooo.com/@heyforms%2fui/-/ui-2022.4.1-2.tgz#174f26caa56a3fd9e40716e7387a7696024b26c8"
-  integrity sha512-y3CWnHfFUh1i7atU5i16iaAknGGK9FRkKN1TAq+dgGbjjq+IF0Om9TWpsoaJ7RP8wjv8rO4mWdeYlMu6qWlhVQ==
+"@heyforms/ui@^2022.4.1-3":
+  version "2022.4.1-3"
+  resolved "http://npm.heyooo.com/@heyforms%2fui/-/ui-2022.4.1-3.tgz#666c5642c37789292fd8651c2b817bad43c4dd86"
+  integrity sha512-CFMFTBe6IEyzO/r6UoSJppHT4eQWOnPXVL/LNFeo0UPGvSUiq1pan2WgZjfbsjvXp/CVJjf3sviX4sMrShh8Mg==
   dependencies:
     "@headlessui/react" "^1.4.3"
     "@heroicons/react" "^1.0.5"
