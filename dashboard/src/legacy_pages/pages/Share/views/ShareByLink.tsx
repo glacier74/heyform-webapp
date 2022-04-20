@@ -10,14 +10,15 @@ import {
 } from '@/legacy_pages/components/Icons'
 import { QrCode } from '@/legacy_pages/pages/Share/views/QrCode'
 import { formSharingLinkUrl, urlBuilder, useStore } from '@/legacy_pages/utils'
+import WorkspaceSettings from '@/pages/workspace/WorkspaceSettings'
 import { FormService } from '@/service'
+import { useVisible } from '@/utils'
 import { Flex, message, Spin, Switch } from '@heyui/component'
 import { isEmpty } from '@hpnp/utils/helper'
 import { random } from '@hpnp/utils/random'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const ShareByLink: FC = observer(() => {
@@ -27,6 +28,7 @@ export const ShareByLink: FC = observer(() => {
   const [pending, setPending] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
   const [visible, setVisible] = useState(false)
+  const [workspaceSettingsVisible, openWorkspaceSettings, closeWorkspaceSettings] = useVisible()
 
   const sharingLinkUrl = formSharingLinkUrl(workspaceStore.workspace, formStore.current?.id)
 
@@ -110,7 +112,7 @@ export const ShareByLink: FC = observer(() => {
   return (
     <Container>
       <Header align="center">
-        <ShareFillIcon/>
+        <ShareFillIcon />
         <span>{t('share.shareLin')}</span>
       </Header>
 
@@ -126,7 +128,7 @@ export const ShareByLink: FC = observer(() => {
         <Password>
           <PasswordText>{formStore.current?.settings?.password}</PasswordText>
           <RefreshButton align="center" justify="center" onClick={handleRefreshPassword}>
-            {refreshing ? <Spin/> : <RefreshIcon/>}
+            {refreshing ? <Spin /> : <RefreshIcon />}
           </RefreshButton>
         </Password>
       </Group>
@@ -135,33 +137,38 @@ export const ShareByLink: FC = observer(() => {
         <Label>{t('share.Url')}</Label>
         <Flex align="center">
           <Text style={{ marginRight: 16 }}>{sharingLinkUrl}</Text>
-          <StyledCopyButton text={sharingLinkUrl}/>
+          <StyledCopyButton text={sharingLinkUrl} />
         </Flex>
       </Group>
 
       <Bottom align="center">
         <SocialMedia>
           <SocialMediaItem onClick={handleEmail}>
-            <EmailIcon/>
+            <EmailIcon />
           </SocialMediaItem>
           <SocialMediaItem onClick={() => setVisible(true)}>
-            <QrcodeIcon/>
+            <QrcodeIcon />
           </SocialMediaItem>
           <SocialMediaItem onClick={handleFacebook}>
-            <FacebookIcon/>
+            <FacebookIcon />
           </SocialMediaItem>
           <SocialMediaItem onClick={handleLinkedin}>
-            <LinkedinIcon/>
+            <LinkedinIcon />
           </SocialMediaItem>
           <SocialMediaItem onClick={handleTwitter}>
-            <TwitterIcon/>
+            <TwitterIcon />
           </SocialMediaItem>
         </SocialMedia>
 
-        <Link to={`/workspace/${formStore.current?.teamId}/settings`}>{t('share.custom')}</Link>
+        <a className="cursor-pointer" onClick={openWorkspaceSettings}>
+          {t('share.custom')}
+        </a>
       </Bottom>
 
-      <QrCode visible={visible} onVisibleChange={setVisible}/>
+      <QrCode visible={visible} onVisibleChange={setVisible} />
+
+      {/* Workspace settings modal */}
+      <WorkspaceSettings visible={workspaceSettingsVisible} onClose={closeWorkspaceSettings} />
     </Container>
   )
 })
