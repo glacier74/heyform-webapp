@@ -915,3 +915,19 @@
   @apply w-16 h-16 rounded object-cover;
   aspect-ratio: 1/1;
 }
+
+.theme-item {
+  @apply relative h-28 p-4 rounded-md shadow-md cursor-pointer bg-cover bg-center;
+}
+
+.theme-item-question {
+  @apply mb-1 text-base;
+}
+
+.theme-item-answer {
+  @apply mb-4 text-sm;
+}
+
+.theme-item-button {
+  @apply w-14 h-4 rounded-xl;
+}

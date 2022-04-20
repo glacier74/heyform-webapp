@@ -1038,10 +1038,10 @@
     libphonenumber-js "^1.9.51"
     validator "^13.7.0"
 
-"@heyforms/form-component@^2022.4.1-4":
-  version "2022.4.1-4"
-  resolved "http://npm.heyooo.com/@heyforms%2fform-component/-/form-component-2022.4.1-4.tgz#750d723fb8fa079c9ef5230adc0b2b71ca761791"
-  integrity sha512-QZGAzxBIOC487yrZggSSvZShAf18SSVImi0qUFiYUVeSygP3GWIiJp0jYJ9aFqKpAsLeWqT7QYuPReGJzwVXRA==
+"@heyforms/form-component@^2022.4.1-6":
+  version "2022.4.1-6"
+  resolved "http://npm.heyooo.com/@heyforms%2fform-component/-/form-component-2022.4.1-6.tgz#f6534981e8f7b38ca2da4c8b756a985b9fd010ea"
+  integrity sha512-S91SK8Xv3LK0s2ODXHhRBo2chQAQOZbD9xxkCXKivqedQKGtHHN+M+GfHaXrzmQWu/xIt4l887bu4Ju7YbeN5g==
   dependencies:
     "@heroicons/react" "^1.0.5"
     "@heyforms/answer-utils" "^0.3.6"
