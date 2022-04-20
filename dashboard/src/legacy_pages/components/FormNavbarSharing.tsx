@@ -7,6 +7,7 @@ import { EyeIcon } from '@heyui/icon'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 interface FormNavbarSharingProps {
@@ -25,6 +26,7 @@ const SyncStatusContainer = styled(Flex)`
 
 export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form }) => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const appStore = useStore('appStore')
   const formStore = useStore('formStore')
   const [loading, setLoading] = useState(false)
@@ -46,6 +48,7 @@ export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form })
       formStore.updateSettings({
         active: true
       })
+      navigate(`/workspace/${form?.teamId}/project/${form?.projectId}/form/${form?.id}/share`)
     } catch (err: any) {
       message.error('Failed to publish form')
     }
