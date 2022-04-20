@@ -1,3 +1,5 @@
+import { PlanCheck } from '@/components'
+import { PlanGradeEnum } from '@/models'
 import { PlusIcon } from '@heroicons/react/outline'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { Button, Dropdown, Input } from '@heyforms/ui'
@@ -39,7 +41,7 @@ const InsertFieldItem: FC<InsertFieldItemProps> = ({
     }
   }
 
-  return (
+  const Children = (
     <div
       className={clsx(
         'insert-field-item group flex items-center px-4 py-2 text-sm font-medium rounded-md cursor-pointer',
@@ -53,6 +55,12 @@ const InsertFieldItem: FC<InsertFieldItemProps> = ({
       {config.label}
     </div>
   )
+
+  if (config.kind === FieldKindEnum.THANK_YOU) {
+    return <PlanCheck permission={PlanGradeEnum.BASIC}>{Children}</PlanCheck>
+  }
+
+  return Children
 }
 
 function filterGroups(keyword?: string): FieldGroup[] {

@@ -1,4 +1,9 @@
 .plan-modal {
+  .modal-mask,
+  .modal-container {
+    @apply z-50;
+  }
+
   .modal-container {
     @apply p-0;
   }
