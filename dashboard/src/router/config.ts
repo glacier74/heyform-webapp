@@ -106,7 +106,7 @@ const config: CustomRouteConfig[] = [
 
   /* Setup workspace if there is no one exists */
   {
-    path: '/setup',
+    path: '/workspace/setup',
     loginRequired: true,
     layout: AuthLayout,
     component: Setup,

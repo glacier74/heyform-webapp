@@ -19,7 +19,7 @@ const Home: FC = observer(() => {
       workspaceStore.setWorkspaces(result)
 
       if (isEmpty(result)) {
-        return navigate('/setup', {
+        return navigate('/workspace/setup', {
           replace: true
         })
       }
