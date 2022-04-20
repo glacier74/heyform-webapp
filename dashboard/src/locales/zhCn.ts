@@ -112,10 +112,10 @@ export default {
     subText: '创建合适的受众以获得准确的结果'
   },
   setup: {
-    createW: '创建新工作区',
-    explain: '工作区是成员可以协作的共享环境。创建工作区后，您可以邀请其他人加入。',
-    name: '工作区名称',
-    logo: '工作区标识',
+    createW: '创建新团队空间',
+    explain: '团队空间是成员可以协作的共享环境。创建团队空间后，您可以邀请其他人加入。',
+    name: '团队空间名称',
+    logo: '团队空间标识',
     create: '新建'
   },
   project: {
@@ -179,28 +179,28 @@ export default {
   },
   workspace: {
     members: {
-      delMember: '一旦您确认删除此成员，该成员将无法再访问此工作区数据。',
+      delMember: '一旦您确认删除此成员，该成员将无法再访问此团队空间数据。',
       delConfirm: '您确定要删除此成员吗？',
       remove: '移除',
       inputPrompt: '请至少输入一个有效的电子邮件地址',
       inviteMember: '邀请成员到',
       send: '邀请已经发出',
-      inviteExplain: '您可以通过发送以下电子邮件邀请成员加入工作区。邀请有效期为',
+      inviteExplain: '您可以通过发送以下电子邮件邀请成员加入团队空间。邀请有效期为',
       Add: '添加更多',
       sendBottom: '发送邀请',
-      member: '工作区成员',
-      manage: '管理谁有权访问工作区。',
-      leave: '是否确实要离开工作区？',
-      leaveExplain: '一旦您确认离开此工作区，您将无法再访问此工作区数据。',
+      member: '团队空间成员',
+      manage: '管理谁有权访问团队空间。',
+      leave: '是否确实要离开团队空间？',
+      leaveExplain: '一旦您确认离开此团队空间，您将无法再访问此团队空间数据。',
       bottomLeave: '离开',
-      transferTitle: '是否确实要转移此工作区？',
-      transferWorkspace: '一旦您确认转移此工作区，您将不再是此工作区的所有者',
+      transferTitle: '是否确实要转移此团队空间？',
+      transferWorkspace: '一旦您确认转移此团队空间，您将不再是此团队空间的所有者',
       transfer: '转移',
       index: {
         owner: '所有人',
         member: '成员',
         transfer: '所有权转移',
-        leave: '离开工作区',
+        leave: '离开团队空间',
         invite: '邀请成员'
       }
     },
@@ -215,10 +215,10 @@ export default {
       text: '项目是工作空间中的子组，您可以在其中添加工作空间成员，以便在表单、访问群体和集成方面进行协作。'
     },
     settings: {
-      WorkSettings: '工作区设置',
-      subTitle: '管理您的工作区设置',
+      WorkSettings: '团队空间设置',
+      subTitle: '管理您的团队空间设置',
       up: '更新',
-      nameW: '工作区名称',
+      nameW: '团队空间名称',
       removeBranding: '移除 HeyForm 品牌标识',
       brandingExplain: '删除 HeyForm 表单页底部的品牌标识，让 HeyForm 更像是完全属于您的品牌。',
       learnMore: '在文档中了解有关删除品牌的更多信息',
@@ -237,30 +237,30 @@ export default {
       domain: '例如: yourcustomdomain.com',
       delWorkspace: {
         sendEmail: '一封包含验证码的电子邮件已发送至',
-        dissolve: '解散工作区',
-        warning: '请记住，此操作是不可逆的，并将永久删除与此工作区相关联的所有数据。',
-        warning2: '一旦确认要分解工作区，您将无法再访问工作区数据。',
-        warning3: '通过解散工作区，所有的表单和数据都将被擦除，无法恢复！要谨慎！'
+        dissolve: '解散团队空间',
+        warning: '请记住，此操作是不可逆的，并将永久删除与此团队空间相关联的所有数据。',
+        warning2: '一旦确认要分解团队空间，您将无法再访问团队空间数据。',
+        warning3: '通过解散团队空间，所有的表单和数据都将被擦除，无法恢复！要谨慎！'
       },
       receive: '导出完成后，您将收到一封带有下载链接的电子邮件。',
       export: '导出内容',
       getEmail: '在一个文件中获取一封包含所有表单和设置的电子邮件。',
       exportBottom: '请求您的数据',
       logo: '标识',
-      pickLogo: '为您的工作区挑选一个标识'
+      pickLogo: '为您的团队空间选择一个标识'
     },
     createWorkspace: {
-      newWorkspace: '创建新工作区',
-      text: '工作区是成员可以协作的共享环境。创建工作区后，您可以邀请其他人加入。',
-      name: '工作区名称',
-      logo: '工作区标识',
+      newWorkspace: '创建新团队空间',
+      text: '团队空间是成员可以协作的共享环境。创建团队空间后，您可以邀请其他人加入。',
+      name: '团队空间名称',
+      logo: '团队空间标识',
       create: '新建'
     },
     join: {
       invited: '您被邀请到',
-      UsernameAdd: '的工作区',
-      joinText: '加入工作区，开始一起工作！',
-      member: '工作区成员',
+      UsernameAdd: '的团队空间',
+      joinText: '加入团队空间，开始一起工作！',
+      member: '团队空间成员',
       bottom: '加入'
     }
   },
@@ -272,14 +272,14 @@ export default {
         sendEmail: '一封包含验证码的电子邮件已发送至',
         del: '删除帐户',
         delText:
-          '此操作无法撤消。这将永久删除您的整个帐户。您创建的所有工作区都将被删除，并且您将从所有共享工作区中移除。',
+          '此操作无法撤消。这将永久删除您的整个帐户。您创建的所有团队空间都将被删除，并且您将从所有共享团队空间中移除。',
         delSure: '如果您确定要继续删除您的帐户，请继续下面的操作。',
         delBottom: '删除我的账户',
         delCode: '验证码',
         delAccount: '计划删除帐户',
         delSendEmail: '我们已计划在48小时内删除您的帐户。完成后，您将收到一封电子邮件确认。',
         loggedOut: '您将会退出登录',
-        delText2: '这将永久删除您的整个帐户。您的所有表单、提交和工作区都将被删除',
+        delText2: '这将永久删除您的整个帐户。您的所有表单、提交和团队空间都将被删除',
         danger: '危险行为'
       },
       emailAddress: {
@@ -293,7 +293,7 @@ export default {
         send: '发送'
       },
       account: '帐户设置',
-      accountText: '对帐户设置的更改将应用于您的所有工作区。',
+      accountText: '对帐户设置的更改将应用于您的所有团队空间。',
       password: {
         changeText: '您的密码已更改',
         changeP: '修改密码',
@@ -321,12 +321,12 @@ export default {
     noCode: '优惠码不能为空y',
     coupon: '优惠码',
     downGrade: '降级套餐',
-    downText: '注意：一旦确认降级套餐，您的工作区将无法再访问高级套餐的功能。',
+    downText: '注意：一旦确认降级套餐，您的团队空间将无法再访问高级套餐的功能。',
     Downgrade: '降级',
     upgrade: '升级',
     current: '当前套餐',
     perMonth: '每月',
-    member: '工作区成员',
+    member: '团队空间成员',
     audience: '受众群体',
     storage: '存储',
     planMay: '您的套餐的到期时间为',
