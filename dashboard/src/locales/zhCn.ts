@@ -196,6 +196,9 @@ export default {
       transferTitle: '是否确实要转移此团队空间？',
       transferWorkspace: '一旦您确认转移此团队空间，您将不再是此团队空间的所有者',
       transfer: '转移',
+      Role: '角色',
+      LastSeen: '最近登陆',
+      Action: '功能',
       index: {
         owner: '所有人',
         member: '成员',
@@ -348,6 +351,10 @@ export default {
     View: '查看账单',
     Billing: '计费信息',
     invoices: '管理您的订阅和发票',
+    Upgrade: '升级你的套餐',
+    Unlock: '解锁更多功能。',
+    Monthly: '按月计费',
+    Annually: '按年计费',
     plans: {
       plan: '套餐',
       usage: '用途',
@@ -648,7 +655,8 @@ export default {
   other: {
     DragUploader: {
       drag: '或者拖放',
-      upTo: 'PNG, JPG, GIF 到'
+      upTo: 'PNG, JPG, GIF文件 最多',
+      upload: '点击上传'
     },
     labelList: {
       Dashboard: '仪表板',
@@ -669,6 +677,8 @@ export default {
       Version: '版本'
     },
     Change: '修改',
-    Remove: '删除'
+    Remove: '删除',
+    Search: '搜索非Flash图像',
+    Upload: '上传'
   }
 }

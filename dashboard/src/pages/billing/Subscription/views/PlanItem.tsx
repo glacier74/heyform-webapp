@@ -5,7 +5,6 @@ import type { FC } from 'react'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-
 interface PlanItemProps {
   workspace?: WorkspaceModel
   plan: PlanModel
@@ -15,17 +14,17 @@ interface PlanItemProps {
 }
 
 const BILLING_CYCLE_MAPS: any = {
-  [BillingCycleEnum.MONTHLY]: 'Billed monthly',
-  [BillingCycleEnum.ANNUALLY]: 'Billed annually'
+  [BillingCycleEnum.MONTHLY]: 'billing.Monthly',
+  [BillingCycleEnum.ANNUALLY]: 'billing.Annually'
 }
 
 export const PlanItem: FC<PlanItemProps> = ({
-                                              workspace,
-                                              plan,
-                                              billingCycle,
-                                              onUpgrade,
-                                              onDowngrade
-                                            }) => {
+  workspace,
+  plan,
+  billingCycle,
+  onUpgrade,
+  onDowngrade
+}) => {
   const price = useMemo(
     () => plan.prices.find(row => row.billingCycle === billingCycle)?.price || 0,
     [plan, billingCycle]
@@ -50,7 +49,7 @@ export const PlanItem: FC<PlanItemProps> = ({
             {t('billing.upgrade')}
           </Button>
           <div className="mt-2 text-gray-400 text-xs text-center">
-            {BILLING_CYCLE_MAPS[billingCycle]}
+            {t(BILLING_CYCLE_MAPS[billingCycle])}
           </div>
         </>
       )
@@ -61,14 +60,13 @@ export const PlanItem: FC<PlanItemProps> = ({
             {t('billing.Downgrade')}
           </Button>
           <div className="mt-2 text-gray-400 text-xs text-center">
-            {BILLING_CYCLE_MAPS[billingCycle]}
+            {t(BILLING_CYCLE_MAPS[billingCycle])}
           </div>
         </>
       )
     } else {
       return (
-        <div
-          className="px-4 py-2 border border-gray-100 sm:text-sm font-medium rounded-md text-gray-400 bg-white text-center">
+        <div className="px-4 py-2 border border-gray-100 sm:text-sm font-medium rounded-md text-gray-400 bg-white text-center">
           {t('billing.current')}
         </div>
       )

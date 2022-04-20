@@ -25,7 +25,7 @@ export const DragUploader: FC<DragUploaderProps> = ({
   error,
   accept = [],
   maxSize = '2MB',
-  selectText = 'Upload a file',
+  selectText = 'other.DragUploader.upload',
   reselectText = 'Re-select file to upload',
   uploadingText = 'Uploading',
   onChange,

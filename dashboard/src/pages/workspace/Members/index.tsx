@@ -2,7 +2,12 @@ import type { UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useAsyncEffect, useParam, useVisible } from '@/utils'
-import { DotsHorizontalIcon, LogoutIcon, SwitchHorizontalIcon, TrashIcon } from '@heroicons/react/outline'
+import {
+  DotsHorizontalIcon,
+  LogoutIcon,
+  SwitchHorizontalIcon,
+  TrashIcon
+} from '@heroicons/react/outline'
 import { Avatar, Badge, Button, Dropdown, Heading, Menus, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/types/table'
 import { observer } from 'mobx-react-lite'
@@ -30,7 +35,7 @@ const Members = observer(() => {
   const columns: TableColumn<UserModel>[] = [
     {
       key: 'id',
-      name: 'Member',
+      name: t('workspace.members.index.member'),
       width: '40%',
       render(record) {
         return (
@@ -59,18 +64,18 @@ const Members = observer(() => {
     },
     {
       key: 'role',
-      name: 'Role',
+      name: t('workspace.members.Role'),
       width: '30%',
       render(record) {
         if (record.id === workspaceStore.workspace.ownerId) {
-          return <Badge type="green" text={t('workspace.members.index.owner')}/>
+          return <Badge type="green" text={t('workspace.members.index.owner')} />
         }
-        return <Badge text={t('workspace.members.index.member')}/>
+        return <Badge text={t('workspace.members.index.member')} />
       }
     },
     {
       key: 'last_seen',
-      name: 'Last seen',
+      name: t('workspace.members.LastSeen'),
       width: '20%',
       render(record) {
         if (record.lastSeenAt) {
@@ -80,7 +85,7 @@ const Members = observer(() => {
     },
     {
       key: 'action',
-      name: 'Action',
+      name: t('workspace.members.Action'),
       align: 'right',
       render(record) {
         if (workspaceStore.workspace.isOwner) {
@@ -115,16 +120,20 @@ const Members = observer(() => {
           <Menus onClick={handleMenuClick}>
             <Menus.Item
               name="transfer"
-              icon={<SwitchHorizontalIcon/>}
+              icon={<SwitchHorizontalIcon />}
               label={t('workspace.members.index.transfer')}
             />
-            <Menus.Item name="remove" icon={<TrashIcon/>} label={t('workspace.members.remove')}/>
+            <Menus.Item name="remove" icon={<TrashIcon />} label={t('workspace.members.remove')} />
           </Menus>
         )
 
         const MemberOverlay = (
           <Menus onClick={handleMenuClick}>
-            <Menus.Item name="leave" icon={<LogoutIcon/>} label={t('workspace.members.index.leave')}/>
+            <Menus.Item
+              name="leave"
+              icon={<LogoutIcon />}
+              label={t('workspace.members.index.leave')}
+            />
           </Menus>
         )
 
@@ -133,7 +142,7 @@ const Members = observer(() => {
             className="inline-flex p-1 hover:bg-gray-100 rounded-md cursor-pointer"
             overlay={workspaceStore.workspace.isOwner ? OwnerOverlay : MemberOverlay}
           >
-            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900"/>
+            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
           </Dropdown>
         )
       }
@@ -157,11 +166,11 @@ const Members = observer(() => {
         }
       />
       <div className="py-4">
-        <Table<UserModel> className="mt-8" columns={columns} data={workspaceStore.members}/>
+        <Table<UserModel> className="mt-8" columns={columns} data={workspaceStore.members} />
       </div>
 
       {/* Invite member */}
-      <InviteMember visible={inviteMemberVisible} onClose={closeInviteMember}/>
+      <InviteMember visible={inviteMemberVisible} onClose={closeInviteMember} />
 
       {/* Transfer workspace */}
       <TransferWorkspace
@@ -171,10 +180,10 @@ const Members = observer(() => {
       />
 
       {/* Delete member */}
-      <DeleteMember visible={deleteMemberVisible} member={member} onClose={closeDeleteMember}/>
+      <DeleteMember visible={deleteMemberVisible} member={member} onClose={closeDeleteMember} />
 
       {/* Leave workspace */}
-      <LeaveWorkspace visible={leaveWorkspaceVisible} onClose={closeLeaveWorkspace}/>
+      <LeaveWorkspace visible={leaveWorkspaceVisible} onClose={closeLeaveWorkspace} />
     </div>
   )
 })

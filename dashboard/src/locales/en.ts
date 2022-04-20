@@ -207,6 +207,9 @@ export default {
       transferWorkspace:
         'Once you confirm to transfer this workspace, you will no longer be the owner of this workspace.',
       transfer: 'Transfer',
+      Role: 'Role',
+      LastSeen: 'Last seen',
+      Action: 'Action',
       index: {
         owner: 'Owner',
         member: 'Member',
@@ -371,6 +374,10 @@ export default {
     View: 'View invoice',
     Billing: 'Billing',
     invoices: 'Manage your subscription and invoices',
+    Upgrade: 'Upgrade your plan',
+    Unlock: 'Unlock more features.',
+    Monthly: 'Billed monthly',
+    Annually: 'Billed annually',
     plans: {
       plan: 'Plans',
       usage: 'Usage',
@@ -686,7 +693,8 @@ export default {
   other: {
     DragUploader: {
       drag: 'or drag and drop',
-      upTo: 'PNG, JPG, GIF up to'
+      upTo: 'PNG, JPG, GIF up to',
+      upload: 'Upload a file'
     },
     labelList: {
       Dashboard: 'Dashboard',
@@ -707,6 +715,9 @@ export default {
       Version: 'Version'
     },
     Change: 'Change',
-    Remove: 'Remove'
+    Remove: 'Remove',
+    Search: 'Search unsplash images',
+    Upload: 'Upload',
+    Unsplash: 'Unsplash'
   }
 }

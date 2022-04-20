@@ -5,6 +5,7 @@ import type { UnsplashImage } from '@heyforms/shared-types-enums'
 import { Input } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface UnsplashProps {
   onChange: (src: string) => void
@@ -57,6 +58,7 @@ export const Unsplash: FC<UnsplashProps> = ({ onChange }) => {
   const [keyword, setKeyword] = useState<string>()
   const [loading, setLoading] = useState(false)
   const [images, setImages] = useState<any[]>([])
+  const { t } = useTranslation()
 
   async function getImages() {
     if (loading) {
@@ -82,11 +84,7 @@ export const Unsplash: FC<UnsplashProps> = ({ onChange }) => {
 
   return (
     <div>
-      <Input
-        placeholder="Search unsplash images"
-        leading={<SearchIcon />}
-        onKeyDown={handleKeyDown}
-      />
+      <Input placeholder={t('other.Search')} leading={<SearchIcon />} onKeyDown={handleKeyDown} />
       <Async className="mt-4" request={getImages} deps={[keyword]} skeleton={<Skeleton />}>
         <ul role="list" className="flex flex-wrap -ml-2 -mr-2">
           {images.map(row => (
