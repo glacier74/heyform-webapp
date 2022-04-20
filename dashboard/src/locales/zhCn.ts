@@ -212,7 +212,9 @@ export default {
       assign: '分派成员',
       createP2: '创建项目',
       noProject: '您还没有任何项目',
-      text: '项目是工作空间中的子组，您可以在其中添加工作空间成员，以便在表单、访问群体和集成方面进行协作。'
+      text: '项目是工作空间中的子组，您可以在其中添加工作空间成员，以便在表单、访问群体和集成方面进行协作。',
+      forms: '表单',
+      noForms: '还没有表单'
     },
     settings: {
       WorkSettings: '团队空间设置',
@@ -642,5 +644,31 @@ export default {
     ClassicForm: '传统表单',
     templatesForm: '从模板创建新表单',
     URLForm: '从外部网址导入表单'
+  },
+  other: {
+    DragUploader: {
+      drag: '或者拖放',
+      upTo: 'PNG, JPG, GIF 到'
+    },
+    labelList: {
+      Dashboard: '仪表板',
+      TeamMembers: '团队成员',
+      Audiences: '受众群体',
+      Billing: '计费和订阅',
+      Workspace: '工作区设置',
+      Projects: '项目',
+      Resources: '资源',
+      GettingStarted: '开始',
+      Help: '帮助中心',
+      Template: '模板库',
+      Changelog: '变更日志',
+      View: '视图配置文件',
+      Account: '帐户设置',
+      Logout: '注销',
+      CreateWorkspace: '创建新工作区',
+      Version: '版本'
+    },
+    Change: '修改',
+    Remove: '删除'
   }
 }

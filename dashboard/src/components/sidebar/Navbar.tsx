@@ -15,6 +15,7 @@ import {
 } from '@heroicons/react/outline'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 
 interface SidebarNavProps {
@@ -24,7 +25,7 @@ interface SidebarNavProps {
 export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }) => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
-
+  const { t } = useTranslation()
   return (
     <nav className="scrollbar flex-1 mt-5 px-2 pb-4">
       <div className="space-y-1">
@@ -34,7 +35,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
           className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
         >
           <HomeIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-          Dashboard
+          {t('other.labelList.Dashboard')}
         </NavLink>
         <PlanCheck permission={PlanGradeEnum.BASIC}>
           <NavLink
@@ -42,7 +43,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
             className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
           >
             <UsersIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-            Team members
+            {t('other.labelList.TeamMembers')}
           </NavLink>
         </PlanCheck>
         <NavLink
@@ -50,7 +51,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
           className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
         >
           <MailIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-          Audiences
+          {t('other.labelList.Audiences')}
         </NavLink>
         {workspaceStore.workspace?.isOwner && (
           <>
@@ -59,14 +60,14 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
               className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
             >
               <CreditCardIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-              Billing & Subscription
+              {t('other.labelList.Billing')}
             </NavLink>
             <div
               className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
               onClick={onWorkspaceSettingsOpen}
             >
               <CogIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-              Workspace settings
+              {t('other.labelList.Workspace')}
             </div>
           </>
         )}
@@ -78,7 +79,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
           className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
           id="projects-headline"
         >
-          Projects
+          {t('other.labelList.Projects')}
         </h3>
         <div className="mt-1 space-y-1" aria-labelledby="projects-headline">
           {workspaceStore.workspace?.projects.map(project => (
@@ -99,7 +100,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
           className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
           id="resources-headline"
         >
-          Resources
+          {t('other.labelList.Resources')}
         </h3>
         <div className="mt-1 space-y-1" aria-labelledby="resources-headline">
           <a
@@ -108,7 +109,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
             <PlayIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-            <span className="truncate">Getting started</span>
+            <span className="truncate">{t('other.labelList.GettingStarted')}</span>
           </a>
           <a
             href="https://help.heyform.net"
@@ -116,7 +117,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
             <QuestionMarkCircleIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-            <span className="truncate">Help center</span>
+            <span className="truncate">{t('other.labelList.Help')}</span>
           </a>
           <a
             href="https://heyform.net/templates"
@@ -124,7 +125,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
             <DocumentTextIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-            <span className="truncate">Template gallery</span>
+            <span className="truncate">{t('other.labelList.Template')}</span>
           </a>
           <a
             href="https://heyform.net/changelog"
@@ -132,7 +133,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
             <GiftIcon className="text-gray-400 group-hover:text-gray-500 mr-3 flex-shrink-0 h-6 w-6" />
-            <span className="truncate">Changelog</span>
+            <span className="truncate">{t('other.labelList.Changelog')}</span>
           </a>
         </div>
       </div>

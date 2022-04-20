@@ -3,10 +3,12 @@ import { clearAuthState } from '@/utils'
 import { Dropdown, Menus } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const UserAccount: FC = observer(() => {
   const userStore = useStore('userStore')
   const appStore = useStore('appStore')
+  const { t } = useTranslation()
 
   function handleMenuClick(name?: IKeyType) {
     switch (name) {
@@ -23,12 +25,12 @@ export const UserAccount: FC = observer(() => {
 
   const Overlay = (
     <Menus className="bottom-12" onClick={handleMenuClick}>
-      <Menus.Item name="accountSettings" label="Account settings" />
-      <Menus.Item name="logout" label="Logout" />
+      <Menus.Item name="accountSettings" label={t('other.labelList.Account')} />
+      <Menus.Item name="logout" label={t('other.labelList.Logout')} />
       <Menus.Divider />
       <Menus.Item
         className="text-gray-400 hover:bg-transparent cursor-default"
-        label={`Version ${import.meta.env.PACKAGE_VERSION}`}
+        label={`${t('other.labelList.Version')} ${import.meta.env.PACKAGE_VERSION}`}
       />
     </Menus>
   )
@@ -48,7 +50,9 @@ export const UserAccount: FC = observer(() => {
             <p className="text-sm font-medium text-gray-700 truncate group-hover:text-gray-900">
               {userStore.user.name}
             </p>
-            <p className="text-sm text-gray-500 group-hover:text-gray-700">View profile</p>
+            <p className="text-sm text-gray-500 group-hover:text-gray-700">
+              {t('other.labelList.View')}
+            </p>
           </div>
         </div>
       </Dropdown>

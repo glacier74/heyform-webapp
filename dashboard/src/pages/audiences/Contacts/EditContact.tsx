@@ -81,7 +81,7 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
             ...contact,
             groupIds: contact?.groups?.map(g => g.id)
           }}
-          submitText={t('update')}
+          submitText={t('audiences.groups.renameGroup.up')}
           submitOptions={{
             type: 'primary'
           }}
@@ -120,7 +120,7 @@ const EditContact: FC<EditContactProps> = ({ visible, contact, onClose }) => {
           </Form.Item>
           <Form.Item
             name="email"
-            label={t('auto.signup.Email')}
+            label={t('auth.signup.Email')}
             rules={[
               {
                 required: true,

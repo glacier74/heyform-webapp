@@ -7,6 +7,7 @@ import { Avatar, Dropdown, Menus } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { WorkspaceIcon } from '../icons'
 
@@ -25,6 +26,7 @@ interface WorkspaceListProps {
 
 const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
   const { workspaceId } = useParam()
+  const { t } = useTranslation()
 
   function handleClick() {
     onClick(workspace)
@@ -46,7 +48,9 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
 
       <div className="ml-4 flex-auto">
         <p className="text-sm font-medium text-gray-700 truncate">{workspace.name}</p>
-        <p className="text-sm text-gray-500 truncate">{`${workspace.plan.name} plan · ${workspace.memberCount} members`}</p>
+        <p className="text-sm text-gray-500 truncate">{`${workspace.plan.name} ${t(
+          'billing.plan'
+        )} · ${workspace.memberCount} ${t('workspace.join.member')}`}</p>
       </div>
 
       {workspaceId === workspace.id && <CheckCircleIcon className="w-6 h-6 text-blue-500" />}
@@ -74,6 +78,7 @@ const WorkspaceList: FC<WorkspaceListProps> = observer(({ onClose }) => {
 
 const CurrentWorkspace = observer(() => {
   const workspaceStore = useStore('workspaceStore')
+  const { t } = useTranslation()
 
   return (
     <button className="group w-full rounded-md text-sm text-left text-gray-700">
@@ -92,7 +97,7 @@ const CurrentWorkspace = observer(() => {
               {workspaceStore.workspace?.name}
             </span>
             <span className="text-gray-500 text-sm truncate">
-              {workspaceStore.workspace?.plan.name} plan
+              {workspaceStore.workspace?.plan.name} {t('billing.plan')}
             </span>
           </span>
         </span>
@@ -104,6 +109,7 @@ const CurrentWorkspace = observer(() => {
 
 export const WorkspaceSwitch: FC<WorkspaceSwitchProps> = ({ onCreateWorkspace }) => {
   const [visible, setVisible] = useState(false)
+  const { t } = useTranslation()
 
   function handleClose() {
     setVisible(false)
@@ -116,7 +122,7 @@ export const WorkspaceSwitch: FC<WorkspaceSwitchProps> = ({ onCreateWorkspace })
       <Menus.Item
         name="create"
         icon={<PlusIcon />}
-        label="Create new workspace"
+        label={t('other.labelList.CreateWorkspace')}
         onClick={onCreateWorkspace}
       />
     </div>

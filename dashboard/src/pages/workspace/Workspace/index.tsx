@@ -68,7 +68,9 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
       <div className="p-6">
         <h3 className="text-gray-900 text-base font-medium truncate">{project.name}</h3>
         <p className="mt-1 text-gray-500 text-sm truncate">
-          {project.formCount > 0 ? `${project.formCount} forms` : 'No form yet'}
+          {project.formCount > 0
+            ? `${project.formCount} ${t('workspace.workSpace.forms')}`
+            : t('workspace.workSpace.noForms')}
         </p>
         <div className="mt-4 flex items-center justify-between">
           <Avatar.Group options={members} size={32} maximum={8} circular rounded />
@@ -125,7 +127,9 @@ const Workspace = observer(() => {
             circular
           />
         }
-        description={`${workspaceStore.workspace?.plan.name} plan · ${workspaceStore.workspace?.memberCount} members`}
+        description={`${workspaceStore.workspace?.plan.name} ${t('billing.plan')} · ${
+          workspaceStore.workspace?.memberCount
+        } ${t('workspace.join.member')}`}
         actions={
           workspaceStore.workspace?.projects.length > 0 && (
             <Button type="primary" onClick={openCreateProject}>

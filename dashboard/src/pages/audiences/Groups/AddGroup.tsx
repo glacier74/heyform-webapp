@@ -42,7 +42,7 @@ const AddGroup: FC<IModalProps> = ({ visible, onClose }) => {
         >
           <Form.Item
             name="name"
-            label={t('audiences.groups.addGroup.  GroupName')}
+            label={t('audiences.groups.addGroup.GroupName')}
             rules={[
               {
                 required: true,

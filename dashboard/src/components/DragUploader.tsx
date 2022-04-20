@@ -4,6 +4,7 @@ import { formatBytes, parseBytes } from '@hpnp/utils'
 import clsx from 'clsx'
 import type { ChangeEvent, DragEvent, FC, MouseEvent } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export interface DragUploaderProps extends Omit<IComponentProps, 'onChange'> {
   value?: File
@@ -36,6 +37,7 @@ export const DragUploader: FC<DragUploaderProps> = ({
   const [dragoverRef, setDragoverRef] = useState<any>()
   const [dragging, setDragging] = useState(false)
   const [internalError, setInternalError] = useState<Error | null>(null)
+  const { t } = useTranslation()
 
   function handleChange(f: File) {
     if (f.size > parseBytes(maxSize)!) {
@@ -111,10 +113,10 @@ export const DragUploader: FC<DragUploaderProps> = ({
             </p>
             <div className="flex items-center justify-center text-sm">
               <Button.Link type="primary" loading={loading} onClick={handleOpen}>
-                {loading ? uploadingText : reselectText}
+                {loading ? uploadingText : reselectText}//
               </Button.Link>
             </div>
-            {error && <p className="text-xs text-red-500">{error.message}</p>}
+            {error && <p className="text-xs text-red-500">{error.message}</p>}//
           </div>
         </div>
       ) : (
@@ -135,14 +137,16 @@ export const DragUploader: FC<DragUploaderProps> = ({
             <UploadIcon className="non-scaling-stroke mx-auto h-12 w-12 text-gray-400" />
             <div className="flex items-center justify-center text-sm text-gray-600">
               <Button.Link type="primary" onClick={handleOpen}>
-                {selectText}
+                {t(selectText)}
               </Button.Link>
-              <p className="pl-1">or drag and drop</p>
+              <p className="pl-1">{t('other.DragUploader.drag')}</p>
             </div>
             {error || internalError ? (
               <p className="text-xs text-red-500">{error?.message || internalError?.message}</p>
             ) : (
-              <p className="text-xs text-gray-500">PNG, JPG, GIF up to {maxSize}</p>
+              <p className="text-xs text-gray-500">
+                {t('other.DragUploader.upTo')} {maxSize}
+              </p> //
             )}
           </div>
         </div>

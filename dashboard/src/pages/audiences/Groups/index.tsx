@@ -164,7 +164,7 @@ const Groups = () => {
         <div className="mt-8 lg:flex lg:items-center lg:justify-between">
           <Input.Search className="w-full md:w-96" />
           <Button className="mt-6 lg:mt-0 w-full md:w-auto" type="primary" onClick={openAddGroup}>
-            Add group
+            {t('audiences.groups.addGroup.add')}
           </Button>
         </div>
       )}

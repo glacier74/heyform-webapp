@@ -32,13 +32,13 @@ const RenameGroup: FC<RenameGroupProps> = ({ visible, group, onClose }) => {
       <div className="space-y-6">
         <div>
           <h1 className="text-lg leading-6 font-medium text-gray-900">
-            {t('audiences.contact.renameGroup.rename')}
+            {t('audiences.groups.renameGroup.rename')}
           </h1>
         </div>
 
         <Form.Custom
           initialValues={group as any}
-          submitText={t('audiences.contact.renameGroup.up')}
+          submitText={t('audiences.groups.renameGroup.up')}
           submitOptions={{
             type: 'primary'
           }}
@@ -46,7 +46,7 @@ const RenameGroup: FC<RenameGroupProps> = ({ visible, group, onClose }) => {
         >
           <Form.Item
             name="name"
-            label={t('audiences.groups.addGroup.  GroupName')}
+            label={t('audiences.groups.addGroup.GroupName')}
             rules={[
               {
                 required: true,
@@ -54,7 +54,7 @@ const RenameGroup: FC<RenameGroupProps> = ({ visible, group, onClose }) => {
               }
             ]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
         </Form.Custom>
       </div>

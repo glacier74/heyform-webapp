@@ -223,7 +223,9 @@ export default {
       assign: 'Assign members',
       createP2: 'Create project',
       noProject: "You don't have any projects yet",
-      text: 'Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations.'
+      text: 'Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations.',
+      forms: 'forms',
+      noForms: 'No form yet'
     },
     settings: {
       WorkSettings: 'Workspace Settings',
@@ -680,5 +682,31 @@ export default {
     ClassicForm: 'Classic Form',
     templatesForm: 'Create a new form from templates',
     URLForm: 'Import form from external URL'
+  },
+  other: {
+    DragUploader: {
+      drag: 'or drag and drop',
+      upTo: 'PNG, JPG, GIF up to'
+    },
+    labelList: {
+      Dashboard: 'Dashboard',
+      TeamMembers: 'Team members',
+      Audiences: ' Audiences',
+      Billing: 'Billing & Subscription',
+      Workspace: 'Workspace settings',
+      Projects: 'Projects',
+      Resources: 'Resources',
+      GettingStarted: 'Getting started',
+      Help: 'Help center',
+      Template: 'Template gallery',
+      Changelog: 'Changelog',
+      View: 'View profile',
+      Account: 'Account settings',
+      Logout: 'Logout',
+      CreateWorkspace: 'Create new workspace',
+      Version: 'Version'
+    },
+    Change: 'Change',
+    Remove: 'Remove'
   }
 }
