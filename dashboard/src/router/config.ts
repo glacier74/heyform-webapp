@@ -1,6 +1,7 @@
-import { AuthGuard, AuthLayout, CommonLayout, WorkspaceLayout } from '@/components'
+import { AuthGuard, AuthLayout, WorkspaceLayout } from '@/components'
 import { FormLayout, WorkspaceGuardLayout } from '@/legacy_pages/layouts'
 import { lazy } from 'react'
+import localesConfig from './_locales'
 
 export interface CustomRouteConfig {
   path: string
@@ -9,12 +10,6 @@ export interface CustomRouteConfig {
   layout: any
   component: any
 }
-
-/* Auth */
-const Login = lazy(() => import('@/pages/auth/Login'))
-const SignUp = lazy(() => import('@/pages/auth/SignUp'))
-const ForgotPassword = lazy(() => import('@/pages/auth/ForgotPassword'))
-const ResetPassword = lazy(() => import('@/pages/auth/ResetPassword'))
 
 /* Join workspace */
 const JoinWorkspace = lazy(() => import('@/pages/workspace/JoinWorkspace'))
@@ -53,48 +48,10 @@ const Report = lazy(() => import('@/legacy_pages/pages/Report'))
 const Submissions = lazy(() => import('@/legacy_pages/pages/Submissions'))
 const FormSettings = lazy(() => import('@/legacy_pages/pages/FormSettings'))
 
-const config: CustomRouteConfig[] = [
-  /* Login */
-  {
-    path: '/login',
-    loginRequired: false,
-    layout: CommonLayout,
-    component: Login,
-    title: 'Login'
-  },
-  /* Sign Up */
-  {
-    path: '/sign-up',
-    loginRequired: false,
-    layout: CommonLayout,
-    component: SignUp,
-    title: 'Sign Up'
-  },
-  /* Forgot Password */
-  {
-    path: '/forgot-password',
-    loginRequired: false,
-    layout: CommonLayout,
-    component: ForgotPassword,
-    title: 'Forgot Password'
-  },
-  /* Reset Password */
-  {
-    path: '/reset-password',
-    loginRequired: false,
-    layout: CommonLayout,
-    component: ResetPassword,
-    title: 'Reset Password'
-  },
+const defaultLocale = import.meta.env.VITE_I18N_DEFAULT_LOCALE || 'en'
 
-  /* Verify email address */
-  {
-    path: '/verify-email',
-    loginRequired: true,
-    layout: AuthLayout,
-    component: VerifyEmail,
-    title: 'Verify email address'
-  },
+const config: CustomRouteConfig[] = [
+  ...localesConfig[defaultLocale],
 
   /* Home */
   {

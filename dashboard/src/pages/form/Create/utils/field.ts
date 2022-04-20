@@ -1,7 +1,7 @@
 import { htmlUtils } from '@heyforms/answer-utils'
 import type { FormField } from '@heyforms/shared-types-enums'
 import { FieldKindEnum, FORM_FIELD_KINDS, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
-import { isArray, isValidArray } from '@hpnp/utils/helper'
+import { isArray } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 
 // TODO: remove in future
