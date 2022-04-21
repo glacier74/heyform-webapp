@@ -179,7 +179,9 @@ export default {
       delForm: '将被永久删除，而您将无法恢复它。',
       deleteForever: '永久删除？',
       cancel: '取消',
-      restoring: '恢复表单'
+      restoring: '恢复表单',
+      FormName: '表单名称',
+      LastUpdate: '最新更新'
     }
   },
   workspace: {

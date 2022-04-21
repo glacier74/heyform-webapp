@@ -186,7 +186,9 @@ export default {
       delForm: "will be deleted forever and you won't be able to restore it.",
       deleteForever: 'Delete forever?',
       cancel: 'Cancel',
-      restoring: 'Restoring form'
+      restoring: 'Restoring form',
+      FormName: 'Form name',
+      LastUpdate: 'Last update'
     }
   },
   workspace: {

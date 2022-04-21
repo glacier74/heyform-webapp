@@ -104,7 +104,7 @@ const Project = observer(() => {
   const columns: TableColumn<FormModel>[] = [
     {
       key: 'id',
-      name: 'Form name',
+      name: t('project.trash.FormName'),
       width: '40%',
       render(record) {
         return (
@@ -123,7 +123,7 @@ const Project = observer(() => {
     },
     {
       key: 'status',
-      name: 'Status',
+      name: t('integration.Status'),
       width: '30%',
       render(record) {
         if (record.suspended) {
@@ -139,7 +139,7 @@ const Project = observer(() => {
     },
     {
       key: 'fieldUpdateAt',
-      name: 'Last update',
+      name: t('project.trash.LastUpdate'),
       width: '20%',
       render(record) {
         if (record.fieldUpdateAt) {
@@ -149,7 +149,7 @@ const Project = observer(() => {
     },
     {
       key: 'action',
-      name: 'Action',
+      name: t('workspace.members.Action'),
       align: 'right',
       render(record) {
         function handleClick(name?: IKeyType) {

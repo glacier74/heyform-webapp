@@ -72,7 +72,7 @@ const Trash = observer(() => {
   const columns: TableColumn<FormModel>[] = [
     {
       key: 'id',
-      name: 'Form name',
+      name: t('project.trash.FormName'),
       width: '40%',
       render(record) {
         return (
@@ -91,15 +91,15 @@ const Trash = observer(() => {
     },
     {
       key: 'status',
-      name: 'Status',
+      name: t('integration.Status'),
       width: '30%',
       render() {
-        return <Badge className="form-status" text="Closed" dot/>
+        return <Badge className="form-status" text={t('project.closed')} dot />
       }
     },
     {
       key: 'fieldUpdateAt',
-      name: 'Last update',
+      name: t('project.trash.LastUpdate'),
       width: '20%',
       render(record) {
         if (record.fieldUpdateAt) {
@@ -109,7 +109,7 @@ const Trash = observer(() => {
     },
     {
       key: 'action',
-      name: 'Action',
+      name: t('workspace.members.Action'),
       align: 'right',
       render(record) {
         function handleClick(name?: IKeyType) {
@@ -131,12 +131,20 @@ const Trash = observer(() => {
             placement="bottom-start"
             overlay={
               <Menus onClick={handleClick}>
-                <Menus.Item name="restore" icon={<RestoreIcon/>} label={t('project.trash.restore')}/>
-                <Menus.Item name="delete" icon={<TrashIcon/>} label={t('project.trash.delForever')}/>
+                <Menus.Item
+                  name="restore"
+                  icon={<RestoreIcon />}
+                  label={t('project.trash.restore')}
+                />
+                <Menus.Item
+                  name="delete"
+                  icon={<TrashIcon />}
+                  label={t('project.trash.delForever')}
+                />
               </Menus>
             }
           >
-            <DotsHorizontalIcon className="w-5 h-5"/>
+            <DotsHorizontalIcon className="w-5 h-5" />
           </Dropdown>
         )
       }
@@ -146,8 +154,7 @@ const Trash = observer(() => {
   return (
     <ProjectLayout>
       <div className="mt-8 text-sm text-gray-700">
-        {t('project.trash.explain')}
-        {' '}
+        {t('project.trash.explain')}{' '}
         <a
           href="https://help.heyform.net"
           target="_blank"
@@ -160,17 +167,17 @@ const Trash = observer(() => {
       <Async
         request={request}
         deps={[projectId]}
-        skeleton={<Skeleton/>}
+        skeleton={<Skeleton />}
         emptyState={
           <EmptyStates
             className="empty-states-fit"
-            icon={<TrashIcon className="non-scaling-stroke"/>}
+            icon={<TrashIcon className="non-scaling-stroke" />}
             title={t('project.trash.noForm')}
             description={t('project.trash.daysExplain')}
           />
         }
       >
-        <Table<FormModel> className="mt-8" columns={columns} data={forms}/>
+        <Table<FormModel> className="mt-8" columns={columns} data={forms} />
       </Async>
 
       <Modal.Confirm
