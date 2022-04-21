@@ -65,7 +65,8 @@ export default {
         phoneNotEmpty: "Phone number can't be empty",
         jobTitle: ' Job title',
         jobNotEmpty: "Job title can't be empty",
-        successCreate: 'Contact has been created'
+        successCreate: 'Contact has been created',
+        Filter: 'Filter'
       },
       importContact: {
         Import: 'Import contacts',
@@ -93,7 +94,10 @@ export default {
         deleted: 'Contact has been deleted',
         edit: 'Edit',
         noContact: "You don't have any contacts yet",
-        addPeople: 'Add people who needs to take part in the survey or data collection.'
+        addPeople: 'Add people who needs to take part in the survey or data collection.',
+        Contact: 'Contact',
+        Phone: 'Phone number',
+        Company: 'Company'
       }
     },
     groups: {
@@ -109,7 +113,8 @@ export default {
       },
       contact: 'Contacts',
       noGroup: "You don't have any groups yet",
-      explain: 'You can organize your contacts into groups to work with them more easily.'
+      explain: 'You can organize your contacts into groups to work with them more easily.',
+      count: 'Contact count'
     },
     Title: 'Audience',
     subText: 'Create the right audience for accurate results'

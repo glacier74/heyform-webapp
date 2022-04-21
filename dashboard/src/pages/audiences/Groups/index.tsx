@@ -41,18 +41,18 @@ const Groups = () => {
   const columns: TableColumn<GroupModel>[] = [
     {
       key: 'name',
-      name: 'Group name'
+      name: t('audiences.groups.addGroup.GroupName')
     },
     {
       key: 'contactCount',
-      name: 'Contact count',
+      name: t('audiences.groups.count'),
       render(record) {
-        return `${record.contactCount} contacts`
+        return `${record.contactCount} ${t('audiences.groups.contact')} `
       }
     },
     {
       key: 'action',
-      name: 'Action',
+      name: t('workspace.members.Action'),
       align: 'right',
       render(record) {
         async function handleDeleteGroup() {

@@ -62,7 +62,8 @@ export default {
         phoneNotEmpty: '电话号码不能为空',
         jobTitle: ' 职位名称',
         jobNotEmpty: '职位名称不能为空',
-        successCreate: '联系人已创建'
+        successCreate: '联系人已创建',
+        Filter: '过滤'
       },
       importContact: {
         Import: '导入联系人',
@@ -90,7 +91,10 @@ export default {
         deleted: '联系人已被删除',
         edit: '编辑',
         noContact: '您还没有任何联系人',
-        addPeople: '添加需要参与调查或数据收集的人员。'
+        addPeople: '添加需要参与调查或数据收集的人员。',
+        Contact: '联系人',
+        Phone: '手机号',
+        Company: '公司'
       }
     },
     groups: {
@@ -106,7 +110,8 @@ export default {
       },
       contact: '联系人',
       noGroup: '您还没有任何群组',
-      explain: '您可以将联系人组织成组，以便更轻松地与他们合作。'
+      explain: '您可以将联系人组织成组，以便更轻松地与他们合作。',
+      count: '联系人数量'
     },
     Title: '受众群体',
     subText: '创建合适的受众以获得准确的结果'

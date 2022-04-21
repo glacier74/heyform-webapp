@@ -54,7 +54,7 @@ const Contacts = () => {
   const columns: TableColumn<ContactModel>[] = [
     {
       key: 'id',
-      name: 'Contact',
+      name: t('audiences.contact.index.Contact'),
       width: '40%',
       render(record) {
         return (
@@ -81,22 +81,22 @@ const Contacts = () => {
     },
     {
       key: 'phoneNumber',
-      name: 'Phone number',
+      name: t('audiences.contact.index.Phone'),
       width: '15%'
     },
     {
       key: 'jobTitle',
-      name: 'Job Title',
+      name: t('audiences.contact.addContact.jobTitle'),
       width: '15%'
     },
     {
       key: 'company',
-      name: 'Company',
+      name: t('audiences.contact.index.Company'),
       width: '15%'
     },
     {
       key: 'action',
-      name: 'Action',
+      name: t('workspace.members.Action'),
       align: 'right',
       render(record) {
         async function handleDeleteContact() {
