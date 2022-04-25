@@ -6,6 +6,12 @@ export const LOGIN_GQL = gql`
   }
 `
 
+export const LOGIN_CODE_GQL = gql`
+  query loginCode($input: LoginCodeInput!) {
+    loginCode(input: $input)
+  }
+`
+
 export const SIGN_UP_GQL = gql`
   query signUp($input: SignUpInput!) {
     signUp(input: $input)

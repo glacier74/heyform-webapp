@@ -1,4 +1,10 @@
-import { LOGIN_GQL, RESET_PASSWORD_GQL, SEND_RESET_EMAIL_GQL, SIGN_UP_GQL } from '@/consts'
+import {
+  LOGIN_CODE_GQL,
+  LOGIN_GQL,
+  RESET_PASSWORD_GQL,
+  SEND_RESET_EMAIL_GQL,
+  SIGN_UP_GQL
+} from '@/consts'
 import { request } from '@/utils'
 
 export class AuthService {
@@ -9,6 +15,33 @@ export class AuthService {
         input: {
           email,
           password
+        }
+      }
+    })
+  }
+
+  static async loginCode(input: {
+    lotNumber: string
+    captchaOutput: string
+    passToken: string
+    genTime: string
+    phoneNumber: string
+  }) {
+    return request.query({
+      query: LOGIN_CODE_GQL,
+      variables: {
+        input
+      }
+    })
+  }
+
+  static async loginWithPhoneNumber(phoneNumber: string, code: string) {
+    return request.mutate({
+      mutation: LOGIN_GQL,
+      variables: {
+        input: {
+          phoneNumber,
+          code
         }
       }
     })

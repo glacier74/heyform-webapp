@@ -19,4 +19,8 @@ declare global {
     onClose?: () => void
     onComplete?: () => void
   }
+
+  interface Window {
+    initGeetest4: any
+  }
 }

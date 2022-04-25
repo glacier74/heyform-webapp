@@ -1,4 +1,7 @@
 export default {
+  app: {
+    name: '简约表单'
+  },
   login: {
     signIn: '登录您的帐户',
     startFree: '开始您的免费试用',
@@ -11,7 +14,15 @@ export default {
     Password: '密码',
     button: '登录',
     Google: '使用 Google 登录',
-    Apple: '使用 Apple 登录'
+    Apple: '使用 Apple 登录',
+    Code: '验证码',
+    GetCode: '获取验证码',
+    CountDown: '{{count}}秒后重发',
+    PhoneNumber: '手机号',
+    CodeSendSuccess: '验证码发送成功',
+    bindPhoneNumber: '绑定手机号',
+    signInAndBindPhoneNumber: '登录并绑定手机号',
+    termsPrivacy: '登录即代表您同意我们的<2>服务条款</2>和<6>隐私政策</6>。'
   },
   auth: {
     signup: {
@@ -358,7 +369,7 @@ export default {
     View: '查看账单',
     Billing: '计费信息',
     invoices: '管理您的订阅和发票',
-    Upgrade: '升级你的套餐',
+    Upgrade: '升级您的套餐',
     Unlock: '解锁更多功能。',
     Monthly: '按月计费',
     Annually: '按年计费',
@@ -501,14 +512,14 @@ export default {
     archiveConfirm: '一旦您确认禁用提交存档，所有提交将被删除。',
     Cancel: '取消',
     Disable: '禁止',
-    timeText: '如果你想在倒计时结束后自动提交，可以在下面设置。',
+    timeText: '如果您想在倒计时结束后自动提交，可以在下面设置。',
     dataError: '请输入一个有效的数字',
     Hour: '小时',
     Minute: '分钟',
     Second: '秒',
     Day: '天',
     progressBar: '进度条',
-    progressText: '你可以很容易地让受访者知道他们离填写你的表单有多近。',
+    progressText: '您可以很容易地让受访者知道他们离填写您的表单有多近。',
     formUpdated: '表单设置已成功更新',
     disableForm: '您可以禁用此表单以停止接收新提交的内容，并阻止公众访问该表单。',
     expiration: '到期时间',
@@ -587,16 +598,16 @@ export default {
     selectRepository: '选择存储库',
     selectAssignee: '选择接收人 (可选的)',
     selectDrive: '选择硬盘',
-    selectGoogleDrive: '你可以选择自己的 Google 硬盘或',
+    selectGoogleDrive: '您可以选择自己的 Google 硬盘或',
     GoogleSharedDrives: 'Google 共享文硬盘',
-    with: '和你有联系。',
+    with: '和您有联系。',
     SelectFolder: '选择文件夹',
     GoogleText: '如果您在表单中添加了 "文件上传" 组件，则将文件放置在文件夹中。',
     SelectSpreadsheet: '选择表格',
     SelectWorksheet: '选择表',
     MapFields: '映射字段',
     googleSheet:
-      '将 HeyForm 映射到 Google Sheets 字段。如果你在 Google Sheets 上更改了一个字段，请在这里进行更新，否则集成将无法按预期工作。',
+      '将 HeyForm 映射到 Google Sheets 字段。如果您在 Google Sheets 上更改了一个字段，请在这里进行更新，否则集成将无法按预期工作。',
     leftPlaceholder: 'HeyForm 问题',
     rightPlaceholder: 'Google Sheets 字段',
     leftTipText: '选择 HeyForm 问题',

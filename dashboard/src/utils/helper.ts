@@ -1,18 +1,30 @@
 import { removeObjectNil } from '@hpnp/utils'
+import { isValid } from '@hpnp/utils/helper'
 import { stringify } from '@hpnp/utils/qs'
+import isMobilePhone from 'validator/lib/isMobilePhone'
 
 export function urlBuilder(prefix: string, query: Record<string, any>): string {
   return prefix + '?' + stringify(removeObjectNil(query), { encode: true })
 }
 
+const LOADED_SCRIPTS = new Set<string>()
+
 export function loadScript(src: string, callback: () => void) {
+  if (LOADED_SCRIPTS.has(src)) {
+    return callback()
+  }
+
   let attempts = 0
 
   const script = document.createElement('script')
   script.src = src
   document.head.appendChild(script)
 
-  script.onload = callback
+  script.onload = () => {
+    LOADED_SCRIPTS.add(src)
+    callback()
+  }
+
   script.onerror = () => {
     script.onload = null
     script.onerror = null
@@ -53,4 +65,8 @@ export function insertStyle(id: string, style: string) {
   }
 
   styleElement.innerHTML = style
+}
+
+export function isPhoneNumber(arg: any): boolean {
+  return isValid(arg) && isMobilePhone(arg, 'zh-CN')
 }

@@ -1,4 +1,7 @@
 export default {
+  app: {
+    name: 'HeyForm'
+  },
   login: {
     signIn: 'Sign in to your account',
     startFree: 'start your free trial',
@@ -11,7 +14,16 @@ export default {
     Password: 'Password',
     button: 'Sign In',
     Google: 'Sign in with Google',
-    Apple: 'Sign in with Apple'
+    Apple: 'Sign in with Apple',
+    Code: 'Verification code',
+    GetCode: 'Get Code',
+    CountDown: 'Resend in {{count}}s',
+    PhoneNumber: 'Phone Number',
+    CodeSendSuccess: 'Verification code has been sent to your mobile phone',
+    bindPhoneNumber: 'Bind a phone number',
+    signInAndBindPhoneNumber: 'Sign in and bind phone number',
+    termsPrivacy:
+      'By signing in, you agree to our <2>Terms of Service</2> and <6>Privacy Policy</6>.'
   },
   auth: {
     signup: {

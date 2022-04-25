@@ -1,3 +1,4 @@
+import { pickObject } from '@hpnp/utils'
 import { isEqual, isValid } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 import type { CookieAttributes } from 'js-cookie'

@@ -1,9 +1,10 @@
-import { getAuthState } from "@/utils";
-import type { FC } from "react";
-import { useEffect } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import type { CustomRouteConfig } from "./config";
-import config from "./config";
+import { getAuthState } from '@/utils'
+import type { FC } from 'react'
+import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import type { CustomRouteConfig } from './config'
+import config from './config'
 
 /*!
  * route-order https://github.com/sfrdmn/node-route-order
@@ -57,6 +58,7 @@ const CustomRoute: FC<CustomRouteConfig> = ({
   component: Component,
   title
 }) => {
+  const { t } = useTranslation()
   const isLoggedIn = getAuthState()
   const children = (
     <Layout>
@@ -66,7 +68,7 @@ const CustomRoute: FC<CustomRouteConfig> = ({
 
   useEffect(() => {
     if (title) {
-      document.title = `${title} · HeyForm`
+      document.title = `${t(title)} · ${t('app.name')}`
     }
   }, [title])
 

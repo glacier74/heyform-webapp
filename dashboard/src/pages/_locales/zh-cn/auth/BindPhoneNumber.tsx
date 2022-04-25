@@ -5,9 +5,8 @@ import { Form, Input, useForm } from '@heyforms/ui'
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import './style.scss'
-import { ThirdPartyLogin } from './views/ThirdPartyLogin'
 
-const Login = () => {
+const BindPhoneNumber = () => {
   const router = useRouter()
   const { t } = useTranslation()
   const [form] = useForm()
@@ -49,31 +48,15 @@ const Login = () => {
     <div>
       <div>
         <LogoIcon className="h-8 w-auto" />
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('login.signIn')}</h2>
+        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('login.bindPhoneNumber')}</h2>
       </div>
 
       <div className="mt-8">
-        <div>
-          <div>
-            <p className="text-sm font-medium text-gray-700">{t('login.signWith')}</p>
-            <ThirdPartyLogin />
-          </div>
-
-          <div className="mt-6 relative">
-            <div className="absolute inset-0 flex items-center" aria-hidden="true">
-              <div className="w-full border-t border-gray-300" />
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">{t('login.continueWith')}</span>
-            </div>
-          </div>
-        </div>
-
         <div className="mt-6">
           <Form.Custom
             form={form}
             className="login-form-zh_cn"
-            submitText={t('login.button')}
+            submitText={t('login.signInAndBindPhoneNumber')}
             submitOptions={{
               type: 'primary',
               className: 'mt-6',
@@ -138,4 +121,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default BindPhoneNumber
