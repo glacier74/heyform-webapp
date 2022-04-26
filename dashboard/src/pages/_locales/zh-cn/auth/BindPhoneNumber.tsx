@@ -1,7 +1,8 @@
 import { LogoIcon, MobilePhoneCode } from '@/components'
 import { AuthService } from '@/service'
-import { isPhoneNumber, useRouter } from '@/utils'
+import { isPhoneNumber, useQuery, useRouter } from '@/utils'
 import { Form, Input, useForm } from '@heyforms/ui'
+import { isValid } from '@hpnp/utils/helper'
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import './style.scss'
@@ -12,9 +13,12 @@ const BindPhoneNumber = () => {
   const [form] = useForm()
   const [phoneNumber, setPhoneNumber] = useState<string>()
 
+  const { kind, encrypted_data, redirect_uri } = useQuery()
+  const nextURL = isValid(redirect_uri) ? redirect_uri : '/'
+
   async function handleFinish(values: any) {
-    await AuthService.login(values.email, values.password)
-    router.redirect()
+    await AuthService.bindPhoneNumber(values.phoneNumber, values.code, kind, encrypted_data)
+    router.redirect(nextURL)
   }
 
   function handleValuesChange(_: any, values: any) {

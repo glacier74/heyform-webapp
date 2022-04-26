@@ -1,4 +1,5 @@
 import {
+  BIND_PHONE_NUMBER_GQL,
   LOGIN_CODE_GQL,
   LOGIN_GQL,
   RESET_PASSWORD_GQL,
@@ -42,6 +43,25 @@ export class AuthService {
         input: {
           phoneNumber,
           code
+        }
+      }
+    })
+  }
+
+  static async bindPhoneNumber(
+    phoneNumber: string,
+    code: string,
+    kind: string,
+    encryptedData: string
+  ) {
+    return request.mutate({
+      mutation: BIND_PHONE_NUMBER_GQL,
+      variables: {
+        input: {
+          phoneNumber,
+          code,
+          kind,
+          encryptedData
         }
       }
     })

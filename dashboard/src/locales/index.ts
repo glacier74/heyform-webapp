@@ -33,4 +33,11 @@ i18n.use(initReactI18next).init({
   }
 })
 
+const lang = import.meta.env.VITE_I18N_DEFAULT_LOCALE || 'en'
+
+export const Locale = {
+  lang,
+  isZhCn: lang === 'zh-cn'
+}
+
 export default i18n

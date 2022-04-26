@@ -1,10 +1,13 @@
-import { CommonLayout } from '@/components'
+import { CommonLayout, WorkspaceLayout } from '@/components'
 import { lazy } from 'react'
 import type { CustomRouteConfig } from '../config'
 
 /* Auth */
 const Login = lazy(() => import('@/pages/_locales/zh-cn/auth/Login'))
 const BindPhoneNumber = lazy(() => import('@/pages/_locales/zh-cn/auth/BindPhoneNumber'))
+
+/* Billing */
+const Subscription = lazy(() => import('@/pages/_locales/zh-cn/billing/Subscription'))
 
 const zhCnConfig: CustomRouteConfig[] = [
   {
@@ -20,6 +23,14 @@ const zhCnConfig: CustomRouteConfig[] = [
     layout: CommonLayout,
     component: BindPhoneNumber,
     title: 'login.bindPhoneNumber'
+  },
+
+  /* Billing */
+  {
+    path: '/workspace/:workspaceId/billing',
+    loginRequired: true,
+    layout: WorkspaceLayout,
+    component: Subscription
   }
 ]
 

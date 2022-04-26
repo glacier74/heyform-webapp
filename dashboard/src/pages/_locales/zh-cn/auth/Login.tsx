@@ -1,7 +1,9 @@
 import { LogoIcon, MobilePhoneCode } from '@/components'
+import { useQuery } from '@/legacy_pages/utils'
 import { AuthService } from '@/service'
 import { isPhoneNumber, useRouter } from '@/utils'
 import { Form, Input, useForm } from '@heyforms/ui'
+import { isValid } from '@hpnp/utils/helper'
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import './style.scss'
@@ -13,9 +15,12 @@ const Login = () => {
   const [form] = useForm()
   const [phoneNumber, setPhoneNumber] = useState<string>()
 
+  const { redirect_uri } = useQuery()
+  const nextURL = isValid(redirect_uri) ? redirect_uri : '/'
+
   async function handleFinish(values: any) {
-    await AuthService.login(values.email, values.password)
-    router.redirect()
+    await AuthService.loginWithPhoneNumber(values.phoneNumber, values.code)
+    router.redirect(nextURL)
   }
 
   function handleValuesChange(_: any, values: any) {

@@ -3,9 +3,12 @@ import {
   APPLY_COUPON_GQL,
   CANCEL_SUBSCRIPTION_GQL,
   INVOICES_GQL,
-  PAYMENT_GQL
+  ORDER_PREVIEW_GQL,
+  PAYMENT_GQL,
+  ZH_CN_PAYMENT_GQL
 } from '@/consts'
-import { BillingCycleEnum } from '@/models'
+import { Locale } from '@/locales'
+import { BillingCycleEnum, ZhCnPaymentMethodEnum } from '@/models'
 import { request } from '@/utils'
 
 export class PaymentService {
@@ -27,10 +30,12 @@ export class PaymentService {
     teamId: string
     planId: string
     billingCycle: BillingCycleEnum
-    code?: string | null
+    code?: string | undefined | null
+    couponId?: string | undefined | null
+    paymentMethod?: ZhCnPaymentMethodEnum | undefined | null
   }) {
     return request.mutate({
-      mutation: PAYMENT_GQL,
+      mutation: Locale.isZhCn ? ZH_CN_PAYMENT_GQL : PAYMENT_GQL,
       variables: {
         input
       }
@@ -67,6 +72,20 @@ export class PaymentService {
           teamId,
           additionalSeats
         }
+      }
+    })
+  }
+
+  static orderPreview(input: {
+    teamId: string
+    planId: string
+    billingCycle: BillingCycleEnum
+    couponId?: string
+  }) {
+    return request.query({
+      query: ORDER_PREVIEW_GQL,
+      variables: {
+        input
       }
     })
   }

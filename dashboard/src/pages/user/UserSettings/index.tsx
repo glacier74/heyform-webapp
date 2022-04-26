@@ -1,3 +1,4 @@
+import { Locale } from '@/locales'
 import { useStore } from '@/store'
 import { Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
@@ -21,26 +22,26 @@ const UserSettings: FC = () => {
     <Modal visible={appStore.isUserSettingsOpen} onClose={handleClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('user.settings.account')}</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            {t('user.settings.accountText')}
-          </p>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('user.settings.account')}
+          </h1>
+          <p className="mt-1 text-sm text-gray-500">{t('user.settings.accountText')}</p>
         </div>
 
         {/* User avatar */}
-        <Avatar/>
+        <Avatar />
 
         {/* User name */}
-        <UserName/>
+        <UserName />
 
         {/* Email address */}
-        <EmailAddress/>
+        {!Locale.isZhCn && <EmailAddress />}
 
         {/* Password */}
-        <Password/>
+        {!Locale.isZhCn && <Password />}
 
         {/* Delete account */}
-        <DeleteAccount/>
+        <DeleteAccount />
       </div>
     </Modal>
   )

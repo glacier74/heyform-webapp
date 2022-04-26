@@ -1,3 +1,4 @@
+import { Locale } from '@/locales'
 import { Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -31,7 +32,7 @@ const WorkspaceSettings: FC<IModalProps> = ({ visible, onClose }) => {
         <div className="mt-6 border-t border-t-blue-gray-200" />
 
         {/* Export workspace data */}
-        <ExportData />
+        {!Locale.isZhCn && <ExportData />}
 
         {/* Delete workspace */}
         <DeleteWorkspace />

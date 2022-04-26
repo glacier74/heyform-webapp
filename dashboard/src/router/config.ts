@@ -1,5 +1,6 @@
 import { AuthGuard, AuthLayout, WorkspaceLayout } from '@/components'
 import { FormLayout, WorkspaceGuardLayout } from '@/legacy_pages/layouts'
+import { Locale } from '@/locales'
 import { lazy } from 'react'
 import localesConfig from './_locales'
 
@@ -13,9 +14,6 @@ export interface CustomRouteConfig {
 
 /* Join workspace */
 const JoinWorkspace = lazy(() => import('@/pages/workspace/JoinWorkspace'))
-
-/* Verify email address */
-const VerifyEmail = lazy(() => import('@/pages/user/VerifyEmail'))
 
 /* Workspace */
 const Home = lazy(() => import('@/pages/home/Home'))
@@ -32,7 +30,6 @@ const Project = lazy(() => import('@/pages/project/Project'))
 const Trash = lazy(() => import('@/pages/project/Trash'))
 
 /* Billing */
-const Subscription = lazy(() => import('@/pages/billing/Subscription'))
 const Invoices = lazy(() => import('@/pages/billing/Invoices'))
 
 /* Form */
@@ -48,10 +45,8 @@ const Report = lazy(() => import('@/legacy_pages/pages/Report'))
 const Submissions = lazy(() => import('@/legacy_pages/pages/Submissions'))
 const FormSettings = lazy(() => import('@/legacy_pages/pages/FormSettings'))
 
-const defaultLocale = import.meta.env.VITE_I18N_DEFAULT_LOCALE || 'en'
-
 const config: CustomRouteConfig[] = [
-  ...localesConfig[defaultLocale],
+  ...localesConfig[Locale.lang],
 
   /* Home */
   {
@@ -108,12 +103,6 @@ const config: CustomRouteConfig[] = [
   },
 
   /* Billing */
-  {
-    path: '/workspace/:workspaceId/billing',
-    loginRequired: true,
-    layout: WorkspaceLayout,
-    component: Subscription
-  },
   {
     path: '/workspace/:workspaceId/billing/invoice',
     loginRequired: true,

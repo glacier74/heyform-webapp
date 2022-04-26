@@ -38,3 +38,41 @@ export interface InvoiceModel {
   paidAt?: string
   status: InvoiceStatusEnum
 }
+
+export enum OrderKindEnum {
+  PURCHASE = 1,
+  RENEW = 2,
+  UPGRADE = 3,
+  DOWNGRADE = 4
+}
+
+export enum OrderStatusEnum {
+  UNPAID = 0,
+  PAID = 1,
+  EXPIRED = 2,
+  CANCELLED = 3
+}
+
+export enum ZhCnPaymentMethodEnum {
+  ALIPAY = 1,
+  WECHAT_PAY = 2
+}
+
+export interface OrderModel {
+  teamId: string
+  planId: string
+  planName: string
+  billingCycle: BillingCycleEnum
+  couponId?: string
+  kind: OrderKindEnum
+  seatCount?: number
+  seatsAmount?: number
+  amount: number
+  discount?: number
+  total: number
+  paymentMethod?: ZhCnPaymentMethodEnum
+  transactionId?: string
+  paidAt?: number
+  note?: string
+  status: OrderStatusEnum
+}
