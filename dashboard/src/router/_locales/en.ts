@@ -13,6 +13,7 @@ const VerifyEmail = lazy(() => import('@/pages/user/VerifyEmail'))
 
 /* Billing */
 const Subscription = lazy(() => import('@/pages/billing/Subscription'))
+const Invoices = lazy(() => import('@/pages/billing/Invoices'))
 
 const enConfig: CustomRouteConfig[] = [
   /* Login */
@@ -63,6 +64,12 @@ const enConfig: CustomRouteConfig[] = [
     loginRequired: true,
     layout: WorkspaceLayout,
     component: Subscription
+  },
+  {
+    path: '/workspace/:workspaceId/billing/invoice',
+    loginRequired: true,
+    layout: WorkspaceLayout,
+    component: Invoices
   }
 ]
 

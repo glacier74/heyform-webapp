@@ -29,9 +29,6 @@ const Groups = lazy(() => import('@/pages/audiences/Groups'))
 const Project = lazy(() => import('@/pages/project/Project'))
 const Trash = lazy(() => import('@/pages/project/Trash'))
 
-/* Billing */
-const Invoices = lazy(() => import('@/pages/billing/Invoices'))
-
 /* Form */
 const CreateForm = lazy(() => import('@/legacy_pages/pages/CreateForm'))
 const FormBuilder = lazy(() => import('@/pages/form/Create'))
@@ -100,14 +97,6 @@ const config: CustomRouteConfig[] = [
     loginRequired: true,
     layout: WorkspaceLayout,
     component: Groups
-  },
-
-  /* Billing */
-  {
-    path: '/workspace/:workspaceId/billing/invoice',
-    loginRequired: true,
-    layout: WorkspaceLayout,
-    component: Invoices
   },
 
   /* Project */

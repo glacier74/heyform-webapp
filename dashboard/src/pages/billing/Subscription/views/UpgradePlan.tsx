@@ -83,7 +83,6 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
     setLoading(false)
   }
 
-
   return (
     <>
       <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
@@ -95,9 +94,11 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
           <div className="py-4 border-b border-gray-100">
             <div className="flex justify-between space-x-3">
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-gray-900 truncate">{plan?.name} {t('billing.plan')}</p>
+                <p className="text-sm font-medium text-gray-900 truncate">
+                  {plan?.name} {t('billing.plan')}
+                </p>
                 <p className="text-sm text-gray-500 truncate">
-                  {t('billing.Billed')} {BILLING_CYCLE_MAPS[billingCycle]}
+                  {t(BILLING_CYCLE_MAPS[billingCycle])}
                 </p>
               </div>
               <div className="flex-shrink-0 whitespace-nowrap text-sm text-gray-900">

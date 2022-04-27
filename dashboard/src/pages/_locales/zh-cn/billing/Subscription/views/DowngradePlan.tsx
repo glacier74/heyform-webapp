@@ -3,7 +3,7 @@ import { BillingCycleEnum } from '@/models'
 import { PaymentService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
-import { Modal, notification } from '@heyforms/ui'
+import { Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -26,22 +26,16 @@ export const DowngradePlan: FC<DowngradePlanProps> = ({ visible, plan, billingCy
     setError(null)
 
     try {
-      const result = await PaymentService.payment({
+      await PaymentService.payment({
         teamId: workspaceId,
         planId: plan!.id,
         billingCycle
       })
 
-      if (result.note) {
-        workspaceStore.updateWorkspace(workspaceId, {
-          plan: plan!
-        })
-
-        notification.success({
-          title: result.note
-        })
-        onClose?.()
-      }
+      workspaceStore.updateWorkspace(workspaceId, {
+        plan: plan!
+      })
+      onClose?.()
     } catch (err: any) {
       setError(err)
     }
@@ -56,9 +50,7 @@ export const DowngradePlan: FC<DowngradePlanProps> = ({ visible, plan, billingCy
       title={t('billing.downGrade')}
       description={
         <div className="space-y-6">
-          <p>
-            {t('billing.downText')}
-          </p>
+          <p>{t('billing.downText')}</p>
           {error && <div className="form-item-error">{error.message}</div>}
         </div>
       }

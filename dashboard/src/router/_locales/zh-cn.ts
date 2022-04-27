@@ -8,6 +8,7 @@ const BindPhoneNumber = lazy(() => import('@/pages/_locales/zh-cn/auth/BindPhone
 
 /* Billing */
 const Subscription = lazy(() => import('@/pages/_locales/zh-cn/billing/Subscription'))
+const Orders = lazy(() => import('@/pages/_locales/zh-cn/billing/Orders'))
 
 const zhCnConfig: CustomRouteConfig[] = [
   {
@@ -31,6 +32,12 @@ const zhCnConfig: CustomRouteConfig[] = [
     loginRequired: true,
     layout: WorkspaceLayout,
     component: Subscription
+  },
+  {
+    path: '/workspace/:workspaceId/billing/orders',
+    loginRequired: true,
+    layout: WorkspaceLayout,
+    component: Orders
   }
 ]
 

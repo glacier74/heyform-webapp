@@ -1,38 +1,35 @@
-import { BillingCycleEnum, PlanModel } from '@/models'
+import { BillingCycleEnum, OrderModel, PlanModel } from '@/models'
 import { PaymentService } from '@/service'
 import { useParam } from '@/utils'
 import { Form, Input, Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
-
 interface CouponCodeProps extends Omit<IModalProps, 'onComplete'> {
   plan?: PlanModel | null
   billingCycle: BillingCycleEnum
-  onComplete: (couponInfo: IMapType) => void
+  onComplete: (couponId: string, order: OrderModel) => void
 }
 
 export const CouponCode: FC<CouponCodeProps> = ({
-                                                  visible,
-                                                  plan,
-                                                  billingCycle,
-                                                  onClose,
-                                                  onComplete
-                                                }) => {
+  visible,
+  plan,
+  billingCycle,
+  onClose,
+  onComplete
+}) => {
   const { workspaceId } = useParam()
   const { t } = useTranslation()
 
   async function handleFinish(values: IMapType) {
-    const result = await PaymentService.applyCoupon({
+    const order = await PaymentService.orderPreview({
       teamId: workspaceId,
       planId: plan!.id,
       billingCycle,
-      code: values.code
+      couponId: values.couponId
     })
-    onComplete({
-      code: values.code,
-      ...result
-    })
+
+    onComplete(values.couponId, order)
     onClose?.()
   }
 
@@ -52,11 +49,11 @@ export const CouponCode: FC<CouponCodeProps> = ({
           request={handleFinish}
         >
           <Form.Item
-            name="code"
+            name="couponId"
             label={t('billing.coupon')}
             rules={[{ required: true, message: t('billing.noCode') }]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
         </Form.Custom>
       </div>

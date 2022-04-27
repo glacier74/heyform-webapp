@@ -10,6 +10,7 @@ import fontOptimizationPlugin from 'vite-plugin-font-optimization'
 
 export default ({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd())
+  console.log('env', env)
 
   return {
     base: env.VITE_CDN_PREFIX_URI || '/',
@@ -87,7 +88,7 @@ export default ({ mode }: ConfigEnv) => {
         format: {
           comments: false
         }
-      },
+      }
       // rollupOptions: {
       //   plugins: [
       //     externalGlobals({
@@ -100,11 +101,11 @@ export default ({ mode }: ConfigEnv) => {
     server: {
       proxy: {
         '/graphql': {
-          target: 'https://dev.heyformapp.com',
+          target: env.VITE_PROXY_TARGET,
           secure: false,
           changeOrigin: true,
           cookieDomainRewrite: {
-            '.heyformapp.com': '127.0.0.1'
+            [env.VITE_COOKIE_DOMAIN_REWRITE]: '127.0.0.1'
           },
           // Remove `Secure` and `SameSite from proxyRes's `set-cookie`
           // https://vitejs.dev/config/#server-proxy

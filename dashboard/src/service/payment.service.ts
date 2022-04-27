@@ -4,6 +4,7 @@ import {
   CANCEL_SUBSCRIPTION_GQL,
   INVOICES_GQL,
   ORDER_PREVIEW_GQL,
+  ORDERS_GQL,
   PAYMENT_GQL,
   ZH_CN_PAYMENT_GQL
 } from '@/consts'
@@ -45,6 +46,17 @@ export class PaymentService {
   static async invoices(teamId: string) {
     return request.query({
       query: INVOICES_GQL,
+      variables: {
+        input: {
+          teamId
+        }
+      }
+    })
+  }
+
+  static async orders(teamId: string) {
+    return request.query({
+      query: ORDERS_GQL,
       variables: {
         input: {
           teamId

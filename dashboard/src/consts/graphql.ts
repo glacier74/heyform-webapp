@@ -328,6 +328,27 @@ export const INVOICES_GQL = gql`
   }
 `
 
+export const ORDERS_GQL = gql`
+  query orders($input: TeamDetailInput!) {
+    orders(input: $input) {
+      id
+      planId
+      planName
+      billingCycle
+      kind
+      seatCount
+      seatsAmount
+      amount
+      discount
+      total
+      paymentMethod
+      paidAt
+      note
+      status
+    }
+  }
+`
+
 export const APPLY_COUPON_GQL = gql`
   query applyCoupon($input: ApplyCouponInput!) {
     applyCoupon(input: $input) {

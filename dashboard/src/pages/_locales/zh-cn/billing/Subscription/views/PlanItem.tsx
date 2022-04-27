@@ -27,7 +27,7 @@ export const PlanItem: FC<PlanItemProps> = ({
   onDowngrade
 }) => {
   const price = useMemo(
-    () => plan.prices.find(row => row.billingCycle === billingCycle)?.price || 0,
+    () => (plan.prices.find(row => row.billingCycle === billingCycle)?.price || 0).toFixed(2),
     [plan, billingCycle]
   )
   const { t } = useTranslation()
@@ -93,7 +93,7 @@ export const PlanItem: FC<PlanItemProps> = ({
         </div>
       )
     }
-  }, [workspace?.plan.grade, billingCycle])
+  }, [workspace?.plan.grade, billingCycle, loading])
 
   return (
     <td className="h-full py-8 align-top">

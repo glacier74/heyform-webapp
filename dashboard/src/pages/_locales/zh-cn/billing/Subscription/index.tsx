@@ -1,5 +1,5 @@
 import { SubscriptionDetail } from '@/pages/billing/Subscription/views/SubscriptionDetail'
-import { BillingLayout } from '@/pages/billing/views/BillingLayout'
+import { BillingLayout } from '../views/BillingLayout'
 import './index.scss'
 import { Plans } from './views/Plans'
 

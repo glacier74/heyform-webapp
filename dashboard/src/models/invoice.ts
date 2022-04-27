@@ -35,7 +35,7 @@ export interface InvoiceModel {
   total: number
   pdfUrl?: string
   note?: string
-  paidAt?: string
+  paidAt?: number
   status: InvoiceStatusEnum
 }
 
