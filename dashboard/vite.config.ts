@@ -10,7 +10,6 @@ import fontOptimizationPlugin from 'vite-plugin-font-optimization'
 
 export default ({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd())
-  console.log('env', env)
 
   return {
     base: env.VITE_CDN_PREFIX_URI || '/',
