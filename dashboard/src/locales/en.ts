@@ -389,6 +389,8 @@ export default {
     Plan: 'Plan',
     form: 'Form',
     upPlan: 'Upgrade plan',
+    renew: 'Renew plan',
+    renewButton: 'Renew now',
     plan: 'plan',
     Billed: 'Billed',
     Subtotal: 'Subtotal',

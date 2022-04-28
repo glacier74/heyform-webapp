@@ -34,8 +34,7 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
     return workspaceStore.members
       .filter(m => workspaceStore.project?.members.includes(m.id))
       .map(m => ({
-        src: m.avatar,
-        text: m.name
+        src: m.avatar
       }))
   }, [workspaceStore.project?.members, workspaceStore.members])
 

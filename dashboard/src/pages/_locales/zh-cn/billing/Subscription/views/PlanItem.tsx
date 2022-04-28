@@ -1,4 +1,5 @@
 import type { OrderModel, PlanModel, WorkspaceModel } from '@/models'
+import { PlanGradeEnum } from '@/models'
 import { BillingCycleEnum } from '@/models/invoice'
 import { PaymentService } from '@/service'
 import { Button, notification } from '@heyforms/ui'
@@ -11,6 +12,7 @@ interface PlanItemProps {
   plan: PlanModel
   billingCycle: BillingCycleEnum
   onUpgrade?: (plan: PlanModel, order: OrderModel) => void
+  onRenew?: (plan: PlanModel, order: OrderModel) => void
   onDowngrade?: (plan: PlanModel) => void
 }
 
@@ -24,6 +26,7 @@ export const PlanItem: FC<PlanItemProps> = ({
   plan,
   billingCycle,
   onUpgrade,
+  onRenew,
   onDowngrade
 }) => {
   const price = useMemo(
@@ -32,6 +35,7 @@ export const PlanItem: FC<PlanItemProps> = ({
   )
   const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
+  const [renewLoading, setRenewLoading] = useState(false)
 
   async function handleUpgrade() {
     if (loading) {
@@ -55,6 +59,30 @@ export const PlanItem: FC<PlanItemProps> = ({
     }
 
     setLoading(false)
+  }
+
+  async function handleRenew() {
+    if (renewLoading) {
+      return
+    }
+
+    setRenewLoading(true)
+
+    try {
+      const order = await PaymentService.orderPreview({
+        teamId: workspace!.id,
+        planId: plan.id,
+        billingCycle
+      })
+
+      onRenew?.(plan, order)
+    } catch (err: any) {
+      notification.error({
+        title: err.message
+      })
+    }
+
+    setRenewLoading(false)
   }
 
   function handleDowngrade() {
@@ -88,12 +116,25 @@ export const PlanItem: FC<PlanItemProps> = ({
       )
     } else {
       return (
-        <div className="px-4 py-2 border border-gray-100 sm:text-sm font-medium rounded-md text-gray-400 bg-white text-center">
-          {t('billing.current')}
+        <div>
+          <div className="px-4 py-2 border border-gray-100 sm:text-sm font-medium rounded-md text-gray-400 bg-white text-center">
+            {t('billing.current')}
+          </div>
+          {plan.grade > PlanGradeEnum.FREE && (
+            <div className="flex justify-center mt-2">
+              <Button.Link
+                className="text-gray-400 text-xs text-center"
+                loading={renewLoading}
+                onClick={handleRenew}
+              >
+                {t('billing.renew')}
+              </Button.Link>
+            </div>
+          )}
         </div>
       )
     }
-  }, [workspace?.plan.grade, billingCycle, loading])
+  }, [workspace?.plan.grade, billingCycle, loading, renewLoading])
 
   return (
     <td className="h-full py-8 align-top">

@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next'
 import { CouponCode } from './CouponCode'
 
 interface UpgradePlanProps extends IModalProps {
+  isRenewal?: boolean
   plan?: PlanModel | null
   order?: OrderModel | null
   billingCycle: BillingCycleEnum
@@ -30,6 +31,7 @@ export function unitConversion(amount?: number) {
 
 export const UpgradePlan: FC<UpgradePlanProps> = ({
   visible,
+  isRenewal,
   plan,
   order: rawOrder,
   billingCycle,
@@ -102,7 +104,9 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({
       <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
         <div>
           <div>
-            <div className="text-lg leading-6 font-medium text-gray-900">{t('billing.upPlan')}</div>
+            <div className="text-lg leading-6 font-medium text-gray-900">
+              {t(isRenewal ? 'billing.renew' : 'billing.upPlan')}
+            </div>
           </div>
 
           <div className="py-4 border-b border-gray-100">
@@ -162,7 +166,7 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({
           </div>
 
           <Button className="w-full" type="primary" loading={loading} onClick={handleClick}>
-            {t('billing.bottom')}
+            {t(isRenewal ? 'billing.renewButton' : 'billing.bottom')}
           </Button>
 
           {error && <p className="text-xs text-red-500">{error.message}</p>}

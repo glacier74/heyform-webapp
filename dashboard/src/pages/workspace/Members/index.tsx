@@ -41,14 +41,7 @@ const Members = observer(() => {
         return (
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Avatar
-                src={record.avatar}
-                text={record.name}
-                retainLength={2}
-                size={36}
-                rounded
-                circular
-              />
+              <Avatar src={record.avatar} size={36} rounded circular />
             </div>
             <div className="flex-1 px-4">
               <p className="text-sm font-medium text-gray-800 truncate">

@@ -31,8 +31,7 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
     return users
       .filter(user => project.members.includes(user.id))
       .map(u => ({
-        src: u.avatar,
-        text: u.name
+        src: u.avatar
       }))
   }, [project.members, users])
   const [visible, setVisible] = useState(false)

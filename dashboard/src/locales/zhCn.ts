@@ -365,6 +365,8 @@ export default {
     Plan: '套餐',
     form: '表单',
     upPlan: '升级套餐',
+    renew: '续费套餐',
+    renewButton: '现在续费',
     plan: '套餐',
     Billed: '按',
     Subtotal: '小计',

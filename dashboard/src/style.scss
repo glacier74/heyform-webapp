@@ -95,3 +95,7 @@ body {
     vector-effect: non-scaling-stroke;
   }
 }
+
+.avatar-text {
+  @apply text-sm;
+}

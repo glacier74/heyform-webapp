@@ -14,6 +14,7 @@ export const Payment = observer(() => {
 
   const [plan, setPlan] = useState<PlanModel | null>(null)
   const [order, setOrder] = useState<OrderModel | null>(null)
+  const [isRenewal, setIsRenewal] = useState(false)
 
   const [billingCycle, setBillingCycle] = useState<BillingCycleEnum>(
     workspaceStore.workspace?.subscription.billingCycle || BillingCycleEnum.ANNUALLY
@@ -25,6 +26,14 @@ export const Payment = observer(() => {
   function handleUpgrade(selected: PlanModel, orderDetail: OrderModel) {
     setPlan(selected)
     setOrder(orderDetail)
+    setIsRenewal(false)
+    openUpgradePlan()
+  }
+
+  function handleRenew(selected: PlanModel, orderDetail: OrderModel) {
+    setPlan(selected)
+    setOrder(orderDetail)
+    setIsRenewal(true)
     openUpgradePlan()
   }
 
@@ -47,6 +56,7 @@ export const Payment = observer(() => {
             billingCycle={billingCycle}
             workspace={workspaceStore.workspace}
             onUpgrade={handleUpgrade}
+            onRenew={handleRenew}
             onDowngrade={handleDowngrade}
           />
         ))}
@@ -58,6 +68,7 @@ export const Payment = observer(() => {
         plan={plan}
         order={order}
         billingCycle={billingCycle}
+        isRenewal={isRenewal}
         onClose={closeUpgradePlan}
       />
 

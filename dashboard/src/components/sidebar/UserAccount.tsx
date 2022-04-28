@@ -1,6 +1,6 @@
 import { useStore } from '@/store'
 import { clearAuthState } from '@/utils'
-import { Dropdown, Menus } from '@heyforms/ui'
+import { Avatar, Dropdown, Menus } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -44,7 +44,7 @@ export const UserAccount: FC = observer(() => {
       >
         <div className="flex items-center cursor-pointer">
           <div>
-            <img className="inline-block h-8 w-8 rounded-full" src={userStore.user.avatar} />
+            <Avatar className="inline-block h-8 w-8" src={userStore.user.avatar} circular rounded />
           </div>
           <div className="ml-3">
             <p className="text-sm font-medium text-gray-700 truncate group-hover:text-gray-900">
