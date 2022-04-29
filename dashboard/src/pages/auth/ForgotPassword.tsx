@@ -38,7 +38,11 @@ const ForgotPassword = () => {
           }}
           request={handleFinish}
         >
-          <Form.Item name="email" label={t('login.Email')} rules={[{ type: 'email', required: true }]}>
+          <Form.Item
+            name="email"
+            label={t('login.Email')}
+            rules={[{ type: 'email', required: true, message: t('login.EmailRequired') }]}
+          >
             <Input type="email"/>
           </Form.Item>
         </Form.Custom>

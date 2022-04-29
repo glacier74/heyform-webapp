@@ -22,7 +22,11 @@ export default {
     CodeSendSuccess: '验证码发送成功',
     bindPhoneNumber: '绑定手机号',
     signInAndBindPhoneNumber: '登录并绑定手机号',
-    termsPrivacy: '登录即代表您同意我们的<2>服务条款</2>和<6>隐私政策</6>。'
+    termsPrivacy: '登录即代表您同意我们的<2>服务条款</2>和<6>隐私政策</6>。',
+    EmailRequired: '无效的邮箱地址',
+    PasswordRequired: '无效的密码',
+    PhoneNumberRequired: '无效的手机号码',
+    CodeRequired: '无效的验证码'
   },
   auth: {
     signup: {

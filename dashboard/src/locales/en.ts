@@ -23,7 +23,11 @@ export default {
     bindPhoneNumber: 'Bind a phone number',
     signInAndBindPhoneNumber: 'Sign in and bind phone number',
     termsPrivacy:
-      'By signing in, you agree to our <2>Terms of Service</2> and <6>Privacy Policy</6>.'
+      'By signing in, you agree to our <2>Terms of Service</2> and <6>Privacy Policy</6>.',
+    EmailRequired: 'Invalid email address',
+    PasswordRequired: 'Invalid password',
+    PhoneNumberRequired: 'Invalid phone number',
+    CodeRequired: 'Invalid validation code'
   },
   auth: {
     signup: {

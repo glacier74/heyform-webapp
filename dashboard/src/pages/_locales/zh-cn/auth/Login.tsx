@@ -109,7 +109,7 @@ const Login = () => {
             <Form.Item
               name="code"
               label={t('login.Code')}
-              rules={[{ required: true, message: t('login.PhoneNumberRequired') }]}
+              rules={[{ required: true, message: t('login.CodeRequired') }]}
             >
               <Input />
             </Form.Item>

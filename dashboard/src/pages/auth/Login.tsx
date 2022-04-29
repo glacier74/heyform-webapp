@@ -67,12 +67,16 @@ const Login = () => {
             <Form.Item
               name="email"
               label={t('login.Email')}
-              rules={[{ type: 'email', required: true }]}
+              rules={[{ type: 'email', required: true, message: t('login.EmailRequired') }]}
             >
               <Input type="email" />
             </Form.Item>
 
-            <Form.Item name="password" label={t('login.Password')} rules={[{ required: true }]}>
+            <Form.Item
+              name="password"
+              label={t('login.Password')}
+              rules={[{ required: true, message: t('login.PasswordRequired') }]}
+            >
               <Input.Password />
             </Form.Item>
 
