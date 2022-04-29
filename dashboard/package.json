@@ -8,7 +8,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:zh-cn": "vite build --mode production-zh-cn",
     "staging": "vite build --mode staging",
+    "staging:zh-cn": "vite build --mode staging-zh-cn",
     "analyze": "source-map-explorer dist/static/*.js",
     "type-check": "tsc --pretty --noEmit",
     "lint": "eslint src --ext ts --ext tsx --fix",
