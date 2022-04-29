@@ -1,10 +1,12 @@
 import { FormNavbarSharing } from '@/legacy_pages/components/FormNavbarSharing'
 import { UserAvatar } from '@/legacy_pages/components/UserAvatar'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
 import { useParam } from '@/utils'
+import { Input } from '@heyforms/ui'
 import { Button, ComponentProps, Flex } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
-import { FC } from 'react'
+import { FC, startTransition } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -21,6 +23,18 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
     navigate(`/workspace/${workspaceId}/project/${projectId}`)
   }
 
+  async function updateFormName(name: string) {
+    const values = { name }
+    await FormService.update(formId, values)
+    formStore.updateSettings(values)
+  }
+
+  function handleChange(name: any) {
+    startTransition(() => {
+      updateFormName(name)
+    })
+  }
+
   return (
     <Container align="center" justify="space-between">
       <Left align="center">
@@ -28,7 +42,7 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
           {workspaceStore.project?.name}
         </BackButton>
         <Spacer>/</Spacer>
-        {formStore.current?.name}
+        <Input value={formStore.current?.name} onChange={handleChange} />
       </Left>
       <Nav role="navigation">
         <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/create`}>
@@ -69,6 +83,20 @@ const Container = styled(Flex)`
 
 const Left = styled(Flex)`
   width: 33.33%;
+
+  .input {
+    border-color: transparent;
+    box-shadow: none;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+
+    &.input-focused,
+    &:hover {
+      border-color: #d1d5db;
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+        var(--tw-shadow);
+    }
+  }
 `
 
 const Spacer = styled.div`

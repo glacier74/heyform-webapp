@@ -1,9 +1,11 @@
 import { Async } from '@/components'
+import { RenameForm } from '@/pages/project/Project/views/RenameForm'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam, useVisible } from '@/utils'
 import {
   ClipboardCheckIcon,
+  DocumentTextIcon,
   DotsHorizontalIcon,
   DuplicateIcon,
   PencilIcon,
@@ -24,6 +26,7 @@ import {
 import type { TableColumn } from '@heyforms/ui/types/table'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import * as timeago from 'timeago.js'
@@ -36,6 +39,8 @@ const Project = observer(() => {
   const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
   const [suspendModalVisible, openSuspendModal, closeSuspendModal] = useVisible()
+  const [renameFormVisible, openRenameForm, closeRenameForm] = useVisible()
+  const [form, setForm] = useState<FormModel>()
   const { t } = useTranslation()
 
   async function request() {
@@ -73,6 +78,11 @@ const Project = observer(() => {
     }
 
     loading.dismiss()
+  }
+
+  function handleRename(record: FormModel) {
+    setForm(record)
+    openRenameForm()
   }
 
   async function handleDelete(record: FormModel) {
@@ -158,6 +168,10 @@ const Project = observer(() => {
               handleRowClick(record)
               break
 
+            case 'rename':
+              handleRename(record)
+              break
+
             case 'duplicate':
               handleDuplicate(record)
               break
@@ -174,8 +188,9 @@ const Project = observer(() => {
             placement="bottom-start"
             overlay={
               <Menus onClick={handleClick}>
-                <Menus.Item name="edit" icon={<PencilIcon />} label={t('project.edit')} />
+                <Menus.Item name="edit" icon={<DocumentTextIcon />} label={t('project.edit')} />
                 <Menus.Item name="duplicate" icon={<DuplicateIcon />} label={t('project.dup')} />
+                <Menus.Item name="rename" icon={<PencilIcon />} label={t('project.rename')} />
                 <Menus.Item name="delete" icon={<TrashIcon />} label={t('project.del')} />
               </Menus>
             }
@@ -210,6 +225,8 @@ const Project = observer(() => {
           onRowClick={handleRowClick}
         />
       </Async>
+
+      <RenameForm visible={renameFormVisible} form={form} onClose={closeRenameForm} />
 
       <Modal.Confirm
         type="danger"
