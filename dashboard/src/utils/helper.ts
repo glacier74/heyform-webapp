@@ -9,16 +9,20 @@ export function urlBuilder(prefix: string, query: Record<string, any>): string {
 
 const LOADED_SCRIPTS = new Set<string>()
 
-export function loadScript(src: string, callback: () => void) {
+export function loadScript(name: string, src: string, callback: () => void) {
   if (LOADED_SCRIPTS.has(src)) {
     return callback()
   }
 
   let attempts = 0
+  let script = document.getElementById(name) as HTMLScriptElement
 
-  const script = document.createElement('script')
-  script.src = src
-  document.head.appendChild(script)
+  if (!script) {
+    script = document.createElement('script')
+    script.id = name
+    script.src = src
+    document.head.appendChild(script)
+  }
 
   script.onload = () => {
     LOADED_SCRIPTS.add(src)
@@ -34,7 +38,7 @@ export function loadScript(src: string, callback: () => void) {
       attempts += 1
 
       setTimeout(() => {
-        loadScript(src, callback)
+        loadScript(name, src, callback)
       }, 100)
     }
   }
@@ -42,7 +46,7 @@ export function loadScript(src: string, callback: () => void) {
 
 export function redirectToStripeCheckout(sessionId: string) {
   return new Promise(resolve => {
-    loadScript('https://js.stripe.com/v3/', () => {
+    loadScript('stripe-v3', 'https://js.stripe.com/v3/', () => {
       const stripe = (window as any).Stripe(import.meta.env.VITE_STRIPE_KEY)
 
       stripe.redirectToCheckout({

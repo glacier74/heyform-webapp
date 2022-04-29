@@ -46,7 +46,8 @@ const Login = () => {
 
   const handleSendCodeCallback = useCallback(handleSendCode, [phoneNumber])
   const handleClickCallback = useCallback(handleClick, [])
-  const memoMobilePhoneCode = (
+
+  const MemoMobilePhoneCode = (
     <MobilePhoneCode request={handleSendCodeCallback} onClick={handleClickCallback} />
   )
 
@@ -102,7 +103,7 @@ const Login = () => {
                 }
               ]}
             >
-              <Input type="tel" trailing={memoMobilePhoneCode} />
+              <Input type="tel" trailing={MemoMobilePhoneCode} />
             </Form.Item>
 
             <Form.Item

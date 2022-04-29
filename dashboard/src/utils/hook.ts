@@ -226,7 +226,7 @@ export function useCaptcha(onSuccess: (data: any) => void, onError?: (err: any) 
   }
 
   useEffect(() => {
-    loadScript('https://static.geetest.com/v4/gt4.js', initGeetest)
+    loadScript('geetest-v4', 'https://static.geetest.com/v4/gt4.js', initGeetest)
   }, [onSuccess])
 
   return {
