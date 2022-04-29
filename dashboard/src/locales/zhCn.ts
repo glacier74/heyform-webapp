@@ -500,7 +500,7 @@ export default {
   },
   submissions: {
     Inbox: '收件箱',
-    Spam: '垃圾提交',
+    Spam: '垃圾箱',
     export: '导出 CSV',
     Delete: '删除',
     selected: '选中',

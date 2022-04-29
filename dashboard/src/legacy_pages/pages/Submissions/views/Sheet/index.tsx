@@ -1,5 +1,5 @@
 import { InternalColumnKindEnum } from '@/legacy_pages/constants'
-import { FieldKindEnum, STATEMENT_FIELD_KINDS } from '@heyforms/shared-types-enums'
+import { FieldKindEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { copyObjectValues } from '@hpnp/utils/object'
 import { FC, useEffect, useRef, useState } from 'react'
 import { SelectColumn } from './Columns'
@@ -12,23 +12,23 @@ import { SheetRowModal } from './SheetRowModal'
 import { Column, ColumnOptions, SheetColumn, SheetProps } from './types'
 
 export const Sheet: FC<SheetProps> = ({
-                                        className,
-                                        style,
-                                        loading,
-                                        width = 200,
-                                        formFields,
-                                        selectedRows,
-                                        onSelectedRowsChange,
-                                        submissions,
-                                        onColumnResize,
-                                        onColumnHide,
-                                        onColumnPin,
-                                        onColumnUnpin,
-                                        onColumnAdd,
-                                        onColumnUpdate,
-                                        onColumnDelete,
-                                        onCellValueChange
-                                      }) => {
+  className,
+  style,
+  loading,
+  width = 200,
+  formFields,
+  selectedRows,
+  onSelectedRowsChange,
+  submissions,
+  onColumnResize,
+  onColumnHide,
+  onColumnPin,
+  onColumnUnpin,
+  onColumnAdd,
+  onColumnUpdate,
+  onColumnDelete,
+  onCellValueChange
+}) => {
   const dataGridRef = useRef<DataGridHandle | null>(null)
   const [modalVisible, setModalVisible] = useState(false)
   const [rowIdx, setRowIdx] = useState(0)
@@ -210,7 +210,7 @@ export const Sheet: FC<SheetProps> = ({
       }
     ]
 
-    const fields = formFields.filter(row => !STATEMENT_FIELD_KINDS.includes(row.kind))
+    const fields = formFields.filter(row => QUESTION_FIELD_KINDS.includes(row.kind))
     const fieldColumns: any[] = fields.map(row => ({
       key: row.id,
       name: row.title,
