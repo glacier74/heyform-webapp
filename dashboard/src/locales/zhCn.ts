@@ -18,7 +18,7 @@ export default {
     Code: '验证码',
     GetCode: '获取验证码',
     CountDown: '{{count}}秒后重发',
-    PhoneNumber: '手机号',
+    PhoneNumber: '手机号码',
     CodeSendSuccess: '验证码发送成功',
     bindPhoneNumber: '绑定手机号',
     signInAndBindPhoneNumber: '登录并绑定手机号',
@@ -109,7 +109,7 @@ export default {
         noContact: '您还没有任何联系人',
         addPeople: '添加需要参与调查或数据收集的人员。',
         Contact: '联系人',
-        Phone: '手机号',
+        Phone: '手机号码',
         Company: '公司'
       }
     },
@@ -295,6 +295,9 @@ export default {
     }
   },
   user: {
+    phoneNumber: '手机号码',
+    newPhoneNumber: '新手机号码',
+    update: '更新',
     settings: {
       avatar: '头像',
       avatarText: 'Gravatar 默认作为您的 HeyForm 头像，您可以在这里上传您的自定义头像。',
@@ -321,6 +324,10 @@ export default {
         continue: '继续',
         changeEmail: '更改电子邮件地址',
         send: '发送'
+      },
+      phoneNumber: {
+        change: '更改您的手机号码',
+        description: '更改后，您可以使用新的手机号码登录。'
       },
       account: '帐户设置',
       accountText: '对帐户设置的更改将应用于您的所有团队空间。',

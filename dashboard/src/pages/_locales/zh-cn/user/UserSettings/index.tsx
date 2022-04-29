@@ -1,13 +1,12 @@
+import { Avatar } from '@/pages/user/UserSettings/Avatar'
+import { UserName } from '@/pages/user/UserSettings/UserName'
 import { useStore } from '@/store'
 import { Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Avatar } from './Avatar'
 import { DeleteAccount } from './DeleteAccount'
-import { EmailAddress } from './EmailAddress'
-import { Password } from './Password'
-import { UserName } from './UserName'
+import { PhoneNumber } from './PhoneNumber'
 
 const UserSettings: FC = () => {
   const appStore = useStore('appStore')
@@ -33,11 +32,8 @@ const UserSettings: FC = () => {
         {/* User name */}
         <UserName />
 
-        {/* Email address */}
-        <EmailAddress />
-
-        {/* Password */}
-        <Password />
+        {/* Phone number */}
+        <PhoneNumber />
 
         {/* Delete account */}
         <DeleteAccount />

@@ -1,8 +1,9 @@
+import { MobilePhoneCode } from '@/components'
 import type { ProjectModel } from '@/models'
 import { ProjectService } from '@/service'
 import { useStore } from '@/store'
 import { useAsyncEffect, useParam } from '@/utils'
-import { Form, Input, Modal, notification } from '@heyforms/ui'
+import { Form, Input, Modal, notification, useForm } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -17,15 +18,23 @@ export const DeleteProject: FC<DeleteProjectProps> = ({
   onClose
 }) => {
   const { workspaceId } = useParam()
+  const { t } = useTranslation()
   const workspaceStore = useStore('workspaceStore')
   const userStore = useStore('userStore')
-  const { t } = useTranslation()
 
   async function handleFinish(values: IMapType) {
     await ProjectService.delete(project!.id, values.code)
     workspaceStore.deleteProject(workspaceId, project!.id)
 
     onComplete?.()
+  }
+
+  async function handleSendCode(data: any) {
+    // TODO - 发送验证码
+  }
+
+  async function handleClick() {
+    return true
   }
 
   useAsyncEffect(async () => {
@@ -65,7 +74,7 @@ export const DeleteProject: FC<DeleteProjectProps> = ({
             label={t('project.deleteProject.code')}
             rules={[{ required: true }]}
           >
-            <Input />
+            <Input trailing={<MobilePhoneCode request={handleSendCode} onClick={handleClick} />} />
           </Form.Item>
         </Form.Custom>
       </div>

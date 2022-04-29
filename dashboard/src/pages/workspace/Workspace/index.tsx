@@ -1,5 +1,7 @@
 import { WorkspaceIcon } from '@/components'
+import { Locale } from '@/locales'
 import type { ProjectModel, UserModel } from '@/models'
+import { DeleteProject as ZhCnDeleteProject } from '@/pages/_locales/zh-cn/project/Project/views/DeleteProject'
 import { DeleteProject } from '@/pages/project/views/DeleteProject'
 import { RenameProject } from '@/pages/project/views/RenameProject'
 import { WorkspaceService } from '@/service'
@@ -169,12 +171,21 @@ const Workspace = observer(() => {
       <CreateProject visible={createProjectVisible} onClose={closeCreateProject} />
 
       {/* Delete project */}
-      <DeleteProject
-        visible={deleteProjectVisible}
-        project={project}
-        onClose={closeDeleteProject}
-        onComplete={closeDeleteProject}
-      />
+      {Locale.isZhCn ? (
+        <ZhCnDeleteProject
+          visible={deleteProjectVisible}
+          project={project}
+          onClose={closeDeleteProject}
+          onComplete={closeDeleteProject}
+        />
+      ) : (
+        <DeleteProject
+          visible={deleteProjectVisible}
+          project={project}
+          onClose={closeDeleteProject}
+          onComplete={closeDeleteProject}
+        />
+      )}
 
       {/* Rename project */}
       <RenameProject

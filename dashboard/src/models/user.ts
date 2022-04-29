@@ -2,6 +2,7 @@ export interface UserModel {
   id: string
   name: string
   email: string
+  phoneNumber: string
   avatar: string
   note: string
   lastSeenAt?: number

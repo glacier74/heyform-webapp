@@ -313,6 +313,9 @@ export default {
     }
   },
   user: {
+    phoneNumber: 'Phone number',
+    newPhoneNumber: 'New phone number',
+    update: 'Update',
     settings: {
       avatar: 'Avatar',
       avatarText:
@@ -343,6 +346,10 @@ export default {
         continue: 'Continue',
         changeEmail: 'Change email address',
         send: 'Send'
+      },
+      phoneNumber: {
+        change: 'Change your phone number',
+        description: 'After changing, you can login with the new phone number.'
       },
       account: 'Account Settings',
       accountText: 'Changes to account settings will apply to all of your workspaces.',
