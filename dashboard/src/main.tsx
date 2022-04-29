@@ -57,5 +57,7 @@ const App = () => {
 register()
 
 createRoot(document.getElementById('root')!).render(
-  <App />
+  <StrictMode>
+    <App />
+  </StrictMode>
 )

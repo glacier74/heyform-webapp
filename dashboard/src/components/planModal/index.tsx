@@ -1,3 +1,5 @@
+import { Locale } from '@/locales'
+import { Plans as ZhCnPlans } from '@/pages/_locales/zh-cn/billing/Subscription/views/Plans'
 import { Plans } from '@/pages/billing/Subscription/views/Plans'
 import { useStore } from '@/store'
 import { Modal } from '@heyforms/ui'
@@ -29,7 +31,7 @@ export const PlanModal: FC = observer(() => {
           <p className="mt-5 text-md text-gray-500">{t('billing.Unlock')}</p>
         </div>
 
-        <Plans />
+        {Locale.isZhCn ? <ZhCnPlans /> : <Plans />}
       </div>
     </Modal>
   )
