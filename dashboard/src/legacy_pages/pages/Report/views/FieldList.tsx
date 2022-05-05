@@ -1,5 +1,7 @@
 import { useStore } from '@/legacy_pages/utils'
+import { htmlUtils } from '@heyforms/answer-utils'
 import { STATEMENT_FIELD_KINDS } from '@heyforms/shared-types-enums'
+import { isArray } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -25,11 +27,17 @@ export const FieldList: FC = observer(() => {
     <Container>
       <List>
         <Header>{t('report.Questions')}</Header>
-        {fields?.map((row, index) => (
-          <StyledLink key={row.id} onClick={() => handleClick(row.id)}>
-            {index + 1}. {row.title}
-          </StyledLink>
-        ))}
+        {fields?.map((row, index) => {
+          const title = isArray(row.title)
+            ? htmlUtils.plain(htmlUtils.serialize(row.title as any))
+            : row.title
+
+          return (
+            <StyledLink key={row.id} onClick={() => handleClick(row.id)}>
+              {index + 1}. {title}
+            </StyledLink>
+          )
+        })}
       </List>
     </Container>
   )

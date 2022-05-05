@@ -1,5 +1,7 @@
 import { InternalColumnKindEnum } from '@/legacy_pages/constants'
+import { htmlUtils } from '@heyforms/answer-utils'
 import { FieldKindEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
+import { isArray } from '@hpnp/utils/helper'
 import { copyObjectValues } from '@hpnp/utils/object'
 import { FC, useEffect, useRef, useState } from 'react'
 import { SelectColumn } from './Columns'
@@ -211,18 +213,24 @@ export const Sheet: FC<SheetProps> = ({
     ]
 
     const fields = formFields.filter(row => QUESTION_FIELD_KINDS.includes(row.kind))
-    const fieldColumns: any[] = fields.map(row => ({
-      key: row.id,
-      name: row.title,
-      kind: row.kind,
-      width: row.width || width,
-      minWidth: 80,
-      properties: row.properties,
-      frozen: row.frozen,
-      resizable: true,
-      headerRenderer: cellHeaderRenderer,
-      formatter: cellFormatter
-    }))
+    const fieldColumns: any[] = fields.map(row => {
+      const name = isArray(row.title)
+        ? htmlUtils.plain(htmlUtils.serialize(row.title as any))
+        : row.title
+
+      return {
+        key: row.id,
+        name,
+        kind: row.kind,
+        width: row.width || width,
+        minWidth: 80,
+        properties: row.properties,
+        frozen: row.frozen,
+        resizable: true,
+        headerRenderer: cellHeaderRenderer,
+        formatter: cellFormatter
+      }
+    })
 
     const columns: Column<any>[] = [
       SelectColumn,

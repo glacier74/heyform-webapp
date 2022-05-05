@@ -10,12 +10,11 @@ import {
   CHOICES_FIELD_KINDS,
   CUSTOM_COLUMN_CHOICE_KINDS,
   FieldKindEnum,
-  QUESTION_FIELD_KINDS,
-  STATEMENT_FIELD_KINDS
+  QUESTION_FIELD_KINDS
 } from '@heyforms/shared-types-enums'
 import { Flex } from '@heyui/component'
 import { PrinterIcon } from '@heyui/icon'
-import { isEmpty, isValidArray } from '@hpnp/utils/helper'
+import { isArray, isEmpty, isValidArray } from '@hpnp/utils/helper'
 import { pickValidValues } from '@hpnp/utils/object'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
@@ -68,7 +67,7 @@ const Report: FC = observer(() => {
           }
         }
 
-        response.title = isValidArray(field.title)
+        response.title = isArray(field.title)
           ? htmlUtils.plain(htmlUtils.serialize(field.title as any))
           : field.title
         response.kind = field.kind
