@@ -3,7 +3,7 @@ import { htmlUtils } from '@heyforms/answer-utils'
 import type { FormField } from '@heyforms/shared-types-enums'
 import { FieldKindEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { clone } from '@hpnp/utils'
-import { isArray, isEmpty, isNil, isValid, isValidArray } from '@hpnp/utils/helper'
+import { isEmpty, isNil, isValid, isValidArray } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 import type { IState, UpdateFieldPayload } from './context'
 

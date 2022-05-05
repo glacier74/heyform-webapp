@@ -23,7 +23,7 @@ export function serializeFields(rawFields: FormField[]) {
       questions.push({
         id: f.id,
         kind: f.kind,
-        title: f.title!
+        title: htmlUtils.plain(f.title!)
       })
     }
 
