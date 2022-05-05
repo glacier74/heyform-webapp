@@ -31,6 +31,9 @@ export const Protection: FC = observer(() => {
     setLoading(true)
 
     try {
+      // Fix typing error
+      allValues.captchaKind = Number(allValues.captchaKind)
+
       await FormService.update(formId, allValues)
       formStore.updateSettings(allValues)
 
