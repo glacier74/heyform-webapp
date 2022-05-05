@@ -1027,7 +1027,7 @@
   resolved "http://npm.heyooo.com/@heroicons%2freact/-/react-1.0.6.tgz#35dd26987228b39ef2316db3b1245c42eb19e324"
   integrity sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==
 
-"@heyforms/answer-utils@^0.3.6", "@heyforms/answer-utils@^0.3.7":
+"@heyforms/answer-utils@^0.3.7":
   version "0.3.7"
   resolved "http://npm.heyooo.com/@heyforms%2fanswer-utils/-/answer-utils-0.3.7.tgz#3d5284116cbbafe5ade17c5fdd217b69e6b9b42c"
   integrity sha512-/Oe8I/uSAl5pIwn1J3cWe8fxp7XfwABtWU1oVLLd9TrQzaDpV/kCrbFEm03iBbPu1bW70TeoIM9CGszAOH1p5g==
@@ -1038,22 +1038,24 @@
     libphonenumber-js "^1.9.51"
     validator "^13.7.0"
 
-"@heyforms/form-component@^2022.4.1-6":
-  version "2022.4.1-6"
-  resolved "http://npm.heyooo.com/@heyforms%2fform-component/-/form-component-2022.4.1-6.tgz#f6534981e8f7b38ca2da4c8b756a985b9fd010ea"
-  integrity sha512-S91SK8Xv3LK0s2ODXHhRBo2chQAQOZbD9xxkCXKivqedQKGtHHN+M+GfHaXrzmQWu/xIt4l887bu4Ju7YbeN5g==
+"@heyforms/form-component@^2022.5.1":
+  version "2022.5.1"
+  resolved "http://npm.heyooo.com/@heyforms%2fform-component/-/form-component-2022.5.1.tgz#d3396cb28501a022e8d79bd5f18425530d1ff1e0"
+  integrity sha512-NU3/nhMjAzUGdVravzCLgxtz4P5bgfLpuoVy6IaxV+aYIpNs4uFNqUr3bEegvrQJagTGcSE8qCSWGRT+Q6fxWA==
   dependencies:
     "@heroicons/react" "^1.0.5"
-    "@heyforms/answer-utils" "^0.3.6"
-    "@heyforms/shared-types-enums" "^4.2.1"
-    "@heyforms/ui" "*"
+    "@heyforms/answer-utils" "^0.3.7"
+    "@heyforms/shared-types-enums" "^4.2.2"
+    "@heyforms/ui" "^2022.4.1-3"
     "@hpnp/utils" "^2.8.0"
     clsx "^1.1.1"
     fast-equals "^3.0.1"
+    i18next "^21.6.16"
     libphonenumber-js "^1.9.51"
     rc-field-form "^1.25.0"
     react "^18.0.0"
     react-dom "^18.0.0"
+    react-i18next "^11.16.7"
     react-use "^17.3.2"
     signature_pad "^4.0.4"
     store2 "^2.13.2"
@@ -1062,25 +1064,6 @@
   version "4.2.2"
   resolved "http://npm.heyooo.com/@heyforms%2fshared-types-enums/-/shared-types-enums-4.2.2.tgz#cb0563840ef354dbef04952ca884dbc65db86548"
   integrity sha512-KuapgNIRxMVkRS6/G+A0iHT5ln08PQBMIqiz32OyGErTSltgf4CXBAxTrmVNN9e82otyjYKsl3532MEY49RVoQ==
-
-"@heyforms/ui@*":
-  version "2022.4.1"
-  resolved "http://npm.heyooo.com/@heyforms%2fui/-/ui-2022.4.1.tgz#73ded024eaac4cde130b357a49aad2c9e36350c0"
-  integrity sha512-/CKxmbz1N6NWEZ+baAOf2FFHfQ1ma5mkXKq4C/sX4GK/NSYcv2Dq04yw/P4XvNelaKV5aAfd29rJLFSMF/Lfag==
-  dependencies:
-    "@headlessui/react" "^1.4.3"
-    "@heroicons/react" "^1.0.5"
-    "@hpnp/utils" "^2.9.1"
-    "@popperjs/core" "^2.11.2"
-    "@tailwindcss/forms" "^0.4.0"
-    clsx "^1.1.1"
-    fast-equals "^3.0.1"
-    rc-field-form "^1.22.1"
-    react "^18.0.0"
-    react-dom "^18.0.0"
-    react-popper "^2.2.5"
-    react-transition-state "^1.1.4"
-    react-use "^17.3.2"
 
 "@heyforms/ui@^2022.4.1-3":
   version "2022.4.1-3"
@@ -4366,7 +4349,7 @@ hyphenate-style-name@^1.0.2:
   resolved "http://npm.heyooo.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
   integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
 
-i18next@^21.6.11:
+i18next@^21.6.11, i18next@^21.6.16:
   version "21.6.16"
   resolved "http://npm.heyooo.com/i18next/-/i18next-21.6.16.tgz#8cff8c3ba2ffaf8438a8c83fe284083f15cf3941"
   integrity sha512-xJlzrVxG9CyAGsbMP1aKuiNr1Ed2m36KiTB7hjGMG2Zo4idfw3p9THUEu+GjBwIgEZ7F11ZbCzJcfv4uyfKNuw==
@@ -6404,6 +6387,15 @@ react-i18next@^11.15.4:
   version "11.16.6"
   resolved "http://npm.heyooo.com/react-i18next/-/react-i18next-11.16.6.tgz#e8a07802c391a55e1528673201a2727994787641"
   integrity sha512-qa76GnvAPafNSxKNN/XMhdCkVN/9Lm+BpzW5+6FE2ctYUemhbglP7oklGmYiJXlG24p9itqzlJDbCi3SNd3jzA==
+  dependencies:
+    "@babel/runtime" "^7.14.5"
+    html-escaper "^2.0.2"
+    html-parse-stringify "^3.0.1"
+
+react-i18next@^11.16.7:
+  version "11.16.7"
+  resolved "http://npm.heyooo.com/react-i18next/-/react-i18next-11.16.7.tgz#8d0680b7f4c8e43f59996336b7183ad576a28df7"
+  integrity sha512-7yotILJLnKfvUfrl/nt9eK9vFpVFjZPLWAwBzWL6XppSZZEvlmlKk0GBGDCAPfLfs8oND7WAbry8wGzdoiW5Nw==
   dependencies:
     "@babel/runtime" "^7.14.5"
     html-escaper "^2.0.2"

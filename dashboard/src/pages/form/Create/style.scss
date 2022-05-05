@@ -312,6 +312,10 @@
     @apply underline;
     color: var(--heyform-question-color);
   }
+
+  .mention {
+    color: var(--heyform-label-color);
+  }
 }
 
 .builder-block-title {

@@ -3,7 +3,7 @@ import { htmlUtils } from '@heyforms/answer-utils'
 import type { FormField } from '@heyforms/shared-types-enums'
 import { FieldKindEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { clone } from '@hpnp/utils'
-import { isArray, isEmpty, isNil, isValid } from '@hpnp/utils/helper'
+import { isArray, isEmpty, isNil, isValid, isValidArray } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 import type { IState, UpdateFieldPayload } from './context'
 
@@ -22,10 +22,28 @@ export function setFields(state: IState, rawFields: FormField[]): IState {
 }
 
 export function selectField(state: IState, selectedId?: string): IState {
+  const index = state.fields.findIndex(f => f.id === selectedId)
+  let references: Partial<FormField>[] = []
+  let selectedField: FormField | undefined = undefined
+
+  if (index > -1) {
+    // Setup references for CommandMenu
+    const fields = state.fields
+      .slice(0, index)
+      .filter(row => QUESTION_FIELD_KINDS.includes(row.kind))
+
+    if (isValidArray(fields)) {
+      references = state.questions.slice(0, fields.length)
+    }
+
+    selectedField = state.fields[index]
+  }
+
   return {
     ...state,
     selectedId,
-    selectedField: state.fields.find(f => f.id === selectedId)
+    references,
+    selectedField
   }
 }
 
