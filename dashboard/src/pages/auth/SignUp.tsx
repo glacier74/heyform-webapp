@@ -1,4 +1,4 @@
-import { LogoIcon, RedirectUriLink } from '@/components'
+import { LogoIcon } from '@/components'
 import { useQuery } from '@/legacy_pages/utils'
 import { AuthService } from '@/service'
 import { useRouter } from '@/utils'
@@ -11,14 +11,11 @@ const SignUp = () => {
   const router = useRouter()
   const { t } = useTranslation()
   const { redirect_uri } = useQuery()
-  const nextURL = isValid(redirect_uri) ? redirect_uri : '/'
-  const loginURL = isValid(nextURL)
-    ? `/login?redirect_uri=${encodeURIComponent(nextURL)}`
-    : '/login'
+  const nextURL = isValid(redirect_uri) ? `/verify-email?${redirect_uri}` : '/verify-email'
 
   async function handleFinish(values: any) {
     await AuthService.signUp(values)
-    router.push('/verify-email')
+    router.push(nextURL)
   }
 
   return (
@@ -26,15 +23,7 @@ const SignUp = () => {
       <div>
         <LogoIcon className="h-8 w-auto" />
         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('auth.signup.signUp')}</h2>
-        <p className="mt-2 text-sm text-gray-600">
-          {t('login.or')} {''}
-          <RedirectUriLink
-            href={loginURL}
-            className="font-medium text-blue-600 hover:text-blue-500"
-          >
-            {t('auth.signup.signIn')}
-          </RedirectUriLink>
-        </p>
+        <p className="mt-2 text-sm text-gray-600">{t('auth.signup.description')}</p>
       </div>
 
       <div className="mt-8">
@@ -56,7 +45,7 @@ const SignUp = () => {
 
         <div className="mt-6">
           <Form.Custom
-            submitText="Sign Up"
+            submitText={t('auth.signup.button')}
             submitOptions={{
               type: 'primary',
               className: 'mt-3',

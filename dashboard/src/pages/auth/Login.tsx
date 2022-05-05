@@ -12,9 +12,6 @@ const Login = () => {
   const { t } = useTranslation()
   const { redirect_uri } = useQuery()
   const nextURL = isValid(redirect_uri) ? redirect_uri : '/'
-  const signUpURL = isValid(nextURL)
-    ? `/sign-up?redirect_uri=${encodeURIComponent(nextURL)}`
-    : '/sign-up'
 
   async function handleFinish(values: any) {
     await AuthService.login(values.email, values.password)
@@ -29,7 +26,7 @@ const Login = () => {
         <p className="mt-2 text-sm text-gray-600">
           {t('login.or')} {''}
           <RedirectUriLink
-            href={signUpURL}
+            href="/sign-up"
             className="font-medium text-blue-600 hover:text-blue-500"
           >
             {t('login.startFree')}

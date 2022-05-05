@@ -30,7 +30,7 @@ const enConfig: CustomRouteConfig[] = [
     loginRequired: false,
     layout: CommonLayout,
     component: SignUp,
-    title: 'Sign Up'
+    title: 'auth.signup.description'
   },
   /* Forgot Password */
   {

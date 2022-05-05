@@ -1,9 +1,15 @@
 import { LogoIcon } from '@/components'
-import { FormValues, SendCode, VerifyEmail as VerifyEmailModal } from '@/pages/user/UserSettings/EmailAddress'
+import { useQuery } from '@/legacy_pages/utils'
+import {
+  FormValues,
+  SendCode,
+  VerifyEmail as VerifyEmailModal
+} from '@/pages/user/UserSettings/EmailAddress'
 import { UserService } from '@/service'
 import { useStore } from '@/store'
 import { useRouter, useVisible } from '@/utils'
 import { Button, Form, Input, notification } from '@heyforms/ui'
+import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
@@ -11,18 +17,19 @@ import { useTranslation } from 'react-i18next'
 
 const VerifyEmail: FC = () => {
   const { t } = useTranslation()
-  const router = useRouter()
   const userStore = useStore('userStore')
-  const [loading, setLoading] = useState(false)
+  const router = useRouter()
+  const { redirect_uri } = useQuery()
+  const nextURL = isValid(redirect_uri) ? redirect_uri : '/'
 
+  const [loading, setLoading] = useState(false)
   const [sendCodeVisible, openSendCode, closeSendCode] = useVisible()
   const [verifyEmailVisible, openVerifyEmail, closeVerifyEmail] = useVisible()
   const [formValues, setTempValues] = useState<FormValues>()
 
-
   async function handleFinish(values: IMapType) {
     await UserService.verifyEmail(values.code)
-    router.redirect()
+    router.redirect(nextURL)
   }
 
   function handleSendComplete(values: FormValues) {
@@ -35,10 +42,14 @@ const VerifyEmail: FC = () => {
       email: formValues?.email,
       isEmailVerified: true
     })
-    router.redirect()
+    router.redirect(nextURL)
   }
 
   async function handleSendEmail() {
+    if (userStore.user.isEmailVerified) {
+      return router.redirect(nextURL)
+    }
+
     setLoading(true)
 
     try {
@@ -59,7 +70,7 @@ const VerifyEmail: FC = () => {
   return (
     <div>
       <div>
-        <LogoIcon className="h-8 w-auto"/>
+        <LogoIcon className="h-8 w-auto" />
         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('user.verifyEmail')}</h2>
         <p className="mt-2 text-sm text-gray-600">
           {t('user.sendEmailText')}{' '}
@@ -86,7 +97,7 @@ const VerifyEmail: FC = () => {
               label={t('auth.resetPassword.verificationCode')}
               rules={[{ required: true, message: t('auth.resetPassword.invalidCode') }]}
             >
-              <Input/>
+              <Input />
             </Form.Item>
           </Form.Custom>
 
@@ -104,7 +115,7 @@ const VerifyEmail: FC = () => {
         </div>
       </div>
 
-      <SendCode visible={sendCodeVisible} onClose={closeSendCode} onComplete={handleSendComplete}/>
+      <SendCode visible={sendCodeVisible} onClose={closeSendCode} onComplete={handleSendComplete} />
       <VerifyEmailModal
         visible={verifyEmailVisible}
         formValues={formValues}

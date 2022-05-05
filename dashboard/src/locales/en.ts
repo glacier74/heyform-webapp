@@ -31,9 +31,10 @@ export default {
   },
   auth: {
     signup: {
-      signUp: 'Create an account',
+      signUp: 'Try HeyForm for Free',
+      description: 'Start a 14-Day HeyForm Trial (No credit card required.)',
       signIn: 'sign in with existing one',
-      signWith: 'Sign up with',
+      signWith: 'Start with',
       continueWith: 'Or continue with',
       nameCant: "Name can't be empty",
       invalidEmail: 'Invalid email address',
@@ -43,7 +44,8 @@ export default {
       terms: 'Terms of Service',
       privacy: 'Privacy Policy',
       and: 'and',
-      Email: 'Email address'
+      Email: 'Email address',
+      button: 'Start Free Trial'
     },
     forgotPassword: {
       forgot: 'Forgot Password?',
@@ -365,7 +367,7 @@ export default {
     sendEmailText:
       "We've sent you an email with a 6-digit verification code. Please check your inbox at",
     typoEmail: 'Made a typo on email address?',
-    click: 'click here',
+    click: 'Click here',
     change: 'to change it.',
     text: "Don't receive the code?",
     resend: 'Resend'
