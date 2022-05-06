@@ -19,7 +19,7 @@ export const MoreTemplates: FC = () => {
       <Mask>
         <Text>Get access to all the templates of HeyForm</Text>
         <PreviewButton type="primary" size="small" block={true} onClick={handlePreview}>
-          {t('Explorer')}
+          {t('Explore')}
         </PreviewButton>
       </Mask>
     </Container>

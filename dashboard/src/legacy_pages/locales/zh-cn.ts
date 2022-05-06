@@ -281,7 +281,7 @@ export default {
   'Create a new form from templates': '从模板创建新表单',
   'Classic Form': '传统表单',
   'Import form from external URL': '从外部网址导入表单',
-  Explorer: '浏览更多',
+  Explore: '浏览更多',
   'Import Form': '导入表单',
   'Import your existing forms and customize them.': '导入您现有的表单并对其进行自定义。',
   'How it works': '这个怎么运作',

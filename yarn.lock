@@ -1766,6 +1766,13 @@
     "@types/react" "*"
     "@types/reactcss" "*"
 
+"@types/react-copy-to-clipboard@^5.0.2":
+  version "5.0.2"
+  resolved "http://npm.heyooo.com/@types%2freact-copy-to-clipboard/-/react-copy-to-clipboard-5.0.2.tgz#c29690b472a54edff35916f0d1c6c797ad0fd34b"
+  integrity sha512-O29AThfxrkUFRsZXjfSWR2yaWo0ppB1yLEnHA+Oh24oNetjBAwTDu1PmolIqdJKzsZiO4J1jn6R6TmO96uBvGg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-dom@^18.0.0":
   version "18.0.0"
   resolved "http://npm.heyooo.com/@types%2freact-dom/-/react-dom-18.0.0.tgz#b13f8d098e4b0c45df4f1ed123833143b0c71141"

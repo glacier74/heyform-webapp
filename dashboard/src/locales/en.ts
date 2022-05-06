@@ -1,6 +1,8 @@
 export default {
   app: {
-    name: 'HeyForm'
+    name: 'HeyForm',
+    copy: 'Copy',
+    copied: 'Copied'
   },
   login: {
     signIn: 'Sign in to your account',
@@ -262,6 +264,7 @@ export default {
       WorkSettings: 'Workspace Settings',
       subTitle: 'Manage your workspace settings',
       up: 'Update',
+      id: 'Workspace ID',
       nameW: 'Workspace name',
       removeBranding: 'Remove HeyForm branding',
       brandingExplain:

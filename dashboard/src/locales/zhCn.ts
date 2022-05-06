@@ -1,6 +1,8 @@
 export default {
   app: {
-    name: '简约表单'
+    name: '简约表单',
+    copy: '复制',
+    copied: '已复制'
   },
   login: {
     signIn: '登录您的帐户',
@@ -248,6 +250,7 @@ export default {
       WorkSettings: '团队空间设置',
       subTitle: '管理您的团队空间设置',
       up: '更新',
+      id: '团队空间 ID',
       nameW: '团队空间名称',
       removeBranding: '移除 HeyForm 品牌标识',
       brandingExplain: '删除 HeyForm 表单页底部的品牌标识，让 HeyForm 更像是完全属于您的品牌。',

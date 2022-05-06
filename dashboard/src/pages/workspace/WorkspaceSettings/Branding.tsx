@@ -1,4 +1,4 @@
-import { PlanCheck, SwitchField } from '@/components'
+import { CopyButton, PlanCheck, SwitchField } from '@/components'
 import { PlanGradeEnum } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
@@ -50,6 +50,17 @@ export const Branding: FC = observer(() => {
 
   return (
     <div>
+      <div className="mb-6">
+        <div className="mb-1 block text-sm font-medium text-gray-700">
+          {t('workspace.settings.id')}
+        </div>
+        <Input
+          value={workspaceStore.workspace?.id}
+          trailing={<CopyButton text={workspaceStore.workspace?.id} />}
+          disabled={true}
+        />
+      </div>
+
       <Form.Custom
         inline
         initialValues={{
@@ -63,7 +74,7 @@ export const Branding: FC = observer(() => {
         request={handleFinish}
       >
         <Form.Item name="name" label={t('workspace.settings.nameW')} rules={[{ required: true }]}>
-          <Input/>
+          <Input />
         </Form.Item>
       </Form.Custom>
 
