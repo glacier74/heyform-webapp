@@ -31,7 +31,7 @@ export const EmbedWebModal: FC<EmbedWebModalProps> = observer(
       setCode(
         `<div class="heyform" data-id="${formId}" data-mode="${mode}" data-button-text="Launch Form"></div><script src="${
           import.meta.env.VITE_HOMEPAGE
-        }/embed?v=2022.1.1"></script>`
+        }/embed?v=2022.5.1"></script>`
       )
       setIframeUrl(
         `${
