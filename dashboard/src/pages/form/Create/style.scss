@@ -320,11 +320,13 @@
 
 .builder-block-title {
   @apply text-2xl mb-1;
+  min-height: 2rem;
   color: var(--heyform-question-color);
 }
 
 .builder-block-description {
   @apply text-lg;
+  min-height: 1.75rem;
   color: var(--heyform-description-color);
 }
 
@@ -367,6 +369,7 @@
 .builder-empty-state {
   .builder-block-title {
     @apply text-3xl mb-4;
+    min-height: 2.25rem;
   }
 
   .builder-submit-container {
@@ -396,8 +399,14 @@
   .builder-block-description {
     @apply text-center;
 
-    &:before {
-      transform: translateX(-50%);
+    &:empty {
+      @apply text-left;
+      padding-left: 50%;
+
+      &:before {
+        @apply w-full text-center;
+        transform: translateX(-50%);
+      }
     }
   }
 

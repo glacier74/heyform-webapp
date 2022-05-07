@@ -7,9 +7,10 @@ import { useEffect, useMemo, useState } from 'react'
 import { useStoreContext } from '../../store'
 import { FieldIcon } from '../FieldIcon'
 
-interface MentionMenuProps extends IModalProps {
+interface MentionMenuProps extends Omit<IModalProps, 'onComplete'> {
   keyword?: string
   portalStyle?: CSSProperties
+  onComplete?: (option: Partial<FormField>) => void
 }
 
 export const MentionMenu: FC<MentionMenuProps> = ({
@@ -27,7 +28,7 @@ export const MentionMenu: FC<MentionMenuProps> = ({
   }
 
   function handleSelect(id?: IKeyType) {
-    onComplete?.(state.references.find(r => r.id === id))
+    onComplete?.(state.references.find(r => r.id === id)!)
     handleClose()
   }
 
