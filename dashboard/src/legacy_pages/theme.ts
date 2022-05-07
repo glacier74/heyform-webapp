@@ -1,7 +1,7 @@
 import { Theme } from '@heyui/component'
 
 export const theme: Theme = {
-  primary: '#377DFF',
+  primary: '#0252d7',
   lightPrimary: '#60A5FA',
   darkPrimary: '#2563EB',
   clearPrimary: '#EFF6FF',

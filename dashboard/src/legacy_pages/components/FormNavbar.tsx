@@ -135,7 +135,7 @@ const BackButton = styled(Button)`
   }
 
   &:hover {
-    color: #377dff;
+    color: #0252d7;
   }
 `
 

@@ -339,7 +339,7 @@ const Container = styled(NavBarContainer)`
         padding: 10px;
 
         &:hover {
-          border-color: #377dff;
+          border-color: #0252d7;
         }
 
         &::placeholder {
@@ -366,7 +366,7 @@ const Container = styled(NavBarContainer)`
       padding: 10px 24px;
 
       &:hover {
-        border-color: #377dff;
+        border-color: #0252d7;
       }
     }
 
@@ -382,7 +382,7 @@ const Container = styled(NavBarContainer)`
       }
 
       &:hover .hey-button {
-        border-color: #377dff;
+        border-color: #0252d7;
       }
     }
   }

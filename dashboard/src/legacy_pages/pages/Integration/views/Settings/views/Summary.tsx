@@ -100,7 +100,7 @@ const StyledHeading = styled(Heading)`
     text-decoration: underline;
 
     &:hover {
-      color: #377dff;
+      color: #0252d7;
     }
   }
 `

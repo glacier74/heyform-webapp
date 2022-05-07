@@ -172,7 +172,7 @@ const ProjectHeader = styled(Flex)`
 
     &:hover {
       transform: scale(1.15);
-      background-color: #377dff;
+      background-color: #0252d7;
       color: #fff;
     }
 
@@ -225,7 +225,7 @@ const BottomNav = styled.div`
     border-radius: 3px;
 
     &:hover {
-      color: #377dff;
+      color: #0252d7;
     }
   }
 `

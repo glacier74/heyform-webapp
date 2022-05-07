@@ -113,7 +113,7 @@ const Container = styled(NavBarContainer)`
       padding: 10px;
 
       &:hover {
-        border-color: #377dff;
+        border-color: #0252d7;
       }
 
       &::placeholder {

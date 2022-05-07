@@ -268,7 +268,7 @@ const Panel = styled.div`
 
         &:hover {
           color: #fff;
-          background-color: #377dff;
+          background-color: #0252d7;
         }
       }
     }
@@ -315,7 +315,7 @@ const Panel = styled.div`
     &.date-picker-cell-today > .date-picker-cell-inner,
     & > .date-picker-cell-inner {
       color: #fff;
-      background: #377dff;
+      background: #0252d7;
     }
   }
 
@@ -437,7 +437,7 @@ const Panel = styled.div`
   .date-picker-time-panel-cell-selected {
     .date-picker-time-panel-cell-inner {
       color: #fff;
-      background: #377dff;
+      background: #0252d7;
       border-radius: 3px;
     }
   }

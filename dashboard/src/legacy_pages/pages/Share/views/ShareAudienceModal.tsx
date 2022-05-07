@@ -166,7 +166,7 @@ const Content = styled.div`
       padding: 10px;
 
       &:hover {
-        border-color: #377dff;
+        border-color: #0252d7;
       }
 
       &::placeholder {
@@ -214,7 +214,7 @@ const StyledMultipleSelect = styled(MultipleSelect)`
   border: 1px solid #f3f3f3;
 
   &:hover {
-    border-color: #377dff;
+    border-color: #0252d7;
   }
 
   & > .hey-flex {

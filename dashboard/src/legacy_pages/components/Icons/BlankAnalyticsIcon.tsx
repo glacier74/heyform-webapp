@@ -11,19 +11,19 @@ export const BlankAnalyticsIcon: FC<ComponentProps> = props => {
       fill="none"
       viewBox="0 0 212 212"
     >
-      <rect width="212" height="212" fill="#377DFF" fillOpacity="0.05" rx="106"></rect>
+      <rect width="212" height="212" fill="#0252d7" fillOpacity="0.05" rx="106"></rect>
       <rect
         width="76.302"
         height="47.562"
         x="70"
         y="93.438"
-        fill="#377DFF"
-        stroke="#377DFF"
+        fill="#0252d7"
+        stroke="#0252d7"
         strokeWidth="6"
         rx="7"
       ></rect>
-      <rect width="57.492" height="5.914" x="77.435" y="74.427" fill="#377DFF" rx="2"></rect>
-      <rect width="41.066" height="5.914" x="85.648" y="58" fill="#377DFF" rx="2"></rect>
+      <rect width="57.492" height="5.914" x="77.435" y="74.427" fill="#0252d7" rx="2"></rect>
+      <rect width="41.066" height="5.914" x="85.648" y="58" fill="#0252d7" rx="2"></rect>
       <rect
         width="13"
         height="6"

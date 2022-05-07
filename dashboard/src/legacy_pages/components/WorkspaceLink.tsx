@@ -51,7 +51,7 @@ const StyledMenuItem = styled(Menu.Item)<{
   & > span {
     padding: 1px;
     border-radius: 50%;
-    background: #377dff;
+    background: #0252d7;
 
     svg {
       width: 16px;

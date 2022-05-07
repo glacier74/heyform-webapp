@@ -169,7 +169,7 @@ const StyledPaginationBar = styled(PaginationBar)`
         background: none;
 
         a {
-          color: #377dff;
+          color: #0252d7;
         }
       }
     }
@@ -232,6 +232,6 @@ const MoreAnswer = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: #377dff;
+    color: #0252d7;
   }
 `

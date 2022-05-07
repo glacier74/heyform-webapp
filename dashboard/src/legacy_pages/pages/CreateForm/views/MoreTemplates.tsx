@@ -31,7 +31,7 @@ const Container = styled.div`
   width: 218px;
   height: 236px;
   margin: 0 10px 20px 10px;
-  background: #377dff;
+  background: #0252d7;
   border-radius: 3px;
   transition: all 150ms;
 
@@ -56,7 +56,7 @@ const Mask = styled.div`
   width: 100%;
   height: 100%;
   padding: 16px;
-  background: rgba(55, 125, 255, 0.59);
+  background: #0252D7;
   border-radius: 3px;
 `
 

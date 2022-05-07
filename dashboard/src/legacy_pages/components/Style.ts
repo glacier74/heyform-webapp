@@ -178,7 +178,7 @@ export const GlobalStyle = createGlobalStyle<ThemeProps<Theme>>`
       color: #4e5d78;
 
       svg {
-        color: #377DFF;
+        color: #0252d7;
       }
     }
   }

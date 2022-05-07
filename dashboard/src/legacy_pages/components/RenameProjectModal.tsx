@@ -125,7 +125,7 @@ const Content = styled.div`
       border: 1px solid rgba(0, 0, 0, 0.2);
 
       &:hover {
-        border-color: #377dff;
+        border-color: #0252d7;
       }
 
       &::placeholder {

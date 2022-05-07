@@ -38,8 +38,8 @@ const Container = styled.div`
     }
 
     &.active {
-      color: #377dff;
-      border-bottom-color: #377dff;
+      color: #0252d7;
+      border-bottom-color: #0252d7;
     }
   }
 `

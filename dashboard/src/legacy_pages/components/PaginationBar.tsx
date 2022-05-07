@@ -68,7 +68,7 @@ const Container = styled(Flex)`
 
       &.hey-pagination-active {
         a {
-          color: #377dff;
+          color: #0252d7;
         }
       }
     }

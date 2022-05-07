@@ -325,7 +325,7 @@ const Container = styled.div`
   font-family: ${props => props.theme.fontFamily};
 
   .block-chosen .block-content {
-    border-top: 3px solid #377dff;
+    border-top: 3px solid #0252d7;
   }
 
   .block-cloned {

@@ -19,8 +19,20 @@ module.exports = {
         'Segoe UI Symbol',
         'Noto Color Emoji'
       ]
+    },
+    extend: {
+      colors: {
+        blue: {
+          500: '#0252D7',
+          600: '#0052CC'
+        },
+        grey: {
+          900: '#111'
+        },
+      }
     }
   },
+
   variants: {
     extend: {}
   },

@@ -181,7 +181,7 @@ const StyledSelect = styled(Select)`
   }
 
   &:hover .hey-button {
-    border-color: #377dff;
+    border-color: #0252d7;
   }
 `
 

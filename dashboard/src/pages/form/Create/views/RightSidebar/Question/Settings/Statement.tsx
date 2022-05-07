@@ -28,7 +28,7 @@ export const Statement: FC<IBasicProps> = ({ field }) => {
 
   return (
     <div className="right-sidebar-settings-item">
-      <label className="form-item-label">Button</label>
+      <label className="form-item-label">Button Text</label>
       <Input
         className="mt-1"
         value={field.properties?.buttonText}

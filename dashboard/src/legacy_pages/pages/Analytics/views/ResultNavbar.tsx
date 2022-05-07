@@ -54,7 +54,7 @@ const Wrapper = styled(Flex)`
 
     &:hover,
     &.active {
-      color: #377dff;
+      color: #0252d7;
     }
   }
 `
