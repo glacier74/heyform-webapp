@@ -50,7 +50,7 @@ export const DATE_FORMAT_OPTIONS: IOptionType[] = [
 ]
 
 export const DATE_FORMAT_NAMES: IMapType = {
-  YYYY: 'Year',
-  MM: 'Month',
-  DD: 'Day'
+  YYYY: 'formBuilder.year',
+  MM: 'formBuilder.month',
+  DD: 'formBuilder.day'
 }

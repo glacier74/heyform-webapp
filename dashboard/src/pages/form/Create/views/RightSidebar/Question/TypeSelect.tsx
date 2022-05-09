@@ -2,6 +2,7 @@ import { CheckIcon } from '@heroicons/react/solid'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { Select } from '@heyforms/ui'
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useStoreContext } from '../../../store'
 import {
   FIELD_QUESTION_CONFIGS,
@@ -11,6 +12,7 @@ import {
 import { FieldIcon } from '../../FieldIcon'
 
 export const TypeSelect: FC = () => {
+  const { t } = useTranslation()
   const { state, dispatch } = useStoreContext()
   const field = state.selectedField!
 
@@ -28,7 +30,7 @@ export const TypeSelect: FC = () => {
     return (
       <>
         <FieldIcon kind={option.kind} />
-        <span>{option.label}</span>
+        <span>{t(option.label)}</span>
       </>
     )
   }
@@ -37,7 +39,7 @@ export const TypeSelect: FC = () => {
     return (
       <>
         <FieldIcon kind={option.kind} />
-        <span className="select-option-text">{option.label}</span>
+        <span className="select-option-text">{t(option.label)}</span>
         {field.kind === option.kind && (
           <span className="select-option-checkmark">
             <CheckIcon />
@@ -61,7 +63,7 @@ export const TypeSelect: FC = () => {
 
   return (
     <div className="right-sidebar-group">
-      <div className="right-sidebar-group-title">Type</div>
+      <div className="right-sidebar-group-title">{t('formBuilder.type')}</div>
       <Select
         className="right-sidebar-custom-select"
         popupClassName="right-sidebar-custom-select-popup"

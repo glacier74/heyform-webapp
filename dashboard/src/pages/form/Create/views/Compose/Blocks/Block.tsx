@@ -5,6 +5,7 @@ import { isURL } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { RefObject, useCallback, useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Layout } from '../Layout'
 
 export interface BlockProps extends IComponentProps {
@@ -13,6 +14,7 @@ export interface BlockProps extends IComponentProps {
 
 export const Block: FC<BlockProps> = ({ className, field, children, ...restProps }) => {
   const { dispatch } = useStoreContext()
+  const { t } = useTranslation()
 
   const titleRef = useRef<HTMLDivElement>()
   const descriptionRef = useRef<HTMLDivElement>()
@@ -76,19 +78,19 @@ export const Block: FC<BlockProps> = ({ className, field, children, ...restProps
             <div className="mb-10">
               {isLabelShow && (
                 <label className="builder-block-label">
-                  Question {field.index} {field.validations?.required && '*'}
+                  {t('formBuilder.question')} {field.index} {field.validations?.required && '*'}
                 </label>
               )}
               <RichText
                 className="builder-block-title"
                 innerRef={titleRef as RefObject<HTMLDivElement>}
-                placeholder="Type a question"
+                placeholder={t('formBuilder.questionPlaceholder')}
                 onChange={handleTitleChangeCallback}
               />
               <RichText
                 className="builder-block-description"
                 innerRef={descriptionRef as RefObject<HTMLDivElement>}
-                placeholder="Add description to your question (optional)"
+                placeholder={t('formBuilder.descriptionPlaceholder')}
                 onChange={handleDescriptionChangeCallback}
               />
             </div>

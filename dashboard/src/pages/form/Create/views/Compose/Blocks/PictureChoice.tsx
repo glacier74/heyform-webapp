@@ -8,6 +8,7 @@ import { isURL } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 import type { FC } from 'react'
 import { useCallback, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
@@ -30,6 +31,7 @@ const PictureChoiceItem: FC<PictureChoiceItemProps> = ({
   onRemoveImage,
   onRemove
 }) => {
+  const { t } = useTranslation()
   const [isFocused, setIsFocused] = useState(false)
 
   function handleRemove() {
@@ -80,7 +82,7 @@ const PictureChoiceItem: FC<PictureChoiceItemProps> = ({
           <div className="builder-radio-label">
             <Input
               value={choice.label}
-              placeholder={isFocused ? 'choice' : undefined}
+              placeholder={isFocused ? t('formBuilder.choicePlaceholder') : undefined}
               onBlur={handleBlur}
               onFocus={handleFocus}
               onChange={handleLabelChange}

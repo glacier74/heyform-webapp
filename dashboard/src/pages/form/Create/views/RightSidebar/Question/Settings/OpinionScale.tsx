@@ -3,9 +3,11 @@ import { useStoreContext } from '@/pages/form/Create/store'
 import { Input, Select } from '@heyforms/ui'
 import type { FC } from 'react'
 import { startTransition, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { IBasicProps } from './Basic'
 
 export const OpinionScale: FC<IBasicProps> = ({ field }) => {
+  const { t } = useTranslation()
   const { dispatch } = useStoreContext()
 
   function handleTotal(total: any) {
@@ -82,7 +84,7 @@ export const OpinionScale: FC<IBasicProps> = ({ field }) => {
   return (
     <>
       <div className="right-sidebar-settings-item">
-        <label className="form-item-label">Steps</label>
+        <label className="form-item-label">{t('formBuilder.steps')}</label>
         <Select
           className="mt-1"
           value={field.properties?.total}
@@ -91,24 +93,24 @@ export const OpinionScale: FC<IBasicProps> = ({ field }) => {
         />
       </div>
       <div className="right-sidebar-settings-item">
-        <label className="form-item-label">Labels</label>
+        <label className="form-item-label">{t('formBuilder.labels')}</label>
         <div className="pt-2">
           <Input
-            placeholder="Left label"
+            placeholder={t('formBuilder.leftLabel')}
             maxLength={24}
             value={field.properties?.leftLabel}
             onChange={handleLeftLabelCallback}
           />
           <Input
             className="mt-1.5"
-            placeholder="Middle label"
+            placeholder={t('formBuilder.middleLabel')}
             maxLength={24}
             value={field.properties?.centerLabel}
             onChange={handleMiddleLabelCallback}
           />
           <Input
             className="mt-1.5"
-            placeholder="Right label"
+            placeholder={t('formBuilder.rightLabel')}
             maxLength={24}
             value={field.properties?.rightLabel}
             onChange={handleRightLabelCallback}

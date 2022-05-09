@@ -46,19 +46,19 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
       </Left>
       <Nav role="navigation">
         <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/create`}>
-          {t('Create')}
+          {t('form.create')}
         </NavLink>
         <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/connect`}>
-          {t('Connect')}
+          {t('form.connect')}
         </NavLink>
         <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/share`}>
-          {t('Share')}
+          {t('form.share')}
         </NavLink>
         <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}>
-          {t('Results')}
+          {t('form.results')}
         </NavLink>
         <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/settings`}>
-          {t('Settings')}
+          {t('form.settings')}
         </NavLink>
       </Nav>
       <Right>

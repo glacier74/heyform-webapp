@@ -43,7 +43,7 @@ export interface FieldGroup {
 export const FIELD_WELCOME_CONFIG = {
   kind: FieldKindEnum.WELCOME,
   icon: WelcomeIcon,
-  label: 'Welcome',
+  label: 'formBuilder.welcome',
   textColor: '#334155',
   backgroundColor: '#e5e7eb'
 }
@@ -51,7 +51,7 @@ export const FIELD_WELCOME_CONFIG = {
 export const FIELD_THANK_YOU_CONFIG = {
   kind: FieldKindEnum.THANK_YOU,
   icon: ThankYouIcon,
-  label: 'Thank you',
+  label: 'formBuilder.thankYou',
   textColor: '#334155',
   backgroundColor: '#e5e7eb'
 }
@@ -60,133 +60,133 @@ export const FIELD_QUESTION_CONFIGS = [
   {
     kind: FieldKindEnum.MULTIPLE_CHOICE,
     icon: CheckIcon,
-    label: 'Multiple Choice',
+    label: 'formBuilder.multipleChoice',
     textColor: '#b91c1c',
     backgroundColor: '#fee2e2'
   },
   {
     kind: FieldKindEnum.PHONE_NUMBER,
     icon: PhoneIcon,
-    label: 'Phone Number',
+    label: 'formBuilder.phoneNumber',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
   },
   {
     kind: FieldKindEnum.SHORT_TEXT,
     icon: ShortTextIcon,
-    label: 'Short Text',
+    label: 'formBuilder.shortText',
     textColor: '#15803d',
     backgroundColor: '#dcfce7'
   },
   {
     kind: FieldKindEnum.LONG_TEXT,
     icon: LongTextIcon,
-    label: 'Long Text',
+    label: 'formBuilder.longText',
     textColor: '#15803d',
     backgroundColor: '#dcfce7'
   },
   {
     kind: FieldKindEnum.STATEMENT,
     icon: StatementIcon,
-    label: 'Statement',
+    label: 'formBuilder.statement',
     textColor: '#334155',
     backgroundColor: '#e5e7eb'
   },
   {
     kind: FieldKindEnum.PICTURE_CHOICE,
     icon: ImageIcon,
-    label: 'Picture Choice',
+    label: 'formBuilder.pictureChoice',
     textColor: '#b91c1c',
     backgroundColor: '#fee2e2'
   },
   {
     kind: FieldKindEnum.YES_NO,
     icon: YesOrNoIcon,
-    label: 'Yes/No',
+    label: 'formBuilder.yesNo',
     textColor: '#b91c1c',
     backgroundColor: '#fee2e2'
   },
   {
     kind: FieldKindEnum.EMAIL,
     icon: MailIcon,
-    label: 'Email',
+    label: 'formBuilder.email',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
   },
   {
     kind: FieldKindEnum.FULL_NAME,
     icon: UserIcon,
-    label: 'Full Name',
+    label: 'formBuilder.fullName',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
   },
   {
     kind: FieldKindEnum.RATING,
     icon: StarIcon,
-    label: 'Rating',
+    label: 'formBuilder.rating',
     textColor: '#a21caf',
     backgroundColor: '#fae8ff'
   },
   {
     kind: FieldKindEnum.OPINION_SCALE,
     icon: ChartBarIcon,
-    label: 'Opinion Scale',
+    label: 'formBuilder.opinionScale',
     textColor: '#a21caf',
     backgroundColor: '#fae8ff'
   },
   {
     kind: FieldKindEnum.DATE,
     icon: CalendarIcon,
-    label: 'Date',
+    label: 'formBuilder.date',
     textColor: '#047857',
     backgroundColor: '#d1fae5'
   },
   {
     kind: FieldKindEnum.NUMBER,
     icon: HashtagIcon,
-    label: 'Number',
+    label: 'formBuilder.number',
     textColor: '#1d4ed8',
     backgroundColor: '#dbeafe'
   },
   {
     kind: FieldKindEnum.FILE_UPLOAD,
     icon: UploadIcon,
-    label: 'File Upload',
+    label: 'formBuilder.fileUpload',
     textColor: '#c2410c',
     backgroundColor: '#ffedd5'
   },
   {
     kind: FieldKindEnum.ADDRESS,
     icon: LocationMarkerIcon,
-    label: 'Address',
+    label: 'formBuilder.address',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
   },
   {
     kind: FieldKindEnum.COUNTRY,
     icon: GlobeIcon,
-    label: 'Country',
+    label: 'formBuilder.country',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
   },
   {
     kind: FieldKindEnum.LEGAL_TERMS,
     icon: LibraryIcon,
-    label: 'Legal Terms',
+    label: 'formBuilder.legalTerms',
     textColor: '#a16207',
     backgroundColor: '#fef9c3'
   },
   {
     kind: FieldKindEnum.SIGNATURE,
     icon: SignatureIcon,
-    label: 'Signature',
+    label: 'formBuilder.signature',
     textColor: '#a16207',
     backgroundColor: '#fef9c3'
   },
   {
     kind: FieldKindEnum.URL,
     icon: WebsiteIcon,
-    label: 'Website',
+    label: 'formBuilder.website',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
   }
@@ -200,7 +200,7 @@ export const FIELD_CONFIGS: FieldConfig[] = [
 
 export const BLOCK_GROUPS: FieldGroup[] = [
   {
-    name: 'Recommended',
+    name: 'formBuilder.recommended',
     list: [
       FieldKindEnum.SHORT_TEXT,
       FieldKindEnum.MULTIPLE_CHOICE,
@@ -211,7 +211,7 @@ export const BLOCK_GROUPS: FieldGroup[] = [
     ]
   },
   {
-    name: 'Contact info',
+    name: 'formBuilder.contactInfo',
     list: [
       FieldKindEnum.PHONE_NUMBER,
       FieldKindEnum.EMAIL,
@@ -222,35 +222,35 @@ export const BLOCK_GROUPS: FieldGroup[] = [
     ]
   },
   {
-    name: 'Choices',
+    name: 'formBuilder.choices',
     list: [FieldKindEnum.MULTIPLE_CHOICE, FieldKindEnum.PICTURE_CHOICE, FieldKindEnum.YES_NO]
   },
   {
-    name: 'Text',
+    name: 'formBuilder.text',
     list: [FieldKindEnum.SHORT_TEXT, FieldKindEnum.LONG_TEXT]
   },
   {
-    name: 'Number',
+    name: 'formBuilder.number',
     list: [FieldKindEnum.NUMBER]
   },
   {
-    name: 'Rating',
+    name: 'formBuilder.rating',
     list: [FieldKindEnum.RATING, FieldKindEnum.OPINION_SCALE]
   },
   {
-    name: 'Legal & consent',
+    name: 'formBuilder.legalConsent',
     list: [FieldKindEnum.LEGAL_TERMS, FieldKindEnum.SIGNATURE]
   },
   {
-    name: 'Date',
+    name: 'formBuilder.date',
     list: [FieldKindEnum.DATE]
   },
   {
-    name: 'Form structure',
+    name: 'formBuilder.formStructure',
     list: [FieldKindEnum.WELCOME, FieldKindEnum.THANK_YOU, FieldKindEnum.STATEMENT]
   },
   {
-    name: 'File upload',
+    name: 'formBuilder.fileUpload',
     list: [FieldKindEnum.FILE_UPLOAD]
   }
 ]

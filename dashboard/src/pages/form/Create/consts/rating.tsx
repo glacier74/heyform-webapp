@@ -8,23 +8,23 @@ export const RATING_TOTAL_OPTIONS: IOptionType[] = Array.from({ length: 10 }, (_
 export const RATING_SHAPE_OPTIONS: IOptionType[] = [
   {
     value: 'star',
-    label: 'Star'
+    label: 'formBuilder.star'
   },
   {
     value: 'heart',
-    label: 'Like'
+    label: 'formBuilder.like'
   },
   {
     value: 'thumb_up',
-    label: 'Thumbs Up'
+    label: 'formBuilder.thumbsUp'
   },
   {
     value: 'crown',
-    label: 'Crown'
+    label: 'formBuilder.crown'
   },
   {
     value: 'happy',
-    label: 'Happy'
+    label: 'formBuilder.happy'
   }
 ]
 

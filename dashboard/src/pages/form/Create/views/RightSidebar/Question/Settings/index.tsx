@@ -1,6 +1,7 @@
 import { useStoreContext } from '@/pages/form/Create/store'
 import { FieldKindEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Basic } from './Basic'
 import { Date } from './Date'
 import { MultipleChoice } from './MultipleChoice'
@@ -10,12 +11,13 @@ import { Rating } from './Rating'
 import { Statement } from './Statement'
 
 export const Settings: FC = () => {
+  const { t } = useTranslation()
   const { state } = useStoreContext()
   const field = state.selectedField!
 
   return (
     <div className="right-sidebar-group right-sidebar-settings">
-      <div className="right-sidebar-group-title">Settings</div>
+      <div className="right-sidebar-group-title">{t('formBuilder.settings')}</div>
 
       {QUESTION_FIELD_KINDS.includes(field.kind) && <Basic field={field} />}
 

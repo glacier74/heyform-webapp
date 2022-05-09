@@ -5,6 +5,7 @@ import { Button, Input, KeyCode } from '@heyforms/ui'
 import { nanoid } from '@hpnp/utils/nanoid'
 import type { FC } from 'react'
 import { useCallback, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
@@ -23,6 +24,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
   onRemove,
   onChange
 }) => {
+  const { t } = useTranslation()
   const [isFocused, setIsFocused] = useState(false)
 
   function handleRemove() {
@@ -49,7 +51,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
           <div className="builder-radio-label">
             <Input
               value={choice.label}
-              placeholder={isFocused ? 'choice' : undefined}
+              placeholder={isFocused ? t('formBuilder.choicePlaceholder') : undefined}
               onBlur={handleBlur}
               onFocus={handleFocus}
               onChange={handleChange}
@@ -67,6 +69,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
 }
 
 export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
+  const { t } = useTranslation()
   const { dispatch } = useStoreContext()
 
   function handleAddChoice() {
@@ -144,7 +147,7 @@ export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
         ))}
       </div>
       <div className="builder-add-choice">
-        <Button.Link onClick={handleAddChoiceCallback}>Add choice</Button.Link>
+        <Button.Link onClick={handleAddChoiceCallback}>{t('formBuilder.addChoice')}</Button.Link>
       </div>
     </Block>
   )

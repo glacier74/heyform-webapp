@@ -62,11 +62,11 @@ export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form })
 
       {formStore.current?.settings?.active ? (
         <Button type="primary" disabled={true}>
-          {t('Published')}
+          {t('form.published')}
         </Button>
       ) : (
         <Button type="primary" loading={loading} onClick={handlePublish}>
-          {t('Publish')}
+          {t('form.publish')}
         </Button>
       )}
     </Container>

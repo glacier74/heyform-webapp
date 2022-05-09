@@ -7,6 +7,7 @@ import { isEmpty, isValid } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ReactSortable } from 'react-sortablejs'
 import { useStoreContext } from '../../store'
 import { FieldIcon } from '../FieldIcon'
@@ -21,6 +22,7 @@ const WELCOME_THANK_YOU_KINDS = [FieldKindEnum.WELCOME, FieldKindEnum.THANK_YOU]
 
 const FieldCard: FC<FieldCardProps> = ({ field, isSelected, isDeleteEnabled }) => {
   const { dispatch } = useStoreContext()
+  const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
 
   function handleClick() {
@@ -73,10 +75,10 @@ const FieldCard: FC<FieldCardProps> = ({ field, isSelected, isDeleteEnabled }) =
     () => (
       <Menus onClick={handleMenuClick}>
         {!WELCOME_THANK_YOU_KINDS.includes(field.kind) && (
-          <Menus.Item name="duplicate" label="Duplicate" />
+          <Menus.Item name="duplicate" label={t('formBuilder.duplicate')} />
         )}
         {(isEmpty(field.index) || (isValid(field.index) && isDeleteEnabled)) && (
-          <Menus.Item className="text-red-700" name="delete" label="Delete" />
+          <Menus.Item className="text-red-700" name="delete" label={t('formBuilder.delete')} />
         )}
       </Menus>
     ),

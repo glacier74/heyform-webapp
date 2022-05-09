@@ -4,10 +4,12 @@ import { CheckIcon } from '@heroicons/react/solid'
 import { Select } from '@heyforms/ui'
 import type { FC } from 'react'
 import { startTransition, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FlagIcon } from '../../../Compose/FlagIcon'
 import type { IBasicProps } from './Basic'
 
 export const PhoneNumber: FC<IBasicProps> = ({ field }) => {
+  const { t } = useTranslation()
   const { dispatch } = useStoreContext()
 
   function valueRender(option: any) {
@@ -18,7 +20,7 @@ export const PhoneNumber: FC<IBasicProps> = ({ field }) => {
     return (
       <>
         <FlagIcon countryCode={option.value} />
-        <span className="flex-1 truncate">{option.label}</span>
+        <span className="flex-1 truncate">{t(option.label)}</span>
       </>
     )
   }
@@ -59,7 +61,7 @@ export const PhoneNumber: FC<IBasicProps> = ({ field }) => {
   return (
     <>
       <div className="right-sidebar-settings-item">
-        <label className="form-item-label">Default Country</label>
+        <label className="form-item-label">{t('formBuilder.defaultCountry')}</label>
         <Select
           className="right-sidebar-custom-select mt-1"
           popupClassName="right-sidebar-custom-select-popup"

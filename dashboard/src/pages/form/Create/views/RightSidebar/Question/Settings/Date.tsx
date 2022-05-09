@@ -3,9 +3,11 @@ import { useStoreContext } from '@/pages/form/Create/store'
 import { Select } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { IBasicProps } from './Basic'
 
 export const Date: FC<IBasicProps> = ({ field }) => {
+  const { t } = useTranslation()
   const { dispatch } = useStoreContext()
 
   function handleChange(format: any) {
@@ -27,7 +29,7 @@ export const Date: FC<IBasicProps> = ({ field }) => {
 
   return (
     <div className="right-sidebar-settings-item">
-      <label className="form-item-label">Date format</label>
+      <label className="form-item-label">{t('formBuilder.dateFormat')}</label>
       <Select
         className="mt-1"
         options={DATE_FORMAT_OPTIONS}

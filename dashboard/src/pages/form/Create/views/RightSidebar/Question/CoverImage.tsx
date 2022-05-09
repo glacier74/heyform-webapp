@@ -5,8 +5,10 @@ import { Button } from '@heyforms/ui'
 import { isURL } from '@hpnp/utils/helper'
 import type { FC } from 'react'
 import { useCallback, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const CoverImage: FC = () => {
+  const { t } = useTranslation()
   const { state, dispatch } = useStoreContext()
   const [visible, setVisible] = useState(false)
 
@@ -22,8 +24,6 @@ export const CoverImage: FC = () => {
   }
 
   function handleChange(value: string) {
-    console.log('field.id', field.id)
-
     dispatch({
       type: 'updateField',
       payload: {
@@ -59,19 +59,19 @@ export const CoverImage: FC = () => {
     <>
       <div className="right-sidebar-group">
         <div className="flex items-center justify-between">
-          <label className="form-item-label">Image</label>
+          <label className="form-item-label">{t('formBuilder.image')}</label>
           {isLayoutEnabled ? (
             <div className="flex items-center">
               <Button className="px-2 py-1 mr-2" onClick={handleOpen}>
-                Change
+                {t('formBuilder.changeImage')}
               </Button>
               <Button className="px-2 py-1" onClick={handleRemove}>
-                Remove
+                {t('formBuilder.removeImage')}
               </Button>
             </div>
           ) : (
             <Button className="px-2 py-1" onClick={handleOpen}>
-              Add
+              {t('formBuilder.addImage')}
             </Button>
           )}
         </div>

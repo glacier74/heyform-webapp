@@ -6,6 +6,7 @@ import { isURL } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { startTransition, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface LayoutSwitchProps {
   value?: string
@@ -54,6 +55,7 @@ const LayoutSwitch: FC<LayoutSwitchProps> = ({ value, onChange }) => {
 }
 
 export const Layout: FC = () => {
+  const { t } = useTranslation()
   const { state, dispatch } = useStoreContext()
   const field = state.selectedField!
 
@@ -99,7 +101,7 @@ export const Layout: FC = () => {
   return (
     <>
       <div className="right-sidebar-group">
-        <label className="form-item-label">Layout</label>
+        <label className="form-item-label">{t('formBuilder.layout')}</label>
         <div className="mt-1">
           <LayoutSwitch value={field.layout?.align} onChange={handleChangeCallback} />
         </div>
@@ -107,7 +109,7 @@ export const Layout: FC = () => {
 
       {field.layout?.align !== FieldLayoutAlignEnum.INLINE && (
         <div className="right-sidebar-group">
-          <label className="form-item-label">Brightness</label>
+          <label className="form-item-label">{t('formBuilder.brightness')}</label>
           <div className="flex items-center mt-1">
             <Slider
               min={-100}

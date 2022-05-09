@@ -8,9 +8,11 @@ import { CheckIcon } from '@heroicons/react/solid'
 import { Select } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { IBasicProps } from './Basic'
 
 export const Rating: FC<IBasicProps> = ({ field }) => {
+  const { t } = useTranslation()
   const { dispatch } = useStoreContext()
 
   function valueRender(option: any) {
@@ -21,7 +23,7 @@ export const Rating: FC<IBasicProps> = ({ field }) => {
     return (
       <>
         {RATING_SHAPE_CONFIG[option.value]}
-        <span>{option.label}</span>
+        <span>{t(option.label)}</span>
       </>
     )
   }
@@ -30,7 +32,7 @@ export const Rating: FC<IBasicProps> = ({ field }) => {
     return (
       <>
         {RATING_SHAPE_CONFIG[option.value]}
-        <span className="select-option-text">{option.label}</span>
+        <span className="select-option-text">{t(option.label)}</span>
         {isActive && (
           <span className="select-option-checkmark">
             <CheckIcon />

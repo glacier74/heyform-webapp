@@ -3,6 +3,7 @@ import { isEmpty } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import './style.scss'
 
 interface NumberRangeValue {
@@ -26,15 +27,15 @@ export interface NumberRangeProps extends Omit<IComponentProps, 'onChange'> {
 const RANGE_OPTIONS = [
   {
     value: NumberRangeType.UNLIMITED,
-    label: 'Unlimited'
+    label: 'formBuilder.unlimited'
   },
   {
     value: NumberRangeType.EXACT_NUMBER,
-    label: 'Exact number'
+    label: 'formBuilder.exactNumber'
   },
   {
     value: NumberRangeType.RANGE,
-    label: 'Range'
+    label: 'formBuilder.range'
   }
 ]
 
@@ -58,6 +59,9 @@ export const NumberRange: FC<NumberRangeProps> = ({
   onChange,
   ...restProps
 }) => {
+  const { t } = useTranslation()
+  const options = RANGE_OPTIONS.map(o => ({ ...o, label: t(o.label) }))
+
   const [selectValue, setSelectValue] = useState(getSelectValue(value))
   const [minValue, setMinValue] = useState(value?.min ?? min)
 
@@ -105,7 +109,7 @@ export const NumberRange: FC<NumberRangeProps> = ({
     >
       <Select
         popupClassName="number-range-popup"
-        options={RANGE_OPTIONS}
+        options={options}
         value={selectValue}
         onChange={handleSelectChange}
       />

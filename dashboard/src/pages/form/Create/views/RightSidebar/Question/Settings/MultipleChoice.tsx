@@ -2,9 +2,11 @@ import { NumberRange, SwitchField } from '@/components'
 import { useStoreContext } from '@/pages/form/Create/store'
 import type { FC } from 'react'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { IBasicProps } from './Basic'
 
 export const MultipleChoice: FC<IBasicProps> = ({ field }) => {
+  const { t } = useTranslation()
   const { dispatch } = useStoreContext()
 
   function handleAllowMultiple(allowMultiple: boolean) {
@@ -60,7 +62,7 @@ export const MultipleChoice: FC<IBasicProps> = ({ field }) => {
     <>
       <div className="right-sidebar-settings-item">
         <SwitchField
-          label="Multiple selection"
+          label={t('formBuilder.multipleSelection')}
           value={field.properties?.allowMultiple}
           onChange={handleAllowMultipleCallback}
         />
@@ -76,7 +78,7 @@ export const MultipleChoice: FC<IBasicProps> = ({ field }) => {
       </div>
       <div className="right-sidebar-settings-item">
         <SwitchField
-          label="Randomize"
+          label={t('formBuilder.randomize')}
           value={field.properties?.randomize}
           onChange={handleRandomizeCallback}
         />

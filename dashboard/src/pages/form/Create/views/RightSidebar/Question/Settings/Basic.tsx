@@ -3,12 +3,14 @@ import { useStoreContext } from '@/pages/form/Create/store'
 import type { FormField } from '@heyforms/shared-types-enums'
 import type { FC } from 'react'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export interface IBasicProps {
   field: FormField
 }
 
 export const Basic: FC<IBasicProps> = ({ field }) => {
+  const { t } = useTranslation()
   const { dispatch } = useStoreContext()
 
   function handleChange(required: boolean) {
@@ -31,7 +33,7 @@ export const Basic: FC<IBasicProps> = ({ field }) => {
   return (
     <div className="right-sidebar-settings-item">
       <SwitchField
-        label="Required"
+        label={t('formBuilder.required')}
         value={field.validations?.required}
         onChange={handleChangeCallback}
       />

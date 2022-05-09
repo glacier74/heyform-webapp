@@ -3,11 +3,13 @@ import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import type { FC } from 'react'
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FlagIcon } from '../FlagIcon'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
 export const PhoneNumber: FC<BlockProps> = ({ field, ...restProps }) => {
+  const { t } = useTranslation()
   const placeholder = useMemo(() => {
     return COUNTRIES.find(c => c.value === field.properties?.defaultCountryCode)?.example
   }, [field.properties?.defaultCountryCode])
@@ -21,7 +23,7 @@ export const PhoneNumber: FC<BlockProps> = ({ field, ...restProps }) => {
         </div>
         <input type="text" className="builder-input" placeholder={placeholder} disabled={true} />
       </div>
-      <FakeSubmit text="Next" icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next')} icon={<ChevronRightIcon />} />
     </Block>
   )
 }

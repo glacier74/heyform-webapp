@@ -8,6 +8,7 @@ import { isValid } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { startTransition, useCallback, useLayoutEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useStoreContext } from '../../store'
 import { getFieldFromKind } from '../../utils'
 import type { FieldConfig, FieldGroup } from '../FieldConfig'
@@ -31,6 +32,7 @@ const InsertFieldItem: FC<InsertFieldItemProps> = ({
   isThankYouDisabled,
   onClick
 }) => {
+  const { t } = useTranslation()
   const isDisabled =
     (config.kind === FieldKindEnum.WELCOME && isWelcomeDisabled) ||
     (config.kind === FieldKindEnum.THANK_YOU && isThankYouDisabled)
@@ -52,7 +54,7 @@ const InsertFieldItem: FC<InsertFieldItemProps> = ({
       onClick={handleClick}
     >
       <FieldIcon className="insert-field-item-icon mr-3 flex-shrink-0" kind={config.kind} />
-      {config.label}
+      {t(config.label)}
     </div>
   )
 
@@ -79,6 +81,7 @@ function filterGroups(keyword?: string): FieldGroup[] {
 }
 
 const InsertFieldMenu: FC<InsertFieldMenuProps> = ({ onClick }) => {
+  const { t } = useTranslation()
   const { state } = useStoreContext()
   const isWelcomeDisabled = useMemo(
     () => state.fields.some(f => f.kind === FieldKindEnum.WELCOME),
@@ -123,15 +126,15 @@ const InsertFieldMenu: FC<InsertFieldMenuProps> = ({ onClick }) => {
     <div className="insert-field-menu flex flex-col rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
       <Input.Search
         className="insert-field-search px-4 border-gray-200 outline-none focus:outline-none rounded-none border-t-0 border-r-0 border-l-0"
-        placeholder="Find a question type"
+        placeholder={t('formBuilder.searchFieldType')}
         onChange={handleKeywordChangeCallback}
       />
-      <div className="px-4 py-5">All question types</div>
+      <div className="px-4 py-5">{t('formBuilder.allFieldTypes')}</div>
       <div className="insert-field-groups relative scrollbar">
         {groups.map(group => (
           <div key={group.name} className="insert-field-group absolute w-1/4">
             <div className="insert-field-group-title mb-1 pl-4 text-sm font-medium text-gray-500">
-              {group.name}
+              {t(group.name)}
             </div>
             <div className="insert-field-list" key={group.name}>
               {FIELD_CONFIGS.filter(config => group.list.includes(config.kind)).map(config => (
