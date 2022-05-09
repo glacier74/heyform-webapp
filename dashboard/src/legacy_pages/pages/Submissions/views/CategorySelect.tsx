@@ -1,3 +1,4 @@
+import { ChevronDownIcon } from '@heroicons/react/outline'
 import { SubmissionCategoryEnum } from '@heyforms/shared-types-enums'
 import { Dropdown } from '@heyforms/ui'
 import { Menu } from '@heyui/component'
@@ -12,8 +13,8 @@ interface CategorySelectProps {
 
 const CATEGORY_MAPS = {
   [SubmissionCategoryEnum.INBOX]: 'submissions.Inbox',
-  [SubmissionCategoryEnum.ARCHIVE]: 'Archive',
-  [SubmissionCategoryEnum.STARRED]: 'Starred',
+  [SubmissionCategoryEnum.ARCHIVE]: 'submissions.Archive',
+  [SubmissionCategoryEnum.STARRED]: 'submissions.Starred',
   [SubmissionCategoryEnum.SPAM]: 'submissions.Spam'
 }
 
@@ -46,7 +47,10 @@ export const CategorySelect: FC<CategorySelectProps> = ({ category: rowCategory,
 
   return (
     <StyledDropdown overlay={DropdownOverlay}>
-      <Text>{t(CATEGORY_MAPS[category])}</Text>
+      <div className="flex items-center">
+        <Text>{t(CATEGORY_MAPS[category])}</Text>
+        <ChevronDownIcon className="ml-2 w-4 h-4" />
+      </div>
     </StyledDropdown>
   )
 }

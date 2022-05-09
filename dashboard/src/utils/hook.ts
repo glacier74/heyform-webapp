@@ -14,13 +14,14 @@ export interface ParamsType {
 }
 
 export function useParam(): ParamsType {
-  const { workspaceId, projectId, formId, templateId, inviteCode } = useParams<IMapType<string>>()
+  const { workspaceId, projectId, formId, templateId, inviteCode, category } = useParams<IMapType<string>>()
 
   return {
     workspaceId,
     projectId,
     formId,
     templateId,
+    category,
     inviteCode
   }
 }

@@ -472,13 +472,13 @@ export default {
     }
   },
   form: {
-    Create: 'Create',
-    Connect: 'Connect',
-    Share: 'Share',
-    Results: 'Results',
-    Settings: 'Settings',
-    Published: 'Published',
-    Publish: 'Publish'
+    create: 'Create',
+    connect: 'Connect',
+    share: 'Share',
+    results: 'Results',
+    settings: 'Settings',
+    published: 'Published',
+    publish: 'Publish'
   },
   share: {
     embed: 'Embed in a web page',
