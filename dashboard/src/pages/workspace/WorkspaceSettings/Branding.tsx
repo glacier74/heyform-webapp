@@ -54,11 +54,10 @@ export const Branding: FC = observer(() => {
         <div className="mb-1 block text-sm font-medium text-gray-700">
           {t('workspace.settings.id')}
         </div>
-        <Input
-          value={workspaceStore.workspace?.id}
-          trailing={<CopyButton text={workspaceStore.workspace?.id} />}
-          disabled={true}
-        />
+        <div className="flex items-center">
+          <span className="text-sm">{workspaceStore.workspace?.id}</span>
+          <CopyButton className="ml-2 text-blue-600" text={workspaceStore.workspace?.id} />
+        </div>
       </div>
 
       <Form.Custom
