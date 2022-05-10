@@ -3,10 +3,10 @@ import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { TemplateModal } from '@/legacy_pages/models'
 import { TemplateService } from '@/service'
 import { useParam } from '@/utils'
-import { Renderer } from '@heyforms/form-component'
+import { getTheme, insertThemeStyle, insertWebFont, Renderer } from '@heyforms/form-component'
 import { Button, message } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -48,6 +48,13 @@ const TemplatePreview = observer(() => {
   function handleNavigateBack() {
     navigate(`/workspace/${workspaceId}/project/${projectId}/templates`)
   }
+
+  useEffect(() => {
+    const theme = getTheme(template?.themeSettings?.theme)
+
+    insertWebFont(theme.fontFamily)
+    insertThemeStyle(theme)
+  }, [templateId])
 
   return (
     <Container
