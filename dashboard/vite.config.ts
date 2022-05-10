@@ -10,9 +10,10 @@ import fontOptimizationPlugin from 'vite-plugin-font-optimization'
 
 export default ({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd())
+  const base = env.VITE_CDN_PREFIX_URI || '/'
 
   return {
-    base: env.VITE_CDN_PREFIX_URI || '/',
+    base,
     plugins: [
       reactRefresh(),
       legacy({
@@ -50,7 +51,7 @@ export default ({ mode }: ConfigEnv) => {
         globIgnores: ['**/*.map', '**/*.webmanifest', '**/index.html', '**/sw.js'],
         mode: 'production',
         modifyURLPrefix: {
-          'static/': env.VITE_CDN_PREFIX_URI + 'static/'
+          'static/': base + 'static/'
         }
       })
     ],
