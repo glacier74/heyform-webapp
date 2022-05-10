@@ -7,7 +7,10 @@
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
 import { MapFields } from '@/legacy_pages/pages/Integration/views/Settings/views/MapFields'
-import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import {
+  SettingsProps,
+  SettingsWrapper
+} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { ThirdPartySignIn } from '@/legacy_pages/pages/Integration/views/Settings/views/ThirdPartySignIn'
 import { useAsyncEffect, useStore } from '@/legacy_pages/utils'
 import { IntegrationService } from '@/service'
@@ -26,7 +29,7 @@ export const Monday: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const [loading, setLoading] = useState(false)
   const [rightFields, setRightFields] = useState<string[]>([])
   const formStore = useStore('formStore')
-  const formFields = formStore.current?.fields || []
+  const formFields = formStore.fields
   const { t } = useTranslation()
 
   async function fetchBoards() {
@@ -74,7 +77,7 @@ export const Monday: FC<SettingsProps> = observer(({ app, onFinish }) => {
       }}
       onValuesChange={handleValuesChange}
     >
-      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
+      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest} />
       <FormItem name="board" label={t('integration.Board')} rules={[{ required: true }]}>
         <CustomSelect
           deps={[authorized]}
@@ -94,7 +97,7 @@ export const Monday: FC<SettingsProps> = observer(({ app, onFinish }) => {
         />
       </FormItem>
       <FormItem name="itemName" label={t('integration.ItemName')} rules={[{ required: true }]}>
-        <Select options={formFields as any} labelKey="title"/>
+        <Select options={formFields as any} labelKey="title" />
       </FormItem>
       <MapFields
         name="fields"

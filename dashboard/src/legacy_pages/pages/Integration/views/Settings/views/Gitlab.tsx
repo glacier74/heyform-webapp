@@ -6,7 +6,10 @@
  **/
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
-import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import {
+  SettingsProps,
+  SettingsWrapper
+} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { useStore } from '@/legacy_pages/utils'
 import { IntegrationService } from '@/service'
 import { useParam } from '@/utils'
@@ -19,7 +22,7 @@ import { useTranslation } from 'react-i18next'
 export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const { formId } = useParam()
   const formStore = useStore('formStore')
-  const fields = formStore.current?.fields || []
+  const fields = formStore.fields
 
   const [server, setServer] = useState<string>()
   const [token, setToken] = useState<string>()
@@ -72,14 +75,10 @@ export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
       <FormItem
         name="server"
         label={t('integration.ServerURL')}
-        description={
-          <>
-            {t('integration.gitlabURL')}
-          </>
-        }
+        description={<>{t('integration.gitlabURL')}</>}
         rules={[{ type: 'url', required: true }]}
       >
-        <Input/>
+        <Input />
       </FormItem>
       <FormItem
         name="token"
@@ -95,7 +94,7 @@ export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
         }
         rules={[{ required: true }]}
       >
-        <Input/>
+        <Input />
       </FormItem>
       <FormItem
         name="group"
@@ -148,10 +147,10 @@ export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
         />
       </FormItem>
       <FormItem name="title" label={t('integration.issueTitle')} rules={[{ required: true }]}>
-        <Select options={fields as any} labelKey="title" tipText="Select a question"/>
+        <Select options={fields as any} labelKey="title" tipText="Select a question" />
       </FormItem>
       <FormItem name="body" label={t('integration.issueDescription')}>
-        <Select options={fields as any} labelKey="title" tipText="Select a question"/>
+        <Select options={fields as any} labelKey="title" tipText="Select a question" />
       </FormItem>
     </SettingsWrapper>
   )

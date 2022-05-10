@@ -1,6 +1,8 @@
 import type { FormModel } from '@/legacy_pages/models'
+import { htmlUtils } from '@heyforms/answer-utils'
 import { getTheme } from '@heyforms/form-component'
 import { FormThemeV3 } from '@heyforms/shared-types-enums'
+import { isArray, isValidArray } from '@hpnp/utils/helper'
 import { makeAutoObservable } from 'mobx'
 
 export class FormStore {
@@ -16,6 +18,16 @@ export class FormStore {
 
   get theme() {
     return getTheme(this.current?.themeSettings?.theme)
+  }
+
+  get fields() {
+    if (isValidArray(this.current?.fields)) {
+      return this.current!.fields!.map(f => {
+        f.title = isArray(f.title) ? htmlUtils.plain(htmlUtils.serialize(f.title as any)) : f.title
+        return f
+      })
+    }
+    return []
   }
 
   setCurrent(form?: FormModel) {

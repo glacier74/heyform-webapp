@@ -6,7 +6,10 @@
  **/
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
-import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import {
+  SettingsProps,
+  SettingsWrapper
+} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { ThirdPartySignIn } from '@/legacy_pages/pages/Integration/views/Settings/views/ThirdPartySignIn'
 import { useStore } from '@/legacy_pages/utils'
 import { IntegrationService } from '@/service'
@@ -21,7 +24,7 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const { formId } = useParam()
   const appId = app!.id
   const formStore = useStore('formStore')
-  const fields = formStore.current?.fields || []
+  const fields = formStore.fields
   const { t } = useTranslation()
 
   const [authorized, setAuthorized] = useState(false)
@@ -74,13 +77,11 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
 
   return (
     <SettingsWrapper app={app} onFinish={onFinish} onValuesChange={handleValuesChange}>
-      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
+      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest} />
       <FormItem
         name="organization"
         label={t('integration.SelectOrganization')}
-        description={
-          <>{t('integration.githubConnect')}</>
-        }
+        description={<>{t('integration.githubConnect')}</>}
         rules={[{ required: true }]}
       >
         <CustomSelect
@@ -92,7 +93,11 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={!authorized}
         />
       </FormItem>
-      <FormItem name="repository" label={t('integration.selectRepository')} rules={[{ required: true }]}>
+      <FormItem
+        name="repository"
+        label={t('integration.selectRepository')}
+        rules={[{ required: true }]}
+      >
         <CustomSelect
           deps={[organization?.login]}
           fetch={fetchRepositories}
@@ -135,10 +140,10 @@ export const Github: FC<SettingsProps> = observer(({ app, onFinish }) => {
         />
       </FormItem>
       <FormItem name="title" label={t('integration.issueTitle')} rules={[{ required: true }]}>
-        <Select options={fields as any} labelKey="title" tipText="Select a question"/>
+        <Select options={fields as any} labelKey="title" tipText="Select a question" />
       </FormItem>
       <FormItem name="body" label={t('integration.issueDescription')}>
-        <Select options={fields as any} labelKey="title" tipText="Select a question"/>
+        <Select options={fields as any} labelKey="title" tipText="Select a question" />
       </FormItem>
     </SettingsWrapper>
   )

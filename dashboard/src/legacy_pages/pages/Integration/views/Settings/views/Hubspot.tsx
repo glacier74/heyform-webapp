@@ -5,7 +5,10 @@
  * @date: 2021-06-29 11:18
  **/
 
-import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import {
+  SettingsProps,
+  SettingsWrapper
+} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { ThirdPartySignIn } from '@/legacy_pages/pages/Integration/views/Settings/views/ThirdPartySignIn'
 import { useStore } from '@/legacy_pages/utils'
 import { IntegrationService } from '@/service'
@@ -20,7 +23,7 @@ export const Hubspot: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const appId = app!.id
   const [authorized, setAuthorized] = useState(false)
   const formStore = useStore('formStore')
-  const formFields = formStore.current?.fields || []
+  const formFields = formStore.fields
   const { t } = useTranslation()
 
   async function handleOAuthRequest(code: string) {
@@ -30,8 +33,12 @@ export const Hubspot: FC<SettingsProps> = observer(({ app, onFinish }) => {
 
   return (
     <SettingsWrapper app={app} onFinish={onFinish}>
-      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
-      <FormItem name="fullname" label={t('audiences.contact.addContact.fullName')} rules={[{ required: true }]}>
+      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest} />
+      <FormItem
+        name="fullname"
+        label={t('audiences.contact.addContact.fullName')}
+        rules={[{ required: true }]}
+      >
         <Select
           options={formFields as any}
           labelKey="title"

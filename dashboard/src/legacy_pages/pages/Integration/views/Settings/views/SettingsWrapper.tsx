@@ -30,12 +30,12 @@ interface SettingsWrapperProps extends SettingsProps {
 }
 
 export const SettingsWrapper: FC<SettingsWrapperProps> = ({
-                                                            app,
-                                                            initialValues,
-                                                            onValuesChange,
-                                                            onFinish,
-                                                            children = []
-                                                          }) => {
+  app,
+  initialValues,
+  onValuesChange,
+  onFinish,
+  children = []
+}) => {
   const { t } = useTranslation()
   const { formId } = useParam()
   const integrationStore = useStore('integrationStore')
@@ -76,10 +76,10 @@ export const SettingsWrapper: FC<SettingsWrapperProps> = ({
 
   return (
     <Container>
-      <Summary app={app}/>
+      <Summary app={app} />
       <Form initialValues={initialValues} onValuesChange={onValuesChange} onFinish={handleFinish}>
         {children}
-        {error && <FormError error={error}/>}
+        {error && <FormError error={error} />}
         <Button htmlType="submit" type="primary" block={true} loading={loading}>
           {t('integration.ConnectWith')} {app?.name}
         </Button>

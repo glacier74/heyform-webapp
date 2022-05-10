@@ -19,7 +19,7 @@ import { SettingsProps, SettingsWrapper } from './SettingsWrapper'
 export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const { formId } = useParam()
   const formStore = useStore('formStore')
-  const formFields = formStore.current?.fields || []
+  const formFields = formStore.fields
 
   const [systemURL, setSystemURL] = useState<string | null>()
   const [token, setToken] = useState<string | null>()
@@ -76,14 +76,10 @@ export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
       <FormItem
         name="systemURL"
         label={t('integration.SystemURL')}
-        description={
-          <>
-            {t('integration.URLText')}
-          </>
-        }
+        description={<>{t('integration.URLText')}</>}
         rules={[{ required: true }]}
       >
-        <Input/>
+        <Input />
       </FormItem>
       <FormItem
         name="token"
@@ -91,7 +87,7 @@ export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
         description={
           <>
             {t('integration.APIText')}
-            <br/>
+            <br />
             <a
               href="https://docs.supportpal.com/current/API+Tokens#CreatingOrUpdating"
               target="_blank"
@@ -104,19 +100,35 @@ export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
         }
         rules={[{ required: true }]}
       >
-        <Input/>
+        <Input />
       </FormItem>
       <FormItem name="userName" label={t('integration.UserName')}>
-        <Select options={formFields as any} labelKey="title" tipText={t('integration.selectQuestion')}/>
+        <Select
+          options={formFields as any}
+          labelKey="title"
+          tipText={t('integration.selectQuestion')}
+        />
       </FormItem>
       <FormItem name="email" label={t('integration.UserEmail')}>
-        <Select options={formFields as any} labelKey="title" tipText={t('integration.selectQuestion')}/>
+        <Select
+          options={formFields as any}
+          labelKey="title"
+          tipText={t('integration.selectQuestion')}
+        />
       </FormItem>
       <FormItem name="subject" label={t('integration.Subject')} rules={[{ required: true }]}>
-        <Select options={formFields as any} labelKey="title" tipText={t('integration.selectQuestion')}/>
+        <Select
+          options={formFields as any}
+          labelKey="title"
+          tipText={t('integration.selectQuestion')}
+        />
       </FormItem>
       <FormItem name="text" label={t('integration.Text')} rules={[{ required: true }]}>
-        <Select options={formFields as any} labelKey="title" tipText={t('integration.selectQuestion')}/>
+        <Select
+          options={formFields as any}
+          labelKey="title"
+          tipText={t('integration.selectQuestion')}
+        />
       </FormItem>
       <FormItem name="department" label={t('integration.Department')} rules={[{ required: true }]}>
         <CustomSelect

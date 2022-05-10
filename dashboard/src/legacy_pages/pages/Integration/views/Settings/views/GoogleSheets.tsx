@@ -7,7 +7,10 @@
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
 import { MapFields } from '@/legacy_pages/pages/Integration/views/Settings/views/MapFields'
-import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import {
+  SettingsProps,
+  SettingsWrapper
+} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { ThirdPartySignIn } from '@/legacy_pages/pages/Integration/views/Settings/views/ThirdPartySignIn'
 import { useAsyncEffect, useStore } from '@/legacy_pages/utils'
 import { IntegrationService } from '@/service'
@@ -26,7 +29,7 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const [worksheet, setWorksheet] = useState<string | undefined>()
   const [loading, setLoading] = useState(false)
   const formStore = useStore('formStore')
-  const formFields = formStore.current?.fields || []
+  const formFields = formStore.fields
   const appId = app!.id
   const [sheetFields, setSheetFields] = useState<string[]>([])
   const { t } = useTranslation()
@@ -102,14 +105,16 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
       }}
       onValuesChange={handleValuesChange}
     >
-      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
+      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest} />
       <FormItem
         name="drive"
         label={t('integration.selectDrive')}
         description={
           <>
             {t('integration.selectGoogleDrive')}{' '}
-            <a href="https://support.google.com/a/users/answer/9310351">{t('integration.GoogleSharedDrives')}</a>{' '}
+            <a href="https://support.google.com/a/users/answer/9310351">
+              {t('integration.GoogleSharedDrives')}
+            </a>{' '}
             {t('integration.with')}
           </>
         }
@@ -123,7 +128,11 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={!authorized}
         />
       </FormItem>
-      <FormItem name="spreadsheet" label={t('integration.SelectSpreadsheet')} rules={[{ required: true }]}>
+      <FormItem
+        name="spreadsheet"
+        label={t('integration.SelectSpreadsheet')}
+        rules={[{ required: true }]}
+      >
         <CustomSelect
           deps={[drive]}
           fetch={fetchSheets}
@@ -132,7 +141,11 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
           disabled={isNil(drive)}
         />
       </FormItem>
-      <FormItem name="worksheet" label={t('integration.SelectWorksheet')} rules={[{ required: true }]}>
+      <FormItem
+        name="worksheet"
+        label={t('integration.SelectWorksheet')}
+        rules={[{ required: true }]}
+      >
         <CustomSelect
           deps={[spreadsheet]}
           fetch={fetchWorksheets}
