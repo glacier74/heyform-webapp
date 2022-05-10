@@ -1,12 +1,12 @@
 import htmlInjectionPlugin from '@heyforms/vite-plugin-html-injection'
-import uploadPlugin, { UploadZone } from '@heyforms/vite-plugin-upload'
 import legacy from '@vitejs/plugin-legacy'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import { resolve } from 'path'
-// import externalGlobals from 'rollup-plugin-external-globals'
 import { injectManifest } from 'rollup-plugin-workbox'
 import { ConfigEnv, loadEnv } from 'vite'
 import fontOptimizationPlugin from 'vite-plugin-font-optimization'
+// import uploadPlugin, { UploadZone } from '@heyforms/vite-plugin-upload'
+// import externalGlobals from 'rollup-plugin-external-globals'
 
 export default ({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd())
@@ -24,24 +24,24 @@ export default ({ mode }: ConfigEnv) => {
       fontOptimizationPlugin({
         apply: 'build'
       }),
-      uploadPlugin({
-        envFile: '.qiniurc',
-        prefix: 'webapp/',
-        base: 'dist/',
-        glob: 'dist/**',
-        globIgnore: [
-          'dist/**/*.map',
-          'dist/**/*.html',
-          'dist/asset-manifest.json',
-          'dist/static/manifest.webmanifest',
-          'dist/sw.js'
-        ],
-        bucket: 'heyform',
-        overrides: true,
-        parallelCount: 2,
-        zone: UploadZone.na0,
-        debug: true
-      }),
+      // uploadPlugin({
+      //   envFile: '.qiniurc',
+      //   prefix: 'webapp/',
+      //   base: 'dist/',
+      //   glob: 'dist/**',
+      //   globIgnore: [
+      //     'dist/**/*.map',
+      //     'dist/**/*.html',
+      //     'dist/asset-manifest.json',
+      //     'dist/static/manifest.webmanifest',
+      //     'dist/sw.js'
+      //   ],
+      //   bucket: 'heyform',
+      //   overrides: true,
+      //   parallelCount: 2,
+      //   zone: UploadZone.na0,
+      //   debug: true
+      // }),
       // @ts-ignore
       injectManifest({
         swSrc: 'src/sw.js',
