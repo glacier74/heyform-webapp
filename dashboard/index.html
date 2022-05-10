@@ -20,69 +20,14 @@
   <meta content="HeyForm" name="apple-mobile-web-app-title">
   <meta content="telephone=no,email=no" name="format-detection">
   <meta content="on" http-equiv="x-dns-prefetch-control">
-  <link href="{VITE_HOMEPAGE}/static/manifest.webmanifest" rel="manifest" />
+  <link href="/static/initial.css" rel="stylesheet">
+  <link href="/static/manifest.webmanifest" rel="manifest"/>
   <link
     href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/4.1.5/css/flag-icons.min.css" rel="stylesheet"/>
   <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.0.0/umd/react.production.min.js"></script>-->
   <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.0.0/umd/react-dom.production.min.js"></script>-->
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-
-    #root:not(:empty) + #loading {
-      display: none;
-    }
-
-    @-webkit-keyframes loading-spin {
-      to {
-        -webkit-transform: rotate(1turn);
-        transform: rotate(1turn);
-      }
-    }
-
-    @keyframes loading-spin {
-      to {
-        transform: rotate(1turn);
-      }
-    }
-
-    #loading {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-      flex-direction: column;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    #loading .loading-icon {
-      width: 1.25rem;
-      height: 1.25rem;
-      color: #0252D7;
-      -webkit-animation: loading-spin 1s linear infinite;
-      animation: loading-spin 1s linear infinite;
-    }
-
-    #loading .loading-icon circle {
-      opacity: 0.25;
-    }
-
-    #loading .loading-icon path {
-      opacity: 0.75;
-    }
-  </style>
 </head>
 <body>
 <div id="root"></div>
