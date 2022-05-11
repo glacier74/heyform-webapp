@@ -24,14 +24,32 @@ export const SIGN_UP_GQL = gql`
   }
 `
 
+export const SIGN_UP_CODE_GQL = gql`
+  query signUpCode($input: SignUpCodeInput!) {
+    signUpCode(input: $input)
+  }
+`
+
 export const SEND_RESET_EMAIL_GQL = gql`
   mutation sendResetPasswordEmail($input: SendResetPasswordEmailInput!) {
     sendResetPasswordEmail(input: $input)
   }
 `
 
+export const RESET_PASSWORD_CODE_GQL = gql`
+  query resetPasswordCode($input: SignUpCodeInput!) {
+    resetPasswordCode(input: $input)
+  }
+`
+
 export const RESET_PASSWORD_GQL = gql`
   mutation resetPassword($input: ResetPasswordInput!) {
+    resetPassword(input: $input)
+  }
+`
+
+export const RESET_PASSWORD_WIDTH_PHONE_NUMBER_GQL = gql`
+  mutation resetPassword($input: SignUpInput!) {
     resetPassword(input: $input)
   }
 `

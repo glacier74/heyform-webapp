@@ -80,7 +80,7 @@ export const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) =>
               }
             ]}
           >
-            <Input type="tel" trailing={MemoMobilePhoneCode} />
+            <Input type="tel" />
           </Form.Item>
 
           <Form.Item
@@ -88,7 +88,7 @@ export const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) =>
             label={t('login.Code')}
             rules={[{ required: true, message: t('login.CodeRequired') }]}
           >
-            <Input />
+            <Input trailing={MemoMobilePhoneCode} />
           </Form.Item>
         </Form.Custom>
       </div>

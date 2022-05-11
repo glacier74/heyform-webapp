@@ -1,11 +1,10 @@
-import { LogoIcon, MobilePhoneCode } from '@/components'
+import { LogoIcon, RedirectUriLink } from '@/components'
 import { useQuery } from '@/legacy_pages/utils'
 import { AuthService } from '@/service'
 import { isPhoneNumber, useRouter } from '@/utils'
-import { Form, Input, useForm } from '@heyforms/ui'
+import { Checkbox, Form, Input, useForm } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
-import { useCallback, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import './style.scss'
 import { ThirdPartyLogin } from './views/ThirdPartyLogin'
 
@@ -13,49 +12,29 @@ const Login = () => {
   const router = useRouter()
   const { t } = useTranslation()
   const [form] = useForm()
-  const [phoneNumber, setPhoneNumber] = useState<string>()
 
   const { redirect_uri } = useQuery()
   const nextURL = isValid(redirect_uri) ? redirect_uri : '/'
 
   async function handleFinish(values: any) {
-    await AuthService.loginWithPhoneNumber(values.phoneNumber, values.code)
+    await AuthService.loginWithPhoneNumber(values)
     router.redirect(nextURL)
   }
-
-  function handleValuesChange(_: any, values: any) {
-    setPhoneNumber(values.phoneNumber)
-  }
-
-  async function handleSendCode(data: any) {
-    await AuthService.loginCode({
-      ...data,
-      phoneNumber
-    })
-  }
-
-  async function handleClick() {
-    try {
-      await form.validateFields(['phoneNumber'])
-    } catch (err) {
-      return false
-    }
-
-    return true
-  }
-
-  const handleSendCodeCallback = useCallback(handleSendCode, [phoneNumber])
-  const handleClickCallback = useCallback(handleClick, [])
-
-  const MemoMobilePhoneCode = (
-    <MobilePhoneCode request={handleSendCodeCallback} onClick={handleClickCallback} />
-  )
 
   return (
     <div>
       <div>
         <LogoIcon className="h-8 w-auto" />
         <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('login.signIn')}</h2>
+        <p className="mt-2 text-sm text-gray-600">
+          {t('login.or')} {''}
+          <RedirectUriLink
+            href="/sign-up"
+            className="font-medium text-blue-600 hover:text-blue-500"
+          >
+            {t('login.startFree')}
+          </RedirectUriLink>
+        </p>
       </div>
 
       <div className="mt-8">
@@ -86,7 +65,6 @@ const Login = () => {
               block: true
             }}
             request={handleFinish}
-            onValuesChange={handleValuesChange}
           >
             <Form.Item
               name="phoneNumber"
@@ -103,39 +81,30 @@ const Login = () => {
                 }
               ]}
             >
-              <Input type="tel" trailing={MemoMobilePhoneCode} />
+              <Input type="tel" />
             </Form.Item>
 
             <Form.Item
-              name="code"
-              label={t('login.Code')}
-              rules={[{ required: true, message: t('login.CodeRequired') }]}
+              name="password"
+              label={t('login.Password')}
+              rules={[{ required: true, message: t('login.PasswordRequired') }]}
             >
-              <Input />
+              <Input.Password />
             </Form.Item>
 
-            <div className="mt-6 mb-3">
-              <p className="text-sm text-gray-500">
-                <Trans i18nKey="login.termsPrivacy">
-                  By signing in, you agree to our{' '}
-                  <a
-                    href="https://community.heyform.net/t/terms-conditions/33"
-                    className="font-medium text-gray-700 underline"
-                    target="_blank"
-                  >
-                    Terms of Service
-                  </a>{' '}
-                  and{' '}
-                  <a
-                    href="https://community.heyform.net/t/privacy-policy/34"
-                    className="font-medium text-gray-700 underline"
-                    target="_blank"
-                  >
-                    Privacy Policy
-                  </a>
-                  .
-                </Trans>
-              </p>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <Checkbox>{t('login.rememberMe')}</Checkbox>
+              </div>
+
+              <div className="text-sm">
+                <RedirectUriLink
+                  href="/forgot-password"
+                  className="font-medium text-blue-600 hover:text-blue-500"
+                >
+                  {t('login.forgotPassword')}
+                </RedirectUriLink>
+              </div>
             </div>
           </Form.Custom>
         </div>

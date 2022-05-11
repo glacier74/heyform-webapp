@@ -10,11 +10,11 @@ export default {
     signWith: '使用以下方式登录',
     continueWith: '或者其他方式登录',
     rememberMe: '记住我',
-    forgotPassword: '忘记了密码?',
+    forgotPassword: '忘记密码?',
     or: '或者',
     Email: '电子邮件地址',
     Password: '密码',
-    button: '登录/注册',
+    button: '登录',
     Google: '使用 Google 登录',
     Apple: '使用 Apple 登录',
     Code: '验证码',
@@ -23,7 +23,7 @@ export default {
     PhoneNumber: '手机号码',
     CodeSendSuccess: '验证码发送成功',
     bindPhoneNumber: '绑定手机号',
-    signInAndBindPhoneNumber: '登录并绑定手机号',
+    signInAndBindPhoneNumber: '授权并登录',
     termsPrivacy: '登录即代表您同意我们的<2>服务条款</2>和<6>隐私政策</6>。',
     EmailRequired: '无效的邮箱地址',
     PasswordRequired: '无效的密码',
@@ -33,20 +33,23 @@ export default {
   auth: {
     signup: {
       signUp: '创建帐户',
+      description: '开始为期14天的简约表单免费试用',
       signIn: '使用现有帐户登录',
       signWith: '使用以下方式注册',
       continueWith: '或者其他方式注册',
-      nameCant: '名称不能为空',
+      Name: '姓名',
+      nameCant: '姓名不能为空',
       invalidEmail: '无效的电子邮件地址',
       PasswordViolation: '您的密码必须至少有8个字符，并且至少有1个大写字母、1个小写字母和1个数字。',
       agreeTo: '通过注册，视为您同意我们的',
       terms: '服务条款',
       privacy: '隐私策略',
       and: '和',
-      Email: '电子邮件地址'
+      Email: '电子邮件地址',
+      button: '开始免费试用'
     },
     forgotPassword: {
-      forgot: '忘记了密码?',
+      forgot: '忘记密码?',
       sendEmail: '我们将向您发送一封包含验证码的电子邮件，以重置您的密码。',
       link: '返回以登录',
       continue: '继续'
@@ -57,7 +60,7 @@ export default {
       verificationCode: '验证码',
       invalidCode: '无效的验证码',
       newPassword: '新的密码',
-      repeatPassword: '重置密码',
+      repeatPassword: '重复密码',
       passwordViolation: '您的密码必须至少有8个字符，并且至少有1个大写字母、1个小写字母和1个数字。',
       passwordMismatch: '您的新密码和重复密码不匹配。'
     }
@@ -252,13 +255,13 @@ export default {
       up: '更新',
       id: '团队空间 ID',
       nameW: '团队空间名称',
-      removeBranding: '移除 HeyForm 品牌标识',
-      brandingExplain: '删除 HeyForm 表单页底部的品牌标识，让 HeyForm 更像是完全属于您的品牌。',
+      removeBranding: '移除 简约表单 品牌标识',
+      brandingExplain: '删除 简约表单 表单页底部的品牌标识，让 简约表单 更像是完全属于您的品牌。',
       learnMore: '在文档中了解有关删除品牌的更多信息',
       customDomain: '自定义域名',
       domainExplain:
-        '自定义域允许您在自己的非 HeyForm 域名（例如yourcustomain.com）上访问表单。HeyForm 支持自定义域中的所有顶级域。',
-      domainExplain2: '自定义域允许您使用自己的非 HeyForm 域名访问表单。',
+        '自定义域允许您在自己的非 简约表单 域名（例如yourcustomain.com）上访问表单。简约表单 支持自定义域中的所有顶级域。',
+      domainExplain2: '自定义域允许您使用自己的非 简约表单 域名访问表单。',
       domainLink: '了解有关自定义域的更多信息',
       domainChecking: '检查中',
       type: '类型',
@@ -303,7 +306,7 @@ export default {
     update: '更新',
     settings: {
       avatar: '头像',
-      avatarText: 'Gravatar 默认作为您的 HeyForm 头像，您可以在这里上传您的自定义头像。',
+      avatarText: 'Gravatar 默认作为您的 简约表单 头像，您可以在这里上传您的自定义头像。',
       deletedAccount: {
         sendEmail: '一封包含验证码的电子邮件已发送至',
         del: '删除帐户',
@@ -481,11 +484,11 @@ export default {
     embedWeb: [
       {
         title: '标准',
-        description: '将 HeyForm 作为您网站的一部分'
+        description: '将 简约表单 作为您网站的一部分'
       },
       {
         title: '弹出',
-        description: 'HeyForm 在屏幕中央弹出。'
+        description: '简约表单 在屏幕中央弹出。'
       },
       {
         title: '弹出窗口',
@@ -534,7 +537,7 @@ export default {
     manageForm: '管理您的表单设置',
     Extra: '额外的',
     subArchive: '提交存档',
-    archiveText: '如果您不希望 HeyForm 存储您的提交，请禁用提交存档。',
+    archiveText: '如果您不希望 简约表单 存储您的提交，请禁用提交存档。',
     timeLimit: '时间限制',
     Redirect: '完成时重定向',
     redirectText: '填写完您的表单后，将您的受访者带到另一个网页。',
@@ -598,7 +601,7 @@ export default {
     tableName: 'Table name',
     mapFields: 'Map fields',
     tableText3:
-      "Map HeyForm to Airtable fields. It's crucial to type the Airtable field names exactly as they appear in your table. If you change a field name on Airtable, please update it here too, otherwise the integration won't work as expected.",
+      "Map 简约表单 to Airtable fields. It's crucial to type the Airtable field names exactly as they appear in your table. If you change a field name on Airtable, please update it here too, otherwise the integration won't work as expected.",
     DropboxText:
       'Folder where to place file if you have added a "File Upload" component in your form.',
     select: 'Select Folder',
@@ -648,14 +651,14 @@ export default {
     SelectWorksheet: '选择表',
     MapFields: '映射字段',
     googleSheet:
-      '将 HeyForm 映射到 Google Sheets 字段。如果您在 Google Sheets 上更改了一个字段，请在这里进行更新，否则集成将无法按预期工作。',
-    leftPlaceholder: 'HeyForm 问题',
+      '将 简约表单 映射到 Google Sheets 字段。如果您在 Google Sheets 上更改了一个字段，请在这里进行更新，否则集成将无法按预期工作。',
+    leftPlaceholder: '简约表单 问题',
     rightPlaceholder: 'Google Sheets 字段',
-    leftTipText: '选择 HeyForm 问题',
+    leftTipText: '选择 简约表单 问题',
     rightTipText: '选择 Google Sheets 字段',
     ColumnValues: '列值 (可选的)',
     mondayText:
-      '将 HeyForm 映射到 Monday 列。如果您在 Monday 更改了一列，请也在这里更新，否则集成将无法按预期工作。',
+      '将 简约表单 映射到 Monday 列。如果您在 Monday 更改了一列，请也在这里更新，否则集成将无法按预期工作。',
     Board: '机构',
     SelectBoard: '选择一个机构',
     Group: '分组 (可选的)',
@@ -685,7 +688,7 @@ export default {
     Status: '状态',
     ChooseStatus: '选择状态',
     Authorization: '授权',
-    AuthorizationText: '首先，请授权 HeyForm 访问您的数据',
+    AuthorizationText: '首先，请授权 简约表单 访问您的数据',
     login: '登录到',
     loginGoogle: '登录 Google'
   },
@@ -693,7 +696,7 @@ export default {
     createForm: '创建一个新表单',
     importText: '导入您现有的表单并对其进行自定义。',
     ImportForm: '导入表单',
-    Text: 'HeyForm 会像爬虫一样从给定的网址中检测表单标签，一旦检测到表单标签，引擎将尝试解析组件并将其转换为 HeyForm 块。',
+    Text: '简约表单 会像爬虫一样从给定的网址中检测表单标签，一旦检测到表单标签，引擎将尝试解析组件并将其转换为 简约表单 块。',
     testText: '这仍然是一个测试版功能，我们不能保证它会 100% 有效。',
     Detect: '探测',
     formURL: '提供表单网址',
@@ -828,5 +831,5 @@ export default {
   next: '下一个',
   Yes: '是',
   No: '否',
-  'Create a heyform': '创建一个简约表单'
+  'Create a 简约表单': '创建一个简约表单'
 }
