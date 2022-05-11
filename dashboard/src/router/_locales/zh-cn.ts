@@ -6,7 +6,7 @@ import type { CustomRouteConfig } from '../config'
 const Login = lazy(() => import('@/pages/_locales/zh-cn/auth/Login'))
 const SignUp = lazy(() => import('@/pages/_locales/zh-cn/auth/SignUp'))
 const ForgotPassword = lazy(() => import('@/pages/_locales/zh-cn/auth/ForgotPassword'))
-const BindPhoneNumber = lazy(() => import('@/pages/_locales/zh-cn/auth/BindPhoneNumber'))
+const BindAccount = lazy(() => import('@/pages/_locales/zh-cn/auth/BindAccount'))
 
 /* Billing */
 const Subscription = lazy(() => import('@/pages/_locales/zh-cn/billing/Subscription'))
@@ -37,11 +37,11 @@ const zhCnConfig: CustomRouteConfig[] = [
     title: 'Forgot Password'
   },
   {
-    path: '/bind-phone-number',
+    path: '/bind-account',
     loginRequired: false,
     layout: CommonLayout,
-    component: BindPhoneNumber,
-    title: 'login.bindPhoneNumber'
+    component: BindAccount,
+    title: 'login.bindAccount'
   },
 
   /* Billing */

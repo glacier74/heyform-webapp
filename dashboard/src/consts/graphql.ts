@@ -6,15 +6,9 @@ export const LOGIN_GQL = gql`
   }
 `
 
-export const LOGIN_CODE_GQL = gql`
-  query loginCode($input: LoginCodeInput!) {
-    loginCode(input: $input)
-  }
-`
-
-export const BIND_PHONE_NUMBER_GQL = gql`
-  query bindPhoneNumber($input: BindPhoneNumberInput!) {
-    bindPhoneNumber(input: $input)
+export const BIND_ACCOUNT_GQL = gql`
+  mutation bindAccount($input: BindAccountInput!) {
+    bindAccount(input: $input)
   }
 `
 

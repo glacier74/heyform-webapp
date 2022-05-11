@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DeleteAccount } from './DeleteAccount'
+import { Password } from './Password'
 import { PhoneNumber } from './PhoneNumber'
 
 const UserSettings: FC = () => {
@@ -34,6 +35,9 @@ const UserSettings: FC = () => {
 
         {/* Phone number */}
         <PhoneNumber />
+
+        {/* Password */}
+        <Password />
 
         {/* Delete account */}
         <DeleteAccount />

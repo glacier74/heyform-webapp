@@ -1,5 +1,4 @@
 import { UserService } from '@/service'
-import { useStore } from '@/store'
 import { useVisible } from '@/utils'
 import { Button, Form, Input, Modal, notification } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
@@ -86,13 +85,8 @@ const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
 }
 
 export const Password: FC = observer(() => {
-  const userStore = useStore('userStore')
   const [visible, handleOpen, handleClose] = useVisible()
   const { t } = useTranslation()
-
-  if (userStore.user.isSocialAccount) {
-    return null
-  }
 
   return (
     <div>

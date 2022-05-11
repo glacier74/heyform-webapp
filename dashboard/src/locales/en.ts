@@ -8,6 +8,8 @@ export default {
     signIn: 'Sign in to your account',
     startFree: 'start your free trial',
     signWith: 'Sign in with',
+    noAccount: "Don't have an account?",
+    bindAccountDescription: 'Already have a HeyForm account? Login and bind account immediately.',
     continueWith: 'Or continue with',
     rememberMe: 'Remember me',
     forgotPassword: 'Forgot your password?',
@@ -22,7 +24,7 @@ export default {
     CountDown: 'Resend in {{count}}s',
     PhoneNumber: 'Phone Number',
     CodeSendSuccess: 'Verification code has been sent to your mobile phone',
-    bindPhoneNumber: 'Bind a phone number',
+    bindAccount: 'Bind account',
     signInAndBindPhoneNumber: 'Sign in and bind phone number',
     termsPrivacy:
       'By signing in, you agree to our <2>Terms of Service</2> and <6>Privacy Policy</6>.',
