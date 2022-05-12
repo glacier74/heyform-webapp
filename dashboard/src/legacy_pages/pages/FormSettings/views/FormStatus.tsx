@@ -200,7 +200,7 @@ export const FormStatus: FC = observer(() => {
               >
                 <StyledNumberInput />
               </NumberLimitItem>
-              <Divider>times in every</Divider>
+              <Divider>{t('formSettings.times')}</Divider>
               <FormItem
                 name="ipLimitTime"
                 rules={[

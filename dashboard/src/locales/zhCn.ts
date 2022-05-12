@@ -574,7 +574,8 @@ export default {
     submission: '提交限制',
     submissionText: '这允许您设置表单允许的特定提交总数。',
     IpLimit: 'IP 地址限制',
-    IpLimitText: '如果要限制一段时间内从同一 IP 地址提交的次数，可以在下面设置。'
+    IpLimitText: '如果要限制一段时间内从同一 IP 地址提交的次数，可以在下面设置。',
+    times: '次 每'
   },
   integration: {
     Categories: '分类',

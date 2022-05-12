@@ -608,7 +608,8 @@ export default {
     archiveConfirm:
       'Once you confirm to disable Submission Archive, all submissions will be deleted.',
     Cancel: 'Cancel',
-    Disable: 'Disable'
+    Disable: 'Disable',
+    times: 'times in every'
   },
   integration: {
     Categories: 'Categories',
