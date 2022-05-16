@@ -1,4 +1,3 @@
-import { Locale } from '@/locales'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useAsyncEffect, useParam, useVisible } from '@/utils'
@@ -15,7 +14,6 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { DeleteProject } from './DeleteProject'
-import { DeleteProject as ZhCnDeleteProject } from '@/pages/_locales/zh-cn/project/Project/views/DeleteProject'
 import './index.scss'
 import { ProjectMembers } from './ProjectMembers'
 import { RenameProject } from './RenameProject'
@@ -148,21 +146,12 @@ export const ProjectLayout: FC<IComponentProps> = ({ children }) => {
       />
 
       {/* Delete project */}
-      {Locale.isZhCn ? (
-        <ZhCnDeleteProject
-          visible={deleteProjectVisible}
-          project={workspaceStore.project}
-          onClose={closeDeleteProject}
-          onComplete={handleDeleteProjectComplete}
-        />
-      ) : (
-        <DeleteProject
-          visible={deleteProjectVisible}
-          project={workspaceStore.project}
-          onClose={closeDeleteProject}
-          onComplete={handleDeleteProjectComplete}
-        />
-      )}
+      <DeleteProject
+        visible={deleteProjectVisible}
+        project={workspaceStore.project}
+        onClose={closeDeleteProject}
+        onComplete={handleDeleteProjectComplete}
+      />
     </div>
   )
 }

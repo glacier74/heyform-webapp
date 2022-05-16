@@ -16,11 +16,8 @@ import {
   WORKSPACE_CDN_TOKEN_GQL,
   WORKSPACE_MEMBERS_GQL,
   WORKSPACE_SUBSCRIPTION_GQL,
-  WORKSPACES_GQL,
-  ZH_CN_WORKSPACE_MEMBERS_GQL,
-  ZH_CN_WORKSPACES_GQL
+  WORKSPACES_GQL
 } from '@/consts'
-import { Locale } from '@/locales'
 import { request } from '@/utils'
 
 export class WorkspaceService {
@@ -83,7 +80,7 @@ export class WorkspaceService {
 
   static async workspaces() {
     return request.query({
-      query: Locale.isZhCn ? ZH_CN_WORKSPACES_GQL : WORKSPACES_GQL,
+      query: WORKSPACES_GQL,
       fetchPolicy: 'network-only'
     })
   }
@@ -101,10 +98,7 @@ export class WorkspaceService {
 
   static async members(teamId: string) {
     return request.query({
-      query:
-        import.meta.env.VITE_I18N_DEFAULT_LOCALE === 'zh-cn'
-          ? ZH_CN_WORKSPACE_MEMBERS_GQL
-          : WORKSPACE_MEMBERS_GQL,
+      query: WORKSPACE_MEMBERS_GQL,
       variables: {
         input: {
           teamId

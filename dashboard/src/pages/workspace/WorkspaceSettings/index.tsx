@@ -1,5 +1,3 @@
-import { Locale } from '@/locales'
-import { DeleteWorkspace as ZhCnDeleteWorkspace } from '@/pages/_locales/zh-cn/workspace/WorkspaceSettings/DeleteWorkspace'
 import { Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -33,10 +31,10 @@ const WorkspaceSettings: FC<IModalProps> = ({ visible, onClose }) => {
         <div className="mt-6 border-t border-t-blue-gray-200" />
 
         {/* Export workspace data */}
-        {!Locale.isZhCn && <ExportData />}
+        <ExportData />
 
         {/* Delete workspace */}
-        {Locale.isZhCn ? <ZhCnDeleteWorkspace /> : <DeleteWorkspace />}
+        <DeleteWorkspace />
       </div>
     </Modal>
   )

@@ -1,6 +1,4 @@
 import { PlanModal } from '@/components'
-import { Locale } from '@/locales'
-import ZhUserSettings from '@/pages/_locales/zh-cn/user/UserSettings'
 import UserSettings from '@/pages/user/UserSettings'
 import { UserService } from '@/service'
 import { useStore } from '@/store'
@@ -99,7 +97,7 @@ export const AuthGuard: FC<IComponentProps> = ({ children }) => {
       <PlanModal />
 
       {/* User settings popup */}
-      {Locale.isZhCn ? <ZhUserSettings /> : <UserSettings />}
+      <UserSettings />
     </>
   )
 }

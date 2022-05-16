@@ -6,21 +6,9 @@ export const LOGIN_GQL = gql`
   }
 `
 
-export const BIND_ACCOUNT_GQL = gql`
-  mutation bindAccount($input: BindAccountInput!) {
-    bindAccount(input: $input)
-  }
-`
-
 export const SIGN_UP_GQL = gql`
   query signUp($input: SignUpInput!) {
     signUp(input: $input)
-  }
-`
-
-export const SIGN_UP_CODE_GQL = gql`
-  query signUpCode($input: SignUpCodeInput!) {
-    signUpCode(input: $input)
   }
 `
 
@@ -30,20 +18,8 @@ export const SEND_RESET_EMAIL_GQL = gql`
   }
 `
 
-export const RESET_PASSWORD_CODE_GQL = gql`
-  query resetPasswordCode($input: SignUpCodeInput!) {
-    resetPasswordCode(input: $input)
-  }
-`
-
 export const RESET_PASSWORD_GQL = gql`
   mutation resetPassword($input: ResetPasswordInput!) {
-    resetPassword(input: $input)
-  }
-`
-
-export const RESET_PASSWORD_WIDTH_PHONE_NUMBER_GQL = gql`
-  mutation resetPassword($input: SignUpInput!) {
     resetPassword(input: $input)
   }
 `
@@ -142,60 +118,6 @@ export const WORKSPACES_GQL = gql`
   }
 `
 
-export const ZH_CN_WORKSPACES_GQL = gql`
-  query teams {
-    teams {
-      id
-      name
-      ownerId
-      avatar
-      storageQuota
-      memberCount
-      seatCount
-      isOwner
-      inviteCode
-      inviteCodeExpireAt
-      enableCustomDomain
-      customDomain
-      removeBranding
-      createdAt
-      projects {
-        id
-        teamId
-        name
-        ownerId
-        icon
-        members
-        formCount
-        isOwner
-      }
-      plan {
-        id
-        name
-        memberLimit
-        formLimit
-        contactLimit
-        questionLimit
-        submissionLimit
-        storageLimit
-        apiAccessLimit
-        customDomain
-        grade
-      }
-      subscription {
-        id
-        planId
-        billingCycle
-        startAt
-        endAt
-        isCanceled
-        canceledAt
-        status
-      }
-    }
-  }
-`
-
 export const WORKSPACE_SUBSCRIPTION_GQL = gql`
   query teamSubscription($input: TeamDetailInput!) {
     teamSubscription(input: $input) {
@@ -213,20 +135,6 @@ export const WORKSPACE_MEMBERS_GQL = gql`
       id
       name
       email
-      avatar
-      role
-      isOwner
-      lastSeenAt
-    }
-  }
-`
-
-export const ZH_CN_WORKSPACE_MEMBERS_GQL = gql`
-  query teamMembers($input: TeamDetailInput!) {
-    teamMembers(input: $input) {
-      id
-      name
-      phoneNumber
       avatar
       role
       isOwner
@@ -377,12 +285,6 @@ export const PAYMENT_GQL = gql`
       sessionId
       note
     }
-  }
-`
-
-export const ZH_CN_PAYMENT_GQL = gql`
-  mutation payment($input: PaymentInput!) {
-    payment(input: $input)
   }
 `
 
@@ -923,19 +825,6 @@ export const USER_DETAILS_GQL = gql`
       isSocialAccount
       isDeletionScheduled
       deletionScheduledAt
-    }
-  }
-`
-
-export const ZH_CN_USER_DETAILS_GQL = gql`
-  query userDetail {
-    userDetail {
-      id
-      name
-      phoneNumber
-      avatar
-      isEmailVerified
-      isSocialAccount
     }
   }
 `

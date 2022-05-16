@@ -20,7 +20,7 @@ const supportedLngs = Object.keys(resources)
 i18n.use(initReactI18next).init({
   lowerCaseLng: true,
   resources,
-  lng: (import.meta.env.VITE_I18N_DEFAULT_LOCALE as string) || 'en',
+  lng: 'en',
   fallbackLng: supportedLngs[0],
   supportedLngs,
   interpolation: {
@@ -32,12 +32,5 @@ i18n.use(initReactI18next).init({
     transKeepBasicHtmlNodesFor: ['br', 'strong', 'b', 'i', 'a']
   }
 })
-
-const lang = import.meta.env.VITE_I18N_DEFAULT_LOCALE || 'en'
-
-export const Locale = {
-  lang,
-  isZhCn: lang === 'zh-cn'
-}
 
 export default i18n

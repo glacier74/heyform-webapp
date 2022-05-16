@@ -9,16 +9,14 @@ import {
   USER_DELETION_CODE_GQL,
   USER_DETAILS_GQL,
   VERIFY_EMAIL_GQL,
-  VERIFY_USER_DELETION_GQL,
-  ZH_CN_USER_DETAILS_GQL
+  VERIFY_USER_DELETION_GQL
 } from '@/consts'
-import { Locale } from '@/locales'
 import { request } from '@/utils'
 
 export class UserService {
   static async userDetail() {
     return request.query({
-      query: Locale.isZhCn ? ZH_CN_USER_DETAILS_GQL : USER_DETAILS_GQL
+      query: USER_DETAILS_GQL
     })
   }
 

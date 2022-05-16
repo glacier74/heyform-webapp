@@ -1,8 +1,6 @@
-import { AuthGuard, AuthLayout, WorkspaceLayout } from '@/components'
+import { AuthGuard, AuthLayout, CommonLayout, WorkspaceLayout } from '@/components'
 import { FormLayout, WorkspaceGuardLayout } from '@/legacy_pages/layouts'
-import { Locale } from '@/locales'
 import { lazy } from 'react'
-import localesConfig from './_locales'
 
 export interface CustomRouteConfig {
   path: string
@@ -12,6 +10,15 @@ export interface CustomRouteConfig {
   component: any
 }
 
+/* Auth */
+const Login = lazy(() => import('@/pages/auth/Login'))
+const SignUp = lazy(() => import('@/pages/auth/SignUp'))
+const ForgotPassword = lazy(() => import('@/pages/auth/ForgotPassword'))
+const ResetPassword = lazy(() => import('@/pages/auth/ResetPassword'))
+
+/* Verify email address */
+const VerifyEmail = lazy(() => import('@/pages/user/VerifyEmail'))
+
 /* Join workspace */
 const JoinWorkspace = lazy(() => import('@/pages/workspace/JoinWorkspace'))
 
@@ -20,6 +27,10 @@ const Home = lazy(() => import('@/pages/home/Home'))
 const Setup = lazy(() => import('@/pages/setup/Setup'))
 const Workspace = lazy(() => import('@/pages/workspace/Workspace'))
 const Members = lazy(() => import('@/pages/workspace/Members'))
+
+/* Billing */
+const Subscription = lazy(() => import('@/pages/billing/Subscription'))
+const Invoices = lazy(() => import('@/pages/billing/Invoices'))
 
 /* Audiences */
 const Contacts = lazy(() => import('@/pages/audiences/Contacts'))
@@ -43,7 +54,47 @@ const Submissions = lazy(() => import('@/legacy_pages/pages/Submissions'))
 const FormSettings = lazy(() => import('@/legacy_pages/pages/FormSettings'))
 
 const config: CustomRouteConfig[] = [
-  ...localesConfig[Locale.lang],
+  /* Login */
+  {
+    path: '/login',
+    loginRequired: false,
+    layout: CommonLayout,
+    component: Login,
+    title: 'Login'
+  },
+  /* Sign Up */
+  {
+    path: '/sign-up',
+    loginRequired: false,
+    layout: CommonLayout,
+    component: SignUp,
+    title: 'auth.signup.description'
+  },
+  /* Forgot Password */
+  {
+    path: '/forgot-password',
+    loginRequired: false,
+    layout: CommonLayout,
+    component: ForgotPassword,
+    title: 'Forgot Password'
+  },
+  /* Reset Password */
+  {
+    path: '/reset-password',
+    loginRequired: false,
+    layout: CommonLayout,
+    component: ResetPassword,
+    title: 'Reset Password'
+  },
+
+  /* Verify email address */
+  {
+    path: '/verify-email',
+    loginRequired: true,
+    layout: AuthLayout,
+    component: VerifyEmail,
+    title: 'Verify email address'
+  },
 
   /* Home */
   {
@@ -74,6 +125,20 @@ const config: CustomRouteConfig[] = [
     loginRequired: true,
     layout: WorkspaceLayout,
     component: Members
+  },
+
+  /* Billing */
+  {
+    path: '/workspace/:workspaceId/billing',
+    loginRequired: true,
+    layout: WorkspaceLayout,
+    component: Subscription
+  },
+  {
+    path: '/workspace/:workspaceId/billing/invoice',
+    loginRequired: true,
+    layout: WorkspaceLayout,
+    component: Invoices
   },
 
   /* Join workspace with invite code */

@@ -5,10 +5,8 @@ import {
   INVOICES_GQL,
   ORDER_PREVIEW_GQL,
   ORDERS_GQL,
-  PAYMENT_GQL,
-  ZH_CN_PAYMENT_GQL
+  PAYMENT_GQL
 } from '@/consts'
-import { Locale } from '@/locales'
 import { BillingCycleEnum, ZhCnPaymentMethodEnum } from '@/models'
 import { request } from '@/utils'
 
@@ -36,7 +34,7 @@ export class PaymentService {
     paymentMethod?: ZhCnPaymentMethodEnum | undefined | null
   }) {
     return request.mutate({
-      mutation: Locale.isZhCn ? ZH_CN_PAYMENT_GQL : PAYMENT_GQL,
+      mutation: PAYMENT_GQL,
       variables: {
         input
       }
