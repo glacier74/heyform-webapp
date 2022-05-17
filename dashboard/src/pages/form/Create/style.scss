@@ -962,7 +962,7 @@
   @apply text-blue-600 border-blue-600;
 }
 
-.color-picker {
+.color-picker-button {
   @apply px-2 py-1;
 
   .button-trailing {
@@ -982,7 +982,7 @@
 }
 
 .color-picker-popup {
-  @apply p-3;
+  @apply pt-3 pb-1 px-3;
 }
 
 .background-brightness-image {

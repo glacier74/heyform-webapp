@@ -23,7 +23,7 @@ export const ColorPickerField: FC<ColorPickerFieldProps> = ({ label, value, onCh
       <div className="flex items-center justify-between">
         <label className="form-item-label">{label}</label>
         <Dropdown overlay={Overlay}>
-          <Button className="color-picker" trailing={<ChevronDownIcon />}>
+          <Button className="color-picker-button" trailing={<ChevronDownIcon />}>
             <div className="color-picker-value" style={{ backgroundColor: value }}></div>
           </Button>
         </Dropdown>
