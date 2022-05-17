@@ -751,6 +751,8 @@ export default {
     settings: '设置',
     required: '是否必须填写',
     dateFormat: '日期格式',
+    timeField: '时间字段',
+    dateRangeTo: '至',
     multipleSelection: '多项选择',
     unlimited: '不限制',
     exactNumber: '指定数量',
@@ -802,6 +804,8 @@ export default {
     rating: '评分',
     opinionScale: '意见量表',
     date: '日期',
+    dateTime: '日期与时间',
+    dateRange: '日期范围',
     number: '数字',
     fileUpload: '文件上传',
     address: '地址',
@@ -818,6 +822,8 @@ export default {
     year: '年',
     month: '月',
     day: '日',
+    hour: '小时',
+    minute: '分钟',
     clickUpload: '单击以上传文件或将文件拖到此处。',
     sizeLimit: '大小限制: 10MB',
     firstName: '姓',
@@ -829,10 +835,14 @@ export default {
     addChoice: '新增选项',
     choicePlaceholder: '选择',
     drawSignature: '在上面签名',
-    clearSignature: '清除'
+    clearSignature: '清除',
+    data: '数据',
+    inputTable: '输入表格',
+    addColumn: '新建列',
+    columnPlaceholder: '列{{index}}'
   },
   next: '下一个',
   Yes: '是',
   No: '否',
-  'Create a 简约表单': '创建一个简约表单'
+  'Create a heyform': '创建一个简约表单'
 }

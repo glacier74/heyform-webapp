@@ -7,7 +7,8 @@ export const DATE_FORMAT_MAPS: IMapType = {
   'YYYY-MM-DD': ['YYYY', 'MM', 'DD', '-'],
   'MM.DD.YYYY': ['MM', 'DD', 'YYYY', '.'],
   'DD.MM.YYYY': ['DD', 'MM', 'YYYY', '.'],
-  'YYYY.MM.DD': ['YYYY', 'MM', 'DD', '.']
+  'YYYY.MM.DD': ['YYYY', 'MM', 'DD', '.'],
+  'HH:mm': ['HH', 'mm', ':']
 }
 
 export const DATE_FORMAT_OPTIONS: IOptionType[] = [
@@ -49,8 +50,27 @@ export const DATE_FORMAT_OPTIONS: IOptionType[] = [
   }
 ]
 
+export const TIME_FORMAT = 'HH:mm'
+
 export const DATE_FORMAT_NAMES: IMapType = {
-  YYYY: 'formBuilder.year',
-  MM: 'formBuilder.month',
-  DD: 'formBuilder.day'
+  YYYY: {
+    id: 'year',
+    label: 'formBuilder.year'
+  },
+  MM: {
+    id: 'month',
+    label: 'formBuilder.month'
+  },
+  DD: {
+    id: 'day',
+    label: 'formBuilder.day'
+  },
+  HH: {
+    id: 'hour',
+    label: 'formBuilder.hour'
+  },
+  mm: {
+    id: 'minute',
+    label: 'formBuilder.minute'
+  }
 }

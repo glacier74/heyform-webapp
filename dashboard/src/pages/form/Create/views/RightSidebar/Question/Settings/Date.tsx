@@ -1,3 +1,4 @@
+import { SwitchField } from '@/components'
 import { DATE_FORMAT_OPTIONS } from '@/pages/form/Create/consts'
 import { useStoreContext } from '@/pages/form/Create/store'
 import { Select } from '@heyforms/ui'
@@ -25,17 +26,43 @@ export const Date: FC<IBasicProps> = ({ field }) => {
     })
   }
 
+  function handleAllowTimeChange(allowTime: boolean) {
+    dispatch({
+      type: 'updateField',
+      payload: {
+        id: field.id,
+        updates: {
+          properties: {
+            ...field.properties,
+            allowTime
+          }
+        }
+      }
+    })
+  }
+
   const handleChangeCallback = useCallback(handleChange, [field.properties])
+  const handleAllowTimeChangeCallback = useCallback(handleAllowTimeChange, [field.properties])
 
   return (
-    <div className="right-sidebar-settings-item">
-      <label className="form-item-label">{t('formBuilder.dateFormat')}</label>
-      <Select
-        className="mt-1"
-        options={DATE_FORMAT_OPTIONS}
-        value={field.properties?.format}
-        onChange={handleChangeCallback}
-      />
-    </div>
+    <>
+      <div className="right-sidebar-settings-item">
+        <label className="form-item-label">{t('formBuilder.dateFormat')}</label>
+        <Select
+          className="mt-1"
+          options={DATE_FORMAT_OPTIONS}
+          value={field.properties?.format}
+          onChange={handleChangeCallback}
+        />
+      </div>
+
+      <div className="right-sidebar-settings-item">
+        <SwitchField
+          label={t('formBuilder.timeField')}
+          value={field.properties?.allowTime}
+          onChange={handleAllowTimeChangeCallback}
+        />
+      </div>
+    </>
   )
 }

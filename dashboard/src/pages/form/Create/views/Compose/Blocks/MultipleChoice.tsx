@@ -147,7 +147,9 @@ export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
         ))}
       </div>
       <div className="builder-add-choice">
-        <Button.Link onClick={handleAddChoiceCallback}>{t('formBuilder.addChoice')}</Button.Link>
+        <Button.Link className="builder-add-column" onClick={handleAddChoiceCallback}>
+          {t('formBuilder.addChoice')}
+        </Button.Link>
       </div>
     </Block>
   )

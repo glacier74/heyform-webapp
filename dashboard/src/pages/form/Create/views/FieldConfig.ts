@@ -1,4 +1,7 @@
 import {
+  DataSetsIcon,
+  DateRangeIcon,
+  DateTimeIcon,
   ImageIcon,
   LongTextIcon,
   ShortTextIcon,
@@ -10,7 +13,6 @@ import {
   YesOrNoIcon
 } from '@/components'
 import {
-  CalendarIcon,
   ChartBarIcon,
   CheckIcon,
   GlobeIcon,
@@ -136,8 +138,15 @@ export const FIELD_QUESTION_CONFIGS = [
   },
   {
     kind: FieldKindEnum.DATE,
-    icon: CalendarIcon,
-    label: 'formBuilder.date',
+    icon: DateTimeIcon,
+    label: 'formBuilder.dateTime',
+    textColor: '#047857',
+    backgroundColor: '#d1fae5'
+  },
+  {
+    kind: FieldKindEnum.DATE_RANGE,
+    icon: DateRangeIcon,
+    label: 'formBuilder.dateRange',
     textColor: '#047857',
     backgroundColor: '#d1fae5'
   },
@@ -152,8 +161,8 @@ export const FIELD_QUESTION_CONFIGS = [
     kind: FieldKindEnum.FILE_UPLOAD,
     icon: UploadIcon,
     label: 'formBuilder.fileUpload',
-    textColor: '#c2410c',
-    backgroundColor: '#ffedd5'
+    textColor: '#0f766e',
+    backgroundColor: '#ccfbf1'
   },
   {
     kind: FieldKindEnum.ADDRESS,
@@ -189,6 +198,13 @@ export const FIELD_QUESTION_CONFIGS = [
     label: 'formBuilder.website',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
+  },
+  {
+    kind: FieldKindEnum.INPUT_TABLE,
+    icon: DataSetsIcon,
+    label: 'formBuilder.inputTable',
+    textColor: '#c2410c',
+    backgroundColor: '#ffedd5'
   }
 ]
 
@@ -243,11 +259,15 @@ export const BLOCK_GROUPS: FieldGroup[] = [
   },
   {
     name: 'formBuilder.date',
-    list: [FieldKindEnum.DATE]
+    list: [FieldKindEnum.DATE, FieldKindEnum.DATE_RANGE]
   },
   {
     name: 'formBuilder.formStructure',
     list: [FieldKindEnum.WELCOME, FieldKindEnum.THANK_YOU, FieldKindEnum.STATEMENT]
+  },
+  {
+    name: 'formBuilder.data',
+    list: [FieldKindEnum.INPUT_TABLE]
   },
   {
     name: 'formBuilder.fileUpload',

@@ -694,17 +694,126 @@
 }
 
 .builder-date-item-month,
-.builder-date-item-day {
+.builder-date-item-day,
+.builder-date-item-hour,
+.builder-date-item-minute {
   @apply w-12;
 }
 
 .builder-date-item-year {
-  @apply w-20;
+  @apply w-16;
+}
+
+.builder-date-item-hour {
+  @apply ml-8;
 }
 
 .builder-date-divider {
   @apply text-2xl mb-2 mr-4 ml-5;
   color: var(--heyform-answer-color);
+}
+
+.builder-date-range-divider {
+  @apply text-2xl mt-7 mb-2 mx-12;
+  color: var(--heyform-answer-color);
+}
+
+.builder-date-range-with-time {
+  @apply flex-col items-start;
+
+  .builder-date-range-divider {
+    @apply mx-0 my-8;
+  }
+}
+
+
+// ----------------------------------------------------------------------------
+// Table
+.builder-table-scrollable {
+  @apply w-full overflow-x-auto;
+}
+
+.builder-input-table {
+  .builder-table-scrollable {
+    @apply pt-3;
+  }
+}
+
+.builder-add-column {
+  @apply text-lg p-0 underline;
+  min-height: 1.75rem;
+
+  &,
+  &:hover {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    color: var(--heyform-answer-color);
+  }
+}
+
+.builder-input-table-thead {
+  @apply relative flex flex-col items-center;
+
+  .builder-radio-remove {
+    @apply right-auto -top-4 cursor-pointer;
+  }
+
+  &:hover {
+    .builder-radio-remove {
+      @apply visible opacity-100;
+    }
+  }
+
+  input {
+    @apply text-lg border-0 text-center bg-transparent;
+    min-height: 1.75rem;
+    max-width: 9rem;
+    color: var(--heyform-answer-color);
+
+    &::placeholder {
+      color: var(--heyform-answer-opacity-60-color);
+    }
+
+    &,
+    &:focus {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
+
+.builder-input-table {
+  table {
+    @apply w-full border-separate;
+    border-spacing: 0 0.5rem;
+    -webkit-border-horizontal-spacing: 0;
+    -webkit-border-vertical-spacing: 0.5rem;
+  }
+
+  tr {
+    td,
+    th {
+      @apply border-0 p-0;
+    }
+  }
+
+  tr {
+    td {
+      @apply h-12 mb-1;
+      background: var(--heyform-answer-opacity-10-color);
+      border-right: 1px solid var(--heyform-answer-opacity-10-color);
+
+      &:nth-of-type(1) {
+        @apply rounded-l-md;
+      }
+
+      &:nth-last-of-type(1) {
+        @apply rounded-r-md;
+        border-right: none;
+      }
+    }
+  }
 }
 
 .mention-menu-mask,
@@ -873,55 +982,7 @@
 }
 
 .color-picker-popup {
-  @apply p-2;
-}
-
-.color-picker-saturation {
-  @apply relative h-32;
-}
-
-.color-picker-saturation-pointer {
-  @apply w-3 h-3 rounded-full cursor-move;
-  box-shadow: rgb(255, 255, 255) 0 0 0 3px, rgba(0, 0, 0, 0.3) 0 0 1px 1px inset, rgba(0, 0, 0, 0.4) 0 0 1px 2px;
-  transform: translate(-0.375rem, -0.375rem);
-}
-
-.color-picker-hue {
-  @apply relative mt-2 h-2;
-
-  .hue-horizontal {
-    @apply rounded;
-  }
-}
-
-.color-picker-hue-pointer {
-  @apply w-2 h-3 bg-white border border-gray-200 cursor-move;
-  transform: translate(-0.25rem, -0.125rem);
-}
-
-.color-picker-editable {
-  @apply flex items-center mt-2 rounded overflow-hidden;
-}
-
-.color-picker-preview {
-  @apply m-0 rounded rounded-r-none cursor-default;
-  width: 1.875rem;
-  height: 1.875rem;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 0 0 1px inset;
-}
-
-.color-picker-editable-input {
-  @apply flex-1;
-
-  & > div,
-  input {
-    @apply w-full;
-  }
-
-  input {
-    @apply py-1 px-2 text-sm border-gray-200 rounded rounded-l-none shadow focus:border-gray-300;
-    border-width: 1px 1px 1px 0;
-  }
+  @apply p-3;
 }
 
 .background-brightness-image {

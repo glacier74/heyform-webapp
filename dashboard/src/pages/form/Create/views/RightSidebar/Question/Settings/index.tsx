@@ -24,6 +24,7 @@ export const Settings: FC = () => {
       {(() => {
         switch (field.kind) {
           case FieldKindEnum.DATE:
+          case FieldKindEnum.DATE_RANGE:
             return <Date field={field} />
 
           case FieldKindEnum.MULTIPLE_CHOICE:

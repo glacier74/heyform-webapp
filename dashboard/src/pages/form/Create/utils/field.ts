@@ -108,11 +108,26 @@ export function getFieldFromKind(kind: FieldKindEnum | string): FormField {
       break
 
     case FieldKindEnum.DATE:
+    case FieldKindEnum.DATE_RANGE:
       field.properties!.format = 'MM/DD/YYYY'
+      field.properties!.allowTime = false
       break
 
     case FieldKindEnum.PHONE_NUMBER:
       field.properties!.defaultCountryCode = 'US'
+      break
+
+    case FieldKindEnum.INPUT_TABLE:
+      field.properties!.tableColumns = [
+        {
+          id: nanoid(12),
+          label: ''
+        },
+        {
+          id: nanoid(12),
+          label: ''
+        }
+      ]
       break
 
     case FieldKindEnum.WELCOME:

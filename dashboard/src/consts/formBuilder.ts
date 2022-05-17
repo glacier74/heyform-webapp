@@ -583,3 +583,16 @@ export const FORM_THEMES = [
     backgroundBrightness: 0
   }
 ]
+
+export const COLOR_PICKER_PRESET_COLORS = [
+  '#0252d7',
+  '#22c55e',
+  '#06b6d4',
+  '#fbbf24',
+  '#d946ef',
+  '#dc2626',
+  '#6b21a8',
+  '#854d0e',
+  '#94a3b8',
+  '#000000'
+]

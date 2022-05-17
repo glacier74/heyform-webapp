@@ -5,9 +5,11 @@ import {
   Address,
   Country,
   Date,
+  DateRange,
   Email,
   FileUpload,
   FullName,
+  InputTable,
   LegalTerms,
   LongText,
   MultipleChoice,
@@ -43,6 +45,9 @@ const Fields: FC = () => {
     case FieldKindEnum.DATE:
       return <Date key={field.id} field={field} />
 
+    case FieldKindEnum.DATE_RANGE:
+      return <DateRange key={field.id} field={field} />
+
     case FieldKindEnum.EMAIL:
       return <Email key={field.id} field={field} />
 
@@ -51,6 +56,9 @@ const Fields: FC = () => {
 
     case FieldKindEnum.FULL_NAME:
       return <FullName key={field.id} field={field} />
+
+    case FieldKindEnum.INPUT_TABLE:
+      return <InputTable key={field.id} field={field} />
 
     case FieldKindEnum.LEGAL_TERMS:
       return <LegalTerms key={field.id} field={field} />
