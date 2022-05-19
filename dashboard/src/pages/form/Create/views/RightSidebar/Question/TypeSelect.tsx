@@ -15,6 +15,12 @@ export const TypeSelect: FC = () => {
   const { t } = useTranslation()
   const { state, dispatch } = useStoreContext()
   const field = state.selectedField!
+  const options = (FIELD_QUESTION_CONFIGS as unknown as IOptionType[]).map(config => {
+    if (config.value === FieldKindEnum.GROUP) {
+      config.disabled = true
+    }
+    return config
+  })
 
   function valueRender(option: any) {
     if (field.kind === FieldKindEnum.WELCOME) {
@@ -67,11 +73,12 @@ export const TypeSelect: FC = () => {
       <Select
         className="right-sidebar-custom-select"
         popupClassName="right-sidebar-custom-select-popup"
-        options={FIELD_QUESTION_CONFIGS as unknown as IOptionType[]}
+        options={options}
         value={field.kind}
         valueKey="kind"
         valueRender={valueRender as unknown as any}
         optionRender={optionRender}
+        disabled={field.kind === FieldKindEnum.GROUP}
         onChange={handleChange}
       />
     </div>

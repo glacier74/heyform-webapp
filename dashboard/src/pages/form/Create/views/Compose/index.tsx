@@ -35,75 +35,77 @@ const Fields: FC = () => {
     return null
   }
 
+  const parentField = state.parentField
+
   switch (field.kind) {
     case FieldKindEnum.ADDRESS:
-      return <Address key={field.id} field={field} />
+      return <Address key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.COUNTRY:
-      return <Country key={field.id} field={field} />
+      return <Country key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.DATE:
-      return <Date key={field.id} field={field} />
+      return <Date key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.DATE_RANGE:
-      return <DateRange key={field.id} field={field} />
+      return <DateRange key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.EMAIL:
-      return <Email key={field.id} field={field} />
+      return <Email key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.FILE_UPLOAD:
-      return <FileUpload key={field.id} field={field} />
+      return <FileUpload key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.FULL_NAME:
-      return <FullName key={field.id} field={field} />
+      return <FullName key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.INPUT_TABLE:
-      return <InputTable key={field.id} field={field} />
+      return <InputTable key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.LEGAL_TERMS:
-      return <LegalTerms key={field.id} field={field} />
+      return <LegalTerms key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.LONG_TEXT:
-      return <LongText key={field.id} field={field} />
+      return <LongText key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.MULTIPLE_CHOICE:
-      return <MultipleChoice key={field.id} field={field} />
+      return <MultipleChoice key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.NUMBER:
-      return <Number key={field.id} field={field} />
+      return <Number key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.OPINION_SCALE:
-      return <OpinionScale key={field.id} field={field} />
+      return <OpinionScale key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.PHONE_NUMBER:
-      return <PhoneNumber key={field.id} field={field} />
+      return <PhoneNumber key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.PICTURE_CHOICE:
-      return <PictureChoice key={field.id} field={field} />
+      return <PictureChoice key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.RATING:
-      return <Rating key={field.id} field={field} />
+      return <Rating key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.SHORT_TEXT:
-      return <ShortText key={field.id} field={field} />
+      return <ShortText key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.SIGNATURE:
-      return <Signature key={field.id} field={field} />
+      return <Signature key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.URL:
-      return <Website key={field.id} field={field} />
+      return <Website key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.YES_NO:
-      return <YesNo key={field.id} field={field} />
+      return <YesNo key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.WELCOME:
-      return <Welcome key={field.id} field={field} />
+      return <Welcome key={field.id} field={field} parentField={parentField} />
 
     case FieldKindEnum.THANK_YOU:
-      return <ThankYou key={field.id} field={field} />
+      return <ThankYou key={field.id} field={field} parentField={parentField} />
 
     default:
-      return <Statement key={field.id} field={field} />
+      return <Statement key={field.id} field={field} parentField={parentField} />
   }
 }
 

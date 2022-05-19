@@ -8,6 +8,29 @@
   min-height: 3.5rem;
 }
 
+.field-card-group {
+  &.field-card-group-selected {
+    @apply bg-gray-50;
+  }
+
+  &.field-card-group-collapsed {
+    .field-card-children {
+      @apply hidden;
+    }
+  }
+}
+
+.field-card-children {
+  .field-card {
+    @apply pl-8;
+  }
+}
+
+.field-card-group-toggle-collapse {
+  @apply flex items-center justify-center w-4 text-gray-500;
+  min-height: 2.5rem;
+}
+
 .field-card-open .dropdown {
   @apply opacity-100;
 }
@@ -101,6 +124,20 @@
   &,
   &:before {
     @apply rounded-lg;
+  }
+}
+
+.heyform-block-group-container {
+  @apply flex items-center w-full mx-auto;
+  max-width: 45rem;
+  min-height: 3.75rem;
+
+  .builder-block-label {
+    @apply text-xs;
+  }
+
+  .builder-block-title {
+    @apply flex-1 truncate ml-4 mb-0 text-xl;
   }
 }
 

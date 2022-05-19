@@ -5,15 +5,18 @@ import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
 import { htmlUtils } from '@heyforms/answer-utils'
+import { IFormField } from '@heyforms/form-component/types/typings'
 import type { FormModel } from '@heyforms/shared-types-enums'
+import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { notification, Spin } from '@heyforms/ui'
+import { isValidArray } from '@hpnp/utils/helper'
 import { FC, useEffect, useMemo, useReducer, useState } from 'react'
 import type { IState } from './store'
 import { StoreContext, storeReducer } from './store'
+import './style.scss'
 import { Compose } from './views/Compose'
 import { LeftSidebar } from './views/LeftSidebar'
 import { RightSidebar } from './views/RightSidebar'
-import './style.scss'
 
 const FormBuilder: FC<{ form: FormModel }> = ({ form }) => {
   const formStore = useStore('formStore')
@@ -33,23 +36,40 @@ const FormBuilder: FC<{ form: FormModel }> = ({ form }) => {
     })
   }, [form.id])
 
-  function getUpdates() {
-    return {
-      fields: state.fields!.map(row => ({
-        id: row.id,
-        kind: row.kind,
-        title: htmlUtils.parse(row.title! as string),
-        description: htmlUtils.parse(row.description! as string),
-        validations: row.validations,
-        properties: row.properties,
-        layout: row.layout
-      }))
+  function getUpdates(fields?: IFormField[]) {
+    const result = {
+      fields: [] as IFormField[]
     }
+
+    if (isValidArray(fields)) {
+      for (const row of fields!) {
+        const field: IFormField = {
+          id: row.id,
+          kind: row.kind,
+          title: htmlUtils.parse(row.title! as string),
+          description: htmlUtils.parse(row.description! as string),
+          validations: row.validations,
+          properties: row.properties,
+          layout: row.layout
+        }
+
+        if (row.kind === FieldKindEnum.GROUP) {
+          field.properties = {
+            ...field.properties,
+            ...getUpdates(row.properties?.fields)
+          }
+        }
+
+        result.fields.push(field)
+      }
+    }
+
+    return result
   }
 
   async function syncForm() {
     try {
-      await FormService.updateFormSchemas(form.id, getUpdates())
+      await FormService.updateFormSchemas(form.id, getUpdates(state.fields!))
     } catch (err: any) {
       notification.error({
         message: 'Error',
@@ -65,7 +85,7 @@ const FormBuilder: FC<{ form: FormModel }> = ({ form }) => {
   }
 
   useEffect(() => {
-    formStore.update(getUpdates())
+    formStore.update(getUpdates(state.fields!))
 
     // Add to queue
     if (state.version > 0) {

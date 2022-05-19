@@ -835,6 +835,7 @@ export default {
     phoneNumber: 'Phone Number',
     shortText: 'Short Text',
     longText: 'Long Text',
+    questionGroup: 'Question Group',
     statement: 'Statement',
     pictureChoice: 'Picture Choice',
     yesNo: 'Yes/No',
@@ -880,8 +881,11 @@ export default {
     addColumn: 'Add column',
     columnPlaceholder: 'Col {{index}}'
   },
-  next: 'Next',
-  Yes: 'Yes',
-  No: 'No',
-  'Create a heyform': 'Create a heyform'
+  'Create a heyform': 'Create a heyform',
+  "File size can't exceed {{size}}": "File size can't exceed {{size}}",
+  'Choose up to {{max}} choices': 'Choose up to {{max}} choices',
+  'Choose at least {{min}} choices': 'Choose at least {{min}} choices',
+  'Choose {{max}} choices': 'Choose {{max}} choices',
+  'Choose between {{min}} to {{max}} choices': 'Choose between {{min}} to {{max}} choices',
+  'Question {{number}}': 'Question {{number}}'
 }

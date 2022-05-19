@@ -53,7 +53,7 @@ export const CoverImage: FC = () => {
     })
   }
 
-  const handleChangeCallback = useCallback(handleChange, [field.layout])
+  const handleChangeCallback = useCallback(handleChange, [field.id, field.layout])
 
   return (
     <>

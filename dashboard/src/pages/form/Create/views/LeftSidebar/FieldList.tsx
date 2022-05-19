@@ -1,116 +1,10 @@
-import { DotsVerticalIcon } from '@heroicons/react/outline'
-import { htmlUtils } from '@heyforms/answer-utils'
 import type { FormField } from '@heyforms/shared-types-enums'
 import { FieldKindEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
-import { Button, Dropdown, Menus, stopPropagation } from '@heyforms/ui'
-import { isEmpty, isValid } from '@hpnp/utils/helper'
-import clsx from 'clsx'
 import type { FC } from 'react'
-import { useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { useMemo } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 import { useStoreContext } from '../../store'
-import { FieldIcon } from '../FieldIcon'
-
-interface FieldCardProps {
-  field: FormField
-  isSelected?: boolean
-  isDeleteEnabled?: boolean
-}
-
-const WELCOME_THANK_YOU_KINDS = [FieldKindEnum.WELCOME, FieldKindEnum.THANK_YOU]
-
-const FieldCard: FC<FieldCardProps> = ({ field, isSelected, isDeleteEnabled }) => {
-  const { dispatch } = useStoreContext()
-  const { t } = useTranslation()
-  const [isOpen, setIsOpen] = useState(false)
-
-  function handleClick() {
-    dispatch({
-      type: 'selectField',
-      payload: field.id
-    })
-  }
-
-  function handleMenuClick(name?: IKeyType) {
-    switch (name) {
-      case 'duplicate':
-        dispatch({
-          type: 'duplicateField',
-          payload: field.id
-        })
-        break
-
-      case 'delete':
-        dispatch({
-          type: 'deleteField',
-          payload: field.id
-        })
-        break
-    }
-  }
-
-  const fieldIcon = useMemo(
-    () => (
-      <FieldIcon
-        className="field-card-icon"
-        kind={field.kind}
-        index={field.index}
-        iconOnly={false}
-      />
-    ),
-    [field.kind, field.index]
-  )
-  const dropdownTrigger = useMemo(
-    () => (
-      <Button.Link
-        className="field-card-action w-8 h-8"
-        leading={<DotsVerticalIcon />}
-        onMouseDown={stopPropagation}
-      />
-    ),
-    []
-  )
-  const dropdownOverlay = useMemo(
-    () => (
-      <Menus onClick={handleMenuClick}>
-        {!WELCOME_THANK_YOU_KINDS.includes(field.kind) && (
-          <Menus.Item name="duplicate" label={t('formBuilder.duplicate')} />
-        )}
-        {(isEmpty(field.index) || (isValid(field.index) && isDeleteEnabled)) && (
-          <Menus.Item className="text-red-700" name="delete" label={t('formBuilder.delete')} />
-        )}
-      </Menus>
-    ),
-    [field.kind, isDeleteEnabled]
-  )
-
-  return (
-    <div
-      className={clsx(
-        'field-card group flex items-center pt-2 pr-1 pb-2 pl-4 bg-white cursor-pointer',
-        {
-          'bg-gray-100': isSelected,
-          'field-card-open': isOpen
-        }
-      )}
-      onClick={handleClick}
-    >
-      {fieldIcon}
-      <div className="field-card-title flex-1 ml-3 text-xs">
-        {htmlUtils.plain(field.title as string)}
-      </div>
-      <Dropdown
-        className="opacity-0 group-hover:opacity-100"
-        placement="bottom-start"
-        overlay={dropdownOverlay}
-        onDropdownVisibleChange={setIsOpen}
-      >
-        {dropdownTrigger}
-      </Dropdown>
-    </div>
-  )
-}
+import { FieldCard } from './FieldCard'
 
 export const FieldList: FC = () => {
   const { state, dispatch } = useStoreContext()
@@ -143,10 +37,21 @@ export const FieldList: FC = () => {
   }, [state.fields])
   const isDeleteEnabled = useMemo(() => state.questions.length > 1, [state.questions])
 
+  function handleSortStart(event: any) {
+    dispatch({
+      type: 'selectField',
+      payload: {
+        id: data.fields[event.oldIndex].id
+      }
+    })
+  }
+
   function handleSortFields(fields: FormField[]) {
     dispatch({
       type: 'setFields',
-      payload: [data.welcome, ...fields, data.thankYou].filter(Boolean) as FormField[]
+      payload: {
+        fields: [data.welcome, ...fields, data.thankYou].filter(Boolean) as FormField[]
+      }
     })
   }
 
@@ -160,6 +65,12 @@ export const FieldList: FC = () => {
         fallbackClass="field-card-cloned"
         list={data.fields}
         setList={handleSortFields}
+        onStart={handleSortStart}
+        group={{
+          name: 'root',
+          put: ['nested'],
+          pull: true
+        }}
         delay={10}
         animation={240}
       >
@@ -167,7 +78,7 @@ export const FieldList: FC = () => {
           <FieldCard
             key={field.id}
             field={field}
-            isSelected={field.id === state.selectedId}
+            selectedId={state.selectedId}
             isDeleteEnabled={isDeleteEnabled}
           />
         ))}
@@ -181,7 +92,7 @@ export const FieldList: FC = () => {
       {data.welcome && (
         <FieldCard
           field={data.welcome}
-          isSelected={data.welcome.id === state.selectedId}
+          selectedId={state.selectedId}
           isDeleteEnabled={isDeleteEnabled}
         />
       )}
@@ -189,7 +100,7 @@ export const FieldList: FC = () => {
       {data.thankYou && (
         <FieldCard
           field={data.thankYou}
-          isSelected={data.thankYou.id === state.selectedId}
+          selectedId={state.selectedId}
           isDeleteEnabled={isDeleteEnabled}
         />
       )}

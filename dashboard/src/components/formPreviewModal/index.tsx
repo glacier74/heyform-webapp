@@ -2,6 +2,7 @@ import { useLockBodyScroll } from '@/legacy_pages/pages/FormBuilder/utils/hook'
 import { useStore } from '@/store'
 import { ArrowLeftIcon } from '@heroicons/react/outline'
 import { insertThemeStyle, insertWebFont, Renderer } from '@heyforms/form-component'
+import { IFormModel } from '@heyforms/form-component/types/typings'
 import { Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -42,7 +43,7 @@ export const FormPreviewModal: FC = observer(() => {
           </div>
 
           <div className="form-preview-body">
-            <Renderer form={formStore.current} autoSave={false} />
+            <Renderer form={formStore.current as IFormModel} autoSave={false} />
           </div>
         </Modal>
       )}

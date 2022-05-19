@@ -162,7 +162,9 @@ export const InsertFieldDropdown = () => {
     setVisible(false)
     dispatch({
       type: 'addField',
-      payload: getFieldFromKind(kind)
+      payload: {
+        field: getFieldFromKind(kind)
+      }
     })
   }
 

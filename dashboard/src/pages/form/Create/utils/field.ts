@@ -1,5 +1,5 @@
+import type { FormField } from '@/models'
 import { htmlUtils } from '@heyforms/answer-utils'
-import type { FormField } from '@heyforms/shared-types-enums'
 import { FieldKindEnum, FORM_FIELD_KINDS, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { isArray } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
@@ -9,7 +9,8 @@ const DISCARD_FIELD_KINDS = ['single_choice', 'dropdown']
 const FIELD_KINDS = [...DISCARD_FIELD_KINDS, ...FORM_FIELD_KINDS]
 
 export function serializeFields(rawFields: FormField[]) {
-  const questions: Partial<FormField>[] = []
+  let questions: Partial<FormField>[] = []
+
   const fields = rawFields.map(f => {
     if (isArray(f.title)) {
       f.title = htmlUtils.serialize(f.title)
@@ -19,7 +20,17 @@ export function serializeFields(rawFields: FormField[]) {
       f.description = htmlUtils.serialize(f.description)
     }
 
-    if (QUESTION_FIELD_KINDS.includes(f.kind)) {
+    if (f.kind === FieldKindEnum.GROUP) {
+      const children = f.properties?.fields || []
+      const { questions: nestedQuestions, fields: nestedFields } = serializeFields(children)
+
+      f.properties = {
+        ...f.properties,
+        fields: nestedFields
+      }
+
+      questions = [...questions, ...nestedQuestions]
+    } else if (QUESTION_FIELD_KINDS.includes(f.kind)) {
       questions.push({
         id: f.id,
         kind: f.kind,
@@ -132,6 +143,11 @@ export function getFieldFromKind(kind: FieldKindEnum | string): FormField {
 
     case FieldKindEnum.WELCOME:
     case FieldKindEnum.STATEMENT:
+      field.properties!.buttonText = 'Next'
+      break
+
+    case FieldKindEnum.GROUP:
+      field.properties!.fields = [getFieldFromKind(FieldKindEnum.SHORT_TEXT)]
       field.properties!.buttonText = 'Next'
       break
 

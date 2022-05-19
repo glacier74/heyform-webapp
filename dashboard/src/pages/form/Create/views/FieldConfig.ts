@@ -1,5 +1,4 @@
 import {
-  DataSetsIcon,
   DateRangeIcon,
   DateTimeIcon,
   ImageIcon,
@@ -7,6 +6,7 @@ import {
   ShortTextIcon,
   SignatureIcon,
   StatementIcon,
+  TableIcon,
   ThankYouIcon,
   WebsiteIcon,
   WelcomeIcon,
@@ -15,6 +15,7 @@ import {
 import {
   ChartBarIcon,
   CheckIcon,
+  FolderIcon,
   GlobeIcon,
   HashtagIcon,
   LibraryIcon,
@@ -86,6 +87,13 @@ export const FIELD_QUESTION_CONFIGS = [
     label: 'formBuilder.longText',
     textColor: '#15803d',
     backgroundColor: '#dcfce7'
+  },
+  {
+    kind: FieldKindEnum.GROUP,
+    icon: FolderIcon,
+    label: 'formBuilder.questionGroup',
+    textColor: '#334155',
+    backgroundColor: '#e5e7eb'
   },
   {
     kind: FieldKindEnum.STATEMENT,
@@ -201,7 +209,7 @@ export const FIELD_QUESTION_CONFIGS = [
   },
   {
     kind: FieldKindEnum.INPUT_TABLE,
-    icon: DataSetsIcon,
+    icon: TableIcon,
     label: 'formBuilder.inputTable',
     textColor: '#c2410c',
     backgroundColor: '#ffedd5'
@@ -209,9 +217,9 @@ export const FIELD_QUESTION_CONFIGS = [
 ]
 
 export const FIELD_CONFIGS: FieldConfig[] = [
+  ...FIELD_QUESTION_CONFIGS,
   FIELD_WELCOME_CONFIG,
-  FIELD_THANK_YOU_CONFIG,
-  ...FIELD_QUESTION_CONFIGS
+  FIELD_THANK_YOU_CONFIG
 ]
 
 export const BLOCK_GROUPS: FieldGroup[] = [
@@ -263,7 +271,12 @@ export const BLOCK_GROUPS: FieldGroup[] = [
   },
   {
     name: 'formBuilder.formStructure',
-    list: [FieldKindEnum.WELCOME, FieldKindEnum.THANK_YOU, FieldKindEnum.STATEMENT]
+    list: [
+      FieldKindEnum.GROUP,
+      FieldKindEnum.STATEMENT,
+      FieldKindEnum.WELCOME,
+      FieldKindEnum.THANK_YOU
+    ]
   },
   {
     name: 'formBuilder.data',

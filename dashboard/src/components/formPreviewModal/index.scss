@@ -23,5 +23,10 @@
 }
 
 .form-preview-body {
+  @apply relative;
   height: calc(100vh - 3.75rem);
+
+  .heyform-theme-background {
+    @apply rounded-none;
+  }
 }

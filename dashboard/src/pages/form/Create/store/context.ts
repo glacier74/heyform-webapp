@@ -1,4 +1,4 @@
-import type { FormField } from '@heyforms/shared-types-enums'
+import type { FormField } from '@/models'
 import { deepEqual } from 'fast-equals'
 import { createContext } from 'react'
 import * as actions from './actions'
@@ -11,44 +11,68 @@ export interface IState {
   references: Partial<FormField>[]
   // Selected field id
   selectedId?: string
+  // Parent field id
+  parentId?: string
 
   // Selected field
   selectedField?: FormField
+  // Parent field
+  parentField?: FormField
 }
 
-interface SetFieldsAction {
+export interface SetFieldsAction {
   type: 'setFields'
-  payload: FormField[]
+  payload: {
+    fields: FormField[]
+  }
 }
 
-interface SelectFieldAction {
+export interface SelectFieldAction {
   type: 'selectField'
-  payload?: string
+  payload: {
+    id?: string
+    parentId?: string
+  }
 }
 
-interface AddFieldAction {
+export interface AddFieldAction {
   type: 'addField'
-  payload: FormField
+  payload: {
+    field: FormField
+    parentId?: string
+  }
 }
 
-export interface UpdateFieldPayload {
-  id: string
-  updates: Partial<FormField>
-}
-
-interface UpdateFieldAction {
+export interface UpdateFieldAction {
   type: 'updateField'
-  payload: UpdateFieldPayload
+  payload: {
+    id: string
+    updates: Partial<FormField>
+  }
 }
 
-interface DuplicateFieldAction {
+export interface UpdateNestFieldsAction {
+  type: 'updateNestFields'
+  payload: {
+    id: string
+    nestedFields: FormField[]
+  }
+}
+
+export interface DuplicateFieldAction {
   type: 'duplicateField'
-  payload: string
+  payload: {
+    id: string
+    parentId?: string
+  }
 }
 
-interface DeleteFieldAction {
+export interface DeleteFieldAction {
   type: 'deleteField'
-  payload: string
+  payload: {
+    id: string
+    parentId?: string
+  }
 }
 
 export type IAction =
@@ -56,6 +80,7 @@ export type IAction =
   | SelectFieldAction
   | AddFieldAction
   | UpdateFieldAction
+  | UpdateNestFieldsAction
   | DuplicateFieldAction
   | DeleteFieldAction
 
@@ -92,6 +117,7 @@ export const storeReducer = (state: IState, action: IAction) => {
     case 'addField':
     case 'duplicateField':
     case 'updateField':
+    case 'updateNestFields':
     case 'deleteField':
       return handleAction(state, action)
 

@@ -1,5 +1,8 @@
 import { useStoreContext } from '@/pages/form/Create/store'
 import { RichText } from '@/pages/form/Create/views/RichText'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { questionNumber } from '@heyforms/form-component/esm/utils'
 import { FieldLayoutAlignEnum, FormField, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { isURL } from '@hpnp/utils/helper'
 import clsx from 'clsx'
@@ -10,9 +13,16 @@ import { Layout } from '../Layout'
 
 export interface BlockProps extends IComponentProps {
   field: FormField
+  parentField?: FormField
 }
 
-export const Block: FC<BlockProps> = ({ className, field, children, ...restProps }) => {
+export const Block: FC<BlockProps> = ({
+  className,
+  field,
+  parentField,
+  children,
+  ...restProps
+}) => {
   const { dispatch } = useStoreContext()
   const { t } = useTranslation()
 
@@ -68,6 +78,17 @@ export const Block: FC<BlockProps> = ({ className, field, children, ...restProps
         <Layout className={`builder-layout-${field.layout?.align}`} layout={field.layout} />
       )}
 
+      {parentField && (
+        <div className="heyform-block-group">
+          <div className="heyform-block-group-container">
+            <label className="builder-block-label">
+              {t('formBuilder.question')} {questionNumber(parentField!.index)}
+            </label>
+            <div className="builder-block-title">{parentField.title}</div>
+          </div>
+        </div>
+      )}
+
       <div
         className={clsx('builder-block-container', {
           [`builder-block-${field.layout?.align}`]: field.layout?.align
@@ -78,7 +99,8 @@ export const Block: FC<BlockProps> = ({ className, field, children, ...restProps
             <div className="mb-10">
               {isLabelShow && (
                 <label className="builder-block-label">
-                  {t('formBuilder.question')} {field.index} {field.validations?.required && '*'}
+                  {t('formBuilder.question')} {questionNumber(field.index, parentField?.index)}{' '}
+                  {field.validations?.required && '*'}
                 </label>
               )}
               <RichText

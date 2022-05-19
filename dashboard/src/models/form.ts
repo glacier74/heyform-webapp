@@ -1,3 +1,6 @@
+import type { FormField as IFormField } from '@heyforms/shared-types-enums'
+import { Property } from '@heyforms/shared-types-enums/types/form'
+
 export enum IntegrationStatusEnum {
   ACTIVE = 1,
   DISABLED
@@ -17,4 +20,11 @@ export interface FormAnalyticsSummary {
   submissionCount: number
   completeRate: number
   averageDuration: string
+}
+
+export interface FormField extends IFormField {
+  isCollapsed?: boolean
+  properties?: Omit<Property, 'fields'> & {
+    fields?: FormField[]
+  }
 }

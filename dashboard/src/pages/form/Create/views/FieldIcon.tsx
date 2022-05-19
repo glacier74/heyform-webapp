@@ -4,9 +4,9 @@ import type { FC } from 'react'
 import { useMemo } from 'react'
 import { FIELD_CONFIGS } from './FieldConfig'
 
-interface FieldIconProps extends IComponentProps {
+export interface FieldIconProps extends IComponentProps {
   kind: FieldKindEnum
-  index?: number
+  index?: number | string
   iconOnly?: boolean
 }
 

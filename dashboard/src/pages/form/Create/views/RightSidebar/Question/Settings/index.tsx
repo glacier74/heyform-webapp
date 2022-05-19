@@ -15,6 +15,10 @@ export const Settings: FC = () => {
   const { state } = useStoreContext()
   const field = state.selectedField!
 
+  if (field.kind === FieldKindEnum.GROUP) {
+    return null
+  }
+
   return (
     <div className="right-sidebar-group right-sidebar-settings">
       <div className="right-sidebar-group-title">{t('formBuilder.settings')}</div>
