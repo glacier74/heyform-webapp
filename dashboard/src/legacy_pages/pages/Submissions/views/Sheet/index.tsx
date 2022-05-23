@@ -1,4 +1,5 @@
 import { InternalColumnKindEnum } from '@/legacy_pages/constants'
+import { flattenFields } from '@/legacy_pages/pages/Report'
 import { htmlUtils } from '@heyforms/answer-utils'
 import { FieldKindEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { isArray } from '@hpnp/utils/helper'
@@ -212,7 +213,7 @@ export const Sheet: FC<SheetProps> = ({
       }
     ]
 
-    const fields = formFields.filter(row => QUESTION_FIELD_KINDS.includes(row.kind))
+    const fields = flattenFields(formFields).filter(row => QUESTION_FIELD_KINDS.includes(row.kind))
     const fieldColumns: any[] = fields.map(row => {
       const name = isArray(row.title)
         ? htmlUtils.plain(htmlUtils.serialize(row.title as any))

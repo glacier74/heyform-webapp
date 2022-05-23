@@ -1,3 +1,4 @@
+import { flattenFields } from '@/legacy_pages/pages/Report'
 import { useStore } from '@/legacy_pages/utils'
 import { htmlUtils } from '@heyforms/answer-utils'
 import { STATEMENT_FIELD_KINDS } from '@heyforms/shared-types-enums'
@@ -10,7 +11,7 @@ import styled from 'styled-components'
 export const FieldList: FC = observer(() => {
   const { t } = useTranslation()
   const formStore = useStore('formStore')
-  const fields = formStore.current?.fields?.filter(
+  const fields = flattenFields(formStore.current?.fields).filter(
     field => !STATEMENT_FIELD_KINDS.includes(field.kind)
   )
 
