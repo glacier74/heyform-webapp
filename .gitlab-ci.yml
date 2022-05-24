@@ -75,6 +75,6 @@ release:
 
     echo "=> Deploying"
     scp -P "$PRO_DEPLOY_PORT" -o stricthostkeychecking=no -C fe.tar.gz "$PRO_DEPLOY_USER"@"$PRO_DEPLOY_HOST":"$PRO_TEMP"
-    DEPLOY_SHELL="tar -xzf ${PRO_TEMP}/fe.tar.gz -C ${PRO_APP_DIR} && cd ${PRO_APP_DIR} && /usr/bin/cp -r tmp/* ./ && npm start"
+    DEPLOY_SHELL="tar -xzf ${PRO_TEMP}/fe.tar.gz -C ${PRO_APP_DIR} && cd ${PRO_APP_DIR} && cp -r tmp/* ./ && npm start"
     ssh -p "$PRO_DEPLOY_PORT" "$PRO_DEPLOY_USER"@"$PRO_DEPLOY_HOST" -t "$DEPLOY_SHELL"
     exit
