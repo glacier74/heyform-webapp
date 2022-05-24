@@ -68,13 +68,13 @@ release:
     cp dashboard/dist/sw.js tmp/static/sw.js
     cp -r dashboard/dist/static/* tmp/static/
 
-    if [ -f d.tar.gz ]; then
-      rm d.tar.gz
+    if [ -f fe.tar.gz ]; then
+      rm fe.tar.gz
     fi
-    tar -czvf d.tar.gz tmp/*
+    tar -czvf fe.tar.gz tmp/*
 
     echo "=> Deploying"
-    scp -P "$PRO_DEPLOY_PORT" -o stricthostkeychecking=no -C d.tar.gz "$PRO_DEPLOY_USER"@"$PRO_DEPLOY_HOST":"$PRO_TEMP"
-    DEPLOY_SHELL="tar -xzf ${PRO_TEMP}/d.tar.gz -C ${PRO_APP_DIR} && rm -rf ${PRO_TEMP}/d.tar.gz && cd ${PRO_APP_DIR} && /usr/bin/cp -r tmp/* ./ && npm start"
+    scp -P "$PRO_DEPLOY_PORT" -o stricthostkeychecking=no -C fe.tar.gz "$PRO_DEPLOY_USER"@"$PRO_DEPLOY_HOST":"$PRO_TEMP"
+    DEPLOY_SHELL="tar -xzf ${PRO_TEMP}/fe.tar.gz -C ${PRO_APP_DIR} && cd ${PRO_APP_DIR} && /usr/bin/cp -r tmp/* ./ && npm start"
     ssh -p "$PRO_DEPLOY_PORT" "$PRO_DEPLOY_USER"@"$PRO_DEPLOY_HOST" -t "$DEPLOY_SHELL"
     exit
