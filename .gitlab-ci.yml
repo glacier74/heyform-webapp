@@ -17,9 +17,6 @@ development:
   stage: development
   only:
     - master
-  except:
-    changes:
-      - ".gitlab-ci.yml"
   cache:
     paths:
       - node_modules/
@@ -46,7 +43,7 @@ development:
     echo "=> Deploying"
     scp -P "$DEVELOP_PORT" -o stricthostkeychecking=no -C d.tar.gz "$DEVELOP_DEPLOY_USER"@"$DEVELOP_DEPLOY_HOST":"$DEVELOP_TEMP"
     DEPLOY_SHELL="tar -xzf ${DEVELOP_TEMP}/d.tar.gz -C ${DEVELOP_APP_DIR} && rm -rf ${DEVELOP_TEMP}/d.tar.gz && cd ${DEVELOP_APP_DIR} && /usr/bin/cp -r tmp/* ./ && npm start"
-    ssh -p "$DEVELOP_PORT" -t "$DEVELOP_DEPLOY_USER"@"$DEVELOP_DEPLOY_HOST" "$DEPLOY_SHELL"
+    ssh -p "$DEVELOP_PORT" "$DEVELOP_DEPLOY_USER"@"$DEVELOP_DEPLOY_HOST" -t "$DEPLOY_SHELL"
     exit
 
 release:
@@ -79,5 +76,5 @@ release:
     echo "=> Deploying"
     scp -P "$PRO_DEPLOY_PORT" -o stricthostkeychecking=no -C d.tar.gz "$PRO_DEPLOY_USER"@"$PRO_DEPLOY_HOST":"$PRO_TEMP"
     DEPLOY_SHELL="tar -xzf ${PRO_TEMP}/d.tar.gz -C ${PRO_APP_DIR} && rm -rf ${PRO_TEMP}/d.tar.gz && cd ${PRO_APP_DIR} && /usr/bin/cp -r tmp/* ./ && npm start"
-    ssh -p "$PRO_DEPLOY_PORT" -t "$PRO_DEPLOY_USER"@"$PRO_DEPLOY_HOST" "$DEPLOY_SHELL"
+    ssh -p "$PRO_DEPLOY_PORT" "$PRO_DEPLOY_USER"@"$PRO_DEPLOY_HOST" -t "$DEPLOY_SHELL"
     exit
