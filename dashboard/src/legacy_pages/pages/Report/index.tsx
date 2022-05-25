@@ -3,10 +3,9 @@ import { BlankSubmissionIcon } from '@/legacy_pages/components/Icons'
 import { ResultNavbar } from '@/legacy_pages/pages/Analytics/views/ResultNavbar'
 import { FieldList } from '@/legacy_pages/pages/Report/views/FieldList'
 import { useStore } from '@/legacy_pages/utils'
-import { FormField } from '@/models'
 import { FormService } from '@/service'
 import { useParam } from '@/utils'
-import { htmlUtils } from '@heyforms/answer-utils'
+import { flattenFields, htmlUtils } from '@heyforms/answer-utils'
 import {
   CHOICES_FIELD_KINDS,
   CUSTOM_COLUMN_CHOICE_KINDS,
@@ -24,19 +23,6 @@ import styled from 'styled-components'
 import { ReportItem } from './views/ReportItem'
 
 const CHOICE_KINDS = [FieldKindEnum.YES_NO, ...CHOICES_FIELD_KINDS, ...CUSTOM_COLUMN_CHOICE_KINDS]
-
-export function flattenFields(fields?: FormField[]): FormField[] {
-  if (isEmpty(fields)) {
-    return []
-  }
-
-  return fields!.reduce((prev: FormField[], curr) => {
-    if (curr.kind === FieldKindEnum.GROUP) {
-      return [...prev, ...(curr.properties?.fields || [])]
-    }
-    return [...prev, curr]
-  }, [])
-}
 
 const Report: FC = observer(() => {
   const { t } = useTranslation()

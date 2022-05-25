@@ -1,6 +1,5 @@
 import { InternalColumnKindEnum } from '@/legacy_pages/constants'
-import { flattenFields } from '@/legacy_pages/pages/Report'
-import { htmlUtils } from '@heyforms/answer-utils'
+import { flattenFields, htmlUtils } from '@heyforms/answer-utils'
 import { FieldKindEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { isArray } from '@hpnp/utils/helper'
 import { copyObjectValues } from '@hpnp/utils/object'

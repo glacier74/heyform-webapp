@@ -1,6 +1,5 @@
-import { flattenFields } from '@/legacy_pages/pages/Report'
 import { useStore } from '@/legacy_pages/utils'
-import { htmlUtils } from '@heyforms/answer-utils'
+import { flattenFields, htmlUtils } from '@heyforms/answer-utils'
 import { STATEMENT_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { isArray } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'

@@ -1039,6 +1039,18 @@
     libphonenumber-js "^1.9.53"
     validator "^13.7.0"
 
+"@heyforms/answer-utils@^0.5.3":
+  version "0.5.3"
+  resolved "http://npm.heyooo.com/@heyforms%2fanswer-utils/-/answer-utils-0.5.3.tgz#bb34c0280f7d09200874a2abfc09c5b861314f5c"
+  integrity sha512-BMuNNb8EiVPCTBCds3w3Lpx7ttdjndPw8TVY2aoUVgMsKLrFmsHBDOTF17uSHzjgg4ua1VjCzhw0/t+sIOMu3w==
+  dependencies:
+    "@heyforms/shared-types-enums" "^4.5.0"
+    "@hpnp/utils" "^2.9.2"
+    dayjs "^1.11.2"
+    html5parser "^2.0.2"
+    libphonenumber-js "^1.9.53"
+    validator "^13.7.0"
+
 "@heyforms/form-component@^2022.5.6-3":
   version "2022.5.6-3"
   resolved "http://npm.heyooo.com/@heyforms%2fform-component/-/form-component-2022.5.6-3.tgz#d7f8ccd0fde025060e835d20f730498146c00596"
