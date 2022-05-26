@@ -879,7 +879,9 @@ export default {
     data: 'Data',
     inputTable: 'Input Table',
     addColumn: 'Add column',
-    columnPlaceholder: 'Col {{index}}'
+    columnPlaceholder: 'Col {{index}}',
+    theme: 'Theme',
+    customize: 'Customize'
   },
   'Create a heyform': 'Create a heyform',
   "File size can't exceed {{size}}": "File size can't exceed {{size}}",

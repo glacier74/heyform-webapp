@@ -3,11 +3,14 @@ import { PlanGradeEnum } from '@/models'
 import { Tabs } from '@heyforms/ui'
 import type { ITab } from '@heyforms/ui/types/tabs/context'
 import { memo, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Customize } from './Customize'
 import { Question } from './Question'
 import { Theme } from './Theme'
 
 const RightSidebarComponent = () => {
+  const { t } = useTranslation()
+
   function render(tab: ITab) {
     switch (tab.name) {
       case 'question':
@@ -23,13 +26,13 @@ const RightSidebarComponent = () => {
   return (
     <div className="right-sidebar flex flex-col w-64 bg-white border-l border-gray-200">
       <Tabs defaultActiveName="question" navRender={renderCallback}>
-        <Tabs.Pane name="question" title="Question">
+        <Tabs.Pane name="question" title={t('formBuilder.question')}>
           <Question />
         </Tabs.Pane>
-        <Tabs.Pane name="theme" title="Theme">
+        <Tabs.Pane name="theme" title={t('formBuilder.theme')}>
           <Theme />
         </Tabs.Pane>
-        <Tabs.Pane name="customize" title="Customize">
+        <Tabs.Pane name="customize" title={t('formBuilder.customize')}>
           <Customize />
         </Tabs.Pane>
       </Tabs>

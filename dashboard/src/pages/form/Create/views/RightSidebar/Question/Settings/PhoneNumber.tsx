@@ -29,7 +29,7 @@ export const PhoneNumber: FC<IBasicProps> = ({ field }) => {
     return (
       <>
         <FlagIcon countryCode={option.value} />
-        <span className="flex-1 truncate">{option.label}</span>
+        <span className="flex-1 truncate">{t(option.label)}</span>
         {isActive && (
           <span className="select-option-checkmark">
             <CheckIcon />
