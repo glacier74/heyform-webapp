@@ -38,7 +38,7 @@
     "@apollo/client": "^3.5.9",
     "@heroicons/react": "^1.0.5",
     "@heyforms/answer-utils": "^0.5.3",
-    "@heyforms/form-component": "^2022.5.7",
+    "@heyforms/form-component": "^2022.5.7-1",
     "@heyforms/shared-types-enums": "^4.5.0",
     "@heyforms/ui": "^2022.5.3-1",
     "@heyui/component": "^1.8.0",
