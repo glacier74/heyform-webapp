@@ -7,7 +7,6 @@ import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-
 export const LogoUploader: FC = observer(() => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
@@ -42,7 +41,7 @@ export const LogoUploader: FC = observer(() => {
         value={workspaceStore.workspace?.avatar}
         label={t('workspace.settings.logo')}
         description={t('workspace.settings.pickLogo')}
-        defaultIcon={<WorkspaceIcon/>}
+        defaultIcon={<WorkspaceIcon />}
         changeLoading={loading}
         onChange={handleChange}
       />

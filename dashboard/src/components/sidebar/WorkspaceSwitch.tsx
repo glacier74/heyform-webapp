@@ -1,6 +1,6 @@
 import type { WorkspaceModel } from '@/models'
 import { useStore } from '@/store'
-import { useParam } from '@/utils'
+import { imageProcessing, useParam } from '@/utils'
 import { PlusIcon } from '@heroicons/react/outline'
 import { CheckCircleIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Avatar, Dropdown, Menus } from '@heyforms/ui'
@@ -38,7 +38,7 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
       onClick={handleClick}
     >
       <Avatar
-        src={workspace.avatar}
+        src={imageProcessing(workspace.avatar, 100, 100)}
         defaultIcon={<WorkspaceIcon />}
         size={40}
         retainLength={2}
@@ -86,7 +86,7 @@ const CurrentWorkspace = observer(() => {
         <span className="flex min-w-0 items-center justify-between space-x-3">
           <Avatar
             className="w-10 h-10 rounded-full flex-shrink-0"
-            src={workspaceStore.workspace?.avatar}
+            src={imageProcessing(workspaceStore.workspace?.avatar, 100, 100)}
             defaultIcon={<WorkspaceIcon />}
             size={40}
             rounded

@@ -1,4 +1,4 @@
-import { useVisible } from '@/utils'
+import { imageProcessing, useVisible } from '@/utils'
 import { Avatar, Button } from '@heyforms/ui'
 import clsx from 'clsx'
 import type { FC, ReactNode } from 'react'
@@ -57,7 +57,13 @@ export const PhotoPickerField: FC<PhotoPickerFieldProps> = ({
         </label>
         <p className="form-item-description">{description}</p>
         <div className="mt-3 flex items-center">
-          <Avatar src={value} size={48} defaultIcon={defaultIcon} circular rounded />
+          <Avatar
+            src={imageProcessing(value, 100, 100)}
+            size={48}
+            defaultIcon={defaultIcon}
+            circular
+            rounded
+          />
           <div className="ml-4 flex flex-auto items-center">
             <Button loading={changeLoading} onClick={handleClick}>
               {t('other.Change')}

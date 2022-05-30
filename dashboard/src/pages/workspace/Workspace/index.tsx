@@ -4,7 +4,7 @@ import { DeleteProject } from '@/pages/project/views/DeleteProject'
 import { RenameProject } from '@/pages/project/views/RenameProject'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect, useParam, useVisible } from '@/utils'
+import { imageProcessing, useAsyncEffect, useParam, useVisible } from '@/utils'
 import { CollectionIcon, DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import { Avatar, Button, Dropdown, EmptyStates, Heading, Menus } from '@heyforms/ui'
 import clsx from 'clsx'
@@ -31,7 +31,7 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
     return users
       .filter(user => project.members.includes(user.id))
       .map(u => ({
-        src: u.avatar
+        src: imageProcessing(u.avatar, 60, 60)
       }))
   }, [project.members, users])
   const [visible, setVisible] = useState(false)
@@ -119,7 +119,7 @@ const Workspace = observer(() => {
         title={workspaceStore.workspace?.name}
         icon={
           <Avatar
-            src={workspaceStore.workspace?.avatar}
+            src={imageProcessing(workspaceStore.workspace?.avatar, 100, 100)}
             defaultIcon={<WorkspaceIcon />}
             size={54}
             rounded

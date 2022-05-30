@@ -1,5 +1,5 @@
 import { removeObjectNil } from '@hpnp/utils'
-import { isValid } from '@hpnp/utils/helper'
+import { isURL, isValid } from '@hpnp/utils/helper'
 import { stringify } from '@hpnp/utils/qs'
 import isMobilePhone from 'validator/lib/isMobilePhone'
 
@@ -73,4 +73,18 @@ export function insertStyle(id: string, style: string) {
 
 export function isPhoneNumber(arg: any): boolean {
   return isValid(arg) && isMobilePhone(arg, 'zh-CN')
+}
+
+export function imageProcessing(src?: string, width = 0, height = 0): string | undefined {
+  if (isURL(src)) {
+    if (src!.startsWith('https://storage-us.heyformhq.com')) {
+      return `${src}?imageView2/2/w/${width}/h/${height}/interlace/1`
+    }
+
+    if (src!.startsWith('https://images.unsplash.com')) {
+      return `${src!.replace(/&(w|h)=\d+/g, '')}&w=${width}&h=${height}`
+    }
+
+    return src
+  }
 }

@@ -1,7 +1,7 @@
 import type { UserModel } from '@/models'
 import { ProjectService } from '@/service'
 import { useStore } from '@/store'
-import { useParam } from '@/utils'
+import { imageProcessing, useParam } from '@/utils'
 import { Avatar, Badge, Button, Modal, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -83,7 +83,13 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
 
   return (
     <div className="group flex items-center py-2.5 text-sm text-gray-700">
-      <Avatar src={member.avatar} size={40} retainLength={2} rounded circular />
+      <Avatar
+        src={imageProcessing(member.avatar, 60, 60)}
+        size={40}
+        retainLength={2}
+        rounded
+        circular
+      />
 
       <div className="ml-4 flex-auto">
         <p className="text-sm font-medium text-gray-700 truncate">

@@ -1,5 +1,5 @@
 import { useStore } from '@/store'
-import { clearAuthState } from '@/utils'
+import { clearAuthState, imageProcessing } from '@/utils'
 import { Avatar, Dropdown, Menus } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -44,7 +44,12 @@ export const UserAccount: FC = observer(() => {
       >
         <div className="flex items-center cursor-pointer">
           <div>
-            <Avatar className="inline-block h-8 w-8" src={userStore.user.avatar} circular rounded />
+            <Avatar
+              className="inline-block h-8 w-8"
+              src={imageProcessing(userStore.user.avatar, 100, 100)}
+              circular
+              rounded
+            />
           </div>
           <div className="ml-3">
             <p className="text-sm font-medium text-gray-700 truncate group-hover:text-gray-900">

@@ -1,7 +1,7 @@
 import type { UserModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect, useParam, useVisible } from '@/utils'
+import { imageProcessing, useAsyncEffect, useParam, useVisible } from '@/utils'
 import {
   DotsHorizontalIcon,
   LogoutIcon,
@@ -41,7 +41,7 @@ const Members = observer(() => {
         return (
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Avatar src={record.avatar} size={36} rounded circular />
+              <Avatar src={imageProcessing(record.avatar, 60, 60)} size={36} rounded circular />
             </div>
             <div className="flex-1 px-4">
               <p className="text-sm font-medium text-gray-800 truncate">
