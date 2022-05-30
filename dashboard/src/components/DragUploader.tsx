@@ -113,10 +113,10 @@ export const DragUploader: FC<DragUploaderProps> = ({
             </p>
             <div className="flex items-center justify-center text-sm">
               <Button.Link type="primary" loading={loading} onClick={handleOpen}>
-                {loading ? uploadingText : reselectText}//
+                {loading ? uploadingText : reselectText}
               </Button.Link>
             </div>
-            {error && <p className="text-xs text-red-500">{error.message}</p>}//
+            {error && <p className="text-xs text-red-500">{error.message}</p>}
           </div>
         </div>
       ) : (
@@ -146,7 +146,7 @@ export const DragUploader: FC<DragUploaderProps> = ({
             ) : (
               <p className="text-xs text-gray-500">
                 {t('other.DragUploader.upTo')} {maxSize}
-              </p> //
+              </p>
             )}
           </div>
         </div>

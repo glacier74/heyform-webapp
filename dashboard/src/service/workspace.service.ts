@@ -170,7 +170,8 @@ export class WorkspaceService {
           filename,
           mime
         }
-      }
+      },
+      fetchPolicy: 'network-only'
     })
   }
 

@@ -94,7 +94,8 @@ export class UserService {
           filename,
           mime
         }
-      }
+      },
+      fetchPolicy: 'network-only'
     })
   }
 
