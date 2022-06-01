@@ -94,7 +94,7 @@ export const StoreContext = createContext<IContext>({
   dispatch: () => {}
 })
 
-const NO_NEED_SYNC_ACTIONS = ['initFields', 'selectField', 'selectField']
+const NO_NEED_SYNC_ACTIONS = ['initFields', 'selectField']
 
 function handleAction(state: IState, action: IAction): IState {
   const result: IState = actions[action.type](state, action.payload as unknown as any)

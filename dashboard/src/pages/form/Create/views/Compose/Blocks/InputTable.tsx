@@ -3,6 +3,7 @@ import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
 import { ChevronRightIcon, XIcon } from '@heroicons/react/outline'
 import type { Choice } from '@heyforms/shared-types-enums'
 import { Button } from '@heyforms/ui'
+import { clone } from '@hpnp/utils'
 import { nanoid } from '@hpnp/utils/nanoid'
 import type { FC } from 'react'
 import { startTransition, useCallback, useState } from 'react'
@@ -78,7 +79,8 @@ export const InputTable: FC<BlockProps> = ({ field, ...restProps }) => {
   }
 
   function handleLabelChange(columnId: string, label: any) {
-    const tableColumns = field.properties?.tableColumns || []
+    const properties = clone(field.properties)
+    const tableColumns = properties?.tableColumns || []
     const index = tableColumns.findIndex(c => c.id === columnId)
 
     tableColumns[index].label = label
@@ -89,7 +91,7 @@ export const InputTable: FC<BlockProps> = ({ field, ...restProps }) => {
         id: field.id,
         updates: {
           properties: {
-            ...field.properties,
+            ...properties,
             tableColumns
           }
         }
