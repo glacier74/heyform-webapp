@@ -881,7 +881,12 @@ export default {
     addColumn: 'Add column',
     columnPlaceholder: 'Col {{index}}',
     theme: 'Theme',
-    customize: 'Customize'
+    customize: 'Customize',
+    submitDate: 'Submit date',
+    contact: 'Contact',
+    customText: 'Custom text',
+    customSingle: 'Custom single choice',
+    customMultiple: 'Custom multiple choice'
   },
   'Create a heyform': 'Create a heyform',
   "File size can't exceed {{size}}": "File size can't exceed {{size}}",

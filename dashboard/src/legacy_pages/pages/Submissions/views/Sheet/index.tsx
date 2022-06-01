@@ -160,6 +160,7 @@ export const Sheet: FC<SheetProps> = ({
 
   function handleColumnDelete(column: SheetColumn) {
     onColumnDelete!(column)
+    setColumns(v => v.filter(c => c.key !== column.key))
   }
 
   function handleNext() {

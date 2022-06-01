@@ -6,9 +6,11 @@ import { AddressCell } from './AddressCell'
 import { ContactCell } from './ContactCell'
 import { CustomMultipleCell } from './CustomMultipleCell'
 import { CustomTextCell } from './CustomTextCell'
+import { DateRangeCell } from './DateRangeCell'
 import { DropPickerCell } from './DropPickerCell'
 import { FileUploadCell } from './FileUploadCell'
 import { FullNameCell } from './FullNameCell'
+import { InputTableCell } from './InputTableCell'
 import { MultipleChoiceCell } from './MultipleChoiceCell'
 import { OpinionScaleCell } from './OpinionScaleCell'
 import { PictureChoiceCell } from './PictureChoiceCell'
@@ -54,6 +56,12 @@ export const SheetCell: FC<SheetCellProps> = props => {
 
     case FieldKindEnum.FULL_NAME:
       return <FullNameCell {...props} />
+
+    case FieldKindEnum.DATE_RANGE:
+      return <DateRangeCell {...props} />
+
+    case FieldKindEnum.INPUT_TABLE:
+      return <InputTableCell {...props} />
 
     case FieldKindEnum.CUSTOM_MULTIPLE:
     case FieldKindEnum.CUSTOM_SINGLE:

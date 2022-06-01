@@ -1,4 +1,5 @@
 import {
+  ConcentricCirclesIcon,
   DateRangeIcon,
   DateTimeIcon,
   ImageIcon,
@@ -13,6 +14,7 @@ import {
   YesOrNoIcon
 } from '@/components'
 import {
+  CalendarIcon,
   ChartBarIcon,
   CheckIcon,
   FolderIcon,
@@ -148,15 +150,15 @@ export const FIELD_QUESTION_CONFIGS = [
     kind: FieldKindEnum.DATE,
     icon: DateTimeIcon,
     label: 'formBuilder.dateTime',
-    textColor: '#047857',
-    backgroundColor: '#d1fae5'
+    textColor: '#6d28d9',
+    backgroundColor: '#ede9fe'
   },
   {
     kind: FieldKindEnum.DATE_RANGE,
     icon: DateRangeIcon,
     label: 'formBuilder.dateRange',
-    textColor: '#047857',
-    backgroundColor: '#d1fae5'
+    textColor: '#6d28d9',
+    backgroundColor: '#ede9fe'
   },
   {
     kind: FieldKindEnum.NUMBER,
@@ -213,6 +215,44 @@ export const FIELD_QUESTION_CONFIGS = [
     label: 'formBuilder.inputTable',
     textColor: '#c2410c',
     backgroundColor: '#ffedd5'
+  }
+]
+
+export const CUSTOM_FIELDS_CONFIGS: FieldConfig[] = [
+  {
+    kind: 'contact' as FieldKindEnum,
+    icon: MailIcon,
+    label: 'formBuilder.contact',
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
+  },
+  {
+    kind: 'submit_date' as FieldKindEnum,
+    icon: CalendarIcon,
+    label: 'formBuilder.submitDate',
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
+  },
+  {
+    kind: FieldKindEnum.CUSTOM_TEXT,
+    icon: LongTextIcon,
+    label: 'formBuilder.customText',
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
+  },
+  {
+    kind: FieldKindEnum.CUSTOM_SINGLE,
+    icon: ConcentricCirclesIcon,
+    label: 'formBuilder.customSingle',
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
+  },
+  {
+    kind: FieldKindEnum.CUSTOM_MULTIPLE,
+    icon: CheckIcon,
+    label: 'formBuilder.customMultiple',
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
   }
 ]
 

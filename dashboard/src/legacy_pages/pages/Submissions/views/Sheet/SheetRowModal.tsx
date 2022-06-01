@@ -12,7 +12,7 @@ import {
 } from '@heyui/component'
 import { ArrowDownSIcon, ArrowUpSIcon, AttachmentIcon, ImageIcon, MinimizeIcon } from '@heyui/icon'
 import { unixDate } from '@hpnp/utils/date'
-import { isEmpty, isValid } from '@hpnp/utils/helper'
+import { isEmpty, isValid, isValidArray } from '@hpnp/utils/helper'
 import { FC, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
@@ -58,8 +58,47 @@ const DateItem: FC<SheetCellProps> = ({ column, row }) => {
   return <ShortTextContainer>{row[column.key]}</ShortTextContainer>
 }
 
-const CodeBlockItem: FC<SheetCellProps> = ({ column, row }) => {
-  return <CodeBlockContainer>{row[column.key]}</CodeBlockContainer>
+const DateRangeItem: FC<SheetCellProps> = ({ column, row }) => {
+  const value = row[column.key]
+  const arrays = [value?.start, value?.end].filter(Boolean)
+
+  return <ShortTextContainer>{arrays.join(' - ')}</ShortTextContainer>
+}
+
+const InputTableItem: FC<SheetCellProps> = ({ column, row }) => {
+  const value = row[column.key]
+  const columns = column.properties?.tableColumns || []
+
+  return (
+    <PictureChoiceContainer>
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead>
+          <tr>
+            {columns.map(c => (
+              <th key={c.id} className="py-1.5 px-3 text-left text-sm font-semibold text-gray-900">
+                {c.label}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-200">
+          {isValidArray(value) && (
+            <>
+              {value!.map((v, index) => (
+                <tr key={index}>
+                  {columns.map(c => (
+                    <td key={c.id} className="whitespace-nowrap py-2 px-3 text-sm text-gray-500">
+                      {v[c.id]}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </>
+          )}
+        </tbody>
+      </table>
+    </PictureChoiceContainer>
+  )
 }
 
 const OpinionScaleItem: FC<SheetCellProps> = ({ column, row }) => {
@@ -437,6 +476,12 @@ export const SheetRowModal: FC<SheetRowModalProps> = ({
                         case FieldKindEnum.PHONE_NUMBER:
                           return <DateItem row={row!} column={column} />
 
+                        case FieldKindEnum.DATE_RANGE:
+                          return <DateRangeItem row={row!} column={column} />
+
+                        case FieldKindEnum.INPUT_TABLE:
+                          return <InputTableItem row={row!} column={column} />
+
                         case FieldKindEnum.COUNTRY:
                           return <OpinionScaleItem row={row!} column={column} />
 
@@ -495,7 +540,7 @@ const Container = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 99;
+  z-index: 10;
 `
 
 const Mask = styled.div`
@@ -505,7 +550,7 @@ const Mask = styled.div`
   bottom: 0;
   left: 0;
   background: rgba(50, 59, 75, 0.3);
-  z-index: 99;
+  z-index: 10;
 `
 
 const Panel = styled.div`
@@ -605,6 +650,7 @@ const TextStyle = () => css`
   font-size: 14px;
   color: #4e5d78;
   line-height: 22px;
+  min-height: 44px;
   font-weight: 400;
   background: #fff;
   border: 1px solid #f3f3f3;
@@ -646,6 +692,10 @@ const FileUploadContainer = styled.div`
 const PictureChoiceContainer = styled.div`
   ${TextStyle};
   padding: 8px;
+
+  table {
+    width: 100%;
+  }
 `
 
 const PictureChoiceFlex = styled(Flex)`

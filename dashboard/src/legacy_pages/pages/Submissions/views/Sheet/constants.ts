@@ -4,7 +4,7 @@ import { OptionType } from '@heyui/component'
 export const COLUMN_TYPE_OPTIONS: OptionType[] = [
   {
     id: FieldKindEnum.CUSTOM_TEXT,
-    label: 'Multiline'
+    label: 'Text'
   },
   {
     id: FieldKindEnum.CUSTOM_SINGLE,

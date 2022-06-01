@@ -10,8 +10,8 @@ export const ContactCell: FC<SheetCellProps> = ({ row }) => {
     <Container className="heygrid-cell-text">
       {value && (
         <>
-          <img src={value.avatar} />
-          <span>{value.fullName}</span>
+          <img className="inline-block" src={value.avatar} />
+          <span className="inline-block">{value.fullName}</span>
         </>
       )}
     </Container>

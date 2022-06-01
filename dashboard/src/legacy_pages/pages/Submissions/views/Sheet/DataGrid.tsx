@@ -1026,7 +1026,7 @@ function DataGrid<R, SR>(
       {rows.length === 0 && EmptyRowsRenderer ? (
         <EmptyRowsRenderer />
       ) : (
-        <div className="heygrid-scrollview" onScroll={handleScroll}>
+        <div className="heygrid-scrollview scrollbar" onScroll={handleScroll}>
           <div
             style={{
               width: totalColumnWidth,
@@ -1078,7 +1078,6 @@ const GridRoot = styled.div`
     position: relative;
     height: calc(100vh - 188px);
     z-index: 1;
-    overflow: auto;
 
     .heygrid-loader {
       display: flex;

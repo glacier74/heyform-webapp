@@ -13,7 +13,7 @@ export const Add_COLUMN_KEY = 'add-row'
 function getInitialColumn(): SheetColumn {
   return {
     key: nanoid(12),
-    name: 'Column',
+    name: 'Custom column',
     kind: FieldKindEnum.CUSTOM_TEXT,
     width: 200,
     minWidth: 80,
@@ -66,6 +66,7 @@ export const SheetHeaderAddCell = (onColumnAdd: OnColumnOptionsUpdate): Column<a
             marginLeft: -12
           }}
           mask={true}
+          zIndex={10}
           maskClosable={!loading}
           referenceRef={referenceRef}
           popperOptions={{
