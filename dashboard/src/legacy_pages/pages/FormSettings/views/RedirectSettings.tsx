@@ -1,7 +1,6 @@
-import { UpgradePlan } from '@/legacy_pages/components/UpgradePlan'
-import { PlanGradeEnum } from '@/legacy_pages/models'
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import {
   Button,
   ComponentProps,
@@ -14,8 +13,6 @@ import {
 } from '@heyui/component'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 interface RedirectSettingsProps extends ComponentProps {
@@ -72,39 +69,37 @@ export const RedirectSettings: FC<RedirectSettingsProps> = ({
 
   return (
     <Container {...restProps}>
-      <UpgradePlan name="Pro" permission={PlanGradeEnum.PRO}>
-        <Header align="center">
-          <span>{t('Redirect On Completion')}</span>
-        </Header>
-        <Body>
-          <Description>
-            {t("Take your respondents to another web page once they're done filling in your form.")}
-          </Description>
-          <Switch value={value} loading={loading} onChange={handleChange} />
-        </Body>
-        {value && (
-          <Footer>
-            <StyledForm initialValues={{ redirectUrl }} onFinish={handleFinish}>
-              <InputFormItem
-                name="redirectUrl"
-                rules={[
-                  {
-                    type: 'url',
-                    required: true
-                  }
-                ]}
-              >
-                <Input size="small" placeholder="eg: https://example.com" />
-              </InputFormItem>
-              <FormItem>
-                <StyledButton type="primary" htmlType="submit" loading={buttonLoading} size="small">
-                  {t('Save')}
-                </StyledButton>
-              </FormItem>
-            </StyledForm>
-          </Footer>
-        )}
-      </UpgradePlan>
+      <Header align="center">
+        <span>{t('Redirect On Completion')}</span>
+      </Header>
+      <Body>
+        <Description>
+          {t("Take your respondents to another web page once they're done filling in your form.")}
+        </Description>
+        <Switch value={value} loading={loading} onChange={handleChange} />
+      </Body>
+      {value && (
+        <Footer>
+          <StyledForm initialValues={{ redirectUrl }} onFinish={handleFinish}>
+            <InputFormItem
+              name="redirectUrl"
+              rules={[
+                {
+                  type: 'url',
+                  required: true
+                }
+              ]}
+            >
+              <Input size="small" placeholder="eg: https://example.com" />
+            </InputFormItem>
+            <FormItem>
+              <StyledButton type="primary" htmlType="submit" loading={buttonLoading} size="small">
+                {t('Save')}
+              </StyledButton>
+            </FormItem>
+          </StyledForm>
+        </Footer>
+      )}
     </Container>
   )
 }

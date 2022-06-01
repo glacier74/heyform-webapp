@@ -7,8 +7,6 @@
 
 import { FormError, SubHeading } from '@/legacy_pages/components'
 import { TimeInput } from '@/legacy_pages/components/TimeInput'
-import { PlanPermissionBadge, UpgradePlan } from '@/legacy_pages/components/UpgradePlan'
-import { PlanGradeEnum } from '@/legacy_pages/models'
 import { useStore } from '@/legacy_pages/utils'
 import { FormService } from '@/service'
 import { useParam } from '@/utils'
@@ -42,9 +40,6 @@ export const Basic: FC = observer(() => {
       }
 
       delete allValues.allowArchive
-      if (workspaceStore.workspace?.plan.grade! < PlanGradeEnum.PRO) {
-        delete allValues.redirectOnCompletion
-      }
 
       await FormService.update(formId, allValues)
       formStore.updateSettings(allValues)
@@ -70,20 +65,16 @@ export const Basic: FC = observer(() => {
         onValuesChange={handleValuesChange}
         onFinish={handleFinish}
       >
-        <StyledFormItem
+        <SwitchFormItem
           name="allowArchive"
           label={t('formSettings.subArchive')}
-          description={t(
-            'formSettings.archiveText'
-          )}
+          description={t('formSettings.archiveText')}
         />
 
-        <StyledFormItem
+        <SwitchFormItem
           name="enableTimeLimit"
           label={t('formSettings.timeLimit')}
-          description={t(
-            'formSettings.timeText'
-          )}
+          description={t('formSettings.timeText')}
           style={{
             paddingBottom: values?.enableTimeLimit ? 0 : undefined
           }}
@@ -119,31 +110,21 @@ export const Basic: FC = observer(() => {
           </FormItem>
         )}
 
-        <StyledFormItem
+        <SwitchFormItem
           name="enableProgress"
           label={t('formSettings.progressBar')}
-          description={t(
-            'formSettings.progressText'
-          )}
+          description={t('formSettings.progressText')}
         />
 
-        <UpgradePlan name="Pro" permission={PlanGradeEnum.PRO}>
-          <StyledFormItem
-            name="redirectOnCompletion"
-            label={
-              <>
-                <span>{t('formSettings.Redirect')}</span>
-                <PlanPermissionBadge name="Pro" permission={PlanGradeEnum.PRO}/>
-              </>
-            }
-            description={t(
-              'formSettings.redirectText'
-            )}
-            style={{
-              paddingBottom: values?.redirectOnCompletion ? 0 : undefined
-            }}
-          />
-        </UpgradePlan>
+        <SwitchFormItem
+          name="redirectOnCompletion"
+          label={t('formSettings.Redirect')}
+          description={t('formSettings.redirectText')}
+          style={{
+            paddingBottom: values?.redirectOnCompletion ? 0 : undefined
+          }}
+        />
+
         {values?.redirectOnCompletion && (
           <FormItem
             name="redirectUrl"
@@ -154,11 +135,11 @@ export const Basic: FC = observer(() => {
               }
             ]}
           >
-            <Input size="small" placeholder="eg: https://example.com"/>
+            <Input size="small" placeholder="eg: https://example.com" />
           </FormItem>
         )}
 
-        {error && <FormError error={error}/>}
+        {error && <FormError error={error} />}
         <FormItem>
           <Button type="primary" htmlType="submit" size="small" loading={loading}>
             {t('formSettings.Update')}
@@ -184,8 +165,6 @@ const Container = styled.div`
     height: 40px;
   }
 `
-
-const StyledFormItem = styled(SwitchFormItem)``
 
 const StyledTimeInput = styled(TimeInput)`
   width: 160px;
