@@ -2,7 +2,7 @@ import { Input, Select } from '@heyforms/ui'
 import { isEmpty } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { FC } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import './style.scss'
 
@@ -97,6 +97,21 @@ export const NumberRange: FC<NumberRangeProps> = ({
       max: newValue
     })
   }
+
+  // When a user deletes a choice, the max and min values may exceed the total number of choices.
+  useEffect(() => {
+    if (value?.min && value!.min > max) {
+      onChange?.({
+        min: max,
+        max
+      })
+    } else if (value?.max && value!.max > max) {
+      onChange?.({
+        min: value?.min,
+        max
+      })
+    }
+  }, [max])
 
   return (
     <div
