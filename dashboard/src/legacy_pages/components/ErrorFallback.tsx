@@ -15,7 +15,7 @@ export const ErrorFallback: FC = () => {
           <BackHomeLink href="/">Back Home</BackHomeLink>
         </BackHomeContainer>
         <ContactUs>
-          Having trouble? <a href="https://my.heyform.net/f/E4MKK2hx">Send us a message</a>
+          Having trouble? <a href="https://heyform.net/f/E4MKK2hx">Send us a message</a>
         </ContactUs>
       </Container>
     </CommonLayout>

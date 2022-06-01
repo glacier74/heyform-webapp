@@ -25,7 +25,7 @@ export const SuspendedModal: FC = () => {
   }
 
   function handleClick() {
-    window.location.href = 'https://my.heyform.net/f/E4MKK2hx'
+    window.location.href = 'https://heyform.net/f/E4MKK2hx'
   }
 
   return (

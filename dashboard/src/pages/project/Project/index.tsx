@@ -107,7 +107,7 @@ const Project = observer(() => {
   }
 
   function handleConfirm() {
-    window.location.href = 'https://my.heyform.net/f/E4MKK2hx'
+    window.location.href = 'https://heyform.net/f/E4MKK2hx'
   }
 
   // Table columns

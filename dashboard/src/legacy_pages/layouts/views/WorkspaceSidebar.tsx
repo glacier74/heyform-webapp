@@ -79,7 +79,7 @@ export const WorkspaceSidebar: FC = observer(() => {
         <a href="https://help.heyform.net" target="_blank" rel="noreferrer">
           <IconText icon={<HelpIcon />} text={t('Help center')} />
         </a>
-        <a href="https://my.heyform.net/f/E4MKK2hx" target="_blank" rel="noreferrer">
+        <a href="https://heyform.net/f/E4MKK2hx" target="_blank" rel="noreferrer">
           <IconText icon={<ChatIcon />} text={t('Send us a message')} />
         </a>
       </BottomNav>

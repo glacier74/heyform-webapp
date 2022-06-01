@@ -3,7 +3,7 @@ import { isValid } from '@hpnp/utils/helper'
 import isFQDN from 'validator/lib/isFQDN'
 
 export function formSharingLinkUrl(workspace?: WorkspaceModel, formId?: string) {
-  let urlPrefix = import.meta.env.VITE_HOMEPAGE
+  let urlPrefix = import.meta.env.VITE_PUBLIC_FORM_PREFIX
 
   if (
     workspace?.plan?.customDomain &&
