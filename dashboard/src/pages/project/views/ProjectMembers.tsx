@@ -1,7 +1,7 @@
 import type { UserModel } from '@/models'
 import { ProjectService } from '@/service'
 import { useStore } from '@/store'
-import { imageProcessing, useParam } from '@/utils'
+import { cropImage, useParam } from '@/utils'
 import { Avatar, Badge, Button, Modal, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -84,7 +84,7 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
   return (
     <div className="group flex items-center py-2.5 text-sm text-gray-700">
       <Avatar
-        src={imageProcessing(member.avatar, 60, 60)}
+        src={cropImage(member.avatar, 60, 60)}
         size={40}
         retainLength={2}
         rounded
@@ -96,7 +96,7 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
           {member.name}
           {member.isSelf && t('project.ProjectMembers.you')}
           {member.isOwner && (
-            <Badge className="ml-1" type="blue" text={t('workspace.members.index.owner')} />
+            <Badge className="ml-1" type="blue" text={t('workspace.members.index.owner')}/>
           )}
         </p>
         <p className="text-sm text-gray-500 truncate">{member.email}</p>
@@ -157,7 +157,7 @@ export const ProjectMembers: FC<IModalProps> = observer(({ visible, onClose }) =
           </div>
           <div>
             {assignedMembers.map(row => (
-              <MemberItem key={row.id} member={row} />
+              <MemberItem key={row.id} member={row}/>
             ))}
           </div>
         </div>
@@ -169,7 +169,7 @@ export const ProjectMembers: FC<IModalProps> = observer(({ visible, onClose }) =
             </div>
             <div>
               {unassignedMembers.map(row => (
-                <MemberItem key={row.id} member={row} />
+                <MemberItem key={row.id} member={row}/>
               ))}
             </div>
           </div>

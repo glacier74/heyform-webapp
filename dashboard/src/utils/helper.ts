@@ -75,14 +75,34 @@ export function isPhoneNumber(arg: any): boolean {
   return isValid(arg) && isMobilePhone(arg, 'zh-CN')
 }
 
-export function imageProcessing(src?: string, width = 0, height = 0): string | undefined {
-  if (isURL(src)) {
-    if (src!.startsWith('https://storage-us.heyformhq.com')) {
-      return `${src}?imageView2/2/w/${width}/h/${height}/interlace/1`
+const cropImageRules: Array<Record<string, any>> = [
+  {
+    match: 'https://storage-us.heyformhq.com',
+    handler(src: string, width: number, height: number) {
+      const mode = width === height ? 1 : 2
+      return `${src}?imageView2/${mode}/w/${width}/h/${height}/format/webp/interlace/1`
     }
+  },
+  {
+    match: 'https://images.unsplash.com',
+    handler(src: string, width: number, height: number) {
+      src = src!.replace(/&(w|h)=\d+/g, '')
 
-    if (src!.startsWith('https://images.unsplash.com')) {
-      return `${src!.replace(/&(w|h)=\d+/g, '')}&w=${width}&h=${height}`
+      if (width === height) {
+        src = src!.replace(/&fit=[^&]+/i, '&fit=crop')
+      }
+
+      return `${src}&w=${width}&h=${height}`
+    }
+  }
+]
+
+export function cropImage(src?: string, width = 0, height = 0): string | undefined {
+  if (isURL(src)) {
+    for (const rule of cropImageRules) {
+      if (src!.startsWith(rule.match)) {
+        return rule.handler(src!, width, height)
+      }
     }
 
     return src

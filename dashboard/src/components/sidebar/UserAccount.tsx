@@ -1,5 +1,5 @@
 import { useStore } from '@/store'
-import { clearAuthState, imageProcessing } from '@/utils'
+import { clearAuthState, cropImage } from '@/utils'
 import { Avatar, Dropdown, Menus } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -46,7 +46,7 @@ export const UserAccount: FC = observer(() => {
           <div>
             <Avatar
               className="inline-block h-8 w-8"
-              src={imageProcessing(userStore.user.avatar, 100, 100)}
+              src={cropImage(userStore.user.avatar, 100, 100)}
               circular
               rounded
             />

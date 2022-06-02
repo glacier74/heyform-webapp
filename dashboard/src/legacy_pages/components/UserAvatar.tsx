@@ -1,5 +1,5 @@
 import { clearAuthState, useStore } from '@/legacy_pages/utils'
-import { imageProcessing } from '@/utils'
+import { cropImage } from '@/utils'
 import { Avatar, Dropdown } from '@heyforms/ui'
 import { ComponentProps, Menu } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
@@ -60,7 +60,7 @@ export const UserAvatar: FC<ComponentProps> = observer(({ className, style }) =>
         <span className="p-1 cursor-pointer">
           <Avatar
             className="inline-block h-8 w-8 rounded-full"
-            src={imageProcessing(userStore.user.avatar, 100, 100)}
+            src={cropImage(userStore.user.avatar, 100, 100)}
           />
         </span>
       </Dropdown>

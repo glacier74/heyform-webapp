@@ -1,6 +1,6 @@
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { imageProcessing, useAsyncEffect, useParam, useVisible } from '@/utils'
+import { cropImage, useAsyncEffect, useParam, useVisible } from '@/utils'
 import {
   ChevronDownIcon,
   DotsHorizontalIcon,
@@ -34,7 +34,7 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
     return workspaceStore.members
       .filter(m => workspaceStore.project?.members.includes(m.id))
       .map(m => ({
-        src: imageProcessing(m.avatar, 60, 60)
+        src: cropImage(m.avatar, 60, 60)
       }))
   }, [workspaceStore.project?.members, workspaceStore.members])
 
