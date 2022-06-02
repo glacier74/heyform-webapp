@@ -132,7 +132,7 @@ export const ReportItem: FC<ReportItemProps> = ({ index, response }) => {
       </Title>
       <Description>
         {response.count} {t('report.responses')}
-        <RatingAverage kind={response.kind} average={response.average}/>
+        <RatingAverage kind={response.kind} average={response.average} />
       </Description>
       {(() => {
         switch (response.kind) {
@@ -141,7 +141,7 @@ export const ReportItem: FC<ReportItemProps> = ({ index, response }) => {
           case FieldKindEnum.MULTIPLE_CHOICE:
           case FieldKindEnum.PICTURE_CHOICE:
           case FieldKindEnum.DROPDOWN:
-            return <Choices chooses={response.chooses}/>
+            return <Choices chooses={response.chooses} />
 
           case FieldKindEnum.RATING:
           case FieldKindEnum.OPINION_SCALE:
@@ -155,7 +155,7 @@ export const ReportItem: FC<ReportItemProps> = ({ index, response }) => {
             )
 
           default:
-            return <AnswerList response={response}/>
+            return <AnswerList response={response} />
         }
       })()}
     </Container>

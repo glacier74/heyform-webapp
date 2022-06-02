@@ -72,6 +72,7 @@ const Report: FC = observer(() => {
           : field.title
         response.kind = field.kind
         response.properties = pickValidValues(field.properties as any, [
+          'tableColumns',
           'total',
           'average',
           'leftLabel',

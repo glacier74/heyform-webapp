@@ -71,7 +71,7 @@ const InputTableItem: FC<SheetCellProps> = ({ column, row }) => {
 
   return (
     <PictureChoiceContainer>
-      <table class="min-w-full divide-y divide-gray-300">
+      <table className="w-full divide-y divide-gray-300">
         <thead>
           <tr>
             {columns.map(c => (

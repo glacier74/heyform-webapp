@@ -3,7 +3,7 @@ import { PaginationBar } from '@/legacy_pages/components/PaginationBar'
 import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { SubmissionService } from '@/service'
 import { useParam } from '@/utils'
-import { FieldKindEnum } from '@heyforms/shared-types-enums'
+import { Column, FieldKindEnum, InputTableValue } from '@heyforms/shared-types-enums'
 import { Flex } from '@heyui/component'
 import { isValidArray } from '@hpnp/utils/helper'
 import { FC, useState } from 'react'
@@ -23,10 +23,48 @@ interface AnswerListProps {
   response: {
     count: number
     answers: AnswerModel[]
+    [key: string]: any
   }
 }
 
-export const AnswerValue: FC<{ answer: AnswerModel }> = ({ answer }) => {
+const InputTableValue: FC<{ columns?: Column[]; value?: InputTableValue }> = ({
+  columns = [],
+  value
+}) => {
+  return (
+    <table className="w-full divide-y divide-gray-300">
+      <thead>
+        <tr>
+          {columns.map(c => (
+            <th key={c.id} className="py-1.5 px-3 text-left text-sm font-semibold text-gray-900">
+              {c.label}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-gray-200">
+        {isValidArray(value) && (
+          <>
+            {value!.map((v, index) => (
+              <tr key={index}>
+                {columns.map(c => (
+                  <td key={c.id} className="whitespace-nowrap py-2 px-3 text-sm text-gray-500">
+                    {v[c.id]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </>
+        )}
+      </tbody>
+    </table>
+  )
+}
+
+export const AnswerValue: FC<{ answer: AnswerModel; columns?: Column[] }> = ({
+  answer,
+  columns
+}) => {
   return (
     <ItemValue align="center" auto={true}>
       {(() => {
@@ -39,6 +77,14 @@ export const AnswerValue: FC<{ answer: AnswerModel }> = ({ answer }) => {
 
           case FieldKindEnum.FULL_NAME:
             return answer.value && `${answer.value.firstName} ${answer.value.lastName}`
+
+          case FieldKindEnum.DATE_RANGE:
+            return (
+              answer.value && [answer.value.start, answer.value.end].filter(Boolean).join(' - ')
+            )
+
+          case FieldKindEnum.INPUT_TABLE:
+            return <InputTableValue columns={columns} value={answer.value} />
 
           case FieldKindEnum.FILE_UPLOAD:
             return (
@@ -115,11 +161,11 @@ const AnswerModal: FC<AnswerModalProps> = ({ visible, response, onVisibleChange 
             <Heading style={{ textAlign: 'center' }}>{t('report.Responses')}</Heading>
           </ModalContent>
 
-          <Fetcher request={fetchAnswers} deps={[visible, page]} skeleton={<ModalListSkeleton/>}>
+          <Fetcher request={fetchAnswers} deps={[visible, page]} skeleton={<ModalListSkeleton />}>
             <ModalList>
               {answers.map(row => (
                 <Item key={row.submissionId} align="center">
-                  <AnswerValue answer={row}/>
+                  <AnswerValue answer={row} columns={response.properties?.tableColumns} />
                   <ItemDate>{timeago.format(row.endAt! * 1_000)}</ItemDate>
                 </Item>
               ))}
@@ -192,7 +238,7 @@ export const AnswerList: FC<AnswerListProps> = ({ response }) => {
     <Container>
       {response.answers?.map(row => (
         <Item key={row.submissionId} align="center">
-          <AnswerValue answer={row}/>
+          <AnswerValue answer={row} columns={response.properties?.tableColumns} />
           <ItemDate>{timeago.format(row.endAt! * 1_000)}</ItemDate>
         </Item>
       ))}
@@ -201,7 +247,7 @@ export const AnswerList: FC<AnswerListProps> = ({ response }) => {
           {t('report.seeAll', { count: response.count })}
         </MoreAnswer>
       )}
-      <AnswerModal response={response} visible={visible} onVisibleChange={setVisible}/>
+      <AnswerModal response={response} visible={visible} onVisibleChange={setVisible} />
     </Container>
   )
 }
