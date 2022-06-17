@@ -1,6 +1,5 @@
 import { Async } from '@/components'
 import { Queue } from '@/legacy_pages/utils/queue'
-import { initFields } from '@/pages/form/Create/utils'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
@@ -10,19 +9,28 @@ import type { FormModel } from '@heyforms/shared-types-enums'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { notification, Spin } from '@heyforms/ui'
 import { isValidArray } from '@hpnp/utils/helper'
-import { FC, useEffect, useMemo, useReducer, useState } from 'react'
+import { type FC, useEffect, useMemo, useReducer, useState } from 'react'
 import type { IState } from './store'
 import { StoreContext, storeReducer } from './store'
 import './style.scss'
+import { initFields } from './utils'
 import { Compose } from './views/Compose'
 import { LeftSidebar } from './views/LeftSidebar'
+import { LogicBulkEditPanel } from './views/LogicBulkEditPanel'
+import { LogicFlow } from './views/LogicFlow'
+import { LogicPanel } from './views/LogicPanel'
 import { RightSidebar } from './views/RightSidebar'
+import { VariablePanel } from './views/VariablePanel'
 
 const FormBuilder: FC<{ form: FormModel }> = ({ form }) => {
   const formStore = useStore('formStore')
   const initialState: IState = {
+    formId: form.id,
     version: 0,
     references: [],
+    activeTabName: 'question',
+    logics: form.logics,
+    variables: form.variables,
     ...initFields(form.fields)
   }
   const [state, dispatch] = useReducer(storeReducer, initialState)
@@ -85,6 +93,13 @@ const FormBuilder: FC<{ form: FormModel }> = ({ form }) => {
   }
 
   useEffect(() => {
+    formStore.update({
+      logics: state.logics,
+      variables: state.variables
+    })
+  }, [state.logics, state.variables])
+
+  useEffect(() => {
     formStore.update(getUpdates(state.fields!))
 
     // Add to queue
@@ -103,10 +118,19 @@ const FormBuilder: FC<{ form: FormModel }> = ({ form }) => {
 
   return (
     <StoreContext.Provider value={store}>
-      <div className="form-builder flex flex-1">
-        <LeftSidebar />
-        <Compose />
+      <div className="form-builder">
+        {state.activeTabName === 'logic' ? (
+          <LogicFlow />
+        ) : (
+          <>
+            <LeftSidebar />
+            <Compose />
+          </>
+        )}
         <RightSidebar />
+        {state.isLogicPanelOpen && <LogicPanel />}
+        {state.isVariablePanelOpen && <VariablePanel />}
+        {state.isBulkEditPanelOpen && <LogicBulkEditPanel />}
       </div>
     </StoreContext.Provider>
   )

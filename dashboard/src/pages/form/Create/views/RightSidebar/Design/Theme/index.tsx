@@ -1,11 +1,11 @@
 import { FORM_THEMES } from '@/consts'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
-import { useParam } from '@/utils'
+import { cropImage, useParam } from '@/utils'
 import { FormThemeV3 } from '@heyforms/shared-types-enums'
 import { notification, Spin } from '@heyforms/ui'
-import { useState } from 'react'
 import type { FC } from 'react'
+import { useState } from 'react'
 
 const ThemeItem: FC<{ theme: FormThemeV3 }> = ({ theme }) => {
   const { formId } = useParam()
@@ -43,7 +43,9 @@ const ThemeItem: FC<{ theme: FormThemeV3 }> = ({ theme }) => {
       className="theme-item"
       style={{
         backgroundColor: theme.backgroundColor,
-        backgroundImage: theme.backgroundImage ? `url(${theme.backgroundImage})` : undefined
+        backgroundImage: theme.backgroundImage
+          ? `url(${cropImage(theme.backgroundImage, 480, 240)})`
+          : undefined
       }}
       onClick={handleClick}
     >

@@ -36,13 +36,13 @@ const FormBuilder: FC = () => {
 }
 
 const Container = styled(Flex)`
-  height: calc(100vh - 60px);
+  height: calc(100vh - 3.75rem);
 `
 
 const StyledRequest = styled(Request)`
   flex: 1;
   background: #fafbfc;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 3.75rem);
   overflow-y: auto;
 `
 

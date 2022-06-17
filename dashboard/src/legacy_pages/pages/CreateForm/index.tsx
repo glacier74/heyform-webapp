@@ -134,7 +134,7 @@ const Container = styled(NavBarContainer)`
 const StartScratch = styled(Flex)`
   position: relative;
   margin: 0 20px 20px 0;
-  width: 160px;
+  width: 13.75rem;
   height: 214px;
   border-radius: 3px;
   background: #fff;
@@ -146,8 +146,8 @@ const StartScratch = styled(Flex)`
   }
 
   svg {
-    width: 60px;
-    height: 60px;
+    width: 3.75rem;
+    height: 3.75rem;
     color: #b0b7c3;
   }
 `

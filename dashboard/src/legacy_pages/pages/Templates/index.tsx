@@ -117,7 +117,7 @@ const CategoryList = styled.div`
   position: sticky;
   top: 100px;
   padding: 20px;
-  height: calc(100vh - 100px - 60px);
+  height: calc(100vh - 100px - 3.75rem);
   background: #fff;
   border-radius: 3px;
   overflow-y: auto;
@@ -144,5 +144,5 @@ const Body = styled.div`
 
 const StyledSubHeading = styled(SubHeading)`
   margin-top: 0;
-  padding-top: 60px;
+  padding-top: 3.75rem;
 `

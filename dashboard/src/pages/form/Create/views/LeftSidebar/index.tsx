@@ -9,7 +9,7 @@ const LeftSidebarComponent = () => {
   return (
     <div className="left-sidebar flex flex-col w-64 bg-white border-r border-gray-200">
       <div className="flex items-center justify-between p-4">
-        <span>{t('formBuilder.Content')}</span>
+        <h2>{t('formBuilder.Content')}</h2>
         <InsertFieldDropdown />
       </div>
 

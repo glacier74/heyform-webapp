@@ -1,12 +1,12 @@
 .number-range {
   @apply flex items-center w-full;
 
-  .select-wrapper {
+  .select {
     @apply w-auto;
   }
 
   &.number-range-unlimited {
-    .select-wrapper {
+    .select {
       @apply w-full;
     }
   }

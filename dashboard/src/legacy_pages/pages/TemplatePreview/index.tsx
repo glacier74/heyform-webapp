@@ -83,7 +83,7 @@ const Container = styled(NavBarContainer)`
 `
 
 const StyledRequest = styled(Request)`
-  height: calc(100vh - 60px);
+  height: calc(100vh - 3.75rem);
 `
 
 const StyledButton = styled(Button)`

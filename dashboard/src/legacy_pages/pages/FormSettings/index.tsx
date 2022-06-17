@@ -15,12 +15,12 @@ const FormSettings: FC = () => {
       <Content>
         <Heading description={t('formSettings.manageForm')}>{t('formSettings.Form')}</Heading>
 
-        <FormStatus/>
-        <Basic/>
-        <Protection/>
+        <FormStatus />
+        <Basic />
+        <Protection />
 
         <SubHeading>{t('formSettings.Extra')}</SubHeading>
-        <DeleteForm/>
+        <DeleteForm />
       </Content>
     </Container>
   )
@@ -29,7 +29,7 @@ const FormSettings: FC = () => {
 export default FormSettings
 
 const Container = styled.div`
-  width: 960px;
+  width: 93.75rem;
   margin-left: auto;
   margin-right: auto;
   padding-top: 80px;

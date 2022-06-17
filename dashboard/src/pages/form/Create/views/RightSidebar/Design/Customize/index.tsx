@@ -2,12 +2,11 @@ import { GOOGLE_FONTS_OPTIONS } from '@/consts'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
-import { insertThemeStyle, insertWebFont } from '@heyforms/form-component'
 import { Button, Form, notification, Select, stopPropagation, useForm } from '@heyforms/ui'
 import { isURL } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { BackgroundBrightness } from './BackgroundBrightness'
 import { BackgroundImage } from './BackgroundImage'
 import { ColorPickerField } from './ColorPickerField'
@@ -56,11 +55,6 @@ export const Customize: FC = observer(() => {
       form.resetFields()
     }, 0)
   }
-
-  useEffect(() => {
-    insertWebFont(formStore.customTheme!.fontFamily)
-    insertThemeStyle(formStore.customTheme!)
-  }, [formStore.customTheme])
 
   return (
     <div>

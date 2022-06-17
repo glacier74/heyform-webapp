@@ -1,8 +1,6 @@
 import { useStoreContext } from '@/pages/form/Create/store'
 import { RichText } from '@/pages/form/Create/views/RichText'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { questionNumber } from '@heyforms/form-component/esm/utils'
+import { questionNumber } from '@heyforms/form-component'
 import { FieldLayoutAlignEnum, FormField, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { isURL } from '@hpnp/utils/helper'
 import clsx from 'clsx'

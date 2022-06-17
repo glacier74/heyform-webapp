@@ -28,7 +28,12 @@ import {
   UploadIcon,
   UserIcon
 } from '@heroicons/react/outline'
-import { FieldKindEnum } from '@heyforms/shared-types-enums'
+import {
+  ActionEnum,
+  CalculateEnum,
+  ComparisonEnum,
+  FieldKindEnum
+} from '@heyforms/shared-types-enums'
 import type { FC } from 'react'
 
 export interface FieldConfig {
@@ -61,7 +66,47 @@ export const FIELD_THANK_YOU_CONFIG = {
   backgroundColor: '#e5e7eb'
 }
 
-export const FIELD_QUESTION_CONFIGS = [
+export const CUSTOM_FIELDS_CONFIGS: FieldConfig[] = [
+  {
+    kind: 'contact' as FieldKindEnum,
+    icon: MailIcon,
+    label: 'formBuilder.contact',
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
+  },
+  {
+    kind: 'submit_date' as FieldKindEnum,
+    icon: CalendarIcon,
+    label: 'formBuilder.submitDate',
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
+  },
+  {
+    kind: FieldKindEnum.CUSTOM_TEXT,
+    icon: LongTextIcon,
+    label: 'formBuilder.customText',
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
+  },
+  {
+    kind: FieldKindEnum.CUSTOM_SINGLE,
+    icon: ConcentricCirclesIcon,
+    label: 'formBuilder.customSingle',
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
+  },
+  {
+    kind: FieldKindEnum.CUSTOM_MULTIPLE,
+    icon: CheckIcon,
+    label: 'formBuilder.customMultiple',
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
+  }
+]
+
+export const FIELD_CONFIGS: FieldConfig[] = [
+  FIELD_WELCOME_CONFIG,
+  FIELD_THANK_YOU_CONFIG,
   {
     kind: FieldKindEnum.MULTIPLE_CHOICE,
     icon: CheckIcon,
@@ -218,50 +263,6 @@ export const FIELD_QUESTION_CONFIGS = [
   }
 ]
 
-export const CUSTOM_FIELDS_CONFIGS: FieldConfig[] = [
-  {
-    kind: 'contact' as FieldKindEnum,
-    icon: MailIcon,
-    label: 'formBuilder.contact',
-    textColor: '#1d4ed8',
-    backgroundColor: '#dbeafe'
-  },
-  {
-    kind: 'submit_date' as FieldKindEnum,
-    icon: CalendarIcon,
-    label: 'formBuilder.submitDate',
-    textColor: '#1d4ed8',
-    backgroundColor: '#dbeafe'
-  },
-  {
-    kind: FieldKindEnum.CUSTOM_TEXT,
-    icon: LongTextIcon,
-    label: 'formBuilder.customText',
-    textColor: '#1d4ed8',
-    backgroundColor: '#dbeafe'
-  },
-  {
-    kind: FieldKindEnum.CUSTOM_SINGLE,
-    icon: ConcentricCirclesIcon,
-    label: 'formBuilder.customSingle',
-    textColor: '#1d4ed8',
-    backgroundColor: '#dbeafe'
-  },
-  {
-    kind: FieldKindEnum.CUSTOM_MULTIPLE,
-    icon: CheckIcon,
-    label: 'formBuilder.customMultiple',
-    textColor: '#1d4ed8',
-    backgroundColor: '#dbeafe'
-  }
-]
-
-export const FIELD_CONFIGS: FieldConfig[] = [
-  ...FIELD_QUESTION_CONFIGS,
-  FIELD_WELCOME_CONFIG,
-  FIELD_THANK_YOU_CONFIG
-]
-
 export const BLOCK_GROUPS: FieldGroup[] = [
   {
     name: 'formBuilder.recommended',
@@ -325,5 +326,129 @@ export const BLOCK_GROUPS: FieldGroup[] = [
   {
     name: 'formBuilder.fileUpload',
     list: [FieldKindEnum.FILE_UPLOAD]
+  }
+]
+
+export const UNSELECTABLE_FIELD_KINDS = [
+  FieldKindEnum.WELCOME,
+  FieldKindEnum.THANK_YOU,
+  FieldKindEnum.GROUP,
+  FieldKindEnum.STATEMENT
+]
+
+export const SINGLE_CHOICE_CONDITIONS = [ComparisonEnum.IS, ComparisonEnum.IS_NOT]
+
+export const SINGLE_CHOICE_CONDITION_OPTIONS = [
+  {
+    value: ComparisonEnum.IS,
+    label: 'Is equal to'
+  },
+  {
+    value: ComparisonEnum.IS_NOT,
+    label: 'Is not equal to'
+  }
+]
+
+export const MULTIPLE_CHOICE_CONDITION_OPTIONS = [
+  ...SINGLE_CHOICE_CONDITION_OPTIONS,
+  {
+    value: ComparisonEnum.CONTAINS,
+    label: 'Contains'
+  },
+  {
+    value: ComparisonEnum.DOES_NOT_CONTAIN,
+    label: 'Does not contain'
+  }
+]
+
+export const TEXT_CONDITION_OPTIONS = [
+  ...MULTIPLE_CHOICE_CONDITION_OPTIONS,
+  {
+    value: ComparisonEnum.STARTS_WITH,
+    label: 'Starts with'
+  },
+  {
+    value: ComparisonEnum.ENDS_WITH,
+    label: 'Ends with'
+  }
+]
+
+export const DATE_CONDITION_OPTIONS = [
+  ...SINGLE_CHOICE_CONDITION_OPTIONS,
+  {
+    value: ComparisonEnum.IS_BEFORE,
+    label: 'Is before'
+  },
+  {
+    value: ComparisonEnum.IS_AFTER,
+    label: 'Is after'
+  }
+]
+
+export const NUMBER_CONDITION_OPTIONS = [
+  {
+    value: ComparisonEnum.EQUAL,
+    label: '='
+  },
+  {
+    value: ComparisonEnum.NOT_EQUAL,
+    label: '!='
+  },
+  {
+    value: ComparisonEnum.GREATER_THAN,
+    label: '>'
+  },
+  {
+    value: ComparisonEnum.GREATER_OR_EQUAL_THAN,
+    label: '>='
+  },
+  {
+    value: ComparisonEnum.LESS_OR_EQUAL_THAN,
+    label: '<='
+  }
+]
+
+export const DEFAULT_CONDITION_OPTIONS = [
+  {
+    value: ComparisonEnum.IS_EMPTY,
+    label: 'Is empty'
+  },
+  {
+    value: ComparisonEnum.IS_NOT_EMPTY,
+    label: 'Is not empty'
+  }
+]
+
+export const KIND_OPTIONS = [
+  {
+    value: ActionEnum.NAVIGATE,
+    label: 'Jump to'
+  },
+  {
+    value: ActionEnum.CALCULATE,
+    label: 'Calculate'
+  }
+]
+
+export const OPERATOR_OPTIONS = [
+  {
+    value: CalculateEnum.ADDITION,
+    label: 'Add +'
+  },
+  {
+    value: CalculateEnum.SUBTRACTION,
+    label: 'Subtract -'
+  },
+  {
+    value: CalculateEnum.MULTIPLICATION,
+    label: 'Multiply *'
+  },
+  {
+    value: CalculateEnum.DIVISION,
+    label: 'Divide /'
+  },
+  {
+    value: CalculateEnum.ASSIGNMENT,
+    label: 'Assign ='
   }
 ]

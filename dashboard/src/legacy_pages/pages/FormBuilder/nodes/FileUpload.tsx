@@ -37,7 +37,7 @@ const SUploadCloudIcon = styled(UploadCloudIcon)`
 const OpenDialogButton = styled.div`
   margin-top: 24px;
   margin-bottom: 12px;
-  width: 160px;
+  width: 13.75rem;
   height: 36px;
   line-height: 36px;
   text-align: center;

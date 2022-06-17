@@ -24,6 +24,7 @@ export interface FormAnalyticsSummary {
 
 export interface FormField extends IFormField {
   isCollapsed?: boolean
+  parent?: IFormField
   properties?: Omit<Property, 'fields'> & {
     fields?: FormField[]
   }

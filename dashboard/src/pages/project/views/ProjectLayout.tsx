@@ -67,9 +67,9 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
             placement="bottom-start"
             overlay={
               <Menus onClick={handleMenuClick}>
-                <Menus.Item name="rename" icon={<PencilIcon />} label={t('project.rename')} />
+                <Menus.Item value="rename" icon={<PencilIcon />} label={t('project.rename')} />
                 {workspaceStore.workspace?.isOwner && (
-                  <Menus.Item name="delete" icon={<TrashIcon />} label={t('project.del')} />
+                  <Menus.Item value="delete" icon={<TrashIcon />} label={t('project.del')} />
                 )}
               </Menus>
             }

@@ -1,16 +1,23 @@
+import { VARIABLE_KIND_CONFIGS } from '@/pages/form/Create/consts'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { useMemo } from 'react'
-import { FIELD_CONFIGS } from './FieldConfig'
+import { FIELD_CONFIGS, type FieldConfig } from './FieldConfig'
 
 export interface FieldIconProps extends IComponentProps {
+  configs?: FieldConfig[]
   kind: FieldKindEnum
   index?: number | string
   iconOnly?: boolean
 }
 
+export interface VariableIconProps extends Omit<FieldIconProps, 'index' | 'kind'> {
+  kind: string
+}
+
 export const FieldIcon: FC<FieldIconProps> = ({
+  configs = FIELD_CONFIGS,
   kind,
   index,
   iconOnly = true,
@@ -19,7 +26,7 @@ export const FieldIcon: FC<FieldIconProps> = ({
   ...restProps
 }) => {
   const config = useMemo(() => {
-    return FIELD_CONFIGS.find(c => c.kind === kind)
+    return configs.find(c => c.kind === kind)
   }, [kind])
 
   const style = useMemo(
@@ -54,5 +61,21 @@ export const FieldIcon: FC<FieldIconProps> = ({
       {config?.icon && <config.icon className="p-0 m-0" style={iconStyle} />}
       {!iconOnly && <span className="text-xs font-bold">{index}</span>}
     </div>
+  )
+}
+
+export const VariableIcon: FC<VariableIconProps> = ({
+  configs = FIELD_CONFIGS,
+  kind,
+  iconOnly = true,
+  ...restProps
+}) => {
+  return (
+    <FieldIcon
+      configs={VARIABLE_KIND_CONFIGS}
+      kind={kind as FieldKindEnum}
+      iconOnly={iconOnly}
+      {...restProps}
+    />
   )
 }

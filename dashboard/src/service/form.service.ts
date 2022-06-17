@@ -18,8 +18,10 @@ import {
   UPDATE_FORM_FIELD_GQL,
   UPDATE_FORM_GQL,
   UPDATE_FORM_INTEGRATIONS_GQL,
+  UPDATE_FORM_LOGICS,
   UPDATE_FORM_SCHEMAS_GQL,
-  UPDATE_FORM_THEME_GQL
+  UPDATE_FORM_THEME_GQL,
+  UPDATE_FORM_VARIABLES
 } from '@/consts'
 import { request } from '@/utils'
 import {
@@ -27,7 +29,9 @@ import {
   FormKindEnum,
   FormStatusEnum,
   InteractiveModeEnum,
-  ThemeSettings
+  Logic,
+  ThemeSettings,
+  Variable
 } from '@heyforms/shared-types-enums'
 
 export class FormService {
@@ -141,6 +145,30 @@ export class FormService {
         input: {
           formId,
           ...updates
+        }
+      }
+    })
+  }
+
+  static updateLogics(formId: string, logics: Logic[]) {
+    return request.mutate({
+      mutation: UPDATE_FORM_LOGICS,
+      variables: {
+        input: {
+          formId,
+          logics
+        }
+      }
+    })
+  }
+
+  static updateVariables(formId: string, variables: Variable[]) {
+    return request.mutate({
+      mutation: UPDATE_FORM_VARIABLES,
+      variables: {
+        input: {
+          formId,
+          variables
         }
       }
     })

@@ -80,14 +80,14 @@ const Container = styled(Flex)<{
 }>`
   background: #fff;
   width: 48px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 3.75rem);
   transition: width 0.3s;
   border-right: #f3f3f3 1px solid;
 
   ${({ active }) =>
     active &&
     `
-    width: 360px;
+    width: 33.75rem;
   `}
 `
 
@@ -99,6 +99,6 @@ const TabsContainer = styled.div`
 const PaneContainer = styled.div`
   flex: 1;
   padding: 0 12px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 3.75rem);
   overflow-y: auto;
 `

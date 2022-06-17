@@ -71,7 +71,7 @@ export const NavBar: FC<NavBarProps> = ({
 const Wrapper = styled(Flex)`
   position: sticky;
   top: 0;
-  height: 60px;
+  height: 3.75rem;
   padding: 0 24px;
   background: #fff;
   z-index: 10;

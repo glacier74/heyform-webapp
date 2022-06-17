@@ -1,16 +1,16 @@
 import { SearchIcon } from '@heroicons/react/outline'
-import type { FormField } from '@heyforms/shared-types-enums'
+import type { FormField, Variable } from '@heyforms/shared-types-enums'
 import { Menus, Portal } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import type { CSSProperties, FC } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import { useStoreContext } from '../../store'
-import { FieldIcon } from '../FieldIcon'
+import { FieldIcon, VariableIcon } from '../FieldIcon'
 
 interface MentionMenuProps extends Omit<IModalProps, 'onComplete'> {
   keyword?: string
   portalStyle?: CSSProperties
-  onComplete?: (option: Partial<FormField>) => void
+  onComplete?: (type: string, option: Partial<FormField> | Variable) => void
 }
 
 export const MentionMenu: FC<MentionMenuProps> = ({
@@ -22,30 +22,47 @@ export const MentionMenu: FC<MentionMenuProps> = ({
 }) => {
   const { state } = useStoreContext()
   const [questions, setQuestions] = useState<Partial<FormField>[]>([])
+  const [variables, setVariables] = useState<Variable[]>([])
 
   function handleClose() {
     onClose?.()
   }
 
   function handleSelect(id?: IKeyType) {
-    onComplete?.(state.references.find(r => r.id === id)!)
+    let option: Partial<FormField> | Variable | undefined = state.variables?.find(v => v.id === id)
+    let type = 'variable'
+
+    if (!option) {
+      type = 'mention'
+      option = state.references.find(r => r.id === id)!
+    }
+
+    onComplete?.(type, option)
     handleClose()
   }
 
   // Filter questions by keyword
   useEffect(() => {
     if (visible) {
-      let result = state.references
+      let newQuestions = state.references
+      let newVariables = state.variables || []
 
       if (isValid(keyword)) {
-        result = state.references.filter(row =>
-          (row.title as string).toLowerCase().includes(keyword!.toLowerCase())
+        const lowerKeyword = keyword!.toLowerCase()
+
+        newQuestions = state.references.filter(row =>
+          (row.title as string).toLowerCase().includes(lowerKeyword)
+        )
+
+        newVariables = (state.variables || []).filter(row =>
+          row.name.toLowerCase().includes(lowerKeyword)
         )
       }
 
-      setQuestions(result)
+      setQuestions(newQuestions)
+      setVariables(newVariables)
     }
-  }, [state.references, keyword, visible])
+  }, [state.references, state.variables, keyword, visible])
 
   const memoPortal = useMemo(
     () => (
@@ -57,22 +74,45 @@ export const MentionMenu: FC<MentionMenuProps> = ({
           onExited={onClose}
           onClick={handleSelect}
         >
-          {questions.length > 0 ? (
+          {questions.length > 0 || variables.length > 0 ? (
             <>
-              <Menus.Label label="Mention other question" />
-              {questions.map(row => (
-                <Menus.Item
-                  key={row.id}
-                  name={row.id}
-                  icon={
-                    <FieldIcon
-                      className="insert-field-item-icon mr-3 flex-shrink-0"
-                      kind={row.kind!}
+              {questions.length > 0 && (
+                <>
+                  <Menus.Label label="Mention a question" />
+                  {questions.map(row => (
+                    <Menus.Item
+                      key={row.id}
+                      value={row.id}
+                      icon={
+                        <FieldIcon
+                          className="insert-field-item-icon mr-3 flex-shrink-0"
+                          kind={row.kind!}
+                        />
+                      }
+                      label={row.title}
                     />
-                  }
-                  label={row.title}
-                />
-              ))}
+                  ))}
+                </>
+              )}
+
+              {variables.length > 0 && (
+                <>
+                  <Menus.Label label="Mention a variable" />
+                  {variables.map(row => (
+                    <Menus.Item
+                      key={row.id}
+                      value={row.id}
+                      icon={
+                        <VariableIcon
+                          className="insert-field-item-icon mr-3 flex-shrink-0"
+                          kind={row.kind}
+                        />
+                      }
+                      label={row.name}
+                    />
+                  ))}
+                </>
+              )}
             </>
           ) : (
             <Menus.Item icon={<SearchIcon />} label="No questions found" />

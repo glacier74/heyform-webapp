@@ -96,7 +96,7 @@ const Contacts = () => {
     },
     {
       key: 'action',
-      name: t('workspace.members.Action'),
+      name: t('workspace.members.Index'),
       align: 'right',
       render(record) {
         async function handleDeleteContact() {
@@ -139,11 +139,11 @@ const Contacts = () => {
         const Overlay = (
           <Menus onClick={handleMenuClick}>
             <Menus.Item
-              name="edit"
+              value="edit"
               label={t('audiences.contact.index.edit')}
               icon={<PencilIcon />}
             />
-            <Menus.Item name="delete" label={t('project.del')} icon={<TrashIcon />} />
+            <Menus.Item value="delete" label={t('project.del')} icon={<TrashIcon />} />
           </Menus>
         )
 

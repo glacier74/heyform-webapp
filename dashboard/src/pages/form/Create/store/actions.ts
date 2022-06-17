@@ -1,20 +1,32 @@
 import type { FormField } from '@/models'
 import { serializeFields } from '@/pages/form/Create/utils'
+import { FormService } from '@/service'
 import { htmlUtils } from '@heyforms/answer-utils'
-import { FieldKindEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
+import {
+  FieldKindEnum,
+  type Logic,
+  QUESTION_FIELD_KINDS,
+  type Variable
+} from '@heyforms/shared-types-enums'
 import { clone } from '@hpnp/utils'
 import { isEmpty, isNil, isValid, isValidArray } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 import type {
   AddFieldAction,
   DeleteFieldAction,
+  DeleteLogicAction,
+  DeleteVariableAction,
   DuplicateFieldAction,
   IState,
   SelectFieldAction,
+  SetActiveTabNameAction,
   SetFieldsAction,
-  UpdateFieldAction
+  TogglePanelAction,
+  UpdateFieldAction,
+  UpdateNestFieldsAction,
+  UpdateVariableAction
 } from './context'
-import { UpdateNestFieldsAction } from './context'
+import { SelectVariableAction } from './context'
 
 function fieldIndex(fields?: FormField[], id?: string): number {
   if (!isValidArray(fields) || isEmpty(id)) {
@@ -335,4 +347,106 @@ export function deleteField(state: IState, { id, parentId }: DeleteFieldAction['
     id: selectedId,
     parentId
   })
+}
+
+export function setLogics(state: IState, logics: Logic[] = []): IState {
+  FormService.updateLogics(state.formId, logics)
+
+  return {
+    ...state,
+    logics
+  }
+}
+
+export function setLogic(state: IState, logic: Logic): IState {
+  if (!isValidArray(logic.payloads)) {
+    return deleteLogic(state, logic)
+  }
+
+  const logics = state.logics || []
+  const index = logics.findIndex(l => l.fieldId === logic.fieldId)
+
+  if (index > -1) {
+    return {
+      ...state,
+      logics: logics.map((l, i) => (i === index ? logic : l))
+    }
+  }
+
+  return setLogics(state, [...logics, logic])
+}
+
+export function deleteLogic(state: IState, { fieldId }: DeleteLogicAction['payload']): IState {
+  return setLogics(
+    state,
+    state.logics?.filter(l => l.fieldId !== fieldId)
+  )
+}
+
+export function cleanLogics(state: IState): IState {
+  return setLogics(state, [])
+}
+
+export function setVariables(state: IState, variables: Variable[] = []): IState {
+  FormService.updateVariables(state.formId, variables)
+
+  return {
+    ...state,
+    variables
+  }
+}
+
+export function addVariable(state: IState, variable: Variable): IState {
+  return setVariables(state, [...(state.variables || []), variable])
+}
+
+export function updateVariable(
+  state: IState,
+  { id, updates }: UpdateVariableAction['payload']
+): IState {
+  const variables = state.variables || []
+  const index = variables.findIndex(v => v.id === id)
+
+  if (index < 0) {
+    return state
+  }
+
+  return setVariables(
+    state,
+    variables.map((v, i) => (i === index ? ({ ...v, ...updates } as any) : v))
+  )
+}
+
+export function deleteVariable(state: IState, { id }: DeleteVariableAction['payload']): IState {
+  return setVariables(
+    state,
+    state.variables?.filter(v => v.id !== id)
+  )
+}
+
+export function togglePanel(state: IState, payload: TogglePanelAction['payload']): IState {
+  return {
+    ...state,
+    ...payload
+  }
+}
+
+export function selectVariable(
+  state: IState,
+  { variableId }: SelectVariableAction['payload']
+): IState {
+  return {
+    ...state,
+    selectedVariable: state.variables?.find(v => v.id === variableId)
+  }
+}
+
+export function setActiveTabName(
+  state: IState,
+  { activeTabName }: SetActiveTabNameAction['payload']
+): IState {
+  return {
+    ...state,
+    activeTabName
+  }
 }

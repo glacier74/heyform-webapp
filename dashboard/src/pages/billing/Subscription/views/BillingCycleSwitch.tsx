@@ -3,7 +3,6 @@ import { Switch } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
-
 interface BillingCycleSwitchProps {
   value: BillingCycleEnum
   onChange: (billingCycle: BillingCycleEnum) => void

@@ -1,7 +1,7 @@
 import { AddIcon, DeleteIcon } from '@/legacy_pages/components/Icons'
 import { UnsplashPicker } from '@/legacy_pages/components/ImagePicker/UnsplashPicker'
 import { Uploader } from '@/legacy_pages/components/ImagePicker/Uploader'
-import { Flex, Image, InputStyle, stopPropagation, Tabs, TabPane, Dropdown } from '@heyui/component'
+import { Dropdown, Flex, Image, InputStyle, stopPropagation, TabPane, Tabs } from '@heyui/component'
 import { FC, useState } from 'react'
 import styled from 'styled-components'
 
@@ -134,7 +134,7 @@ const OverlayContainer = styled.div`
 `
 
 const StyledFlex = styled(Flex)`
-  width: 60px;
+  width: 3.75rem;
 
   svg {
     width: 20px;

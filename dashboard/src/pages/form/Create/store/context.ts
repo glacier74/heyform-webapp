@@ -1,9 +1,11 @@
 import type { FormField } from '@/models'
+import type { Logic, Variable } from '@heyforms/shared-types-enums'
 import { deepEqual } from 'fast-equals'
 import { createContext } from 'react'
 import * as actions from './actions'
 
 export interface IState {
+  formId: string
   fields: FormField[]
   // Version to detect changes whether we need to sync with server or not
   version: number
@@ -18,6 +20,15 @@ export interface IState {
   selectedField?: FormField
   // Parent field
   parentField?: FormField
+
+  logics?: Logic[]
+  variables?: Variable[]
+  selectedVariable?: Variable
+
+  isLogicPanelOpen?: boolean
+  isVariablePanelOpen?: boolean
+  isBulkEditPanelOpen?: boolean
+  activeTabName?: string
 }
 
 export interface SetFieldsAction {
@@ -75,14 +86,70 @@ export interface DeleteFieldAction {
   }
 }
 
-export type IAction =
-  | SetFieldsAction
-  | SelectFieldAction
-  | AddFieldAction
-  | UpdateFieldAction
-  | UpdateNestFieldsAction
-  | DuplicateFieldAction
-  | DeleteFieldAction
+interface SetLogicAction {
+  type: 'setLogic'
+  payload: Logic
+}
+
+interface SetLogicsAction {
+  type: 'setLogics'
+  payload: Logic[]
+}
+
+export interface DeleteLogicAction {
+  type: 'deleteLogic'
+  payload: {
+    fieldId: string
+  }
+}
+
+export interface ClearLogicAction {
+  type: 'cleanLogics'
+  payload: any
+}
+
+interface AddVariableAction {
+  type: 'addVariable'
+  payload: Variable
+}
+
+export interface SelectVariableAction {
+  type: 'selectVariable'
+  payload: {
+    variableId: string
+  }
+}
+
+export interface UpdateVariableAction {
+  type: 'updateVariable'
+  payload: {
+    id: string
+    updates: Partial<Variable>
+  }
+}
+
+export interface DeleteVariableAction {
+  type: 'deleteVariable'
+  payload: {
+    id: string
+  }
+}
+
+export interface TogglePanelAction {
+  type: 'togglePanel'
+  payload: {
+    isLogicPanelOpen?: boolean
+    isVariablePanelOpen?: boolean
+    isBulkEditPanelOpen?: boolean
+  }
+}
+
+export interface SetActiveTabNameAction {
+  type: 'setActiveTabName'
+  payload: {
+    activeTabName: string
+  }
+}
 
 export interface IContext {
   state: IState
@@ -91,19 +158,47 @@ export interface IContext {
 
 export const StoreContext = createContext<IContext>({
   state: {} as IState,
-  dispatch: () => {}
+  dispatch: () => {
+    // Do nothing
+  }
 })
 
-const NO_NEED_SYNC_ACTIONS = ['initFields', 'selectField']
+export type IAction =
+  | SetFieldsAction
+  | SelectFieldAction
+  | AddFieldAction
+  | UpdateFieldAction
+  | UpdateNestFieldsAction
+  | DuplicateFieldAction
+  | DeleteFieldAction
+  | SelectVariableAction
+  | AddVariableAction
+  | UpdateVariableAction
+  | DeleteVariableAction
+  | SetLogicAction
+  | SetLogicsAction
+  | DeleteLogicAction
+  | ClearLogicAction
+  | TogglePanelAction
+  | SetActiveTabNameAction
+
+const SYNC_ACTIONS = [
+  'setFields',
+  'addField',
+  'updateField',
+  'updateNestFields',
+  'duplicateField',
+  'deleteField'
+]
 
 function handleAction(state: IState, action: IAction): IState {
-  const result: IState = actions[action.type](state, action.payload as unknown as any)
+  const result: IState = (actions as any)[action.type](state, action.payload as unknown as any)
 
   if (deepEqual(result, state)) {
     return state
   }
 
-  if (!NO_NEED_SYNC_ACTIONS.includes(action.type)) {
+  if (SYNC_ACTIONS.includes(action.type)) {
     result.version += 1
   }
 
@@ -115,13 +210,24 @@ export const storeReducer = (state: IState, action: IAction) => {
     case 'setFields':
     case 'selectField':
     case 'addField':
-    case 'duplicateField':
     case 'updateField':
     case 'updateNestFields':
+    case 'duplicateField':
     case 'deleteField':
+    case 'setLogic':
+    case 'setLogics':
+    case 'deleteLogic':
+    case 'cleanLogics':
+    case 'selectVariable':
+    case 'addVariable':
+    case 'updateVariable':
+    case 'deleteVariable':
+    case 'togglePanel':
+    case 'setActiveTabName':
       return handleAction(state, action)
 
     default:
-      throw new Error('Invalid action type')
+      console.warn(`Unknown action type: ${(action as unknown as any).type}`)
+      return state
   }
 }

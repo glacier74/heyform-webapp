@@ -1,14 +1,13 @@
 import { Loader } from '@/legacy_pages/components'
 import { FormThemeV2 } from '@/legacy_pages/models'
-import { FormService } from '@/service'
 import { useStore } from '@/legacy_pages/utils'
+import { FormService } from '@/service'
+import { useParam } from '@/utils'
 import { customTheme } from '@heyforms/form-component'
 import { Flex, message } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router-dom'
-import { useParam } from '@/utils'
 import styled from 'styled-components'
 
 export const ThemeItem: FC<FormThemeV2> = observer(props => {
@@ -74,7 +73,7 @@ const Answer = styled(Question)<FormThemeV2>`
 `
 
 const Button = styled(Answer)<FormThemeV2>`
-  width: 60px;
+  width: 3.75rem;
   height: 24px;
   border-radius: 8px;
   margin-top: 12px;

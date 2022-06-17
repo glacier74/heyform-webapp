@@ -70,7 +70,7 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
 })
 
 const Container = styled(Flex)`
-  height: 60px;
+  height: 3.75rem;
   padding: 0 24px 0 12px;
   background: #fff;
   box-shadow: #f3f3f3 0px -1px inset;

@@ -109,7 +109,7 @@ const Trash = observer(() => {
     },
     {
       key: 'action',
-      name: t('workspace.members.Action'),
+      name: t('workspace.members.Index'),
       align: 'right',
       render(record) {
         function handleClick(name?: IKeyType) {
@@ -132,12 +132,12 @@ const Trash = observer(() => {
             overlay={
               <Menus onClick={handleClick}>
                 <Menus.Item
-                  name="restore"
+                  value="restore"
                   icon={<RestoreIcon />}
                   label={t('project.trash.restore')}
                 />
                 <Menus.Item
-                  name="delete"
+                  value="delete"
                   icon={<TrashIcon />}
                   label={t('project.trash.delForever')}
                 />

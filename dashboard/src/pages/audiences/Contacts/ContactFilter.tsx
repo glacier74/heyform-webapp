@@ -45,7 +45,7 @@ export const ContactFilter: FC<ContactFilterProps> = ({ value = [], onChange }) 
       {groups.map(group => (
         <Menus.Item
           key={group.id}
-          name={group.id}
+          value={group.id}
           label={group.name}
           isChecked={value.includes(group.id)}
         />

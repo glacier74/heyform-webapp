@@ -52,7 +52,7 @@ const Groups = () => {
     },
     {
       key: 'action',
-      name: t('workspace.members.Action'),
+      name: t('workspace.members.Index'),
       align: 'right',
       render(record) {
         async function handleDeleteGroup() {
@@ -94,8 +94,8 @@ const Groups = () => {
 
         const Overlay = (
           <Menus onClick={handleMenuClick}>
-            <Menus.Item name="rename" label={t('project.rename')} icon={<PencilIcon />} />
-            <Menus.Item name="delete" label={t('project.del')} icon={<TrashIcon />} />
+            <Menus.Item value="rename" label={t('project.rename')} icon={<PencilIcon />} />
+            <Menus.Item value="delete" label={t('project.del')} icon={<TrashIcon />} />
           </Menus>
         )
 

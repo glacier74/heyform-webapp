@@ -82,7 +82,7 @@ const StyledDropdown = styled(Dropdown)`
 `
 
 const StyledMenu = styled(Menu)`
-  width: 160px;
+  width: 13.75rem;
 `
 
 const Text = styled.div`

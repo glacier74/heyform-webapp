@@ -4,18 +4,14 @@ import { Select } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useStoreContext } from '../../../store'
-import {
-  FIELD_QUESTION_CONFIGS,
-  FIELD_THANK_YOU_CONFIG,
-  FIELD_WELCOME_CONFIG
-} from '../../FieldConfig'
+import { FIELD_CONFIGS, FIELD_THANK_YOU_CONFIG, FIELD_WELCOME_CONFIG } from '../../FieldConfig'
 import { FieldIcon } from '../../FieldIcon'
 
 export const TypeSelect: FC = () => {
   const { t } = useTranslation()
   const { state, dispatch } = useStoreContext()
   const field = state.selectedField!
-  const options = (FIELD_QUESTION_CONFIGS as unknown as IOptionType[]).map(config => {
+  const options = (FIELD_CONFIGS as unknown as IOptionType[]).map(config => {
     if (config.value === FieldKindEnum.GROUP) {
       config.disabled = true
     }
@@ -42,8 +38,12 @@ export const TypeSelect: FC = () => {
   }
 
   function optionRender(option: any) {
+    if (option.kind === FieldKindEnum.WELCOME || option.kind === FieldKindEnum.THANK_YOU) {
+      return null
+    }
+
     return (
-      <>
+      <div className="select-option-container">
         <FieldIcon kind={option.kind} />
         <span className="select-option-text">{t(option.label)}</span>
         {field.kind === option.kind && (
@@ -51,7 +51,7 @@ export const TypeSelect: FC = () => {
             <CheckIcon />
           </span>
         )}
-      </>
+      </div>
     )
   }
 
@@ -76,8 +76,8 @@ export const TypeSelect: FC = () => {
         options={options}
         value={field.kind}
         valueKey="kind"
-        valueRender={valueRender as unknown as any}
-        optionRender={optionRender}
+        valueRender={valueRender as any}
+        optionRender={optionRender as any}
         disabled={field.kind === FieldKindEnum.GROUP}
         onChange={handleChange}
       />

@@ -10,7 +10,6 @@ export const FormPreviewModal: FC = observer(() => {
   const { formId } = useParam()
   const appStore = useStore('appStore')
   const formStore = useStore('formStore')
-  console.log('formStore', formStore)
   const form: any = formStore.current || {}
 
   useEffect(() => {
@@ -68,7 +67,7 @@ const StyledNavBarContainer = styled(NavBarContainer)<{
 
   .navbar {
     .hey-button {
-      margin-top: 60px;
+      margin-top: 3.75rem;
       background: rgba(255, 255, 255, 0.5);
       border-radius: 4px;
 

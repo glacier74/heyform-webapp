@@ -54,8 +54,8 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
 
   const Overlay = (
     <Menus onClick={handleMenuClick}>
-      <Menus.Item name="rename" label={t('project.rename')} icon={<PencilIcon />} />
-      {isOwner && <Menus.Item name="delete" label={t('project.del')} icon={<TrashIcon />} />}
+      <Menus.Item value="rename" label={t('project.rename')} icon={<PencilIcon />} />
+      {isOwner && <Menus.Item value="delete" label={t('project.del')} icon={<TrashIcon />} />}
     </Menus>
   )
 

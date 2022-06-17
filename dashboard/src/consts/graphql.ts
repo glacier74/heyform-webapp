@@ -586,6 +586,8 @@ export const FORM_DETAIL_GQL = gql`
         properties
         layout
       }
+      logics
+      variables
       fieldUpdateAt
       themeSettings {
         theme
@@ -613,6 +615,18 @@ export const IMPORT_FORM_GQL = gql`
 export const UPDATE_FORM_SCHEMAS_GQL = gql`
   mutation updateFormSchemas($input: UpdateFormSchemasInput!) {
     updateFormSchemas(input: $input)
+  }
+`
+
+export const UPDATE_FORM_LOGICS = gql`
+  mutation ($input: UpdateFormLogicsInput!) {
+    updateFormLogics(input: $input)
+  }
+`
+
+export const UPDATE_FORM_VARIABLES = gql`
+  mutation ($input: UpdateFormVariablesInput!) {
+    updateFormVariables(input: $input)
   }
 `
 

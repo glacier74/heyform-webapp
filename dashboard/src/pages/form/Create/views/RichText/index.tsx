@@ -1,4 +1,4 @@
-import type { FormField } from '@heyforms/shared-types-enums'
+import type { FormField, Variable } from '@heyforms/shared-types-enums'
 import { isEmpty, isValid } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import type { ClipboardEvent, CSSProperties, FC, KeyboardEvent, RefObject } from 'react'
@@ -81,14 +81,24 @@ export const RichText: FC<RichTextProps> = ({
     setIsMentionOpen(false)
   }
 
-  function handleMentionSelect(option: Partial<FormField>) {
+  function handleMentionSelect(type: string, option: Partial<FormField> | Variable) {
     const ts = triggerSelection!
     const sel: RichTextTriggerSelection = {
       anchorNode: ts.anchorNode,
       startOffset: ts.startOffset! - 1,
       endOffset: ts.startOffset! + (keyword?.length || 0)
     }
-    const template = `<span class="mention" data-mention="${option.id}" contenteditable="false">@${option.title}</span>\xA0`
+    let template = ''
+
+    if (type === 'variable') {
+      template = `<span class="variable" data-variable="${option.id}" contenteditable="false">@${
+        (option as Variable).name
+      }</span>\xA0`
+    } else if (type === 'mention') {
+      template = `<span class="mention" data-mention="${option.id}" contenteditable="false">@${
+        (option as FormField).title
+      }</span>\xA0`
+    }
 
     replaceTriggerText(innerRef.current!, sel, template)
 

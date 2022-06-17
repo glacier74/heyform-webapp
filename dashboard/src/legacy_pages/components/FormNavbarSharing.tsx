@@ -1,7 +1,7 @@
 import { useStore } from '@/legacy_pages/utils'
 import { FormService } from '@/service'
 import { FormModel } from '@heyforms/shared-types-enums'
-import { Button } from '@heyforms/ui'
+import { Button, Tooltip } from '@heyforms/ui'
 import { Flex, message } from '@heyui/component'
 import { EyeIcon } from '@heyui/icon'
 import { observer } from 'mobx-react-lite'
@@ -58,7 +58,9 @@ export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form })
 
   return (
     <Container align="center">
-      <PreviewButton className="button" leading={<EyeIcon />} onClick={handleClick} />
+      <Tooltip ariaLabel="Preview">
+        <PreviewButton className="button" leading={<EyeIcon />} onClick={handleClick} />
+      </Tooltip>
 
       {formStore.current?.settings?.active ? (
         <Button type="primary" disabled={true}>

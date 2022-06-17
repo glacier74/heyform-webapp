@@ -167,5 +167,5 @@ const Container = styled.div`
 `
 
 const StyledTimeInput = styled(TimeInput)`
-  width: 160px;
+  width: 13.75rem;
 `

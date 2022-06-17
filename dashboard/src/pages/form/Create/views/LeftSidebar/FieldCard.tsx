@@ -129,10 +129,10 @@ export const FieldCard: FC<FieldCardProps> = ({
     () => (
       <Menus onClick={handleMenuClick}>
         {!OTHER_FIELD_KINDS.includes(field.kind) && (
-          <Menus.Item name="duplicate" label={t('formBuilder.duplicate')} />
+          <Menus.Item value="duplicate" label={t('formBuilder.duplicate')} />
         )}
         {(isEmpty(field.index) || (isValid(field.index) && isDeleteEnabled)) && (
-          <Menus.Item className="text-red-700" name="delete" label={t('formBuilder.delete')} />
+          <Menus.Item className="text-red-700" value="delete" label={t('formBuilder.delete')} />
         )}
       </Menus>
     ),

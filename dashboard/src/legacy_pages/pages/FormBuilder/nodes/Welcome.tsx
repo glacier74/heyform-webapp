@@ -103,7 +103,7 @@ const Container = styled.div`
   padding-bottom: 30px;
 
   .block-welcome-title {
-    margin-top: 60px;
+    margin-top: 3.75rem;
     font-weight: 700;
     line-height: ${props => props.theme.lineHeight};
     color: ${props => props.theme.question};

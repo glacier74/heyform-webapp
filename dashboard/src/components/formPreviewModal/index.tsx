@@ -1,13 +1,15 @@
 import { useLockBodyScroll } from '@/legacy_pages/pages/FormBuilder/utils/hook'
 import { useStore } from '@/store'
 import { ArrowLeftIcon } from '@heroicons/react/outline'
-import { insertThemeStyle, insertWebFont, Renderer } from '@heyforms/form-component'
-import { IFormModel } from '@heyforms/form-component/types/typings'
+import { initI18n, insertThemeStyle, insertWebFont, Renderer } from '@heyforms/form-component'
+import { type IFormModel } from '@heyforms/form-component/types/typings'
 import { Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect } from 'react'
 import './index.scss'
+
+initI18n()
 
 export const FormPreviewModal: FC = observer(() => {
   const appStore = useStore('appStore')

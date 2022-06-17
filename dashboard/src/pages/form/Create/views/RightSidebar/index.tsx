@@ -1,15 +1,17 @@
 import { PlanCheck } from '@/components'
 import { PlanGradeEnum } from '@/models'
+import { useStoreContext } from '@/pages/form/Create/store'
 import { Tabs } from '@heyforms/ui'
 import type { ITab } from '@heyforms/ui/types/tabs/context'
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Customize } from './Customize'
+import { Design } from './Design'
+import { Logic } from './Logic'
 import { Question } from './Question'
-import { Theme } from './Theme'
 
 const RightSidebarComponent = () => {
   const { t } = useTranslation()
+  const { dispatch } = useStoreContext()
 
   function render(tab: ITab) {
     switch (tab.name) {
@@ -21,19 +23,28 @@ const RightSidebarComponent = () => {
     }
   }
 
+  function handleChange(activeTabName: any) {
+    dispatch({
+      type: 'setActiveTabName',
+      payload: {
+        activeTabName
+      }
+    })
+  }
+
   const renderCallback = useCallback(render, [])
 
   return (
-    <div className="right-sidebar flex flex-col w-64 bg-white border-l border-gray-200">
-      <Tabs defaultActiveName="question" navRender={renderCallback}>
+    <div className="right-sidebar">
+      <Tabs defaultActiveName="question" navRender={renderCallback} onChange={handleChange}>
         <Tabs.Pane name="question" title={t('formBuilder.question')}>
           <Question />
         </Tabs.Pane>
-        <Tabs.Pane name="theme" title={t('formBuilder.theme')}>
-          <Theme />
+        <Tabs.Pane name="design" title={t('formBuilder.design')}>
+          <Design />
         </Tabs.Pane>
-        <Tabs.Pane name="customize" title={t('formBuilder.customize')}>
-          <Customize />
+        <Tabs.Pane name="logic" title={t('formBuilder.logic')}>
+          <Logic />
         </Tabs.Pane>
       </Tabs>
     </div>

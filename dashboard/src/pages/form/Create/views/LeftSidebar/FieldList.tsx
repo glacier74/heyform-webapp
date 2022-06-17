@@ -1,5 +1,6 @@
 import type { FormField } from '@heyforms/shared-types-enums'
-import { FieldKindEnum, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
+import { FieldKindEnum } from '@heyforms/shared-types-enums'
+import { isValid } from '@hpnp/utils/helper'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 import { ReactSortable } from 'react-sortablejs'
@@ -10,7 +11,6 @@ export const FieldList: FC = () => {
   const { state, dispatch } = useStoreContext()
 
   const data = useMemo(() => {
-    let index = 1
     let welcome: FormField | null = null
     let thankYou: FormField | null = null
     const fields: FormField[] = []
@@ -21,10 +21,6 @@ export const FieldList: FC = () => {
       } else if (field.kind === FieldKindEnum.THANK_YOU) {
         thankYou = field
       } else {
-        if (QUESTION_FIELD_KINDS.includes(field.kind)) {
-          field.index = index++
-        }
-
         fields.push(field)
       }
     }
@@ -50,7 +46,7 @@ export const FieldList: FC = () => {
     dispatch({
       type: 'setFields',
       payload: {
-        fields: [data.welcome, ...fields, data.thankYou].filter(Boolean) as FormField[]
+        fields: [data.welcome, ...fields, data.thankYou].filter(isValid) as FormField[]
       }
     })
   }

@@ -159,7 +159,7 @@ const Project = observer(() => {
     },
     {
       key: 'action',
-      name: t('workspace.members.Action'),
+      name: t('workspace.members.Index'),
       align: 'right',
       render(record) {
         function handleClick(name?: IKeyType) {
@@ -188,10 +188,10 @@ const Project = observer(() => {
             placement="bottom-start"
             overlay={
               <Menus onClick={handleClick}>
-                <Menus.Item name="edit" icon={<DocumentTextIcon />} label={t('project.edit')} />
-                <Menus.Item name="duplicate" icon={<DuplicateIcon />} label={t('project.dup')} />
-                <Menus.Item name="rename" icon={<PencilIcon />} label={t('project.rename')} />
-                <Menus.Item name="delete" icon={<TrashIcon />} label={t('project.del')} />
+                <Menus.Item value="edit" icon={<DocumentTextIcon />} label={t('project.edit')} />
+                <Menus.Item value="duplicate" icon={<DuplicateIcon />} label={t('project.dup')} />
+                <Menus.Item value="rename" icon={<PencilIcon />} label={t('project.rename')} />
+                <Menus.Item value="delete" icon={<TrashIcon />} label={t('project.del')} />
               </Menus>
             }
           >

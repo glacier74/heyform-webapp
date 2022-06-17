@@ -20,7 +20,7 @@ export const TabNav: FC<TabNavProps> = ({ links }) => {
 }
 
 const Container = styled.div`
-  margin-top: 60px;
+  margin-top: 3.75rem;
   margin-bottom: 40px;
   border-bottom: 1px solid #f3f3f3;
 

@@ -120,7 +120,7 @@ export const WorkspaceSwitch: FC<WorkspaceSwitchProps> = ({ onCreateWorkspace })
       <WorkspaceList onClose={handleClose} />
       <Menus.Divider />
       <Menus.Item
-        name="create"
+        value="create"
         icon={<PlusIcon />}
         label={t('other.labelList.CreateWorkspace')}
         onClick={onCreateWorkspace}

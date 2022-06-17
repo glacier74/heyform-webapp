@@ -56,7 +56,7 @@ export const GOOGLE_FONTS_OPTIONS: IOptionType[] = [
   {
     value:
       '-apple-system, BlinkMacSystemFont, Helvetica, Roboto, Tahoma, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", STXihei, "Microsoft YaHei", SimHei, "WenQuanYi Micro Hei", serif',
-    label: 'Public Sans'
+    label: 'System Fonts'
   },
   ...GOOGLE_FONTS.map(value => ({
     value,

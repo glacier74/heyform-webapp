@@ -1,6 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { questionNumber } from '@heyforms/form-component/esm/utils'
+import { questionNumber } from '@heyforms/form-component'
 import type { FC } from 'react'
 import type { FieldIconProps } from '../FieldIcon'
 import { FieldIcon } from '../FieldIcon'

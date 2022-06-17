@@ -95,7 +95,7 @@ const Navbar = styled(Flex)`
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 3.75rem;
   padding: 0 20px;
   z-index: 9;
 `

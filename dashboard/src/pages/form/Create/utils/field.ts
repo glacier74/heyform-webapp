@@ -1,8 +1,8 @@
-import type { FormField } from '@/models'
-import { htmlUtils } from '@heyforms/answer-utils'
-import { FieldKindEnum, FORM_FIELD_KINDS, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
-import { isArray } from '@hpnp/utils/helper'
-import { nanoid } from '@hpnp/utils/nanoid'
+import type { FormField } from "@/models";
+import { htmlUtils } from "@heyforms/answer-utils";
+import { FieldKindEnum, FORM_FIELD_KINDS, QUESTION_FIELD_KINDS } from "@heyforms/shared-types-enums";
+import { isArray } from "@hpnp/utils/helper";
+import { nanoid } from "@hpnp/utils/nanoid";
 
 // TODO: remove in future
 const DISCARD_FIELD_KINDS = ['single_choice', 'dropdown']
@@ -10,6 +10,7 @@ const FIELD_KINDS = [...DISCARD_FIELD_KINDS, ...FORM_FIELD_KINDS]
 
 export function serializeFields(rawFields: FormField[]) {
   let questions: Partial<FormField>[] = []
+  let index = 1
 
   const fields = rawFields.map(f => {
     if (isArray(f.title)) {
@@ -20,22 +21,27 @@ export function serializeFields(rawFields: FormField[]) {
       f.description = htmlUtils.serialize(f.description)
     }
 
-    if (f.kind === FieldKindEnum.GROUP) {
-      const children = f.properties?.fields || []
-      const { questions: nestedQuestions, fields: nestedFields } = serializeFields(children)
+    // Add index to fields
+    if (QUESTION_FIELD_KINDS.includes(f.kind)) {
+      f.index = index++
 
-      f.properties = {
-        ...f.properties,
-        fields: nestedFields
+      if (f.kind === FieldKindEnum.GROUP) {
+        const children = f.properties?.fields || []
+        const { questions: nestedQuestions, fields: nestedFields } = serializeFields(children)
+
+        f.properties = {
+          ...f.properties,
+          fields: nestedFields
+        }
+
+        questions = [...questions, ...nestedQuestions]
+      } else {
+        questions.push({
+          id: f.id,
+          kind: f.kind,
+          title: htmlUtils.plain(f.title!)
+        })
       }
-
-      questions = [...questions, ...nestedQuestions]
-    } else if (QUESTION_FIELD_KINDS.includes(f.kind)) {
-      questions.push({
-        id: f.id,
-        kind: f.kind,
-        title: htmlUtils.plain(f.title!)
-      })
     }
 
     return f

@@ -568,7 +568,7 @@ const Panel = styled.div`
 
 const Header = styled(Flex)`
   padding: 16px 36px;
-  height: 60px;
+  height: 3.75rem;
   user-select: none;
   border-bottom: 1px solid #f3f3f3;
 `
@@ -617,7 +617,7 @@ const HeaderRight = styled(Flex)`
 `
 
 const Body = styled.div`
-  height: calc(100vh - 60px);
+  height: calc(100vh - 3.75rem);
   padding: 36px 36px 24px 36px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;

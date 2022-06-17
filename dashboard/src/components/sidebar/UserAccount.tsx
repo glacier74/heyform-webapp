@@ -25,8 +25,8 @@ export const UserAccount: FC = observer(() => {
 
   const Overlay = (
     <Menus className="bottom-12" onClick={handleMenuClick}>
-      <Menus.Item name="accountSettings" label={t('other.labelList.Account')} />
-      <Menus.Item name="logout" label={t('other.labelList.Logout')} />
+      <Menus.Item value="accountSettings" label={t('other.labelList.Account')} />
+      <Menus.Item value="logout" label={t('other.labelList.Logout')} />
       <Menus.Divider />
       <Menus.Item
         className="text-gray-400 hover:bg-transparent cursor-default"

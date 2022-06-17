@@ -98,7 +98,7 @@ const Container = styled.div`
   padding-top: 30px;
 
   .block-thankyou-title {
-    margin-top: 60px;
+    margin-top: 3.75rem;
     font-weight: 700;
     line-height: ${props => props.theme.lineHeight};
     color: ${props => props.theme.question};

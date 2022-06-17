@@ -9,12 +9,14 @@
     "project": "./tsconfig.json"
   },
   "extends": [
-    "airbnb-typescript",
-    "airbnb/hooks",
-    "prettier",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "plugin:jest/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   "plugins": [
     "react",

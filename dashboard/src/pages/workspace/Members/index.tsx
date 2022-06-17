@@ -78,7 +78,7 @@ const Members = observer(() => {
     },
     {
       key: 'action',
-      name: t('workspace.members.Action'),
+      name: t('workspace.members.Index'),
       align: 'right',
       render(record) {
         if (workspaceStore.workspace.isOwner) {
@@ -112,18 +112,18 @@ const Members = observer(() => {
         const OwnerOverlay = (
           <Menus onClick={handleMenuClick}>
             <Menus.Item
-              name="transfer"
+              value="transfer"
               icon={<SwitchHorizontalIcon />}
               label={t('workspace.members.index.transfer')}
             />
-            <Menus.Item name="remove" icon={<TrashIcon />} label={t('workspace.members.remove')} />
+            <Menus.Item value="remove" icon={<TrashIcon />} label={t('workspace.members.remove')} />
           </Menus>
         )
 
         const MemberOverlay = (
           <Menus onClick={handleMenuClick}>
             <Menus.Item
-              name="leave"
+              value="leave"
               icon={<LogoutIcon />}
               label={t('workspace.members.index.leave')}
             />
