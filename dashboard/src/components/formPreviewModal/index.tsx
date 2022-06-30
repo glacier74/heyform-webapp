@@ -1,4 +1,5 @@
 import { useLockBodyScroll } from '@/legacy_pages/pages/FormBuilder/utils/hook'
+import en from '@/locales/en'
 import { useStore } from '@/store'
 import { ArrowLeftIcon } from '@heroicons/react/outline'
 import { initI18n, insertThemeStyle, insertWebFont, Renderer } from '@heyforms/form-component'
@@ -9,7 +10,15 @@ import type { FC } from 'react'
 import { useEffect } from 'react'
 import './index.scss'
 
-initI18n()
+initI18n({
+  resources: {
+    en: {
+      translation: {
+        ...en
+      }
+    }
+  }
+})
 
 export const FormPreviewModal: FC = observer(() => {
   const appStore = useStore('appStore')
