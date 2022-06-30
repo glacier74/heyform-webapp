@@ -88,6 +88,10 @@ export default ({ mode }: ConfigEnv) => {
         format: {
           comments: false
         }
+      },
+      // see https://github.com/vitejs/vite/issues/5759#issuecomment-1034461225
+      commonjsOptions: {
+        ignoreTryCatch: false
       }
       // rollupOptions: {
       //   plugins: [
