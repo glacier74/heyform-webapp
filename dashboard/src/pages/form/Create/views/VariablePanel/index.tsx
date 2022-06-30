@@ -6,7 +6,7 @@ import { type Variable } from '@heyforms/shared-types-enums'
 import { Button, Form, Input } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
-import { type FC, useMemo, useState } from 'react'
+import { type FC, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export const VariablePanel: FC = () => {
@@ -51,6 +51,12 @@ export const VariablePanel: FC = () => {
       setKind(changes.kind)
     }
   }
+
+  useEffect(() => {
+    if (state.selectedVariable) {
+      setKind(state.selectedVariable.kind)
+    }
+  }, [state.selectedVariable])
 
   return (
     <div className="variable-panel">
