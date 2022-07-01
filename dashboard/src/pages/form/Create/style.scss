@@ -1134,7 +1134,7 @@
   @apply flex-1 h-full;
 
   .react-flow__handle {
-    @apply pointer-events-none;
+    @apply pointer-events-none #{!important};
 
     &.connectable {
       @apply cursor-default;
