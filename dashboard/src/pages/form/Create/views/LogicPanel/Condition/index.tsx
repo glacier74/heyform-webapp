@@ -12,6 +12,7 @@ import { type LogicCondition } from '@heyforms/shared-types-enums/types/form'
 import { Input, Select } from '@heyforms/ui'
 import { isArray, isValid, isValidArray } from '@hpnp/utils/helper'
 import { type FC, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface ConditionProps {
   field: FormField
@@ -212,6 +213,7 @@ const NumberCondition: FC<DefaultProps> = ({ value, onComparisonChange, onExpect
 }
 
 export const Condition: FC<ConditionProps> = ({ field, value: rawValue, onChange }) => {
+  const { t } = useTranslation()
   const [value, setValue] = useState<LogicCondition>(rawValue!)
 
   function handleComparisonChange(comparison: any) {
@@ -299,7 +301,7 @@ export const Condition: FC<ConditionProps> = ({ field, value: rawValue, onChange
 
   return (
     <div className="rule-condition">
-      <div className="flex items-center">When</div>
+      <div className="flex items-center">{t('formBuilder.when')}</div>
       {Element}
     </div>
   )

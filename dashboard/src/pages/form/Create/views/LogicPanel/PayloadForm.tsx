@@ -16,6 +16,7 @@ import { type LogicCondition } from '@heyforms/shared-types-enums/types/form'
 import { Button, Form, Tooltip } from '@heyforms/ui'
 import { nanoid } from '@hpnp/utils/nanoid'
 import { type FC, type ReactNode, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface PayloadFormProps {
   form: any
@@ -98,6 +99,8 @@ export const PayloadItem: FC<PayloadItemProps> = ({
   onDelete,
   onChange
 }) => {
+  const { t } = useTranslation()
+
   function handleConditionChange(condition: LogicCondition) {
     onChange?.({ ...value, condition } as LogicPayload)
   }
@@ -127,7 +130,7 @@ export const PayloadItem: FC<PayloadItemProps> = ({
             onChange={handleActionChange}
           />
         </div>
-        <Tooltip ariaLabel="Delete rule">
+        <Tooltip ariaLabel={t('formBuilder.deleteRule')}>
           <Button.Link className="-mr-2" leading={<TrashIcon />} onClick={handleDelete} />
         </Tooltip>
       </div>

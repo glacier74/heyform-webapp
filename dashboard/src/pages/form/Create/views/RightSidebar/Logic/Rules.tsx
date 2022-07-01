@@ -128,7 +128,7 @@ export const Rules: FC = () => {
             trailing={<ChevronRightIcon />}
             onClick={handleClick}
           >
-            Bulk edit
+            {t('formBuilder.bulkEdit')}
           </Button.Link>
         </div>
       </div>

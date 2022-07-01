@@ -8,6 +8,7 @@ import { Button, Input, Select } from '@heyforms/ui'
 import { isEmpty, isValidArray } from '@hpnp/utils/helper'
 import clsx from 'clsx'
 import { type FC, useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FieldSelect } from './FieldSelect'
 
 interface ActionProps {
@@ -25,6 +26,7 @@ export const Action: FC<ActionProps> = ({
   value: rawValue,
   onChange
 }) => {
+  const { t } = useTranslation()
   const { dispatch } = useStoreContext()
   const [value, setValue] = useState<any>(rawValue!)
   const [htmlType, setHtmlType] = useState<string>('text')
@@ -111,7 +113,7 @@ export const Action: FC<ActionProps> = ({
         'rule-action-calculate': value.kind === ActionEnum.CALCULATE
       })}
     >
-      <div className="flex items-center">Then</div>
+      <div className="flex items-center">{t('formBuilder.variable.then')}</div>
       <Select
         className="w-auto flex-1"
         options={KIND_OPTIONS}
@@ -148,7 +150,7 @@ export const Action: FC<ActionProps> = ({
         </>
       ) : (
         <Button.Link leading={<PlusIcon />} onClick={handleAddVariable}>
-          Add variable
+          {t('formBuilder.variable.add')}
         </Button.Link>
       )}
     </div>

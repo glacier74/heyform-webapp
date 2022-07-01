@@ -9,9 +9,11 @@ import { Logic, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { Button, Form, useForm } from '@heyforms/ui'
 import { isValidArray } from '@hpnp/utils/helper'
 import { useEffect, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const LogicBulkEditPanel = () => {
   const [form] = useForm()
+  const { t } = useTranslation()
   const { state, dispatch } = useStoreContext()
   const { fields: rawFields, logics, variables } = state
 
@@ -86,8 +88,8 @@ export const LogicBulkEditPanel = () => {
     <div className="logic-bulk-edit-panel">
       <div className="flex justify-between px-4 py-6 bg-gray-50">
         <div className="flex-1">
-          <h2 className="text-lg font-medium text-gray-900">Bulk Edit</h2>
-          <p>Take full control of the flow</p>
+          <h2 className="text-lg font-medium text-gray-900">{t('formBuilder.bulkEdit')}</h2>
+          <p>{t('formBuilder.bulkEditDescription')}</p>
         </div>
         <Button.Link className="w-8 h-8" leading={<XIcon />} onClick={handleClose} />
       </div>
@@ -118,12 +120,12 @@ export const LogicBulkEditPanel = () => {
 
       <div className="flex items-center justify-between p-4 border-t border-gray-200">
         <Button.Link type="danger" onClick={handleRemoveAll}>
-          Remove all
+          {t('formBuilder.removeAll')}
         </Button.Link>
         <div className="flex items-center">
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>{t('formBuilder.cancel')}</Button>
           <Button className="ml-4" type="primary" onClick={handleSave}>
-            Save changes
+            {t('formBuilder.saveChanges')}
           </Button>
         </div>
       </div>
