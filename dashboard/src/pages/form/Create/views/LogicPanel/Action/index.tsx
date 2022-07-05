@@ -113,7 +113,7 @@ export const Action: FC<ActionProps> = ({
         'rule-action-calculate': value.kind === ActionEnum.CALCULATE
       })}
     >
-      <div className="flex items-center">{t('formBuilder.variable.then')}</div>
+      <div className="flex items-center">{t('formBuilder.then')}</div>
       <Select
         className="w-auto flex-1"
         options={KIND_OPTIONS}

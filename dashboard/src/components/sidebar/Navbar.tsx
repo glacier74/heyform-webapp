@@ -104,7 +104,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
         </h3>
         <div className="mt-1 space-y-1" aria-labelledby="resources-headline">
           <a
-            href="https://community.heyform.net/c/getting-started/6"
+            href="https://help.heyform.net/create-your-first-heyform"
             target="_blank"
             className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
           >
