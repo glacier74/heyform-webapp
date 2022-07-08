@@ -54,18 +54,18 @@ export const CreateForm: FC = observer(() => {
     >
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('project.bottom')}</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('project.createForm')}</h1>
         </div>
 
         <Form.Custom
-          submitText={t('project.create')}
+          submitText={t('project.bottom')}
           submitOptions={{
             type: 'primary'
           }}
           onlySubmitOnValueChange={true}
           request={handleRequest}
         >
-          <Form.Item name="name" label={t('project.formName')} rules={[{ required: true }]}>
+          <Form.Item name="name" label={t('project.giveName')} rules={[{ required: true }]}>
             <Input />
           </Form.Item>
         </Form.Custom>
