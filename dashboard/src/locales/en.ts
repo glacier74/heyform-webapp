@@ -163,6 +163,7 @@ export default {
     },
     rename: 'Rename',
     del: 'Delete',
+    create: 'Create',
     bottom: ' Create form',
     forms: 'Forms',
     Trash: 'Trash',

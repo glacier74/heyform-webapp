@@ -1,5 +1,6 @@
 import { Async } from '@/components'
-import { RenameForm } from '@/pages/project/Project/views/RenameForm'
+import { CreateForm } from './views/CreateForm'
+import { RenameForm } from './views/RenameForm'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam, useVisible } from '@/utils'
@@ -38,6 +39,8 @@ const Project = observer(() => {
   const navigate = useNavigate()
   const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
+  const appStore = useStore('appStore')
+
   const [suspendModalVisible, openSuspendModal, closeSuspendModal] = useVisible()
   const [renameFormVisible, openRenameForm, closeRenameForm] = useVisible()
   const [form, setForm] = useState<FormModel>()
@@ -103,7 +106,7 @@ const Project = observer(() => {
   }
 
   function handleCreateForm() {
-    navigate(`/workspace/${workspaceId}/project/${projectId}/form/create`)
+    appStore.isCreateFormOpen = true
   }
 
   function handleConfirm() {
@@ -159,7 +162,7 @@ const Project = observer(() => {
     },
     {
       key: 'action',
-      name: t('workspace.members.Index'),
+      name: t('workspace.members.Action'),
       align: 'right',
       render(record) {
         function handleClick(name?: IKeyType) {
@@ -226,6 +229,7 @@ const Project = observer(() => {
         />
       </Async>
 
+      <CreateForm />
       <RenameForm visible={renameFormVisible} form={form} onClose={closeRenameForm} />
 
       <Modal.Confirm

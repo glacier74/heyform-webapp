@@ -25,9 +25,9 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }) => {
-  const navigate = useNavigate()
-  const { workspaceId, projectId } = useParam()
+  const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
+  const appStore = useStore('appStore')
   const { t } = useTranslation()
 
   const members = useMemo(() => {
@@ -49,7 +49,7 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
   }
 
   function handleCreateForm() {
-    navigate(`/workspace/${workspaceId}/project/${projectId}/form/create`)
+    appStore.isCreateFormOpen = true
   }
 
   useAsyncEffect(async () => {

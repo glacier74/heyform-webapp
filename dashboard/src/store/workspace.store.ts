@@ -150,7 +150,7 @@ export class WorkspaceStore {
     const forms = this.formMaps[projectId]
 
     if (isValidArray(forms)) {
-      forms.push(form)
+      this.formMaps[projectId] = [form, ...forms]
     }
   }
 

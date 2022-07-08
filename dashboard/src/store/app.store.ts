@@ -7,6 +7,9 @@ export class AppStore {
   // Plan modal is open or not
   isPlanModalOpen = false
 
+  // Open create from modal
+  isCreateFormOpen = false
+
   // Form preview is open or not
   isFormPreviewOpen = false
 
