@@ -29,7 +29,6 @@ const FormBuilder: FC<{ form: FormModel }> = ({ form }) => {
     version: 0,
     references: [],
     activeTabName: 'question',
-    logics: form.logics,
     variables: form.variables,
     ...initFields(form.fields)
   }

@@ -1,5 +1,5 @@
 import type { FormField } from '@/models'
-import { serializeFields } from '@/pages/form/Create/utils'
+import { getValidLogics, serializeFields } from '@/pages/form/Create/utils'
 import { FormService } from '@/service'
 import { htmlUtils } from '@heyforms/answer-utils'
 import {
@@ -225,6 +225,7 @@ export function updateNestFields(
 
   // Reset fields
   const newState = setFields(state, { fields })
+  newState.logics = getValidLogics(newState.fields, newState.logics)
 
   // Select new field
   return selectField(newState, {

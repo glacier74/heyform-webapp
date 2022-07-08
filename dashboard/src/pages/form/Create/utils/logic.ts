@@ -41,6 +41,11 @@ export function getLayoutedElements(nodes: Node[], edges: Edge[], direction = 'L
   return { nodes, edges }
 }
 
+export function getValidLogics(fields: FormField[], logics?: Logic[]): Logic[] {
+  const fieldIds = fields.map(f => f.id)
+  return logics?.filter(l => fieldIds.includes(l.fieldId)) || []
+}
+
 export function fieldLogicToNodesEdges(
   rawFields: FormField[],
   logics?: Logic[]

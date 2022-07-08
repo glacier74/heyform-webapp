@@ -1,8 +1,9 @@
 import type { FormField } from "@/models";
 import { htmlUtils } from "@heyforms/answer-utils";
-import { FieldKindEnum, FORM_FIELD_KINDS, QUESTION_FIELD_KINDS } from "@heyforms/shared-types-enums";
+import { FieldKindEnum, FORM_FIELD_KINDS, Logic, QUESTION_FIELD_KINDS } from "@heyforms/shared-types-enums";
 import { isArray } from "@hpnp/utils/helper";
 import { nanoid } from "@hpnp/utils/nanoid";
+import { getValidLogics } from "./logic";
 
 // TODO: remove in future
 const DISCARD_FIELD_KINDS = ['single_choice', 'dropdown']
@@ -53,7 +54,7 @@ export function serializeFields(rawFields: FormField[]) {
   }
 }
 
-export function initFields(rawFields?: FormField[]) {
+export function initFields(rawFields?: FormField[], rawLogics?: Logic[]) {
   let list = rawFields?.filter(f => FIELD_KINDS.includes(f.kind)) || []
 
   if (list.length > 0) {
@@ -71,12 +72,14 @@ export function initFields(rawFields?: FormField[]) {
   const { fields, questions } = serializeFields(list)
   const selectedField = fields[0]
   const selectedId = selectedField?.id
+  const logics = getValidLogics(fields, rawLogics)
 
   return {
     fields,
     questions,
     selectedField,
-    selectedId
+    selectedId,
+    logics
   }
 }
 
