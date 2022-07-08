@@ -22,5 +22,6 @@ declare global {
 
   interface Window {
     initGeetest4: any
+    __APOLLO_DEVTOOLS_GLOBAL_HOOK__: boolean
   }
 }

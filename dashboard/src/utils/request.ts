@@ -48,6 +48,9 @@ const cache = new InMemoryCache({
   addTypename: false
 })
 
+// Disable apollo devtools tips
+window.__APOLLO_DEVTOOLS_GLOBAL_HOOK__ = true
+
 const client = new ApolloClient({
   // https://stackoverflow.com/a/58736777
   // Put uploadLink to the end
