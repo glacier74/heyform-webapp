@@ -52,7 +52,7 @@ const Groups = () => {
     },
     {
       key: 'action',
-      name: t('workspace.members.Index'),
+      name: t('workspace.members.Action'),
       align: 'right',
       render(record) {
         async function handleDeleteGroup() {

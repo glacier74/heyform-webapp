@@ -78,7 +78,7 @@ const Members = observer(() => {
     },
     {
       key: 'action',
-      name: t('workspace.members.Index'),
+      name: t('workspace.members.Action'),
       align: 'right',
       render(record) {
         if (workspaceStore.workspace.isOwner) {
