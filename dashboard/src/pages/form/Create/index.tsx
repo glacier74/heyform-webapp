@@ -30,7 +30,7 @@ const FormBuilder: FC<{ form: FormModel }> = ({ form }) => {
     references: [],
     activeTabName: 'question',
     variables: form.variables,
-    ...initFields(form.fields)
+    ...initFields(form.fields, form.logics)
   }
   const [state, dispatch] = useReducer(storeReducer, initialState)
   const store = useMemo(() => ({ state, dispatch }), [state])

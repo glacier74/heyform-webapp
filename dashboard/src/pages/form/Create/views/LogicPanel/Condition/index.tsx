@@ -3,6 +3,7 @@ import {
   DATE_CONDITION_OPTIONS,
   DEFAULT_CONDITION_OPTIONS,
   MULTIPLE_CHOICE_CONDITION_OPTIONS,
+  NUMBER_CONDITION_OPTIONS,
   SINGLE_CHOICE_CONDITION_OPTIONS,
   SINGLE_CHOICE_CONDITIONS,
   TEXT_CONDITION_OPTIONS
@@ -197,7 +198,7 @@ const NumberCondition: FC<DefaultProps> = ({ value, onComparisonChange, onExpect
       <Select
         className="w-auto flex-1"
         popupClassName="condition-select-popup"
-        options={TEXT_CONDITION_OPTIONS}
+        options={NUMBER_CONDITION_OPTIONS}
         value={value?.comparison}
         onChange={onComparisonChange}
       />
