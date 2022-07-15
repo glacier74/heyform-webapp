@@ -3,6 +3,7 @@ import { UserAvatar } from '@/legacy_pages/components/UserAvatar'
 import { useStore } from '@/legacy_pages/utils'
 import { FormService } from '@/service'
 import { useParam } from '@/utils'
+import { ArrowLeftIcon } from '@heroicons/react/outline'
 import { Input } from '@heyforms/ui'
 import { Button, ComponentProps, Flex } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
@@ -10,7 +11,6 @@ import { FC, startTransition } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { ArrowLeftIcon } from './Icons'
 
 export const FormNavbar: FC<ComponentProps> = observer(() => {
   const { t } = useTranslation()
@@ -38,7 +38,7 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
   return (
     <Container align="center" justify="space-between">
       <Left align="center">
-        <BackButton icon={<ArrowLeftIcon />} onClick={toProject}>
+        <BackButton icon={<ArrowLeftIcon className="w-5 h-5" />} onClick={toProject}>
           {workspaceStore.project?.name}
         </BackButton>
         <Spacer>/</Spacer>
@@ -128,11 +128,6 @@ const BackButton = styled(Button)`
   border: none;
   padding: 0;
   color: #4e5d78;
-
-  svg {
-    width: 24px;
-    height: 24px;
-  }
 
   &:hover {
     color: #0252d7;

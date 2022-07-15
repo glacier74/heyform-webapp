@@ -1,10 +1,10 @@
 import { Request } from '@/legacy_pages/components'
-import { NavBarContainer } from '@/legacy_pages/layouts/views/NavBarContainer'
 import { useStore } from '@/legacy_pages/utils'
 import { AppService, FormService } from '@/service'
 import { useParam } from '@/utils'
+import { Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Airtable } from './views/Airtable'
@@ -17,6 +17,7 @@ import { GoogleSheets } from './views/GoogleSheets'
 import { Hubspot } from './views/Hubspot'
 import { Mailchimp } from './views/Mailchimp'
 import { Monday } from './views/Monday'
+import { Osticket } from './views/Osticket'
 import { SupportPal } from './views/SupportPal'
 
 interface SettingsProps {
@@ -29,6 +30,7 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
   const { formId } = useParam()
   const integrationStore = useStore('integrationStore')
   const app = integrationStore.integratedApps.find(row => row.id === appId)
+  const [loading, setLoading] = useState(false)
   const { t } = useTranslation()
 
   async function fetchIntegrations() {
@@ -43,347 +45,343 @@ export const Settings: FC<SettingsProps> = observer(({ appId, visible, onVisible
     return true
   }
 
+  function handleRequest(isLoading: boolean) {
+    setLoading(isLoading)
+  }
+
   function handleClose() {
-    onVisibleChange && onVisibleChange(false)
+    onVisibleChange?.(false)
   }
 
   return (
-    <>
-      {visible && (
-        <Container close={true} onClose={handleClose}>
-          <Request
-            fetch={fetchIntegrations}
-            deps={[formId]}
-            useCache={integrationStore.apps.length > 0}
-          >
-            {(() => {
-              switch (app?.uniqueId) {
-                case 'mailchimp':
-                  return <Mailchimp app={app} onFinish={handleClose} />
+    <Modal
+      visible={visible}
+      maskClosable={true}
+      showCloseIcon={true}
+      confirmLoading={loading}
+      onClose={handleClose}
+    >
+      <Container
+        fetch={fetchIntegrations}
+        deps={[formId]}
+        useCache={integrationStore.apps.length > 0}
+      >
+        {(() => {
+          switch (app?.uniqueId) {
+            case 'mailchimp':
+              return <Mailchimp app={app} onRequest={handleRequest} onFinish={handleClose} />
 
-                case 'googledrive':
-                  return <GoogleDrive app={app} onFinish={handleClose} />
+            case 'googledrive':
+              return <GoogleDrive app={app} onRequest={handleRequest} onFinish={handleClose} />
 
-                case 'googlesheets':
-                  return <GoogleSheets app={app} onFinish={handleClose} />
+            case 'googlesheets':
+              return <GoogleSheets app={app} onRequest={handleRequest} onFinish={handleClose} />
 
-                case 'airtable':
-                  return <Airtable app={app} onFinish={handleClose} />
+            case 'airtable':
+              return <Airtable app={app} onRequest={handleRequest} onFinish={handleClose} />
 
-                case 'hubspot':
-                  return <Hubspot app={app} onFinish={handleClose} />
+            case 'hubspot':
+              return <Hubspot app={app} onRequest={handleRequest} onFinish={handleClose} />
 
-                case 'monday':
-                  return <Monday app={app} onFinish={handleClose} />
+            case 'monday':
+              return <Monday app={app} onRequest={handleRequest} onFinish={handleClose} />
 
-                case 'supportpal':
-                  return <SupportPal app={app} onFinish={handleClose} />
+            case 'supportpal':
+              return <SupportPal app={app} onRequest={handleRequest} onFinish={handleClose} />
 
-                case 'github':
-                  return <Github app={app} onFinish={handleClose} />
+            case 'osticket':
+              return <Osticket app={app} onRequest={handleRequest} onFinish={handleClose} />
 
-                case 'gitlab':
-                  return <Gitlab app={app} onFinish={handleClose} />
+            case 'github':
+              return <Github app={app} onRequest={handleRequest} onFinish={handleClose} />
 
-                case 'dropbox':
-                  return <Dropbox app={app} onFinish={handleClose} />
+            case 'gitlab':
+              return <Gitlab app={app} onRequest={handleRequest} onFinish={handleClose} />
 
-                case 'googleanalytics':
-                  return (
-                    <CommonSettings
-                      app={app}
-                      onFinish={handleClose}
-                      options={[
+            case 'dropbox':
+              return <Dropbox app={app} onRequest={handleRequest} onFinish={handleClose} />
+
+            case 'googleanalytics':
+              return (
+                <CommonSettings
+                  app={app}
+                  onRequest={handleRequest}
+                  onFinish={handleClose}
+                  options={[
+                    {
+                      name: 'trackingCode',
+                      label: t('integration.trackingCode'),
+                      placeholder: 'e.g. UA-XXXXX-Y',
+                      description: (
+                        <>
+                          {t('integration.copyGoogle')}{' '}
+                          <a
+                            href="https://support.google.com/analytics/answer/1008080?hl=en#zippy=%2Cin-this-article"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {t('integration.link')}
+                          </a>
+                        </>
+                      ),
+                      rules: [
                         {
-                          name: 'trackingCode',
-                          label: t('integration.trackingCode'),
-                          placeholder: 'e.g. UA-XXXXX-Y',
-                          description: (
-                            <>
-                              {t('integration.copyGoogle')}{' '}
-                              <a
-                                href="https://support.google.com/analytics/answer/1008080?hl=en#zippy=%2Cin-this-article"
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {t('integration.link')}
-                              </a>
-                            </>
-                          ),
-                          rules: [
-                            {
-                              required: true
-                            }
-                          ]
+                          required: true
                         }
-                      ]}
-                    />
-                  )
+                      ]
+                    }
+                  ]}
+                />
+              )
 
-                case 'facebookpixel':
-                  return (
-                    <CommonSettings
-                      app={app}
-                      onFinish={handleClose}
-                      options={[
+            case 'facebookpixel':
+              return (
+                <CommonSettings
+                  app={app}
+                  onRequest={handleRequest}
+                  onFinish={handleClose}
+                  options={[
+                    {
+                      name: 'trackingCode',
+                      label: t('integration.PixelID'),
+                      placeholder: 'e.g. 100xxxxxxxxxxxxx',
+                      description: (
+                        <>
+                          {t('integration.copyId')}{' '}
+                          <a
+                            href="https://www.facebook.com/business/help/952192354843755?id=1205376682832142"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {t('integration.findId')}
+                          </a>
+                        </>
+                      ),
+                      rules: [
                         {
-                          name: 'trackingCode',
-                          label: t('integration.PixelID'),
-                          placeholder: 'e.g. 100xxxxxxxxxxxxx',
-                          description: (
-                            <>
-                              {t('integration.copyId')}{' '}
-                              <a
-                                href="https://www.facebook.com/business/help/952192354843755?id=1205376682832142"
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {t('integration.findId')}
-                              </a>
-                            </>
-                          ),
-                          rules: [
-                            {
-                              required: true
-                            }
-                          ]
+                          required: true
                         }
-                      ]}
-                    />
-                  )
+                      ]
+                    }
+                  ]}
+                />
+              )
 
-                case 'email':
-                  return (
-                    <CommonSettings
-                      app={app}
-                      onFinish={handleClose}
-                      options={[
-                        {
-                          name: 'email',
-                          label: t('login.Email'),
-                          rules: [{ required: true, type: 'email' }]
-                        }
-                      ]}
-                    />
-                  )
+            case 'email':
+              return (
+                <CommonSettings
+                  app={app}
+                  onRequest={handleRequest}
+                  onFinish={handleClose}
+                  options={[
+                    {
+                      name: 'email',
+                      label: t('login.Email'),
+                      rules: [{ required: true, type: 'email' }]
+                    }
+                  ]}
+                />
+              )
 
-                case 'lark':
-                  return (
-                    <CommonSettings
-                      app={app}
-                      onFinish={handleClose}
-                      options={[
+            case 'lark':
+              return (
+                <CommonSettings
+                  app={app}
+                  onRequest={handleRequest}
+                  onFinish={handleClose}
+                  options={[
+                    {
+                      name: 'webhook',
+                      label: t('integration.labelSlack'),
+                      description: (
+                        <>
+                          {t('integration.addA')}{' '}
+                          <a
+                            href="https://www.larksuite.com/hc/en-US/articles/360048487736#1.1%20Use%20custom%20bots%20in%20a%20group"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {t('integration.customBots')}
+                          </a>{' '}
+                          {t('integration.customBotText')}
+                        </>
+                      ),
+                      rules: [
                         {
-                          name: 'webhook',
-                          label: t('integration.labelSlack'),
-                          description: (
-                            <>
-                              {t('integration.addA')}{' '}
-                              <a
-                                href="https://www.larksuite.com/hc/en-US/articles/360048487736#1.1%20Use%20custom%20bots%20in%20a%20group"
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {t('integration.customBots')}
-                              </a>{' '}
-                              {t('integration.customBotText')}
-                            </>
-                          ),
-                          rules: [
-                            {
-                              required: true,
-                              pattern: /^https:\/\/open.feishu.cn\/open-apis\/bot\//
-                            }
-                          ]
+                          required: true,
+                          pattern: /^https:\/\/open.feishu.cn\/open-apis\/bot\//
                         }
-                      ]}
-                    />
-                  )
+                      ]
+                    }
+                  ]}
+                />
+              )
 
-                case 'legacyslack':
-                  return (
-                    <CommonSettings
-                      app={app}
-                      onFinish={handleClose}
-                      options={[
+            case 'legacyslack':
+              return (
+                <CommonSettings
+                  app={app}
+                  onRequest={handleRequest}
+                  onFinish={handleClose}
+                  options={[
+                    {
+                      name: 'webhook',
+                      label: t('integration.labelSlack'),
+                      description: (
+                        <>
+                          {t('integration.createS')}{' '}
+                          <a href="https://api.slack.com/apps/new" target="_blank" rel="noreferrer">
+                            {t('integration.appSlack')}
+                          </a>
+                          ,{t('integration.pasteSlack')}
+                        </>
+                      ),
+                      rules: [
                         {
-                          name: 'webhook',
-                          label: t('integration.labelSlack'),
-                          description: (
-                            <>
-                              {t('integration.createS')}{' '}
-                              <a
-                                href="https://api.slack.com/apps/new"
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {t('integration.appSlack')}
-                              </a>
-                              ,{t('integration.pasteSlack')}
-                            </>
-                          ),
-                          rules: [
-                            {
-                              required: true,
-                              pattern: /^https:\/\/hooks.slack.com\/services\//
-                            }
-                          ]
+                          required: true,
+                          pattern: /^https:\/\/hooks.slack.com\/services\//
                         }
-                      ]}
-                    />
-                  )
+                      ]
+                    }
+                  ]}
+                />
+              )
 
-                case 'telegram':
-                  return (
-                    <CommonSettings
-                      app={app}
-                      onFinish={handleClose}
-                      options={[
+            case 'telegram':
+              return (
+                <CommonSettings
+                  app={app}
+                  onRequest={handleRequest}
+                  onFinish={handleClose}
+                  options={[
+                    {
+                      name: 'chatId',
+                      label: t('integration.chatId'),
+                      description: (
+                        <>
+                          {t('integration.Add')}{' '}
+                          <a href="https://t.me/HeyForm_bot" target="_blank" rel="noreferrer">
+                            @HeyForm_bot
+                          </a>{' '}
+                          {t('integration.toTelegram')}
+                          <code>/start@HeyForm_bot</code> {t('integration.inTelegram')}
+                        </>
+                      ),
+                      rules: [
                         {
-                          name: 'chatId',
-                          label: t('integration.chatId'),
-                          description: (
-                            <>
-                              {t('integration.Add')}{' '}
-                              <a href="https://t.me/HeyForm_bot" target="_blank" rel="noreferrer">
-                                @HeyForm_bot
-                              </a>{' '}
-                              {t('integration.toTelegram')}
-                              <code>/start@HeyForm_bot</code> {t('integration.inTelegram')}
-                            </>
-                          ),
-                          rules: [
-                            {
-                              required: true,
-                              pattern: /^-?\d+$/
-                            }
-                          ]
+                          required: true,
+                          pattern: /^-?\d+$/
                         }
-                      ]}
-                    />
-                  )
+                      ]
+                    }
+                  ]}
+                />
+              )
 
-                case 'webhook':
-                  return (
-                    <CommonSettings
-                      app={app}
-                      onFinish={handleClose}
-                      options={[
+            case 'webhook':
+              return (
+                <CommonSettings
+                  app={app}
+                  onRequest={handleRequest}
+                  onFinish={handleClose}
+                  options={[
+                    {
+                      name: 'webhook',
+                      label: t('integration.labelWeb'),
+                      rules: [
                         {
-                          name: 'webhook',
-                          label: t('integration.labelWeb'),
-                          rules: [
-                            {
-                              type: 'url',
-                              required: true
-                            }
-                          ]
+                          type: 'url',
+                          required: true
                         }
-                      ]}
-                    />
-                  )
-              }
-            })()}
-          </Request>
-        </Container>
-      )}
-    </>
+                      ]
+                    }
+                  ]}
+                />
+              )
+          }
+        })()}
+      </Container>
+    </Modal>
   )
 })
 
-const Container = styled(NavBarContainer)`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  z-index: 99;
-  overflow-y: auto;
+const Container = styled(Request)`
+  position: initial;
+  padding-top: 32px;
+  padding-bottom: 12px;
 
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+  .hey-form-item {
+    padding-bottom: 24px;
+
+    &.hey-form-item-inline {
+      padding-bottom: 0;
+    }
   }
 
-  .content {
-    padding-top: 140px;
+  .hey-label {
+    margin-bottom: 10px;
+    color: #4e5d78;
 
-    .hey-form-item {
-      padding-bottom: 24px;
-
-      &.hey-form-item-inline {
-        padding-bottom: 0;
-      }
+    label {
+      font-weight: 400;
     }
+  }
 
+  .hey-label-less {
     .hey-label {
-      margin-bottom: 10px;
-      color: #4e5d78;
-
-      label {
-        font-weight: 400;
-      }
+      margin-bottom: 0;
     }
+  }
 
-    .hey-label-less {
-      .hey-label {
-        margin-bottom: 0;
-      }
-    }
-
-    .hey-input {
-      input {
-        padding: 10px;
-
-        &:hover {
-          border-color: #0252d7;
-        }
-
-        &::placeholder {
-          color: #b0b7c3;
-        }
-      }
-
-      & > svg {
-        position: absolute;
-        top: 50%;
-        left: 14px;
-        margin-top: -10px;
-      }
-
-      svg {
-        width: 20px;
-        height: 20px;
-        color: #c1c7d0;
-      }
-    }
-
-    .hey-button {
-      height: 40px;
-      padding: 10px 24px;
+  .hey-input {
+    input {
+      padding: 10px;
 
       &:hover {
         border-color: #0252d7;
       }
+
+      &::placeholder {
+        color: #b0b7c3;
+      }
     }
 
-    .hey-select {
-      .hey-select-placeholder {
-        height: 20px;
-        color: #b0b7c3;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-      }
+    & > svg {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      margin-top: -10px;
+    }
 
-      &:hover .hey-button {
-        border-color: #0252d7;
-      }
+    svg {
+      width: 20px;
+      height: 20px;
+      color: #c1c7d0;
+    }
+  }
+
+  .hey-button {
+    height: 40px;
+    padding: 10px 24px;
+
+    &:hover {
+      border-color: #0252d7;
+    }
+  }
+
+  .hey-select {
+    .hey-select-placeholder {
+      height: 20px;
+      color: #b0b7c3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+    }
+
+    &:hover .hey-button {
+      border-color: #0252d7;
     }
   }
 `

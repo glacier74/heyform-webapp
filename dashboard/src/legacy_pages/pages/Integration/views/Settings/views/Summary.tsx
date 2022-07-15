@@ -24,9 +24,9 @@ export const Summary: FC<SummaryProps> = ({ app }) => {
   return (
     <Container>
       <Flex align="center" justify="center">
-        <StyledRoundLogo/>
-        <StyledMoreIcon/>
-        <ImageContainer url={app?.avatar!} width={120} height={120}/>
+        <StyledRoundLogo />
+        <StyledMoreIcon />
+        <ImageContainer url={app?.avatar!} width={120} height={120} />
       </Flex>
 
       <StyledHeading
@@ -38,10 +38,6 @@ export const Summary: FC<SummaryProps> = ({ app }) => {
             </a>
           </>
         }
-        style={{
-          marginTop: 48,
-          textAlign: 'center'
-        }}
       >
         {t('integration.ConnectWith')} {app?.name}
       </StyledHeading>
@@ -93,7 +89,14 @@ const ImageContainer = styled(Image)`
 `
 
 const StyledHeading = styled(Heading)`
-  margin-bottom: 64px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+
+  .heading-title,
+  .heading-description {
+    display: block;
+    text-align: center;
+  }
 
   a {
     color: #8a94a6;

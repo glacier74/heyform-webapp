@@ -20,17 +20,17 @@ const LoginWithGoogle: FC = () => {
 
   return (
     <>
-      <img src={GoogleImage} width={20} height={20} style={{ marginRight: 12 }} alt=""/>
+      <img src={GoogleImage} width={20} height={20} style={{ marginRight: 12 }} alt="" />
       {t('integration.loginGoogle')}
     </>
   )
 }
 
 export const ThirdPartySignIn: FC<ThirdPartySignInProps> = ({
-                                                              app,
-                                                              authorized = false,
-                                                              oauthRequest
-                                                            }) => {
+  app,
+  authorized = false,
+  oauthRequest
+}) => {
   const { formId } = useParam()
   const appId = app!.id
   const [loading, setLoading] = useState(false)
@@ -61,11 +61,19 @@ export const ThirdPartySignIn: FC<ThirdPartySignInProps> = ({
       <SubHeading>{t('integration.AuthorizationText')}</SubHeading>
       <Button onClick={handleClick} loading={loading} block={true} disabled={authorized}>
         {app?.uniqueId === 'googledrive' || app?.uniqueId === 'googlesheets' ? (
-          <LoginWithGoogle/>
+          <LoginWithGoogle />
         ) : (
           <>
-            <ImageContainer url={app?.avatar!} width={40} height={40}/>
-            <span>{authorized ? 'Authorized' : <>{t('integration.login')} {app?.name}</>}</span>
+            <ImageContainer url={app?.avatar!} width={40} height={40} />
+            <span>
+              {authorized ? (
+                'Authorized'
+              ) : (
+                <>
+                  {t('integration.login')} {app?.name}
+                </>
+              )}
+            </span>
           </>
         )}
       </Button>
@@ -78,7 +86,10 @@ const Container = styled.div`
   padding-bottom: 16px;
 
   .hey-button {
-    width: auto;
+    .hey-button-children {
+      display: flex;
+      align-items: center;
+    }
   }
 `
 

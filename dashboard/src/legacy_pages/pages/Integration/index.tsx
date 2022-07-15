@@ -59,7 +59,7 @@ const Integration: FC = observer(() => {
         <CategoryList>
           <CategoryHeader>{t('integration.Categories')}</CategoryHeader>
           {INTEGRATION_CATEGORIES.map((name, index) => (
-            <CategoryItem key={index} name={name}/>
+            <CategoryItem key={index} name={name} />
           ))}
         </CategoryList>
       </Sidebar>
@@ -81,7 +81,7 @@ const Integration: FC = observer(() => {
           request={fetchIntegrations}
           deps={[formId]}
           useCache={integrationStore.apps.length > 0}
-          skeleton={<IntegrationSkeleton/>}
+          skeleton={<IntegrationSkeleton />}
         >
           {INTEGRATION_CATEGORIES.map((category, index) => (
             <Group key={index}>
@@ -101,7 +101,7 @@ const Integration: FC = observer(() => {
         </Fetcher>
       </Body>
 
-      <Settings appId={selectedAppId} visible={visible} onVisibleChange={setVisible}/>
+      <Settings appId={selectedAppId} visible={visible} onVisibleChange={setVisible} />
     </Flex>
   )
 })

@@ -82,7 +82,7 @@ export const Mailchimp: FC<SettingsProps> = observer(({ app, onFinish }) => {
       </FormItem>
       <FormItem
         name="phoneNumber"
-        label={t('audiences.contact.addContact.phnoeNumber')}
+        label={t('audiences.contact.addContact.phoneNumber')}
         rules={[{ required: false }]}
       >
         <Select

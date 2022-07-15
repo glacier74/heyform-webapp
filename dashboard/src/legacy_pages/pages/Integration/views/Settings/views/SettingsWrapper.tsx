@@ -20,6 +20,7 @@ interface Option {
 export interface SettingsProps {
   app?: AppModel
   options?: Option[]
+  onRequest?: (loading: boolean) => void
   onFinish?: () => void
 }
 
@@ -33,6 +34,7 @@ export const SettingsWrapper: FC<SettingsWrapperProps> = ({
   app,
   initialValues,
   onValuesChange,
+  onRequest,
   onFinish,
   children = []
 }) => {
@@ -49,6 +51,7 @@ export const SettingsWrapper: FC<SettingsWrapperProps> = ({
     }
 
     setLoading(true)
+    onRequest?.(true)
 
     try {
       await IntegrationService.updateSettings(formId, app!.id, {
@@ -60,6 +63,8 @@ export const SettingsWrapper: FC<SettingsWrapperProps> = ({
       setError(err)
       setLoading(false)
     }
+
+    onRequest?.(false)
   }
 
   async function fetchIntegrations() {

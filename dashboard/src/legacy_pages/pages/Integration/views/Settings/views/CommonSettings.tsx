@@ -9,7 +9,8 @@ import {
   SettingsProps,
   SettingsWrapper
 } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
-import { FormItem, Input } from '@heyui/component'
+import { Input } from '@heyforms/ui'
+import { FormItem } from '@heyui/component'
 import { FC } from 'react'
 
 export const CommonSettings: FC<SettingsProps> = ({ app, options = [], onFinish }) => {

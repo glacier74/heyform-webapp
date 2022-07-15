@@ -6,9 +6,11 @@ import { Form, Input, Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 export const CreateForm: FC = observer(() => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const { workspaceId, projectId } = useParam()
   const appStore = useStore('appStore')
   const workspaceStore = useStore('workspaceStore')
@@ -34,6 +36,8 @@ export const CreateForm: FC = observer(() => {
 
     fetchForms()
     handleClose()
+
+    navigate(`/workspace/${workspaceId}/project/${projectId}/form/${result}/create`)
   }
 
   async function fetchForms() {
