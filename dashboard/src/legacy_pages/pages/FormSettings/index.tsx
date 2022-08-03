@@ -29,7 +29,7 @@ const FormSettings: FC = () => {
 export default FormSettings
 
 const Container = styled.div`
-  width: 93.75rem;
+  width: 1044px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 80px;
