@@ -10,7 +10,7 @@ export const ResultNavbar: FC<ComponentProps> = props => {
   const { workspaceId, projectId, formId } = useParam()
 
   return (
-    <Container>
+    <div className='container max-w-5xl mx-auto bg-white py-4'>
       <Wrapper align="center" {...props}>
         <NavLink
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}
@@ -29,19 +29,9 @@ export const ResultNavbar: FC<ComponentProps> = props => {
           {t('analytics.Submissions')}
         </NavLink>
       </Wrapper>
-    </Container>
+    </div>
   )
 }
-
-const Container = styled.div`
-  height: 48px;
-  background: #fff;
-  z-index: 9;
-
-  @media print {
-    display: none;
-  }
-`
 
 const Wrapper = styled(Flex)`
   height: 100%;

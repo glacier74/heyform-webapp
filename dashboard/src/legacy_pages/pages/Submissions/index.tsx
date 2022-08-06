@@ -200,13 +200,8 @@ const Submissions: FC = () => {
 
   return (
     <>
-      <ResultNavbar
-        style={{
-          width: 'auto',
-          marginLeft: 24
-        }}
-      />
-      <Container>
+      <ResultNavbar />
+      <div className='container mx-auto max-w-5xl'>
         <Toolbar align="center" justify="space-between">
           <ToolbarLeft align="center">
             <CategorySelect category={category} onChange={handleCategoryChange} />
@@ -251,17 +246,14 @@ const Submissions: FC = () => {
           }
           onDeselect={handleDeselectedRows}
         />
-      </Container>
+      </div>
     </>
   )
 }
 
-const Container = styled.div`
-  position: relative;
-`
 
 const Toolbar = styled(Flex)`
-  margin: 20px 24px;
+  margin: 20px 0;
 
   .hey-pagination {
     margin-left: 12px;

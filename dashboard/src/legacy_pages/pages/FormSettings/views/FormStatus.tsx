@@ -6,7 +6,7 @@
  **/
 
 import { TIME_ZONES } from '@/consts'
-import { FormError, SubHeading } from '@/legacy_pages/components'
+import { FormError } from '@/legacy_pages/components'
 import { DatetimePicker } from '@/legacy_pages/components/DatetimePicker'
 import { NumberInput } from '@/legacy_pages/components/NumberInput'
 import { TimeInput } from '@/legacy_pages/components/TimeInput'
@@ -85,16 +85,18 @@ export const FormStatus: FC = observer(() => {
   }
 
   return (
-    <Container>
-      <SwitchContainer align="center" justify="space-between">
-        <StyledSubHeading>{t('formSettings.status')}</StyledSubHeading>
-        <Switch
-          loading={loading}
-          value={formStore.current?.settings?.active}
-          onChange={handleSwitchChange}
-        />
-      </SwitchContainer>
-      <Description>{t('formSettings.disableForm')}</Description>
+    <div>
+      <div className='py-4'>
+        <SwitchContainer align="center" justify="space-between">
+          <span className='font-medium text-gray-900 text-base'>{t('formSettings.status')}</span>
+          <Switch
+            loading={loading}
+            value={formStore.current?.settings?.active}
+            onChange={handleSwitchChange}
+          />
+        </SwitchContainer>
+        <p className='text-sm text-gray-500 max-w-2xl mb-8'>{t('formSettings.disableForm')}</p>
+      </div>
 
       {formStore.current?.settings?.active && (
         <Form
@@ -105,10 +107,7 @@ export const FormStatus: FC = observer(() => {
           <StyledFormItem
             name="enableExpirationDate"
             label={t('formSettings.expiration')}
-            description={t('formSettings.expirationText')}
-            style={{
-              paddingBottom: values?.enableExpirationDate ? 0 : undefined
-            }}
+            description={t('formSettings.expirationText')}    
           />
           {values?.enableExpirationDate && (
             <Flex align="flex-start" auto={true}>
@@ -240,48 +239,14 @@ export const FormStatus: FC = observer(() => {
           </FormItem>
         </Form>
       )}
-    </Container>
+    </div>
   )
 })
 
-const Container = styled.div`
-  .hey-label {
-    margin-bottom: 8px;
-  }
-
-  input {
-    height: 40px;
-  }
-
-  .hey-label {
-    margin-bottom: 8px;
-    color: #37352f !important;
-  }
-
-  .heyform-item-description {
-    color: #8a94a6;
-    font-size: 13px;
-  }
-`
-
-const StyledSubHeading = styled(SubHeading)`
-  margin-top: 0;
-
-  &,
-  .subheading-title {
-    margin-bottom: 0;
-  }
-`
 
 const SwitchContainer = styled(Flex)`
-  margin-bottom: 10px;
 `
 
-const Description = styled.div`
-  color: #8a94a6;
-  font-size: 13px;
-  margin-bottom: 16px;
-`
 
 const StyledFormItem = styled(SwitchFormItem)``
 

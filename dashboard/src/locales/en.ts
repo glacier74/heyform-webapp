@@ -563,7 +563,7 @@ export default {
     Deselect: 'Deselect all'
   },
   formSettings: {
-    Form: 'Form',
+    Form: 'Form settings',
     manageForm: 'Manage your form settings',
     Extra: 'Extra',
     subArchive: 'Submission Archive',
@@ -584,7 +584,7 @@ export default {
     Update: 'Update',
     Basic: 'Basic',
     formUpdated: 'Form settings have been successfully updated',
-    status: 'Form Status',
+    status: 'Form status',
     disableForm:
       'You can disable this form to stop receiving new submissions and prevent public access to the form.',
     expiration: 'Expiration date',

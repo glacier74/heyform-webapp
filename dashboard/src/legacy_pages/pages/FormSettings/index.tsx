@@ -1,9 +1,7 @@
-import { Heading, SubHeading } from '@/legacy_pages/components'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { Basic } from './views/Basic'
-import { DeleteForm } from './views/DeleteForm'
 import { FormStatus } from './views/FormStatus'
 import { Protection } from './views/Protection'
 
@@ -11,30 +9,21 @@ const FormSettings: FC = () => {
   const { t } = useTranslation()
 
   return (
-    <Container>
+    <div className='container max-w-5xl mx-auto py-24'>
       <Content>
-        <Heading description={t('formSettings.manageForm')}>{t('formSettings.Form')}</Heading>
-
+        <div className='mb-8'>
+          <h3 className='text-2xl font-semibold text-slate-900'>{t('formSettings.Form')}</h3>
+          <p className='text-base text-gray-500'>{t('formSettings.manageForm')}</p>
+        </div>
         <FormStatus />
         <Basic />
         <Protection />
-
-        <SubHeading>{t('formSettings.Extra')}</SubHeading>
-        <DeleteForm />
       </Content>
-    </Container>
+    </div>
   )
 }
 
 export default FormSettings
-
-const Container = styled.div`
-  width: 1044px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 80px;
-  padding-bottom: 64px;
-`
 
 const Content = styled.div`
   .hey-form-item {
