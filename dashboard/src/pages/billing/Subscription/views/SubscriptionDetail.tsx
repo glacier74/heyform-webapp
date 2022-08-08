@@ -1,7 +1,10 @@
 import { Async } from '@/components'
+import { PlanGradeEnum, SubscriptionStatusEnum } from '@/models'
+import { CancelPlan } from '@/pages/billing/Subscription/views/CancelPlan'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useParam } from '@/utils'
+import { useParam, useVisible } from '@/utils'
+import { Button } from '@heyforms/ui'
 import { formatBytes, unixDate } from '@hpnp/utils'
 import { observer } from 'mobx-react-lite'
 import type { FC, ReactNode } from 'react'
@@ -95,16 +98,26 @@ export const SubscriptionDetail: FC = observer(() => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
   const { plan, subscription } = workspaceStore.workspace!
-  const [detail, setDetail] = useState<any>({})
   const { t } = useTranslation()
 
+  const [detail, setDetail] = useState<any>({})
+  const [cancelPlanVisible, openCancelPlan, closeCancelPlan] = useVisible()
+
   const description = useMemo(() => {
-    if (subscription.endAt && subscription.endAt > 0) {
-      return `${t('billing.planMay')} ${unixDate(subscription.endAt).format('MMM DD, YYYY')}`
+    if (subscription.endAt) {
+      const endAt = unixDate(subscription.endAt).format('MMM DD, YYYY')
+
+      if (subscription.canceledAt) {
+        const canceledAt = unixDate(subscription.canceledAt).format('MMM DD, YYYY')
+
+        return t('billing.canceledPlan', { endAt, canceledAt })
+      }
+
+      return `${t('billing.planMay')} ${endAt}`
     }
 
     return t('billing.noExpires')
-  }, [plan.grade, subscription.endAt])
+  }, [plan.grade, subscription.canceledAt, subscription.endAt])
 
   async function fetchSubscription() {
     const result = await WorkspaceService.subscription(workspaceId)
@@ -114,10 +127,19 @@ export const SubscriptionDetail: FC = observer(() => {
 
   return (
     <div>
-      <h3 className="text-lg leading-6 font-medium text-gray-900">
-        {plan.name} {t('billing.Plan')}
-      </h3>
-      <p className="mt-1 text-sm font-medium text-gray-500">{description}</p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
+            {plan.name} {t('billing.Plan')}
+          </h3>
+          <p className="mt-1 text-sm font-medium text-gray-500">{description}</p>
+        </div>
+        {plan.grade > PlanGradeEnum.FREE &&
+          subscription.status === SubscriptionStatusEnum.ACTIVE &&
+          !subscription.canceledAt && (
+            <Button onClick={openCancelPlan}>{t('billing.cancel')}</Button>
+          )}
+      </div>
 
       <Async request={fetchSubscription} skeleton={<Skeleton />}>
         <dl className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-4">
@@ -131,6 +153,8 @@ export const SubscriptionDetail: FC = observer(() => {
           <StorageItem count={detail.storageQuota} limit={plan.storageLimit} />
         </dl>
       </Async>
+
+      <CancelPlan visible={cancelPlanVisible} onClose={closeCancelPlan} />
     </div>
   )
 })

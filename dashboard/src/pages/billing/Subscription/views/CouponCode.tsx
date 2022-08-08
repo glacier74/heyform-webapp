@@ -5,7 +5,6 @@ import { Form, Input, Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
-
 interface CouponCodeProps extends Omit<IModalProps, 'onComplete'> {
   plan?: PlanModel | null
   billingCycle: BillingCycleEnum
@@ -13,12 +12,12 @@ interface CouponCodeProps extends Omit<IModalProps, 'onComplete'> {
 }
 
 export const CouponCode: FC<CouponCodeProps> = ({
-                                                  visible,
-                                                  plan,
-                                                  billingCycle,
-                                                  onClose,
-                                                  onComplete
-                                                }) => {
+  visible,
+  plan,
+  billingCycle,
+  onClose,
+  onComplete
+}) => {
   const { workspaceId } = useParam()
   const { t } = useTranslation()
 
@@ -56,7 +55,7 @@ export const CouponCode: FC<CouponCodeProps> = ({
             label={t('billing.coupon')}
             rules={[{ required: true, message: t('billing.noCode') }]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
         </Form.Custom>
       </div>

@@ -289,8 +289,8 @@ export const PAYMENT_GQL = gql`
 `
 
 export const CANCEL_SUBSCRIPTION_GQL = gql`
-  mutation cancelSubmission($input: TeamDetailInput!) {
-    cancelSubmission(input: $input)
+  mutation cancelSubscription($input: TeamDetailInput!) {
+    cancelSubscription(input: $input)
   }
 `
 

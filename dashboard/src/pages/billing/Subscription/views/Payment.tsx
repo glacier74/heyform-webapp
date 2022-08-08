@@ -1,69 +1,51 @@
 import type { PlanModel } from '@/models'
 import { BillingCycleEnum } from '@/models'
 import { useStore } from '@/store'
-import { useVisible } from '@/utils'
 import { observer } from 'mobx-react-lite'
-import { useState } from 'react'
-import { BillingCycleSwitch } from './BillingCycleSwitch'
-import { DowngradePlan } from './DowngradePlan'
+import { useMemo } from 'react'
 import { PlanItem } from './PlanItem'
-import { UpgradePlan } from './UpgradePlan'
 
-export const Payment = observer(() => {
+interface PaymentProps {
+  plan: PlanModel
+  billingCycle: BillingCycleEnum
+  onUpgrade: (plan: PlanModel) => void
+  onDowngrade: (plan: PlanModel) => void
+}
+
+const BILLING_CYCLE_MAPS: any = {
+  [BillingCycleEnum.MONTHLY]: 'mo',
+  [BillingCycleEnum.ANNUALLY]: 'yr'
+}
+
+export const Payment = observer(({ plan, billingCycle, onUpgrade, onDowngrade }: PaymentProps) => {
   const workspaceStore = useStore('workspaceStore')
-
-  const [plan, setPlan] = useState<PlanModel | null>(null)
-  const [billingCycle, setBillingCycle] = useState<BillingCycleEnum>(
-    workspaceStore.workspace?.subscription.billingCycle || BillingCycleEnum.ANNUALLY
+  const price = useMemo(
+    () => plan.prices.find(row => row.billingCycle === billingCycle)?.price || 0,
+    [plan, billingCycle]
   )
 
-  const [upgradePlanVisible, openUpgradePlan, closeUpgradePlan] = useVisible()
-  const [downgradePlanVisible, openDowngradePlan, closeDowngradePlan] = useVisible()
-
-  function handleUpgrade(selected: PlanModel) {
-    setPlan(selected)
-    openUpgradePlan()
-  }
-
-  function handleDowngrade(selected: PlanModel) {
-    setPlan(selected)
-    openDowngradePlan()
-  }
-
   return (
-    <>
-      <tr>
-        <th className="py-8 text-sm font-medium text-gray-900 text-left align-top" scope="row">
-          <BillingCycleSwitch value={billingCycle} onChange={setBillingCycle} />
-        </th>
+    <div className="flex items-center space-x-4">
+      {price > 0 ? (
+        <div>
+          <h3 className="text-3xl font-extrabold text-right">
+            ${price}/{BILLING_CYCLE_MAPS[billingCycle]}
+          </h3>
+          <span className="text-sm font-medium text-gray-500">
+            Get 2 months free if pay annually
+          </span>
+        </div>
+      ) : (
+        <div className="text-3xl font-extrabold">$0</div>
+      )}
 
-        {workspaceStore.plans.map(row => (
-          <PlanItem
-            key={row.id}
-            plan={row}
-            billingCycle={billingCycle}
-            workspace={workspaceStore.workspace}
-            onUpgrade={handleUpgrade}
-            onDowngrade={handleDowngrade}
-          />
-        ))}
-      </tr>
-
-      {/* Upgrade with coupon apply */}
-      <UpgradePlan
-        visible={upgradePlanVisible}
+      <PlanItem
         plan={plan}
         billingCycle={billingCycle}
-        onClose={closeUpgradePlan}
+        workspace={workspaceStore.workspace}
+        onUpgrade={onUpgrade}
+        onDowngrade={onDowngrade}
       />
-
-      {/* Downgrade confirm */}
-      <DowngradePlan
-        visible={downgradePlanVisible}
-        plan={plan}
-        billingCycle={billingCycle}
-        onClose={closeDowngradePlan}
-      />
-    </>
+    </div>
   )
 })

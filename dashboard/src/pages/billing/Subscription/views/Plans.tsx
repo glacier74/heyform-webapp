@@ -1,14 +1,34 @@
+import { BillingCycleEnum, PlanModel } from '@/models'
+import { BillingCycleSwitch } from '@/pages/billing/Subscription/views/BillingCycleSwitch'
+import { DowngradePlan } from '@/pages/billing/Subscription/views/DowngradePlan'
+import { Payment } from '@/pages/billing/Subscription/views/Payment'
+import { UpgradePlan } from '@/pages/billing/Subscription/views/UpgradePlan'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect } from '@/utils'
-import { MinusIcon } from '@heroicons/react/outline'
-import { useTranslation } from 'react-i18next'
-import { Payment } from './Payment'
-import { Section } from './Section'
+import { useAsyncEffect, useVisible } from '@/utils'
+import { CheckIcon } from '@heroicons/react/outline'
+import { useState } from 'react'
 
 export const Plans = () => {
   const workspaceStore = useStore('workspaceStore')
-  const { t } = useTranslation()
+
+  const [plan, setPlan] = useState<PlanModel | null>(null)
+  const [billingCycle, setBillingCycle] = useState<BillingCycleEnum>(
+    workspaceStore.workspace?.subscription.billingCycle || BillingCycleEnum.ANNUALLY
+  )
+
+  const [upgradePlanVisible, openUpgradePlan, closeUpgradePlan] = useVisible()
+  const [downgradePlanVisible, openDowngradePlan, closeDowngradePlan] = useVisible()
+
+  function handleUpgrade(selected: PlanModel) {
+    setPlan(selected)
+    openUpgradePlan()
+  }
+
+  function handleDowngrade(selected: PlanModel) {
+    setPlan(selected)
+    openDowngradePlan()
+  }
 
   useAsyncEffect(async () => {
     const result = await WorkspaceService.plans()
@@ -17,107 +37,82 @@ export const Plans = () => {
 
   return (
     <div>
-      <h3 className="plans-heading text-lg leading-6 font-medium text-gray-900">
-        {t('billing.plans.plan')}
-      </h3>
+      <div className="flex items-center justify-center mb-8">
+        <BillingCycleSwitch value={billingCycle} onChange={setBillingCycle} />
+      </div>
 
-      <table className="w-full h-px table-fixed">
-        <caption className="sr-only">{t('billing.plans.comparison')}</caption>
-        <thead>
-          <tr>
-            <th className="w-1/5" scope="col" />
-            <th className="w-1/5" scope="col" />
-            <th className="w-1/5" scope="col" />
-            <th className="w-1/5" scope="col" />
-            <th className="w-1/5" scope="col" />
-          </tr>
-        </thead>
-        <tbody className="plans-table border-t border-gray-200 divide-y divide-gray-200">
-          <Payment />
+      <div>
+        <div className="flex justify-between mb-4">
+          <div className="mb-4">
+            <h3 className="text-2xl font-bold">Premium</h3>
+            <p className="mt-1 text-sm font-medium text-gray-500">
+              Ideal for enterprises, universities, hospitals and stores.
+            </p>
+          </div>
+          {workspaceStore.plans.length > 0 && (
+            <Payment
+              plan={workspaceStore.plans[1]}
+              billingCycle={billingCycle}
+              onUpgrade={handleUpgrade}
+              onDowngrade={handleDowngrade}
+            />
+          )}
+        </div>
+        <ul className="grid grid-cols-3 gap-4 text-lg mb-12">
+          <li>
+            <CheckIcon className="inline w-5 h-5 mr-2" />
+            Team collaboration
+          </li>
+          <li>
+            <CheckIcon className="inline w-5 h-5 mr-2" />
+            Connect custom domain
+          </li>
+          <li>
+            <CheckIcon className="inline w-5 h-5 mr-2" />
+            Remove HeyForm branding
+          </li>
+          <li>
+            <CheckIcon className="inline w-5 h-5 mr-2" />
+            Theme customization
+          </li>
+          <li>
+            <CheckIcon className="inline w-5 h-5 mr-2" />
+            Custom meta description
+          </li>
+          <li>
+            <CheckIcon className="inline w-5 h-5 mr-2" />
+            Custom email to audience
+          </li>
+          <li>
+            <CheckIcon className="inline w-5 h-5 mr-2" />
+            Hidden fields
+          </li>
+          <li>
+            <CheckIcon className="inline w-5 h-5 mr-2" />
+            Custom auto responses
+          </li>
+          <li>
+            <CheckIcon className="inline w-5 h-5 mr-2" />
+            API access
+          </li>
+        </ul>
+      </div>
 
-          <Section
-            title={t('billing.plans.usage')}
-            values={[
-              [
-                t('billing.plans.questions'),
-                t('billing.plans.unlimited'),
-                t('billing.plans.unlimited'),
-                t('billing.plans.unlimited'),
-                t('billing.plans.unlimited')
-              ],
-              [
-                t('billing.plans.formsN'),
-                t('billing.plans.unlimited'),
-                t('billing.plans.unlimited'),
-                t('billing.plans.unlimited'),
-                t('billing.plans.unlimited')
-              ],
-              [
-                t('billing.plans.submissions'),
-                t('billing.plans.unlimited'),
-                t('billing.plans.unlimited'),
-                t('billing.plans.unlimited'),
-                t('billing.plans.unlimited')
-              ],
-              [
-                t('billing.plans.collaborators'),
-                <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />,
-                5,
-                10,
-                30
-              ],
-              [
-                t('billing.plans.contacts'),
-                <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />,
-                100,
-                300,
-                1000
-              ],
-              [
-                t('billing.plans.additional'),
-                <MinusIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />,
-                t('billing.plans.seat1'),
-                t('billing.plans.seat2'),
-                t('billing.plans.seat3')
-              ],
-              [t('billing.plans.reports'), 1, 5, 10, 30],
-              [t('billing.plans.storage'), '100MB', '5GB', '20GB', '50GB']
-            ]}
-          />
+      {/* Upgrade with coupon apply */}
+      <UpgradePlan
+        visible={upgradePlanVisible}
+        plan={plan}
+        billingCycle={billingCycle}
+        onClose={closeUpgradePlan}
+      />
 
-          <Section
-            title={t('billing.plans.features')}
-            values={[
-              [
-                t('billing.plans.integrations'),
-                t('billing.plans.limited'),
-                t('billing.plans.integrations1'),
-                t('billing.plans.integrations2'),
-                t('billing.plans.unlimited')
-              ],
-              [t('billing.plans.validation'), true, true, true, true],
-              [t('billing.plans.anti'), true, true, true, true],
-              [t('billing.plans.template'), true, true, true, true],
-              [t('billing.plans.embed'), true, true, true, true],
-              [t('billing.plans.submissionLimit'), true, true, true, true],
-              [t('billing.plans.schedule'), true, true, true, true],
-              [t('billing.plans.URL'), true, true, true, true],
-              [t('billing.plans.export'), false, true, true, true],
-              [t('billing.plans.Password'), false, true, true, true],
-              [t('billing.plans.customized'), false, true, true, true],
-              [t('billing.plans.Thank'), false, true, true, true],
-              [t('billing.plans.team'), false, true, true, true],
-              [t('billing.plans.customDomain'), false, false, true, true],
-              [t('billing.plans.whitelabel'), false, false, t('billing.plans.partial'), '100%']
-            ]}
-          />
-
-          <Section
-            title={t('billing.plans.support')}
-            values={[[t('billing.plans.manager'), false, false, true, true]]}
-          />
-        </tbody>
-      </table>
+      {/* Downgrade confirm */}
+      <DowngradePlan
+        visible={downgradePlanVisible}
+        plan={plan}
+        billingCycle={billingCycle}
+        onClose={closeDowngradePlan}
+      />
     </div>
   )
 }

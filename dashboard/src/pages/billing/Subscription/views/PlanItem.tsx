@@ -25,10 +25,6 @@ export const PlanItem: FC<PlanItemProps> = ({
   onUpgrade,
   onDowngrade
 }) => {
-  const price = useMemo(
-    () => plan.prices.find(row => row.billingCycle === billingCycle)?.price || 0,
-    [plan, billingCycle]
-  )
   const { t } = useTranslation()
 
   function handleUpgrade() {
@@ -39,30 +35,30 @@ export const PlanItem: FC<PlanItemProps> = ({
     onDowngrade?.(plan)
   }
 
-  const component = useMemo(() => {
+  return useMemo(() => {
     const grade = workspace?.plan.grade
 
     if (plan.grade > grade!) {
       return (
-        <>
+        <div>
           <Button className="w-full" type="primary" onClick={handleUpgrade}>
             {t('billing.upgrade')}
           </Button>
           <div className="mt-2 text-gray-400 text-xs text-center">
             {t(BILLING_CYCLE_MAPS[billingCycle])}
           </div>
-        </>
+        </div>
       )
     } else if (plan.grade < grade!) {
       return (
-        <>
+        <div>
           <Button className="w-full" type="primary" onClick={handleDowngrade}>
             {t('billing.Downgrade')}
           </Button>
           <div className="mt-2 text-gray-400 text-xs text-center">
             {t(BILLING_CYCLE_MAPS[billingCycle])}
           </div>
-        </>
+        </div>
       )
     } else {
       return (
@@ -72,17 +68,4 @@ export const PlanItem: FC<PlanItemProps> = ({
       )
     }
   }, [workspace?.plan.grade, billingCycle])
-
-  return (
-    <td className="h-full py-8 align-top">
-      <div className="relative h-full table">
-        <div className="pb-4 text-md font-medium text-gray-900 text-left">{plan.name}</div>
-        <p>
-          <span className="text-4xl font-bold text-gray-900">${price}</span>
-          <span className="pl-2 text-base font-medium text-gray-500">{t('billing.perMonth')}</span>
-        </p>
-        <div className="mt-4 lg:pr-12">{component}</div>
-      </div>
-    </td>
-  )
 }

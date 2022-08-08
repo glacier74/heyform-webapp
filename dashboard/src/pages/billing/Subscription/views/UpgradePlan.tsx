@@ -6,7 +6,7 @@ import { redirectToStripeCheckout, useParam, useVisible } from '@/utils'
 import { Button, Modal, notification } from '@heyforms/ui'
 import Big from 'big.js'
 import type { FC } from 'react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CouponCode } from './CouponCode'
 
@@ -33,13 +33,7 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
   const { t } = useTranslation()
 
   const price = useMemo(() => {
-    const unit = new Big(plan?.prices.find(row => row.billingCycle === billingCycle)?.price || 0)
-
-    if (billingCycle === BillingCycleEnum.MONTHLY) {
-      return unit
-    }
-
-    return unit.times(12)
+    return new Big(plan?.prices.find(row => row.billingCycle === billingCycle)?.price || 0)
   }, [plan, billingCycle])
 
   function handleCouponCodeComplete(couponInfo: IMapType) {
@@ -82,6 +76,13 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
 
     setLoading(false)
   }
+
+  useEffect(() => {
+    return () => {
+      setDiscount(null)
+      setCouponCode(null)
+    }
+  })
 
   return (
     <>
