@@ -96,7 +96,7 @@ export const DeleteAccount: FC = () => {
         {t('user.settings.deletedAccount.delText2')}
       </p>
       <div className="mt-3">
-        <Button type="danger" onClick={openVerifyEmail}>
+        <Button className='bg-red-500' type="danger" onClick={openVerifyEmail}>
           {t('user.settings.deletedAccount.del')}
         </Button>
       </div>

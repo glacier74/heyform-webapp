@@ -783,9 +783,9 @@ export default {
     },
     labelList: {
       Dashboard: 'Dashboard',
-      TeamMembers: 'Team members',
+      TeamMembers: 'Team',
       Audiences: ' Audiences',
-      Billing: 'Billing & Subscription',
+      Billing: 'Billing',
       Workspace: 'Workspace settings',
       Projects: 'Projects',
       Resources: 'Resources',

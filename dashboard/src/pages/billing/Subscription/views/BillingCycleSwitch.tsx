@@ -12,7 +12,7 @@ export const BillingCycleSwitch: FC<BillingCycleSwitchProps> = ({ value, onChang
   const { t } = useTranslation()
   return (
     <div className="billing-cycle-switch">
-      <div className="text-md font-medium text-gray-900 text-center">{t('billing.cycle')}</div>
+      <div className="text-xl font-medium text-gray-900 text-center">{t('billing.cycle')}</div>
       <Switch.Group
         className="mt-4 text-sm"
         value={value}

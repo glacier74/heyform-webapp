@@ -8,7 +8,7 @@ import {
   SwitchHorizontalIcon,
   TrashIcon
 } from '@heroicons/react/outline'
-import { Avatar, Badge, Button, Dropdown, Heading, Menus, Table } from '@heyforms/ui'
+import { Avatar, Button, Dropdown, Heading, Menus, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/types/table'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
@@ -61,9 +61,21 @@ const Members = observer(() => {
       width: '30%',
       render(record) {
         if (record.id === workspaceStore.workspace.ownerId) {
-          return <Badge type="green" text={t('workspace.members.index.owner')} />
+          return (
+            <>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+              {t('workspace.members.index.owner')}
+              </span>
+            </>
+          )
         }
-        return <Badge text={t('workspace.members.index.member')} />
+        return (
+          <>
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+              {t('workspace.members.index.member')}
+            </span>
+          </>
+        )
       }
     },
     {
@@ -153,7 +165,7 @@ const Members = observer(() => {
         title={t('workspace.members.member')}
         description={t('workspace.members.manage')}
         actions={
-          <Button type="primary" onClick={openInviteMember}>
+          <Button className='bg-blue-700' type="primary" onClick={openInviteMember}>
             {t('workspace.members.index.invite')}
           </Button>
         }

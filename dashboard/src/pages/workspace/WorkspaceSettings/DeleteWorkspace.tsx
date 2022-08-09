@@ -81,7 +81,7 @@ export const DeleteWorkspace: FC = () => {
       </div>
       <p className="mt-1 text-sm text-gray-500">{t('workspace.settings.delWorkspace.warning3')}</p>
       <div className="mt-3">
-        <Button type="danger" onClick={handleOpen}>
+        <Button className='bg-red-500' type="danger" onClick={handleOpen}>
           {t('workspace.settings.delWorkspace.dissolve')}
         </Button>
       </div>

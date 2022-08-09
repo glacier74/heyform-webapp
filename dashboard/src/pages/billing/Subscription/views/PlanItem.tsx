@@ -13,11 +13,6 @@ interface PlanItemProps {
   onDowngrade?: (plan: PlanModel) => void
 }
 
-const BILLING_CYCLE_MAPS: any = {
-  [BillingCycleEnum.MONTHLY]: 'billing.Monthly',
-  [BillingCycleEnum.ANNUALLY]: 'billing.Annually'
-}
-
 export const PlanItem: FC<PlanItemProps> = ({
   workspace,
   plan,
@@ -41,12 +36,9 @@ export const PlanItem: FC<PlanItemProps> = ({
     if (plan.grade > grade!) {
       return (
         <div>
-          <Button className="w-full" type="primary" onClick={handleUpgrade}>
+          <Button className="w-full bg-blue-700" type="primary" onClick={handleUpgrade}>
             {t('billing.upgrade')}
           </Button>
-          <div className="mt-2 text-gray-400 text-xs text-center">
-            {t(BILLING_CYCLE_MAPS[billingCycle])}
-          </div>
         </div>
       )
     } else if (plan.grade < grade!) {
@@ -55,9 +47,6 @@ export const PlanItem: FC<PlanItemProps> = ({
           <Button className="w-full" type="primary" onClick={handleDowngrade}>
             {t('billing.Downgrade')}
           </Button>
-          <div className="mt-2 text-gray-400 text-xs text-center">
-            {t(BILLING_CYCLE_MAPS[billingCycle])}
-          </div>
         </div>
       )
     } else {

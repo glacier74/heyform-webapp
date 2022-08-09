@@ -44,7 +44,6 @@ export const DeleteMember: FC<DeleteMemberProps> = ({ visible, member, onClose }
       description={
         <div className="space-y-2">
           <p>{t('workspace.members.delMember')}</p>
-
           {error && <div className="form-item-error">{error.message}</div>}
         </div>
       }

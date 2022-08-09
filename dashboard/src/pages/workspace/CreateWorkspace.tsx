@@ -51,12 +51,12 @@ const CreateWorkspace: FC<IModalProps> = observer(({ visible, onClose }) => {
 
   return (
     <Modal visible={visible} maskClosable={maskClosable} onClose={onClose} showCloseIcon>
-      <div className="space-y-6">
+      <div className="space-y-6 p-4">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-2xl leading-6 font-medium text-gray-900 mb-4">
             {t('workspace.createWorkspace.newWorkspace')}
           </h1>
-          <p className="mt-1 mr-8 text-sm text-gray-500">{t('workspace.createWorkspace.text')}</p>
+          <p className="mr-8 text-base text-gray-500">{t('workspace.createWorkspace.text')}</p>
         </div>
 
         <Form onFinish={handleFinish}>
