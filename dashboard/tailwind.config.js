@@ -5,7 +5,7 @@ module.exports = {
   darkMode: false,
   theme: {
     fontFamily: {
-      sans: ['Source Sans Pro', ...defaultTheme.fontFamily.sans],
+      sans: ['Inter', ...defaultTheme.fontFamily.sans],
     },
     extend: {
     }
