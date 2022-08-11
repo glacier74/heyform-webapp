@@ -1,9 +1,10 @@
-@import "@heyforms/ui/style.css";
 @import "@heyforms/form-component/style.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "@heyforms/ui/style.css";
 
 body {
   @apply antialiased font-sans;
