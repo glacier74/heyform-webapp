@@ -6,7 +6,10 @@
  **/
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
-import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import {
+  SettingsProps,
+  SettingsWrapper
+} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { ThirdPartySignIn } from '@/legacy_pages/pages/Integration/views/Settings/views/ThirdPartySignIn'
 import { IntegrationService } from '@/service'
 import { useParam } from '@/utils'
@@ -32,13 +35,11 @@ export const Dropbox: FC<SettingsProps> = ({ app, onFinish }) => {
 
   return (
     <SettingsWrapper app={app} onFinish={onFinish}>
-      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
+      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest} />
       <FormItem
         name="folder"
         label={t('integration.select')}
-        description={
-          <>{t('integration.DropboxText')}</>
-        }
+        description={<>{t('integration.DropboxText')}</>}
         rules={[{ required: true }]}
       >
         <CustomSelect

@@ -32,23 +32,23 @@ interface MapFieldsProps {
 }
 
 export const MapFields: FC<MapFieldsProps> = ({
-                                                name,
-                                                label,
-                                                required = true,
-                                                description,
-                                                leftLoading,
-                                                leftOptions = [],
-                                                leftValueKey,
-                                                leftLabelKey,
-                                                leftPlaceholder,
-                                                leftTipText,
-                                                rightLoading,
-                                                rightOptions,
-                                                rightValueKey,
-                                                rightLabelKey,
-                                                rightPlaceholder,
-                                                rightTipText
-                                              }) => {
+  name,
+  label,
+  required = true,
+  description,
+  leftLoading,
+  leftOptions = [],
+  leftValueKey,
+  leftLabelKey,
+  leftPlaceholder,
+  leftTipText,
+  rightLoading,
+  rightOptions,
+  rightValueKey,
+  rightLabelKey,
+  rightPlaceholder,
+  rightTipText
+}) => {
   const { t } = useTranslation()
 
   return (
@@ -58,18 +58,18 @@ export const MapFields: FC<MapFieldsProps> = ({
       rules={
         required
           ? [
-            {
-              validator: async (_, value) => {
-                if (value.length < 1) {
-                  throw new Error('Please setup Map fields')
-                }
+              {
+                validator: async (_, value) => {
+                  if (value.length < 1) {
+                    throw new Error('Please setup Map fields')
+                  }
 
-                if (!value.every((row: string[]) => isValid(row[0]) && row[1])) {
-                  throw new Error('Some field is empty')
+                  if (!value.every((row: string[]) => isValid(row[0]) && row[1])) {
+                    throw new Error('Some field is empty')
+                  }
                 }
               }
-            }
-          ]
+            ]
           : undefined
       }
     >
@@ -114,7 +114,7 @@ export const MapFields: FC<MapFieldsProps> = ({
                         onChange={handleLeftChange}
                       />
 
-                      <StyledArrowRightIcon/>
+                      <StyledArrowRightIcon />
 
                       {rightOptions ? (
                         <StyledSelect
@@ -136,7 +136,7 @@ export const MapFields: FC<MapFieldsProps> = ({
                         />
                       )}
 
-                      {fields.length > 1 && <StyledCloseIcon onClick={handleRemoveField}/>}
+                      {fields.length > 1 && <StyledCloseIcon onClick={handleRemoveField} />}
                     </FieldContainer>
                   )
                 }}
@@ -144,7 +144,7 @@ export const MapFields: FC<MapFieldsProps> = ({
             ))}
 
             <AddContainer align="center" onClick={handleAddField}>
-              <StyledAddIcon/> {t('integration.AddField')}
+              <StyledAddIcon /> {t('integration.AddField')}
             </AddContainer>
 
             {errors.length > 0 && <FormError>{errors[0]}</FormError>}

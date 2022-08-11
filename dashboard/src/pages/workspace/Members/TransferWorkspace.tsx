@@ -50,9 +50,7 @@ export const TransferWorkspace: FC<TransferWorkspaceProps> = ({ visible, member,
       title={t('workspace.members.transferTitle')}
       description={
         <div className="space-y-2">
-          <p>
-            {t('workspace.members.transferWorkspace')}
-          </p>
+          <p>{t('workspace.members.transferWorkspace')}</p>
 
           {error && <div className="form-item-error">{error.message}</div>}
         </div>

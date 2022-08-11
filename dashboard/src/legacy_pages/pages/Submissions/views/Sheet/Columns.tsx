@@ -53,7 +53,7 @@ export const SelectColumn: Column<any, any> = {
           />
         </Left>
         <Right align="center" onClick={handleExpand}>
-          <ExpandIcon className="heygrid-row-expand"/>
+          <ExpandIcon className="heygrid-row-expand" />
           {/*<StyledMaximizeIcon*/}
           {/*  className="heygrid-row-expand"*/}
           {/*  onClick={handleExpand}*/}

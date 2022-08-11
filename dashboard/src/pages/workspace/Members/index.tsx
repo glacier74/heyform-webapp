@@ -64,7 +64,7 @@ const Members = observer(() => {
           return (
             <>
               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-              {t('workspace.members.index.owner')}
+                {t('workspace.members.index.owner')}
               </span>
             </>
           )

@@ -32,11 +32,11 @@ enum IpLimitRadioEnums {
 }
 
 export const IpLimitSettings: FC<IpLimitSettingsProps> = ({
-                                                            value,
-                                                            ipLimitCount,
-                                                            ipLimitTime,
-                                                            ...restProps
-                                                          }) => {
+  value,
+  ipLimitCount,
+  ipLimitTime,
+  ...restProps
+}) => {
   const { t } = useTranslation()
   const { formId } = useParam()
   const formStore = useStore('formStore')
@@ -106,10 +106,8 @@ export const IpLimitSettings: FC<IpLimitSettingsProps> = ({
     <Container {...restProps}>
       <Header>{t('formSettings.timeLimit')}</Header>
       <Body>
-        <Description>
-          {t('formSettings.timeText')}
-        </Description>
-        <Switch value={value} loading={switchLoading} onChange={handleChange}/>
+        <Description>{t('formSettings.timeText')}</Description>
+        <Switch value={value} loading={switchLoading} onChange={handleChange} />
       </Body>
       {value && (
         <Footer>
@@ -134,11 +132,11 @@ export const IpLimitSettings: FC<IpLimitSettingsProps> = ({
                       required: true,
                       type: 'number',
                       min: 1,
-                      message: 'Total number can\'t be empty'
+                      message: "Total number can't be empty"
                     }
                   ]}
                 >
-                  <StyledNumberInput/>
+                  <StyledNumberInput />
                 </FormItem>
                 <span>times within</span>
                 <FormItem
@@ -152,7 +150,7 @@ export const IpLimitSettings: FC<IpLimitSettingsProps> = ({
                       required: true,
                       type: 'number',
                       min: 1,
-                      message: 'Time can\'t be empty'
+                      message: "Time can't be empty"
                     }
                   ]}
                 >

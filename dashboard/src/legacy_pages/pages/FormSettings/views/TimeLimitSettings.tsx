@@ -13,10 +13,10 @@ interface TimeLimitSettingsProps extends ComponentProps {
 }
 
 export const TimeLimitSettings: FC<TimeLimitSettingsProps> = ({
-                                                                value,
-                                                                timeLimit,
-                                                                ...restProps
-                                                              }) => {
+  value,
+  timeLimit,
+  ...restProps
+}) => {
   const { t } = useTranslation()
   const { formId } = useParam()
   const formStore = useStore('formStore')
@@ -60,10 +60,8 @@ export const TimeLimitSettings: FC<TimeLimitSettingsProps> = ({
     <Container {...restProps}>
       <Header>{t('formSettings.timeLimit')}</Header>
       <Body>
-        <Description>
-          {t('formSettings.timeText')}
-        </Description>
-        <Switch value={value} loading={switchLoading} onChange={handleChange}/>
+        <Description>{t('formSettings.timeText')}</Description>
+        <Switch value={value} loading={switchLoading} onChange={handleChange} />
       </Body>
       {value && (
         <Footer>
@@ -78,7 +76,7 @@ export const TimeLimitSettings: FC<TimeLimitSettingsProps> = ({
                 }
               ]}
             >
-              <TimeInput/>
+              <TimeInput />
             </InputFormItem>
             <FormItem>
               <StyledButton type="primary" htmlType="submit" loading={loading} size="small">

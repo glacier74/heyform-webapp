@@ -137,7 +137,9 @@ export const SubscriptionDetail: FC = observer(() => {
         {plan.grade > PlanGradeEnum.FREE &&
           subscription.status === SubscriptionStatusEnum.ACTIVE &&
           !subscription.canceledAt && (
-            <Button type="danger" onClick={openCancelPlan}>{t('billing.cancel')}</Button>
+            <Button type="danger" onClick={openCancelPlan}>
+              {t('billing.cancel')}
+            </Button>
           )}
       </div>
 

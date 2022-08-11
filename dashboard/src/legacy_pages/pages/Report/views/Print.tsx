@@ -13,7 +13,7 @@ export const Print: FC = () => {
 
   return (
     <Container role="button" ariaLabel="Print Report" align="center" onClick={handleClick}>
-      <StyledPrinterIcon/>
+      <StyledPrinterIcon />
       {t('report.Print')}
     </Container>
   )

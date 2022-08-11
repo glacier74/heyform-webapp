@@ -1,4 +1,3 @@
-import { LogoIcon } from '@/components'
 import { useQuery } from '@/legacy_pages/utils'
 import { AuthService } from '@/service'
 import { useRouter } from '@/utils'
@@ -21,13 +20,14 @@ const SignUp = () => {
   return (
     <div>
       <div>
-        <LogoIcon className="h-8 w-auto" />
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('auth.signup.signUp')}</h2>
-        <p className="mt-2 text-sm text-gray-600">{t('auth.signup.description')}</p>
+        <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
+          {t('auth.signup.signUp')}
+        </h2>
+        <p className="mt-2 text-center text-sm text-gray-600">{t('auth.signup.description')}</p>
       </div>
 
-      <div className="mt-8">
-        <div>
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <div>
             <p className="text-sm font-medium text-gray-700"> {t('auth.signup.signWith')}</p>
             <ThirdPartyLogin />
@@ -41,71 +41,71 @@ const SignUp = () => {
               <span className="px-2 bg-white text-gray-500">{t('auth.signup.continueWith')}</span>
             </div>
           </div>
-        </div>
 
-        <div className="mt-6">
-          <Form.Custom
-            submitText={t('auth.signup.button')}
-            submitOptions={{
-              type: 'primary',
-              className: 'mt-3',
-              block: true
-            }}
-            request={handleFinish}
-          >
-            <Form.Item
-              name="name"
-              label="Name"
-              rules={[{ required: true, message: t('auth.signup.nameCant') }]}
+          <div className="mt-6">
+            <Form.Custom
+              submitText={t('auth.signup.button')}
+              submitOptions={{
+                type: 'primary',
+                className: 'mt-3',
+                block: true
+              }}
+              request={handleFinish}
             >
-              <Input />
-            </Form.Item>
+              <Form.Item
+                name="name"
+                label="Name"
+                rules={[{ required: true, message: t('auth.signup.nameCant') }]}
+              >
+                <Input />
+              </Form.Item>
 
-            <Form.Item
-              name="email"
-              label={t('auth.signup.Email')}
-              rules={[{ type: 'email', required: true, message: t('auth.signup.invalidEmail') }]}
-            >
-              <Input type="email" />
-            </Form.Item>
+              <Form.Item
+                name="email"
+                label={t('auth.signup.Email')}
+                rules={[{ type: 'email', required: true, message: t('auth.signup.invalidEmail') }]}
+              >
+                <Input type="email" />
+              </Form.Item>
 
-            <Form.Item
-              name="password"
-              label="Password"
-              rules={[
-                {
-                  required: true,
-                  pattern:
-                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[!#$%&()*+\-,.\/\\:<=>?@\[\]^_{|}~0-9a-zA-Z]{8,}$/,
-                  message: t('auth.signup.PasswordViolation')
-                }
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
+              <Form.Item
+                name="password"
+                label="Password"
+                rules={[
+                  {
+                    required: true,
+                    pattern:
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[!#$%&()*+\-,.\/\\:<=>?@\[\]^_{|}~0-9a-zA-Z]{8,}$/,
+                    message: t('auth.signup.PasswordViolation')
+                  }
+                ]}
+              >
+                <Input.Password />
+              </Form.Item>
 
-            <div className="mt-6">
-              <p className="text-sm text-gray-500">
-                {t('auth.signup.agreeTo')}{' '}
-                <a
-                  href="https://heyform.net/help/terms-conditions"
-                  className="font-medium text-gray-700 underline"
-                  target="_blank"
-                >
-                  {t('auth.signup.terms')}
-                </a>{' '}
-                {t('auth.signup.and')}{' '}
-                <a
-                  href="https://heyform.net/help/privacy-policy"
-                  className="font-medium text-gray-700 underline"
-                  target="_blank"
-                >
-                  {t('auth.signup.privacy')}
-                </a>
-                .
-              </p>
-            </div>
-          </Form.Custom>
+              <div className="mt-6">
+                <p className="text-sm text-gray-500">
+                  {t('auth.signup.agreeTo')}{' '}
+                  <a
+                    href="https://heyform.net/help/terms-conditions"
+                    className="font-medium text-gray-700 underline"
+                    target="_blank"
+                  >
+                    {t('auth.signup.terms')}
+                  </a>{' '}
+                  {t('auth.signup.and')}{' '}
+                  <a
+                    href="https://heyform.net/help/privacy-policy"
+                    className="font-medium text-gray-700 underline"
+                    target="_blank"
+                  >
+                    {t('auth.signup.privacy')}
+                  </a>
+                  .
+                </p>
+              </div>
+            </Form.Custom>
+          </div>
         </div>
       </div>
     </div>

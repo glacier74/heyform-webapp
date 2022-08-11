@@ -57,7 +57,7 @@ export const Basic: FC = observer(() => {
   }
 
   return (
-    <div className='container'>
+    <div className="container">
       <SubHeading>{t('formSettings.Basic')}</SubHeading>
 
       <Form

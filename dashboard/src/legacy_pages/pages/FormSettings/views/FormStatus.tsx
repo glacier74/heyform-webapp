@@ -86,16 +86,16 @@ export const FormStatus: FC = observer(() => {
 
   return (
     <div>
-      <div className='py-4'>
+      <div className="py-4">
         <SwitchContainer align="center" justify="space-between">
-          <span className='font-medium text-gray-900 text-base'>{t('formSettings.status')}</span>
+          <span className="font-medium text-gray-900 text-base">{t('formSettings.status')}</span>
           <Switch
             loading={loading}
             value={formStore.current?.settings?.active}
             onChange={handleSwitchChange}
           />
         </SwitchContainer>
-        <p className='text-sm text-gray-500 max-w-2xl mb-8'>{t('formSettings.disableForm')}</p>
+        <p className="text-sm text-gray-500 max-w-2xl mb-8">{t('formSettings.disableForm')}</p>
       </div>
 
       {formStore.current?.settings?.active && (
@@ -107,7 +107,7 @@ export const FormStatus: FC = observer(() => {
           <StyledFormItem
             name="enableExpirationDate"
             label={t('formSettings.expiration')}
-            description={t('formSettings.expirationText')}    
+            description={t('formSettings.expirationText')}
           />
           {values?.enableExpirationDate && (
             <Flex align="flex-start" auto={true}>
@@ -243,10 +243,7 @@ export const FormStatus: FC = observer(() => {
   )
 })
 
-
-const SwitchContainer = styled(Flex)`
-`
-
+const SwitchContainer = styled(Flex)``
 
 const StyledFormItem = styled(SwitchFormItem)``
 

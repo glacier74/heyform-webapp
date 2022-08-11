@@ -14,7 +14,7 @@ export const ShareToAudience: FC = () => {
   return (
     <Container>
       <Header align="center">
-        <AudienceFillIcon/>
+        <AudienceFillIcon />
         <span>{t('share.shareAudience')}</span>
       </Header>
       <Description>
@@ -22,15 +22,13 @@ export const ShareToAudience: FC = () => {
         <a href={`/workspace/${workspaceId}/audience`}>{t('share.addContacts')}</a>{' '}
         {t('share.organize')}{' '}
         <a href={`/workspace/${workspaceId}/audience/groups`}>{t('share.groups')}</a>{' '}
-        {t(
-          'share.easilyShare'
-        )}
+        {t('share.easilyShare')}
       </Description>
       <Button type="primary" block={true} onClick={() => setVisible(true)}>
         {t('share.Share')}
       </Button>
 
-      <ShareAudienceModal visible={visible} onVisibleChange={setVisible}/>
+      <ShareAudienceModal visible={visible} onVisibleChange={setVisible} />
     </Container>
   )
 }

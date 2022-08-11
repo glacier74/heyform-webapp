@@ -56,9 +56,7 @@ export const DowngradePlan: FC<DowngradePlanProps> = ({ visible, plan, billingCy
       title={t('billing.downGrade')}
       description={
         <div className="space-y-6">
-          <p>
-            {t('billing.downText')}
-          </p>
+          <p>{t('billing.downText')}</p>
           {error && <div className="form-item-error">{error.message}</div>}
         </div>
       }

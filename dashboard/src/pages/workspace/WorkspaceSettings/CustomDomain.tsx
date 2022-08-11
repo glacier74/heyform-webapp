@@ -10,7 +10,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import isFQDN from 'validator/lib/isFQDN'
 
-
 interface CustomDomainModalProps extends IModalProps {
   domain?: string
 }
@@ -20,7 +19,6 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
   const workspaceStore = useStore('workspaceStore')
   const timerRef = useRef<any>()
   const { t } = useTranslation()
-
 
   async function handleAddDomain() {
     if (!domain) {
@@ -63,10 +61,11 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
     <Modal contentClassName="max-w-2xl" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('workspace.settings.customDomain')}</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('workspace.settings.customDomain')}
+          </h1>
           <p className="mt-1 text-sm text-gray-500">
-            {t('workspace.settings.domainExplain')}
-            {' '}
+            {t('workspace.settings.domainExplain')}{' '}
             <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
               {t('workspace.settings.domainLink')}
             </a>
@@ -77,18 +76,18 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
         <div>
           <table className="table mt-8">
             <thead className="table-head">
-            <tr>
-              <th>{t('workspace.settings.type')}</th>
-              <th>{t('workspace.settings.domainName')}</th>
-              <th>{t('workspace.settings.content')}</th>
-            </tr>
+              <tr>
+                <th>{t('workspace.settings.type')}</th>
+                <th>{t('workspace.settings.domainName')}</th>
+                <th>{t('workspace.settings.content')}</th>
+              </tr>
             </thead>
             <tbody className="table-body">
-            <tr>
-              <td>{t('workspace.settings.cname')}</td>
-              <td>{domain}</td>
-              <td>{import.meta.env.VITE_CUSTOM_DOMAIN_CNAME_PROXY}</td>
-            </tr>
+              <tr>
+                <td>{t('workspace.settings.cname')}</td>
+                <td>{domain}</td>
+                <td>{import.meta.env.VITE_CUSTOM_DOMAIN_CNAME_PROXY}</td>
+              </tr>
             </tbody>
           </table>
 
@@ -156,8 +155,7 @@ export const CustomDomain: FC = observer(() => {
           label={t('workspace.settings.customDomain')}
           description={
             <>
-              {t('workspace.settings.domainExplain2')}
-              {' '}
+              {t('workspace.settings.domainExplain2')}{' '}
               <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
                 {t('workspace.settings.domainLink')}
               </a>
@@ -198,13 +196,13 @@ export const CustomDomain: FC = observer(() => {
                 }
               ]}
             >
-              <Input placeholder={t('workspace.settings.domain')}/>
+              <Input placeholder={t('workspace.settings.domain')} />
             </Form.Item>
           </Form.Custom>
         )}
       </div>
 
-      <CustomDomainModal visible={visible} domain={domain} onClose={handleClose}/>
+      <CustomDomainModal visible={visible} domain={domain} onClose={handleClose} />
     </div>
   )
 })

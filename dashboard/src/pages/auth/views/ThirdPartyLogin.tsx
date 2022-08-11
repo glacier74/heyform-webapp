@@ -32,7 +32,7 @@ export const ThirdPartyLogin = () => {
           onClick={handleSignInWithGoogle}
         >
           <span className="sr-only">{t('login.Google')}</span>
-          <GoogleIcon className="w-5 h-5"/>
+          <GoogleIcon className="w-5 h-5" />
         </div>
       </div>
 
@@ -42,7 +42,7 @@ export const ThirdPartyLogin = () => {
           onClick={handleSignInWithApple}
         >
           <span className="sr-only">{t('login.Apple')}</span>
-          <AppleIcon className="w-5 h-5"/>
+          <AppleIcon className="w-5 h-5" />
         </div>
       </div>
     </div>

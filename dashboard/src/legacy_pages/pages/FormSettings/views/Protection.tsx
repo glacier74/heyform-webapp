@@ -51,7 +51,7 @@ export const Protection: FC = observer(() => {
 
       <Form initialValues={formStore.current?.settings} onFinish={handleFinish}>
         <FormItem name="captchaKind">
-          <PreventionSettings/>
+          <PreventionSettings />
         </FormItem>
 
         <SwitchFormItem
@@ -60,7 +60,7 @@ export const Protection: FC = observer(() => {
           description={t('formSettings.AntiText')}
         />
 
-        {error && <FormError error={error}/>}
+        {error && <FormError error={error} />}
         <FormItem>
           <Button type="primary" htmlType="submit" size="small" loading={loading}>
             {t('formSettings.Update')}

@@ -55,18 +55,14 @@ export const ArchiveSettings: FC<ArchiveSettingsProps> = ({ value, ...restProps 
     <Container {...restProps}>
       <Header>{t('formSettings.subArchive')}</Header>
       <Body>
-        <Description>
-          {t('formSettings.archiveText')}
-        </Description>
-        <Switch value={value} loading={loading} disabled={loading} onChange={handleChange}/>
+        <Description>{t('formSettings.archiveText')}</Description>
+        <Switch value={value} loading={loading} disabled={loading} onChange={handleChange} />
       </Body>
 
       <Modal.Confirm
         visible={visible}
         title={t('formSettings.archive')}
-        description={t(
-          'formSettings.archiveConfirm'
-        )}
+        description={t('formSettings.archiveConfirm')}
         cancel={t('formSettings.Cancel')}
         confirm={t('formSettings.Disable')}
         confirmType="error"

@@ -17,25 +17,25 @@ export const EMBED_OPTIONS = [
     mode: EmbedModeEnums.STANDARD,
     title: 'share.embedWeb.0.title',
     description: 'share.embedWeb.0.description',
-    icon: <EmbedStandardIcon/>
+    icon: <EmbedStandardIcon />
   },
   {
     mode: EmbedModeEnums.POPUP,
     title: 'share.embedWeb.1.title',
     description: 'share.embedWeb.1.description',
-    icon: <EmbedPopupIcon/>
+    icon: <EmbedPopupIcon />
   },
   {
     mode: EmbedModeEnums.POPUP_OVER,
     title: 'share.embedWeb.2.title',
     description: 'share.embedWeb.2.description',
-    icon: <EmbedPopoverIcon/>
+    icon: <EmbedPopoverIcon />
   },
   {
     mode: EmbedModeEnums.SIDE_TAB,
     title: 'share.embedWeb.3.title',
     description: 'share.embedWeb.3.description',
-    icon: <EmbedSideTabIcon/>
+    icon: <EmbedSideTabIcon />
   }
 ]
 
@@ -52,7 +52,7 @@ export const EmbedWeb: FC = () => {
   return (
     <Container>
       <Header align="center">
-        <CodeFillIcon/>
+        <CodeFillIcon />
         <span>{t('share.embed')}</span>
       </Header>
 

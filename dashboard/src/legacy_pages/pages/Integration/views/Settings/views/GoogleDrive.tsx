@@ -6,7 +6,10 @@
  **/
 
 import { CustomSelect } from '@/legacy_pages/pages/Integration/views/Settings/views/CustomSelect'
-import { SettingsProps, SettingsWrapper } from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
+import {
+  SettingsProps,
+  SettingsWrapper
+} from '@/legacy_pages/pages/Integration/views/Settings/views/SettingsWrapper'
 import { ThirdPartySignIn } from '@/legacy_pages/pages/Integration/views/Settings/views/ThirdPartySignIn'
 import { IntegrationService } from '@/service'
 import { useParam } from '@/utils'
@@ -45,14 +48,16 @@ export const GoogleDrive: FC<SettingsProps> = ({ app, onFinish }) => {
 
   return (
     <SettingsWrapper app={app} onFinish={onFinish} onValuesChange={handleValuesChange}>
-      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest}/>
+      <ThirdPartySignIn app={app} oauthRequest={handleOAuthRequest} />
       <FormItem
         name="drive"
         label={t('integration.selectDrive')}
         description={
           <>
             {t('integration.selectGoogleDrive')}{' '}
-            <a href="https://support.google.com/a/users/answer/9310351">{t('integration.GoogleSharedDrives')}</a>{' '}
+            <a href="https://support.google.com/a/users/answer/9310351">
+              {t('integration.GoogleSharedDrives')}
+            </a>{' '}
             {t('integration.with')}
           </>
         }
@@ -69,9 +74,7 @@ export const GoogleDrive: FC<SettingsProps> = ({ app, onFinish }) => {
       <FormItem
         name="folder"
         label={t('integration.SelectFolder')}
-        description={
-          <>{t('integration.GoogleText')}</>
-        }
+        description={<>{t('integration.GoogleText')}</>}
         rules={[{ required: true }]}
       >
         <CustomSelect

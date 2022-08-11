@@ -6,7 +6,7 @@ const Analytics: FC = () => {
   return (
     <>
       <ResultNavbar />
-      <div className='container max-w-5xl mx-auto'>
+      <div className="container max-w-5xl mx-auto">
         <Summary />
       </div>
     </>

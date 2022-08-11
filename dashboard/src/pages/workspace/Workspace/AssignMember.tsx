@@ -20,13 +20,15 @@ export const MemberItem: FC<MemberItemProps> = ({ member, onClick }) => {
   const { t } = useTranslation()
   return (
     <div className="group flex items-center p-2.5 -mx-2.5 rounded-md text-sm text-gray-700 hover:bg-gray-50">
-      <Avatar src={member.avatar} size={40} retainLength={2} rounded circular/>
+      <Avatar src={member.avatar} size={40} retainLength={2} rounded circular />
 
       <div className="ml-4 flex-auto">
         <p className="text-sm font-medium text-gray-700 truncate">
           {member.name}
           {member.isSelf && t('project.ProjectMembers.you')}
-          {member.isOwner && <Badge className="ml-1" type="blue" text={t('workspace.members.index.owner')}/>}
+          {member.isOwner && (
+            <Badge className="ml-1" type="blue" text={t('workspace.members.index.owner')} />
+          )}
         </p>
         <p className="text-sm text-gray-500 truncate">{member.email}</p>
       </div>
@@ -82,7 +84,7 @@ export const AssignMember: FC<AssignMemberProps> = observer(({ value = [], onCha
   return (
     <div>
       {members.map(row => (
-        <MemberItem key={row.id} member={row} onClick={handleClick}/>
+        <MemberItem key={row.id} member={row} onClick={handleClick} />
       ))}
     </div>
   )

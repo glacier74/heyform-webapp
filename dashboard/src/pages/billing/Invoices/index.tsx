@@ -58,17 +58,17 @@ const Invoices = () => {
       <Async
         request={request}
         deps={[]}
-        skeleton={<Skeleton/>}
+        skeleton={<Skeleton />}
         emptyState={
           <EmptyStates
             className="empty-states-fit"
-            icon={<CreditCardIcon className="non-scaling-stroke"/>}
+            icon={<CreditCardIcon className="non-scaling-stroke" />}
             title={t('billing.billed')}
             description={t('billing.send')}
           />
         }
       >
-        <Table<InvoiceModel> className="mt-8" columns={columns} data={invoices}/>
+        <Table<InvoiceModel> className="mt-8" columns={columns} data={invoices} />
       </Async>
     </BillingLayout>
   )

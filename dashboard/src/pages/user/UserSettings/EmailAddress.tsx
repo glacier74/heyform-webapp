@@ -7,7 +7,6 @@ import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-
 export interface FormValues {
   email: string
   password: string
@@ -34,10 +33,10 @@ export const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) =>
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('user.settings.emailAddress.change')}</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            {t('user.settings.emailAddress.sendEmail')}
-          </p>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('user.settings.emailAddress.change')}
+          </h1>
+          <p className="mt-1 text-sm text-gray-500">{t('user.settings.emailAddress.sendEmail')}</p>
         </div>
 
         <Form.Custom
@@ -57,7 +56,7 @@ export const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) =>
             label={t('user.settings.emailAddress.newEmail')}
             rules={[{ type: 'email', required: true }]}
           >
-            <Input type="email"/>
+            <Input type="email" />
           </Form.Item>
         </Form.Custom>
       </div>
@@ -78,10 +77,11 @@ export const VerifyEmail: FC<VerifyEmailProps> = ({ visible, formValues, onClose
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('user.settings.emailAddress.checkEmail')}</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('user.settings.emailAddress.checkEmail')}
+          </h1>
           <p className="mt-1 text-sm text-gray-500">
-            {t('user.settings.emailAddress.code')}{' '}
-            {formValues?.email}.
+            {t('user.settings.emailAddress.code')} {formValues?.email}.
           </p>
         </div>
 
@@ -93,7 +93,7 @@ export const VerifyEmail: FC<VerifyEmailProps> = ({ visible, formValues, onClose
           request={handleFinish}
         >
           <Form.Item name="code" label="Verification code" rules={[{ required: true }]}>
-            <Input/>
+            <Input />
           </Form.Item>
         </Form.Custom>
       </div>
@@ -132,7 +132,7 @@ export const EmailAddress: FC = observer(() => {
         )}
       </p>
 
-      <SendCode visible={sendCodeVisible} onClose={closeSendCode} onComplete={handleSendComplete}/>
+      <SendCode visible={sendCodeVisible} onClose={closeSendCode} onComplete={handleSendComplete} />
       <VerifyEmail
         visible={verifyEmailVisible}
         formValues={formValues}

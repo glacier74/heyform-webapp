@@ -50,8 +50,7 @@ export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => 
             {t('workspace.members.inviteMember')} <span>{workspaceStore.project?.name}</span>
           </h1>
           <p className="mt-1 text-sm text-gray-500">
-            {t('workspace.members.inviteExplain')}
-            {' '}
+            {t('workspace.members.inviteExplain')}{' '}
             <span className="text-gray-700">
               {unixDate(workspaceStore.workspace.inviteCodeExpireAt || 0).format('MMMM DD, YYYY')}
             </span>
@@ -85,7 +84,7 @@ export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => 
                         }
                       ]}
                     >
-                      <Input placeholder="name@example.com"/>
+                      <Input placeholder="name@example.com" />
                     </Form.Item>
                   ))}
 

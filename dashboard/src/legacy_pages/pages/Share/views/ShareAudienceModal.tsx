@@ -129,7 +129,7 @@ export const ShareAudienceModal: FC<ShareAudienceModalProps> = ({ visible, onVis
                   onCreate={handleCreateGroup}
                 />
               </FormItem>
-              {error && <FormError error={error}/>}
+              {error && <FormError error={error} />}
               <FormItem>
                 <Button type="primary" htmlType="submit" block={true} loading={loading}>
                   {t('share.Share')}

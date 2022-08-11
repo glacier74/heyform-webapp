@@ -18,11 +18,11 @@ export const ExportLink: FC = () => {
   return (
     <UpgradePlan name="Basic" permission={PlanGradeEnum.BASIC}>
       <Container
-        icon={<DownloadIcon/>}
+        icon={<DownloadIcon />}
         text={
           <>
             <span>{t('submissions.export')}</span>
-            <PlanPermissionBadge name="Basic" permission={PlanGradeEnum.BASIC}/>
+            <PlanPermissionBadge name="Basic" permission={PlanGradeEnum.BASIC} />
           </>
         }
         onClick={handleClick}

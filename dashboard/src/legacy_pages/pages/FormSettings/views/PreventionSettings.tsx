@@ -11,10 +11,10 @@ interface PreventionSettingsProps extends ComponentProps {
 }
 
 export const PreventionSettings: FC<PreventionSettingsProps> = ({
-                                                                  value,
-                                                                  onChange,
-                                                                  ...restProps
-                                                                }) => {
+  value,
+  onChange,
+  ...restProps
+}) => {
   const { t } = useTranslation()
 
   return (

@@ -11,11 +11,11 @@ interface SelectedPanelProps extends ComponentProps {
 }
 
 export const SelectedPanel: FC<SelectedPanelProps> = ({
-                                                        selected,
-                                                        actions,
-                                                        onDeselect,
-                                                        ...restProps
-                                                      }) => {
+  selected,
+  actions,
+  onDeselect,
+  ...restProps
+}) => {
   const { t } = useTranslation()
   const size = isSet(selected) ? (selected as Set<any>).size : (selected as any[]).length
 

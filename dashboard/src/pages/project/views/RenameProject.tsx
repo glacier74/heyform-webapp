@@ -15,7 +15,6 @@ export const RenameProject: FC<RenameProjectProps> = ({ visible, project, onClos
   const workspaceStore = useStore('workspaceStore')
   const { t } = useTranslation()
 
-
   async function handleUpdate(values: any) {
     await ProjectService.rename(project!.id, values.name)
     workspaceStore.updateProject(workspaceId, project!.id, values)
@@ -42,7 +41,7 @@ export const RenameProject: FC<RenameProjectProps> = ({ visible, project, onClos
           request={handleUpdate}
         >
           <Form.Item name="name" label={t('project.projectName')} rules={[{ required: true }]}>
-            <Input/>
+            <Input />
           </Form.Item>
         </Form.Custom>
       </div>

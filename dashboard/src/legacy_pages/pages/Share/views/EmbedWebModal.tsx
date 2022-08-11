@@ -80,7 +80,7 @@ export const EmbedWebModal: FC<EmbedWebModalProps> = observer(
                 </Group>
               </Sidebar>
               <Preview>
-                <iframe src={iframeUrl}/>
+                <iframe src={iframeUrl} />
               </Preview>
             </Content>
           </Container>
@@ -147,8 +147,8 @@ const ModeItem = styled(Flex)<{
   }
 
   ${props =>
-  props.active &&
-  `
+    props.active &&
+    `
     color: #4e5d78;
     background: #fafbfc;
   `}

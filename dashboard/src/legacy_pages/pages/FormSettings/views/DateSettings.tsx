@@ -15,11 +15,11 @@ interface DateSettingsProps extends ComponentProps {
 }
 
 export const DateSettings: FC<DateSettingsProps> = ({
-                                                      value,
-                                                      enabledAt,
-                                                      closedAt,
-                                                      ...restProps
-                                                    }) => {
+  value,
+  enabledAt,
+  closedAt,
+  ...restProps
+}) => {
   const { t } = useTranslation()
   const { formId } = useParam()
   const formStore = useStore('formStore')
@@ -72,12 +72,8 @@ export const DateSettings: FC<DateSettingsProps> = ({
     <Container {...restProps}>
       <Header>{t('formSettings.expiration')}</Header>
       <Body>
-        <Description>
-          {t(
-            'formSettings.expirationText'
-          )}
-        </Description>
-        <Switch value={value} loading={switchLoading} onChange={handleChange}/>
+        <Description>{t('formSettings.expirationText')}</Description>
+        <Switch value={value} loading={switchLoading} onChange={handleChange} />
       </Body>
       {value && (
         <Footer>

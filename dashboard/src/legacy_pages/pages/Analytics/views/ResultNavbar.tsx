@@ -10,7 +10,7 @@ export const ResultNavbar: FC<ComponentProps> = props => {
   const { workspaceId, projectId, formId } = useParam()
 
   return (
-    <div className='container max-w-5xl mx-auto bg-white py-4'>
+    <div className="container max-w-5xl mx-auto bg-white py-4">
       <Wrapper align="center" {...props}>
         <NavLink
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}

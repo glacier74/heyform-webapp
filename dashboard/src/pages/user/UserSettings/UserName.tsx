@@ -28,7 +28,7 @@ export const UserName: FC = observer(() => {
         request={handleFinish}
       >
         <Form.Item name="name" label={t('user.settings.name')} rules={[{ required: true }]}>
-          <Input/>
+          <Input />
         </Form.Item>
       </Form.Custom>
     </div>

@@ -37,7 +37,9 @@ const VerifyEmail: FC<IModalProps> = observer(({ visible, onClose, onComplete })
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('user.settings.deletedAccount.del')}</h1>
+          <h1 className="text-lg leading-6 font-medium text-gray-900">
+            {t('user.settings.deletedAccount.del')}
+          </h1>
           <div className="space-y-2">
             <p className="mt-1 text-sm text-gray-500">
               {t('user.settings.deletedAccount.delText')}
@@ -55,8 +57,12 @@ const VerifyEmail: FC<IModalProps> = observer(({ visible, onClose, onComplete })
           }}
           request={handleFinish}
         >
-          <Form.Item name="code" label={t('user.settings.deletedAccount.delCode')} rules={[{ required: true }]}>
-            <Input/>
+          <Form.Item
+            name="code"
+            label={t('user.settings.deletedAccount.delCode')}
+            rules={[{ required: true }]}
+          >
+            <Input />
           </Form.Item>
         </Form.Custom>
       </div>
@@ -74,9 +80,7 @@ const DeletionWarning: FC<IModalProps> = ({ visible }) => {
       maskClosable={false}
       description={
         <div className="space-y-2">
-          <p>
-            {t('user.settings.deletedAccount.delSendEmail')}
-          </p>
+          <p>{t('user.settings.deletedAccount.delSendEmail')}</p>
           <p>{t('user.settings.deletedAccount.loggedOut')}</p>
         </div>
       }
@@ -91,12 +95,12 @@ export const DeleteAccount: FC = () => {
 
   return (
     <div>
-      <div className="block text-sm font-medium text-gray-700">{t('user.settings.deletedAccount.danger')}</div>
-      <p className="mt-1 text-sm text-gray-500">
-        {t('user.settings.deletedAccount.delText2')}
-      </p>
+      <div className="block text-sm font-medium text-gray-700">
+        {t('user.settings.deletedAccount.danger')}
+      </div>
+      <p className="mt-1 text-sm text-gray-500">{t('user.settings.deletedAccount.delText2')}</p>
       <div className="mt-3">
-        <Button className='bg-red-500' type="danger" onClick={openVerifyEmail}>
+        <Button className="bg-red-500" type="danger" onClick={openVerifyEmail}>
           {t('user.settings.deletedAccount.del')}
         </Button>
       </div>
@@ -106,7 +110,7 @@ export const DeleteAccount: FC = () => {
         onClose={closeVerifyEmail}
         onComplete={openDeletionWarning}
       />
-      <DeletionWarning visible={deletionWarningVisible}/>
+      <DeletionWarning visible={deletionWarningVisible} />
     </div>
   )
 }

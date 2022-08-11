@@ -201,7 +201,7 @@ const Submissions: FC = () => {
   return (
     <>
       <ResultNavbar />
-      <div className='container mx-auto max-w-5xl'>
+      <div className="container mx-auto max-w-5xl">
         <Toolbar align="center" justify="space-between">
           <ToolbarLeft align="center">
             <CategorySelect category={category} onChange={handleCategoryChange} />
@@ -250,7 +250,6 @@ const Submissions: FC = () => {
     </>
   )
 }
-
 
 const Toolbar = styled(Flex)`
   margin: 20px 0;

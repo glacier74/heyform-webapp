@@ -113,7 +113,7 @@ export const Map: FC<MapProps> = ({ range }) => {
             ))}
           </LeftWrapper>
         </Left>
-        <WorldMap width={650} height={400} data={records}/>
+        <WorldMap width={650} height={400} data={records} />
       </StyledFlex>
     </Container>
   )

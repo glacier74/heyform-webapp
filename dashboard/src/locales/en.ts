@@ -40,7 +40,7 @@ export default {
       signIn: 'sign in with existing one',
       signWith: 'Start with',
       continueWith: 'Or continue with',
-      nameCant: "Name is required",
+      nameCant: 'Name is required',
       invalidEmail: 'Invalid email address',
       PasswordViolation:
         'Password must be at least 8 characters, and at least 1 uppercase, 1 lowercase and 1 number.',
@@ -180,7 +180,7 @@ export default {
     edit: 'Edit',
     dup: 'Duplicate',
     noForm: "Don't have any forms in this project yet",
-    text: "Pick a template or start from scratch, no coding skill required.",
+    text: 'Pick a template or start from scratch, no coding skill required.',
     suspendForm: 'This form is suspended',
     suspendText:
       'If you have any questions about suspend, please click the button below to contact us.',
@@ -792,7 +792,7 @@ export default {
       GettingStarted: 'Getting started',
       Help: 'Help center',
       Template: 'Templates',
-      Changelog: 'What\'s new',
+      Changelog: "What's new",
       View: 'View profile',
       Account: 'Account settings',
       Logout: 'Logout',
