@@ -36,7 +36,7 @@ export const PlanItem: FC<PlanItemProps> = ({
     if (plan.grade > grade!) {
       return (
         <div>
-          <Button className="w-full bg-blue-700" type="primary" onClick={handleUpgrade}>
+          <Button className="w-full" type="primary" onClick={handleUpgrade}>
             {t('billing.upgrade')}
           </Button>
         </div>

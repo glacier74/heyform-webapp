@@ -137,7 +137,7 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
             </div>
           </div>
 
-          <Button className="w-full bg-blue-700" type="primary" loading={loading} onClick={handleClick}>
+          <Button className="w-full" type="primary" loading={loading} onClick={handleClick}>
             {t('billing.bottom')}
           </Button>
 

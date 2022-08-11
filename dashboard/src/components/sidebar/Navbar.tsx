@@ -32,41 +32,41 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
         <NavLink
           to={`/workspace/${workspaceId}`}
           end={true}
-          className="text-gray-500 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+          className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
         >
-          <HomeIcon className="text-gray-500 mr-3 flex-shrink-0 h-5 w-5" />
+          <HomeIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
           {t('other.labelList.Dashboard')}
         </NavLink>
         <PlanCheck permission={PlanGradeEnum.BASIC}>
           <NavLink
             to={`/workspace/${workspaceId}/member`}
-            className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+            className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
           >
-            <UsersIcon className="text-gray-500 mr-3 flex-shrink-0 h-5 w-5" />
+            <UsersIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
             {t('other.labelList.TeamMembers')}
           </NavLink>
         </PlanCheck>
         <NavLink
           to={`/workspace/${workspaceId}/audience`}
-          className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+          className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
         >
-          <MailIcon className="text-gray-500 mr-3 flex-shrink-0 h-5 w-5" />
+          <MailIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
           {t('other.labelList.Audiences')}
         </NavLink>
         {workspaceStore.workspace?.isOwner && (
           <>
             <NavLink
               to={`/workspace/${workspaceId}/billing`}
-              className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+              className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
             >
-              <CreditCardIcon className="text-gray-500 mr-3 flex-shrink-0 h-5 w-5" />
+              <CreditCardIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
               {t('other.labelList.Billing')}
             </NavLink>
             <div
-              className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
+              className="text-gray-600 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
               onClick={onWorkspaceSettingsOpen}
             >
-              <CogIcon className="text-gray-500 mr-3 flex-shrink-0 h-5 w-5" />
+              <CogIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
               {t('other.labelList.Workspace')}
             </div>
           </>
@@ -76,7 +76,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
       {/* Projects */}
       <div className="mt-8">
         <h3
-          className="px-3 text-xs font-semibold text-gray-900 uppercase tracking-wider"
+          className="px-2 mb-2 text-xs font-semibold text-gray-900 uppercase tracking-wider"
           id="projects-headline"
         >
           {t('other.labelList.Projects')}
@@ -86,7 +86,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
             <NavLink
               key={project.id}
               to={`/workspace/${workspaceId}/project/${project.id}`}
-              className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
+              className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
             >
               {project.name}
             </NavLink>
@@ -97,7 +97,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
       {/* Resources links */}
       <div className="mt-8">
         <h3
-          className="px-3 text-xs font-semibold text-gray-900 uppercase tracking-wider"
+          className="px-2 mb-2 text-xs font-semibold text-gray-900 uppercase tracking-wider"
           id="resources-headline"
         >
           {t('other.labelList.Resources')}
@@ -106,33 +106,33 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
           <a
             href="https://help.heyform.net/create-your-first-heyform"
             target="_blank"
-            className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
+            className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
           >
-            <PlayIcon className="text-gray-500 mr-3 flex-shrink-0 h-5 w-5" />
+            <PlayIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
             <span className="truncate">{t('other.labelList.GettingStarted')}</span>
           </a>
           <a
             href="https://help.heyform.net"
             target="_blank"
-            className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
+            className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
           >
-            <QuestionMarkCircleIcon className="text-gray-500 mr-3 flex-shrink-0 h-5 w-5" />
+            <QuestionMarkCircleIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
             <span className="truncate">{t('other.labelList.Help')}</span>
           </a>
           <a
             href="https://heyform.net/templates"
             target="_blank"
-            className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
+            className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
           >
-            <DocumentTextIcon className="text-gray-500 mr-3 flex-shrink-0 h-5 w-5" />
+            <DocumentTextIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
             <span className="truncate">{t('other.labelList.Template')}</span>
           </a>
           <a
             href="https://heyform.net/changelog"
             target="_blank"
-            className="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
+            className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
           >
-            <GiftIcon className="text-gray-500 mr-3 flex-shrink-0 h-5 w-5" />
+            <GiftIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
             <span className="truncate">{t('other.labelList.Changelog')}</span>
           </a>
         </div>

@@ -44,7 +44,7 @@ const Members = observer(() => {
               <Avatar src={cropImage(record.avatar, 60, 60)} size={36} rounded circular />
             </div>
             <div className="flex-1 px-4">
-              <p className="text-sm font-medium text-gray-800 truncate">
+              <p className="text-sm font-semibold text-gray-800 truncate">
                 {record.name} {userStore.user.id === record.id && <span>(You)</span>}
               </p>
               <p className="mt-0.5 flex items-center font-normal text-sm text-gray-500">
@@ -165,7 +165,7 @@ const Members = observer(() => {
         title={t('workspace.members.member')}
         description={t('workspace.members.manage')}
         actions={
-          <Button className='bg-blue-700' type="primary" onClick={openInviteMember}>
+          <Button type="primary" onClick={openInviteMember}>
             {t('workspace.members.index.invite')}
           </Button>
         }

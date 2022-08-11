@@ -122,7 +122,7 @@ const Project = observer(() => {
       render(record) {
         return (
           <div>
-            <p className="text-sm font-medium text-gray-800 truncate">{record.name}</p>
+            <p className="text-sm font-semibold text-gray-800 truncate">{record.name}</p>
             <p className="mt-0.5 flex items-center font-normal text-sm text-gray-500">
               <span className="truncate">
                 {record.submissionCount && record.submissionCount > 0
@@ -144,7 +144,7 @@ const Project = observer(() => {
         } else if (record.draft && !record.settings?.active) {
           return <Badge className="form-status" text={t('project.draft')} dot />
         } else if (record.settings?.active) {
-          return <Badge className="form-status" type="blue" text={t('project.active')} dot />
+          return <Badge className="form-status" type="green" text={t('project.active')} dot />
         } else {
           return <Badge className="form-status" text={t('project.closed')} dot />
         }

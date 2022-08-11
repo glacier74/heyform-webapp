@@ -70,7 +70,7 @@ const Contacts = () => {
               />
             </div>
             <div className="flex-1 px-4">
-              <p className="text-sm font-medium text-gray-800 truncate">{record.fullName}</p>
+              <p className="text-sm font-semibold text-gray-800 truncate">{record.fullName}</p>
               <p className="mt-0.5 flex items-center font-normal text-sm text-gray-500">
                 <span className="truncate">{record.email}</span>
               </p>
