@@ -439,8 +439,8 @@ export default {
     View: 'View invoice',
     Billing: 'Billing',
     invoices: 'Manage your subscription and invoices',
-    Upgrade: 'Upgrade your plan',
-    Unlock: 'Unlock more features.',
+    Upgrade: 'Upgrade to unlock all features',
+    Unlock: 'HeyForm is completely free to use, but if you need advanced features, consider upgrading to HeyForm Premium.',
     Monthly: 'Billed monthly',
     Annually: 'Billed annually',
     plans: {

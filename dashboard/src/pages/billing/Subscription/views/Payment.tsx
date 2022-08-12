@@ -26,19 +26,6 @@ export const Payment = observer(({ plan, billingCycle, onUpgrade, onDowngrade }:
 
   return (
     <div className="flex items-center space-x-4">
-      {price > 0 ? (
-        <div>
-          <h3 className="text-3xl font-extrabold text-right">
-            ${price}/{BILLING_CYCLE_MAPS[billingCycle]}
-          </h3>
-          <span className="text-sm font-medium text-gray-500">
-            Get 2 months free if pay annually
-          </span>
-        </div>
-      ) : (
-        <div className="text-3xl font-extrabold">$0</div>
-      )}
-
       <PlanItem
         plan={plan}
         billingCycle={billingCycle}

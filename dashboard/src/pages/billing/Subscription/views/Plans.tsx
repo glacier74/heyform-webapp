@@ -36,20 +36,10 @@ export const Plans = () => {
   })
 
   return (
-    <div className="bg-slate-50 p-16">
+    <div className="p-16">
       <div className="flex items-center justify-center mb-8">
         <BillingCycleSwitch value={billingCycle} onChange={setBillingCycle} />
-      </div>
-
-      <div>
-        <div className="flex justify-between mb-4">
-          <div className="mb-4">
-            <h3 className="text-2xl font-medium">Premium</h3>
-            <p className="mt-1 text-base text-gray-500">
-              Ideal for enterprises, universities, hospitals and stores.
-            </p>
-          </div>
-          {workspaceStore.plans.length > 0 && (
+        {workspaceStore.plans.length > 0 && (
             <Payment
               plan={workspaceStore.plans[1]}
               billingCycle={billingCycle}
@@ -57,7 +47,9 @@ export const Plans = () => {
               onDowngrade={handleDowngrade}
             />
           )}
-        </div>
+      </div>
+
+      <div>
         <ul className="grid grid-cols-3 gap-4 text-lg mb-12">
           <li>
             <CheckIcon className="inline w-5 h-5 mr-2" />
