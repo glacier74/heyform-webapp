@@ -44,3 +44,12 @@ body {
     height: calc(100vh - 5rem);
   }
 }
+
+.plan-check {
+  &:hover {
+    & > a, 
+    & > .button {
+      @apply rounded-md text-gray-900 bg-gray-200;
+    }
+  }
+}
