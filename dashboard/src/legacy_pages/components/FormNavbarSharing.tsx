@@ -14,16 +14,6 @@ interface FormNavbarSharingProps {
   form?: FormModel
 }
 
-const SyncStatusContainer = styled(Flex)`
-  margin-right: 12px;
-
-  svg {
-    width: 16px;
-    height: 16px;
-    color: ${props => props.theme.disabled};
-  }
-`
-
 export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form }) => {
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -58,18 +48,34 @@ export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form })
 
   return (
     <Container align="center">
-      <Tooltip ariaLabel="Preview">
-        <PreviewButton className="button" leading={<EyeIcon />} onClick={handleClick} />
-      </Tooltip>
+        <div className="text-xs mx-6 text-gray-500">
+          <button onClick={handleClick}>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+            <p>Preview</p>
+          </button>
+        </div>
 
       {formStore.current?.settings?.active ? (
-        <Button type="primary" disabled={true}>
-          {t('form.published')}
-        </Button>
+        <div className="text-xs mx-6 text-gray-300">
+          <button disabled={true}>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+            <p>{t('form.published')}</p>
+        </button>
+        </div>
       ) : (
-        <Button type="primary" loading={loading} onClick={handlePublish}>
-          {t('form.publish')}
-        </Button>
+        <div className="text-xs mx-6 text-gray-500">
+          <button loading={loading} onClick={handlePublish}>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+            <p>{t('form.publish')}</p>
+          </button>
+        </div>
       )}
     </Container>
   )
@@ -77,40 +83,4 @@ export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form })
 
 const Container = styled(Flex)`
   margin-right: 12px;
-
-  button {
-    margin-right: 12px;
-
-    &:hover {
-      box-shadow: 0px 23px 44px rgb(176 183 195 / 14%);
-    }
-
-    &.hey-button-ghost {
-      background: #f3f3f3;
-
-      svg {
-        width: 22px;
-        height: 22px;
-        margin-left: -2px;
-        padding: 2px;
-        color: #8a94a6;
-      }
-
-      &[disabled] {
-        color: #37352f;
-      }
-    }
-  }
-`
-
-const PreviewButton = styled(Button)`
-  border-width: 1px;
-
-  .button-leading {
-    color: #111827;
-  }
-
-  &:not(:disabled):hover {
-    opacity: 0.8;
-  }
 `

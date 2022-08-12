@@ -1,13 +1,11 @@
 import { FormNavbarSharing } from '@/legacy_pages/components/FormNavbarSharing'
 import { UserAvatar } from '@/legacy_pages/components/UserAvatar'
 import { useStore } from '@/legacy_pages/utils'
-import { FormService } from '@/service'
 import { useParam } from '@/utils'
 import { ArrowLeftIcon } from '@heroicons/react/outline'
-import { Input } from '@heyforms/ui'
 import { Button, ComponentProps, Flex } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
-import { FC, startTransition } from 'react'
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -23,41 +21,43 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
     navigate(`/workspace/${workspaceId}/project/${projectId}`)
   }
 
-  async function updateFormName(name: string) {
-    const values = { name }
-    await FormService.update(formId, values)
-    formStore.updateSettings(values)
-  }
-
-  function handleChange(name: any) {
-    startTransition(() => {
-      updateFormName(name)
-    })
-  }
-
   return (
-    <Container align="center" justify="space-between">
+    <div className="flex grid grid-cols-3 gap-3 space-between py-4 px-4">
       <Left align="center">
-        <BackButton icon={<ArrowLeftIcon className="w-5 h-5" />} onClick={toProject}>
+        <BackButton icon={<ArrowLeftIcon className="w-4 h-4" />} onClick={toProject}>
           {workspaceStore.project?.name}
         </BackButton>
-        <Spacer>/</Spacer>
-        <Input value={formStore.current?.name} onChange={handleChange} />
       </Left>
       <Nav role="navigation">
-        <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/create`}>
+        <NavLink className={"text-xs mx-6 text-gray-500"} to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/create`}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+        </svg>
           {t('form.create')}
         </NavLink>
-        <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/connect`}>
+        <NavLink className={"text-xs px-4 text-gray-500"} to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/connect`}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+        </svg>
           {t('form.connect')}
         </NavLink>
-        <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/share`}>
+        <NavLink className={"text-xs px-4 text-gray-500"} to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/share`}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+        </svg>
           {t('form.share')}
         </NavLink>
-        <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}>
+        <NavLink className={"text-xs px-4 text-gray-500"} to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
           {t('form.results')}
         </NavLink>
-        <NavLink to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/settings`}>
+        <NavLink className={"text-xs px-4 text-gray-500"} to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/settings`}>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
           {t('form.settings')}
         </NavLink>
       </Nav>
@@ -65,24 +65,12 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
         <FormNavbarSharing form={formStore.current} />
         <UserAvatar />
       </Right>
-    </Container>
+    </div>
   )
 })
 
-const Container = styled(Flex)`
-  height: 3.75rem;
-  padding: 0 24px 0 12px;
-  background: #fff;
-  box-shadow: #f3f3f3 0px -1px inset;
-  z-index: 9;
-
-  @media print {
-    display: none;
-  }
-`
 
 const Left = styled(Flex)`
-  width: 33.33%;
 
   .input {
     border-color: transparent;
@@ -106,20 +94,9 @@ const Spacer = styled.div`
 `
 
 const Nav = styled(Flex)`
-  a {
-    display: inline-block;
-    margin: 0 8px;
-    color: ${props => props.theme.text};
-
-    &:hover,
-    &.active {
-      color: ${props => props.theme.primary};
-    }
-  }
 `
 
 const Right = styled(Flex)`
-  width: 33.33%;
   justify-content: flex-end;
 `
 
@@ -131,25 +108,5 @@ const BackButton = styled(Button)`
 
   &:hover {
     color: #0252d7;
-  }
-`
-
-const FormNameInput = styled.input`
-  padding: 4px 12px;
-  outline: none;
-  border: none;
-  background: none;
-  border-radius: 8px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    background: #f3f3f3;
-  }
-
-  &:focus {
-    cursor: text;
   }
 `
