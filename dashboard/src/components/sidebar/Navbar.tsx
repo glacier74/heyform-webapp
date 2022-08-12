@@ -46,13 +46,15 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
             {t('other.labelList.TeamMembers')}
           </NavLink>
         </PlanCheck>
-        <NavLink
-          to={`/workspace/${workspaceId}/audience`}
-          className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
-        >
-          <MailIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
-          {t('other.labelList.Audiences')}
-        </NavLink>
+        <PlanCheck permission={PlanGradeEnum.BASIC}>
+          <NavLink
+            to={`/workspace/${workspaceId}/audience`}
+            className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
+          >
+            <MailIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
+            {t('other.labelList.Audiences')}
+          </NavLink>
+        </PlanCheck>
         {workspaceStore.workspace?.isOwner && (
           <>
             <NavLink

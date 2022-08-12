@@ -25,7 +25,7 @@ export const Payment = observer(({ plan, billingCycle, onUpgrade, onDowngrade }:
   )
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center justify-center">
       <PlanItem
         plan={plan}
         billingCycle={billingCycle}

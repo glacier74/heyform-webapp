@@ -401,7 +401,7 @@ export default {
     downText:
       'Notice: once you confirm to downgrade the plan, your workspace will no longer be able to access features of premium plans.',
     Downgrade: 'Downgrade',
-    upgrade: 'Upgrade',
+    upgrade: 'Continue',
     cancel: 'Cancel plan',
     cancelHead: 'Cancel your plan?',
     cancelConfirm: 'Cancel plan',

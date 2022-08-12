@@ -22,7 +22,7 @@ export const PlanModal: FC = observer(() => {
       onClose={handleClose}
     >
       <div className="space-y-6">
-        <div className="mt-12 mb-8">
+        <div className="my-4">
           <img src="https://forms.b-cdn.net/website/upgrade.png" className="w-72 mx-auto"></img>
           <h2 className="font-bold text-gray-900 sm:text-2xl sm:tracking-tight lg:text-3xl text-center">
             {t('billing.Upgrade')}

@@ -36,17 +36,17 @@ export const PlanItem: FC<PlanItemProps> = ({
     if (plan.grade > grade!) {
       return (
         <div>
-          <Button className="w-full" type="primary" onClick={handleUpgrade}>
+          <button className="py-3 px-6 bg-blue-700 rounded-md w-full text-white" type="primary" onClick={handleUpgrade}>
             {t('billing.upgrade')}
-          </Button>
+          </button>
         </div>
       )
     } else if (plan.grade < grade!) {
       return (
         <div>
-          <Button className="w-full" type="primary" onClick={handleDowngrade}>
+          <button className="py-3 px-6 bg-gray-700 rounded-md w-full text-white" type="primary" onClick={handleDowngrade}>
             {t('billing.Downgrade')}
-          </Button>
+          </button>
         </div>
       )
     } else {
