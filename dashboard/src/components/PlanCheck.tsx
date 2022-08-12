@@ -23,7 +23,7 @@ export const PlanCheck: FC<UpgradeButtonProps> = observer(({ permission, childre
       {children}
       {grade < permission && (
         <div className="flex items-center justify-end absolute inset-0 px-2 py-1 z-10 cursor-pointer" onClick={handleClick}>
-          <Badge type="blue" text="Pro" rounded />
+          <Badge type="blue" text="Premium" rounded />
         </div>
       )}
     </div>
