@@ -101,11 +101,11 @@ const config: CustomRouteConfig[] = [
 
   /* OnBoading */
   {
-    path: '/welcome',
+    path: '/trial',
     loginRequired: true,
     layout: OnBoardingTrial,
     component: OnBoardingTrial,
-    title: 'Welcome to HeyForm.'
+    title: 'Start your free trial'
   },
 
   /* Home */
