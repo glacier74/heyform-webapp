@@ -573,7 +573,6 @@ export default {
   },
   formSettings: {
     Form: 'Form settings',
-    manageForm: 'Manage your form settings',
     Extra: 'Extra',
     subArchive: 'Submission archive',
     archiveText:
@@ -948,5 +947,11 @@ export default {
   'Choose at least {{min}} choices': 'Choose at least {{min}} choices',
   'Choose {{max}} choices': 'Choose {{max}} choices',
   'Choose between {{min}} to {{max}} choices': 'Choose between {{min}} to {{max}} choices',
-  'Question {{number}}': 'Question {{number}}'
+  'Question {{number}}': 'Question {{number}}',
+  onboarding: {
+    'trialTitle': 'Start your 14-day free trial',
+    'trialDesc': 'No contracts, downgrade or cancel the subscription anytime within a single click from your dashboard.',
+    'trialButton': 'Go for a trial',
+    'trialGofree': 'Continue with free plan'
+  }
 }

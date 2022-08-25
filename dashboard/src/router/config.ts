@@ -19,6 +19,9 @@ const ResetPassword = lazy(() => import('@/pages/auth/ResetPassword'))
 /* Verify email address */
 const VerifyEmail = lazy(() => import('@/pages/user/VerifyEmail'))
 
+/* OnBoarding Trial */
+const OnBoardingTrial = lazy(() => import('@/pages/setup/OnBoardingTrial'))
+
 /* Join workspace */
 const JoinWorkspace = lazy(() => import('@/pages/workspace/JoinWorkspace'))
 
@@ -41,7 +44,7 @@ const Project = lazy(() => import('@/pages/project/Project'))
 const Trash = lazy(() => import('@/pages/project/Trash'))
 
 /* Form */
-const CreateForm = lazy(() => import('@/legacy_pages/pages/CreateForm'))
+// const CreateForm = lazy(() => import('@/legacy_pages/pages/CreateForm'))
 const FormBuilder = lazy(() => import('@/pages/form/Create'))
 const ImportForm = lazy(() => import('@/legacy_pages/pages/ImportForm'))
 const Templates = lazy(() => import('@/legacy_pages/pages/Templates'))
@@ -94,6 +97,15 @@ const config: CustomRouteConfig[] = [
     layout: AuthLayout,
     component: VerifyEmail,
     title: 'Verify email address'
+  },
+
+  /* OnBoading */
+  {
+    path: '/welcome',
+    loginRequired: true,
+    layout: OnBoardingTrial,
+    component: OnBoardingTrial,
+    title: 'Welcome to HeyForm.'
   },
 
   /* Home */
@@ -179,11 +191,11 @@ const config: CustomRouteConfig[] = [
   },
 
   /* Form */
-  {
-    path: '/workspace/:workspaceId/project/:projectId/form/create',
-    layout: WorkspaceGuardLayout,
-    component: CreateForm
-  },
+  // {
+  //   path: '/workspace/:workspaceId/project/:projectId/form/create',
+  //   layout: WorkspaceGuardLayout,
+  //   component: CreateForm
+  // },
   {
     path: '/workspace/:workspaceId/project/:projectId/form/import',
     layout: WorkspaceGuardLayout,
