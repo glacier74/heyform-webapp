@@ -1,4 +1,4 @@
-import { BillingCycleEnum } from './invoice'
+import { BillingCycleEnum } from "./invoice";
 
 // Refactor at Dec 20, 2021 (v2021.12.3)
 /**
@@ -6,15 +6,29 @@ import { BillingCycleEnum } from './invoice'
  * PRO:      $24.9/mo $19.9*12/mo
  * BUSINESS: $49.9/mo $39.9*12/mo
  */
+
+// Refactor at Sep 20, 2022 (v2022.9.2)
+/**
+ * @Discard BASIC:    $9.9/mo  $7.9*12/mo
+ * @Discard PRO:      $24.9/mo $19.9*12/mo
+ * BUSINESS: $49.9/mo $39.9*12/mo
+ * @Discard ENTERPRISE
+ */
 export enum PlanGradeEnum {
   FREE = 0,
-  BASIC,
+  BASIC, // @Discard
   PRO,
-  BUSINESS,
-  ENTERPRISE
+  BUSINESS, // @Discard
+  ENTERPRISE // @Discard
+}
+
+export enum PlanPriceTypeEnum {
+  PLAN = 1,
+  SEAT
 }
 
 interface PlacePrice {
+  type: PlanPriceTypeEnum
   billingCycle: BillingCycleEnum
   price: number
 }

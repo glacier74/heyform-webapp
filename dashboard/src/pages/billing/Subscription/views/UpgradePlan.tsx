@@ -33,7 +33,15 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
   const { t } = useTranslation()
 
   const price = useMemo(() => {
-    return new Big(plan?.prices.find(row => row.billingCycle === billingCycle)?.price || 0)
+    const unitPrice = new Big(
+      plan?.prices.find(row => row.billingCycle === billingCycle)?.price || 0
+    )
+
+    if (billingCycle === BillingCycleEnum.ANNUALLY) {
+      return unitPrice.times(12)
+    }
+
+    return unitPrice
   }, [plan, billingCycle])
 
   function handleCouponCodeComplete(couponInfo: IMapType) {
