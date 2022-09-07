@@ -1,5 +1,4 @@
 import { LogoIcon } from '@/components'
-import { useQuery } from '@/legacy_pages/utils'
 import {
   FormValues,
   SendCode,
@@ -7,9 +6,8 @@ import {
 } from '@/pages/user/UserSettings/EmailAddress'
 import { UserService } from '@/service'
 import { useStore } from '@/store'
-import { useRouter, useVisible } from '@/utils'
+import { useQueryURL, useRouter, useVisible } from '@/utils'
 import { Button, Form, Input, notification } from '@heyforms/ui'
-import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
@@ -19,8 +17,7 @@ const VerifyEmail: FC = () => {
   const { t } = useTranslation()
   const userStore = useStore('userStore')
   const router = useRouter()
-  const { redirect_uri } = useQuery()
-  const nextURL = isValid(redirect_uri) ? redirect_uri : '/'
+  const nextURL = useQueryURL('/')
 
   const [loading, setLoading] = useState(false)
   const [sendCodeVisible, openSendCode, closeSendCode] = useVisible()

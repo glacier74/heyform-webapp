@@ -1,7 +1,7 @@
 import { LogoIcon } from '@/components'
 import { AuthService } from '@/service'
 import { useStore } from '@/store'
-import { useRouter } from '@/utils'
+import { useQueryURL, useRouter } from '@/utils'
 import { Form, Input } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
@@ -9,10 +9,11 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const ResetPassword = () => {
+  const { t } = useTranslation()
   const router = useRouter()
   const appStore = useStore('appStore')
   const [values, setValues] = useState<IMapType>({})
-  const { t } = useTranslation()
+  const nextURL = useQueryURL('/login')
 
   function handleChange(_: unknown, val: IMapType) {
     setValues(val)
@@ -20,17 +21,18 @@ const ResetPassword = () => {
 
   async function handleFinish(val: IMapType) {
     await AuthService.resetPassword(appStore.resetPasswordEmail, val.newPassword, val.code)
-    router.push('/login')
+    router.push(nextURL)
   }
 
   return (
     <div>
       <div>
-        <LogoIcon className="h-8 w-auto"/>
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('auth.resetPassword.reset')}</h2>
+        <LogoIcon className="h-8 w-auto" />
+        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+          {t('auth.resetPassword.reset')}
+        </h2>
         <p className="mt-2 text-sm text-gray-600">
-          {t('auth.resetPassword.sentEmail')}
-          {' '}
+          {t('auth.resetPassword.sentEmail')}{' '}
           <span className="font-medium text-gray-700">{appStore.resetPasswordEmail}</span>.
         </p>
       </div>
@@ -50,7 +52,7 @@ const ResetPassword = () => {
             label={t('auth.resetPassword.verificationCode')}
             rules={[{ required: true, message: t('auth.resetPassword.invalidCode') }]}
           >
-            <Input/>
+            <Input />
           </Form.Item>
 
           <Form.Item
@@ -65,7 +67,7 @@ const ResetPassword = () => {
               }
             ]}
           >
-            <Input.Password/>
+            <Input.Password />
           </Form.Item>
 
           <Form.Item
@@ -82,7 +84,7 @@ const ResetPassword = () => {
               }
             ]}
           >
-            <Input.Password/>
+            <Input.Password />
           </Form.Item>
         </Form.Custom>
       </div>

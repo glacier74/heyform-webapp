@@ -1,7 +1,7 @@
-import { loadScript, urlBuilder } from '@/utils/helper'
-import { parseNumber, pickObject } from '@hpnp/utils'
+import { loadScript } from '@/utils/helper'
+import { parseNumber, pickObject, removeObjectNil } from '@hpnp/utils'
 import { isArray, isEmpty, isNil, isObject, isValid } from '@hpnp/utils/helper'
-import { parse } from '@hpnp/utils/qs'
+import { parse, stringify } from '@hpnp/utils/qs'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
@@ -10,11 +10,13 @@ export interface ParamsType {
   projectId: string
   formId: string
   templateId: string
+  category: string
   inviteCode: string
 }
 
 export function useParam(): ParamsType {
-  const { workspaceId, projectId, formId, templateId, inviteCode, category } = useParams<IMapType<string>>()
+  const { workspaceId, projectId, formId, templateId, inviteCode, category } =
+    useParams<IMapType<string>>()
 
   return {
     workspaceId,
@@ -23,7 +25,7 @@ export function useParam(): ParamsType {
     templateId,
     category,
     inviteCode
-  }
+  } as ParamsType
 }
 
 export function useQuery(options?: IMapType): IMapType {
@@ -135,23 +137,23 @@ export function useVisible(visible = false): [boolean, () => void, () => void] {
 }
 
 export function useRouter() {
-  const query = useQuery()
   const navigate = useNavigate()
 
-  const push = useCallback((url: string, params?: IMapType) => {
-    navigate(
-      urlBuilder(url, {
-        ...query,
-        ...params
-      })
-    )
+  const push = useCallback((url: string) => {
+    navigate(url)
+  }, [])
+
+  const replace = useCallback((url: string) => {
+    navigate(url, {
+      replace: true
+    })
   }, [])
 
   const redirect = useCallback((url?: string) => {
-    window.location.href = query.redirect_uri || url || '/'
+    window.location.href = url || '/'
   }, [])
 
-  return { push, redirect }
+  return { push, replace, redirect }
 }
 
 export function useCountDown(max = 60) {
@@ -233,4 +235,16 @@ export function useCaptcha(onSuccess: (data: any) => void, onError?: (err: any) 
   return {
     showCaptcha
   }
+}
+
+export function useQueryURL(to: string) {
+  const query = useQuery()
+  const q = removeObjectNil(query)
+
+  if (isEmpty(q)) {
+    return to
+  }
+
+  const separator = !to.includes('?') ? '?' : '&'
+  return to + separator + stringify(q, { encode: true })
 }

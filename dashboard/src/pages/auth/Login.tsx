@@ -1,17 +1,14 @@
 import { LogoIcon, RedirectUriLink } from '@/components'
-import { useQuery } from '@/legacy_pages/utils'
 import { AuthService } from '@/service'
-import { useRouter } from '@/utils'
+import { useQueryURL, useRouter } from '@/utils'
 import { Checkbox, Form, Input } from '@heyforms/ui'
-import { isValid } from '@hpnp/utils/helper'
 import { useTranslation } from 'react-i18next'
 import { ThirdPartyLogin } from './views/ThirdPartyLogin'
 
 const Login = () => {
-  const router = useRouter()
   const { t } = useTranslation()
-  const { redirect_uri } = useQuery()
-  const nextURL = isValid(redirect_uri) ? redirect_uri : '/'
+  const router = useRouter()
+  const nextURL = useQueryURL('/')
 
   async function handleFinish(values: any) {
     await AuthService.login(values.email, values.password)

@@ -2,7 +2,7 @@ import { PlanModal } from '@/components'
 import UserSettings from '@/pages/user/UserSettings'
 import { UserService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect, useRouter, useVisible } from '@/utils'
+import { useAsyncEffect, useQueryURL, useRouter, useVisible } from '@/utils'
 import { Modal, notification } from '@heyforms/ui'
 import { timestamp } from '@hpnp/utils'
 import { observer } from 'mobx-react-lite'
@@ -76,13 +76,14 @@ const DeletionWarning: FC = observer(() => {
 export const AuthGuard: FC<IComponentProps> = ({ children }) => {
   const router = useRouter()
   const userStore = useStore('userStore')
+  const nextURL = useQueryURL('/verify-email')
 
   useAsyncEffect(async () => {
     const result = await UserService.userDetail()
     userStore.setUser(result)
 
     if (!result.isEmailVerified) {
-      router.push('/verify-email')
+      router.push(nextURL)
     }
   }, [])
 

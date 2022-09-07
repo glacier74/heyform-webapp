@@ -1,4 +1,3 @@
-import { pickObject } from '@hpnp/utils'
 import { isEqual, isValid } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 import type { CookieAttributes } from 'js-cookie'
@@ -7,7 +6,6 @@ import store from 'store2'
 
 export const deviceIdKey = 'HEYFORM_USER_ID'
 export const loggedInKey = 'HEYFORM_LOGGED_IN'
-export const redirectUriKey = 'HEYFORM_REDIRECT_URI'
 
 const cookieOptions: CookieAttributes = {
   expires: 365,

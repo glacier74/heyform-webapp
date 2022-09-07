@@ -1,4 +1,4 @@
-import { urlBuilder, useQuery } from '@/utils'
+import { useQueryURL } from '@/utils'
 import type { FC } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -7,8 +7,7 @@ interface RedirectUriLinkProps extends IComponentProps {
 }
 
 export const RedirectUriLink: FC<RedirectUriLinkProps> = ({ href, children, ...restProps }) => {
-  const query = useQuery()
-  const to = urlBuilder(href, query)
+  const to = useQueryURL(href)
 
   return (
     <Link to={to} {...restProps}>

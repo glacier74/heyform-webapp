@@ -24,7 +24,7 @@ const JoinWorkspace = lazy(() => import('@/pages/workspace/JoinWorkspace'))
 
 /* Workspace */
 const Home = lazy(() => import('@/pages/home/Home'))
-const Setup = lazy(() => import('@/pages/setup/Setup'))
+const CreateWorkspace = lazy(() => import('@/pages/workspace/CreateWorkspace'))
 const Workspace = lazy(() => import('@/pages/workspace/Workspace'))
 const Members = lazy(() => import('@/pages/workspace/Members'))
 
@@ -106,11 +106,11 @@ const config: CustomRouteConfig[] = [
 
   /* Setup workspace if there is no one exists */
   {
-    path: '/workspace/setup',
+    path: '/workspace/create',
     loginRequired: true,
     layout: AuthLayout,
-    component: Setup,
-    title: 'Setup'
+    component: CreateWorkspace,
+    title: 'Create workspace'
   },
 
   /* Workspace */

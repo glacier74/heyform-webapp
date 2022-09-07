@@ -1,4 +1,4 @@
-import CreateWorkspace from '@/pages/workspace/CreateWorkspace'
+import CreateWorkspaceModal from '@/components/CreateWorkspaceModal'
 import WorkspaceSettings from '@/pages/workspace/WorkspaceSettings'
 import { useVisible } from '@/utils'
 import { MenuIcon } from '@heroicons/react/outline'
@@ -53,7 +53,7 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
       <WorkspaceSettings visible={workspaceSettingsVisible} onClose={closeWorkspaceSettings} />
 
       {/* Create workspace modal */}
-      <CreateWorkspace visible={createWorkspaceVisible} onClose={closeCreateWorkspace} />
+      <CreateWorkspaceModal visible={createWorkspaceVisible} onClose={closeCreateWorkspace} />
     </WorkspaceGuard>
   )
 }

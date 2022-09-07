@@ -19,7 +19,7 @@ export const SwitchWorkspace: FC = observer(() => {
   function handleClick(name: any) {
     switch (name) {
       case 'createWorkspace':
-        return navigate('/workspace/setup')
+        return navigate('/workspace/create')
 
       case 'workspaceSettings':
         return navigate(`/workspace/${workspaceId}/settings`)
