@@ -17,9 +17,10 @@ import {
   ServerIcon,
   UsersIcon
 } from '@heroicons/react/outline'
+import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 
-export const Plans = () => {
+export const Plans = observer(() => {
   const workspaceStore = useStore('workspaceStore')
 
   const [plan, setPlan] = useState<PlanModel | null>(null)
@@ -155,4 +156,4 @@ export const Plans = () => {
       />
     </div>
   )
-}
+})

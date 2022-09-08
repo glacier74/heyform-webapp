@@ -90,7 +90,7 @@ export const UpgradePlan: FC<UpgradePlanProps> = ({ visible, plan, billingCycle,
       setDiscount(null)
       setCouponCode(null)
     }
-  })
+  }, [])
 
   return (
     <>

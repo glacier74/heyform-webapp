@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite'
 export const FreeTrialAlert = observer(() => {
   const workspaceStore = useStore('workspaceStore')
 
-  if (!isTrue(workspaceStore.workspace.subscription.trialing)) {
+  if (!isTrue(workspaceStore.workspace?.subscription.trialing)) {
     return null
   }
 
