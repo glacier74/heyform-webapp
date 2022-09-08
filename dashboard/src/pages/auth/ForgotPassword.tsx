@@ -1,7 +1,7 @@
 import { RedirectUriLink } from '@/components'
 import { AuthService } from '@/service'
 import { useStore } from '@/store'
-import { useRouter } from '@/utils'
+import { useQueryURL, useRouter } from '@/utils'
 import { ChevronLeftIcon } from '@heroicons/react/outline'
 import { Form, Input } from '@heyforms/ui'
 import { useTranslation } from 'react-i18next'
@@ -10,12 +10,12 @@ const ForgotPassword = () => {
   const router = useRouter()
   const appStore = useStore('appStore')
   const { t } = useTranslation()
+  const nextURL = useQueryURL('/reset-password')
 
   async function handleFinish(values: IMapType) {
     await AuthService.sendResetEmail(values.email)
     appStore.resetPasswordEmail = values.email
-
-    router.push('/reset-password')
+    router.push(nextURL)
   }
 
   return (

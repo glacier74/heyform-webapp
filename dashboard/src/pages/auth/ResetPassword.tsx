@@ -1,7 +1,6 @@
-import { LogoIcon } from '@/components'
 import { AuthService } from '@/service'
 import { useStore } from '@/store'
-import { useRouter } from '@/utils'
+import { useQueryURL, useRouter } from '@/utils'
 import { Form, Input } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
@@ -9,10 +8,11 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const ResetPassword = () => {
+  const { t } = useTranslation()
   const router = useRouter()
   const appStore = useStore('appStore')
   const [values, setValues] = useState<IMapType>({})
-  const { t } = useTranslation()
+  const nextURL = useQueryURL('/login')
 
   function handleChange(_: unknown, val: IMapType) {
     setValues(val)
@@ -20,7 +20,7 @@ const ResetPassword = () => {
 
   async function handleFinish(val: IMapType) {
     await AuthService.resetPassword(appStore.resetPasswordEmail, val.newPassword, val.code)
-    router.push('/login')
+    router.push(nextURL)
   }
 
   return (

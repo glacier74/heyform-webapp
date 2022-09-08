@@ -1,19 +1,22 @@
 import { AppleIcon, GoogleIcon } from '@/components'
-import { getDeviceId, redirectUriKey, setCookie, useQuery } from '@/utils'
-import { isValid } from '@hpnp/utils/helper'
+import { getDeviceId, useQuery, useRouter } from '@/utils'
+import { removeObjectNil } from '@hpnp/utils'
+import { stringify } from '@hpnp/utils/qs'
 import { useTranslation } from 'react-i18next'
 
 export const ThirdPartyLogin = () => {
   const query = useQuery()
+  const router = useRouter()
   const { t } = useTranslation()
 
   function handleRedirect(type: string) {
-    if (isValid(query.redirect_uri)) {
-      setCookie(redirectUriKey, query.redirect_uri)
-    }
-
     const state = getDeviceId()
-    window.location.href = `/connect/${type}?state=${state}`
+    const q = removeObjectNil({
+      state,
+      redirect_uri: query.redirect_uri
+    })
+
+    router.redirect(`/connect/${type}?${stringify(q, { encode: true })}`)
   }
 
   function handleSignInWithApple() {
