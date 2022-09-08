@@ -36,7 +36,7 @@ export default {
   auth: {
     signup: {
       signUp: 'Try HeyForm for free',
-      description: 'Start a 14-day free trial, no credit card required.',
+      description: 'Start your 14-day free premium trial.',
       signIn: 'sign in with existing one',
       signWith: 'Start with',
       continueWith: 'Or continue with',
@@ -440,7 +440,8 @@ export default {
     Billing: 'Billing',
     invoices: 'Manage your subscription and invoices',
     Upgrade: 'Upgrade to unlock all features',
-    Unlock: 'HeyForm is completely free to use, but if you need advanced features, consider upgrading to HeyForm Premium.',
+    Unlock:
+      'HeyForm is completely free to use, but if you need advanced features, consider upgrading to HeyForm Premium.',
     Monthly: 'Billed monthly',
     Annually: 'Billed annually',
     plans: {
@@ -949,9 +950,10 @@ export default {
   'Choose between {{min}} to {{max}} choices': 'Choose between {{min}} to {{max}} choices',
   'Question {{number}}': 'Question {{number}}',
   onboarding: {
-    'trialTitle': 'Start your 14-day free trial',
-    'trialDesc': 'No contracts, downgrade or cancel the subscription anytime within a single click from your dashboard.',
-    'trialButton': 'Go for a trial',
-    'trialGofree': 'Continue with free plan'
+    trialTitle: 'Start your 14-day free trial',
+    trialDesc:
+      'No contracts, downgrade or cancel the subscription anytime within a single click from your dashboard.',
+    trialButton: 'Go for a trial',
+    trialGofree: 'Continue with free plan'
   }
 }

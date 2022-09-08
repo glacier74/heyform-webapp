@@ -212,6 +212,7 @@ export const PLANS_GQL = gql`
       fileExport
       grade
       prices {
+        type
         price
         billingCycle
       }

@@ -1,5 +1,5 @@
 import { AuthGuard, AuthLayout, CommonLayout, WorkspaceLayout } from '@/components'
-import { FormLayout, WorkspaceGuardLayout } from '@/legacy_pages/layouts'
+import { FormLayout } from '@/legacy_pages/layouts'
 import { lazy } from 'react'
 
 export interface CustomRouteConfig {
@@ -46,9 +46,10 @@ const Trash = lazy(() => import('@/pages/project/Trash'))
 /* Form */
 // const CreateForm = lazy(() => import('@/legacy_pages/pages/CreateForm'))
 const FormBuilder = lazy(() => import('@/pages/form/Create'))
-const ImportForm = lazy(() => import('@/legacy_pages/pages/ImportForm'))
-const Templates = lazy(() => import('@/legacy_pages/pages/Templates'))
-const TemplatePreview = lazy(() => import('@/legacy_pages/pages/TemplatePreview'))
+// @Discard at Sep 8 2022
+// const ImportForm = lazy(() => import('@/legacy_pages/pages/ImportForm'))
+// const Templates = lazy(() => import('@/legacy_pages/pages/Templates'))
+// const TemplatePreview = lazy(() => import('@/legacy_pages/pages/TemplatePreview'))
 const Integration = lazy(() => import('@/legacy_pages/pages/Integration'))
 const Share = lazy(() => import('@/legacy_pages/pages/Share'))
 const Analytics = lazy(() => import('@/legacy_pages/pages/Analytics'))
@@ -191,27 +192,28 @@ const config: CustomRouteConfig[] = [
   },
 
   /* Form */
+  // @Discard at Sep 8 2022
   // {
   //   path: '/workspace/:workspaceId/project/:projectId/form/create',
   //   layout: WorkspaceGuardLayout,
   //   component: CreateForm
   // },
-  {
-    path: '/workspace/:workspaceId/project/:projectId/form/import',
-    layout: WorkspaceGuardLayout,
-    component: ImportForm
-  },
-  {
-    path: '/workspace/:workspaceId/project/:projectId/templates',
-    layout: WorkspaceGuardLayout,
-    component: Templates,
-    title: 'Templates'
-  },
-  {
-    path: '/workspace/:workspaceId/project/:projectId/template/:templateId',
-    layout: WorkspaceGuardLayout,
-    component: TemplatePreview
-  },
+  // {
+  //   path: '/workspace/:workspaceId/project/:projectId/form/import',
+  //   layout: WorkspaceGuardLayout,
+  //   component: ImportForm
+  // },
+  // {
+  //   path: '/workspace/:workspaceId/project/:projectId/templates',
+  //   layout: WorkspaceGuardLayout,
+  //   component: Templates,
+  //   title: 'Templates'
+  // },
+  // {
+  //   path: '/workspace/:workspaceId/project/:projectId/template/:templateId',
+  //   layout: WorkspaceGuardLayout,
+  //   component: TemplatePreview
+  // },
 
   /* Compose */
   {
