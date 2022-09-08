@@ -47,9 +47,23 @@ body {
 
 .plan-check {
   &:hover {
-    & > a, 
+    & > a,
     & > .button {
       @apply rounded-md text-gray-900 bg-gray-200;
     }
+  }
+}
+
+.button.free-trial__button {
+  @apply bg-blue-700 py-4 px-6 rounded-md text-slate-50;
+
+  .button-content {
+    @apply text-base font-medium;
+  }
+}
+
+.sidebar-nav {
+  a.active {
+    @apply bg-gray-200;
   }
 }

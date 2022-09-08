@@ -78,23 +78,24 @@ const BillingCycleItem: FC<BillingCycleItemProp> = ({
 }
 
 export const BillingCycleSwitch: FC<BillingCycleSwitchProps> = ({ value, plan, onChange }) => {
+  const prices = useMemo(() => plan?.prices || [], [plan])
   const billingCycles = useMemo(
-    () => plan.prices.filter(p => p.type === PlanPriceTypeEnum.PLAN).map(p => p.billingCycle),
-    [plan]
+    () => prices.filter(p => p.type === PlanPriceTypeEnum.PLAN).map(p => p.billingCycle),
+    [prices]
   )
   const monthlyPrice = useMemo(
     () =>
-      plan.prices.find(
+      prices.find(
         p => p.type === PlanPriceTypeEnum.PLAN && p.billingCycle === BillingCycleEnum.MONTHLY
       )?.price || 0,
-    [plan]
+    [prices]
   )
   const annuallyPrice = useMemo(
     () =>
-      plan.prices.find(
+      prices.find(
         p => p.type === PlanPriceTypeEnum.PLAN && p.billingCycle === BillingCycleEnum.ANNUALLY
       )?.price || 0,
-    [plan]
+    [prices]
   )
 
   return (

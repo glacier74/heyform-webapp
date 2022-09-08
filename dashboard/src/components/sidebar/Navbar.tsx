@@ -27,7 +27,7 @@ export const Navbar: FC<SidebarNavProps> = observer(({ onWorkspaceSettingsOpen }
   const workspaceStore = useStore('workspaceStore')
   const { t } = useTranslation()
   return (
-    <nav className="scrollbar flex-1 mt-5 px-2 pb-4">
+    <nav className="sidebar-nav scrollbar flex-1 mt-5 px-2 pb-4">
       <div className="space-y-1">
         <NavLink
           to={`/workspace/${workspaceId}`}

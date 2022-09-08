@@ -2,16 +2,16 @@ import { PhotoPickerField } from '@/components'
 import { WorkspaceModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
+import { useRouter } from '@/utils'
 import { Button, Form, Input, Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 
 const CreateWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const router = useRouter()
   const workspaceStore = useStore('workspaceStore')
 
   const [maskClosable, setMaskClosable] = useState(true)
@@ -36,9 +36,7 @@ const CreateWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) =>
       onClose?.()
 
       // Navigate to new created workspace page
-      navigate(`/workspace/${result}`, {
-        replace: true
-      })
+      router.replace(`/workspace/${result}/trial`)
     } catch (err: any) {
       setLoading(false)
       setError(err)

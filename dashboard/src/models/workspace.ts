@@ -17,6 +17,7 @@ export interface SubscriptionModel {
   endAt: number
   canceledAt: number
   isCanceled?: boolean
+  trialing?: boolean
   status: SubscriptionStatusEnum
 }
 

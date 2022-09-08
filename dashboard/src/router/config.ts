@@ -19,11 +19,11 @@ const ResetPassword = lazy(() => import('@/pages/auth/ResetPassword'))
 /* Verify email address */
 const VerifyEmail = lazy(() => import('@/pages/user/VerifyEmail'))
 
-/* OnBoarding Trial */
-const OnBoardingTrial = lazy(() => import('@/pages/setup/OnBoardingTrial'))
-
 /* Join workspace */
 const JoinWorkspace = lazy(() => import('@/pages/workspace/JoinWorkspace'))
+
+/* OnBoarding Trial */
+const OnBoardingTrial = lazy(() => import('@/pages/workspace/OnBoardingTrial'))
 
 /* Workspace */
 const Home = lazy(() => import('@/pages/home/Home'))
@@ -100,15 +100,6 @@ const config: CustomRouteConfig[] = [
     title: 'Verify email address'
   },
 
-  /* OnBoading */
-  {
-    path: '/trial',
-    loginRequired: true,
-    layout: OnBoardingTrial,
-    component: OnBoardingTrial,
-    title: 'Start your free trial'
-  },
-
   /* Home */
   {
     path: '/',
@@ -124,6 +115,14 @@ const config: CustomRouteConfig[] = [
     layout: AuthLayout,
     component: CreateWorkspace,
     title: 'Create workspace'
+  },
+  /* OnBoading */
+  {
+    path: '/workspace/:workspaceId/trial',
+    loginRequired: true,
+    layout: OnBoardingTrial,
+    component: OnBoardingTrial,
+    title: 'Start your free trial'
   },
 
   /* Workspace */

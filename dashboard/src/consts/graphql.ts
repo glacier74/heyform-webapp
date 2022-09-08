@@ -80,6 +80,7 @@ export const WORKSPACES_GQL = gql`
       enableCustomDomain
       customDomain
       removeBranding
+      trialEndAt
       createdAt
       projects {
         id
@@ -112,6 +113,7 @@ export const WORKSPACES_GQL = gql`
         endAt
         isCanceled
         canceledAt
+        trialing
         status
       }
     }
@@ -300,6 +302,12 @@ export const ADD_ADDITIONAL_SEAT_GQL = gql`
     additionalSeat(input: $input) {
       note
     }
+  }
+`
+
+export const FREE_TRIAL_GQL = gql`
+  mutation freeTrial($input: TeamDetailInput!) {
+    freeTrial(input: $input)
   }
 `
 

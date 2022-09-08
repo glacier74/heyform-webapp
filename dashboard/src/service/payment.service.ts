@@ -2,6 +2,7 @@ import {
   ADD_ADDITIONAL_SEAT_GQL,
   APPLY_COUPON_GQL,
   CANCEL_SUBSCRIPTION_GQL,
+  FREE_TRIAL_GQL,
   INVOICES_GQL,
   ORDER_PREVIEW_GQL,
   ORDERS_GQL,
@@ -96,6 +97,17 @@ export class PaymentService {
       query: ORDER_PREVIEW_GQL,
       variables: {
         input
+      }
+    })
+  }
+
+  static freeTrial(teamId: string) {
+    return request.mutate({
+      mutation: FREE_TRIAL_GQL,
+      variables: {
+        input: {
+          teamId
+        }
       }
     })
   }

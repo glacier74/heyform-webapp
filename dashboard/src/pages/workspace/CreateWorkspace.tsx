@@ -40,7 +40,7 @@ const CreateWorkspace: FC = () => {
       workspaceStore.setWorkspaces(workspaces)
 
       // Navigate to new created workspace page
-      router.replace(`/workspace/${result}`)
+      router.replace(`/workspace/${result}/trial`)
     } catch (err: any) {
       setLoading(false)
       setError(err)

@@ -1,4 +1,5 @@
 import CreateWorkspaceModal from '@/components/CreateWorkspaceModal'
+import { FreeTrialAlert } from '@/components/FreeTrialAlert'
 import WorkspaceSettings from '@/pages/workspace/WorkspaceSettings'
 import { useVisible } from '@/utils'
 import { MenuIcon } from '@heroicons/react/outline'
@@ -42,6 +43,8 @@ export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
             </button>
           </div>
           <main className="relative z-0 focus:outline-none">
+            <FreeTrialAlert />
+
             <div className="py-6">
               <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 md:px-8">{children}</div>
             </div>
