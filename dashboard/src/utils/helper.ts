@@ -9,12 +9,16 @@ export function urlBuilder(prefix: string, query: Record<string, any>): string {
 
 const LOADED_SCRIPTS = new Set<string>()
 
-export function loadScript(name: string, src: string, callback: () => void) {
+export function loadScript(
+  name: string,
+  src: string,
+  callback: (err?: Error) => void,
+  attempts = 0
+) {
   if (LOADED_SCRIPTS.has(src)) {
     return callback()
   }
 
-  let attempts = 0
   let script = document.getElementById(name) as HTMLScriptElement
 
   if (!script) {
@@ -32,27 +36,32 @@ export function loadScript(name: string, src: string, callback: () => void) {
   script.onerror = () => {
     script.onload = null
     script.onerror = null
-    document.removeChild(script)
+    document.head.removeChild(script)
 
-    if (attempts < 3) {
-      attempts += 1
-
-      setTimeout(() => {
-        loadScript(name, src, callback)
-      }, 100)
+    if (attempts >= 3) {
+      return callback(new Error(`Failed to load script ${name}`))
     }
+
+    attempts += 1
+
+    setTimeout(() => {
+      loadScript(name, src, callback, attempts)
+    }, attempts * 50)
   }
 }
 
 export function redirectToStripeCheckout(sessionId: string) {
-  return new Promise(resolve => {
-    loadScript('stripe-v3', 'https://js.stripe.com/v3/', () => {
+  return new Promise((resolve, reject) => {
+    loadScript('stripe-v3', 'https://js.stripe.com/v3/', err => {
+      if (err) {
+        return reject(err)
+      }
+
       const stripe = (window as any).Stripe(import.meta.env.VITE_STRIPE_KEY)
 
       stripe.redirectToCheckout({
         sessionId
       })
-
       resolve(null)
     })
   })

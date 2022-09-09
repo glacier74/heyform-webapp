@@ -1,6 +1,6 @@
 import { PaymentService } from '@/service'
 import { redirectToStripeCheckout, useParam, useRouter } from '@/utils'
-import { Button } from '@heyforms/ui'
+import { Button, notification } from '@heyforms/ui'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -20,9 +20,14 @@ const OnBoarding = () => {
     try {
       const sessionId = await PaymentService.freeTrial(workspaceId)
       await redirectToStripeCheckout(sessionId)
-    } catch (err) {}
+    } catch (err: any) {
+      notification.error({
+        title: 'Failed to start free trial',
+        message: err.message
+      })
 
-    setLoading(false)
+      setLoading(false)
+    }
   }
 
   return (
