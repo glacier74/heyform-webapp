@@ -1105,10 +1105,32 @@
   resolved "http://npm.heyooo.com/@heyforms%2fshared-types-enums/-/shared-types-enums-4.7.0.tgz#e58d053ae34b7bcbc4d4795d198b399eb168e875"
   integrity sha512-Gudeo3TKf9F94EOzkhpZ2sJ9is8KUCx/DFkoU7inETELFkVvmGn00dp9N48BnlpDCzfY7sFzx3XP36905LJLyQ==
 
-"@heyforms/ui@^2022.8.2", "@heyforms/ui@^2022.8.3":
+"@heyforms/ui@^2022.8.2":
   version "2022.8.3"
   resolved "http://npm.heyooo.com/@heyforms%2fui/-/ui-2022.8.3.tgz#b8e86c9d8e98a107181df47cd48e78dbccbdd21c"
   integrity sha512-9WJIniKAouKKPeemEGKMGAoj5z35MIqIyn0dBozAbczTRI8rT003cpKNQxvpa3CfHAQh7mFFPmJLm2r9jGqNrw==
+  dependencies:
+    "@headlessui/react" "^1.6.6"
+    "@heroicons/react" "^1.0.6"
+    "@hpnp/utils" "^2.9.3"
+    "@popperjs/core" "^2.11.5"
+    "@tailwindcss/forms" "^0.5.2"
+    clsx "^1.2.1"
+    dayjs "^1.11.4"
+    fast-equals "^4.0.1"
+    rc-field-form "^1.27.1"
+    rc-picker "^2.6.10"
+    react "^18.2.0"
+    react-colorful "^5.5.1"
+    react-dom "^18.2.0"
+    react-popper "^2.3.0"
+    react-transition-state "^1.2.0-alpha.5"
+    react-use "^17.4.0"
+
+"@heyforms/ui@^2022.9.1":
+  version "2022.9.1"
+  resolved "http://npm.heyooo.com/@heyforms%2fui/-/ui-2022.9.1.tgz#6236b397e6c362b8ab93b7c5d04506a13a37815e"
+  integrity sha512-QEmg6jEHimuM4rlXdarITsfH7WfY09Fnec7v1CWUN6xhgkeJwfAsjzQEC2Wxz4KeyjNIOzGcAj81HnxGFfAtrQ==
   dependencies:
     "@headlessui/react" "^1.6.6"
     "@heroicons/react" "^1.0.6"
@@ -6548,9 +6570,9 @@ react-i18next@^11.16.7:
     html-parse-stringify "^3.0.1"
 
 react-i18next@^11.17.3:
-  version "11.18.4"
-  resolved "http://npm.heyooo.com/react-i18next/-/react-i18next-11.18.4.tgz#b3c35ac4c4657b05d599b036536d7b2c0331e248"
-  integrity sha512-gK/AylAQC5DvCD5YLNCHW4PNzpCfrWIyVAXbSMl+/5QXzlDP8VdBoqE2s2niGHB+zIXwBV9hRXbDrVuupbgHcg==
+  version "11.18.5"
+  resolved "http://npm.heyooo.com/react-i18next/-/react-i18next-11.18.5.tgz#985e87bc66ed1316381b464a4ecfd35a2c951357"
+  integrity sha512-cKcyuuzIv0YUZ4l9WORflVNuhISPAqQShOAsxwFyYuJoCA7HlLmHm7XnvO6hfAGmGpDNRhJHoBX8hG49Cb2xZQ==
   dependencies:
     "@babel/runtime" "^7.14.5"
     html-parse-stringify "^3.0.1"

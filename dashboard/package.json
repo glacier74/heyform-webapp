@@ -33,7 +33,7 @@
     "**/**/@hpnp/utils": "^2.9.3",
     "**/**/i18next": "^21.6.11",
     "**/**/react-i18next": "^11.16.7",
-    "**/**/@heyforms/ui": "^2022.8.3"
+    "**/**/@heyforms/ui": "^2022.9.1"
   },
   "dependencies": {
     "@apollo/client": "^3.5.9",
@@ -41,7 +41,7 @@
     "@heyforms/answer-utils": "^0.7.5",
     "@heyforms/form-component": "^2022.8.1",
     "@heyforms/shared-types-enums": "^4.7.0",
-    "@heyforms/ui": "^2022.8.3",
+    "@heyforms/ui": "^2022.9.1",
     "@heyui/component": "^1.8.0",
     "@heyui/icon": "^1.28.1",
     "@hpnp/utils": "^2.9.3",
