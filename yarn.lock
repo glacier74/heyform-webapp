@@ -1127,10 +1127,10 @@
     react-transition-state "^1.2.0-alpha.5"
     react-use "^17.4.0"
 
-"@heyforms/ui@^2022.9.1":
-  version "2022.9.1"
-  resolved "http://npm.heyooo.com/@heyforms%2fui/-/ui-2022.9.1.tgz#6236b397e6c362b8ab93b7c5d04506a13a37815e"
-  integrity sha512-QEmg6jEHimuM4rlXdarITsfH7WfY09Fnec7v1CWUN6xhgkeJwfAsjzQEC2Wxz4KeyjNIOzGcAj81HnxGFfAtrQ==
+"@heyforms/ui@^2022.9.2":
+  version "2022.9.2"
+  resolved "http://npm.heyooo.com/@heyforms%2fui/-/ui-2022.9.2.tgz#0561a62c5efc9932490dc856e043df95e0e1a096"
+  integrity sha512-dHDIyhAzBAI8F8YUoFQmF0qL34Dm8WZr1dO3WBeO7v7DHxxLN+MZLbRk7E6xrHPvMwgAHGcdxSdaqumVcVJkBA==
   dependencies:
     "@headlessui/react" "^1.6.6"
     "@heroicons/react" "^1.0.6"
