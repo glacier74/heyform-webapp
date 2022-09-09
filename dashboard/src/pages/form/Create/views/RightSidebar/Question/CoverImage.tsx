@@ -57,22 +57,18 @@ export const CoverImage: FC = () => {
 
   return (
     <>
-      <div className="right-sidebar-group">
+      <div className="right-sidebar-group right-sidebar__cover-image">
         <div className="flex items-center justify-between">
           <label className="form-item-label">{t('formBuilder.image')}</label>
           {isLayoutEnabled ? (
             <div className="flex items-center">
-              <Button className="px-2 py-1 mr-2" onClick={handleOpen}>
+              <Button className="mr-2" onClick={handleOpen}>
                 {t('formBuilder.changeImage')}
               </Button>
-              <Button className="px-2 py-1" onClick={handleRemove}>
-                {t('formBuilder.removeImage')}
-              </Button>
+              <Button onClick={handleRemove}>{t('formBuilder.removeImage')}</Button>
             </div>
           ) : (
-            <Button className="px-2 py-1" onClick={handleOpen}>
-              {t('formBuilder.addImage')}
-            </Button>
+            <Button onClick={handleOpen}>{t('formBuilder.addImage')}</Button>
           )}
         </div>
       </div>

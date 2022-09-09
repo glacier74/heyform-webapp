@@ -4,10 +4,11 @@ import { useStore } from '@/store'
 import { ArrowLeftIcon } from '@heroicons/react/outline'
 import { initI18n, insertThemeStyle, insertWebFont, Renderer } from '@heyforms/form-component'
 import { type IFormModel } from '@heyforms/form-component/types/typings'
-import { Modal } from '@heyforms/ui'
+import { Modal, Switch } from '@heyforms/ui'
+import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './index.scss'
 
 initI18n({
@@ -23,9 +24,14 @@ initI18n({
 export const FormPreviewModal: FC = observer(() => {
   const appStore = useStore('appStore')
   const formStore = useStore('formStore')
+  const [value, setValue] = useState('mobile')
 
   function handleClose() {
     appStore.isFormPreviewOpen = false
+  }
+
+  function handleChange(newValue: any) {
+    setValue(newValue)
   }
 
   useLockBodyScroll(appStore.isFormPreviewOpen)
@@ -50,10 +56,24 @@ export const FormPreviewModal: FC = observer(() => {
             <div className="flex items-center ml-4 cursor-pointer" onClick={handleClose}>
               <ArrowLeftIcon className="w-5 h-5" />
             </div>
-            <div className="flex-1 text-center">Preview</div>
+            <div className="flex-1 flex items-center justify-center">
+              <Switch.Group
+                className="text-sm"
+                value={value}
+                options={[
+                  { value: 'desktop', label: 'Desktop' },
+                  { value: 'mobile', label: 'Mobile' }
+                ]}
+                onChange={handleChange}
+              />
+            </div>
           </div>
 
-          <div className="form-preview-body">
+          <div
+            className={clsx('form-preview-body', {
+              'form-preview-mobile': value === 'mobile'
+            })}
+          >
             <Renderer form={formStore.current as IFormModel} autoSave={false} />
           </div>
         </Modal>

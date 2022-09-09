@@ -30,3 +30,30 @@
     @apply rounded-none;
   }
 }
+
+.form-preview-mobile {
+  @apply mx-auto py-16;
+  max-width: 22.5rem;
+
+  .heyform-root {
+    @apply shadow-lg;
+  }
+
+  .heyform-layout,
+  .heyform-theme-background {
+    @apply overflow-hidden;
+  }
+
+  .heyform-root,
+  .heyform-layout,
+  .heyform-theme-background {
+    @apply rounded-xl;
+  }
+
+  .heyform-layout-float_left,
+  .heyform-layout-split_left,
+  .heyform-layout-float_right,
+  .heyform-layout-split_right {
+    @apply rounded-b-none;
+  }
+}

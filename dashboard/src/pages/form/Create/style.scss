@@ -941,6 +941,12 @@
   }
 }
 
+.right-sidebar__cover-image {
+  button {
+    @apply px-2 py-1;
+  }
+}
+
 .right-sidebar-custom-select,
 .right-sidebar-custom-select-popup {
   .field-icon {
