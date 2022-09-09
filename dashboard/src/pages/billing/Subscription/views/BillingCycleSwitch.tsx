@@ -54,9 +54,7 @@ const BillingCycleItem: FC<BillingCycleItemProp> = ({
     >
       <div className="flex items-center">
         <div className="text-sm">
-          <p className="text-xl font-medium text-gray-900" id="headlessui-label-:r7:">
-            {isAnnually ? 'Annually' : 'Monthly'}
-          </p>
+          <p className="text-xl font-medium text-gray-900">{isAnnually ? 'Annually' : 'Monthly'}</p>
           <div className="text-gray-500">
             <p className="sm:inline">{total}</p>
             {discount > 0 && <p className="ml-2 sm:inline">- save {discount}%</p>}
@@ -73,6 +71,41 @@ const BillingCycleItem: FC<BillingCycleItemProp> = ({
           aria-hidden="true"
         />
       )}
+    </div>
+  )
+}
+
+export const BillingCycleSwitchSkeleton = () => {
+  const billingCycles = ['Annually', 'Monthly']
+
+  return (
+    <div className="flex items-center justify-center mb-8">
+      <div className="sm:w-1/2 lg:w-1/3">
+        <div className="space-y-4">
+          {billingCycles.map((billingCycle, index) => (
+            <div
+              key={index}
+              className="relative block rounded-lg border border-gray-300 bg-white shadow-sm p-6 cursor-pointer hover:border-gray-400 sm:flex sm:justify-between focus:outline-none"
+              role="radio"
+              aria-checked="true"
+              tabIndex={0}
+            >
+              <div className="flex items-center">
+                <div className="text-sm">
+                  <p className="text-xl font-medium text-gray-900">{billingCycle}</p>
+                  <div className="mt-2 text-gray-500">
+                    <p className="w-16 h-4 skeleton"></p>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-2 flex text-sm sm:mt-0 sm:block sm:ml-4 sm:text-right">
+                <div className="w-24 h-6 skeleton text-3xl font-extrabold text-gray-900"></div>
+                <div className="ml-1 text-gray-500 sm:ml-0">per month</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }

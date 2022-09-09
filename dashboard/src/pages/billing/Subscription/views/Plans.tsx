@@ -1,11 +1,8 @@
+import { Async } from '@/components'
 import { BillingCycleEnum, PlanModel } from '@/models'
-import { BillingCycleSwitch } from '@/pages/billing/Subscription/views/BillingCycleSwitch'
-import { DowngradePlan } from '@/pages/billing/Subscription/views/DowngradePlan'
-import { Payment } from '@/pages/billing/Subscription/views/Payment'
-import { UpgradePlan } from '@/pages/billing/Subscription/views/UpgradePlan'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useAsyncEffect, useVisible } from '@/utils'
+import { useVisible } from '@/utils'
 import {
   DocumentTextIcon,
   EyeOffIcon,
@@ -19,6 +16,10 @@ import {
 } from '@heroicons/react/outline'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
+import { BillingCycleSwitch, BillingCycleSwitchSkeleton } from './BillingCycleSwitch'
+import { DowngradePlan } from './DowngradePlan'
+import { Payment } from './Payment'
+import { UpgradePlan } from './UpgradePlan'
 
 export const Plans = observer(() => {
   const workspaceStore = useStore('workspaceStore')
@@ -41,20 +42,23 @@ export const Plans = observer(() => {
     openDowngradePlan()
   }
 
-  useAsyncEffect(async () => {
+  async function fetchPlans() {
     const result = await WorkspaceService.plans()
     workspaceStore.setPlans(result)
-  })
+    return false
+  }
 
   return (
     <div className="p-4">
-      <div className="flex items-center justify-center mb-8">
-        <BillingCycleSwitch
-          plan={workspaceStore.plans[1]}
-          value={billingCycle}
-          onChange={setBillingCycle}
-        />
-      </div>
+      <Async request={fetchPlans} skeleton={<BillingCycleSwitchSkeleton />} cacheFirst>
+        <div className="flex items-center justify-center mb-8">
+          <BillingCycleSwitch
+            plan={workspaceStore.plans[1]}
+            value={billingCycle}
+            onChange={setBillingCycle}
+          />
+        </div>
+      </Async>
 
       {workspaceStore.plans.length > 0 && (
         <Payment
