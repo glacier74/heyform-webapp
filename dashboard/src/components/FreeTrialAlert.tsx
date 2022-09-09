@@ -11,7 +11,7 @@ export const FreeTrialAlert = observer(() => {
     return null
   }
 
-  const endAt = dayjs.unix(workspaceStore.workspace.subscription.endAt).format('MMM DD')
+  const date = dayjs.unix(workspaceStore.workspace.subscription.endAt).format('MMM DD')
 
   return (
     <div className="bg-blue-50 p-4">
@@ -20,7 +20,7 @@ export const FreeTrialAlert = observer(() => {
           <InformationCircleIcon className="h-5 w-5 text-blue-500" />
         </div>
         <div className="ml-3 flex-1 md:flex md:justify-between">
-          <p className="text-sm text-blue-700">Free trial Premium plan until {endAt}</p>
+          <p className="text-sm text-blue-700">Premium plan free trial ends on {date}</p>
           <p className="mt-3 text-sm md:mt-0 md:ml-6">
             <a
               href="https://heyform.net/help"

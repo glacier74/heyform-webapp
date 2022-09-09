@@ -48,9 +48,18 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
 
       <div className="ml-4 flex-auto">
         <p className="text-sm font-medium text-gray-700 truncate">{workspace.name}</p>
-        <p className="text-sm text-gray-500 truncate">{`${workspace.plan.name} ${t(
-          'billing.plan'
-        )} · ${workspace.memberCount} ${t('workspace.join.member')}`}</p>
+        <p className="text-sm text-gray-500 truncate">
+          <span>
+            {workspace.plan.name} {t('billing.plan')}
+          </span>
+          {workspace.subscription.trialing && (
+            <span className="text-blue-600 text-xs"> (trial)</span>
+          )}
+          <span> · </span>
+          <span>
+            {workspace.memberCount} {t('workspace.join.member')}
+          </span>
+        </p>
       </div>
 
       {workspaceId === workspace.id && <CheckCircleIcon className="w-6 h-6 text-blue-500" />}
@@ -98,6 +107,9 @@ const CurrentWorkspace = observer(() => {
             </span>
             <span className="text-gray-500 text-sm truncate">
               {workspaceStore.workspace?.plan.name} {t('billing.plan')}
+              {workspaceStore.workspace.subscription.trialing && (
+                <span className="text-blue-600 text-xs"> (trial)</span>
+              )}
             </span>
           </span>
         </span>
