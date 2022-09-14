@@ -72,6 +72,7 @@ export const FORM_THEMES = [
     buttonBackground: '#0445AF',
     buttonTextColor: '#fff',
     backgroundColor: '#fff',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -81,6 +82,7 @@ export const FORM_THEMES = [
     buttonBackground: '#4FB0AE',
     buttonTextColor: '#fff',
     backgroundColor: '#fff',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -90,6 +92,7 @@ export const FORM_THEMES = [
     buttonBackground: '#37404a',
     buttonTextColor: '#fff',
     backgroundColor: '#fff',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -129,6 +132,7 @@ export const FORM_THEMES = [
     buttonBackground: '#cb732b',
     buttonTextColor: '#fff',
     backgroundColor: '#fff',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -138,6 +142,7 @@ export const FORM_THEMES = [
     buttonBackground: '#e4ba3f',
     buttonTextColor: '#000',
     backgroundColor: '#fff',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -147,6 +152,7 @@ export const FORM_THEMES = [
     buttonBackground: '#7dbb91',
     buttonTextColor: '#000',
     backgroundColor: '#fff',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -246,6 +252,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262626',
     buttonTextColor: '#E5E5E5',
     backgroundColor: '#F1ECE2',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -265,6 +272,7 @@ export const FORM_THEMES = [
     buttonBackground: '#F1ECE2',
     buttonTextColor: '#F1ECE2',
     backgroundColor: '#262626',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -304,6 +312,7 @@ export const FORM_THEMES = [
     buttonBackground: '#252525',
     buttonTextColor: '#E4E4E4',
     backgroundColor: '#F9CD48',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -313,6 +322,7 @@ export const FORM_THEMES = [
     buttonBackground: '#5182E0',
     buttonTextColor: '#08142A',
     backgroundColor: '#F3F3F3',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -362,6 +372,7 @@ export const FORM_THEMES = [
     buttonBackground: '#c75875',
     buttonTextColor: '#18080C',
     backgroundColor: '#FFFFFF',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -371,6 +382,7 @@ export const FORM_THEMES = [
     buttonBackground: '#c384c5',
     buttonTextColor: '#321832',
     backgroundColor: '#FFFFFF',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -410,6 +422,7 @@ export const FORM_THEMES = [
     buttonBackground: '#eeeeee',
     buttonTextColor: '#6F6F6F',
     backgroundColor: '#408e91',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -419,6 +432,7 @@ export const FORM_THEMES = [
     buttonBackground: '#eeeeee',
     buttonTextColor: '#6F6F6F',
     backgroundColor: '#4fb0ae',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -428,6 +442,7 @@ export const FORM_THEMES = [
     buttonBackground: '#eeeeee',
     buttonTextColor: '#6F6F6F',
     backgroundColor: '#cb732b',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -437,6 +452,7 @@ export const FORM_THEMES = [
     buttonBackground: '#eeeeee',
     buttonTextColor: '#6F6F6F',
     backgroundColor: '#7dbb91',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -446,6 +462,7 @@ export const FORM_THEMES = [
     buttonBackground: '#eeeeee',
     buttonTextColor: '#6F6F6F',
     backgroundColor: '#c384c5',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -535,6 +552,7 @@ export const FORM_THEMES = [
     buttonBackground: '#c6dfb2',
     buttonTextColor: '#46672B',
     backgroundColor: '#f3f9ef',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -544,6 +562,7 @@ export const FORM_THEMES = [
     buttonBackground: '#e6bb98',
     buttonTextColor: '#663C19',
     backgroundColor: '#faf1ea',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -553,6 +572,7 @@ export const FORM_THEMES = [
     buttonBackground: '#EDD59A',
     buttonTextColor: '#735815',
     backgroundColor: '#fdf8ec',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -562,6 +582,7 @@ export const FORM_THEMES = [
     buttonBackground: '#e4adbc',
     buttonTextColor: '#6E2438',
     backgroundColor: '#faeef1',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -571,6 +592,7 @@ export const FORM_THEMES = [
     buttonBackground: '#e2c3e3',
     buttonTextColor: '#703572',
     backgroundColor: '#f9f3fa',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   },
   {
@@ -580,6 +602,7 @@ export const FORM_THEMES = [
     buttonBackground: '#bbe0e5',
     buttonTextColor: '#2D6C75',
     backgroundColor: '#f1f9fa',
+    backgroundImage: undefined,
     backgroundBrightness: 0
   }
 ]
