@@ -35,12 +35,7 @@ export const LogicBulkEditPanel = () => {
   }
 
   function handleRemoveAll() {
-    dispatch({
-      type: 'deleteLogic',
-      payload: {
-        fieldId: state.selectedField!.id
-      }
-    })
+    form.resetFields()
   }
 
   function handleSave() {

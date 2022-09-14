@@ -366,15 +366,15 @@ export function setLogic(state: IState, logic: Logic): IState {
 
   const logics = state.logics || []
   const index = logics.findIndex(l => l.fieldId === logic.fieldId)
+  let newLogics: Logic[]
 
   if (index > -1) {
-    return {
-      ...state,
-      logics: logics.map((l, i) => (i === index ? logic : l))
-    }
+    newLogics = logics.map((l, i) => (i === index ? logic : l))
+  } else {
+    newLogics = [...logics, logic]
   }
 
-  return setLogics(state, [...logics, logic])
+  return setLogics(state, newLogics)
 }
 
 export function deleteLogic(state: IState, { fieldId }: DeleteLogicAction['payload']): IState {
