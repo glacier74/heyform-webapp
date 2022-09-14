@@ -34,7 +34,7 @@ const OnBoarding = () => {
     <div className="free-trial bg-white grid place-items-center h-screen">
       <div className="max-w-3xl mx-auto py-28">
         <img
-          className="w-72 mx-auto"
+          className="w-72 h-72 mx-auto"
           src="https://forms.b-cdn.net/website/dashboard/free-trial.webp"
         ></img>
         <h1 className="text-4xl font-semibold text-slate-900 text-center mb-4">
@@ -42,7 +42,7 @@ const OnBoarding = () => {
         </h1>
         <p className="text-xl text-slate-600 text-center">{t('onboarding.trialDesc')}</p>
 
-        <div className="text-center mt-12">
+        <div className="flex items-center justify-center mt-12">
           <span>
             <Button
               type="primary"
