@@ -39,6 +39,11 @@ const InsertFieldItem: FC<InsertFieldItemProps> = ({
 
   function handleClick() {
     if (!isDisabled) {
+      window.plausible('Question', {
+        props: {
+          Value: config.kind.replace(/_/g, ' ')
+        }
+      })
       onClick(config.kind)
     }
   }

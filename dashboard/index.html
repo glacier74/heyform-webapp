@@ -39,7 +39,12 @@
       fill="currentColor"></path>
   </svg>
 </div>
-<script src="./src/main.tsx" type="module"></script>
 <script data-domain="my.heyform.net" defer src="https://analytics.heyform.net/js/plausible.js"></script>
+<script>
+  window.plausible = window.plausible || function() {
+    (window.plausible.q = window.plausible.q || []).push(arguments);
+  };
+</script>
+<script src="./src/main.tsx" type="module"></script>
 </body>
 </html>
