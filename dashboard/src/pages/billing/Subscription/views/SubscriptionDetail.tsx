@@ -104,7 +104,7 @@ export const SubscriptionDetail: FC = observer(() => {
   const [cancelPlanVisible, openCancelPlan, closeCancelPlan] = useVisible()
 
   const description = useMemo(() => {
-    if (subscription.endAt) {
+    if (subscription.endAt > 0) {
       const endAt = unixDate(subscription.endAt).format('MMM DD, YYYY')
 
       if (subscription.canceledAt) {
