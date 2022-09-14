@@ -1,3 +1,4 @@
+import { locales } from '@heyforms/form-component'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import en from './en'
@@ -6,16 +7,21 @@ import zhCn from './zhCn'
 const resources = {
   en: {
     translation: {
-      ...en
+      ...en,
+      ...locales.en.translation
     }
   },
   'zh-cn': {
     translation: {
-      ...zhCn
+      ...zhCn,
+      ...locales['zh-cn'].translation
     }
-  }
+  },
+  fr: locales.fr,
+  de: locales.de
 }
 const supportedLngs = Object.keys(resources)
+console.log(resources.en.translation)
 
 i18n.use(initReactI18next).init({
   lowerCaseLng: true,

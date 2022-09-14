@@ -538,13 +538,12 @@ export const FORM_SUMMARY_GQL = gql`
         allowArchive
         password
         requirePassword
-        redirectOnCompletion
-        redirectUrl
         enableQuotaLimit
         quotaLimit
         enableIpLimit
         ipLimitCount
         ipLimitTime
+        locale
       }
       retentionAt
       suspended
@@ -576,14 +575,13 @@ export const FORM_DETAIL_GQL = gql`
         allowArchive
         password
         requirePassword
-        redirectOnCompletion
-        redirectUrl
         enableQuotaLimit
         quotaLimit
         enableIpLimit
         ipLimitCount
         ipLimitTime
         enableProgress
+        locale
       }
       fields {
         id

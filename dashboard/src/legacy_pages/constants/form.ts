@@ -29,6 +29,25 @@ export const FORM_ANALYTICS_OPTIONS: OptionType[] = [
   }
 ]
 
+export const FORM_LOCALES_OPTIONS = [
+  {
+    label: 'languages.en',
+    value: 'en'
+  },
+  {
+    label: 'languages.zhCn',
+    value: 'zh-cn'
+  },
+  {
+    label: 'languages.fr',
+    value: 'fr'
+  },
+  {
+    label: 'languages.de',
+    value: 'de'
+  }
+]
+
 export const DEFAULT_SUMMARY_DATA = {
   totalVisits: 0,
   submissionCount: 0,

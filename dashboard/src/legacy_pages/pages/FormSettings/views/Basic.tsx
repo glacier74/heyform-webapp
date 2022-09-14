@@ -7,10 +7,11 @@
 
 import { FormError, SubHeading } from '@/legacy_pages/components'
 import { TimeInput } from '@/legacy_pages/components/TimeInput'
+import { LanguageSettings } from '@/legacy_pages/pages/FormSettings/views/LanguageSettings'
 import { useStore } from '@/legacy_pages/utils'
 import { FormService } from '@/service'
 import { useParam } from '@/utils'
-import { Button, Form, FormItem, Input, message, SwitchFormItem } from '@heyui/component'
+import { Button, Form, FormItem, message, SwitchFormItem } from '@heyui/component'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -20,7 +21,6 @@ export const Basic: FC = observer(() => {
   const { t } = useTranslation()
   const { formId } = useParam()
   const formStore = useStore('formStore')
-  const workspaceStore = useStore('workspaceStore')
 
   const [loading, setLoading] = useState(false)
   const [values, setValues] = useState<IMapType>(formStore.current?.settings as any)
@@ -65,6 +65,10 @@ export const Basic: FC = observer(() => {
         onValuesChange={handleValuesChange}
         onFinish={handleFinish}
       >
+        <FormItem name="locale">
+          <LanguageSettings />
+        </FormItem>
+
         <SwitchFormItem
           name="allowArchive"
           label={t('formSettings.subArchive')}
@@ -116,29 +120,6 @@ export const Basic: FC = observer(() => {
           description={t('formSettings.progressText')}
         />
 
-        <SwitchFormItem
-          name="redirectOnCompletion"
-          label={t('formSettings.Redirect')}
-          description={t('formSettings.redirectText')}
-          style={{
-            paddingBottom: values?.redirectOnCompletion ? 0 : undefined
-          }}
-        />
-
-        {values?.redirectOnCompletion && (
-          <FormItem
-            name="redirectUrl"
-            rules={[
-              {
-                type: 'url',
-                required: true
-              }
-            ]}
-          >
-            <Input size="small" placeholder="eg: https://example.com" />
-          </FormItem>
-        )}
-
         {error && <FormError error={error} />}
         <FormItem>
           <Button type="primary" htmlType="submit" size="small" loading={loading}>
@@ -149,22 +130,6 @@ export const Basic: FC = observer(() => {
     </div>
   )
 })
-
-const Container = styled.div`
-  .hey-label {
-    margin-bottom: 8px;
-    color: #37352f !important;
-  }
-
-  .heyform-item-description {
-    color: #8a94a6;
-    font-size: 13px;
-  }
-
-  input {
-    height: 40px;
-  }
-`
 
 const StyledTimeInput = styled(TimeInput)`
   width: 13.75rem;

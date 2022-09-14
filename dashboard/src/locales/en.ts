@@ -620,7 +620,10 @@ export default {
       'Once you confirm to disable Submission Archive, all submissions will be deleted.',
     Cancel: 'Cancel',
     Disable: 'Disable',
-    times: 'times in every'
+    times: 'times in every',
+    Language: 'Language',
+    LanguageDescription:
+      'Select the language in which respondents will see your form. Applies to non-customized text, such as default buttons, hint messages, etc.'
   },
   integration: {
     Categories: 'Categories',
@@ -955,5 +958,11 @@ export default {
       'No contracts, downgrade or cancel the subscription anytime within a single click from your dashboard.',
     trialButton: 'Go for a trial',
     trialGofree: 'Continue with free plan'
+  },
+  languages: {
+    en: 'English',
+    zhCn: 'Chinese (simplified)',
+    fr: 'French',
+    de: 'German'
   }
 }
