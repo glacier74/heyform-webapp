@@ -1,4 +1,3 @@
-import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { BlockProps } from './Block'
@@ -13,8 +12,6 @@ export const ThankYou: FC<BlockProps> = ({ field, locale, className, children, .
       field={field}
       locale={locale}
       {...restProps}
-    >
-      <FakeSubmit text={field.properties?.buttonText || t('Create a heyform', { lng: locale })} />
-    </Block>
+    />
   )
 }

@@ -842,7 +842,9 @@ export default {
     addColumn: '新建列',
     columnPlaceholder: '列{{index}}',
     theme: '主题',
-    customize: '自定义'
+    customize: '自定义',
+    redirect: '完成时重定向',
+    buttonLinkUrl: '按钮链接地址'
   },
   onboarding: {
     trialTitle: 'Start your 14-day free trial',

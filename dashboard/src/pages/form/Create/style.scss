@@ -890,10 +890,6 @@
       @apply space-x-0 justify-between;
     }
 
-    .tabs-nav {
-      @apply p-0;
-    }
-
     .plan-check {
       @apply py-4;
     }
@@ -916,7 +912,7 @@
   }
 
   .tabs-pane-group {
-    @apply flex-1;
+    @apply relative flex-1;
     @extend .scrollbar;
   }
 }
@@ -1137,7 +1133,7 @@
 }
 
 .logic-flow {
-  @apply flex-1 h-full;
+  @apply relative flex-1 h-full;
 
   .react-flow__handle {
     @apply pointer-events-none #{!important};
@@ -1145,6 +1141,10 @@
     &.connectable {
       @apply cursor-default;
     }
+  }
+
+  .tab-pane_plan-check {
+    @apply backdrop-blur-none bg-transparent;
   }
 }
 
@@ -1251,4 +1251,14 @@
 
 .react-flow__controls-button {
   @extend .button;
+}
+
+.plan-check__redirect {
+  .plan-check-container {
+    @apply p-0;
+
+    .badge {
+      @apply px-1;
+    }
+  }
 }

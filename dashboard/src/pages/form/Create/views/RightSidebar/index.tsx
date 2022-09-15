@@ -1,27 +1,16 @@
-import { PlanCheck } from '@/components'
+import { TabPanePlanCheck } from '@/components'
 import { PlanGradeEnum } from '@/models'
 import { useStoreContext } from '@/pages/form/Create/store'
+import { Design } from '@/pages/form/Create/views/RightSidebar/Design'
 import { Tabs } from '@heyforms/ui'
-import type { ITab } from '@heyforms/ui/types/tabs/context'
-import { memo, useCallback } from 'react'
+import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Design } from './Design'
 import { Logic } from './Logic'
 import { Question } from './Question'
 
 const RightSidebarComponent = () => {
   const { t } = useTranslation()
   const { dispatch } = useStoreContext()
-
-  function render(tab: ITab) {
-    switch (tab.name) {
-      case 'question':
-        return <PlanCheck permission={PlanGradeEnum.FREE}>{tab.title}</PlanCheck>
-
-      default:
-        return <PlanCheck permission={PlanGradeEnum.PREMIUM}>{tab.title}</PlanCheck>
-    }
-  }
 
   function handleChange(activeTabName: any) {
     dispatch({
@@ -32,19 +21,21 @@ const RightSidebarComponent = () => {
     })
   }
 
-  const renderCallback = useCallback(render, [])
-
   return (
     <div className="right-sidebar">
-      <Tabs defaultActiveName="question" navRender={renderCallback} onChange={handleChange}>
+      <Tabs defaultActiveName="question" onChange={handleChange}>
         <Tabs.Pane name="question" title={t('formBuilder.question')}>
           <Question />
         </Tabs.Pane>
         <Tabs.Pane name="design" title={t('formBuilder.design')}>
-          <Design />
+          <TabPanePlanCheck permission={PlanGradeEnum.PREMIUM}>
+            <Design />
+          </TabPanePlanCheck>
         </Tabs.Pane>
         <Tabs.Pane name="logic" title={t('formBuilder.logic')}>
-          <Logic />
+          <TabPanePlanCheck permission={PlanGradeEnum.PREMIUM}>
+            <Logic />
+          </TabPanePlanCheck>
         </Tabs.Pane>
       </Tabs>
     </div>

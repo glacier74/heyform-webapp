@@ -9,6 +9,7 @@ import { OpinionScale } from './OpinionScale'
 import { PhoneNumber } from './PhoneNumber'
 import { Rating } from './Rating'
 import { Statement } from './Statement'
+import { ThankYou } from './ThankYou'
 
 export const Settings: FC = () => {
   const { t } = useTranslation()
@@ -45,8 +46,10 @@ export const Settings: FC = () => {
           case FieldKindEnum.STATEMENT:
           case FieldKindEnum.GROUP:
           case FieldKindEnum.WELCOME:
-          case FieldKindEnum.THANK_YOU:
             return <Statement field={field} />
+
+          case FieldKindEnum.THANK_YOU:
+            return <ThankYou field={field} />
         }
       })()}
     </div>

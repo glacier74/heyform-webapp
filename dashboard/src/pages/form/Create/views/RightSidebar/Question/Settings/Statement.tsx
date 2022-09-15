@@ -1,13 +1,12 @@
 import { useStoreContext } from '@/pages/form/Create/store'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { Input } from '@heyforms/ui'
-import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { startTransition, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { IBasicProps } from './Basic'
 
-export const Statement: FC<IBasicProps> = observer(({ field }) => {
+export const Statement: FC<IBasicProps> = ({ field }) => {
   const { t } = useTranslation()
   const { state, dispatch } = useStoreContext()
 
@@ -50,4 +49,4 @@ export const Statement: FC<IBasicProps> = observer(({ field }) => {
       <Input className="mt-1" value={buttonText} maxLength={24} onChange={handleChangeCallback} />
     </div>
   )
-})
+}

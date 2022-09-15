@@ -943,7 +943,9 @@ export default {
     rulePlaceholder:
       'There are no rules yet. Select a question in the left preview and add a rule in the pop-up panel. You can also click "Bulk edit" to batch edit all rules.',
     singleRule: '1 rule has been set',
-    multipleRules: '{{count}} rules have been set'
+    multipleRules: '{{count}} rules have been set',
+    redirect: 'Redirect on completion',
+    buttonLinkUrl: 'Button link URL'
   },
   onboarding: {
     trialTitle: 'Start your 14-day free trial',
