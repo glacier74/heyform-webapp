@@ -6,29 +6,32 @@ import { FC } from 'react'
 
 interface UpgradeButtonProps extends IComponentProps {
   permission: PlanGradeEnum
+  isBadgeShow?: boolean
 }
 
-export const PlanCheck: FC<UpgradeButtonProps> = observer(({ permission, children }) => {
-  const appStore = useStore('appStore')
-  const workspaceStore = useStore('workspaceStore')
-  const grade = workspaceStore.workspace?.plan.grade || PlanGradeEnum.FREE
+export const PlanCheck: FC<UpgradeButtonProps> = observer(
+  ({ permission, isBadgeShow = true, children }) => {
+    const appStore = useStore('appStore')
+    const workspaceStore = useStore('workspaceStore')
+    const grade = workspaceStore.workspace?.plan.grade || PlanGradeEnum.FREE
 
-  function handleClick(event: any) {
-    event.stopPropagation()
-    appStore.isPlanModalOpen = true
+    function handleClick(event: any) {
+      event.stopPropagation()
+      appStore.isPlanModalOpen = true
+    }
+
+    return (
+      <div className="plan-check relative">
+        {children}
+        {grade < permission && (
+          <div
+            className="flex items-center justify-end absolute inset-0 px-2 py-1 z-10 cursor-pointer"
+            onClick={handleClick}
+          >
+            {isBadgeShow && <Badge className="px-2" type="blue" text="Premium" rounded />}
+          </div>
+        )}
+      </div>
+    )
   }
-
-  return (
-    <div className="plan-check relative">
-      {children}
-      {grade < permission && (
-        <div
-          className="flex items-center justify-end absolute inset-0 px-2 py-1 z-10 cursor-pointer"
-          onClick={handleClick}
-        >
-          <Badge className="px-2" type="blue" text="Premium" rounded />
-        </div>
-      )}
-    </div>
-  )
-})
+)
