@@ -4,7 +4,7 @@ import type { FC } from 'react'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
-export const Rating: FC<BlockProps> = ({ field, ...restProps }) => {
+export const Rating: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   function characterRender(index: number) {
     return (
       <>
@@ -15,7 +15,7 @@ export const Rating: FC<BlockProps> = ({ field, ...restProps }) => {
   }
 
   return (
-    <Block className="builder-rating" field={field} {...restProps}>
+    <Block className="builder-rating" field={field} locale={locale} {...restProps}>
       <Rate count={field.properties?.total || 5} itemRender={characterRender} />
     </Block>
   )

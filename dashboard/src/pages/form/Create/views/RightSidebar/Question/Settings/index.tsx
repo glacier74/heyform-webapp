@@ -15,15 +15,13 @@ export const Settings: FC = () => {
   const { state } = useStoreContext()
   const field = state.selectedField!
 
-  if (field.kind === FieldKindEnum.GROUP) {
-    return null
-  }
-
   return (
     <div className="right-sidebar-group right-sidebar-settings">
       <div className="right-sidebar-group-title">{t('formBuilder.settings')}</div>
 
-      {QUESTION_FIELD_KINDS.includes(field.kind) && <Basic field={field} />}
+      {QUESTION_FIELD_KINDS.includes(field.kind) && field.kind !== FieldKindEnum.GROUP && (
+        <Basic field={field} />
+      )}
 
       {(() => {
         switch (field.kind) {
@@ -45,6 +43,7 @@ export const Settings: FC = () => {
             return <Rating field={field} />
 
           case FieldKindEnum.STATEMENT:
+          case FieldKindEnum.GROUP:
           case FieldKindEnum.WELCOME:
           case FieldKindEnum.THANK_YOU:
             return <Statement field={field} />

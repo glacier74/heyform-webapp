@@ -4,14 +4,14 @@ import { FakeRadio } from '../FakeRadio'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
-export const LegalTerms: FC<BlockProps> = ({ field, ...restProps }) => {
+export const LegalTerms: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
 
   return (
-    <Block className="builder-legal-terms" field={field} {...restProps}>
+    <Block className="builder-legal-terms" field={field} locale={locale} {...restProps}>
       <div className="builder-radio-group w-56">
-        <FakeRadio hotkey="Y" label={t('formBuilder.accept')} />
-        <FakeRadio hotkey="N" label={t('formBuilder.dontAccept')} />
+        <FakeRadio hotkey="Y" label={t('I accept', { lng: locale })} />
+        <FakeRadio hotkey="N" label={t("I don't accept", { lng: locale })} />
       </div>
     </Block>
   )

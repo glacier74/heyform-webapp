@@ -30,6 +30,7 @@ const FormBuilder: FC<{ form: FormModel }> = ({ form }) => {
     references: [],
     activeTabName: 'question',
     variables: form.variables,
+    locale: form.settings?.locale || 'en',
     ...initFields(form.fields, form.logics)
   }
   const [state, dispatch] = useReducer(storeReducer, initialState)

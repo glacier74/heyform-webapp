@@ -17,11 +17,11 @@ const resources = {
       ...locales['zh-cn'].translation
     }
   },
+  'zh-tw': locales['zh-tw'],
   fr: locales.fr,
   de: locales.de
 }
 const supportedLngs = Object.keys(resources)
-console.log(resources.en.translation)
 
 i18n.use(initReactI18next).init({
   lowerCaseLng: true,

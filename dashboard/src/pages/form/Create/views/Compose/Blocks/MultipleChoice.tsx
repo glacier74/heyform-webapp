@@ -68,7 +68,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
   )
 }
 
-export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
+export const MultipleChoice: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
   const { dispatch } = useStoreContext()
 
@@ -133,7 +133,7 @@ export const MultipleChoice: FC<BlockProps> = ({ field, ...restProps }) => {
   const handleLabelChangeCallback = useCallback(handleLabelChange, [field.properties])
 
   return (
-    <Block className="builder-multiple-choice" field={field} {...restProps}>
+    <Block className="builder-multiple-choice" field={field} locale={locale} {...restProps}>
       <div className="builder-multiple-choice-list">
         {field.properties?.choices?.map((choice, index) => (
           <MultipleChoiceItem

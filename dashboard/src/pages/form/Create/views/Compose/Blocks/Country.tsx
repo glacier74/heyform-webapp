@@ -6,13 +6,13 @@ import { FakeSelect } from '../FakeSelect'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
-export const Country: FC<BlockProps> = ({ field, ...restProps }) => {
+export const Country: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
 
   return (
-    <Block className="builder-country" field={field} {...restProps}>
-      <FakeSelect placeholder={t('formBuilder.selectCountry')} />
-      <FakeSubmit text={t('Next')} icon={<ChevronRightIcon />} />
+    <Block className="builder-country" field={field} locale={locale} {...restProps}>
+      <FakeSelect placeholder={t('Select a country', { lng: locale })} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
     </Block>
   )
 }

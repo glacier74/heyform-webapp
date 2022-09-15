@@ -111,7 +111,7 @@ const AddPictureChoice: FC<IComponentProps> = props => {
   )
 }
 
-export const PictureChoice: FC<BlockProps> = ({ field, ...restProps }) => {
+export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { dispatch } = useStoreContext()
   const [choiceId, setChoiceId] = useState<string>()
 
@@ -233,7 +233,7 @@ export const PictureChoice: FC<BlockProps> = ({ field, ...restProps }) => {
   const handleImageChangeCallback = useCallback(handleImageChange, [field.properties, choiceId])
 
   return (
-    <Block className="builder-picture-choice" field={field} {...restProps}>
+    <Block className="builder-picture-choice" field={field} locale={locale} {...restProps}>
       <div className="builder-picture-choice-list">
         {field.properties?.choices?.map((choice, index) => (
           <PictureChoiceItem

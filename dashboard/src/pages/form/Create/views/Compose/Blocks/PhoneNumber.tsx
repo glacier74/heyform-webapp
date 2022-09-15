@@ -8,14 +8,14 @@ import { FlagIcon } from '../FlagIcon'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
-export const PhoneNumber: FC<BlockProps> = ({ field, ...restProps }) => {
+export const PhoneNumber: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
   const placeholder = useMemo(() => {
     return COUNTRIES.find(c => c.value === field.properties?.defaultCountryCode)?.example
   }, [field.properties?.defaultCountryCode])
 
   return (
-    <Block className="builder-phone-number" field={field} {...restProps}>
+    <Block className="builder-phone-number" field={field} locale={locale} {...restProps}>
       <div className="flex items-center">
         <div className="builder-calling-code">
           <FlagIcon countryCode={field.properties?.defaultCountryCode} />
@@ -23,7 +23,7 @@ export const PhoneNumber: FC<BlockProps> = ({ field, ...restProps }) => {
         </div>
         <input type="text" className="builder-input" placeholder={placeholder} disabled={true} />
       </div>
-      <FakeSubmit text={t('Next')} icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
     </Block>
   )
 }

@@ -5,18 +5,18 @@ import { useTranslation } from 'react-i18next'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
-export const Number: FC<BlockProps> = ({ field, ...restProps }) => {
+export const Number: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
 
   return (
-    <Block className="builder-number" field={field} {...restProps}>
+    <Block className="builder-number" field={field} locale={locale} {...restProps}>
       <input
         type="number"
         className="builder-input"
-        placeholder={t('formBuilder.yourAnswer')}
+        placeholder={t('Your answer goes here', { lng: locale })}
         disabled={true}
       />
-      <FakeSubmit text={t('Next')} icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
     </Block>
   )
 }

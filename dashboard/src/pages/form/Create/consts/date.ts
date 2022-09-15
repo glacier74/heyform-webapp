@@ -55,22 +55,22 @@ export const TIME_FORMAT = 'HH:mm'
 export const DATE_FORMAT_NAMES: IMapType = {
   YYYY: {
     id: 'year',
-    label: 'formBuilder.year'
+    label: 'Year'
   },
   MM: {
     id: 'month',
-    label: 'formBuilder.month'
+    label: 'Month'
   },
   DD: {
     id: 'day',
-    label: 'formBuilder.day'
+    label: 'Day'
   },
   HH: {
     id: 'hour',
-    label: 'formBuilder.hour'
+    label: 'Hour'
   },
   mm: {
     id: 'minute',
-    label: 'formBuilder.minute'
+    label: 'Minute'
   }
 }

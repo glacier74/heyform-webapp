@@ -4,14 +4,14 @@ import { FakeRadio } from '../FakeRadio'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
-export const YesNo: FC<BlockProps> = ({ field, ...restProps }) => {
+export const YesNo: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
 
   return (
-    <Block className="builder-yes-no" field={field} {...restProps}>
+    <Block className="builder-yes-no" field={field} locale={locale} {...restProps}>
       <div className="builder-radio-group w-40">
-        <FakeRadio hotkey="Y" label={t('Yes')} />
-        <FakeRadio hotkey="N" label={t('No')} />
+        <FakeRadio hotkey="Y" label={t('Yes', { lng: locale })} />
+        <FakeRadio hotkey="N" label={t('No', { lng: locale })} />
       </div>
     </Block>
   )

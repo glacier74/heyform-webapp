@@ -5,18 +5,18 @@ import { useTranslation } from 'react-i18next'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
-export const Email: FC<BlockProps> = ({ field, ...restProps }) => {
+export const Email: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
 
   return (
-    <Block className="builder-email" field={field} {...restProps}>
+    <Block className="builder-email" field={field} locale={locale} {...restProps}>
       <input
         type="email"
         className="builder-input"
         placeholder="email@example.com"
         disabled={true}
       />
-      <FakeSubmit text={t('Next')} icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
     </Block>
   )
 }

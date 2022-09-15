@@ -6,22 +6,22 @@ import { FakeSelect } from '../FakeSelect'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
-export const Address: FC<BlockProps> = ({ field, ...restProps }) => {
+export const Address: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
 
   return (
-    <Block className="builder-address" field={field} {...restProps}>
+    <Block className="builder-address" field={field} locale={locale} {...restProps}>
       <div className="space-y-4">
         <input
           type="text"
           className="builder-input"
-          placeholder={t('formBuilder.address1')}
+          placeholder={t('Address Line 1', { lng: locale })}
           disabled={true}
         />
         <input
           type="text"
           className="builder-input"
-          placeholder={t('formBuilder.address2')}
+          placeholder={t('Address Line 2 (optional)', { lng: locale })}
           disabled={true}
         />
 
@@ -29,13 +29,13 @@ export const Address: FC<BlockProps> = ({ field, ...restProps }) => {
           <input
             type="text"
             className="builder-input"
-            placeholder={t('formBuilder.city')}
+            placeholder={t('City', { lng: locale })}
             disabled={true}
           />
           <input
             type="text"
             className="builder-input"
-            placeholder={t('formBuilder.state')}
+            placeholder={t('State/Province', { lng: locale })}
             disabled={true}
           />
         </div>
@@ -44,13 +44,13 @@ export const Address: FC<BlockProps> = ({ field, ...restProps }) => {
           <input
             type="text"
             className="builder-input"
-            placeholder={t('formBuilder.zip')}
+            placeholder={t('Zip/Postal Code', { lng: locale })}
             disabled={true}
           />
-          <FakeSelect placeholder={t('formBuilder.country')} />
+          <FakeSelect placeholder={t('Country', { lng: locale })} />
         </div>
       </div>
-      <FakeSubmit text={t('Next')} icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
     </Block>
   )
 }

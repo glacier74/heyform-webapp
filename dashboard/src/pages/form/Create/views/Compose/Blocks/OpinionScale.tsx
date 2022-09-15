@@ -4,13 +4,13 @@ import { FakeRadio } from '../FakeRadio'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
-export const OpinionScale: FC<BlockProps> = ({ field, ...restProps }) => {
+export const OpinionScale: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const indexes = useMemo(() => {
     return Array.from({ length: field.properties?.total || 10 }).map((_, index) => index + 1)
   }, [field.properties?.total])
 
   return (
-    <Block className="builder-opinion-scale" field={field} {...restProps}>
+    <Block className="builder-opinion-scale" field={field} locale={locale} {...restProps}>
       <div className="flex items-center space-x-2">
         {indexes.map(index => (
           <FakeRadio label={index} key={index} />

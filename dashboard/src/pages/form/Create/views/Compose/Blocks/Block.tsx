@@ -11,12 +11,14 @@ import { Layout } from '../Layout'
 
 export interface BlockProps extends IComponentProps {
   field: FormField
+  locale: string
   parentField?: FormField
 }
 
 export const Block: FC<BlockProps> = ({
   className,
   field,
+  locale,
   parentField,
   children,
   ...restProps
@@ -80,7 +82,10 @@ export const Block: FC<BlockProps> = ({
         <div className="heyform-block-group">
           <div className="heyform-block-group-container">
             <label className="builder-block-label">
-              {t('formBuilder.question')} {questionNumber(parentField!.index)}
+              {t('Question {{number}}', {
+                number: questionNumber(parentField!.index),
+                lng: locale
+              })}
             </label>
             <div className="builder-block-title">{parentField.title}</div>
           </div>
@@ -97,7 +102,10 @@ export const Block: FC<BlockProps> = ({
             <div className="mb-10">
               {isLabelShow && (
                 <label className="builder-block-label">
-                  {t('formBuilder.question')} {questionNumber(field.index, parentField?.index)}{' '}
+                  {t('Question {{number}}', {
+                    number: questionNumber(field.index, parentField?.index),
+                    lng: locale
+                  })}{' '}
                   {field.validations?.required && '*'}
                 </label>
               )}

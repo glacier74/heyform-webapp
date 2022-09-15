@@ -31,20 +31,24 @@ export const FORM_ANALYTICS_OPTIONS: OptionType[] = [
 
 export const FORM_LOCALES_OPTIONS = [
   {
-    label: 'languages.en',
-    value: 'en'
+    label: 'languages.de',
+    value: 'de'
   },
   {
-    label: 'languages.zhCn',
-    value: 'zh-cn'
+    label: 'languages.en',
+    value: 'en'
   },
   {
     label: 'languages.fr',
     value: 'fr'
   },
   {
-    label: 'languages.de',
-    value: 'de'
+    label: 'languages.zhCn',
+    value: 'zh-cn'
+  },
+  {
+    label: 'languages.zhTw',
+    value: 'zh-tw'
   }
 ]
 

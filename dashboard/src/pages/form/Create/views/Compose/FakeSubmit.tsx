@@ -9,7 +9,7 @@ export const FakeSubmit: FC<FakeSubmitProps> = ({ text, icon, ...restProps }) =>
   return (
     <div className="builder-submit-container" {...restProps}>
       <div className="builder-submit-button">
-        <span>{text || 'Next'}</span>
+        <span>{text}</span>
         {icon}
       </div>
     </div>

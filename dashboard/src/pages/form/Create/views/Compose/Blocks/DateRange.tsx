@@ -8,14 +8,14 @@ import { useTranslation } from 'react-i18next'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
-export const DateRange: FC<BlockProps> = ({ field, ...restProps }) => {
+export const DateRange: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
   const format = field.properties?.format || 'MM/DD/YYYY'
   const [x, y, z, dateDivider] = DATE_FORMAT_MAPS[format]
   const [h, m, timeDivider] = DATE_FORMAT_MAPS[TIME_FORMAT]
 
   return (
-    <Block className="builder-date" field={field} {...restProps}>
+    <Block className="builder-date" field={field} locale={locale} {...restProps}>
       <div
         className={clsx('flex items-center builder-date-range', {
           'builder-date-range-with-time': field.properties?.allowTime
@@ -56,7 +56,7 @@ export const DateRange: FC<BlockProps> = ({ field, ...restProps }) => {
         </div>
       </div>
 
-      <FakeSubmit text={t('Next')} icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
     </Block>
   )
 }

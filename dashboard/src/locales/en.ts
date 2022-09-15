@@ -945,13 +945,6 @@ export default {
     singleRule: '1 rule has been set',
     multipleRules: '{{count}} rules have been set'
   },
-  'Create a heyform': 'Create a heyform',
-  "File size can't exceed {{size}}": "File size can't exceed {{size}}",
-  'Choose up to {{max}} choices': 'Choose up to {{max}} choices',
-  'Choose at least {{min}} choices': 'Choose at least {{min}} choices',
-  'Choose {{max}} choices': 'Choose {{max}} choices',
-  'Choose between {{min}} to {{max}} choices': 'Choose between {{min}} to {{max}} choices',
-  'Question {{number}}': 'Question {{number}}',
   onboarding: {
     trialTitle: 'Start your 14-day free trial',
     trialDesc:
@@ -962,6 +955,7 @@ export default {
   languages: {
     en: 'English',
     zhCn: 'Chinese (simplified)',
+    zhTw: 'Chinese (traditional)',
     fr: 'French',
     de: 'German'
   }

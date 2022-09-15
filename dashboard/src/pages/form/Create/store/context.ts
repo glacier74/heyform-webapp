@@ -6,6 +6,7 @@ import * as actions from './actions'
 
 export interface IState {
   formId: string
+  locale: string
   fields: FormField[]
   // Version to detect changes whether we need to sync with server or not
   version: number

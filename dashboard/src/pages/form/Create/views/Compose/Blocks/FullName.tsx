@@ -5,26 +5,26 @@ import { useTranslation } from 'react-i18next'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
-export const FullName: FC<BlockProps> = ({ field, ...restProps }) => {
+export const FullName: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
 
   return (
-    <Block className="builder-full-name" field={field} {...restProps}>
+    <Block className="builder-full-name" field={field} locale={locale} {...restProps}>
       <div className="flex items-center space-x-4">
         <input
           type="text"
           className="builder-input"
-          placeholder={t('formBuilder.firstName')}
+          placeholder={t('First Name', { lng: locale })}
           disabled={true}
         />
         <input
           type="text"
           className="builder-input"
-          placeholder={t('formBuilder.lastName')}
+          placeholder={t('Last Name', { lng: locale })}
           disabled={true}
         />
       </div>
-      <FakeSubmit text={t('Next')} icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
     </Block>
   )
 }

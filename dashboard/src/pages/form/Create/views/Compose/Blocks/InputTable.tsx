@@ -53,7 +53,7 @@ const Thead: FC<TheadProps> = ({ index, column, deletable, onChange, onRemove, .
   )
 }
 
-export const InputTable: FC<BlockProps> = ({ field, ...restProps }) => {
+export const InputTable: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { dispatch } = useStoreContext()
   const { t } = useTranslation()
 
@@ -119,7 +119,7 @@ export const InputTable: FC<BlockProps> = ({ field, ...restProps }) => {
   const handleRemoveColumnCallback = useCallback(handleRemoveColumn, [field.properties])
 
   return (
-    <Block className="builder-input-table" field={field} {...restProps}>
+    <Block className="builder-input-table" field={field} locale={locale} {...restProps}>
       <div className="flex items-center justify-end mb-2">
         <Button.Link className="builder-add-column" onClick={handleAddColumnCallback}>
           {t('formBuilder.addColumn')}
@@ -152,7 +152,7 @@ export const InputTable: FC<BlockProps> = ({ field, ...restProps }) => {
           </tbody>
         </table>
       </div>
-      <FakeSubmit text={t('Next')} icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
     </Block>
   )
 }
