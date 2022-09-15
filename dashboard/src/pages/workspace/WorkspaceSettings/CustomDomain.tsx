@@ -150,7 +150,7 @@ export const CustomDomain: FC = observer(() => {
 
   return (
     <div>
-      <PlanCheck permission={PlanGradeEnum.PRO}>
+      <PlanCheck permission={PlanGradeEnum.PREMIUM}>
         <SwitchField
           label={t('workspace.settings.customDomain')}
           description={

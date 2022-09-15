@@ -19,7 +19,7 @@ const RightSidebarComponent = () => {
         return <PlanCheck permission={PlanGradeEnum.FREE}>{tab.title}</PlanCheck>
 
       default:
-        return <PlanCheck permission={PlanGradeEnum.BASIC}>{tab.title}</PlanCheck>
+        return <PlanCheck permission={PlanGradeEnum.PREMIUM}>{tab.title}</PlanCheck>
     }
   }
 

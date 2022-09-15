@@ -77,7 +77,7 @@ export const Branding: FC = observer(() => {
         </Form.Item>
       </Form.Custom>
 
-      <PlanCheck permission={PlanGradeEnum.BUSINESS}>
+      <PlanCheck permission={PlanGradeEnum.PREMIUM}>
         <SwitchField
           className="mt-6"
           label={t('workspace.settings.removeBranding')}

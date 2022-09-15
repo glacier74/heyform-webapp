@@ -44,16 +44,16 @@ export const WorkspaceSidebar: FC = observer(() => {
             <IconText icon={<BillingFillIcon />} text={t('Billing')} />
           </NavLink>
         )}
-        <UpgradePlan name="Basic" permission={PlanGradeEnum.BASIC}>
+        <UpgradePlan name="Basic" permission={PlanGradeEnum.PREMIUM}>
           <NavLink to={`/workspace/${workspaceId}/members`}>
             <IconText icon={<MemberFillIcon />} text={t('Members')} />
-            <PlanPermissionBadge name="Basic" permission={PlanGradeEnum.BASIC} />
+            <PlanPermissionBadge name="Basic" permission={PlanGradeEnum.PREMIUM} />
           </NavLink>
         </UpgradePlan>
-        <UpgradePlan name="Basic" permission={PlanGradeEnum.BASIC}>
+        <UpgradePlan name="Basic" permission={PlanGradeEnum.PREMIUM}>
           <NavLink to={`/workspace/${workspaceId}/audience`}>
             <IconText icon={<AudienceFillIcon />} text={t('Audience')} />
-            <PlanPermissionBadge name="Basic" permission={PlanGradeEnum.BASIC} />
+            <PlanPermissionBadge name="Basic" permission={PlanGradeEnum.PREMIUM} />
           </NavLink>
         </UpgradePlan>
       </Nav>

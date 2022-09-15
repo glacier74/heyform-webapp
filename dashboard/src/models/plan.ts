@@ -11,15 +11,17 @@ import { BillingCycleEnum } from "./invoice";
 /**
  * @Discard BASIC:    $9.9/mo  $7.9*12/mo
  * @Discard PRO:      $24.9/mo $19.9*12/mo
- * BUSINESS: $49.9/mo $39.9*12/mo
+ * PREMIUM: $49.9/mo $39.9*12/mo
  * @Discard ENTERPRISE
  */
 export enum PlanGradeEnum {
   FREE = 0,
-  BASIC, // @Discard
-  PRO,
-  BUSINESS, // @Discard
-  ENTERPRISE // @Discard
+  // @Discard at Sep 15, 2022
+  // BASIC, // @Discard
+  // PRO,
+  // BUSINESS, // @Discard
+  // ENTERPRISE // @Discard
+  PREMIUM = 3
 }
 
 export enum PlanPriceTypeEnum {

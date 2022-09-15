@@ -146,7 +146,7 @@ const Groups = () => {
     appStore.isPlanModalOpen = true
   }
 
-  if (workspaceStore.workspace.plan.grade < PlanGradeEnum.BASIC) {
+  if (workspaceStore.workspace.plan.grade < PlanGradeEnum.PREMIUM) {
     return (
       <EmptyStates
         className="empty-states-full"

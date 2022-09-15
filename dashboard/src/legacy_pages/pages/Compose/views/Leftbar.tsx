@@ -52,7 +52,7 @@ export const Leftbar: FC = observer(() => {
               key: ComposeTabKeyEnum.THEME,
               title: t('Theme'),
               icon: (
-                <UpgradePlan name="Basic" permission={PlanGradeEnum.BASIC}>
+                <UpgradePlan name="Basic" permission={PlanGradeEnum.PREMIUM}>
                   <ThemeIcon />
                 </UpgradePlan>
               )
@@ -61,7 +61,7 @@ export const Leftbar: FC = observer(() => {
               key: ComposeTabKeyEnum.CUSTOMIZE,
               title: t('Customize'),
               icon: (
-                <UpgradePlan name="Basic" permission={PlanGradeEnum.BASIC}>
+                <UpgradePlan name="Basic" permission={PlanGradeEnum.PREMIUM}>
                   <PlatteIcon />
                 </UpgradePlan>
               )

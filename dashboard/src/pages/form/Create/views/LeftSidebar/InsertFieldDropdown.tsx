@@ -64,7 +64,7 @@ const InsertFieldItem: FC<InsertFieldItemProps> = ({
   )
 
   if (config.kind === FieldKindEnum.THANK_YOU) {
-    return <PlanCheck permission={PlanGradeEnum.BASIC}>{Children}</PlanCheck>
+    return <PlanCheck permission={PlanGradeEnum.PREMIUM}>{Children}</PlanCheck>
   }
 
   return Children
