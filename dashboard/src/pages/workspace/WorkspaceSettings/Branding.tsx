@@ -56,7 +56,7 @@ export const Branding: FC = observer(() => {
         </div>
         <div className="flex items-center">
           <span className="text-sm">{workspaceStore.workspace?.id}</span>
-          <CopyButton className="ml-2 text-blue-600" text={workspaceStore.workspace?.id} />
+          <CopyButton className="ml-2 text-blue-700" text={workspaceStore.workspace?.id} />
         </div>
       </div>
 

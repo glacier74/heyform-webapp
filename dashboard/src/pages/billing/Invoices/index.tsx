@@ -45,7 +45,7 @@ const Invoices = () => {
       name: '',
       render(record) {
         return (
-          <a className="text-blue-600" href={record.pdfUrl!} target="_blank" rel="noreferrer">
+          <a className="text-blue-700" href={record.pdfUrl!} target="_blank" rel="noreferrer">
             {t('billing.View')}
           </a>
         )

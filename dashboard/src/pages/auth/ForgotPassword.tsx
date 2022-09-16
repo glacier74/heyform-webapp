@@ -48,7 +48,7 @@ const ForgotPassword = () => {
             </Form.Item>
           </Form.Custom>
 
-          <div className="mt-6 text-center text-blue-600 hover:text-blue-500 sm:text-sm">
+          <div className="mt-6 text-center text-blue-700 hover:text-blue-800 sm:text-sm">
             <RedirectUriLink href="/login" className="inline-flex items-center">
               <ChevronLeftIcon className="w-5 h-5" /> {t('auth.forgotPassword.link')}
             </RedirectUriLink>

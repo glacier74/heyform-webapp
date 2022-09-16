@@ -147,7 +147,7 @@ const FormCreate = () => {
   }
 
   const Skeleton = (
-    <div className="h-full flex items-center justify-center text-blue-600">
+    <div className="h-full flex items-center justify-center text-blue-700">
       <Spin />
     </div>
   )

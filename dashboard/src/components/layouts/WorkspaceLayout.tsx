@@ -1,33 +1,28 @@
 import CreateWorkspaceModal from '@/components/CreateWorkspaceModal'
 import { FreeTrialAlert } from '@/components/FreeTrialAlert'
 import WorkspaceSettings from '@/pages/workspace/WorkspaceSettings'
+import { useStore } from '@/store'
 import { useVisible } from '@/utils'
 import { MenuIcon } from '@heroicons/react/outline'
 import type { FC } from 'react'
-import { useState } from 'react'
 import { Sidebar } from '../sidebar'
 import './index.scss'
 import { WorkspaceGuard } from './WorkspaceGuard'
 
 export const WorkspaceLayout: FC<IComponentProps> = ({ children }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const appStore = useStore('appStore')
+
   const [workspaceSettingsVisible, openWorkspaceSettings, closeWorkspaceSettings] = useVisible()
   const [createWorkspaceVisible, openCreateWorkspace, closeCreateWorkspace] = useVisible()
 
   function handleSidebarOpen() {
-    setSidebarOpen(true)
-  }
-
-  function handleSidebarClose() {
-    setSidebarOpen(false)
+    appStore.isSidebarOpen = true
   }
 
   return (
     <WorkspaceGuard>
       <div className="w-full min-h-screen bg-white">
         <Sidebar
-          isOpen={sidebarOpen}
-          onSidebarClose={handleSidebarClose}
           onWorkspaceSettingsOpen={openWorkspaceSettings}
           onCreateWorkspace={openCreateWorkspace}
         />

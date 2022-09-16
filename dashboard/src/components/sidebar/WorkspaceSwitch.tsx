@@ -53,7 +53,7 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
             {workspace.plan.name} {t('billing.plan')}
           </span>
           {workspace.subscription.trialing && (
-            <span className="text-blue-600 text-xs"> (trial)</span>
+            <span className="text-blue-700 text-xs"> (trial)</span>
           )}
           <span> · </span>
           <span>
@@ -108,7 +108,7 @@ const CurrentWorkspace = observer(() => {
             <span className="text-gray-500 text-sm truncate">
               {workspaceStore.workspace?.plan.name} {t('billing.plan')}
               {workspaceStore.workspace.subscription.trialing && (
-                <span className="text-blue-600 text-xs"> (trial)</span>
+                <span className="text-blue-700 text-xs"> (trial)</span>
               )}
             </span>
           </span>

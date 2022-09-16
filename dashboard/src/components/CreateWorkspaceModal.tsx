@@ -80,7 +80,7 @@ const CreateWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) =>
             <PhotoPickerField onVisibilityChange={handleVisibilityChange} />
           </Form.Item>
 
-          <Button type="primary" htmlType="submit" loading={loading}>
+          <Button className="w-full md:w-auto" type="primary" htmlType="submit" loading={loading}>
             {t('workspace.createWorkspace.create')}
           </Button>
 

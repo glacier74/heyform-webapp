@@ -23,7 +23,7 @@ const Login = () => {
           {t('login.or')} {''}
           <RedirectUriLink
             href="/sign-up"
-            className="font-medium text-blue-600 hover:text-blue-500"
+            className="font-medium text-blue-700 hover:text-blue-800"
           >
             {t('login.startFree')}
           </RedirectUriLink>

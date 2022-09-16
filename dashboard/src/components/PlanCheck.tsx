@@ -29,7 +29,7 @@ export const PlanCheck: FC<UpgradeButtonProps> = observer(
       <div className={clsx('plan-check relative', className)}>
         {children}
         <div
-          className="plan-check-container flex items-center justify-end absolute inset-0 px-2 py-1 z-10 cursor-pointer"
+          className="plan-check-container flex items-center justify-end absolute inset-0 z-10 cursor-pointer"
           onClick={handleClick}
         >
           {isBadgeShow && <Badge className="px-2" type="blue" text="Premium" rounded />}

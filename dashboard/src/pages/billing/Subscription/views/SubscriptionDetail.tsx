@@ -127,7 +127,7 @@ export const SubscriptionDetail: FC = observer(() => {
 
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col justify-start items-start md:flex-row md:items-center md:justify-between">
         <div>
           <h3 className="text-lg leading-6 font-medium text-gray-900">
             {plan.name} {t('billing.Plan')}
@@ -137,7 +137,11 @@ export const SubscriptionDetail: FC = observer(() => {
         {plan.grade > PlanGradeEnum.FREE &&
           subscription.status === SubscriptionStatusEnum.ACTIVE &&
           !subscription.canceledAt && (
-            <Button type="danger" onClick={openCancelPlan}>
+            <Button
+              className="mt-4 w-full md:mt-0 md:w-auto"
+              type="danger"
+              onClick={openCancelPlan}
+            >
               {t('billing.cancel')}
             </Button>
           )}

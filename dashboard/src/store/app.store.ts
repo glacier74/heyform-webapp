@@ -4,6 +4,9 @@ export class AppStore {
   // Email address of user who wants to reset password
   resetPasswordEmail = ''
 
+  // Sidebar is open or not
+  isSidebarOpen = false
+
   // Plan modal is open or not
   isPlanModalOpen = false
 

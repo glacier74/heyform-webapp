@@ -1020,7 +1020,7 @@
 }
 
 .right-sidebar-layout-item-active .right-sidebar-layout-container {
-  @apply text-blue-600 border-blue-600;
+  @apply text-blue-700 border-blue-600;
 }
 
 .color-picker-button {
@@ -1255,8 +1255,6 @@
 
 .plan-check__redirect {
   .plan-check-container {
-    @apply p-0;
-
     .badge {
       @apply px-1;
     }
