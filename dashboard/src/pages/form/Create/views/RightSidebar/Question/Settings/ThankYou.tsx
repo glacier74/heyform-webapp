@@ -54,7 +54,6 @@ export const ThankYou: FC<IBasicProps> = ({ field }) => {
             type="url"
             placeholder="https://example.com"
             value={field.properties?.redirectUrl}
-            maxLength={24}
             onChange={handleUrlChangeCallback}
           />
         )}
