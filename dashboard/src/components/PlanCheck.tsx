@@ -58,7 +58,7 @@ export const TabPanePlanCheck: FC<UpgradeButtonProps> = observer(
       <div className="absolute inset-0 z-10 overflow-hidden">
         {children}
         <div
-          className="tab-pane_plan-check absolute inset-0 flex items-center justify-center backdrop-blur-sm bg-white bg-opacity-5 cursor-pointer"
+          className="tab-pane_plan-check absolute inset-0 z-20 flex items-center justify-center backdrop-blur-sm bg-white bg-opacity-5 cursor-pointer"
           onClick={handleClick}
         >
           {isBadgeShow && <Badge className="px-4 py-2" type="blue" text="Premium" rounded />}
