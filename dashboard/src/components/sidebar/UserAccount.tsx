@@ -29,7 +29,7 @@ export const UserAccount: FC = observer(() => {
       <Menus.Item value="logout" label={t('other.labelList.Logout')} />
       <Menus.Divider />
       <Menus.Item
-        className="text-gray-400 hover:bg-transparent cursor-default"
+        className="text-slate-400 hover:bg-transparent cursor-default"
         label={`${t('other.labelList.Version')} ${import.meta.env.PACKAGE_VERSION}`}
       />
     </Menus>
@@ -52,10 +52,10 @@ export const UserAccount: FC = observer(() => {
             />
           </div>
           <div className="ml-3">
-            <p className="text-sm font-medium text-gray-700 truncate group-hover:text-gray-900">
+            <p className="text-sm font-medium text-slate-700 truncate group-hover:text-slate-900">
               {userStore.user.name}
             </p>
-            <p className="text-sm text-gray-500 group-hover:text-gray-700">
+            <p className="text-sm text-slate-500 group-hover:text-slate-700">
               {t('other.labelList.View')}
             </p>
           </div>

@@ -96,32 +96,32 @@ const Container: FC<ContainerProps> = ({ plan, billingCycle, onClose }) => {
     <>
       <div>
         <div>
-          <div className="text-lg leading-6 font-medium text-gray-900">{t('billing.upPlan')}</div>
+          <div className="text-lg leading-6 font-medium text-slate-900">{t('billing.upPlan')}</div>
         </div>
 
         <div className="py-4 border-b border-gray-100">
           <div className="flex justify-between space-x-3">
             <div className="min-w-0 flex-1">
-              <p className="text-base font-medium text-gray-900 truncate">
+              <p className="text-base font-medium text-slate-900 truncate">
                 {plan?.name} {t('billing.plan')}
               </p>
-              <p className="text-sm text-gray-500 truncate">
+              <p className="text-sm text-slate-500 truncate">
                 {t(BILLING_CYCLE_MAPS[billingCycle])}
               </p>
             </div>
-            <div className="flex-shrink-0 whitespace-nowrap text-sm text-gray-900">
+            <div className="flex-shrink-0 whitespace-nowrap text-sm text-slate-900">
               ${price.toFixed(2)}
             </div>
           </div>
         </div>
 
         <div className="py-4 border-b border-gray-100">
-          <div className="flex justify-between text-sm text-gray-500">
+          <div className="flex justify-between text-sm text-slate-500">
             <span>{t('billing.Subtotal')}</span>
             <span>${price.toFixed(2)}</span>
           </div>
           {discount && (
-            <div className="mt-1 flex justify-between text-sm text-gray-500">
+            <div className="mt-1 flex justify-between text-sm text-slate-500">
               <span>{t('billing.Discount')}</span>
               <span className="text-green-600">-${discount.toFixed(2)}</span>
             </div>
@@ -129,12 +129,12 @@ const Container: FC<ContainerProps> = ({ plan, billingCycle, onClose }) => {
         </div>
 
         <div className="py-4">
-          <div className="flex justify-between text-sm text-gray-700">
+          <div className="flex justify-between text-sm text-slate-700">
             <Button.Link className="underline" onClick={openCouponCode}>
               {t('billing.add')}
             </Button.Link>
           </div>
-          <div className="mt-2 flex justify-between text-sm text-gray-900">
+          <div className="mt-2 flex justify-between text-sm text-slate-900">
             <span>{t('billing.total')}</span>
             {discount ? (
               <span>${price.minus(discount).toFixed(2)}</span>

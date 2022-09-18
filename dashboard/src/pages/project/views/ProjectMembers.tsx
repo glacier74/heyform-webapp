@@ -82,18 +82,18 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
   }
 
   return (
-    <div className="group flex items-center py-2.5 text-sm text-gray-700">
+    <div className="group flex items-center py-2.5 text-sm text-slate-700">
       <Avatar src={cropImage(member.avatar, 60, 60)} size={40} retainLength={2} rounded circular />
 
       <div className="ml-4 flex-auto">
-        <p className="text-sm font-medium text-gray-700 truncate">
+        <p className="text-sm font-medium text-slate-700 truncate">
           {member.name}
           {member.isSelf && t('project.ProjectMembers.you')}
           {member.isOwner && (
             <Badge className="ml-1" type="blue" text={t('workspace.members.index.owner')} />
           )}
         </p>
-        <p className="text-sm text-gray-500 truncate">{member.email}</p>
+        <p className="text-sm text-slate-500 truncate">{member.email}</p>
       </div>
 
       {!(member.isSelf && member.isOwner) && (
@@ -139,14 +139,14 @@ export const ProjectMembers: FC<IModalProps> = observer(({ visible, onClose }) =
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-lg leading-6 font-medium text-slate-900">
             {t('project.ProjectMembers.members')}
           </h1>
-          <p className="mt-1 text-sm text-gray-500">{t('project.ProjectMembers.explain')}</p>
+          <p className="mt-1 text-sm text-slate-500">{t('project.ProjectMembers.explain')}</p>
         </div>
 
         <div>
-          <div className="block text-sm font-medium text-gray-700">
+          <div className="block text-sm font-medium text-slate-700">
             {t('project.ProjectMembers.assigned')}
           </div>
           <div>
@@ -158,7 +158,7 @@ export const ProjectMembers: FC<IModalProps> = observer(({ visible, onClose }) =
 
         {unassignedMembers.length > 0 && (
           <div className="opacity-70">
-            <div className="block text-sm font-medium text-gray-700">
+            <div className="block text-sm font-medium text-slate-700">
               {t('project.ProjectMembers.notAssigned')}
             </div>
             <div>

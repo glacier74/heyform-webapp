@@ -107,8 +107,8 @@ export const DragUploader: FC<DragUploaderProps> = ({
       {file ? (
         <div className="flex justify-center w-full h-full px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
           <div className="flex flex-col justify-center space-y-1 text-center">
-            <DocumentIcon className="non-scaling-stroke mx-auto h-12 w-12 text-gray-400" />
-            <p className="text-sm text-gray-600">
+            <DocumentIcon className="non-scaling-stroke mx-auto h-12 w-12 text-slate-400" />
+            <p className="text-sm text-slate-500">
               {file!.name} <span>({formatBytes(file!.size)})</span>
             </p>
             <div className="flex items-center justify-center text-sm">
@@ -134,8 +134,8 @@ export const DragUploader: FC<DragUploaderProps> = ({
           onDragLeave={handleDrop}
         >
           <div className="flex flex-col justify-center space-y-1 text-center">
-            <UploadIcon className="non-scaling-stroke mx-auto h-12 w-12 text-gray-400" />
-            <div className="flex items-center justify-center text-sm text-gray-600">
+            <UploadIcon className="non-scaling-stroke mx-auto h-12 w-12 text-slate-400" />
+            <div className="flex items-center justify-center text-sm text-slate-500">
               <Button.Link type="primary" onClick={handleOpen}>
                 {t(selectText)}
               </Button.Link>
@@ -144,7 +144,7 @@ export const DragUploader: FC<DragUploaderProps> = ({
             {error || internalError ? (
               <p className="text-xs text-red-500">{error?.message || internalError?.message}</p>
             ) : (
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-slate-500">
                 {t('other.DragUploader.upTo')} {maxSize}
               </p>
             )}

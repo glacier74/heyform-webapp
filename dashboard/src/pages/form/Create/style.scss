@@ -15,7 +15,7 @@
 
 .field-card-group {
   &.field-card-group-selected {
-    @apply bg-gray-50;
+    @apply bg-slate-50;
   }
 
   &.field-card-group-collapsed {
@@ -32,7 +32,7 @@
 }
 
 .field-card-group-toggle-collapse {
-  @apply flex items-center justify-center w-4 text-gray-500;
+  @apply flex items-center justify-center w-4 text-slate-500;
   min-height: 2.5rem;
 }
 
@@ -44,7 +44,7 @@
   .button {
     &:hover {
       .button-leading {
-        @apply text-gray-900;
+        @apply text-slate-900;
       }
     }
   }
@@ -60,7 +60,7 @@
 }
 
 .insert-field-item {
-  @apply text-gray-600 hover:bg-gray-50 hover:text-gray-900;
+  @apply text-slate-600 hover:bg-slate-50 hover:text-slate-900;
 }
 
 .insert-field-item-disabled {
@@ -104,7 +104,7 @@
 // ----------------------------------------------------------------------------
 // Compose
 .compose {
-  @apply flex-1 px-4 py-14 bg-gray-50;
+  @apply flex-1 px-4 py-14 bg-slate-50;
   font-family: var(--heyform-font-family);
 }
 
@@ -895,7 +895,7 @@
     }
 
     .tabs-nav-active {
-      @apply text-gray-900 border-gray-900;
+      @apply text-slate-900 border-gray-900;
     }
   }
 
@@ -955,7 +955,7 @@
   }
 
   .heyform-icon {
-    @apply w-6 h-6 p-0.5 mr-1.5 text-gray-400;
+    @apply w-6 h-6 p-0.5 mr-1.5 text-slate-400;
   }
 
   .flag-icon {
@@ -1012,7 +1012,7 @@
 }
 
 .right-sidebar-layout-container {
-  @apply w-full text-gray-400 border border-gray-300 shadow-sm rounded-md cursor-pointer;
+  @apply w-full text-slate-400 border border-gray-300 shadow-sm rounded-md cursor-pointer;
 
   svg {
     @apply w-full h-auto;
@@ -1103,11 +1103,11 @@
 }
 
 .variable-item-span {
-  @apply font-medium text-gray-900 ml-2;
+  @apply font-medium text-slate-900 ml-2;
 }
 
 .variable-item-value {
-  @apply mt-1 text-xs text-gray-500;
+  @apply mt-1 text-xs text-slate-500;
 }
 
 .variable-item-dropdown {
@@ -1220,7 +1220,7 @@
 }
 
 .flow-custom-node {
-  @apply w-56 h-28 p-4 rounded-lg text-sm text-gray-700 bg-white transition-all;
+  @apply w-56 h-28 p-4 rounded-lg text-sm text-slate-700 bg-white transition-all;
   box-shadow: rgba(0, 0, 0, 0.08) 0 0.125rem 0.25rem, rgba(0, 0, 0, 0.06) 0 0.125rem 0.75rem;
 }
 

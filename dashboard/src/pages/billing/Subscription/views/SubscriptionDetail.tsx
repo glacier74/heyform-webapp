@@ -42,8 +42,8 @@ const Skeleton = () => {
 const Item: FC<ItemProps> = ({ title, description }) => {
   return (
     <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-      <dt className="text-sm font-medium text-gray-500 truncate">{title}</dt>
-      <dd className="mt-1 text-3xl font-semibold text-gray-900">{description}</dd>
+      <dt className="text-sm font-medium text-slate-500 truncate">{title}</dt>
+      <dd className="mt-1 text-3xl font-semibold text-slate-900">{description}</dd>
     </div>
   )
 }
@@ -59,7 +59,7 @@ const MemberItem: FC<MemberItemProps> = ({ count = 1, limit, additional = 0 }) =
           <span>
             {count}/{capacity}{' '}
           </span>
-          {additional > 0 && <span className="pl-2 text-gray-500">({additional} additional)</span>}
+          {additional > 0 && <span className="pl-2 text-slate-500">({additional} additional)</span>}
         </>
       }
     />
@@ -129,10 +129,10 @@ export const SubscriptionDetail: FC = observer(() => {
     <div>
       <div className="flex flex-col justify-start items-start md:flex-row md:items-center md:justify-between">
         <div>
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
+          <h3 className="text-lg leading-6 font-medium text-slate-900">
             {plan.name} {t('billing.Plan')}
           </h3>
-          <p className="mt-1 text-sm font-medium text-gray-500">{description}</p>
+          <p className="mt-1 text-sm font-medium text-slate-500">{description}</p>
         </div>
         {plan.grade > PlanGradeEnum.FREE &&
           subscription.status === SubscriptionStatusEnum.ACTIVE &&

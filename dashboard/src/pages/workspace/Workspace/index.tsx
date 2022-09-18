@@ -61,12 +61,12 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
 
   return (
     <li
-      className="group col-span-1 bg-white rounded-md border border-gray-200 hover:bg-gray-50 cursor-pointer"
+      className="group col-span-1 bg-white rounded-md border border-gray-200 hover:bg-slate-50 cursor-pointer"
       onClick={handleClick}
     >
       <div className="p-6">
-        <h3 className="text-gray-900 text-base font-medium truncate">{project.name}</h3>
-        <p className="mt-1 text-gray-500 text-sm truncate">
+        <h3 className="text-slate-900 text-base font-medium truncate">{project.name}</h3>
+        <p className="mt-1 text-slate-500 text-sm truncate">
           {project.formCount > 0
             ? `${project.formCount} ${t('workspace.workSpace.forms')}`
             : t('workspace.workSpace.noForms')}
@@ -74,13 +74,13 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
         <div className="mt-4 flex items-center justify-between">
           <Avatar.Group options={members} size={32} maximum={8} circular rounded />
           <Dropdown
-            className={clsx('opacity-0 group-hover:opacity-100 p-1 hover:bg-gray-100 rounded-md', {
+            className={clsx('opacity-0 group-hover:opacity-100 p-1 hover:bg-slate-100 rounded-md', {
               'opacity-100': visible
             })}
             overlay={Overlay}
             onDropdownVisibleChange={setVisible}
           >
-            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
+            <DotsHorizontalIcon className="w-5 h-5 text-slate-400 hover:text-slate-900" />
           </Dropdown>
         </div>
       </div>

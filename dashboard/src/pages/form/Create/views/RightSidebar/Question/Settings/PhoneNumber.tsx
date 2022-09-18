@@ -27,7 +27,7 @@ export const PhoneNumber: FC<IBasicProps> = ({ field }) => {
 
   function optionRender(option: any, isActive?: boolean) {
     return (
-      <div className="relative flex items-center px-3 py-1.5 hover:bg-gray-100 cursor-pointer">
+      <div className="relative flex items-center px-3 py-1.5 hover:bg-slate-100 cursor-pointer">
         <FlagIcon countryCode={option.value} />
         <span className="flex-1 truncate">{t(option.label)}</span>
         {isActive && (

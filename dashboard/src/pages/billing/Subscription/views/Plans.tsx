@@ -72,71 +72,71 @@ export const Plans = observer(() => {
       <div className="mt-12">
         <ul className="grid grid-cols-3 gap-4 text-lg mb-12">
           <li className="mb-4">
-            <UsersIcon className="inline w-8 h-8 mr-2 text-gray-500 mb-2" />
+            <UsersIcon className="inline w-8 h-8 mr-2 text-slate-500 mb-2" />
             <h3 className="text-lg font-medium">Team collaboration</h3>
-            <p className="text-base text-gray-500">
+            <p className="text-base text-slate-500">
               Invite team members to co-create forms and streamline data collection experiences that
               meet organizational needs and goals.
             </p>
           </li>
           <li className="mb-4">
-            <GlobeAltIcon className="inline w-8 h-8 mr-2 text-gray-500 mb-2" />
+            <GlobeAltIcon className="inline w-8 h-8 mr-2 text-slate-500 mb-2" />
             <h3 className="text-lg font-medium">Connect custom domain</h3>
-            <p className="text-base text-gray-500">
+            <p className="text-base text-slate-500">
               Add your own domains (or subdomains) to your forms and create SEO-friendly pretty
               URLs. We take care of hosting and SSL certificates for you.
             </p>
           </li>
           <li className="mb-4">
-            <PencilIcon className="inline w-8 h-8 mr-2 text-gray-500 mb-2" />
+            <PencilIcon className="inline w-8 h-8 mr-2 text-slate-500 mb-2" />
             <h3 className="text-lg font-medium">Remove HeyForm branding</h3>
-            <p className="text-base text-gray-500">
+            <p className="text-base text-slate-500">
               Remove all HeyForm branding and have your forms seamlessly represent your brand.
             </p>
           </li>
           <li className="mb-4">
-            <PhotographIcon className="inline w-8 h-8 mr-2 text-gray-500 mb-2" />
+            <PhotographIcon className="inline w-8 h-8 mr-2 text-slate-500 mb-2" />
             <h3 className="text-lg font-medium">Theme customization</h3>
-            <p className="text-base text-gray-500">
+            <p className="text-base text-slate-500">
               Style your forms by customizing backgrounds, patterns, fonts, buttons, etc. to suit
               your business needs.
             </p>
           </li>
           <li className="mb-4">
-            <DocumentTextIcon className="inline w-8 h-8 mr-2 text-gray-500 mb-2" />
+            <DocumentTextIcon className="inline w-8 h-8 mr-2 text-slate-500 mb-2" />
             <h3 className="text-lg font-medium">Custom meta tags</h3>
-            <p className="text-base text-gray-500">
+            <p className="text-base text-slate-500">
               Optimize the SEO of your form page by setting custom meta tags, rank high in Google
               search results.
             </p>
           </li>
           <li className="mb-4">
-            <MailIcon className="inline w-8 h-8 mr-2 text-gray-500 mb-2" />
+            <MailIcon className="inline w-8 h-8 mr-2 text-slate-500 mb-2" />
             <h3 className="text-lg font-medium">Build audience</h3>
-            <p className="text-base text-gray-500">
+            <p className="text-base text-slate-500">
               Build, manage, and target a diverse set of audience for better data collection.
             </p>
           </li>
           <li className="mb-4">
-            <EyeOffIcon className="inline w-8 h-8 mr-2 text-gray-500 mb-2" />
+            <EyeOffIcon className="inline w-8 h-8 mr-2 text-slate-500 mb-2" />
             <h3 className="text-lg font-medium">Hidden fields</h3>
-            <p className="text-base text-gray-500">
+            <p className="text-base text-slate-500">
               Use data that you already have, track information about your audience, and make your
               forms more personal.
             </p>
           </li>
           <li className="mb-4">
-            <ReplyIcon className="inline w-8 h-8 mr-2 text-gray-500 mb-2" />
+            <ReplyIcon className="inline w-8 h-8 mr-2 text-slate-500 mb-2" />
             <h3 className="text-lg font-medium">Custom auto responses</h3>
-            <p className="text-base text-gray-500">
+            <p className="text-base text-slate-500">
               Automatically send your audience a customized email message when they complete the
               form.{' '}
             </p>
           </li>
           <li className="mb-4">
-            <ServerIcon className="inline w-8 h-8 mr-2 text-gray-500 mb-2" />
+            <ServerIcon className="inline w-8 h-8 mr-2 text-slate-500 mb-2" />
             <h3 className="text-lg font-medium">API access</h3>
-            <p className="text-base text-gray-500">
+            <p className="text-base text-slate-500">
               Connect the form data at HeyForm with your online business via the API.
             </p>
           </li>

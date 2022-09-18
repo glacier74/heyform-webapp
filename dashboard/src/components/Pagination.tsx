@@ -37,7 +37,7 @@ export const Pagination: FC<PaginationProps> = ({ total, page = 1, pageSize = 20
       aria-label="Pagination"
     >
       <div className="hidden sm:block">
-        <p className="text-sm text-gray-700">
+        <p className="text-sm text-slate-500">
           Showing <span className="font-medium">{start}</span> to{' '}
           <span className="font-medium">{end}</span> of <span className="font-medium">{total}</span>{' '}
           results

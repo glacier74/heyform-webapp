@@ -17,16 +17,16 @@ const SignUp = () => {
   return (
     <div>
       <div>
-        <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
+        <h1 className="mt-6 text-center text-3xl font-bold text-slate-900">
           {t('auth.signup.signUp')}
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">{t('auth.signup.description')}</p>
+        </h1>
+        <p className="mt-2 text-center text-base text-slate-500">{t('auth.signup.description')}</p>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <div>
-            <p className="text-sm font-medium text-gray-700"> {t('auth.signup.signWith')}</p>
+            <p className="text-sm font-medium text-slate-700"> {t('auth.signup.signWith')}</p>
             <ThirdPartyLogin />
           </div>
 
@@ -35,7 +35,7 @@ const SignUp = () => {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">{t('auth.signup.continueWith')}</span>
+              <span className="px-2 bg-white text-slate-500">{t('auth.signup.continueWith')}</span>
             </div>
           </div>
 
@@ -81,11 +81,11 @@ const SignUp = () => {
               </Form.Item>
 
               <div className="mt-6">
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-slate-500">
                   {t('auth.signup.agreeTo')}{' '}
                   <a
                     href="https://heyform.net/help/terms-conditions"
-                    className="font-medium text-gray-700 underline"
+                    className="font-medium text-slate-700 underline"
                     target="_blank"
                   >
                     {t('auth.signup.terms')}
@@ -93,7 +93,7 @@ const SignUp = () => {
                   {t('auth.signup.and')}{' '}
                   <a
                     href="https://heyform.net/help/privacy-policy"
-                    className="font-medium text-gray-700 underline"
+                    className="font-medium text-slate-700 underline"
                     target="_blank"
                   >
                     {t('auth.signup.privacy')}

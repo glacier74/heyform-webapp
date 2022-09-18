@@ -54,16 +54,18 @@ const BillingCycleItem: FC<BillingCycleItemProp> = ({
     >
       <div className="flex items-center">
         <div className="text-sm">
-          <p className="text-xl font-medium text-gray-900">{isAnnually ? 'Annually' : 'Monthly'}</p>
-          <div className="text-gray-500">
+          <p className="text-xl font-medium text-slate-900">
+            {isAnnually ? 'Annually' : 'Monthly'}
+          </p>
+          <div className="text-slate-500">
             <p className="sm:inline">{total}</p>
             {discount > 0 && <p className="ml-2 sm:inline">- save {discount}%</p>}
           </div>
         </div>
       </div>
       <div className="mt-2 flex text-sm sm:mt-0 sm:block sm:ml-4 sm:text-right">
-        <div className="text-3xl font-extrabold text-gray-900">${price}</div>
-        <div className="ml-1 text-gray-500 sm:ml-0">per month</div>
+        <div className="text-3xl font-extrabold text-slate-900">${price}</div>
+        <div className="ml-1 text-slate-500 sm:ml-0">per month</div>
       </div>
       {value === billingCycle && (
         <div
@@ -92,15 +94,15 @@ export const BillingCycleSwitchSkeleton = () => {
             >
               <div className="flex items-center">
                 <div className="text-sm">
-                  <p className="text-xl font-medium text-gray-900">{billingCycle}</p>
-                  <div className="mt-2 text-gray-500">
+                  <p className="text-xl font-medium text-slate-900">{billingCycle}</p>
+                  <div className="mt-2 text-slate-500">
                     <p className="w-16 h-4 skeleton"></p>
                   </div>
                 </div>
               </div>
               <div className="mt-2 flex text-sm sm:mt-0 sm:block sm:ml-4 sm:text-right">
-                <div className="w-24 h-6 skeleton text-3xl font-extrabold text-gray-900"></div>
-                <div className="ml-1 text-gray-500 sm:ml-0">per month</div>
+                <div className="w-24 h-6 skeleton text-3xl font-extrabold text-slate-900"></div>
+                <div className="ml-1 text-slate-500 sm:ml-0">per month</div>
               </div>
             </div>
           ))}

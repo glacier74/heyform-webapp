@@ -18,9 +18,9 @@ const Login = () => {
   return (
     <div>
       <div>
-        <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">{t('login.signIn')}</h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          {t('login.or')} {''}
+        <h1 className="mt-6 text-center text-3xl font-bold text-slate-900">{t('login.signIn')}</h1>
+        <p className="mt-2 text-center text-sm text-slate-500">
+          {t('login.logIn')} {''} {t('login.or')} {''}
           <RedirectUriLink
             href="/sign-up"
             className="font-medium text-blue-700 hover:text-blue-800"
@@ -78,7 +78,7 @@ const Login = () => {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">{t('login.continueWith')}</span>
+              <span className="px-2 bg-white text-slate-500">{t('login.continueWith')}</span>
             </div>
           </div>
 

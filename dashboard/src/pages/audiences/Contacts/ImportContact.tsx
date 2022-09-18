@@ -74,19 +74,19 @@ const ImportContact: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-lg leading-6 font-medium text-slate-900">
             {t('audiences.contact.importContact.Import')}
           </h1>
-          <p className="mt-1 mr-8 text-sm text-gray-500">
+          <p className="mt-1 mr-8 text-sm text-slate-500">
             {t('audiences.contact.importContact.CSVFile')}
           </p>
         </div>
 
         <div>
-          <div className="block text-sm font-medium text-gray-700">
+          <div className="block text-sm font-medium text-slate-700">
             {t('audiences.contact.importContact.download')}
           </div>
-          <p className="mt-1 text-sm text-gray-500">{t('audiences.contact.importContact.csv')}</p>
+          <p className="mt-1 text-sm text-slate-500">{t('audiences.contact.importContact.csv')}</p>
           <Button className="mt-2" leading={<DownloadIcon />} onClick={handleDownload}>
             {t('audiences.contact.importContact.blankTemplate')}
           </Button>

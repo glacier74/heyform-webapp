@@ -13,10 +13,10 @@ const WorkspaceSettings: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-extrabold text-gray-900">
+          <h1 className="text-lg leading-6 font-extrabold text-slate-900">
             {t('workspace.settings.WorkSettings')}
           </h1>
-          <p className="mt-1 text-sm text-gray-500">{t('workspace.settings.subTitle')}</p>
+          <p className="mt-1 text-sm text-slate-500">{t('workspace.settings.subTitle')}</p>
         </div>
 
         {/* Workspace avatar */}

@@ -68,12 +68,12 @@ const VerifyEmail: FC = () => {
     <div>
       <div>
         <LogoIcon className="h-8 w-auto" />
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('user.verifyEmail')}</h2>
-        <p className="mt-2 text-sm text-gray-600">
+        <h2 className="mt-6 text-3xl font-extrabold text-slate-900">{t('user.verifyEmail')}</h2>
+        <p className="mt-2 text-sm text-slate-600">
           {t('user.sendEmailText')}{' '}
-          <span className="font-medium text-gray-700">{userStore.user.email}</span>.
+          <span className="font-medium text-slate-700">{userStore.user.email}</span>.
         </p>
-        <p className="mt-2 text-sm text-gray-600">
+        <p className="mt-2 text-sm text-slate-600">
           {t('user.typoEmail')} <Button.Link onClick={openSendCode}>{t('user.click')}</Button.Link>{' '}
           {t('user.change')}
         </p>

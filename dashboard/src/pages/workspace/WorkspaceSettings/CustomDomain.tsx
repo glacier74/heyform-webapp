@@ -61,12 +61,12 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
     <Modal contentClassName="max-w-2xl" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-lg leading-6 font-medium text-slate-900">
             {t('workspace.settings.customDomain')}
           </h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-slate-500">
             {t('workspace.settings.domainExplain')}{' '}
-            <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
+            <a href="https://help.heyform.net" className="text-slate-900 hover:underline">
               {t('workspace.settings.domainLink')}
             </a>
             .
@@ -156,7 +156,7 @@ export const CustomDomain: FC = observer(() => {
           description={
             <>
               {t('workspace.settings.domainExplain2')}{' '}
-              <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
+              <a href="https://help.heyform.net" className="text-slate-900 hover:underline">
                 {t('workspace.settings.domainLink')}
               </a>
               .

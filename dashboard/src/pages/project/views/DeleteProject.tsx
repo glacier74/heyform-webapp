@@ -42,12 +42,14 @@ export const DeleteProject: FC<DeleteProjectProps> = ({
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-lg leading-6 font-medium text-slate-900">
             {t('project.deleteProject.del')}
           </h1>
           <div className="space-y-2">
-            <p className="mt-1 text-sm text-gray-500">{t('project.deleteProject.deleteExplain')}</p>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-slate-500">
+              {t('project.deleteProject.deleteExplain')}
+            </p>
+            <p className="mt-1 text-sm text-slate-500">
               {t('project.deleteProject.deleteExplain2')}
             </p>
           </div>

@@ -1,4 +1,4 @@
-import { BillingCycleEnum } from "./invoice";
+import { BillingCycleEnum } from './invoice'
 
 // Refactor at Dec 20, 2021 (v2021.12.3)
 /**

@@ -37,10 +37,10 @@ const OnBoarding = () => {
           className="w-72 h-72 mx-auto"
           src="https://forms.b-cdn.net/website/dashboard/free-trial.webp"
         ></img>
-        <h1 className="text-4xl font-semibold text-slate-900 text-center mb-4">
+        <h1 className="text-3xl font-semibold text-slate-900 text-center mb-4">
           {t('onboarding.trialTitle')}
         </h1>
-        <p className="text-xl text-slate-600 text-center">{t('onboarding.trialDesc')}</p>
+        <p className="text-lg text-slate-500 text-center">{t('onboarding.trialDesc')}</p>
 
         <div className="flex items-center justify-center mt-12">
           <span>
@@ -54,7 +54,7 @@ const OnBoarding = () => {
             </Button>
           </span>
           <span>
-            <button className="ml-4 text-gray-700 underline text-sm" onClick={handleUseFreePlan}>
+            <button className="ml-4 text-slate-700 underline text-sm" onClick={handleUseFreePlan}>
               {t('onboarding.trialGofree')}
             </button>
           </span>

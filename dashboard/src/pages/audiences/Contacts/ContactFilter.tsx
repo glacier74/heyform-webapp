@@ -39,7 +39,7 @@ export const ContactFilter: FC<ContactFilterProps> = ({ value = [], onChange }) 
 
   const Overlay = (
     <Menus onClick={handleMenuClick}>
-      <h3 className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+      <h3 className="px-4 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">
         {t('audiences.contact.addContact.groups')}
       </h3>
       {groups.map(group => (
@@ -55,7 +55,7 @@ export const ContactFilter: FC<ContactFilterProps> = ({ value = [], onChange }) 
 
   return (
     <Dropdown
-      className="hidden md:flex md:items-center rounded-lg space-x-1 text-sm text-gray-500 hover:text-gray-900 cursor-pointer"
+      className="hidden md:flex md:items-center rounded-lg space-x-1 text-sm text-slate-500 hover:text-slate-900 cursor-pointer"
       placement="bottom-start"
       overlay={Overlay}
       dismissOnClickInside={false}
@@ -63,8 +63,8 @@ export const ContactFilter: FC<ContactFilterProps> = ({ value = [], onChange }) 
       onDropdownVisibleChange={setVisible}
     >
       <Button
-        className="group text-gray-500 hover:text-gray-700"
-        trailing={<FilterIcon className="w-5 h-5 text-gray-500 group-hover:text-gray-700" />}
+        className="group text-slate-500 hover:text-slate-700"
+        trailing={<FilterIcon className="w-5 h-5 text-slate-500 group-hover:text-slate-700" />}
       >
         {t('audiences.contact.addContact.Filter')}
       </Button>

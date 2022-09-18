@@ -5,7 +5,8 @@ export default {
     copied: 'Copied'
   },
   login: {
-    signIn: 'Log in to your account',
+    signIn: '👋 Welcome back!',
+    logIn: 'Log in to your account',
     startFree: 'create an account',
     signWith: 'Log in with',
     noAccount: "Don't have an account yet?",
@@ -13,7 +14,7 @@ export default {
     continueWith: 'Or continue with',
     rememberMe: 'Remember me',
     forgotPassword: 'Forgot your password?',
-    or: 'Or',
+    or: 'or',
     Email: 'Email address',
     Password: 'Password',
     button: 'Log in',
@@ -35,8 +36,8 @@ export default {
   },
   auth: {
     signup: {
-      signUp: 'Try HeyForm for free',
-      description: 'Start your 14-day free premium trial.',
+      signUp: 'Create an account',
+      description: 'Start a 14-day trial with all features unlocked.',
       signIn: 'sign in with existing one',
       signWith: 'Start with',
       continueWith: 'Or continue with',
@@ -53,7 +54,7 @@ export default {
     },
     forgotPassword: {
       forgot: 'Forgot password?',
-      sendEmail: "We'll send you an email with verification code to reset your password.",
+      sendEmail: "We'll send you an email with verification code.",
       link: 'Back to sign in',
       continue: 'Continue'
     },
@@ -143,9 +144,8 @@ export default {
     subText: 'Create the right audience for accurate results'
   },
   setup: {
-    createW: 'Create a new workspace',
-    explain:
-      'Workspaces are shared environments where members can collaborate. After create a workspace, you can invite others to join.',
+    createW: 'Step 1: create a new workspace',
+    explain: 'Workspace is a shared environment where members can collaborate.',
     name: 'Workspace name',
     logo: 'Workspace logo',
     create: 'Create'
@@ -163,9 +163,9 @@ export default {
     },
     rename: 'Rename',
     del: 'Delete',
-    createForm: 'Start building your HeyForm',
+    createForm: 'Build a new form',
     giveName: 'Give it a name',
-    bottom: ' Create form',
+    bottom: ' Continue',
     forms: 'Forms',
     Trash: 'Trash',
     renameP: 'Rename this project',
@@ -179,8 +179,8 @@ export default {
     closed: 'Closed',
     edit: 'Edit',
     dup: 'Duplicate',
-    noForm: "Don't have any forms in this project yet",
-    text: 'Pick a template or start from scratch, no coding skill required.',
+    noForm: 'No form in this project yet',
+    text: 'Simply pick a template or start from scratch.',
     suspendForm: 'This form is suspended',
     suspendText:
       'If you have any questions about suspend, please click the button below to contact us.',
@@ -259,8 +259,8 @@ export default {
       createBottom: 'Create',
       assign: 'Assign members',
       createP2: 'Create project',
-      noProject: "You don't have any projects yet",
-      text: 'Projects are sub groups in a workspace, where you can add your workspace members to work collaboratively on forms, audiences and integrations.',
+      noProject: "You don't have any project yet",
+      text: 'Project works like a group, where you can add your teammates to collaborate on forms, audiences, and integrations.',
       forms: 'forms',
       noForms: 'No form yet'
     },
@@ -951,7 +951,7 @@ export default {
     trialTitle: 'Start your 14-day free trial',
     trialDesc:
       'No contracts, downgrade or cancel the subscription anytime within a single click from your dashboard.',
-    trialButton: 'Go for a trial',
+    trialButton: 'Start trial',
     trialGofree: 'Continue with free plan'
   },
   languages: {

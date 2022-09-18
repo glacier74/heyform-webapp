@@ -124,7 +124,7 @@ export const Rules: FC = () => {
         <div className="flex items-center justify-between">
           <span>{t('formBuilder.rules')}</span>
           <Button.Link
-            className="text-gray-500 hover:text-gray-900"
+            className="text-slate-500 hover:text-slate-900"
             trailing={<ChevronRightIcon />}
             onClick={handleClick}
           >
@@ -146,7 +146,7 @@ export const Rules: FC = () => {
             ))}
           </div>
         ) : (
-          <p className="text-gray-500">{t('formBuilder.rulePlaceholder')}</p>
+          <p className="text-slate-500">{t('formBuilder.rulePlaceholder')}</p>
         )}
       </div>
     </div>

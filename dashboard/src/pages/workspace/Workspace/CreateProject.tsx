@@ -29,10 +29,10 @@ const CreateProject: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-lg leading-6 font-medium text-slate-900">
             {t('workspace.workSpace.createP')}
           </h1>
-          <p className="mt-1 text-sm text-gray-500">{t('workspace.workSpace.workExplain')}</p>
+          <p className="mt-1 text-sm text-slate-500">{t('workspace.workSpace.workExplain')}</p>
         </div>
 
         <Form.Custom

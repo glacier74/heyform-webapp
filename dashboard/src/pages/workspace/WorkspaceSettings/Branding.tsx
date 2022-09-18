@@ -51,7 +51,7 @@ export const Branding: FC = observer(() => {
   return (
     <div>
       <div className="mb-6">
-        <div className="mb-1 block text-sm font-medium text-gray-700">
+        <div className="mb-1 block text-sm font-medium text-slate-700">
           {t('workspace.settings.id')}
         </div>
         <div className="flex items-center">
@@ -84,7 +84,7 @@ export const Branding: FC = observer(() => {
           description={
             <>
               {t('workspace.settings.brandingExplain')}{' '}
-              <a href="https://help.heyform.net" className="text-gray-900 hover:underline">
+              <a href="https://help.heyform.net" className="text-slate-900 hover:underline">
                 {t('workspace.settings.learnMore')}
               </a>
               .

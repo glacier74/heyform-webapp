@@ -37,14 +37,14 @@ const VerifyEmail: FC<IModalProps> = observer(({ visible, onClose, onComplete })
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-lg leading-6 font-medium text-slate-900">
             {t('user.settings.deletedAccount.del')}
           </h1>
           <div className="space-y-2">
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-slate-500">
               {t('user.settings.deletedAccount.delText')}
             </p>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-slate-500">
               {t('user.settings.deletedAccount.delSure')}
             </p>
           </div>
@@ -95,10 +95,10 @@ export const DeleteAccount: FC = () => {
 
   return (
     <div>
-      <div className="block text-sm font-medium text-gray-700">
+      <div className="block text-sm font-medium text-slate-700">
         {t('user.settings.deletedAccount.danger')}
       </div>
-      <p className="mt-1 text-sm text-gray-500">{t('user.settings.deletedAccount.delText2')}</p>
+      <p className="mt-1 text-sm text-slate-500">{t('user.settings.deletedAccount.delText2')}</p>
       <div className="mt-3">
         <Button className="bg-red-500" type="danger" onClick={openVerifyEmail}>
           {t('user.settings.deletedAccount.del')}

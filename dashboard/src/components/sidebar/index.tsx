@@ -43,7 +43,7 @@ export const Sidebar: FC<SidebarProps> = observer(
         >
           <div className="sidebar fixed inset-0 flex z-10 md:hidden">
             <div
-              className="sidebar-overlay fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity duration-300 ease-in-out"
+              className="sidebar-overlay fixed inset-0 bg-slate-600 bg-opacity-75 transition-opacity duration-300 ease-in-out"
               aria-hidden="true"
             />
             <div className="sidebar-wrapper relative flex flex-col flex-1 max-w-xs w-full h-full bg-white transform-gpu transition-transform duration-300 ease-in-out">

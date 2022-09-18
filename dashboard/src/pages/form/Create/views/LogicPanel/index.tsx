@@ -49,9 +49,9 @@ export const LogicPanel = () => {
 
   return (
     <div className="logic-panel">
-      <div className="flex justify-between px-4 py-6 bg-gray-50">
+      <div className="flex justify-between px-4 py-6 bg-slate-50">
         <div className="flex-1">
-          <h2 className="text-lg font-medium text-gray-900">Rules</h2>
+          <h2 className="text-lg font-medium text-slate-900">Rules</h2>
           {selectedField && (
             <div className="flex flex-1 mt-2 items-center justify-between">
               <FieldKindIcon

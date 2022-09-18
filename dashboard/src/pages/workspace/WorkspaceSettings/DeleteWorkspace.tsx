@@ -37,14 +37,14 @@ const DeleteWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) =>
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-lg leading-6 font-medium text-slate-900">
             {t('workspace.settings.delWorkspace.dissolve')}
           </h1>
           <div className="space-y-2">
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-slate-500">
               {t('workspace.settings.delWorkspace.warning')}
             </p>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-slate-500">
               {t('workspace.settings.delWorkspace.warning2')}
             </p>
           </div>
@@ -76,10 +76,10 @@ export const DeleteWorkspace: FC = () => {
 
   return (
     <div>
-      <div className="block text-sm font-medium text-gray-700">
+      <div className="block text-sm font-medium text-slate-700">
         {t('workspace.settings.delWorkspace.dissolve')}
       </div>
-      <p className="mt-1 text-sm text-gray-500">{t('workspace.settings.delWorkspace.warning3')}</p>
+      <p className="mt-1 text-sm text-slate-500">{t('workspace.settings.delWorkspace.warning3')}</p>
       <div className="mt-3">
         <Button className="bg-red-500" type="danger" onClick={handleOpen}>
           {t('workspace.settings.delWorkspace.dissolve')}

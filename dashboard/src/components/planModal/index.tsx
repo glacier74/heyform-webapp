@@ -24,10 +24,12 @@ export const PlanModal: FC = observer(() => {
       <div className="space-y-6">
         <div className="my-4">
           <img src="https://forms.b-cdn.net/website/upgrade.png" className="w-72 mx-auto"></img>
-          <h2 className="font-bold text-gray-900 sm:text-2xl sm:tracking-tight lg:text-3xl text-center">
+          <h1 className="font-bold text-slate-900 text-2xl sm:tracking-tight text-center">
             {t('billing.Upgrade')}
-          </h2>
-          <p className="max-w-3xl mx-auto mt-2 text-lg text-gray-500 text-center">{t('billing.Unlock')}</p>
+          </h1>
+          <p className="max-w-3xl mx-auto mt-2 text-base text-slate-500 text-center">
+            {t('billing.Unlock')}
+          </p>
         </div>
 
         <Plans />

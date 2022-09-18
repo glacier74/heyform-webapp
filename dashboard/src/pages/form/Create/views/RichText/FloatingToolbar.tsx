@@ -70,15 +70,15 @@ export const FloatingToolbar: FC<FloatingToolbarProps> = ({
           style={portalStyle}
           {...restProps}
         >
-          <Button.Link leading={<BoldIcon className="text-gray-700" />} onClick={handleBold} />
-          <Button.Link leading={<ItalicIcon className="text-gray-700" />} onClick={handleItalic} />
+          <Button.Link leading={<BoldIcon className="text-slate-700" />} onClick={handleBold} />
+          <Button.Link leading={<ItalicIcon className="text-slate-700" />} onClick={handleItalic} />
           <Button.Link
-            leading={<UnderlineIcon className="text-gray-700" />}
+            leading={<UnderlineIcon className="text-slate-700" />}
             onClick={handleUnderline}
           />
           {/* TODO - add link support */}
-          {/*<Button.Link leading={<LinkIcon className="text-gray-700" />} />*/}
-          {/*<Button.Link leading={<UnlinkIcon className="text-gray-700" />} />*/}
+          {/*<Button.Link leading={<LinkIcon className="text-slate-700" />} />*/}
+          {/*<Button.Link leading={<UnlinkIcon className="text-slate-700" />} />*/}
         </div>
       </div>
     </Portal>

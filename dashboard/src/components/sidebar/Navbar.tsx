@@ -58,20 +58,20 @@ export const Navbar: FC<SidebarNavProps> = observer(
             isMobile={isMobile}
             to={`/workspace/${workspaceId}`}
             end={true}
-            className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
+            className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
             onClick={handleCloseSidebar}
           >
-            <HomeIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
+            <HomeIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
             {t('other.labelList.Dashboard')}
           </CustomLink>
           <PlanCheck permission={PlanGradeEnum.PREMIUM}>
             <CustomLink
               isMobile={isMobile}
               to={`/workspace/${workspaceId}/member`}
-              className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
+              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
               onClick={handleCloseSidebar}
             >
-              <UsersIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
+              <UsersIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
               {t('other.labelList.TeamMembers')}
             </CustomLink>
           </PlanCheck>
@@ -79,10 +79,10 @@ export const Navbar: FC<SidebarNavProps> = observer(
             <CustomLink
               isMobile={isMobile}
               to={`/workspace/${workspaceId}/audience`}
-              className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
+              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
               onClick={handleCloseSidebar}
             >
-              <MailIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
+              <MailIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
               {t('other.labelList.Audiences')}
             </CustomLink>
           </PlanCheck>
@@ -91,17 +91,17 @@ export const Navbar: FC<SidebarNavProps> = observer(
               <CustomLink
                 isMobile={isMobile}
                 to={`/workspace/${workspaceId}/billing`}
-                className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
+                className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
                 onClick={handleCloseSidebar}
               >
-                <CreditCardIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
+                <CreditCardIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
                 {t('other.labelList.Billing')}
               </CustomLink>
               <div
-                className="text-gray-600 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
+                className="text-slate-600 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
                 onClick={onWorkspaceSettingsOpen}
               >
-                <CogIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
+                <CogIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
                 {t('other.labelList.Workspace')}
               </div>
             </>
@@ -111,7 +111,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
         {/* Projects */}
         <div className="mt-8">
           <h3
-            className="px-2 mb-2 text-xs font-semibold text-gray-900 uppercase tracking-wider"
+            className="px-2 mb-2 text-xs font-semibold text-slate-900 uppercase tracking-wider"
             id="projects-headline"
           >
             {t('other.labelList.Projects')}
@@ -122,7 +122,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
                 key={project.id}
                 isMobile={isMobile}
                 to={`/workspace/${workspaceId}/project/${project.id}`}
-                className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
+                className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
                 onClick={handleCloseSidebar}
               >
                 {project.name}
@@ -134,7 +134,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
         {/* Resources links */}
         <div className="mt-8">
           <h3
-            className="px-2 mb-2 text-xs font-semibold text-gray-900 uppercase tracking-wider"
+            className="px-2 mb-2 text-xs font-semibold text-slate-900 uppercase tracking-wider"
             id="resources-headline"
           >
             {t('other.labelList.Resources')}
@@ -143,33 +143,33 @@ export const Navbar: FC<SidebarNavProps> = observer(
             <a
               href="https://help.heyform.net/create-your-first-heyform"
               target="_blank"
-              className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
+              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
             >
-              <PlayIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
+              <PlayIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
               <span className="truncate">{t('other.labelList.GettingStarted')}</span>
             </a>
             <a
               href="https://help.heyform.net"
               target="_blank"
-              className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
+              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
             >
-              <QuestionMarkCircleIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
+              <QuestionMarkCircleIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
               <span className="truncate">{t('other.labelList.Help')}</span>
             </a>
             <a
               href="https://heyform.net/templates"
               target="_blank"
-              className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
+              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
             >
-              <DocumentTextIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
+              <DocumentTextIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
               <span className="truncate">{t('other.labelList.Template')}</span>
             </a>
             <a
               href="https://heyform.net/changelog"
               target="_blank"
-              className="text-gray-700 hover:bg-gray-200 hover:text-gray-900 group flex items-center px-2 py-1 text-sm rounded-md"
+              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
             >
-              <GiftIcon className="text-gray-700 mr-3 flex-shrink-0 h-5 w-5" />
+              <GiftIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
               <span className="truncate">{t('other.labelList.Changelog')}</span>
             </a>
           </div>

@@ -33,10 +33,10 @@ export const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) =>
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-lg leading-6 font-medium text-slate-900">
             {t('user.settings.emailAddress.change')}
           </h1>
-          <p className="mt-1 text-sm text-gray-500">{t('user.settings.emailAddress.sendEmail')}</p>
+          <p className="mt-1 text-sm text-slate-500">{t('user.settings.emailAddress.sendEmail')}</p>
         </div>
 
         <Form.Custom
@@ -77,10 +77,10 @@ export const VerifyEmail: FC<VerifyEmailProps> = ({ visible, formValues, onClose
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-lg leading-6 font-medium text-slate-900">
             {t('user.settings.emailAddress.checkEmail')}
           </h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-slate-500">
             {t('user.settings.emailAddress.code')} {formValues?.email}.
           </p>
         </div>
@@ -121,8 +121,8 @@ export const EmailAddress: FC = observer(() => {
 
   return (
     <div>
-      <div className="block text-sm font-medium text-gray-700">{t('login.Email')}</div>
-      <p className="mt-1 text-sm text-gray-500">
+      <div className="block text-sm font-medium text-slate-700">{t('login.Email')}</div>
+      <p className="mt-1 text-sm text-slate-500">
         <span>{userStore.user.email}</span>
 
         {!userStore.user.isSocialAccount && (

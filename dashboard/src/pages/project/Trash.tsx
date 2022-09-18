@@ -77,8 +77,8 @@ const Trash = observer(() => {
       render(record) {
         return (
           <div>
-            <p className="text-sm font-semibold text-gray-800 truncate">{record.name}</p>
-            <p className="mt-0.5 flex items-center font-normal text-sm text-gray-500">
+            <p className="text-sm font-semibold text-slate-800 truncate">{record.name}</p>
+            <p className="mt-0.5 flex items-center font-normal text-sm text-slate-500">
               <span className="truncate">
                 {record.submissionCount && record.submissionCount > 0
                   ? `${record.submissionCount} ${t('project.ProjectMembers.submissions')}`
@@ -127,7 +127,7 @@ const Trash = observer(() => {
 
         return (
           <Dropdown
-            className="ml-1 p-1 rounded-md text-gray-500 hover:bg-gray-50 hover:text-gray-900 cursor-pointer"
+            className="ml-1 p-1 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 cursor-pointer"
             placement="bottom-start"
             overlay={
               <Menus onClick={handleClick}>
@@ -153,7 +153,7 @@ const Trash = observer(() => {
 
   return (
     <ProjectLayout>
-      <div className="mt-8 text-sm text-gray-700">
+      <div className="mt-8 text-sm text-slate-700">
         {t('project.trash.explain')}{' '}
         <a
           href="https://help.heyform.net"

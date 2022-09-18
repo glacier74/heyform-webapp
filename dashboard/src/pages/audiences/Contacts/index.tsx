@@ -70,8 +70,8 @@ const Contacts = () => {
               />
             </div>
             <div className="flex-1 px-4">
-              <p className="text-sm font-semibold text-gray-800 truncate">{record.fullName}</p>
-              <p className="mt-0.5 flex items-center font-normal text-sm text-gray-500">
+              <p className="text-sm font-semibold text-slate-800 truncate">{record.fullName}</p>
+              <p className="mt-0.5 flex items-center font-normal text-sm text-slate-500">
                 <span className="truncate">{record.email}</span>
               </p>
             </div>
@@ -148,8 +148,8 @@ const Contacts = () => {
         )
 
         return (
-          <Dropdown className="p-1 hover:bg-gray-100 rounded-md cursor-pointer" overlay={Overlay}>
-            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
+          <Dropdown className="p-1 hover:bg-slate-100 rounded-md cursor-pointer" overlay={Overlay}>
+            <DotsHorizontalIcon className="w-5 h-5 text-slate-400 hover:text-slate-900" />
           </Dropdown>
         )
       }

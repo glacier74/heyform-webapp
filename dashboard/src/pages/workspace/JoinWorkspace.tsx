@@ -60,16 +60,16 @@ const JoinWorkspace = () => {
     <div>
       <div>
         <LogoIcon className="h-8 w-auto" />
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+        <h2 className="mt-6 text-3xl font-extrabold text-slate-900">
           {t('workspace.join.invited')} {workspace?.owner?.name}
           {t('workspace.join.UsernameAdd')}
         </h2>
-        <p className="mt-2 text-sm text-gray-600">{t('workspace.join.joinText')}</p>
+        <p className="mt-2 text-sm text-slate-600">{t('workspace.join.joinText')}</p>
       </div>
 
       <div className="mt-8">
         <div className="mt-6">
-          <div className="group flex items-center py-2.5 rounded-md text-sm text-gray-700">
+          <div className="group flex items-center py-2.5 rounded-md text-sm text-slate-700">
             <Avatar
               src={workspace?.avatar}
               size={48}
@@ -79,8 +79,8 @@ const JoinWorkspace = () => {
             />
 
             <div className="ml-4 flex-auto">
-              <p className="text-sm font-medium text-gray-700 truncate">{workspace?.name}</p>
-              <p className="text-sm text-gray-500 truncate">
+              <p className="text-sm font-medium text-slate-700 truncate">{workspace?.name}</p>
+              <p className="text-sm text-slate-500 truncate">
                 {workspace?.memberCount} {t('workspace.join.member')}
               </p>
             </div>

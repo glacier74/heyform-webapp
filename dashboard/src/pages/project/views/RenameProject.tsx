@@ -26,7 +26,7 @@ export const RenameProject: FC<RenameProjectProps> = ({ visible, project, onClos
     <Modal contentClassName="max-w-md" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">{t('project.renameP')}</h1>
+          <h1 className="text-lg leading-6 font-medium text-slate-900">{t('project.renameP')}</h1>
         </div>
 
         <Form.Custom

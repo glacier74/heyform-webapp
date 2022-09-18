@@ -26,12 +26,12 @@ const ResetPassword = () => {
   return (
     <div>
       <div>
-        <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
+        <h2 className="mt-6 text-center text-3xl font-bold text-slate-900">
           {t('auth.resetPassword.reset')}
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
+        <p className="mt-2 text-center text-sm text-slate-600">
           {t('auth.resetPassword.sentEmail')}{' '}
-          <span className="font-medium text-gray-700">{appStore.resetPasswordEmail}</span>.
+          <span className="font-medium text-slate-700">{appStore.resetPasswordEmail}</span>.
         </p>
       </div>
 

@@ -29,10 +29,10 @@ export const ExportData: FC = () => {
 
   return (
     <div>
-      <div className="block text-sm font-medium text-gray-700">
+      <div className="block text-sm font-medium text-slate-700">
         {t('workspace.settings.export')}
       </div>
-      <p className="mt-1 text-sm text-gray-500">{t('workspace.settings.getEmail')}</p>
+      <p className="mt-1 text-sm text-slate-500">{t('workspace.settings.getEmail')}</p>
       <div className="mt-3">
         <Button loading={loading} onClick={handleClick}>
           {t('workspace.settings.exportBottom')}

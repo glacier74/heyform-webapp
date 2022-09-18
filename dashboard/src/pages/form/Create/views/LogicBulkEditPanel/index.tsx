@@ -81,9 +81,9 @@ export const LogicBulkEditPanel = () => {
 
   return (
     <div className="logic-bulk-edit-panel">
-      <div className="flex justify-between px-4 py-6 bg-gray-50">
+      <div className="flex justify-between px-4 py-6 bg-slate-50">
         <div className="flex-1">
-          <h2 className="text-lg font-medium text-gray-900">{t('formBuilder.bulkEdit')}</h2>
+          <h2 className="text-lg font-medium text-slate-900">{t('formBuilder.bulkEdit')}</h2>
           <p>{t('formBuilder.bulkEditDescription')}</p>
         </div>
         <Button.Link className="w-8 h-8" leading={<XIcon />} onClick={handleClose} />

@@ -130,7 +130,7 @@ const InsertFieldMenu: FC<InsertFieldMenuProps> = ({ onClick }) => {
       <div className="insert-field-groups relative scrollbar">
         {groups.map(group => (
           <div key={group.name} className="insert-field-group absolute w-1/4">
-            <div className="insert-field-group-title mb-1 pl-4 text-sm font-medium text-gray-500">
+            <div className="insert-field-group-title mb-1 pl-4 text-sm font-medium text-slate-500">
               {t(group.name)}
             </div>
             <div className="insert-field-list" key={group.name}>
@@ -181,7 +181,7 @@ export const InsertFieldDropdown = () => {
 
   return (
     <Dropdown
-      className="insert-field-dropdown w-6 h-6 rounded-md text-gray-500 hover:bg-gray-50 cursor-pointer"
+      className="insert-field-dropdown w-6 h-6 rounded-md text-slate-500 hover:bg-slate-50 cursor-pointer"
       popupClassName="insert-field-popup"
       visible={visible}
       placement="right-start"

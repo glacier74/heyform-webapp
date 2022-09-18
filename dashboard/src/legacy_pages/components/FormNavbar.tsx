@@ -22,15 +22,15 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
   }
 
   return (
-    <div className="flex grid grid-cols-3 gap-3 space-between py-2 px-4 -mt-px border-b border-gray-200">
+    <div className="flex grid grid-cols-3 gap-3 space-between py-2 px-4 -mt-px border-b border-slate-200">
       <Left align="center">
         <BackButton icon={<ArrowLeftIcon className="w-4 h-4" />} onClick={toProject}>
           {workspaceStore.project?.name}
         </BackButton>
       </Left>
-      <Nav role="navigation">
+      <Nav role="navigation" className="flex items-center">
         <NavLink
-          className={'text-xs mx-6 text-gray-500'}
+          className={'text-xs mx-6 text-slate-500'}
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/create`}
         >
           <svg
@@ -50,7 +50,7 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
           {t('form.create')}
         </NavLink>
         <NavLink
-          className={'text-xs px-4 text-gray-500'}
+          className={'text-xs px-4 text-slate-500'}
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/connect`}
         >
           <svg
@@ -70,7 +70,7 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
           {t('form.connect')}
         </NavLink>
         <NavLink
-          className={'text-xs px-4 text-gray-500'}
+          className={'text-xs px-4 text-slate-500'}
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/share`}
         >
           <svg
@@ -90,7 +90,7 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
           {t('form.share')}
         </NavLink>
         <NavLink
-          className={'text-xs px-4 text-gray-500'}
+          className={'text-xs px-4 text-slate-500'}
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}
         >
           <svg
@@ -110,7 +110,7 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
           {t('form.results')}
         </NavLink>
         <NavLink
-          className={'text-xs px-4 text-gray-500'}
+          className={'text-xs px-4 text-slate-500'}
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/settings`}
         >
           <svg

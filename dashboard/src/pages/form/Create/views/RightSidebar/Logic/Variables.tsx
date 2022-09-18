@@ -108,7 +108,7 @@ export const Variables: FC = () => {
           <div className="flex items-center justify-between">
             <span>{t('formBuilder.variable.title')}</span>
             <Button.Link
-              className="text-gray-500 hover:text-gray-900"
+              className="text-slate-500 hover:text-slate-900"
               trailing={<ChevronRightIcon />}
               onClick={handleClick}
             >
@@ -130,7 +130,7 @@ export const Variables: FC = () => {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500">{t('formBuilder.variable.empty')}</p>
+            <p className="text-slate-500">{t('formBuilder.variable.empty')}</p>
           )}
         </div>
       </div>

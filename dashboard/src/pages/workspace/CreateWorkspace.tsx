@@ -50,9 +50,8 @@ const CreateWorkspace: FC = () => {
   return (
     <div>
       <div>
-        <LogoIcon className="h-8 w-auto" />
-        <h2 className="mt-6 text-3xl font-extrabold text-gray-900">{t('setup.createW')}</h2>
-        <p className="mt-2 text-sm text-gray-600">{t('setup.explain')}</p>
+        <h2 className="mt-6 text-2xl font-bold text-slate-900">{t('setup.createW')}</h2>
+        <p className="mt-2 text-base text-slate-500">{t('setup.explain')}</p>
       </div>
 
       <div className="mt-8">
@@ -67,7 +66,7 @@ const CreateWorkspace: FC = () => {
               label={
                 <>
                   {t('setup.logo')}{' '}
-                  <span className="text-gray-500">
+                  <span className="text-slate-500">
                     ({t('audiences.contact.addContact.optional')})
                   </span>
                 </>
@@ -77,7 +76,7 @@ const CreateWorkspace: FC = () => {
             </Form.Item>
 
             <Button type="primary" htmlType="submit" loading={loading}>
-              {t('setup.createW')}
+              {t('setup.create')}
             </Button>
 
             {error && <div className="form-item-error">{error.message}</div>}

@@ -39,7 +39,7 @@ export const CouponCode: FC<CouponCodeProps> = ({
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <div className="text-lg leading-6 font-medium text-gray-900">{t('billing.addCode')}</div>
+          <div className="text-lg leading-6 font-medium text-slate-900">{t('billing.addCode')}</div>
         </div>
 
         <Form.Custom

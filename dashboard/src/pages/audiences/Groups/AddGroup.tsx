@@ -25,10 +25,10 @@ const AddGroup: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal contentClassName="max-w-md" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-lg leading-6 font-medium text-slate-900">
             {t('audiences.groups.addGroup.add')}
           </h1>
-          <p className="mt-1 mr-8 text-sm text-gray-500">
+          <p className="mt-1 mr-8 text-sm text-slate-500">
             {t('audiences.groups.addGroup.explain')}
           </p>
         </div>

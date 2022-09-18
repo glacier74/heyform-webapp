@@ -21,10 +21,10 @@ const ForgotPassword = () => {
   return (
     <div>
       <div>
-        <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
+        <h1 className="mt-6 text-center text-3xl font-bold text-slate-900">
           {t('auth.forgotPassword.forgot')}
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
+        </h1>
+        <p className="mt-2 text-center text-sm text-slate-500">
           {t('auth.forgotPassword.sendEmail')}
         </p>
       </div>
@@ -50,7 +50,7 @@ const ForgotPassword = () => {
 
           <div className="mt-6 text-center text-blue-700 hover:text-blue-800 sm:text-sm">
             <RedirectUriLink href="/login" className="inline-flex items-center">
-              <ChevronLeftIcon className="w-5 h-5" /> {t('auth.forgotPassword.link')}
+              {t('auth.forgotPassword.link')}
             </RedirectUriLink>
           </div>
         </div>

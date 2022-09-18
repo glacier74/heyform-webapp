@@ -63,7 +63,7 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
         <div className="flex items-center">
           <span>{workspaceStore.project?.name}</span>
           <Dropdown
-            className="ml-1 p-1 rounded-md text-gray-500 hover:bg-gray-50 hover:text-gray-900 cursor-pointer"
+            className="ml-1 p-1 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 cursor-pointer"
             placement="bottom-start"
             overlay={
               <Menus onClick={handleMenuClick}>

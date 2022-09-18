@@ -88,14 +88,14 @@ export const FormStatus: FC = observer(() => {
     <div>
       <div className="py-4">
         <SwitchContainer align="center" justify="space-between">
-          <span className="font-medium text-gray-900 text-base">{t('formSettings.status')}</span>
+          <span className="font-medium text-slate-900 text-base">{t('formSettings.status')}</span>
           <Switch
             loading={loading}
             value={formStore.current?.settings?.active}
             onChange={handleSwitchChange}
           />
         </SwitchContainer>
-        <p className="text-sm text-gray-500 max-w-2xl mb-8">{t('formSettings.disableForm')}</p>
+        <p className="text-sm text-slate-500 max-w-2xl mb-8">{t('formSettings.disableForm')}</p>
       </div>
 
       {formStore.current?.settings?.active && (

@@ -36,7 +36,7 @@ const InputTableValue: FC<{ columns?: Column[]; value?: InputTableValue }> = ({
       <thead>
         <tr>
           {columns.map(c => (
-            <th key={c.id} className="py-1.5 px-3 text-left text-sm font-semibold text-gray-900">
+            <th key={c.id} className="py-1.5 px-3 text-left text-sm font-semibold text-slate-900">
               {c.label}
             </th>
           ))}
@@ -48,7 +48,7 @@ const InputTableValue: FC<{ columns?: Column[]; value?: InputTableValue }> = ({
             {value!.map((v, index) => (
               <tr key={index}>
                 {columns.map(c => (
-                  <td key={c.id} className="whitespace-nowrap py-2 px-3 text-sm text-gray-500">
+                  <td key={c.id} className="whitespace-nowrap py-2 px-3 text-sm text-slate-500">
                     {v[c.id]}
                   </td>
                 ))}

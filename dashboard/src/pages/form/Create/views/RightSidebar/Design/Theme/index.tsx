@@ -73,7 +73,7 @@ const ThemeItem: FC<{ theme: FormThemeV3 }> = ({ theme }) => {
       />
 
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 rounded-md">
+        <div className="absolute inset-0 flex items-center justify-center bg-slate-900 bg-opacity-50 rounded-md">
           <Spin className="text-white" />
         </div>
       )}

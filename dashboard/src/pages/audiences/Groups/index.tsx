@@ -100,8 +100,8 @@ const Groups = () => {
         )
 
         return (
-          <Dropdown className="p-1 hover:bg-gray-100 rounded-md cursor-pointer" overlay={Overlay}>
-            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
+          <Dropdown className="p-1 hover:bg-slate-100 rounded-md cursor-pointer" overlay={Overlay}>
+            <DotsHorizontalIcon className="w-5 h-5 text-slate-400 hover:text-slate-900" />
           </Dropdown>
         )
       }

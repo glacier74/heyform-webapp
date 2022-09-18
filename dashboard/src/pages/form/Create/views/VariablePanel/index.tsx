@@ -60,10 +60,10 @@ export const VariablePanel: FC = () => {
 
   return (
     <div className="variable-panel">
-      <div className="flex justify-between items-start px-4 py-6 bg-gray-50">
+      <div className="flex justify-between items-start px-4 py-6 bg-slate-50">
         <div className="flex-1">
-          <h2 className="text-lg font-medium text-gray-900">{t('formBuilder.variable.title')}</h2>
-          <p className="mt-1 text-sm text-gray-500">{t('formBuilder.variable.description')}</p>
+          <h2 className="text-lg font-medium text-slate-900">{t('formBuilder.variable.title')}</h2>
+          <p className="mt-1 text-sm text-slate-500">{t('formBuilder.variable.description')}</p>
         </div>
         <Button.Link className="w-8 h-8" leading={<XIcon />} onClick={handleClose} />
       </div>

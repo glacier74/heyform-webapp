@@ -34,7 +34,7 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
 
   return (
     <div
-      className="group flex items-center px-4 py-2.5 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
+      className="group flex items-center px-4 py-2.5 text-sm text-slate-700 cursor-pointer hover:bg-slate-100"
       onClick={handleClick}
     >
       <Avatar
@@ -47,8 +47,8 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
       />
 
       <div className="ml-4 flex-auto">
-        <p className="text-sm font-medium text-gray-700 truncate">{workspace.name}</p>
-        <p className="text-sm text-gray-500 truncate">
+        <p className="text-sm font-medium text-slate-700 truncate">{workspace.name}</p>
+        <p className="text-sm text-slate-500 truncate">
           <span>
             {workspace.plan.name} {t('billing.plan')}
           </span>
@@ -90,7 +90,7 @@ const CurrentWorkspace = observer(() => {
   const { t } = useTranslation()
 
   return (
-    <button className="group w-full rounded-md text-sm text-left text-gray-700">
+    <button className="group w-full rounded-md text-sm text-left text-slate-700">
       <span className="flex w-full justify-between items-center cursor-pointer">
         <span className="flex min-w-0 items-center justify-between space-x-3">
           <Avatar
@@ -102,10 +102,10 @@ const CurrentWorkspace = observer(() => {
             circular
           />
           <span className="flex-1 flex flex-col min-w-0">
-            <span className="text-gray-900 text-sm font-medium truncate">
+            <span className="text-slate-900 text-sm font-medium truncate">
               {workspaceStore.workspace?.name}
             </span>
-            <span className="text-gray-500 text-sm truncate">
+            <span className="text-slate-500 text-sm truncate">
               {workspaceStore.workspace?.plan.name} {t('billing.plan')}
               {workspaceStore.workspace.subscription.trialing && (
                 <span className="text-blue-700 text-xs"> (trial)</span>
@@ -113,7 +113,7 @@ const CurrentWorkspace = observer(() => {
             </span>
           </span>
         </span>
-        <SelectorIcon className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-gray-500" />
+        <SelectorIcon className="flex-shrink-0 h-5 w-5 text-slate-400 group-hover:text-slate-500" />
       </span>
     </button>
   )

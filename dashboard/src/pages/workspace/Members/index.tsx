@@ -44,10 +44,10 @@ const Members = observer(() => {
               <Avatar src={cropImage(record.avatar, 60, 60)} size={36} rounded circular />
             </div>
             <div className="flex-1 px-4">
-              <p className="text-sm font-semibold text-gray-800 truncate">
+              <p className="text-sm font-semibold text-slate-800 truncate">
                 {record.name} {userStore.user.id === record.id && <span>(You)</span>}
               </p>
-              <p className="mt-0.5 flex items-center font-normal text-sm text-gray-500">
+              <p className="mt-0.5 flex items-center font-normal text-sm text-slate-500">
                 <span className="truncate">{record.email}</span>
               </p>
             </div>
@@ -71,7 +71,7 @@ const Members = observer(() => {
         }
         return (
           <>
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
               {t('workspace.members.index.member')}
             </span>
           </>
@@ -144,10 +144,10 @@ const Members = observer(() => {
 
         return (
           <Dropdown
-            className="inline-flex p-1 hover:bg-gray-100 rounded-md cursor-pointer"
+            className="inline-flex p-1 hover:bg-slate-100 rounded-md cursor-pointer"
             overlay={workspaceStore.workspace.isOwner ? OwnerOverlay : MemberOverlay}
           >
-            <DotsHorizontalIcon className="w-5 h-5 text-gray-400 hover:text-gray-900" />
+            <DotsHorizontalIcon className="w-5 h-5 text-slate-400 hover:text-slate-900" />
           </Dropdown>
         )
       }

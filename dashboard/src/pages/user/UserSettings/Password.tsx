@@ -29,7 +29,7 @@ const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-gray-900">
+          <h1 className="text-lg leading-6 font-medium text-slate-900">
             {t('user.settings.password.changeP')}
           </h1>
         </div>
@@ -96,8 +96,8 @@ export const Password: FC = observer(() => {
 
   return (
     <div>
-      <div className="block text-sm font-medium text-gray-700">{t('login.Password')}</div>
-      <p className="mt-1 text-sm text-gray-500">
+      <div className="block text-sm font-medium text-slate-700">{t('login.Password')}</div>
+      <p className="mt-1 text-sm text-slate-500">
         <Button.Link className="text-blue-500" onClick={handleOpen}>
           {t('user.settings.password.changeP')}
         </Button.Link>

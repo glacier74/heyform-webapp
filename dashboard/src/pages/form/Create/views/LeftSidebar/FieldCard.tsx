@@ -192,7 +192,7 @@ export const FieldCard: FC<FieldCardProps> = ({
     >
       <div
         className={clsx('field-card group flex items-center pt-2 pr-1 pb-2 cursor-pointer', {
-          'bg-gray-100': isSelected,
+          'bg-slate-100': isSelected,
           'field-card-open': isOpen
         })}
         onClick={handleClick}
