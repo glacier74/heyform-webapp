@@ -33,9 +33,7 @@ const RightSidebarComponent = () => {
           </TabPanePlanCheck>
         </Tabs.Pane>
         <Tabs.Pane name="logic" title={t('formBuilder.logic')}>
-          <TabPanePlanCheck permission={PlanGradeEnum.PREMIUM}>
-            <Logic />
-          </TabPanePlanCheck>
+          <Logic />
         </Tabs.Pane>
       </Tabs>
     </div>

@@ -1,5 +1,4 @@
-import { EdgeArrow, TabPanePlanCheck } from '@/components'
-import { PlanGradeEnum } from '@/models'
+import { EdgeArrow } from '@/components'
 import { ReactFlowProvider } from 'react-flow-renderer'
 import { Flow } from './Flow'
 
@@ -8,9 +7,7 @@ export const LogicFlow = () => {
     <div className="logic-flow">
       <EdgeArrow />
       <ReactFlowProvider>
-        <TabPanePlanCheck permission={PlanGradeEnum.PREMIUM} isBadgeShow={false}>
-          <Flow />
-        </TabPanePlanCheck>
+        <Flow />
       </ReactFlowProvider>
     </div>
   )
