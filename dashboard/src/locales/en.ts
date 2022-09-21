@@ -574,12 +574,14 @@ export default {
   },
   formSettings: {
     Form: 'Form settings',
+    subTitle: 'Manage your form settings',
     Extra: 'Extra',
     subArchive: 'Submission archive',
     archiveText:
       "Disable the submission archive if you don't want HeyForm to store your submissions.",
     timeLimit: 'Time limit',
-    timeText: 'You can set it below if you want to block submission when the time is up.',
+    timeText:
+      'You can set an allowable time here if you want to block the submission after the countdown is over.',
     dataError: 'Please enter a valid number',
     Hour: 'Hour',
     Minute: 'Minute',
@@ -594,19 +596,25 @@ export default {
     Basic: 'Basic',
     formUpdated: 'Form settings have been successfully updated',
     status: 'Form status',
-    disableForm:
-      'You can disable this form to stop receiving new submissions and prevent public access to the form.',
-    expiration: 'Expiration date',
+    closeForm: 'Close form',
+    closeFormText:
+      'You can close this form to stop receiving new submissions and prevent public access to the form.',
+    closedFormMessage: 'Closed form message',
+    closedFormMessageText:
+      'This is what the recipients will see if you closed the form with one of the options above.',
+    closedFormTitle: 'Title',
+    closedFormDescription: 'Description',
+    expiration: 'Close form when expires',
     expirationText:
-      'When you want to receiving submissions within a certain date range, you can set the start and end dates below.',
+      'When you want to receiving submissions within a certain date range, you can set the start and end dates here.',
     to: 'to',
     dateErr: 'Close Date must come after the Start Date',
-    submission: 'Submission limit',
+    submission: 'Limit the number of submissions',
     submissionText:
       'This allows you to set a specific total number of submissions allowed for your form.',
-    IpLimit: 'IP address limit',
+    IpLimit: 'Limit the frequency of submitting for same IP address',
     IpLimitText:
-      'You can set it below if you want to limit the number of submitting times from a same IP address in a period.',
+      'You can set it here if you want to limit the number of submitting times from a same IP address in a period.',
     Protection: 'Protection',
     Anti: 'Anti-spam',
     AntiText: 'Enable to prevent spam submissions.',
@@ -619,11 +627,15 @@ export default {
     archiveConfirm:
       'Once you confirm to disable Submission Archive, all submissions will be deleted.',
     Cancel: 'Cancel',
+    Confirm: 'Confirm',
     Disable: 'Disable',
     times: 'times in every',
     Language: 'Language',
     LanguageDescription:
-      'Select the language in which respondents will see your form. Applies to non-customized text, such as default buttons, hint messages, etc.'
+      'Select the language in which respondents will see your form. Applies to non-customized text, such as default buttons, validation errors, etc.',
+    CustomCSS: 'Custom CSS',
+    CustomCSSDescription:
+      'If neither the Theme nor Customize defined styles meet your needs, you can insert custom CSS to modify it to your desired styles.'
   },
   integration: {
     Categories: 'Categories',
@@ -906,6 +918,7 @@ export default {
     design: 'Design',
     theme: 'Theme',
     customize: 'Customize',
+    customCSS: 'Custom CSS',
     submitDate: 'Submit date',
     contact: 'Contact',
     customText: 'Custom text',
@@ -953,12 +966,5 @@ export default {
       'No contracts, downgrade or cancel the subscription anytime within a single click from your dashboard.',
     trialButton: 'Start trial',
     trialGofree: 'Continue with free plan'
-  },
-  languages: {
-    en: 'English',
-    zhCn: 'Chinese (simplified)',
-    zhTw: 'Chinese (traditional)',
-    fr: 'French',
-    de: 'German'
   }
 }

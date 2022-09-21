@@ -2,7 +2,7 @@ import { GOOGLE_FONTS_OPTIONS } from '@/consts'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
-import { Button, Form, notification, Select, stopPropagation, useForm } from '@heyforms/ui'
+import { Button, Form, Input, notification, Select, stopPropagation, useForm } from '@heyforms/ui'
 import { isURL } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -103,6 +103,20 @@ export const Customize: FC = observer(() => {
             </Form.Item>
           </div>
         )}
+
+        <Form>
+          <div className="right-sidebar-group">
+            <Form.Item name="customCSS" label="Custom CSS">
+              <Input.Textarea />
+            </Form.Item>
+          </div>
+
+          <Form.Item className="right-sidebar-group">
+            <Button className="ml-4 flex-1" type="primary" htmlType="submit">
+              Save changes
+            </Button>
+          </Form.Item>
+        </Form>
 
         <Form.Item className="right-sidebar-group">
           <div className="flex items-center">

@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 
-export const TIME_ZONES: IOptionType[] = [
+export const TIME_ZONE_OPTIONS: IOptionType[] = [
   { label: '(GMT-11:00) Niue', value: 'Pacific/Niue' },
   {
     label: '(GMT-11:00) Samoa',

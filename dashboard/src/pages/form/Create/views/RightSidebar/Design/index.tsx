@@ -4,8 +4,10 @@ import { Tabs } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { CustomCSS } from './CustomCSS'
 import { Customize } from './Customize'
 import { Theme } from './Theme'
+import './style.scss'
 
 const DesignComponent = () => {
   const { t } = useTranslation()
@@ -17,12 +19,15 @@ const DesignComponent = () => {
   }, [formStore.customTheme])
 
   return (
-    <Tabs type="segment" defaultActiveName="theme">
+    <Tabs className="right-sidebar-design" type="segment" defaultActiveName="theme">
       <Tabs.Pane name="theme" title={t('formBuilder.theme')}>
         <Theme />
       </Tabs.Pane>
       <Tabs.Pane name="customize" title={t('formBuilder.customize')}>
         <Customize />
+      </Tabs.Pane>
+      <Tabs.Pane name="customCSS" title={t('formBuilder.customCSS')}>
+        <CustomCSS />
       </Tabs.Pane>
     </Tabs>
   )

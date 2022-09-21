@@ -459,6 +459,7 @@ export const FORMS_GQL = gql`
         captchaKind
         active
         enableExpirationDate
+        expirationTimeZone
         enabledAt
         closedAt
         enableTimeLimit
@@ -476,6 +477,10 @@ export const FORMS_GQL = gql`
         ipLimitCount
         ipLimitTime
         enableProgress
+        locale
+        enableClosedMessage
+        closedFormTitle
+        closedFormDescription
       }
       draft
       retentionAt
@@ -544,6 +549,9 @@ export const FORM_SUMMARY_GQL = gql`
         ipLimitCount
         ipLimitTime
         locale
+        enableClosedMessage
+        closedFormTitle
+        closedFormDescription
       }
       retentionAt
       suspended
@@ -566,6 +574,7 @@ export const FORM_DETAIL_GQL = gql`
         captchaKind
         active
         enableExpirationDate
+        expirationTimeZone
         enabledAt
         closedAt
         enableTimeLimit
@@ -582,6 +591,9 @@ export const FORM_DETAIL_GQL = gql`
         ipLimitTime
         enableProgress
         locale
+        enableClosedMessage
+        closedFormTitle
+        closedFormDescription
       }
       fields {
         id

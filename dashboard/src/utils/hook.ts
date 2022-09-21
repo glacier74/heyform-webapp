@@ -248,3 +248,21 @@ export function useQueryURL(to: string) {
   const separator = !to.includes('?') ? '?' : '&'
   return to + separator + stringify(q, { encode: true })
 }
+
+export function useAnchorScroll(element: HTMLElement, anchors: string[] = []) {
+  const [active, setActive] = useState(anchors[0])
+
+  function handleScroll() {
+    console.log(element!.scrollTop)
+  }
+
+  useEffect(() => {
+    if (element) {
+      element.addEventListener('scroll', handleScroll, false)
+    }
+
+    return () => {
+      element.removeEventListener('scroll', handleScroll)
+    }
+  }, [element])
+}

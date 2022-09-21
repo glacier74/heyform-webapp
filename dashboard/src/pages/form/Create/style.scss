@@ -1247,6 +1247,11 @@
 
 .flow-custom-node-title {
   @apply flex-1;
+  max-height: 5rem;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
 }
 
 .react-flow__controls-button {

@@ -5,7 +5,7 @@
  * @date: 12/1/21 1:22 PM
  **/
 
-import { TIME_ZONES } from '@/consts'
+import { TIME_ZONE_OPTIONS } from '@/consts'
 import { FormError } from '@/legacy_pages/components'
 import { DatetimePicker } from '@/legacy_pages/components/DatetimePicker'
 import { NumberInput } from '@/legacy_pages/components/NumberInput'
@@ -37,7 +37,7 @@ export const FormStatus: FC = observer(() => {
   const [error, setError] = useState<Error | null>(null)
 
   const timeZone = useMemo(() => {
-    return TIME_ZONES.find(t => t.value === dayjs.tz.guess())?.label
+    return TIME_ZONE_OPTIONS.find(t => t.value === dayjs.tz.guess())?.label
   }, [dayjs.tz.guess()])
 
   async function handleSwitchChange(value: boolean) {

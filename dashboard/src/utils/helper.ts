@@ -117,3 +117,36 @@ export function cropImage(src?: string, width = 0, height = 0): string | undefin
     return src
   }
 }
+
+const SECOND = 1
+const MINUTE = SECOND * 60
+const HOUR = MINUTE * 60
+const DAY = HOUR * 24
+
+export class SecondUtils {
+  static parse(num: number, unit: string): number {
+    if (unit === 'd') {
+      return num * DAY
+    }
+    if (unit === 'h') {
+      return num * HOUR
+    }
+    if (unit === 'm') {
+      return num * MINUTE
+    }
+    return num * SECOND
+  }
+
+  static stringify(hs: number): [number, string] {
+    if (hs >= DAY) {
+      return [Math.round(hs / DAY), 'd']
+    }
+    if (hs >= HOUR) {
+      return [Math.round(hs / HOUR), 'h']
+    }
+    if (hs >= MINUTE) {
+      return [Math.round(hs / MINUTE), 'm']
+    }
+    return [hs, 's']
+  }
+}

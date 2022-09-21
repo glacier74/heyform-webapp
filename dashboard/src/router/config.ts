@@ -55,7 +55,7 @@ const Share = lazy(() => import('@/legacy_pages/pages/Share'))
 const Analytics = lazy(() => import('@/legacy_pages/pages/Analytics'))
 const Report = lazy(() => import('@/legacy_pages/pages/Report'))
 const Submissions = lazy(() => import('@/legacy_pages/pages/Submissions'))
-const FormSettings = lazy(() => import('@/legacy_pages/pages/FormSettings'))
+const FormSettings = lazy(() => import('@/pages/form/FormSettings'))
 
 const config: CustomRouteConfig[] = [
   /* Login */

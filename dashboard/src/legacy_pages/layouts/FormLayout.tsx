@@ -13,7 +13,7 @@ export const FormLayout: FC = ({ children }) => {
       <FormGuardLayout>
         <StyledFlex column={true}>
           <FormNavbar />
-          <Content className="content scrollbar">{children}</Content>
+          <Content className="bg-slate-50 content scrollbar">{children}</Content>
         </StyledFlex>
         <FormPreviewModal />
       </FormGuardLayout>
@@ -41,5 +41,4 @@ const StyledFlex = styled(Flex)`
 
 const Content = styled.div`
   flex: 1;
-  background: #fafbfc;
 `
