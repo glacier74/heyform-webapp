@@ -3,8 +3,9 @@ import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
 import { Form, notification } from '@heyforms/ui'
-import dayjs from 'dayjs'
+import dayjs, { unix } from 'dayjs'
 import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Basic } from './Basic'
@@ -24,26 +25,12 @@ const FormSettings: FC = () => {
 
   function getUpdates(values: IMapType) {
     if (values.startDate) {
-      values.enabledAt = dayjs
-        .tz(
-          values.startDate.format(EXPIRATION_DATE_FORMAT),
-          EXPIRATION_DATE_FORMAT,
-          values.expirationTimeZone
-        )
-        .unix()
-
+      values.enabledAt = values.startDate.tz(values.expirationTimeZone, true).unix()
       delete values.startDate
     }
 
     if (values.endDate) {
-      values.closedAt = dayjs
-        .tz(
-          values.endDate.format(EXPIRATION_DATE_FORMAT),
-          EXPIRATION_DATE_FORMAT,
-          values.expirationTimeZone
-        )
-        .unix()
-
+      values.closedAt = values.endDate.tz(values.expirationTimeZone, true).unix()
       delete values.endDate
     }
 

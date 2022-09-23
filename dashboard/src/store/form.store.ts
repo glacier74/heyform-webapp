@@ -1,4 +1,3 @@
-import { EXPIRATION_DATE_FORMAT } from '@/consts'
 import type { FormModel } from '@/legacy_pages/models'
 import { htmlUtils } from '@heyforms/answer-utils'
 import { getTheme } from '@heyforms/form-component'
@@ -66,21 +65,11 @@ export class FormStore {
       }
 
       if (form.settings.enabledAt && form.settings.enabledAt > 0) {
-        tempSettings.startDate = dayjs(
-          dayjs
-            .tz(unix(form.settings.enabledAt), tempSettings.expirationTimeZone)
-            .format(EXPIRATION_DATE_FORMAT),
-          EXPIRATION_DATE_FORMAT
-        )
+        tempSettings.startDate = unix(form.settings.enabledAt).tz(tempSettings.expirationTimeZone)
       }
 
       if (form.settings.closedAt && form.settings.closedAt > 0) {
-        tempSettings.endDate = dayjs(
-          dayjs
-            .tz(unix(form.settings.closedAt), tempSettings.expirationTimeZone)
-            .format(EXPIRATION_DATE_FORMAT),
-          EXPIRATION_DATE_FORMAT
-        )
+        tempSettings.endDate = unix(form.settings.closedAt).tz(tempSettings.expirationTimeZone)
       }
 
       this.tempSettings = tempSettings
