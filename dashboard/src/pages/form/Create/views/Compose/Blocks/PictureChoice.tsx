@@ -59,27 +59,27 @@ const PictureChoiceItem: FC<PictureChoiceItemProps> = ({
   }
 
   return (
-    <div className="builder-radio">
-      <div className="builder-radio-container">
+    <div className="heyform-radio">
+      <div className="heyform-radio-container">
         {isURL(choice.image) ? (
           <>
-            <div className="builder-radio-image">
+            <div className="heyform-radio-image">
               <img src={choice.image!} alt={choice.label} />
             </div>
-            <div className="builder-radio-actions">
+            <div className="heyform-radio-actions">
               <Button.Link leading={<ImageIcon />} onClick={handleSelectImage} />
               <Button.Link leading={<TrashIcon />} onClick={handleRemoveImage} />
             </div>
           </>
         ) : (
-          <div className="builder-radio-trigger" onClick={handleSelectImage}>
+          <div className="heyform-radio-trigger" onClick={handleSelectImage}>
             <AddImageIcon />
           </div>
         )}
 
-        <div className="builder-radio-content">
-          <div className="builder-radio-hotkey">{String.fromCharCode(KeyCode.A + index)}</div>
-          <div className="builder-radio-label">
+        <div className="heyform-radio-content">
+          <div className="heyform-radio-hotkey">{String.fromCharCode(KeyCode.A + index)}</div>
+          <div className="heyform-radio-label">
             <Input
               value={choice.label}
               placeholder={isFocused ? t('formBuilder.choicePlaceholder') : undefined}
@@ -89,7 +89,7 @@ const PictureChoiceItem: FC<PictureChoiceItemProps> = ({
             />
           </div>
           {enableRemove && (
-            <div className="builder-radio-remove" onClick={handleRemove}>
+            <div className="heyform-radio-remove" onClick={handleRemove}>
               <XIcon />
             </div>
           )}
@@ -101,9 +101,9 @@ const PictureChoiceItem: FC<PictureChoiceItemProps> = ({
 
 const AddPictureChoice: FC<IComponentProps> = props => {
   return (
-    <div className="builder-radio" {...props}>
-      <div className="builder-radio-container">
-        <div className="builder-radio-image flex-1">
+    <div className="heyform-radio" {...props}>
+      <div className="heyform-radio-container">
+        <div className="heyform-radio-image flex-1">
           <PlusIcon />
         </div>
       </div>
@@ -233,8 +233,8 @@ export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) =
   const handleImageChangeCallback = useCallback(handleImageChange, [field.properties, choiceId])
 
   return (
-    <Block className="builder-picture-choice" field={field} locale={locale} {...restProps}>
-      <div className="builder-picture-choice-list">
+    <Block className="heyform-picture-choice" field={field} locale={locale} {...restProps}>
+      <div className="heyform-picture-choice-list">
         {field.properties?.choices?.map((choice, index) => (
           <PictureChoiceItem
             key={choice.id}

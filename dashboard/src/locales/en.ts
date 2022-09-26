@@ -632,10 +632,7 @@ export default {
     times: 'times in every',
     Language: 'Language',
     LanguageDescription:
-      'Select the language in which respondents will see your form. Applies to non-customized text, such as default buttons, validation errors, etc.',
-    CustomCSS: 'Custom CSS',
-    CustomCSSDescription:
-      'If neither the Theme nor Customize defined styles meet your needs, you can insert custom CSS to modify it to your desired styles.'
+      'Select the language in which respondents will see your form. Applies to non-customized text, such as default buttons, validation errors, etc.'
   },
   integration: {
     Categories: 'Categories',
@@ -958,7 +955,12 @@ export default {
     singleRule: '1 rule has been set',
     multipleRules: '{{count}} rules have been set',
     redirect: 'Redirect on completion',
-    buttonLinkUrl: 'Button link URL'
+    buttonLinkUrl: 'Button link URL',
+    CustomCSS: 'Custom CSS',
+    CustomCSSDescription:
+      'If neither the Theme nor Customize defined styles meet your needs, you can insert custom CSS to modify it to your desired styles.',
+    customCssTableDescription: 'Description',
+    customCssTableClass: 'CSS Class'
   },
   onboarding: {
     trialTitle: 'Start your 14-day free trial',

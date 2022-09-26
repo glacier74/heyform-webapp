@@ -9,13 +9,13 @@ export const Rating: FC<BlockProps> = ({ field, locale, ...restProps }) => {
     return (
       <>
         {RATING_SHAPE_CONFIG[field.properties?.shape || 'star']}
-        <span className="builder-rate-index">{index}</span>
+        <span className="heyform-rate-index">{index}</span>
       </>
     )
   }
 
   return (
-    <Block className="builder-rating" field={field} locale={locale} {...restProps}>
+    <Block className="heyform-rating" field={field} locale={locale} {...restProps}>
       <Rate count={field.properties?.total || 5} itemRender={characterRender} />
     </Block>
   )

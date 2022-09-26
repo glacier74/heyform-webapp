@@ -70,7 +70,7 @@ export const Basic: FC = observer(() => {
             <p className="mt-1 text-sm text-slate-500">{t('formSettings.timeText')}</p>
           </div>
 
-          <Form.Item className="ml-4 mb-0" name="enableTimeLimit" rules={[{ required: true }]}>
+          <Form.Item className="ml-4 mb-0" name="enableTimeLimit" rules={[{ required: false }]}>
             <Switch />
           </Form.Item>
         </div>

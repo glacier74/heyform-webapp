@@ -1,8 +1,19 @@
 import { GOOGLE_FONTS_OPTIONS } from '@/consts'
+import CustomCssHelpModal from '@/pages/form/Create/views/RightSidebar/Design/Customize/CustomCssHelpModal'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
-import { useParam } from '@/utils'
-import { Button, Form, Input, notification, Select, stopPropagation, useForm } from '@heyforms/ui'
+import { useParam, useVisible } from '@/utils'
+import { QuestionMarkCircleIcon } from '@heroicons/react/outline'
+import {
+  Button,
+  Form,
+  Input,
+  notification,
+  Select,
+  stopPropagation,
+  Tooltip,
+  useForm
+} from '@heyforms/ui'
 import { isURL } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -16,6 +27,7 @@ export const Customize: FC = observer(() => {
   const formStore = useStore('formStore')
   const [form] = useForm()
   const [loading, setLoading] = useState(false)
+  const [modalVisible, openModal, closeModal] = useVisible()
 
   function handleValuesChange(changedValues: any) {
     formStore.updateCustomTheme(changedValues)
@@ -64,61 +76,69 @@ export const Customize: FC = observer(() => {
         onValuesChange={handleValuesChange}
         onFinish={handleFinish}
       >
-        <div className="right-sidebar-group">
-          <Form.Item name="fontFamily">
-            <Select options={GOOGLE_FONTS_OPTIONS} />
-          </Form.Item>
-
-          <Form.Item name="questionTextColor">
-            <ColorPickerField label="Questions" />
-          </Form.Item>
-
-          <Form.Item name="answerTextColor">
-            <ColorPickerField label="Answers" />
-          </Form.Item>
-
-          <Form.Item name="buttonBackground">
-            <ColorPickerField label="Buttons" />
-          </Form.Item>
-
-          <Form.Item name="buttonTextColor">
-            <ColorPickerField label="Button text" />
-          </Form.Item>
-
-          <Form.Item name="backgroundColor">
-            <ColorPickerField label="Background" />
-          </Form.Item>
-        </div>
-
-        <div className="right-sidebar-group">
-          <Form.Item name="backgroundImage">
-            <BackgroundImage />
-          </Form.Item>
-        </div>
-
-        {isURL(formStore.customTheme?.backgroundImage) && (
+        <div className="customize-list scrollbar">
           <div className="right-sidebar-group">
-            <Form.Item name="backgroundBrightness">
-              <BackgroundBrightness backgroundImage={formStore.customTheme?.backgroundImage} />
+            <Form.Item name="fontFamily">
+              <Select options={GOOGLE_FONTS_OPTIONS} />
             </Form.Item>
-          </div>
-        )}
 
-        <Form>
-          <div className="right-sidebar-group">
-            <Form.Item name="customCSS" label="Custom CSS">
-              <Input.Textarea />
+            <Form.Item name="questionTextColor">
+              <ColorPickerField label="Questions" />
+            </Form.Item>
+
+            <Form.Item name="answerTextColor">
+              <ColorPickerField label="Answers" />
+            </Form.Item>
+
+            <Form.Item name="buttonBackground">
+              <ColorPickerField label="Buttons" />
+            </Form.Item>
+
+            <Form.Item name="buttonTextColor">
+              <ColorPickerField label="Button text" />
+            </Form.Item>
+
+            <Form.Item name="backgroundColor">
+              <ColorPickerField label="Background" />
             </Form.Item>
           </div>
 
-          <Form.Item className="right-sidebar-group">
-            <Button className="ml-4 flex-1" type="primary" htmlType="submit">
-              Save changes
-            </Button>
-          </Form.Item>
-        </Form>
+          <div className="right-sidebar-group">
+            <Form.Item name="backgroundImage">
+              <BackgroundImage />
+            </Form.Item>
+          </div>
 
-        <Form.Item className="right-sidebar-group">
+          {isURL(formStore.customTheme?.backgroundImage) && (
+            <div className="right-sidebar-group">
+              <Form.Item name="backgroundBrightness">
+                <BackgroundBrightness backgroundImage={formStore.customTheme?.backgroundImage} />
+              </Form.Item>
+            </div>
+          )}
+
+          <div className="right-sidebar-group">
+            <Form.Item
+              name="customCSS"
+              label={
+                <div className="flex items-center">
+                  <span>Custom CSS</span>
+                  <Tooltip ariaLabel="Learn more about custom css">
+                    <Button.Link
+                      className="custom-css-help"
+                      leading={<QuestionMarkCircleIcon />}
+                      onClick={openModal}
+                    />
+                  </Tooltip>
+                </div>
+              }
+            >
+              <Input.Textarea className="mt-2" rows={12} />
+            </Form.Item>
+          </div>
+        </div>
+
+        <Form.Item className="customize-bottom">
           <div className="flex items-center">
             <Button onClick={handleRevert}>Revert</Button>
             <Button className="ml-4 flex-1" type="primary" htmlType="submit" loading={loading}>
@@ -127,6 +147,8 @@ export const Customize: FC = observer(() => {
           </div>
         </Form.Item>
       </Form>
+
+      <CustomCssHelpModal visible={modalVisible} onClose={closeModal} />
     </div>
   )
 })

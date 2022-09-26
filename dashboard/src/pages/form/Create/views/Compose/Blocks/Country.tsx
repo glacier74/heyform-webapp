@@ -10,7 +10,7 @@ export const Country: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
 
   return (
-    <Block className="builder-country" field={field} locale={locale} {...restProps}>
+    <Block className="heyform-country" field={field} locale={locale} {...restProps}>
       <FakeSelect placeholder={t('Select a country', { lng: locale })} />
       <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
     </Block>

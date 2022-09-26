@@ -7,8 +7,8 @@ interface FakeSubmitProps extends IComponentProps {
 
 export const FakeSubmit: FC<FakeSubmitProps> = ({ text, icon, ...restProps }) => {
   return (
-    <div className="builder-submit-container" {...restProps}>
-      <div className="builder-submit-button">
+    <div className="heyform-submit-container" {...restProps}>
+      <div className="heyform-submit-button">
         <span>{text}</span>
         {icon}
       </div>

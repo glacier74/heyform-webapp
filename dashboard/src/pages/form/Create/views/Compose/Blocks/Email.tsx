@@ -9,10 +9,10 @@ export const Email: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
 
   return (
-    <Block className="builder-email" field={field} locale={locale} {...restProps}>
+    <Block className="heyform-email" field={field} locale={locale} {...restProps}>
       <input
         type="email"
-        className="builder-input"
+        className="heyform-input"
         placeholder="email@example.com"
         disabled={true}
       />

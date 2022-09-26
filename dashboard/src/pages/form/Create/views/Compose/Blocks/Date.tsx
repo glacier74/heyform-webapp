@@ -16,14 +16,14 @@ export const DateItem: FC<DateItemProps> = ({ format, locale }) => {
   const dateFormat = DATE_FORMAT_NAMES[format]
 
   return (
-    <div className={`builder-date-item builder-date-item-${dateFormat.id}`}>
-      <label htmlFor={`builder-date-${dateFormat.id}`} className="builder-date-label">
+    <div className={`heyform-date-item heyform-date-item-${dateFormat.id}`}>
+      <label htmlFor={`heyform-date-${dateFormat.id}`} className="heyform-date-label">
         {t(dateFormat.label, { lng: locale })}
       </label>
       <input
-        id={`builder-date-${dateFormat.id}`}
+        id={`heyform-date-${dateFormat.id}`}
         type="text"
-        className="builder-input"
+        className="heyform-input"
         placeholder={format}
         disabled={true}
       />
@@ -38,18 +38,18 @@ export const Date: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const [h, m, timeDivider] = DATE_FORMAT_MAPS[TIME_FORMAT]
 
   return (
-    <Block className="builder-date" field={field} locale={locale} {...restProps}>
-      <div className="builder-date-root">
+    <Block className="heyform-date" field={field} locale={locale} {...restProps}>
+      <div className="heyform-date-root">
         <DateItem format={x} locale={locale} />
-        <div className="builder-date-divider">{dateDivider}</div>
+        <div className="heyform-date-divider">{dateDivider}</div>
         <DateItem format={y} locale={locale} />
-        <div className="builder-date-divider">{dateDivider}</div>
+        <div className="heyform-date-divider">{dateDivider}</div>
         <DateItem format={z} locale={locale} />
 
         {field.properties?.allowTime && (
           <>
             <DateItem format={h} locale={locale} />
-            <div className="builder-date-divider">{timeDivider}</div>
+            <div className="heyform-date-divider">{timeDivider}</div>
             <DateItem format={m} locale={locale} />
           </>
         )}

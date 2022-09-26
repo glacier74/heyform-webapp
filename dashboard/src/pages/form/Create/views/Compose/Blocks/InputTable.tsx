@@ -38,8 +38,8 @@ const Thead: FC<TheadProps> = ({ index, column, deletable, onChange, onRemove, .
 
   return (
     <th>
-      <div className="builder-input-table-thead" {...restProps}>
-        <div className="builder-radio-remove" onClick={handleRemove}>
+      <div className="heyform-input-table-thead" {...restProps}>
+        <div className="heyform-radio-remove" onClick={handleRemove}>
           <XIcon />
         </div>
         <input
@@ -119,16 +119,16 @@ export const InputTable: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const handleRemoveColumnCallback = useCallback(handleRemoveColumn, [field.properties])
 
   return (
-    <Block className="builder-input-table" field={field} locale={locale} {...restProps}>
+    <Block className="heyform-input-table" field={field} locale={locale} {...restProps}>
       <div className="flex items-center justify-end mb-2">
-        <Button.Link className="builder-add-column" onClick={handleAddColumnCallback}>
+        <Button.Link className="heyform-add-column" onClick={handleAddColumnCallback}>
           {t('formBuilder.addColumn')}
         </Button.Link>
       </div>
-      <div className="builder-table-scrollable">
+      <div className="heyform-table-scrollable">
         <table>
           <thead>
-            <tr className="builder-input-table-header">
+            <tr className="heyform-input-table-header">
               {field.properties?.tableColumns?.map((column, index) => (
                 <Thead
                   key={column.id}
@@ -143,7 +143,7 @@ export const InputTable: FC<BlockProps> = ({ field, locale, ...restProps }) => {
           </thead>
           <tbody>
             {Array.from({ length: 5 }).map((_, i) => (
-              <tr key={i} className="builder-input-table-row">
+              <tr key={i} className="heyform-input-table-row">
                 {field.properties?.tableColumns?.map(column => (
                   <td key={column.id}></td>
                 ))}

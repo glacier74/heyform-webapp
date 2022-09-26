@@ -7,11 +7,11 @@ interface FakeRadioProps extends IComponentProps {
 
 export const FakeRadio: FC<FakeRadioProps> = ({ hotkey, label, ...restProps }) => {
   return (
-    <div className="builder-radio" {...restProps}>
-      <div className="builder-radio-container">
-        <div className="builder-radio-content">
-          {hotkey && <div className="builder-radio-hotkey">{hotkey}</div>}
-          <div className="builder-radio-label">{label}</div>
+    <div className="heyform-radio" {...restProps}>
+      <div className="heyform-radio-container">
+        <div className="heyform-radio-content">
+          {hotkey && <div className="heyform-radio-hotkey">{hotkey}</div>}
+          <div className="heyform-radio-label">{label}</div>
         </div>
       </div>
     </div>

@@ -8,8 +8,8 @@ export const LegalTerms: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
 
   return (
-    <Block className="builder-legal-terms" field={field} locale={locale} {...restProps}>
-      <div className="builder-radio-group w-56">
+    <Block className="heyform-legal-terms" field={field} locale={locale} {...restProps}>
+      <div className="heyform-radio-group w-56">
         <FakeRadio hotkey="Y" label={t('I accept', { lng: locale })} />
         <FakeRadio hotkey="N" label={t("I don't accept", { lng: locale })} />
       </div>

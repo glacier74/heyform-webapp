@@ -15,13 +15,13 @@ export const PhoneNumber: FC<BlockProps> = ({ field, locale, ...restProps }) => 
   }, [field.properties?.defaultCountryCode])
 
   return (
-    <Block className="builder-phone-number" field={field} locale={locale} {...restProps}>
+    <Block className="heyform-phone-number" field={field} locale={locale} {...restProps}>
       <div className="flex items-center">
-        <div className="builder-calling-code">
+        <div className="heyform-calling-code">
           <FlagIcon countryCode={field.properties?.defaultCountryCode} />
-          <ChevronDownIcon className="builder-phone-arrow-icon" />
+          <ChevronDownIcon className="heyform-phone-arrow-icon" />
         </div>
-        <input type="text" className="builder-input" placeholder={placeholder} disabled={true} />
+        <input type="text" className="heyform-input" placeholder={placeholder} disabled={true} />
       </div>
       <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
     </Block>

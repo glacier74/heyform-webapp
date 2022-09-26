@@ -1,3 +1,5 @@
+import { getTheme, getThemeStyle } from '@heyforms/form-component'
+import { FormTheme } from '@heyforms/shared-types-enums'
 import { removeObjectNil } from '@hpnp/utils'
 import { isURL, isValid } from '@hpnp/utils/helper'
 import { stringify } from '@hpnp/utils/qs'
@@ -149,4 +151,24 @@ export class SecondUtils {
     }
     return [hs, 's']
   }
+}
+
+export function insertThemeStyle(customTheme?: FormTheme) {
+  const theme = getTheme(customTheme)
+  let content = getThemeStyle(theme)
+
+  let style = document.getElementById('heyform-theme')
+
+  if (!style) {
+    style = document.createElement('style')
+    style.id = 'heyform-theme'
+
+    document.head.appendChild(style)
+  }
+
+  if (customTheme?.customCSS) {
+    content += customTheme!.customCSS
+  }
+
+  style.innerHTML = content
 }

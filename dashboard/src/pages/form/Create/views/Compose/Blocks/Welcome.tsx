@@ -9,7 +9,7 @@ export const Welcome: FC<BlockProps> = ({ field, locale, ...restProps }) => {
 
   return (
     <Block
-      className="builder-welcome builder-empty-state"
+      className="heyform-welcome heyform-empty-state"
       field={field}
       locale={locale}
       {...restProps}

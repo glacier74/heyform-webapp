@@ -75,33 +75,33 @@ export const Block: FC<BlockProps> = ({
       <div className="heyform-theme-background" />
 
       {field.layout?.align !== FieldLayoutAlignEnum.INLINE && (
-        <Layout className={`builder-layout-${field.layout?.align}`} layout={field.layout} />
+        <Layout className={`heyform-layout-${field.layout?.align}`} layout={field.layout} />
       )}
 
       {parentField && (
         <div className="heyform-block-group">
           <div className="heyform-block-group-container">
-            <label className="builder-block-label">
+            <label className="heyform-block-number">
               {t('Question {{number}}', {
                 number: questionNumber(parentField!.index),
                 lng: locale
               })}
             </label>
-            <div className="builder-block-title">{parentField.title}</div>
+            <div className="heyform-block-title">{parentField.title}</div>
           </div>
         </div>
       )}
 
       <div
-        className={clsx('builder-block-container', {
-          [`builder-block-${field.layout?.align}`]: field.layout?.align
+        className={clsx('heyform-block-container', {
+          [`heyform-block-${field.layout?.align}`]: field.layout?.align
         })}
       >
         <div className="flex flex-col items-center justify-center min-h-full">
-          <div className={clsx('builder-block', className)} {...restProps}>
+          <div className={clsx('heyform-block', className)} {...restProps}>
             <div className="mb-10">
               {isLabelShow && (
-                <label className="builder-block-label">
+                <label className="heyform-block-number">
                   {t('Question {{number}}', {
                     number: questionNumber(field.index, parentField?.index),
                     lng: locale
@@ -110,13 +110,13 @@ export const Block: FC<BlockProps> = ({
                 </label>
               )}
               <RichText
-                className="builder-block-title"
+                className="heyform-block-title"
                 innerRef={titleRef as RefObject<HTMLDivElement>}
                 placeholder={t('formBuilder.questionPlaceholder')}
                 onChange={handleTitleChangeCallback}
               />
               <RichText
-                className="builder-block-description"
+                className="heyform-block-description"
                 innerRef={descriptionRef as RefObject<HTMLDivElement>}
                 placeholder={t('formBuilder.descriptionPlaceholder')}
                 onChange={handleDescriptionChangeCallback}
@@ -124,7 +124,7 @@ export const Block: FC<BlockProps> = ({
             </div>
 
             {isCoverShow && field.layout?.align === FieldLayoutAlignEnum.INLINE && (
-              <div className="builder-block-image">
+              <div className="heyform-block-image">
                 <img src={field.layout?.mediaUrl} />
               </div>
             )}

@@ -162,8 +162,8 @@ const Fields: FC = () => {
 
 export const Compose = () => {
   return (
-    <div className="compose">
-      <div className="compose-container">
+    <div className="compose heyform-wrapper">
+      <div className="compose-container heyform-body">
         <Fields />
       </div>
     </div>

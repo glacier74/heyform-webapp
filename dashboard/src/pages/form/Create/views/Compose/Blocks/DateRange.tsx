@@ -15,41 +15,41 @@ export const DateRange: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const [h, m, timeDivider] = DATE_FORMAT_MAPS[TIME_FORMAT]
 
   return (
-    <Block className="builder-date" field={field} locale={locale} {...restProps}>
+    <Block className="heyform-date" field={field} locale={locale} {...restProps}>
       <div
-        className={clsx('flex items-center builder-date-range', {
-          'builder-date-range-with-time': field.properties?.allowTime
+        className={clsx('flex items-center heyform-date-range', {
+          'heyform-date-range-with-time': field.properties?.allowTime
         })}
       >
-        <div className="builder-date-root builder-start-date">
+        <div className="heyform-date-root heyform-start-date">
           <DateItem format={x} />
-          <div className="builder-date-divider">{dateDivider}</div>
+          <div className="heyform-date-divider">{dateDivider}</div>
           <DateItem format={y} />
-          <div className="builder-date-divider">{dateDivider}</div>
+          <div className="heyform-date-divider">{dateDivider}</div>
           <DateItem format={z} />
 
           {field.properties?.allowTime && (
             <>
               <DateItem format={h} />
-              <div className="builder-date-divider">{timeDivider}</div>
+              <div className="heyform-date-divider">{timeDivider}</div>
               <DateItem format={m} />
             </>
           )}
         </div>
 
-        <div className="builder-date-range-divider">{t('formBuilder.dateRangeTo')}</div>
+        <div className="heyform-date-range-divider">{t('formBuilder.dateRangeTo')}</div>
 
-        <div className="builder-date-root builder-end-date">
+        <div className="heyform-date-root heyform-end-date">
           <DateItem format={x} />
-          <div className="builder-date-divider">{dateDivider}</div>
+          <div className="heyform-date-divider">{dateDivider}</div>
           <DateItem format={y} />
-          <div className="builder-date-divider">{dateDivider}</div>
+          <div className="heyform-date-divider">{dateDivider}</div>
           <DateItem format={z} />
 
           {field.properties?.allowTime && (
             <>
               <DateItem format={h} />
-              <div className="builder-date-divider">{timeDivider}</div>
+              <div className="heyform-date-divider">{timeDivider}</div>
               <DateItem format={m} />
             </>
           )}

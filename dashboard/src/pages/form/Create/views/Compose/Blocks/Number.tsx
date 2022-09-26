@@ -9,10 +9,10 @@ export const Number: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
 
   return (
-    <Block className="builder-number" field={field} locale={locale} {...restProps}>
+    <Block className="heyform-number" field={field} locale={locale} {...restProps}>
       <input
         type="number"
-        className="builder-input"
+        className="heyform-input"
         placeholder={t('Your answer goes here', { lng: locale })}
         disabled={true}
       />

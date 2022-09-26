@@ -44,11 +44,11 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
   }
 
   return (
-    <div className="builder-radio">
-      <div className="builder-radio-container">
-        <div className="builder-radio-content">
-          <div className="builder-radio-hotkey">{String.fromCharCode(KeyCode.A + index)}</div>
-          <div className="builder-radio-label">
+    <div className="heyform-radio">
+      <div className="heyform-radio-container">
+        <div className="heyform-radio-content">
+          <div className="heyform-radio-hotkey">{String.fromCharCode(KeyCode.A + index)}</div>
+          <div className="heyform-radio-label">
             <Input
               value={choice.label}
               placeholder={isFocused ? t('formBuilder.choicePlaceholder') : undefined}
@@ -58,7 +58,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
             />
           </div>
           {enableRemove && (
-            <div className="builder-radio-remove" onClick={handleRemove}>
+            <div className="heyform-radio-remove" onClick={handleRemove}>
               <XIcon />
             </div>
           )}
@@ -133,8 +133,8 @@ export const MultipleChoice: FC<BlockProps> = ({ field, locale, ...restProps }) 
   const handleLabelChangeCallback = useCallback(handleLabelChange, [field.properties])
 
   return (
-    <Block className="builder-multiple-choice" field={field} locale={locale} {...restProps}>
-      <div className="builder-multiple-choice-list">
+    <Block className="heyform-multiple-choice" field={field} locale={locale} {...restProps}>
+      <div className="heyform-multiple-choice-list">
         {field.properties?.choices?.map((choice, index) => (
           <MultipleChoiceItem
             key={choice.id}
@@ -146,8 +146,8 @@ export const MultipleChoice: FC<BlockProps> = ({ field, locale, ...restProps }) 
           />
         ))}
       </div>
-      <div className="builder-add-choice">
-        <Button.Link className="builder-add-column" onClick={handleAddChoiceCallback}>
+      <div className="heyform-add-choice">
+        <Button.Link className="heyform-add-column" onClick={handleAddChoiceCallback}>
           {t('formBuilder.addChoice')}
         </Button.Link>
       </div>

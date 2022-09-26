@@ -1,5 +1,19 @@
-.right-sidebar-design {
-  .tabs-nav {
-    @apply text-xs px-1;
+.theme-list {
+  height: calc(100vh - 10.5rem);
+}
+
+.customize-bottom {
+  @apply mb-0 p-4 border-t border-gray-200;
+}
+
+.customize-list {
+  height: calc(100vh - 15.1875rem);
+
+  .right-sidebar-settings-item {
+    @apply py-0;
   }
+}
+
+button.custom-css-help {
+  @apply ml-2 p-1;
 }

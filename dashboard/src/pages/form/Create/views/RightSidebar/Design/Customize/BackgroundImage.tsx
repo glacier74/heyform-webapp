@@ -33,7 +33,7 @@ export const BackgroundImage: FC<BackgroundImageProps> = ({ value, onChange }) =
 
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between right-sidebar__cover-image">
         <label className="form-item-label">Background image</label>
         {isEnabled ? (
           <div className="flex items-center">

@@ -82,7 +82,7 @@ const ThemeItem: FC<{ theme: FormThemeV3 }> = ({ theme }) => {
 }
 
 export const Theme: FC = () => (
-  <div className="p-4 space-y-6">
+  <div className="theme-list p-4 space-y-6 scrollbar">
     {FORM_THEMES.map((theme, index) => (
       <ThemeItem key={index} theme={theme} />
     ))}
