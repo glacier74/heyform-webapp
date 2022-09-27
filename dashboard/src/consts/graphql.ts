@@ -327,6 +327,27 @@ export const ORDER_PREVIEW_GQL = gql`
   }
 `
 
+export const STRIPE_AUTHORIZE_URL_GQL = gql`
+  query stripeAuthorizeUrl($input: FormDetailInput!) {
+    stripeAuthorizeUrl(input: $input)
+  }
+`
+
+export const CONNECT_STRIPE_GQL = gql`
+  mutation connectStripe($input: ConnectStripeInput!) {
+    connectStripe(input: $input) {
+      accountId
+      email
+    }
+  }
+`
+
+export const REVOKE_STRIPE_ACCOUNT_GQL = gql`
+  mutation revokeStripeAccount($input: FormDetailInput!) {
+    revokeStripeAccount(input: $input)
+  }
+`
+
 export const TEMPLATES_GQL = gql`
   query templates($input: TemplatesInput!) {
     templates(input: $input) {
@@ -570,6 +591,10 @@ export const FORM_DETAIL_GQL = gql`
       description
       interactiveMode
       kind
+      stripeAccount {
+        accountId
+        email
+      }
       settings {
         captchaKind
         active

@@ -1052,28 +1052,30 @@
   resolved "http://npm.heyooo.com/@heroicons%2freact/-/react-1.0.6.tgz#35dd26987228b39ef2316db3b1245c42eb19e324"
   integrity sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==
 
-"@heyforms/answer-utils@^0.7.8":
-  version "0.7.8"
-  resolved "http://npm.heyooo.com/@heyforms%2fanswer-utils/-/answer-utils-0.7.8.tgz#ddbf192d87c6957d1080cdee0ecf6c04bf209446"
-  integrity sha512-TDFrGMLhfi/LUsOxnJL5JjQyCP02gRerajOwtgLeI1o7xDIXHg/Ddr22Lm9TQ+KiHQ9vZqQoM2Q+J5qIXstpGQ==
+"@heyforms/answer-utils@^0.8.0":
+  version "0.8.0"
+  resolved "http://npm.heyooo.com/@heyforms%2fanswer-utils/-/answer-utils-0.8.0.tgz#37bacee7bc1a5d4e8e1478ff0a6fe6742981c7c2"
+  integrity sha512-UH7VZtrH8KMci3sNdF7zDitaC2p5Rkn0Il7125sY3FZJmsYuFepEj6pPF0ltkaQvKg7cZ45X0+ik5PvqdYoueg==
   dependencies:
-    "@heyforms/shared-types-enums" "^4.7.0"
+    "@heyforms/shared-types-enums" "^4.7.6"
     "@hpnp/utils" "^2.9.3"
+    big.js "^6.2.1"
     dayjs "^1.11.3"
     html5parser "^2.0.2"
     libphonenumber-js "^1.10.7"
     validator "^13.7.0"
 
-"@heyforms/form-component@^2022.9.17":
-  version "2022.9.17"
-  resolved "http://npm.heyooo.com/@heyforms%2fform-component/-/form-component-2022.9.17.tgz#2828a4f696f7b07317f29809b159316c961d5f77"
-  integrity sha512-grpkC33ky8xCQlYo7T9ZFoC10wSOQ8cKtd46xGsHoAZcWjT3FvbNt4OfBkPwMzT6PL2jw6EX6ZSHfxrQ9CC8dg==
+"@heyforms/form-component@^2022.10.6":
+  version "2022.10.6"
+  resolved "http://npm.heyooo.com/@heyforms%2fform-component/-/form-component-2022.10.6.tgz#7e5a22275119f5c61bc2db556bc58fe82bc54e60"
+  integrity sha512-JKpj2zix+Fyau6EAQDwBpXZaAARgnBbaQw7/IAfZ/ueCaeomrt1dSxGaYnjFGKmqyRARzBw05egMEu6G1imEqg==
   dependencies:
     "@heroicons/react" "^1.0.6"
-    "@heyforms/answer-utils" "^0.7.8"
-    "@heyforms/shared-types-enums" "^4.7.4"
+    "@heyforms/answer-utils" "^0.8.0"
+    "@heyforms/shared-types-enums" "^4.7.6"
     "@heyforms/ui" "^2022.9.6"
     "@hpnp/utils" "^2.9.3"
+    big.js "^6.2.1"
     clsx "^1.1.1"
     dayjs "^1.11.3"
     fast-equals "^4.0.1"
@@ -1088,15 +1090,10 @@
     signature_pad "^4.0.5"
     store2 "^2.13.2"
 
-"@heyforms/shared-types-enums@^4.7.0":
-  version "4.7.0"
-  resolved "http://npm.heyooo.com/@heyforms%2fshared-types-enums/-/shared-types-enums-4.7.0.tgz#e58d053ae34b7bcbc4d4795d198b399eb168e875"
-  integrity sha512-Gudeo3TKf9F94EOzkhpZ2sJ9is8KUCx/DFkoU7inETELFkVvmGn00dp9N48BnlpDCzfY7sFzx3XP36905LJLyQ==
-
-"@heyforms/shared-types-enums@^4.7.4":
-  version "4.7.4"
-  resolved "http://npm.heyooo.com/@heyforms%2fshared-types-enums/-/shared-types-enums-4.7.4.tgz#dba4bfd1af21be20659fc6f1685afc93278d2c82"
-  integrity sha512-Zjo7J++vw6FjYstiD6MW6sxmc0uRebV5orq/81Y5gRZN6WQk+GAU9Op5y7QWCM+Nj4IeAtNyVJsimirpzceGeg==
+"@heyforms/shared-types-enums@^4.7.6":
+  version "4.7.6"
+  resolved "http://npm.heyooo.com/@heyforms%2fshared-types-enums/-/shared-types-enums-4.7.6.tgz#5c31f3540455d3e6fcb00404d713014648d213a7"
+  integrity sha512-I6LzoGt5KFrxzu4GNfWynUNrxkFohCjzxpS8FhVClwnSkB0K5Wlo8uxC0FjyaLfkocEh12pg+PPM0GDqu/UyhA==
 
 "@heyforms/ui@^2022.9.11", "@heyforms/ui@^2022.9.6":
   version "2022.9.11"
@@ -1586,6 +1583,11 @@
   integrity sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==
   dependencies:
     defer-to-connect "^2.0.0"
+
+"@tabler/icons@^1.101.0":
+  version "1.101.0"
+  resolved "http://npm.heyooo.com/@tabler%2ficons/-/icons-1.101.0.tgz#fc0bbcf55878a858c89a492d9900cdb0b8488a62"
+  integrity sha512-3DXsgQRpxSMQMNGQbFndYWPGNlxRKnl3I1p11i7kT6eEJTY2Noc7J37gg25MoxVIs57m+fUI6Qux1X7i9fiobw==
 
 "@tailwindcss/forms@^0.5.2":
   version "0.5.2"
@@ -2504,6 +2506,11 @@ big.js@^6.1.1:
   resolved "http://npm.heyooo.com/big.js/-/big.js-6.2.0.tgz#39c60822aecb0f34a1d79a90fe9908a0ddf45e1d"
   integrity sha512-paIKvJiAaOYdLt6MfnvxkDo64lTOV257XYJyX3oJnJQocIclUn+48k6ZerH/c5FxWE6DGJu1TKDYis7tqHg9kg==
 
+big.js@^6.2.1:
+  version "6.2.1"
+  resolved "http://npm.heyooo.com/big.js/-/big.js-6.2.1.tgz#7205ce763efb17c2e41f26f121c420c6a7c2744f"
+  integrity sha512-bCtHMwL9LeDIozFn+oNhhFoq+yQ3BNdnsLSASUxLciOb1vgvpHsIO1dsENiGMgbb4SkP5TrzWzRiLddn8ahVOQ==
+
 binary-extensions@^2.0.0:
   version "2.2.0"
   resolved "http://npm.heyooo.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
@@ -3114,10 +3121,15 @@ date-fns@2.x:
   resolved "http://npm.heyooo.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
   integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
 
-dayjs@1.x, dayjs@^1.10.4, dayjs@^1.11.3, dayjs@^1.11.4:
+dayjs@1.x, dayjs@^1.10.4, dayjs@^1.11.3:
   version "1.11.3"
   resolved "http://npm.heyooo.com/dayjs/-/dayjs-1.11.3.tgz#4754eb694a624057b9ad2224b67b15d552589258"
   integrity sha512-xxwlswWOlGhzgQ4TKzASQkUhqERI3egRNqgV4ScR8wlANA/A9tZ7miXa44vTTKEq5l7vWoL5G57bG3zA+Kow0A==
+
+dayjs@^1.11.4:
+  version "1.11.5"
+  resolved "http://npm.heyooo.com/dayjs/-/dayjs-1.11.5.tgz#00e8cc627f231f9499c19b38af49f56dc0ac5e93"
+  integrity sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==
 
 debug@4, debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"
@@ -4471,7 +4483,7 @@ hyphenate-style-name@^1.0.2:
   resolved "http://npm.heyooo.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
   integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
 
-i18next@^21.6.11, i18next@^21.8.11, i18next@^21.9.1:
+i18next@^21.6.11, i18next@^21.8.11:
   version "21.9.2"
   resolved "http://npm.heyooo.com/i18next/-/i18next-21.9.2.tgz#3f7c5594393eb27117c1db4c38f5ec766e68de0e"
   integrity sha512-00fVrLQOwy45nm3OtC9l1WiLK3nJlIYSljgCt0qzTaAy65aciMdRy9GsuW+a2AtKtdg9/njUGfRH30LRupV7ZQ==
@@ -6519,7 +6531,7 @@ react-flow-renderer@^10.3.7:
     d3-zoom "^3.0.0"
     zustand "^3.7.2"
 
-react-i18next@^11.16.7, react-i18next@^11.17.3, react-i18next@^11.18.6:
+react-i18next@^11.16.7, react-i18next@^11.17.3:
   version "11.18.6"
   resolved "http://npm.heyooo.com/react-i18next/-/react-i18next-11.18.6.tgz#e159c2960c718c1314f1e8fcaa282d1c8b167887"
   integrity sha512-yHb2F9BiT0lqoQDt8loZ5gWP331GwctHz9tYQ8A2EIEUu+CcEdjBLQWli1USG3RdWQt3W+jqQLg/d4rrQR96LA==

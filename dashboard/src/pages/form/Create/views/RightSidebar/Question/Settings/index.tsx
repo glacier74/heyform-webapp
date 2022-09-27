@@ -6,6 +6,7 @@ import { Basic } from './Basic'
 import { Date } from './Date'
 import { MultipleChoice } from './MultipleChoice'
 import { OpinionScale } from './OpinionScale'
+import { Payment } from './Payment'
 import { PhoneNumber } from './PhoneNumber'
 import { Rating } from './Rating'
 import { Statement } from './Statement'
@@ -50,6 +51,9 @@ export const Settings: FC = () => {
 
           case FieldKindEnum.THANK_YOU:
             return <ThankYou field={field} />
+
+          case FieldKindEnum.PAYMENT:
+            return <Payment field={field} />
         }
       })()}
     </div>

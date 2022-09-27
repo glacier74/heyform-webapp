@@ -59,7 +59,7 @@ export const Basic: FC = observer(() => {
 
   return (
     <div className="container">
-      <SubHeading>{t('formSettings.Basic')}</SubHeading>
+      <SubHeading>{t('formSettings.Required')}</SubHeading>
 
       <Form
         initialValues={formStore.current?.settings}

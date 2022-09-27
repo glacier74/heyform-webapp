@@ -16,7 +16,7 @@ export const Basic: FC = observer(() => {
       id="form-settings-basic"
       className="form-settings-selection px-6 pt-6 pb-8 bg-white sm:rounded-md shadow space-y-6"
     >
-      <div className="text-lg font-medium text-slate-900">{t('formSettings.Basic')}</div>
+      <div className="text-lg font-medium text-slate-900">{t('formSettings.Required')}</div>
 
       {/* Language */}
       <div className="flex items-center justify-between">
@@ -78,36 +78,6 @@ export const Basic: FC = observer(() => {
         {formStore.tempSettings.enableTimeLimit && (
           <Form.Item className="mb-0" name="timeLimit" rules={[{ required: false }]}>
             <TimeInput options={TIME_LIMIT_OPTIONS} />
-          </Form.Item>
-        )}
-      </div>
-
-      {/* Limit submission number */}
-      <div className="space-y-2">
-        <div className="flex items-center justify-between">
-          <div className="flex flex-col">
-            <div className="text-sm font-medium text-slate-900">{t('formSettings.submission')}</div>
-            <p className="mt-1 text-sm text-slate-500">{t('formSettings.submissionText')}</p>
-          </div>
-
-          <Form.Item className="ml-4 mb-0" name="enableQuotaLimit" rules={[{ required: false }]}>
-            <Switch />
-          </Form.Item>
-        </div>
-
-        {formStore.tempSettings.enableQuotaLimit && (
-          <Form.Item
-            name="quotaLimit"
-            rules={[
-              {
-                type: 'number',
-                required: true,
-                min: 1,
-                message: t('formSettings.dataError')
-              }
-            ]}
-          >
-            <Input className="w-32" type="number" placeholder={t('formSettings.closedFormTitle')} />
           </Form.Item>
         )}
       </div>

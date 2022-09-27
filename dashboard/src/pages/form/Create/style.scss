@@ -864,6 +864,36 @@
       }
     }
   }
+
+
+  // ----------------------------------------------------------------------------
+  // Payment
+  .heyform-payment-header,
+  .heyform-payment-label {
+    @apply text-base;
+  }
+
+  .heyform-payment-body {
+    @apply mt-8 px-8 pt-10 pb-0 rounded-xl;
+    background-color: var(--heyform-answer-opacity-10-color);
+  }
+
+  .heyform-payment-item {
+    min-height: 7rem;
+  }
+
+  .heyform-payment-label {
+    @apply pb-1;
+    color: var(--heyform-answer-color);
+  }
+
+  .heyform-payment-wrapper {
+    @apply flex items-start justify-items-stretch w-full space-x-4;
+
+    .heyform-payment-item {
+      @apply flex-1;
+    }
+  }
 }
 
 .mention-menu-mask,
@@ -1270,5 +1300,26 @@
     .badge {
       @apply px-1;
     }
+  }
+}
+
+button.connect-stripe {
+  @apply py-2;
+
+  &,
+  .button-content {
+    @apply w-full;
+  }
+}
+
+.connect-stripe-modal {
+  .modal-content {
+    max-width: 36rem;
+  }
+}
+
+.revoke-stripe-connect {
+  button {
+    @apply px-2 py-1;
   }
 }

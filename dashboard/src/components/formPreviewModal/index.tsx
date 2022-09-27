@@ -1,10 +1,11 @@
 import { useLockBodyScroll } from '@/legacy_pages/pages/FormBuilder/utils/hook'
 import { useStore } from '@/store'
-import { insertThemeStyle } from '@/utils'
+import { insertThemeStyle, loadScript } from '@/utils'
 import { ArrowLeftIcon } from '@heroicons/react/outline'
 import { insertWebFont, Renderer } from '@heyforms/form-component'
 import { type IFormModel } from '@heyforms/form-component/types/typings'
-import { Modal, Switch } from '@heyforms/ui'
+import { FieldKindEnum } from '@heyforms/shared-types-enums'
+import { Modal, notification, Spin, Switch } from '@heyforms/ui'
 import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
@@ -15,6 +16,7 @@ export const FormPreviewModal: FC = observer(() => {
   const appStore = useStore('appStore')
   const formStore = useStore('formStore')
   const [value, setValue] = useState('mobile')
+  const [isLoaded, setIsLoaded] = useState(false)
 
   function handleClose() {
     appStore.isFormPreviewOpen = false
@@ -30,6 +32,23 @@ export const FormPreviewModal: FC = observer(() => {
     if (appStore.isFormPreviewOpen && formStore.current) {
       insertWebFont(formStore.customTheme!.fontFamily)
       insertThemeStyle(formStore.customTheme!)
+
+      const paymentField = formStore.current.fields?.find(f => f.kind == FieldKindEnum.PAYMENT)
+
+      if (!paymentField) {
+        return setIsLoaded(true)
+      }
+
+      loadScript('stripe', 'https://js.stripe.com/v3/', (err: any) => {
+        if (err) {
+          notification.error({
+            title: err.message
+          })
+          setIsLoaded(false)
+        } else {
+          setIsLoaded(true)
+        }
+      })
     }
   }, [appStore.isFormPreviewOpen, formStore.current])
 
@@ -64,7 +83,18 @@ export const FormPreviewModal: FC = observer(() => {
               'form-preview-mobile': value === 'mobile'
             })}
           >
-            <Renderer form={formStore.current as IFormModel} autoSave={false} />
+            {!isLoaded ? (
+              <div className="flex items-center justify-center w-full h-full">
+                <Spin />
+              </div>
+            ) : (
+              <Renderer
+                form={formStore.current as IFormModel}
+                autoSave={false}
+                stripeApiKey={import.meta.env.VITE_STRIPE_KEY}
+                stripeAccountId={formStore.current?.stripeAccount?.accountId}
+              />
+            )}
           </div>
         </Modal>
       )}

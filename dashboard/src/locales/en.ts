@@ -880,6 +880,7 @@ export default {
     dateRange: 'Date range',
     number: 'Number',
     fileUpload: 'File upload',
+    payment: 'Payment',
     address: 'Address',
     country: 'Country',
     legalTerms: 'Legal terms',
@@ -960,7 +961,10 @@ export default {
     CustomCSSDescription:
       'If neither the Theme nor Customize defined styles meet your needs, you can insert custom CSS to modify it to your desired styles.',
     customCssTableDescription: 'Description',
-    customCssTableClass: 'CSS Class'
+    customCssTableClass: 'CSS Class',
+    ConnectStripe: 'Connect with stripe',
+    price: 'Price',
+    currency: 'Currency'
   },
   onboarding: {
     trialTitle: 'Start your 14-day free trial',

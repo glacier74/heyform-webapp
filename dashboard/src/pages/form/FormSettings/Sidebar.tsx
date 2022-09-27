@@ -8,7 +8,7 @@ const SIDEBAR_LINK_OPTIONS = [
     value: 'form-settings-status'
   },
   {
-    label: 'formSettings.Basic',
+    label: 'formSettings.Required',
     value: 'form-settings-basic'
   },
   {

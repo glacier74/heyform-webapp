@@ -1,10 +1,10 @@
-import htmlInjectionPlugin from '@heyforms/vite-plugin-html-injection'
-import legacy from '@vitejs/plugin-legacy'
-import reactRefresh from '@vitejs/plugin-react-refresh'
-import { resolve } from 'path'
-import { injectManifest } from 'rollup-plugin-workbox'
-import { ConfigEnv, loadEnv } from 'vite'
-import fontOptimizationPlugin from 'vite-plugin-font-optimization'
+import htmlInjectionPlugin from "@heyforms/vite-plugin-html-injection";
+import legacy from "@vitejs/plugin-legacy";
+import reactRefresh from "@vitejs/plugin-react-refresh";
+import { resolve } from "path";
+import { injectManifest } from "rollup-plugin-workbox";
+import { ConfigEnv, loadEnv } from "vite";
+import fontOptimizationPlugin from "vite-plugin-font-optimization";
 // import uploadPlugin, { UploadZone } from '@heyforms/vite-plugin-upload'
 // import externalGlobals from 'rollup-plugin-external-globals'
 
@@ -65,7 +65,11 @@ export default ({ mode }: ConfigEnv) => {
     },
     define: {
       // https://github.com/smnhgn/vite-plugin-package-version/blob/5baa976dbb22917a2bd00dfa25cf05774c229b1d/src/index.ts#L11
-      'import.meta.env.PACKAGE_VERSION': JSON.stringify(process.env.npm_package_version)
+      'import.meta.env.PACKAGE_VERSION': JSON.stringify(process.env.npm_package_version),
+      'process.env': {
+        // @heyforms/answer-utils
+        VALIDATE_CLIENT_SIDE: true
+      }
     },
     css: {
       preprocessorOptions: {

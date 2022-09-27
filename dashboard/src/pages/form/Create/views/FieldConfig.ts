@@ -17,6 +17,7 @@ import {
   CalendarIcon,
   ChartBarIcon,
   CheckIcon,
+  CreditCardIcon,
   FolderIcon,
   GlobeIcon,
   HashtagIcon,
@@ -195,15 +196,15 @@ export const FIELD_CONFIGS: FieldConfig[] = [
     kind: FieldKindEnum.DATE,
     icon: DateTimeIcon,
     label: 'formBuilder.dateTime',
-    textColor: '#6d28d9',
-    backgroundColor: '#ede9fe'
+    textColor: '#059669',
+    backgroundColor: '#a7f3d0'
   },
   {
     kind: FieldKindEnum.DATE_RANGE,
     icon: DateRangeIcon,
     label: 'formBuilder.dateRange',
-    textColor: '#6d28d9',
-    backgroundColor: '#ede9fe'
+    textColor: '#059669',
+    backgroundColor: '#a7f3d0'
   },
   {
     kind: FieldKindEnum.NUMBER,
@@ -260,6 +261,13 @@ export const FIELD_CONFIGS: FieldConfig[] = [
     label: 'formBuilder.inputTable',
     textColor: '#c2410c',
     backgroundColor: '#ffedd5'
+  },
+  {
+    kind: FieldKindEnum.PAYMENT,
+    icon: CreditCardIcon,
+    label: 'formBuilder.payment',
+    textColor: '#a16207',
+    backgroundColor: '#fef9c3'
   }
 ]
 
@@ -303,12 +311,12 @@ export const BLOCK_GROUPS: FieldGroup[] = [
     list: [FieldKindEnum.RATING, FieldKindEnum.OPINION_SCALE]
   },
   {
-    name: 'formBuilder.legalConsent',
-    list: [FieldKindEnum.LEGAL_TERMS, FieldKindEnum.SIGNATURE]
+    name: 'formBuilder.data',
+    list: [FieldKindEnum.INPUT_TABLE]
   },
   {
-    name: 'formBuilder.date',
-    list: [FieldKindEnum.DATE, FieldKindEnum.DATE_RANGE]
+    name: 'formBuilder.fileUpload',
+    list: [FieldKindEnum.FILE_UPLOAD]
   },
   {
     name: 'formBuilder.formStructure',
@@ -320,12 +328,16 @@ export const BLOCK_GROUPS: FieldGroup[] = [
     ]
   },
   {
-    name: 'formBuilder.data',
-    list: [FieldKindEnum.INPUT_TABLE]
+    name: 'formBuilder.legalConsent',
+    list: [FieldKindEnum.LEGAL_TERMS, FieldKindEnum.SIGNATURE]
   },
   {
-    name: 'formBuilder.fileUpload',
-    list: [FieldKindEnum.FILE_UPLOAD]
+    name: 'formBuilder.date',
+    list: [FieldKindEnum.DATE, FieldKindEnum.DATE_RANGE]
+  },
+  {
+    name: 'formBuilder.payment',
+    list: [FieldKindEnum.PAYMENT]
   }
 ]
 

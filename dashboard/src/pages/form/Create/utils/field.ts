@@ -1,14 +1,9 @@
-import type { FormField } from '@/models'
-import { htmlUtils } from '@heyforms/answer-utils'
-import {
-  FieldKindEnum,
-  FORM_FIELD_KINDS,
-  Logic,
-  QUESTION_FIELD_KINDS
-} from '@heyforms/shared-types-enums'
-import { isArray } from '@hpnp/utils/helper'
-import { nanoid } from '@hpnp/utils/nanoid'
-import { getValidLogics } from './logic'
+import type { FormField } from "@/models";
+import { htmlUtils } from "@heyforms/answer-utils";
+import { FieldKindEnum, FORM_FIELD_KINDS, Logic, QUESTION_FIELD_KINDS } from "@heyforms/shared-types-enums";
+import { isArray } from "@hpnp/utils/helper";
+import { nanoid } from "@hpnp/utils/nanoid";
+import { getValidLogics } from "./logic";
 
 // TODO: remove in future
 const DISCARD_FIELD_KINDS = ['single_choice', 'dropdown']
@@ -153,6 +148,14 @@ export function getFieldFromKind(kind: FieldKindEnum | string): FormField {
           label: ''
         }
       ]
+      break
+
+    case FieldKindEnum.PAYMENT:
+      field.properties!.currency = 'USD'
+      field.properties!.price = {
+        type: 'number',
+        value: 0
+      }
       break
 
     case FieldKindEnum.GROUP:

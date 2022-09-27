@@ -249,20 +249,35 @@ export function useQueryURL(to: string) {
   return to + separator + stringify(q, { encode: true })
 }
 
-export function useAnchorScroll(element: HTMLElement, anchors: string[] = []) {
-  const [active, setActive] = useState(anchors[0])
+interface UswWindowOptions {
+  source: string
+  features?: string
+}
 
-  function handleScroll() {
-    console.log(element!.scrollTop)
+export function useWindow(
+  url?: string | null,
+  options?: UswWindowOptions,
+  listener?: (window: Window, payload: any) => void
+) {
+  const windowRef = useRef<Window | null>()
+
+  function messageListener(event: MessageEvent) {
+    if (event.origin === window.location.origin && event.data.source === options?.source) {
+      listener?.(windowRef.current!, event.data.payload)
+    }
   }
 
   useEffect(() => {
-    if (element) {
-      element.addEventListener('scroll', handleScroll, false)
+    if (url) {
+      windowRef.current = window.open(url, '_blank', options?.features)
     }
+  }, [url])
+
+  useEffect(() => {
+    window.addEventListener('message', messageListener)
 
     return () => {
-      element.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('message', messageListener)
     }
-  }, [element])
+  }, [])
 }
