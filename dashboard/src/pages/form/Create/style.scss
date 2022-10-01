@@ -1323,3 +1323,9 @@ button.connect-stripe {
     @apply px-2 py-1;
   }
 }
+
+.select-option-disabled {
+  .field-icon {
+    @apply opacity-60;
+  }
+}

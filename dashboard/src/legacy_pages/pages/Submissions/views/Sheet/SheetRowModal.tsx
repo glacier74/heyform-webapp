@@ -306,12 +306,12 @@ const PaymentItem: FC<SheetCellProps> = ({ column, row }) => {
       {isCompleted && (
         <div className="divide-slate-50 divide-y space-y-2">
           <div className="flex items-center justify-between">
-            <span>ID</span>
+            <span>Stripe payment ID</span>
             <span>{value.paymentIntentId}</span>
           </div>
 
           <div className="flex items-center justify-between">
-            <span>Customer</span>
+            <span>Client</span>
             <span>{value.billingDetails?.name}</span>
           </div>
         </div>

@@ -137,6 +137,13 @@ export const FIELD_CONFIGS: FieldConfig[] = [
     backgroundColor: '#dcfce7'
   },
   {
+    kind: FieldKindEnum.PAYMENT,
+    icon: CreditCardIcon,
+    label: 'formBuilder.payment',
+    textColor: '#a16207',
+    backgroundColor: '#fef9c3'
+  },
+  {
     kind: FieldKindEnum.GROUP,
     icon: FolderIcon,
     label: 'formBuilder.questionGroup',
@@ -238,15 +245,15 @@ export const FIELD_CONFIGS: FieldConfig[] = [
     kind: FieldKindEnum.LEGAL_TERMS,
     icon: LibraryIcon,
     label: 'formBuilder.legalTerms',
-    textColor: '#a16207',
-    backgroundColor: '#fef9c3'
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
   },
   {
     kind: FieldKindEnum.SIGNATURE,
     icon: SignatureIcon,
     label: 'formBuilder.signature',
-    textColor: '#a16207',
-    backgroundColor: '#fef9c3'
+    textColor: '#1d4ed8',
+    backgroundColor: '#dbeafe'
   },
   {
     kind: FieldKindEnum.URL,
@@ -261,13 +268,6 @@ export const FIELD_CONFIGS: FieldConfig[] = [
     label: 'formBuilder.inputTable',
     textColor: '#c2410c',
     backgroundColor: '#ffedd5'
-  },
-  {
-    kind: FieldKindEnum.PAYMENT,
-    icon: CreditCardIcon,
-    label: 'formBuilder.payment',
-    textColor: '#a16207',
-    backgroundColor: '#fef9c3'
   }
 ]
 

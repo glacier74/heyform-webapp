@@ -21,6 +21,7 @@ interface InsertFieldItemProps {
   config: FieldConfig
   isWelcomeDisabled?: boolean
   isThankYouDisabled?: boolean
+  isPaymentDisabled?: boolean
   onClick: (kind: FieldKindEnum) => void
 }
 
@@ -28,12 +29,14 @@ const InsertFieldItem: FC<InsertFieldItemProps> = ({
   config,
   isWelcomeDisabled,
   isThankYouDisabled,
+  isPaymentDisabled,
   onClick
 }) => {
   const { t } = useTranslation()
   const isDisabled =
     (config.kind === FieldKindEnum.WELCOME && isWelcomeDisabled) ||
-    (config.kind === FieldKindEnum.THANK_YOU && isThankYouDisabled)
+    (config.kind === FieldKindEnum.THANK_YOU && isThankYouDisabled) ||
+    (config.kind === FieldKindEnum.PAYMENT && isPaymentDisabled)
 
   function handleClick() {
     if (!isDisabled) {
@@ -88,6 +91,10 @@ const InsertFieldMenu: FC<InsertFieldMenuProps> = ({ onClick }) => {
     () => state.fields.some(f => f.kind === FieldKindEnum.THANK_YOU),
     [state.fields]
   )
+  const isPaymentDisabled = useMemo(
+    () => state.fields.some(f => f.kind === FieldKindEnum.PAYMENT),
+    [state.fields]
+  )
 
   const [groups, setGroups] = useState<FieldGroup[]>(filterGroups())
 
@@ -140,6 +147,7 @@ const InsertFieldMenu: FC<InsertFieldMenuProps> = ({ onClick }) => {
                   config={config}
                   isWelcomeDisabled={isWelcomeDisabled}
                   isThankYouDisabled={isThankYouDisabled}
+                  isPaymentDisabled={isPaymentDisabled}
                   onClick={onClick}
                 />
               ))}

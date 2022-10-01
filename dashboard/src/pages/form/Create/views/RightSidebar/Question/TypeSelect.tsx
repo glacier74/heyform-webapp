@@ -2,6 +2,7 @@ import { CheckIcon } from '@heroicons/react/solid'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { Select } from '@heyforms/ui'
 import type { FC } from 'react'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useStoreContext } from '../../../store'
 import { FIELD_CONFIGS, FIELD_THANK_YOU_CONFIG, FIELD_WELCOME_CONFIG } from '../../FieldConfig'
@@ -11,12 +12,22 @@ export const TypeSelect: FC = () => {
   const { t } = useTranslation()
   const { state, dispatch } = useStoreContext()
   const field = state.selectedField!
-  const options = (FIELD_CONFIGS as unknown as IOptionType[]).map(config => {
-    if (config.value === FieldKindEnum.GROUP) {
-      config.disabled = true
-    }
-    return config
-  })
+
+  const isPaymentDisabled = useMemo(
+    () => state.fields.some(f => f.kind === FieldKindEnum.PAYMENT),
+    [state.fields]
+  )
+  const options = useMemo(() => {
+    return (FIELD_CONFIGS as unknown as IOptionType[]).map(config => {
+      if (
+        config.kind === FieldKindEnum.GROUP ||
+        (config.kind === FieldKindEnum.PAYMENT && isPaymentDisabled)
+      ) {
+        config.disabled = true
+      }
+      return config
+    })
+  }, [isPaymentDisabled])
 
   function valueRender(option: any) {
     if (field.kind === FieldKindEnum.WELCOME) {
