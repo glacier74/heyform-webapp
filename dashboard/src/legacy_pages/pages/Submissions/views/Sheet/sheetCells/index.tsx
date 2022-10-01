@@ -1,23 +1,24 @@
-import { InternalColumnKindEnum } from '@/legacy_pages/constants'
-import { SheetCellProps } from '@/legacy_pages/pages/Submissions/views/Sheet/types'
-import { FieldKindEnum } from '@heyforms/shared-types-enums'
-import { FC } from 'react'
-import { AddressCell } from './AddressCell'
-import { ContactCell } from './ContactCell'
-import { CustomMultipleCell } from './CustomMultipleCell'
-import { CustomTextCell } from './CustomTextCell'
-import { DateRangeCell } from './DateRangeCell'
-import { DropPickerCell } from './DropPickerCell'
-import { FileUploadCell } from './FileUploadCell'
-import { FullNameCell } from './FullNameCell'
-import { InputTableCell } from './InputTableCell'
-import { MultipleChoiceCell } from './MultipleChoiceCell'
-import { OpinionScaleCell } from './OpinionScaleCell'
-import { PictureChoiceCell } from './PictureChoiceCell'
-import { SignatureCell } from './SignatureCell'
-import { SubmitDateCell } from './SubmitDateCell'
-import { TextCell } from './TextCell'
-import { UrlCell } from './UrlCell'
+import {InternalColumnKindEnum} from '@/legacy_pages/constants'
+import {SheetCellProps} from '@/legacy_pages/pages/Submissions/views/Sheet/types'
+import {FieldKindEnum} from '@heyforms/shared-types-enums'
+import {FC} from 'react'
+import {AddressCell} from './AddressCell'
+import {ContactCell} from './ContactCell'
+import {CustomMultipleCell} from './CustomMultipleCell'
+import {CustomTextCell} from './CustomTextCell'
+import {DateRangeCell} from './DateRangeCell'
+import {DropPickerCell} from './DropPickerCell'
+import {FileUploadCell} from './FileUploadCell'
+import {FullNameCell} from './FullNameCell'
+import {InputTableCell} from './InputTableCell'
+import {MultipleChoiceCell} from './MultipleChoiceCell'
+import {OpinionScaleCell} from './OpinionScaleCell'
+import {PictureChoiceCell} from './PictureChoiceCell'
+import {SignatureCell} from './SignatureCell'
+import {SubmitDateCell} from './SubmitDateCell'
+import {TextCell} from './TextCell'
+import {UrlCell} from './UrlCell'
+import {PaymentCell} from './PaymentCell'
 
 export const SheetCell: FC<SheetCellProps> = props => {
   switch (props.column.kind) {
@@ -62,6 +63,9 @@ export const SheetCell: FC<SheetCellProps> = props => {
 
     case FieldKindEnum.INPUT_TABLE:
       return <InputTableCell {...props} />
+
+    case FieldKindEnum.PAYMENT:
+      return <PaymentCell {...props} />
 
     case FieldKindEnum.CUSTOM_MULTIPLE:
     case FieldKindEnum.CUSTOM_SINGLE:

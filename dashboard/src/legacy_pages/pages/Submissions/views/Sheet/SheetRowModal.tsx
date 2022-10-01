@@ -1,5 +1,5 @@
 import { INTERNAL_COLUMN_KINDS, InternalColumnKindEnum } from '@/legacy_pages/constants'
-import { FieldKindEnum } from '@heyforms/shared-types-enums'
+import { FieldKindEnum, ServerSidePaymentValue } from '@heyforms/shared-types-enums'
 import {
   Flex,
   FormLabel,
@@ -18,6 +18,10 @@ import { useTranslation } from 'react-i18next'
 import styled, { css } from 'styled-components'
 import { SheetKindIcon } from './SheetKindIcon'
 import { OnColumnOptionsUpdate, SheetCellProps, SheetColumn } from './types'
+import { CURRENCY_SYMBOLS } from '@heyforms/answer-utils'
+import Big from 'big.js'
+import { CheckIcon } from '@heroicons/react/outline'
+import { ClockIcon } from '@heroicons/react/solid'
 
 interface SheetRowModalProps {
   visible?: boolean
@@ -276,6 +280,46 @@ const ContactItem: FC<SheetCellProps> = ({ row }) => {
   )
 }
 
+const PaymentItem: FC<SheetCellProps> = ({ column, row }) => {
+  const value: ServerSidePaymentValue = row[column.key]
+  const amount = value.amount || 0
+  const amountString = CURRENCY_SYMBOLS[value.currency] + Big(amount).div(100).toFixed(2)
+  const isCompleted = isValid(value.paymentIntentId)
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center">
+        <div className="text-2xl mr-2">{amountString}</div>
+        {isCompleted ? (
+          <div className="flex items-center h-6 pl-1 pr-2 text-sm bg-green-100 text-green-800 rounded">
+            <CheckIcon className="w-4 h-4" />
+            <span className="ml-1">Succeeded</span>
+          </div>
+        ) : (
+          <div className="flex items-center h-6 pl-1 pr-2 text-sm bg-gray-100 text-slate-800 rounded">
+            <ClockIcon className="w-4 h-4" />
+            <span className="ml-1">Incomplete</span>
+          </div>
+        )}
+      </div>
+
+      {isCompleted && (
+        <div className="divide-slate-50 divide-y space-y-2">
+          <div className="flex items-center justify-between">
+            <span>ID</span>
+            <span>{value.paymentIntentId}</span>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <span>Customer</span>
+            <span>{value.billingDetails?.name}</span>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 const ContactContainer = styled(Flex)``
 
 const SubmitDate = styled.div`
@@ -496,6 +540,9 @@ export const SheetRowModal: FC<SheetRowModalProps> = ({
 
                         case FieldKindEnum.SIGNATURE:
                           return <SignatureItem row={row!} column={column} />
+
+                        case FieldKindEnum.PAYMENT:
+                          return <PaymentItem row={row!} column={column} />
 
                         // Custom column
                         case FieldKindEnum.CUSTOM_TEXT:
