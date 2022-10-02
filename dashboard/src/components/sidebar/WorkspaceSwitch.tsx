@@ -1,4 +1,5 @@
 import type { WorkspaceModel } from '@/models'
+import { PlanGradeEnum } from '@/models'
 import { useStore } from '@/store'
 import { cropImage, useParam } from '@/utils'
 import { PlusIcon } from '@heroicons/react/outline'
@@ -52,7 +53,7 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
           <span>
             {workspace.plan.name} {t('billing.plan')}
           </span>
-          {workspace.subscription.trialing && (
+          {workspace.plan.grade > PlanGradeEnum.FREE && workspace.subscription.trialing && (
             <span className="text-blue-700 text-xs"> (trial)</span>
           )}
           <span> · </span>
