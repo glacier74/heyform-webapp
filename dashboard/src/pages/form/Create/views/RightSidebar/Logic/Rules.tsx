@@ -54,6 +54,10 @@ const LogicItem: FC<LogicItemProps> = ({ fields, logic, onEdit, onDelete }) => {
     []
   )
 
+  if (!field) {
+    return null
+  }
+
   return (
     <div className="variable-item">
       <div className="variable-item-left">
