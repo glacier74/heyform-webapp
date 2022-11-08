@@ -1065,10 +1065,10 @@
     libphonenumber-js "^1.10.7"
     validator "^13.7.0"
 
-"@heyforms/form-component@^2022.10.6":
-  version "2022.10.6"
-  resolved "http://npm.heyooo.com/@heyforms%2fform-component/-/form-component-2022.10.6.tgz#7e5a22275119f5c61bc2db556bc58fe82bc54e60"
-  integrity sha512-JKpj2zix+Fyau6EAQDwBpXZaAARgnBbaQw7/IAfZ/ueCaeomrt1dSxGaYnjFGKmqyRARzBw05egMEu6G1imEqg==
+"@heyforms/form-component@^2022.11.2":
+  version "2022.11.2"
+  resolved "http://npm.heyooo.com/@heyforms%2fform-component/-/form-component-2022.11.2.tgz#9335ca3404289ccb4a62b0c95def76b4049ac425"
+  integrity sha512-5r4bVX6w+L81n72NKOJuiknLHVRDB/Dy/Wa+kmQRFK+hmy/g1huPnyok47vKQhdap/bNTfuVjIvq4j2IW8/eHA==
   dependencies:
     "@heroicons/react" "^1.0.6"
     "@heyforms/answer-utils" "^0.8.0"
