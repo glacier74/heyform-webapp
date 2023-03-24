@@ -3,7 +3,7 @@ importScripts('https://cdnjs.cloudflare.com/ajax/libs/workbox-sw/6.5.0/workbox-s
 
 workbox.core.setCacheNameDetails({
   prefix: 'heyform',
-  suffix: `v2022.1`,
+  suffix: `v2023.1`,
   precache: 'precache',
   runtime: 'runtime'
 })
@@ -47,7 +47,6 @@ const navigationRoute = new workbox.routing.NavigationRoute(handler, {
     /\/embed.*$/,
 
     // Open App authorize
-    /\/oauth\/authorize\/.*$/i,
     /\/oauth\/authorize.*$/i,
 
     // Custom domain verification
