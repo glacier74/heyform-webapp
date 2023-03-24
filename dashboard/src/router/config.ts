@@ -56,6 +56,7 @@ const Analytics = lazy(() => import('@/legacy_pages/pages/Analytics'))
 const Report = lazy(() => import('@/legacy_pages/pages/Report'))
 const Submissions = lazy(() => import('@/legacy_pages/pages/Submissions'))
 const FormSettings = lazy(() => import('@/pages/form/FormSettings'))
+const OauthAuthorize = lazy(() => import('@/legacy_pages/pages/OauthAuthorize'))
 
 const config: CustomRouteConfig[] = [
   /* Login */
@@ -123,6 +124,15 @@ const config: CustomRouteConfig[] = [
     layout: OnBoardingTrial,
     component: OnBoardingTrial,
     title: 'Start your free trial'
+  },
+
+  /* OAuth v2 authorize */
+  {
+    path: '/oauth/authorize',
+    loginRequired: true,
+    layout: AuthLayout,
+    component: OauthAuthorize,
+    title: 'Authorize'
   },
 
   /* Workspace */
