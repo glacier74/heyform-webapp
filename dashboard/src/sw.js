@@ -48,6 +48,7 @@ const navigationRoute = new workbox.routing.NavigationRoute(handler, {
 
     // Open App authorize
     /\/oauth\/authorize\/.*$/i,
+    /\/oauth\/authorize.*$/i,
 
     // Custom domain verification
     /\/custom-domain-verification.*$/i,
