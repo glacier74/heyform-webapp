@@ -51,3 +51,10 @@
     @apply text-blue-700;
   }
 }
+
+.locale-select {
+  .popup-content,
+  .select-popup-content {
+    width: 125px !important;
+  }
+}

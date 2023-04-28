@@ -16,7 +16,7 @@ export const Basic: FC = observer(() => {
       id="form-settings-basic"
       className="form-settings-selection px-6 pt-6 pb-8 bg-white sm:rounded-md shadow space-y-6"
     >
-      <div className="text-lg font-medium text-slate-900">{t('formSettings.Required')}</div>
+      <div className="text-lg font-medium text-slate-900">Basic</div>
 
       {/* Language */}
       <div className="flex items-center justify-between">
@@ -27,8 +27,8 @@ export const Basic: FC = observer(() => {
           <p className="mt-1 text-sm text-slate-500">{t('formSettings.LanguageDescription')}</p>
         </div>
 
-        <Form.Item className="ml-4 mb-0" name="locale" rules={[{ required: false }]}>
-          <Select options={FORM_LOCALES_OPTIONS} />
+        <Form.Item className="ml-4 mb-0" name="locale" rules={[{required: false}]}>
+          <Select options={FORM_LOCALES_OPTIONS} popupClassName="locale-select"/>
         </Form.Item>
       </div>
 

@@ -57,6 +57,7 @@ export class FormStore {
     if (form?.settings) {
       const tempSettings: TempFormSettings = {
         closeForm: !form.settings.active,
+        locale: 'en',
         ...form.settings
       }
 
