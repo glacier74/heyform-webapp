@@ -3,13 +3,20 @@ import type { FC } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 
 interface PaginationProps {
+  className?: string
   total: number
   page: number
   pageSize: number
   onChange?: (page: number) => void
 }
 
-export const Pagination: FC<PaginationProps> = ({ total, page = 1, pageSize = 20, onChange }) => {
+export const Pagination: FC<PaginationProps> = ({
+  className,
+  total,
+  page = 1,
+  pageSize = 20,
+  onChange
+}) => {
   const maxPage = useMemo(() => Math.ceil(total / pageSize), [total, pageSize])
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(0)
@@ -33,7 +40,7 @@ export const Pagination: FC<PaginationProps> = ({ total, page = 1, pageSize = 20
 
   return (
     <nav
-      className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-100 sm:px-6"
+      className={`bg-white px-4 py-3 flex items-center justify-between border-t border-gray-100 sm:px-6 ${className}`}
       aria-label="Pagination"
     >
       <div className="hidden sm:block">

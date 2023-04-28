@@ -200,17 +200,27 @@ const Submissions: FC = () => {
 
   return (
     <>
-      <ResultNavbar />
-      <div className="container mx-auto max-w-5xl">
-        <Toolbar align="center" justify="space-between">
-          <ToolbarLeft align="center">
-            <CategorySelect category={category} onChange={handleCategoryChange} />
-            {/*<CustomFields />*/}
-            <ExportLink />
-          </ToolbarLeft>
-          <Pagination page={page} pageSize={pageSize} total={total} onChange={handlePageChange} />
-        </Toolbar>
+      <ResultNavbar/>
+      <div className="border-b border-gray-100">
+        <div className="container mx-auto">
+          <Toolbar align="center" justify="space-between">
+            <ToolbarLeft align="center">
+              <CategorySelect category={category} onChange={handleCategoryChange}/>
+              {/*<CustomFields />*/}
+              <ExportLink/>
+            </ToolbarLeft>
+            <Pagination
+              className="!bg-transparent !p-0"
+              page={page}
+              pageSize={pageSize}
+              total={total}
+              onChange={handlePageChange}
+            />
+          </Toolbar>
+        </div>
+      </div>
 
+      <div className="container">
         <StyledRequest
           fetch={fetchData}
           deps={[category, page]}

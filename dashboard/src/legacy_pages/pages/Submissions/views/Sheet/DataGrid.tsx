@@ -1067,7 +1067,6 @@ function DataGrid<R, SR>(
 
 const GridRoot = styled.div`
   position: relative;
-  margin: 0 24px 0 24px;
   z-index: 1;
   background: #fff;
   border-radius: 3px;
