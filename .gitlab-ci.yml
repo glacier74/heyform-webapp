@@ -42,7 +42,7 @@ development:
 
     echo "=> Deploying"
     scp -P "$DEVELOP_PORT" -o stricthostkeychecking=no -C d.tar.gz "$DEVELOP_DEPLOY_USER"@"$DEVELOP_DEPLOY_HOST":"$DEVELOP_TEMP"
-    DEPLOY_SHELL="tar -xzf ${DEVELOP_TEMP}/d.tar.gz -C ${DEVELOP_APP_DIR} && rm -rf ${DEVELOP_TEMP}/d.tar.gz && cd ${DEVELOP_APP_DIR} && /usr/bin/cp -r tmp/* ./ && npm start"
+    DEPLOY_SHELL="tar -xzf ${DEVELOP_TEMP}/d.tar.gz -C ${DEVELOP_APP_DIR} && rm -rf ${DEVELOP_TEMP}/d.tar.gz && cd ${DEVELOP_APP_DIR} && cp -r tmp/* ./ && npm start"
     ssh -p "$DEVELOP_PORT" "$DEVELOP_DEPLOY_USER"@"$DEVELOP_DEPLOY_HOST" -t "$DEPLOY_SHELL"
     exit
 
