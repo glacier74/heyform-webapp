@@ -88,15 +88,17 @@ const InputTableItem: FC<SheetCellProps> = ({ column, row }) => {
         <tbody className="divide-y divide-gray-200">
           {isValidArray(value) && (
             <>
-              {value!.map((v, index) => (
-                <tr key={index}>
-                  {columns.map(c => (
-                    <td key={c.id} className="whitespace-nowrap py-2 px-3 text-sm text-slate-500">
-                      {v[c.id]}
-                    </td>
-                  ))}
-                </tr>
-              ))}
+              {value!.map((v, index) =>
+                v ? (
+                  <tr key={index}>
+                    {columns.map(c => (
+                      <td key={c.id} className="whitespace-nowrap py-2 px-3 text-sm text-slate-500">
+                        {v[c.id]}
+                      </td>
+                    ))}
+                  </tr>
+                ) : null
+              )}
             </>
           )}
         </tbody>

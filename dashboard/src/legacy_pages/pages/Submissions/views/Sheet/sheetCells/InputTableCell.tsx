@@ -12,7 +12,9 @@ export const InputTableCell: FC<SheetCellProps> = ({ column, row }) => {
     const result: string[] = []
 
     value.forEach((v: Record<string, string>) => {
-      result.push(columns!.map(c => v[c.id]).join(', '))
+      if (isValid(v)) {
+        result.push(columns!.map(c => v[c.id]).join(', '))
+      }
     })
 
     text = result.join('|')

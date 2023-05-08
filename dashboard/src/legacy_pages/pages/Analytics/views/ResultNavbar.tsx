@@ -10,25 +10,27 @@ export const ResultNavbar: FC<ComponentProps> = props => {
   const { workspaceId, projectId, formId } = useParam()
 
   return (
-    <div className="container max-w-5xl mx-auto bg-white py-4">
-      <Wrapper align="center" {...props}>
-        <NavLink
-          to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}
-          end={true}
-        >
-          {t('analytics.Analytics')}
-        </NavLink>
-        <NavLink
-          to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results/report`}
-        >
-          {t('analytics.Report')}
-        </NavLink>
-        <NavLink
-          to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results/submissions`}
-        >
-          {t('analytics.Submissions')}
-        </NavLink>
-      </Wrapper>
+    <div className="bg-white py-4 border-b border-slate-200">
+      <div className="container mx-auto">
+        <Wrapper align="center" {...props}>
+          <NavLink
+            to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}
+            end={true}
+          >
+            {t('analytics.Analytics')}
+          </NavLink>
+          <NavLink
+            to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results/report`}
+          >
+            {t('analytics.Report')}
+          </NavLink>
+          <NavLink
+            to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results/submissions`}
+          >
+            {t('analytics.Submissions')}
+          </NavLink>
+        </Wrapper>
+      </div>
     </div>
   )
 }
