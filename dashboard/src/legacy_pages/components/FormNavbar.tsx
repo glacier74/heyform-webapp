@@ -22,20 +22,20 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
   }
 
   return (
-    <div className="flex grid grid-cols-3 gap-3 space-between py-2 px-4 -mt-px border-b border-slate-200">
+    <div className="flex grid grid-cols-3 gap-3 space-between py-4 px-4 -mt-px border-b border-slate-200">
       <Left align="center">
         <BackButton icon={<ArrowLeftIcon className="w-4 h-4" />} onClick={toProject}>
           {workspaceStore.project?.name}
         </BackButton>
       </Left>
-      <Nav role="navigation" className="flex items-center">
+      <Nav role="navigation" className="flex items-center text-xs gap-x-12">
         <NavLink
-          className={'text-xs mx-6 text-slate-500'}
+          className={'text-slate-700'}
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/create`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mx-auto mb-1"
+            className="h-5 w-5 mx-auto mb-2"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -50,12 +50,12 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
           {t('form.create')}
         </NavLink>
         <NavLink
-          className={'text-xs px-4 text-slate-500'}
+          className={'text-slate-700'}
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/connect`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mx-auto mb-1"
+            className="h-5 w-5 mx-auto mb-2"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -70,12 +70,12 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
           {t('form.connect')}
         </NavLink>
         <NavLink
-          className={'text-xs px-4 text-slate-500'}
+          className={'text-slate-700'}
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/share`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mx-auto mb-1"
+            className="h-5 w-5 mx-auto mb-2"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -90,12 +90,12 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
           {t('form.share')}
         </NavLink>
         <NavLink
-          className={'text-xs px-4 text-slate-500'}
+          className={'text-slate-700'}
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/results`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mx-auto mb-1"
+            className="h-5 w-5 mx-auto mb-2"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -110,12 +110,12 @@ export const FormNavbar: FC<ComponentProps> = observer(() => {
           {t('form.results')}
         </NavLink>
         <NavLink
-          className={'text-xs px-4 text-slate-500'}
+          className={'text-slate-700'}
           to={`/workspace/${workspaceId}/project/${projectId}/form/${formId}/settings`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mx-auto mb-1"
+            className="h-5 w-5 mx-auto mb-2"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

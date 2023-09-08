@@ -537,7 +537,6 @@ export default {
         description: 'Floating panel when hits the button on the right edge.'
       }
     ],
-    embedText: 'You can embed your form to your website using any method listed below.',
     Code: 'Code',
     shared: 'Form have been successfully shared',
     fetchGroups: 'Failed to fetch audience groups',

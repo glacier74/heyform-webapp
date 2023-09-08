@@ -45,10 +45,7 @@ export const EmbedWebModal: FC<EmbedWebModalProps> = observer(
         {visible && (
           <Container close={true} onClose={handleClose}>
             <Heading
-              description={t('share.embedText')}
-              style={{
-                textAlign: 'center'
-              }}
+              className="!text-center"
             >
               {t('share.embed')}
             </Heading>

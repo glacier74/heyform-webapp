@@ -381,7 +381,7 @@
 
   .heyform-block-title,
   .heyform-block-description {
-    @apply relative outline-none;
+    @apply relative outline-none justify-start;
 
     &:empty:before {
       @apply absolute opacity-70 pointer-events-none;
@@ -398,7 +398,7 @@
   // ----------------------------------------------------------------------------
   // Submit
   .heyform-submit-container {
-    @apply flex items-center mt-8 transition-opacity duration-500;
+    @apply flex items-center mt-8 transition-opacity duration-500 justify-start;
   }
 
   .heyform-submit-button {
@@ -421,10 +421,6 @@
       min-height: 2.25rem;
     }
 
-    .heyform-submit-container {
-      @apply justify-center;
-    }
-
     .heyform-layout-inline img {
       @apply rounded-none;
     }
@@ -436,17 +432,13 @@
     .heyform-layout-inline {
       @apply text-left;
     }
-
-    .heyform-submit-container {
-      @apply justify-start;
-    }
   }
 
   .heyform-welcome,
   .heyform-thank-you {
     .heyform-block-title,
     .heyform-block-description {
-      @apply text-center;
+      @apply text-left;
 
       &:empty {
         @apply text-left;

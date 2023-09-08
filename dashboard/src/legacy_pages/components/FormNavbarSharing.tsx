@@ -46,7 +46,7 @@ export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form })
 
   return (
     <Container align="center">
-      <div className="text-xs mx-6 text-slate-500">
+      <div className="text-xs mx-6 text-slate-700">
         <button onClick={handleClick}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@ export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form })
           <button disabled={true}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 mx-auto mb-1"
+              className="h-5 w-5 mx-auto mb-1"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -92,11 +92,11 @@ export const FormNavbarSharing: FC<FormNavbarSharingProps> = observer(({ form })
           </button>
         </div>
       ) : (
-        <div className="text-xs mx-6 text-slate-500">
+        <div className="text-xs mx-6 text-slate-700">
           <button loading={loading} onClick={handlePublish}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 mx-auto mb-1"
+              className="h-5 w-5 mx-auto mb-1"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

@@ -501,7 +501,6 @@ export default {
         description: '点击右边缘的按钮时浮动面板。'
       }
     ],
-    embedText: '您可以使用下面列出的任何方法将表单嵌入到您的网站。',
     Code: '代码',
     shared: '表单已成功共享',
     fetchGroups: '无法获取联系人群组'
