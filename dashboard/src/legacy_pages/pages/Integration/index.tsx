@@ -69,7 +69,7 @@ const Integration: FC = observer(() => {
           description={
             <>
               {t('integration.connectText')}{' '}
-              <a href="https://help.heyform.net" target="_blank">
+              <a href="https://heyform.net/help" target="_blank">
                 {t('integration.help')}
               </a>{' '}
               {t('integration.helpApp')}

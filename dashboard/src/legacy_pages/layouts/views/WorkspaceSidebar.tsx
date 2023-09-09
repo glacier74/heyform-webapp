@@ -76,7 +76,7 @@ export const WorkspaceSidebar: FC = observer(() => {
       </Projects>
 
       <BottomNav>
-        <a href="https://help.heyform.net" target="_blank" rel="noreferrer">
+        <a href="https://heyform.net/help" target="_blank" rel="noreferrer">
           <IconText icon={<HelpIcon />} text={t('Help center')} />
         </a>
         <a href="https://heyform.net/f/E4MKK2hx" target="_blank" rel="noreferrer">

@@ -84,7 +84,7 @@ export const Branding: FC = observer(() => {
           description={
             <>
               {t('workspace.settings.brandingExplain')}{' '}
-              <a href="https://help.heyform.net" className="text-slate-900 hover:underline">
+              <a href="https://heyform.net/help" className="text-slate-900 hover:underline">
                 {t('workspace.settings.learnMore')}
               </a>
               .

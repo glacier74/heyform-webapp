@@ -36,7 +36,7 @@ export const UserAvatar: FC<ComponentProps> = observer(({ className, style }) =>
   function handleClick(name: any) {
     switch (name) {
       case 'help':
-        window.open('https://help.heyform.net')
+        window.open('https://heyform.net/help')
         break
 
       case 'contact':
