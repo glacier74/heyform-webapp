@@ -1,13 +1,39 @@
 import { BoldIcon, ItalicIcon, LinkIcon, UnderlineIcon, UnlinkIcon } from '@/components'
-import { Button, Portal } from '@heyforms/ui'
+import { Button, Form, Input, Portal } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import type { CSSProperties, FC } from 'react'
-import { useEffect, useState } from 'react'
+import { startTransition, useEffect, useState } from 'react'
 import { getRangeSelection, getStyleFromRect } from './utils'
 
 interface FloatingToolbarProps extends Omit<IComponentProps, 'onChange'>, IModalProps {
   range?: Range
   onChange: () => void
+}
+
+interface ActiveState {
+  isBold: boolean
+  isItalic: boolean
+  isStrikethrough: boolean
+  isUnderline: boolean
+  link?: string
+}
+
+function getActiveState() {
+  const state: ActiveState = {
+    isBold: document.queryCommandState('bold'),
+    isItalic: document.queryCommandState('italic'),
+    isStrikethrough: document.queryCommandState('strikethrough'),
+    isUnderline: document.queryCommandState('underline'),
+    link: undefined
+  }
+
+  const sel = window.getSelection()
+
+  if (sel) {
+    state.link = sel.anchorNode?.parentElement?.closest('a')?.href
+  }
+
+  return state
 }
 
 export const FloatingToolbar: FC<FloatingToolbarProps> = ({
@@ -18,6 +44,8 @@ export const FloatingToolbar: FC<FloatingToolbarProps> = ({
   ...restProps
 }) => {
   const [portalStyle, setPortalStyle] = useState<CSSProperties>()
+  const [activeState, setActiveState] = useState({} as ActiveState)
+  const [linkBubbleVisible, setLinkBubbleVisible] = useState(false)
 
   function handleBold() {
     document.execCommand('bold')
@@ -34,20 +62,34 @@ export const FloatingToolbar: FC<FloatingToolbarProps> = ({
     onChange()
   }
 
-  function handleLinkOpen() {}
+  function handleLinkOpen() {
+    setLinkBubbleVisible(true)
+  }
 
-  function handleLink({ url }: any) {
-    const sel = getRangeSelection(range!)
-    const node = document.createElement('a')
+  // function handleLink({ url }: any) {
+  //   const sel = getRangeSelection(range!)
+  //   const node = document.createElement('a')
 
-    node.setAttribute('href', url)
-    node.setAttribute('target', '_blank')
-    node.innerText = sel!.toString()
+  //   node.setAttribute('href', url)
+  //   node.setAttribute('target', '_blank')
+  //   node.innerText = sel!.toString()
 
-    range!.deleteContents()
-    range!.insertNode(node)
+  //   range!.deleteContents()
+  //   range!.insertNode(node)
 
-    onChange()
+  //   onChange()
+  // }
+
+  async function handleLink({ url }: any) {
+    setLinkBubbleVisible(false)
+
+    handleSelectRange()
+    document.execCommand('createlink', false, url)
+
+    startTransition(() => {
+      setActiveState(getActiveState())
+      onChange()
+    })
   }
 
   function handleUnlink() {
@@ -55,11 +97,29 @@ export const FloatingToolbar: FC<FloatingToolbarProps> = ({
     onChange()
   }
 
+  function handleSelectRange() {
+    const sel = window.getSelection()
+    sel!.removeAllRanges()
+    sel!.addRange(range!)
+
+    return sel
+  }
+
   useEffect(() => {
     if (isValid(range) && range instanceof Range) {
       setPortalStyle(getStyleFromRect(range!.getBoundingClientRect()))
     }
   }, [range])
+
+  useEffect(() => {
+    if (visible) {
+      setActiveState(getActiveState())
+    }
+
+    return () => {
+      setActiveState({} as ActiveState)
+    }
+  }, [visible])
 
   return (
     <Portal visible={visible}>
@@ -70,15 +130,47 @@ export const FloatingToolbar: FC<FloatingToolbarProps> = ({
           style={portalStyle}
           {...restProps}
         >
-          <Button.Link leading={<BoldIcon className="text-slate-700" />} onClick={handleBold} />
-          <Button.Link leading={<ItalicIcon className="text-slate-700" />} onClick={handleItalic} />
-          <Button.Link
-            leading={<UnderlineIcon className="text-slate-700" />}
-            onClick={handleUnderline}
-          />
-          {/* TODO - add link support */}
-          {/*<Button.Link leading={<LinkIcon className="text-slate-700" />} />*/}
-          {/*<Button.Link leading={<UnlinkIcon className="text-slate-700" />} />*/}
+          {linkBubbleVisible ? (
+            <Form.Custom
+              inline
+              initialValues={{
+                url: activeState.link
+              }}
+              submitText="Apply"
+              submitOptions={{
+                className: 'ml-1 my-1',
+                type: 'primary'
+              }}
+              onlySubmitOnValueChange={true}
+              request={handleLink}
+            >
+              <Form.Item name="url" rules={[{ required: true }]}>
+                <Input className="mb-1" placeholder="Paste or enter link here" />
+              </Form.Item>
+            </Form.Custom>
+          ) : (
+            <>
+              <Button.Link leading={<BoldIcon className="text-slate-700" />} onClick={handleBold} />
+              <Button.Link
+                leading={<ItalicIcon className="text-slate-700" />}
+                onClick={handleItalic}
+              />
+              <Button.Link
+                leading={<UnderlineIcon className="text-slate-700" />}
+                onClick={handleUnderline}
+              />
+              <Button.Link
+                leading={<LinkIcon className="text-slate-700" />}
+                onClick={handleLinkOpen}
+              />
+              {activeState.link && (
+                <Button.Link
+                  leading={<UnlinkIcon className="text-slate-700" />}
+                  onClick={handleUnlink}
+                />
+              )}
+            </>
+          )}
         </div>
       </div>
     </Portal>

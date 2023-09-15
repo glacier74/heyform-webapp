@@ -217,7 +217,7 @@ const Project = observer(() => {
             icon={<ClipboardCheckIcon className="non-scaling-stroke" />}
             title={t('project.noForm')}
             description={t('project.text')}
-            action={<Button onClick={handleCreateForm}>{t('project.bottom')}</Button>}
+            action={<Button onClick={handleCreateForm}>{t('project.create2')}</Button>}
           />
         }
       >

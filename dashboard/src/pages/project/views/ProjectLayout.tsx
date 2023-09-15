@@ -91,7 +91,7 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
       }
       actions={
         <Button type="primary" onClick={handleCreateForm}>
-          {t('project.bottom')}
+          {t('project.create2')}
         </Button>
       }
     />

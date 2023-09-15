@@ -158,6 +158,7 @@ export default {
     rename: '重命名',
     del: '删除',
     bottom: '新建表单',
+    create2: '新建',
     forms: '表单',
     Trash: '回收站',
     renameP: '重命名这个项目',
