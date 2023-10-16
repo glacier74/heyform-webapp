@@ -16,7 +16,8 @@ export const FieldList: FC = observer(() => {
 
   function handleClick(id: string) {
     const elem = document.getElementById(`field-${id}`)
-    elem!.scrollIntoView({
+
+    elem?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
       inline: 'nearest'
