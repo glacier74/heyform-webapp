@@ -1,4 +1,3 @@
-import { htmlUtils } from '@heyforms/answer-utils'
 import type { ClipboardEvent, CSSProperties } from 'react'
 
 export interface RichTextTriggerSelection {
@@ -133,13 +132,7 @@ export function insertClipboardText(event: any) {
 }
 
 export function insertClipboardHTML(event: ClipboardEvent) {
-  const clipboardData = event.clipboardData.getData('text/html')
-  const purgedHTML = htmlUtils.purge(clipboardData, {
-    allowedTags: ['text', 'span', 'bold', 'strong', 'code', 'b', 'i', 'u', 's'],
-    allowedAttributes: []
-  })
-
-  document.execCommand('insertHTML', false, purgedHTML)
+  document.execCommand('insertHTML', false, event.clipboardData.getData('text'))
 }
 
 export function replaceTriggerText(
