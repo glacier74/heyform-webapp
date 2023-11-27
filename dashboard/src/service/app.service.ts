@@ -1,5 +1,6 @@
 import { APP_AUTHORIZE_URL_GQL, APP_DETAIL_GQL, APPS_GQL } from '@/consts'
 import { request } from '@/utils'
+import axios from 'axios'
 
 export class AppService {
   static async apps() {
@@ -29,6 +30,20 @@ export class AppService {
           redirectUri,
           responseType: 'code'
         }
+      }
+    })
+  }
+
+  static async upload(file: File, key: string, token: string) {
+    const formData = new FormData()
+
+    formData.append('file', file)
+    formData.append('key', key)
+    formData.append('token', token)
+
+    return axios.post(import.meta.env.VITE_CDN_UPLOAD_URL, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
       }
     })
   }

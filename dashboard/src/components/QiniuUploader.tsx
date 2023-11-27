@@ -1,5 +1,5 @@
-import { UserService, WorkspaceService } from '@/service'
-import { Qiniu, useParam } from '@/utils'
+import { AppService, UserService, WorkspaceService } from '@/service'
+import { useParam } from '@/utils'
 import { isValid } from '@hpnp/utils/helper'
 import type { FC } from 'react'
 import { useState } from 'react'
@@ -36,8 +36,7 @@ export const QiniuUploader: FC<QiniuUploaderProps> = ({ value, onChange, ...rest
       const { token, urlPrefix, key } = cdnTokenData
       const url = `${urlPrefix}/${key}`
 
-      const qc = new Qiniu(file, key, token)
-      await qc.upload()
+      await AppService.upload(file, key, token)
 
       onChange?.(url)
     } catch (err: any) {
