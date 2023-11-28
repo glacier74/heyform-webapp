@@ -127,6 +127,7 @@ export const WORKSPACE_SUBSCRIPTION_GQL = gql`
       contactCount
       formCount
       storageQuota
+      submissionQuota
     }
   }
 `

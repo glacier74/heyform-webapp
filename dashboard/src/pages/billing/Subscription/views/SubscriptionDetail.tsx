@@ -148,7 +148,7 @@ export const SubscriptionDetail: FC = observer(() => {
       <Async request={fetchSubscription} skeleton={<Skeleton />}>
         <dl className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-4">
           <Item title={t('billing.form')} description={detail.formCount} />
-          <SubmissionItem count={detail.submissionCount} limit={plan.submissionLimit} />
+          <SubmissionItem count={detail.submissionQuota} limit={plan.submissionLimit} />
           <MemberItem
             count={detail.memberCount}
             limit={plan.memberLimit}
