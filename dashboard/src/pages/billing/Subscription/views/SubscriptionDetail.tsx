@@ -23,14 +23,10 @@ interface MemberItemProps {
   additional?: number
 }
 
-function formatNumber(num: number): any {
-  return num === -1 ? 'Unlimited' : num
-}
-
 const Skeleton = () => {
   return (
-    <dl className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-5">
-      {Array.from({ length: 5 }).map((_, index) => (
+    <dl className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-4">
+      {Array.from({ length: 4 }).map((_, index) => (
         <div key={index} className="px-4 py-5 bg-white rounded-md border border-gray-200 sm:p-6">
           <dt className="skeleton w-16 h-4" />
           <dd className="skeleton mt-2 w-32 h-7" />
@@ -67,20 +63,6 @@ const MemberItem: FC<MemberItemProps> = ({ count = 1, limit, additional = 0 }) =
   )
 }
 
-const AudienceItem: FC<MemberItemProps> = ({ count, limit }) => {
-  const { t } = useTranslation()
-  return (
-    <Item
-      title={t('billing.audience')}
-      description={
-        <>
-          {count}/{formatNumber(limit as number)}
-        </>
-      }
-    />
-  )
-}
-
 const SubmissionItem: FC<MemberItemProps> = ({ count, limit }) => {
   const { t } = useTranslation()
   return (
@@ -88,7 +70,7 @@ const SubmissionItem: FC<MemberItemProps> = ({ count, limit }) => {
       title={t('billing.submission')}
       description={
         <>
-          <div>{formatBytes(count || 0)} / {limit}</div>
+          <div>{count || 0} / {limit}</div>
           <div className="text-[13px] font-normal text-gray-500">{t('billing.resetsOn', { date: dayjs().startOf('month').add(1, 'month').format('MMM DD, YYYY') })}</div>
         </>
       }
@@ -164,7 +146,7 @@ export const SubscriptionDetail: FC = observer(() => {
       </div>
 
       <Async request={fetchSubscription} skeleton={<Skeleton />}>
-        <dl className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-5">
+        <dl className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-4">
           <Item title={t('billing.form')} description={detail.formCount} />
           <SubmissionItem count={detail.submissionCount} limit={plan.submissionLimit} />
           <MemberItem
@@ -172,7 +154,6 @@ export const SubscriptionDetail: FC = observer(() => {
             limit={plan.memberLimit}
             additional={workspaceStore.workspace.additionalSeats}
           />
-          <AudienceItem count={detail.contactCount} limit={plan.contactLimit} />
           <StorageItem count={detail.storageQuota} limit={plan.storageLimit} />
         </dl>
       </Async>

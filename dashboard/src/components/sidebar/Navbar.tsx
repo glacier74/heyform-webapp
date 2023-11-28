@@ -75,7 +75,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
               {t('other.labelList.TeamMembers')}
             </CustomLink>
           </PlanCheck>
-          <PlanCheck permission={PlanGradeEnum.PREMIUM}>
+          {/* <PlanCheck permission={PlanGradeEnum.PREMIUM}>
             <CustomLink
               isMobile={isMobile}
               to={`/workspace/${workspaceId}/audience`}
@@ -85,7 +85,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
               <MailIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
               {t('other.labelList.Audiences')}
             </CustomLink>
-          </PlanCheck>
+          </PlanCheck> */}
           {workspaceStore.workspace?.isOwner && (
             <>
               <CustomLink

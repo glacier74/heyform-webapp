@@ -35,9 +35,9 @@ const Members = lazy(() => import('@/pages/workspace/Members'))
 const Subscription = lazy(() => import('@/pages/billing/Subscription'))
 const Invoices = lazy(() => import('@/pages/billing/Invoices'))
 
-/* Audiences */
-const Contacts = lazy(() => import('@/pages/audiences/Contacts'))
-const Groups = lazy(() => import('@/pages/audiences/Groups'))
+// /* Audiences */
+// const Contacts = lazy(() => import('@/pages/audiences/Contacts'))
+// const Groups = lazy(() => import('@/pages/audiences/Groups'))
 
 /* Project */
 const Project = lazy(() => import('@/pages/project/Project'))
@@ -172,19 +172,19 @@ const config: CustomRouteConfig[] = [
     title: 'Form invitation'
   },
 
-  /* Audiences */
-  {
-    path: '/workspace/:workspaceId/audience',
-    loginRequired: true,
-    layout: WorkspaceLayout,
-    component: Contacts
-  },
-  {
-    path: '/workspace/:workspaceId/audience/group',
-    loginRequired: true,
-    layout: WorkspaceLayout,
-    component: Groups
-  },
+  // /* Audiences */
+  // {
+  //   path: '/workspace/:workspaceId/audience',
+  //   loginRequired: true,
+  //   layout: WorkspaceLayout,
+  //   component: Contacts
+  // },
+  // {
+  //   path: '/workspace/:workspaceId/audience/group',
+  //   loginRequired: true,
+  //   layout: WorkspaceLayout,
+  //   component: Groups
+  // },
 
   /* Project */
   {
