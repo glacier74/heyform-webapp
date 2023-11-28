@@ -1,6 +1,6 @@
 import { getTheme, getThemeStyle } from '@heyforms/form-component'
 import { FormTheme } from '@heyforms/shared-types-enums'
-import { removeObjectNil } from '@hpnp/utils'
+import { qs, removeObjectNil } from '@hpnp/utils'
 import { isURL, isValid } from '@hpnp/utils/helper'
 import { stringify } from '@hpnp/utils/qs'
 import isMobilePhone from 'validator/lib/isMobilePhone'
@@ -88,10 +88,15 @@ export function isPhoneNumber(arg: any): boolean {
 
 const cropImageRules: Array<Record<string, any>> = [
   {
-    match: 'https://storage-us.heyformhq.com',
+    match: 'https://forms.b-cdn.net',
     handler(src: string, width: number, height: number) {
-      const mode = width === height ? 1 : 2
-      return `${src}?imageView2/${mode}/w/${width}/h/${height}/format/webp/interlace/1`
+      return import.meta.env.VITE_HOMEPAGE + '/image?' + qs.stringify({
+        url: src,
+        w: width,
+        h: height
+      }, {
+        encode: true
+      })
     }
   },
   {

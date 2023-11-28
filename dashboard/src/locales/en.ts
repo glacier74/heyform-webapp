@@ -37,7 +37,7 @@ export default {
   auth: {
     signup: {
       signUp: 'Create an account',
-      description: 'Start a 14-day trial with all features unlocked.',
+      description: 'Start a 7-day trial with all features unlocked.',
       signIn: 'sign in with existing one',
       signWith: 'Start with',
       continueWith: 'Or continue with',
@@ -381,6 +381,8 @@ export default {
     resend: 'Resend'
   },
   billing: {
+    submission: 'Submission',
+    resetsOn: 'Resets on {{date}}',
     paid: 'Paid',
     unpaid: 'Unpaid',
     expired: 'Expired',

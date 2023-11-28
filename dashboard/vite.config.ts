@@ -113,7 +113,7 @@ export default ({ mode }: ConfigEnv) => {
           secure: false,
           changeOrigin: true,
           cookieDomainRewrite: {
-            [env.VITE_COOKIE_DOMAIN_REWRITE]: 'dev.cnnic.eu'
+            [env.VITE_COOKIE_DOMAIN_REWRITE]: env.VITE_COOKIE_DOMAIN
           },
           // Remove `Secure` and `SameSite from proxyRes's `set-cookie`
           // https://vitejs.dev/config/#server-proxy

@@ -35,7 +35,7 @@ export default {
   auth: {
     signup: {
       signUp: '创建帐户',
-      description: '开始为期14天的简约表单免费试用',
+      description: '开始为期7天的简约表单免费试用',
       signIn: '使用现有帐户登录',
       signWith: '使用以下方式注册',
       continueWith: '或者其他方式注册',
@@ -847,7 +847,7 @@ export default {
     buttonLinkUrl: '按钮链接地址'
   },
   onboarding: {
-    trialTitle: 'Start your 14-day free trial',
+    trialTitle: 'Start your 7-day free trial',
     trialDesc:
       'No contracts, downgrade or cancel the subscription anytime within a single click from your dashboard.',
     trialButton: 'Go for a trial',

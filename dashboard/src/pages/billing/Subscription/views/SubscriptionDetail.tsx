@@ -6,6 +6,7 @@ import { useStore } from '@/store'
 import { useParam, useVisible } from '@/utils'
 import { Button } from '@heyforms/ui'
 import { formatBytes, unixDate } from '@hpnp/utils'
+import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
 import type { FC, ReactNode } from 'react'
 import { useMemo, useState } from 'react'
@@ -28,8 +29,8 @@ function formatNumber(num: number): any {
 
 const Skeleton = () => {
   return (
-    <dl className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-4">
-      {Array.from({ length: 4 }).map((_, index) => (
+    <dl className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-5">
+      {Array.from({ length: 5 }).map((_, index) => (
         <div key={index} className="px-4 py-5 bg-white rounded-md border border-gray-200 sm:p-6">
           <dt className="skeleton w-16 h-4" />
           <dd className="skeleton mt-2 w-32 h-7" />
@@ -43,7 +44,7 @@ const Item: FC<ItemProps> = ({ title, description }) => {
   return (
     <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
       <dt className="text-sm font-medium text-slate-500 truncate">{title}</dt>
-      <dd className="mt-1 text-3xl font-semibold text-slate-900">{description}</dd>
+      <dd className="mt-4 text-2xl font-semibold text-slate-900">{description}</dd>
     </div>
   )
 }
@@ -74,6 +75,21 @@ const AudienceItem: FC<MemberItemProps> = ({ count, limit }) => {
       description={
         <>
           {count}/{formatNumber(limit as number)}
+        </>
+      }
+    />
+  )
+}
+
+const SubmissionItem: FC<MemberItemProps> = ({ count, limit }) => {
+  const { t } = useTranslation()
+  return (
+    <Item
+      title={t('billing.submission')}
+      description={
+        <>
+          <div>{formatBytes(count || 0)} / {limit}</div>
+          <div className="text-[13px] font-normal text-gray-500">{t('billing.resetsOn', { date: dayjs().startOf('month').add(1, 'month').format('MMM DD, YYYY') })}</div>
         </>
       }
     />
@@ -148,14 +164,15 @@ export const SubscriptionDetail: FC = observer(() => {
       </div>
 
       <Async request={fetchSubscription} skeleton={<Skeleton />}>
-        <dl className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-4">
+        <dl className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-5">
+          <Item title={t('billing.form')} description={detail.formCount} />
+          <SubmissionItem count={detail.submissionCount} limit={plan.submissionLimit} />
           <MemberItem
             count={detail.memberCount}
             limit={plan.memberLimit}
             additional={workspaceStore.workspace.additionalSeats}
           />
           <AudienceItem count={detail.contactCount} limit={plan.contactLimit} />
-          <Item title={t('billing.form')} description={detail.formCount} />
           <StorageItem count={detail.storageQuota} limit={plan.storageLimit} />
         </dl>
       </Async>
