@@ -8,7 +8,7 @@ export const InputTableCell: FC<SheetCellProps> = ({ column, row }) => {
   const columns = column.properties?.tableColumns
   let text = ''
 
-  if (isValidArray(columns) && isValid(value)) {
+  if (isValidArray(columns) && isValidArray(value)) {
     const result: string[] = []
 
     value.forEach((v: Record<string, string>) => {
