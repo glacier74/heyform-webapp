@@ -70,7 +70,7 @@ const SubmissionItem: FC<MemberItemProps> = ({ count, limit }) => {
       title={t('billing.submission')}
       description={
         <>
-          <div>{count || 0} / {limit}</div>
+          <div>{count || 0} / {(limit as number) < 0 ? '∞' : limit}</div>
           <div className="text-[13px] font-normal text-gray-500">{t('billing.resetsOn', { date: dayjs().startOf('month').add(1, 'month').format('MMM DD, YYYY') })}</div>
         </>
       }
