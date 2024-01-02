@@ -61,7 +61,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
             className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
             onClick={handleCloseSidebar}
           >
-            <HomeIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
+            <HomeIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
             {t('other.labelList.Dashboard')}
           </CustomLink>
           <PlanCheck permission={PlanGradeEnum.PREMIUM}>
@@ -71,7 +71,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
               className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
               onClick={handleCloseSidebar}
             >
-              <UsersIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
+              <UsersIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
               {t('other.labelList.TeamMembers')}
             </CustomLink>
           </PlanCheck>
@@ -94,14 +94,14 @@ export const Navbar: FC<SidebarNavProps> = observer(
                 className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
                 onClick={handleCloseSidebar}
               >
-                <CreditCardIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
+                <CreditCardIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
                 {t('other.labelList.Billing')}
               </CustomLink>
               <div
                 className="text-slate-600 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
                 onClick={onWorkspaceSettingsOpen}
               >
-                <CogIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
+                <CogIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
                 {t('other.labelList.Workspace')}
               </div>
             </>
@@ -145,7 +145,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
               target="_blank"
               className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
             >
-              <PlayIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
+              <PlayIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
               <span className="truncate">{t('other.labelList.GettingStarted')}</span>
             </a>
             <a
@@ -153,7 +153,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
               target="_blank"
               className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
             >
-              <QuestionMarkCircleIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
+              <QuestionMarkCircleIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
               <span className="truncate">{t('other.labelList.Help')}</span>
             </a>
             <a
@@ -161,7 +161,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
               target="_blank"
               className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
             >
-              <DocumentTextIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
+              <DocumentTextIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
               <span className="truncate">{t('other.labelList.Template')}</span>
             </a>
             <a
@@ -169,7 +169,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
               target="_blank"
               className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
             >
-              <GiftIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
+              <GiftIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
               <span className="truncate">{t('other.labelList.Changelog')}</span>
             </a>
           </div>

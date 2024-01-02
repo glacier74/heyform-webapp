@@ -107,6 +107,7 @@ export default ({ mode }: ConfigEnv) => {
       // }
     },
     server: {
+      port: 3000,
       proxy: {
         '/graphql': {
           target: env.VITE_PROXY_TARGET,

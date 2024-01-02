@@ -70,7 +70,7 @@ export const Sidebar: FC<SidebarProps> = observer(
 
         {/* Sidebar for desktop */}
         <div className="sidebar fixed inset-0 hidden md:flex md:flex-shrink-0">
-          <div className="relative flex flex-col flex-1 w-64 h-full bg-slate-100">
+          <div className="relative flex flex-col flex-1 w-64 h-full bg-zinc-50/60">
             <div className="flex flex-1 flex-col h-0 pt-5">
               <WorkspaceSwitch onCreateWorkspace={onCreateWorkspace} />
               <Navbar onWorkspaceSettingsOpen={onWorkspaceSettingsOpen} />

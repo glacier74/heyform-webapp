@@ -23,9 +23,9 @@ const SidebarLink: FC<IOptionType & { active?: string }> = ({ label, value, acti
   return (
     <a
       className={clsx(
-        'block py-2 px-3 text-slate-900 rounded cursor-pointer hover:text-slate-900 hover:bg-slate-100',
+        'block py-2 px-3 text-slate-900 rounded cursor-pointer hover:text-slate-900',
         {
-          'bg-slate-100': active === value
+          'bg-zinc-50/60': active === value
         }
       )}
       href={`#${value}`}
