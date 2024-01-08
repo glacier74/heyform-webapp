@@ -1150,10 +1150,10 @@
     libphonenumber-js "^1.10.7"
     validator "^13.7.0"
 
-"@heyforms/form-component@^2023.10.1":
-  version "2023.10.1"
-  resolved "https://npm.cnnic.eu/@heyforms%2fform-component/-/form-component-2023.10.1.tgz#900cef30388ff26797e5b9c7da88eeb2755c6d6a"
-  integrity sha512-k0/7U56zhrcRsDqgSYyfUKolB5VEsG6XoJYeqsqPxw0VNLJdBOZG3/CjgToLdXnJ13XzbB078OfEqPNyzeke1g==
+"@heyforms/form-component@^2024.1.1":
+  version "2024.1.1"
+  resolved "https://npm.cnnic.eu/@heyforms%2fform-component/-/form-component-2024.1.1.tgz#5337a158bd7ec83f327260f386d4a72cc04a8a16"
+  integrity sha512-bpZr86mdZnR4xO7a81G1hPpzSJ0LbRslANSh6YyFRCSdIZyIMpBdVytDpKIkLjiQvkm+EtoMBpGjiR2/P2BerQ==
   dependencies:
     "@heroicons/react" "^1.0.6"
     "@heyforms/answer-utils" "^0.8.0"
