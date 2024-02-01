@@ -102,7 +102,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#ecddc2',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-01.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-01.png',
     backgroundBrightness: 0
   },
   {
@@ -112,7 +112,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#FBC4AD',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-02.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-02.png',
     backgroundBrightness: 0
   },
   {
@@ -122,7 +122,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#b1cbc0',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-03.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-03.png',
     backgroundBrightness: 0
   },
   {
@@ -162,7 +162,7 @@ export const FORM_THEMES = [
     buttonBackground: '#F9F9F9',
     buttonTextColor: '#7A7A7A',
     backgroundColor: '#83cbcc',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-04.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-04.png',
     backgroundBrightness: 0
   },
   {
@@ -172,7 +172,7 @@ export const FORM_THEMES = [
     buttonBackground: '#8A763F',
     buttonTextColor: '#fff',
     backgroundColor: '#d5cdbb',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-05.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-05.png',
     backgroundBrightness: 0
   },
   {
@@ -182,7 +182,7 @@ export const FORM_THEMES = [
     buttonBackground: '#F9ADA8',
     buttonTextColor: '#98130B',
     backgroundColor: '#26317e',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-06.jpeg',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-06.jpeg',
     backgroundBrightness: 0
   },
   {
@@ -192,7 +192,7 @@ export const FORM_THEMES = [
     buttonBackground: '#2A3146',
     buttonTextColor: '#F5F6F9',
     backgroundColor: '#e5e1da',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-07.jpeg',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-07.jpeg',
     backgroundBrightness: 0
   },
   {
@@ -202,7 +202,7 @@ export const FORM_THEMES = [
     buttonBackground: '#97D5E2',
     buttonTextColor: '#1B535F',
     backgroundColor: '#f2eee9',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-08.jpeg',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-08.jpeg',
     backgroundBrightness: 0
   },
   {
@@ -212,7 +212,7 @@ export const FORM_THEMES = [
     buttonBackground: '#FBFBFB',
     buttonTextColor: '#7C7C7C',
     backgroundColor: '#0b0b0b',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-09.jpeg',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-09.jpeg',
     backgroundBrightness: 0
   },
   {
@@ -222,7 +222,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#fabf7a',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-10.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-10.png',
     backgroundBrightness: 0
   },
   {
@@ -232,7 +232,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#6FD3B7',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-11.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-11.png',
     backgroundBrightness: 0
   },
   {
@@ -242,7 +242,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#71a8ca',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-12.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-12.png',
     backgroundBrightness: 0
   },
   {
@@ -262,7 +262,7 @@ export const FORM_THEMES = [
     buttonBackground: '#FFFFFF',
     buttonTextColor: '#808080',
     backgroundColor: '#e3d8df',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-13.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-13.png',
     backgroundBrightness: 0
   },
   {
@@ -282,7 +282,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#9BD7CF',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-14.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-14.png',
     backgroundBrightness: 0
   },
   {
@@ -292,7 +292,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#F1ECE3',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-15.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-15.png',
     backgroundBrightness: 0
   },
   {
@@ -302,7 +302,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#FEB494',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-16.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-16.png',
     backgroundBrightness: 0
   },
   {
@@ -332,7 +332,7 @@ export const FORM_THEMES = [
     buttonBackground: '#4DC950',
     buttonTextColor: '#1e1e45',
     backgroundColor: '#1e1e45',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-17.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-17.png',
     backgroundBrightness: 0
   },
   {
@@ -342,7 +342,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#8ed2c8',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-18.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-18.png',
     backgroundBrightness: 0
   },
   {
@@ -352,7 +352,7 @@ export const FORM_THEMES = [
     buttonBackground: '#FFFFFF',
     buttonTextColor: '#808080',
     backgroundColor: '#1f575e',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-19.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-19.png',
     backgroundBrightness: 0
   },
   {
@@ -362,7 +362,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#EEC395',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-20.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-20.png',
     backgroundBrightness: 0
   },
   {
@@ -392,7 +392,7 @@ export const FORM_THEMES = [
     buttonBackground: '#2B6F75',
     buttonTextColor: '#fff',
     backgroundColor: '#1c4b51',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-21.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-21.png',
     backgroundBrightness: 0
   },
   {
@@ -402,7 +402,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#F6A42B',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-22.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-22.png',
     backgroundBrightness: 0
   },
   {
@@ -412,7 +412,7 @@ export const FORM_THEMES = [
     buttonBackground: '#262627',
     buttonTextColor: '#E5E5E6',
     backgroundColor: '#cbcbcb',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-23.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-23.png',
     backgroundBrightness: 0
   },
   {
@@ -472,7 +472,7 @@ export const FORM_THEMES = [
     buttonBackground: '#FFFFFF',
     buttonTextColor: '#808080',
     backgroundColor: '#d8ebeb',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-24.jpeg',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-24.jpeg',
     backgroundBrightness: 0
   },
   {
@@ -482,7 +482,7 @@ export const FORM_THEMES = [
     buttonBackground: '#FFFFFF',
     buttonTextColor: '#808080',
     backgroundColor: '#B8CBE2',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-25.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-25.png',
     backgroundBrightness: 0
   },
   {
@@ -492,7 +492,7 @@ export const FORM_THEMES = [
     buttonBackground: '#DAB1AD',
     buttonTextColor: '#5E2F2A',
     backgroundColor: '#7B6771',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-26.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-26.png',
     backgroundBrightness: 0
   },
   {
@@ -502,7 +502,7 @@ export const FORM_THEMES = [
     buttonBackground: '#D25476',
     buttonTextColor: '#1F080E',
     backgroundColor: '#2c2c2c',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-27.jpeg',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-27.jpeg',
     backgroundBrightness: 0
   },
   {
@@ -512,7 +512,7 @@ export const FORM_THEMES = [
     buttonBackground: '#FFFFFF',
     buttonTextColor: '#808080',
     backgroundColor: '#141518',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-28.jpeg',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-28.jpeg',
     backgroundBrightness: 0
   },
   {
@@ -522,7 +522,7 @@ export const FORM_THEMES = [
     buttonBackground: '#272727',
     buttonTextColor: '#E6E6E6',
     backgroundColor: '#74dba6',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-29.png',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-29.png',
     backgroundBrightness: 0
   },
   {
@@ -532,7 +532,7 @@ export const FORM_THEMES = [
     buttonBackground: '#5DD2F1',
     buttonTextColor: '#063B49',
     backgroundColor: '#7159bc',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-30.jpeg',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-30.jpeg',
     backgroundBrightness: 0
   },
   {
@@ -542,7 +542,7 @@ export const FORM_THEMES = [
     buttonBackground: '#E26D5A',
     buttonTextColor: '#340F09',
     backgroundColor: '#acb0b0',
-    backgroundImage: 'https://storage-us.heyformhq.com/themev3/theme-background-31.jpeg',
+    backgroundImage: 'https://forms.b-cdn.net/themev3/theme-background-31.jpeg',
     backgroundBrightness: 0
   },
   {

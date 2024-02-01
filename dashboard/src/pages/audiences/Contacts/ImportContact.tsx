@@ -58,7 +58,7 @@ const ImportContact: FC<IModalProps> = ({ visible, onClose }) => {
   }
 
   function handleDownload() {
-    window.open('https://storage-us.heyformhq.com/example.csv?attname=heyform-contact-example.csv')
+    window.open('https://forms.b-cdn.net/example.csv?attname=heyform-contact-example.csv')
   }
 
   useAsyncEffect(async () => {
