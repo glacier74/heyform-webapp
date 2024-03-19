@@ -1,11 +1,12 @@
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { useParam } from '@/utils'
 import { Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { useParam } from '@/utils'
 
 export const LeaveWorkspace: FC<IModalProps> = ({ visible, onClose }) => {
   const navigate = useNavigate()

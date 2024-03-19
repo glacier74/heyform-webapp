@@ -1,5 +1,7 @@
-import { AppModel, IntegrationModel } from '@/legacy_pages/models'
 import { makeAutoObservable } from 'mobx'
+
+import { AppModel, IntegrationModel } from '@/models'
+
 import { mobxStorage } from './mobxStorage'
 
 export class IntegrationStore {

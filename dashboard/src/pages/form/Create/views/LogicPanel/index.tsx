@@ -1,10 +1,11 @@
+import { htmlUtils } from '@heyforms/answer-utils'
+import { Button, useForm } from '@heyforms/ui'
+import { IconX } from '@tabler/icons-react'
+import { useMemo } from 'react'
+
 import { useStoreContext } from '@/pages/form/Create/store'
 import { FieldKindIcon } from '@/pages/form/Create/views/LeftSidebar/FieldKindIcon'
 import { PayloadForm } from '@/pages/form/Create/views/LogicPanel/PayloadForm'
-import { XIcon } from '@heroicons/react/outline'
-import { htmlUtils } from '@heyforms/answer-utils'
-import { Button, useForm } from '@heyforms/ui'
-import { useMemo } from 'react'
 
 export const LogicPanel = () => {
   const [form] = useForm()
@@ -49,11 +50,11 @@ export const LogicPanel = () => {
 
   return (
     <div className="logic-panel">
-      <div className="flex justify-between px-4 py-6 bg-slate-50">
+      <div className="flex justify-between bg-slate-50 px-4 py-6">
         <div className="flex-1">
           <h2 className="text-lg font-medium text-slate-900">Rules</h2>
           {selectedField && (
-            <div className="flex flex-1 mt-2 items-center justify-between">
+            <div className="mt-2 flex flex-1 items-center justify-between">
               <FieldKindIcon
                 kind={selectedField.kind}
                 index={selectedField.index}
@@ -65,10 +66,10 @@ export const LogicPanel = () => {
             </div>
           )}
         </div>
-        <Button.Link className="w-8 h-8" leading={<XIcon />} onClick={handleClose} />
+        <Button.Link className="h-8 w-8" leading={<IconX />} onClick={handleClose} />
       </div>
 
-      <div className="flex-1 px-4 py-8 space-y-4 scrollbar">
+      <div className="scrollbar flex-1 space-y-4 px-4 py-8">
         <PayloadForm
           form={form}
           fields={fields}
@@ -79,7 +80,7 @@ export const LogicPanel = () => {
         />
       </div>
 
-      <div className="flex items-center justify-between p-4 border-t border-gray-200">
+      <div className="flex items-center justify-between border-t border-gray-200 p-4">
         <Button.Link type="danger" onClick={handleRemoveAll}>
           Remove all
         </Button.Link>

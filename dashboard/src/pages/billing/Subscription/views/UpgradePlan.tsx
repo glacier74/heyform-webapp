@@ -1,13 +1,15 @@
-import type { PlanModel } from '@/models'
-import { BillingCycleEnum } from '@/models'
-import { PaymentService } from '@/service'
-import { useStore } from '@/store'
-import { redirectToStripeCheckout, useParam, useVisible } from '@/utils'
 import { Button, Modal, notification } from '@heyforms/ui'
 import Big from 'big.js'
 import type { FC } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import type { PlanModel } from '@/models'
+import { BillingCycleEnum } from '@/models'
+import { PaymentService } from '@/service'
+import { useStore } from '@/store'
+import { redirectToStripeCheckout, useParam, useVisible } from '@/utils'
+
 import { CouponCode } from './CouponCode'
 
 interface ContainerProps extends Pick<IModalProps, 'onClose'> {
@@ -96,16 +98,16 @@ const Container: FC<ContainerProps> = ({ plan, billingCycle, onClose }) => {
     <>
       <div>
         <div>
-          <div className="text-lg leading-6 font-medium text-slate-900">{t('billing.upPlan')}</div>
+          <div className="text-lg font-medium leading-6 text-slate-900">{t('billing.upPlan')}</div>
         </div>
 
-        <div className="py-4 border-b border-gray-100">
+        <div className="border-b border-gray-100 py-4">
           <div className="flex justify-between space-x-3">
             <div className="min-w-0 flex-1">
-              <p className="text-base font-medium text-slate-900 truncate">
+              <p className="truncate text-base font-medium text-slate-900">
                 {plan?.name} {t('billing.plan')}
               </p>
-              <p className="text-sm text-slate-500 truncate">
+              <p className="truncate text-sm text-slate-500">
                 {t(BILLING_CYCLE_MAPS[billingCycle])}
               </p>
             </div>
@@ -115,7 +117,7 @@ const Container: FC<ContainerProps> = ({ plan, billingCycle, onClose }) => {
           </div>
         </div>
 
-        <div className="py-4 border-b border-gray-100">
+        <div className="border-b border-gray-100 py-4">
           <div className="flex justify-between text-sm text-slate-500">
             <span>{t('billing.Subtotal')}</span>
             <span>${price.toFixed(2)}</span>

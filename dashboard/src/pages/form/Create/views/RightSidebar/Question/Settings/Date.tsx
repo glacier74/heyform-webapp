@@ -1,10 +1,12 @@
-import { SwitchField } from '@/components'
-import { DATE_FORMAT_OPTIONS } from '@/pages/form/Create/consts'
-import { useStoreContext } from '@/pages/form/Create/store'
 import { Select } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { SwitchField } from '@/components'
+import { DATE_FORMAT_OPTIONS } from '@/pages/form/Create/consts'
+import { useStoreContext } from '@/pages/form/Create/store'
+
 import type { IBasicProps } from './Basic'
 
 export const Date: FC<IBasicProps> = ({ field }) => {

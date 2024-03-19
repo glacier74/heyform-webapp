@@ -1,15 +1,16 @@
-import { useLockBodyScroll } from '@/legacy_pages/pages/FormBuilder/utils/hook'
-import { useStore } from '@/store'
-import { insertThemeStyle, loadScript } from '@/utils'
-import { ArrowLeftIcon } from '@heroicons/react/outline'
-import { insertWebFont, Renderer } from '@heyforms/form-component'
+import { Renderer, insertWebFont } from '@heyforms/form-component'
 import { type IFormModel } from '@heyforms/form-component/types/typings'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
-import { Modal, notification, Spin, Switch } from '@heyforms/ui'
+import { Button, Modal, Spin, Switch, notification, useLockBodyScroll } from '@heyforms/ui'
+import { IconX } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
+
+import { useStore } from '@/store'
+import { insertThemeStyle, loadScript } from '@/utils'
+
 import './index.scss'
 
 export const FormPreviewModal: FC = observer(() => {
@@ -62,10 +63,7 @@ export const FormPreviewModal: FC = observer(() => {
           showCloseIcon={false}
         >
           <div className="form-preview-header">
-            <div className="flex items-center ml-4 cursor-pointer" onClick={handleClose}>
-              <ArrowLeftIcon className="w-5 h-5" />
-            </div>
-            <div className="flex-1 flex items-center justify-center">
+            <div className="flex flex-1 items-center justify-center">
               <Switch.Group
                 className="text-sm"
                 value={value}
@@ -76,6 +74,9 @@ export const FormPreviewModal: FC = observer(() => {
                 onChange={handleChange}
               />
             </div>
+            <Button.Link className="mr-4 p-2" onClick={handleClose}>
+              <IconX />
+            </Button.Link>
           </div>
 
           <div
@@ -84,7 +85,7 @@ export const FormPreviewModal: FC = observer(() => {
             })}
           >
             {!isLoaded ? (
-              <div className="flex items-center justify-center w-full h-full">
+              <div className="flex h-full w-full items-center justify-center">
                 <Spin />
               </div>
             ) : (

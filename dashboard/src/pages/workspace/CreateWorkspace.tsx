@@ -1,14 +1,15 @@
-import { LogoIcon, PhotoPickerField } from '@/components'
-import { WorkspaceModel } from '@/models'
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { useQuery, useRouter } from '@/utils'
 import { Button, Form, Input } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { LogoIcon, PhotoPickerField } from '@/components'
+import { WorkspaceModel } from '@/models'
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { useQuery, useRouter } from '@/utils'
 
 const CreateWorkspace: FC = () => {
   const router = useRouter()

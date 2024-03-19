@@ -1,8 +1,10 @@
+import { Checkbox, Form, Input } from '@heyforms/ui'
+import { useTranslation } from 'react-i18next'
+
 import { RedirectUriLink } from '@/components'
 import { AuthService } from '@/service'
 import { useQueryURL, useRouter } from '@/utils'
-import { Checkbox, Form, Input } from '@heyforms/ui'
-import { useTranslation } from 'react-i18next'
+
 import { ThirdPartyLogin } from './views/ThirdPartyLogin'
 
 const Login = () => {
@@ -73,12 +75,12 @@ const Login = () => {
             </div>
           </Form.Custom>
 
-          <div className="mt-6 mb-4 relative">
+          <div className="relative mt-6 mb-4">
             <div className="absolute inset-0 flex items-center" aria-hidden="true">
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-slate-500">{t('login.continueWith')}</span>
+              <span className="bg-white px-2 text-slate-500">{t('login.continueWith')}</span>
             </div>
           </div>
 

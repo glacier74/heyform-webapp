@@ -1,10 +1,11 @@
+import { Form, Input, Modal } from '@heyforms/ui'
+import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
+
 import type { ProjectModel } from '@/models'
 import { ProjectService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
-import { Form, Input, Modal } from '@heyforms/ui'
-import type { FC } from 'react'
-import { useTranslation } from 'react-i18next'
 
 interface RenameProjectProps extends IModalProps {
   project?: ProjectModel | null
@@ -26,7 +27,7 @@ export const RenameProject: FC<RenameProjectProps> = ({ visible, project, onClos
     <Modal contentClassName="max-w-md" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-slate-900">{t('project.renameP')}</h1>
+          <h1 className="text-lg font-medium leading-6 text-slate-900">{t('project.renameP')}</h1>
         </div>
 
         <Form.Custom

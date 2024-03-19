@@ -1,9 +1,11 @@
-import { Plans } from '@/pages/billing/Subscription/views/Plans'
-import { useStore } from '@/store'
 import { Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { Plans } from '@/pages/billing/Subscription/views/Plans'
+import { useStore } from '@/store'
+
 import './index.scss'
 
 export const PlanModal: FC = observer(() => {
@@ -23,11 +25,11 @@ export const PlanModal: FC = observer(() => {
     >
       <div className="space-y-6">
         <div className="my-4">
-          <img src="https://forms.b-cdn.net/website/upgrade.png" className="w-48 mx-auto"></img>
-          <h1 className="font-bold text-slate-900 text-2xl sm:tracking-tight text-center">
+          <img src="https://forms.b-cdn.net/website/upgrade.png" className="mx-auto w-48"></img>
+          <h1 className="text-center text-2xl font-bold text-slate-900 sm:tracking-tight">
             {t('billing.Upgrade')}
           </h1>
-          <p className="max-w-3xl mx-auto mt-2 text-base text-slate-500 text-center">
+          <p className="mx-auto mt-2 max-w-3xl text-center text-base text-slate-500">
             {t('billing.Unlock')}
           </p>
         </div>

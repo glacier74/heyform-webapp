@@ -1,13 +1,15 @@
-import { VARIABLE_INPUT_TYPES } from '@/pages/form/Create/consts'
-import { useStoreContext } from '@/pages/form/Create/store'
-import { KindSelect } from '@/pages/form/Create/views/RightSidebar/Logic/KindSelect'
-import { XIcon } from '@heroicons/react/outline'
 import { type Variable } from '@heyforms/shared-types-enums'
 import { Button, Form, Input } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
+import { IconX } from '@tabler/icons-react'
 import { type FC, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { VARIABLE_INPUT_TYPES } from '@/pages/form/Create/consts'
+import { useStoreContext } from '@/pages/form/Create/store'
+
+import { KindSelect } from '../RightSidebar/Logic/KindSelect'
 
 export const VariablePanel: FC = () => {
   const { t } = useTranslation()
@@ -60,15 +62,15 @@ export const VariablePanel: FC = () => {
 
   return (
     <div className="variable-panel">
-      <div className="flex justify-between items-start px-4 py-6 bg-slate-50">
+      <div className="flex items-start justify-between bg-slate-50 px-4 py-6">
         <div className="flex-1">
           <h2 className="text-lg font-medium text-slate-900">{t('formBuilder.variable.title')}</h2>
           <p className="mt-1 text-sm text-slate-500">{t('formBuilder.variable.description')}</p>
         </div>
-        <Button.Link className="w-8 h-8" leading={<XIcon />} onClick={handleClose} />
+        <Button.Link className="h-8 w-8" leading={<IconX />} onClick={handleClose} />
       </div>
 
-      <div className="flex-1 px-4 py-8 scrollbar">
+      <div className="scrollbar flex-1 px-4 py-8">
         <Form.Custom
           initialValues={{
             kind,

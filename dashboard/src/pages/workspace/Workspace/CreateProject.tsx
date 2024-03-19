@@ -1,11 +1,13 @@
-import type { ProjectModel } from '@/models'
-import { ProjectService } from '@/service'
-import { useStore } from '@/store'
-import { useParam } from '@/utils'
 import { Form, Input, Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+
+import type { ProjectModel } from '@/models'
+import { ProjectService } from '@/service'
+import { useStore } from '@/store'
+import { useParam } from '@/utils'
+
 import { AssignMember } from './AssignMember'
 
 const CreateProject: FC<IModalProps> = ({ visible, onClose }) => {
@@ -29,7 +31,7 @@ const CreateProject: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-slate-900">
+          <h1 className="text-lg font-medium leading-6 text-slate-900">
             {t('workspace.workSpace.createP')}
           </h1>
           <p className="mt-1 text-sm text-slate-500">{t('workspace.workSpace.workExplain')}</p>

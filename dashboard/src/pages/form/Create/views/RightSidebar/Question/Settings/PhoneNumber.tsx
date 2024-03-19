@@ -1,10 +1,12 @@
-import { COUNTRIES } from '@/pages/form/Create/consts'
-import { useStoreContext } from '@/pages/form/Create/store'
-import { CheckIcon } from '@heroicons/react/solid'
 import { Select } from '@heyforms/ui'
+import { IconCheck } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { startTransition, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { COUNTRIES } from '@/pages/form/Create/consts'
+import { useStoreContext } from '@/pages/form/Create/store'
+
 import { FlagIcon } from '../../../Compose/FlagIcon'
 import type { IBasicProps } from './Basic'
 
@@ -27,12 +29,12 @@ export const PhoneNumber: FC<IBasicProps> = ({ field }) => {
 
   function optionRender(option: any, isActive?: boolean) {
     return (
-      <div className="relative flex items-center px-3 py-1.5 hover:bg-slate-100 cursor-pointer">
+      <div className="relative flex cursor-pointer items-center px-3 py-1.5 hover:bg-slate-100">
         <FlagIcon countryCode={option.value} />
         <span className="flex-1 truncate">{t(option.label)}</span>
         {isActive && (
           <span className="select-option-checkmark">
-            <CheckIcon />
+            <IconCheck />
           </span>
         )}
       </div>

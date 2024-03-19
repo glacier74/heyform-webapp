@@ -1,15 +1,17 @@
-import { useStoreContext } from '@/pages/form/Create/store'
-import { UNSELECTABLE_FIELD_KINDS } from '@/pages/form/Create/views/FieldConfig'
-import { FieldKindIcon } from '@/pages/form/Create/views/LeftSidebar/FieldKindIcon'
-import { PayloadList } from '@/pages/form/Create/views/LogicPanel/PayloadForm'
-import { XIcon } from '@heroicons/react/outline'
 import { htmlUtils } from '@heyforms/answer-utils'
 import { flattenFieldsWithGroups } from '@heyforms/form-component'
 import { Logic, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { Button, Form, useForm } from '@heyforms/ui'
 import { isValidArray } from '@hpnp/utils/helper'
+import { IconX } from '@tabler/icons-react'
 import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { useStoreContext } from '@/pages/form/Create/store'
+import { UNSELECTABLE_FIELD_KINDS } from '@/pages/form/Create/views/FieldConfig'
+
+import { FieldKindIcon } from '../LeftSidebar/FieldKindIcon'
+import { PayloadList } from '../LogicPanel/PayloadForm'
 
 export const LogicBulkEditPanel = () => {
   const [form] = useForm()
@@ -81,16 +83,16 @@ export const LogicBulkEditPanel = () => {
 
   return (
     <div className="logic-bulk-edit-panel">
-      <div className="flex justify-between px-4 py-6 bg-slate-50">
+      <div className="flex justify-between bg-slate-50 px-4 py-6">
         <div className="flex-1">
           <h2 className="text-lg font-medium text-slate-900">{t('formBuilder.bulkEdit')}</h2>
           <p>{t('formBuilder.bulkEditDescription')}</p>
         </div>
-        <Button.Link className="w-8 h-8" leading={<XIcon />} onClick={handleClose} />
+        <Button.Link className="h-8 w-8" leading={<IconX />} onClick={handleClose} />
       </div>
 
-      <div className="flex-1 px-4 py-8 space-y-4 scrollbar">
-        <Form className="divide-y divide-gray-100 space-y-6" form={form} onFinish={handleFinish}>
+      <div className="scrollbar flex-1 space-y-4 px-4 py-8">
+        <Form className="space-y-6 divide-y divide-gray-100" form={form} onFinish={handleFinish}>
           {fields.map(field => (
             <PayloadList
               className="payload-list"
@@ -100,7 +102,7 @@ export const LogicBulkEditPanel = () => {
               selectedField={field}
               variables={variables}
             >
-              <div className="flex items-center mb-4">
+              <div className="mb-4 flex items-center">
                 <FieldKindIcon
                   kind={field.kind}
                   index={field.index}
@@ -113,7 +115,7 @@ export const LogicBulkEditPanel = () => {
         </Form>
       </div>
 
-      <div className="flex items-center justify-between p-4 border-t border-gray-200">
+      <div className="flex items-center justify-between border-t border-gray-200 p-4">
         <Button.Link type="danger" onClick={handleRemoveAll}>
           {t('formBuilder.removeAll')}
         </Button.Link>

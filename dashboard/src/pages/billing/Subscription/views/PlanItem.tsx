@@ -1,9 +1,10 @@
-import type { PlanModel, WorkspaceModel } from '@/models'
-import { BillingCycleEnum } from '@/models/invoice'
 import { Button } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import type { PlanModel, WorkspaceModel } from '@/models'
+import { BillingCycleEnum } from '@/models/invoice'
 
 interface PlanItemProps {
   workspace?: WorkspaceModel
@@ -37,7 +38,7 @@ export const PlanItem: FC<PlanItemProps> = ({
       return (
         <div>
           <button
-            className="py-3 px-6 bg-blue-700 rounded-md w-full text-white"
+            className="w-full rounded-md bg-blue-700 py-3 px-6 text-white"
             type="primary"
             onClick={handleUpgrade}
           >
@@ -49,7 +50,7 @@ export const PlanItem: FC<PlanItemProps> = ({
       return (
         <div>
           <button
-            className="py-3 px-6 bg-slate-700 rounded-md w-full text-white"
+            className="w-full rounded-md bg-slate-700 py-3 px-6 text-white"
             type="primary"
             onClick={handleDowngrade}
           >
@@ -59,7 +60,7 @@ export const PlanItem: FC<PlanItemProps> = ({
       )
     } else {
       return (
-        <div className="px-4 py-2 border border-gray-100 sm:text-sm font-medium rounded-md text-slate-400 bg-white text-center">
+        <div className="rounded-md border border-gray-100 bg-white px-4 py-2 text-center font-medium text-slate-400 sm:text-sm">
           {t('billing.current')}
         </div>
       )

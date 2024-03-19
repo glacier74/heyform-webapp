@@ -1,3 +1,5 @@
+import { FieldLayoutAlignEnum } from '@heyforms/shared-types-enums'
+
 import {
   LayoutCoverIcon,
   LayoutFloatLeftIcon,
@@ -6,7 +8,6 @@ import {
   LayoutSplitLeftIcon,
   LayoutSplitRightIcon
 } from '@/components'
-import { FieldLayoutAlignEnum } from '@heyforms/shared-types-enums'
 
 export const LAYOUT_OPTIONS = [
   {

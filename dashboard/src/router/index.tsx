@@ -1,8 +1,10 @@
-import { getAuthState } from '@/utils'
 import type { FC } from 'react'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+
+import { getAuthState } from '@/utils'
+
 import type { CustomRouteConfig } from './config'
 import config from './config'
 

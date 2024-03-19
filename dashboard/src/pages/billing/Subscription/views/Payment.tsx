@@ -1,7 +1,9 @@
+import { observer } from 'mobx-react-lite'
+
 import type { PlanModel } from '@/models'
 import { BillingCycleEnum } from '@/models'
 import { useStore } from '@/store'
-import { observer } from 'mobx-react-lite'
+
 import { PlanItem } from './PlanItem'
 
 interface PaymentProps {

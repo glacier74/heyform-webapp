@@ -1,9 +1,10 @@
-import { loadScript } from '@/utils/helper'
 import { parseNumber, pickObject, removeObjectNil } from '@hpnp/utils'
 import { isArray, isEmpty, isNil, isObject, isValid } from '@hpnp/utils/helper'
 import { parse, stringify } from '@hpnp/utils/qs'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
+
+import { loadScript } from '@/utils/helper'
 
 export interface ParamsType {
   workspaceId: string

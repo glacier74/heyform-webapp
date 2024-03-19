@@ -4,6 +4,7 @@ import { isValid } from '@hpnp/utils/helper'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 import { ReactSortable } from 'react-sortablejs'
+
 import { useStoreContext } from '../../store'
 import { FieldCard } from './FieldCard'
 
@@ -84,7 +85,7 @@ export const FieldList: FC = () => {
   )
 
   return (
-    <div className="flex-1 scrollbar">
+    <div className="scrollbar flex-1">
       {data.welcome && (
         <FieldCard
           field={data.welcome}

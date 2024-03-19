@@ -1,8 +1,10 @@
+import type { FC } from 'react'
+import { useEffect } from 'react'
+
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useAsyncEffect, useParam } from '@/utils'
-import type { FC } from 'react'
-import { useEffect } from 'react'
+
 import { AuthGuard } from './AuthGuard'
 
 export const WorkspaceGuard: FC<IComponentProps> = ({ children }) => {

@@ -90,13 +90,20 @@ const cropImageRules: Array<Record<string, any>> = [
   {
     match: 'https://forms.b-cdn.net',
     handler(src: string, width: number, height: number) {
-      return import.meta.env.VITE_HOMEPAGE + '/image?' + qs.stringify({
-        url: src,
-        w: width,
-        h: height
-      }, {
-        encode: true
-      })
+      return (
+        import.meta.env.VITE_HOMEPAGE +
+        '/image?' +
+        qs.stringify(
+          {
+            url: src,
+            w: width,
+            h: height
+          },
+          {
+            encode: true
+          }
+        )
+      )
     }
   },
   {

@@ -1,23 +1,25 @@
+import {
+  Button,
+  Form,
+  Input,
+  Select,
+  Tooltip,
+  notification,
+  stopPropagation,
+  useForm
+} from '@heyforms/ui'
+import { isURL } from '@hpnp/utils/helper'
+import { IconHelp } from '@tabler/icons-react'
+import { observer } from 'mobx-react-lite'
+import type { FC } from 'react'
+import { useState } from 'react'
+
 import { GOOGLE_FONTS_OPTIONS } from '@/consts'
 import CustomCssHelpModal from '@/pages/form/Create/views/RightSidebar/Design/Customize/CustomCssHelpModal'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam, useVisible } from '@/utils'
-import { QuestionMarkCircleIcon } from '@heroicons/react/outline'
-import {
-  Button,
-  Form,
-  Input,
-  notification,
-  Select,
-  stopPropagation,
-  Tooltip,
-  useForm
-} from '@heyforms/ui'
-import { isURL } from '@hpnp/utils/helper'
-import { observer } from 'mobx-react-lite'
-import type { FC } from 'react'
-import { useState } from 'react'
+
 import { BackgroundBrightness } from './BackgroundBrightness'
 import { BackgroundImage } from './BackgroundImage'
 import { ColorPickerField } from './ColorPickerField'
@@ -126,7 +128,7 @@ export const Customize: FC = observer(() => {
                   <Tooltip ariaLabel="Learn more about custom css">
                     <Button.Link
                       className="custom-css-help"
-                      leading={<QuestionMarkCircleIcon />}
+                      leading={<IconHelp />}
                       onClick={openModal}
                     />
                   </Tooltip>

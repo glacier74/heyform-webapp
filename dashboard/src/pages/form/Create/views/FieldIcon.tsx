@@ -1,8 +1,10 @@
-import { VARIABLE_KIND_CONFIGS } from '@/pages/form/Create/consts'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { useMemo } from 'react'
+
+import { VARIABLE_KIND_CONFIGS } from '@/pages/form/Create/consts'
+
 import { FIELD_CONFIGS, type FieldConfig } from './FieldConfig'
 
 export interface FieldIconProps extends IComponentProps {
@@ -48,7 +50,7 @@ export const FieldIcon: FC<FieldIconProps> = ({
   return (
     <div
       className={clsx(
-        'field-icon flex items-center justify-between rounded h-6 px-1.5',
+        'field-icon flex h-6 items-center justify-between rounded px-1.5',
         {
           'w-12': !iconOnly,
           'w-6': iconOnly
@@ -58,7 +60,7 @@ export const FieldIcon: FC<FieldIconProps> = ({
       style={style}
       {...restProps}
     >
-      {config?.icon && <config.icon className="p-0 m-0" style={iconStyle} />}
+      {config?.icon && <config.icon className="m-0 p-0" style={iconStyle} />}
       {!iconOnly && <span className="text-xs font-bold">{index}</span>}
     </div>
   )

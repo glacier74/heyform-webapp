@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
 import './style.scss'
 
 interface NumberRangeValue {
@@ -134,7 +135,7 @@ export const NumberRange: FC<NumberRangeProps> = ({
           case NumberRangeType.EXACT_NUMBER:
             return (
               <Input
-                className="w-full ml-1"
+                className="ml-1 w-full"
                 type="number"
                 min={min}
                 max={max}

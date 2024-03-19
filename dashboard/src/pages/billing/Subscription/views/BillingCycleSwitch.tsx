@@ -1,6 +1,7 @@
-import { BillingCycleEnum, PlanModel, PlanPriceTypeEnum } from '@/models'
 import type { FC } from 'react'
 import { useMemo } from 'react'
+
+import { BillingCycleEnum, PlanModel, PlanPriceTypeEnum } from '@/models'
 
 interface BillingCycleSwitchProps {
   value: BillingCycleEnum
@@ -46,7 +47,7 @@ const BillingCycleItem: FC<BillingCycleItemProp> = ({
 
   return (
     <div
-      className="relative block rounded-lg border border-gray-300 bg-white shadow-sm p-6 cursor-pointer hover:border-gray-400 sm:flex sm:justify-between focus:outline-none"
+      className="relative block cursor-pointer rounded-lg border border-gray-300 bg-white p-6 shadow-sm hover:border-gray-400 focus:outline-none sm:flex sm:justify-between"
       role="radio"
       aria-checked="true"
       tabIndex={0}
@@ -63,13 +64,13 @@ const BillingCycleItem: FC<BillingCycleItemProp> = ({
           </div>
         </div>
       </div>
-      <div className="mt-2 flex text-sm sm:mt-0 sm:block sm:ml-4 sm:text-right">
+      <div className="mt-2 flex text-sm sm:mt-0 sm:ml-4 sm:block sm:text-right">
         <div className="text-3xl font-extrabold text-slate-900">${price}</div>
         <div className="ml-1 text-slate-500 sm:ml-0">per month</div>
       </div>
       {value === billingCycle && (
         <div
-          className="border-blue-500 absolute -inset-px rounded-lg border-2 pointer-events-none"
+          className="pointer-events-none absolute -inset-px rounded-lg border-2 border-blue-500"
           aria-hidden="true"
         />
       )}
@@ -81,13 +82,13 @@ export const BillingCycleSwitchSkeleton = () => {
   const billingCycles = ['Annually', 'Monthly']
 
   return (
-    <div className="flex items-center justify-center mb-8">
+    <div className="mb-8 flex items-center justify-center">
       <div className="sm:w-1/2 lg:w-1/3">
         <div className="space-y-4">
           {billingCycles.map((billingCycle, index) => (
             <div
               key={index}
-              className="relative block rounded-lg border border-gray-300 bg-white shadow-sm p-6 cursor-pointer hover:border-gray-400 sm:flex sm:justify-between focus:outline-none"
+              className="relative block cursor-pointer rounded-lg border border-gray-300 bg-white p-6 shadow-sm hover:border-gray-400 focus:outline-none sm:flex sm:justify-between"
               role="radio"
               aria-checked="true"
               tabIndex={0}
@@ -96,12 +97,12 @@ export const BillingCycleSwitchSkeleton = () => {
                 <div className="text-sm">
                   <p className="text-xl font-medium text-slate-900">{billingCycle}</p>
                   <div className="mt-2 text-slate-500">
-                    <p className="w-16 h-4 skeleton"></p>
+                    <p className="skeleton h-4 w-16"></p>
                   </div>
                 </div>
               </div>
-              <div className="mt-2 flex text-sm sm:mt-0 sm:block sm:ml-4 sm:text-right">
-                <div className="w-24 h-6 skeleton text-3xl font-extrabold text-slate-900"></div>
+              <div className="mt-2 flex text-sm sm:mt-0 sm:ml-4 sm:block sm:text-right">
+                <div className="skeleton h-6 w-24 text-3xl font-extrabold text-slate-900"></div>
                 <div className="ml-1 text-slate-500 sm:ml-0">per month</div>
               </div>
             </div>

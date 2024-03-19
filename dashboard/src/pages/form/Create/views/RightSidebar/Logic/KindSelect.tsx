@@ -1,9 +1,11 @@
-import { VARIABLE_KIND_CONFIGS } from '@/pages/form/Create/consts'
-import { CheckIcon } from '@heroicons/react/solid'
 import { Select } from '@heyforms/ui'
 import { type SelectProps } from '@heyforms/ui/types/select/Native'
+import { IconCheck } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { VARIABLE_KIND_CONFIGS } from '@/pages/form/Create/consts'
+
 import { FieldIcon } from '../../FieldIcon'
 
 export const KindSelect: FC<SelectProps> = props => {
@@ -29,7 +31,7 @@ export const KindSelect: FC<SelectProps> = props => {
         <span className="select-option-text">{t(option.label)}</span>
         {props.value === option.kind && (
           <span className="select-option-checkmark">
-            <CheckIcon />
+            <IconCheck />
           </span>
         )}
       </div>

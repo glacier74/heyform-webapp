@@ -1,14 +1,16 @@
-import { AddImageIcon, ImageIcon, PhotoPicker } from '@/components'
-import { useStoreContext } from '@/pages/form/Create/store'
-import { PlusIcon, TrashIcon, XIcon } from '@heroicons/react/outline'
 import type { Choice } from '@heyforms/shared-types-enums'
 import { Button, Input, KeyCode } from '@heyforms/ui'
 import { clone } from '@hpnp/utils'
 import { isURL } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
+import { IconPlus, IconTrash, IconX } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { AddImageIcon, ImageIcon, PhotoPicker } from '@/components'
+import { useStoreContext } from '@/pages/form/Create/store'
+
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
@@ -68,7 +70,7 @@ const PictureChoiceItem: FC<PictureChoiceItemProps> = ({
             </div>
             <div className="heyform-radio-actions">
               <Button.Link leading={<ImageIcon />} onClick={handleSelectImage} />
-              <Button.Link leading={<TrashIcon />} onClick={handleRemoveImage} />
+              <Button.Link leading={<IconTrash />} onClick={handleRemoveImage} />
             </div>
           </>
         ) : (
@@ -90,7 +92,7 @@ const PictureChoiceItem: FC<PictureChoiceItemProps> = ({
           </div>
           {enableRemove && (
             <div className="heyform-radio-remove" onClick={handleRemove}>
-              <XIcon />
+              <IconX />
             </div>
           )}
         </div>
@@ -104,7 +106,7 @@ const AddPictureChoice: FC<IComponentProps> = props => {
     <div className="heyform-radio" {...props}>
       <div className="heyform-radio-container">
         <div className="heyform-radio-image flex-1">
-          <PlusIcon />
+          <IconPlus />
         </div>
       </div>
     </div>

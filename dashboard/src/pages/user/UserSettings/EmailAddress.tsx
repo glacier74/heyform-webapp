@@ -1,11 +1,12 @@
-import { UserService } from '@/service'
-import { useStore } from '@/store'
-import { useVisible } from '@/utils'
 import { Button, Form, Input, Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { UserService } from '@/service'
+import { useStore } from '@/store'
+import { useVisible } from '@/utils'
 
 export interface FormValues {
   email: string
@@ -33,7 +34,7 @@ export const SendCode: FC<SendCodeProps> = ({ visible, onClose, onComplete }) =>
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-slate-900">
+          <h1 className="text-lg font-medium leading-6 text-slate-900">
             {t('user.settings.emailAddress.change')}
           </h1>
           <p className="mt-1 text-sm text-slate-500">{t('user.settings.emailAddress.sendEmail')}</p>
@@ -77,7 +78,7 @@ export const VerifyEmail: FC<VerifyEmailProps> = ({ visible, formValues, onClose
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-slate-900">
+          <h1 className="text-lg font-medium leading-6 text-slate-900">
             {t('user.settings.emailAddress.checkEmail')}
           </h1>
           <p className="mt-1 text-sm text-slate-500">

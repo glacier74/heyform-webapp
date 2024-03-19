@@ -1,9 +1,10 @@
-import { FormService } from '@/service'
-import { useStore } from '@/store'
 import { FormModel } from '@heyforms/shared-types-enums'
 import { Form, Input, Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { FormService } from '@/service'
+import { useStore } from '@/store'
 
 interface RenameFormProps extends IModalProps {
   form?: FormModel | null
@@ -23,7 +24,7 @@ export const RenameForm: FC<RenameFormProps> = ({ visible, form, onClose }) => {
     <Modal contentClassName="max-w-md" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-slate-900">
+          <h1 className="text-lg font-medium leading-6 text-slate-900">
             {t('project.renameForm')}
           </h1>
         </div>

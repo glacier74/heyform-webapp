@@ -1,3 +1,12 @@
+import { Avatar, Button, Dropdown, EmptyStates, Heading, Menus } from '@heyforms/ui'
+import { IconCategory, IconDots, IconPencil, IconTrash } from '@tabler/icons-react'
+import clsx from 'clsx'
+import { observer } from 'mobx-react-lite'
+import type { FC } from 'react'
+import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+
 import { WorkspaceIcon } from '@/components'
 import type { ProjectModel, UserModel } from '@/models'
 import { DeleteProject } from '@/pages/project/views/DeleteProject'
@@ -5,14 +14,7 @@ import { RenameProject } from '@/pages/project/views/RenameProject'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { cropImage, useAsyncEffect, useParam, useVisible } from '@/utils'
-import { CollectionIcon, DotsHorizontalIcon, PencilIcon, TrashIcon } from '@heroicons/react/outline'
-import { Avatar, Button, Dropdown, EmptyStates, Heading, Menus } from '@heyforms/ui'
-import clsx from 'clsx'
-import { observer } from 'mobx-react-lite'
-import type { FC } from 'react'
-import { useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+
 import CreateProject from './CreateProject'
 
 interface ItemProps {
@@ -54,19 +56,19 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
 
   const Overlay = (
     <Menus onClick={handleMenuClick}>
-      <Menus.Item value="rename" label={t('project.rename')} icon={<PencilIcon />} />
-      {isOwner && <Menus.Item value="delete" label={t('project.del')} icon={<TrashIcon />} />}
+      <Menus.Item value="rename" label={t('project.rename')} icon={<IconPencil />} />
+      {isOwner && <Menus.Item value="delete" label={t('project.del')} icon={<IconTrash />} />}
     </Menus>
   )
 
   return (
     <li
-      className="group col-span-1 bg-white rounded-md border border-gray-200 hover:bg-slate-50 cursor-pointer"
+      className="group col-span-1 cursor-pointer rounded-md border border-gray-200 bg-white hover:bg-slate-50"
       onClick={handleClick}
     >
       <div className="p-6">
-        <h3 className="text-slate-900 text-base font-medium truncate">{project.name}</h3>
-        <p className="mt-1 text-slate-500 text-sm truncate">
+        <h3 className="truncate text-base font-medium text-slate-900">{project.name}</h3>
+        <p className="mt-1 truncate text-sm text-slate-500">
           {project.formCount > 0
             ? `${project.formCount} ${t('workspace.workSpace.forms')}`
             : t('workspace.workSpace.noForms')}
@@ -74,13 +76,13 @@ const Item: FC<ItemProps> = ({ project, users, isOwner, onRename, onDelete }) =>
         <div className="mt-4 flex items-center justify-between">
           <Avatar.Group options={members} size={32} maximum={8} circular rounded />
           <Dropdown
-            className={clsx('opacity-0 group-hover:opacity-100 p-1 hover:bg-slate-100 rounded-md', {
+            className={clsx('rounded-md p-1 opacity-0 hover:bg-slate-100 group-hover:opacity-100', {
               'opacity-100': visible
             })}
             overlay={Overlay}
             onDropdownVisibleChange={setVisible}
           >
-            <DotsHorizontalIcon className="w-5 h-5 text-slate-400 hover:text-slate-900" />
+            <IconDots className="h-5 w-5 text-slate-400 hover:text-slate-900" />
           </Dropdown>
         </div>
       </div>
@@ -155,7 +157,7 @@ const Workspace = observer(() => {
         ) : (
           <EmptyStates
             className="empty-states-fit mt-8"
-            icon={<CollectionIcon className="non-scaling-stroke" />}
+            icon={<IconCategory className="non-scaling-stroke" />}
             title={t('workspace.workSpace.noProject')}
             description={t('workspace.workSpace.text')}
             action={

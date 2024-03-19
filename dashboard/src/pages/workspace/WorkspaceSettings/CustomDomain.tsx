@@ -1,14 +1,15 @@
-import { PlanCheck, SwitchField } from '@/components'
-import { PlanGradeEnum } from '@/models'
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { useParam, useVisible } from '@/utils'
 import { Button, Form, Input, Modal, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import isFQDN from 'validator/lib/isFQDN'
+
+import { PlanCheck, SwitchField } from '@/components'
+import { PlanGradeEnum } from '@/models'
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { useParam, useVisible } from '@/utils'
 
 interface CustomDomainModalProps extends IModalProps {
   domain?: string
@@ -61,7 +62,7 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
     <Modal contentClassName="max-w-2xl" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-slate-900">
+          <h1 className="text-lg font-medium leading-6 text-slate-900">
             {t('workspace.settings.customDomain')}
           </h1>
           <p className="mt-1 text-sm text-slate-500">
@@ -74,7 +75,7 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
         </div>
 
         <div>
-          <table className="table mt-8">
+          <table className="mt-8 table">
             <thead className="table-head">
               <tr>
                 <th>{t('workspace.settings.type')}</th>

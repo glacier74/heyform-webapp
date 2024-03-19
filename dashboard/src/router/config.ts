@@ -1,6 +1,6 @@
-import { AuthGuard, AuthLayout, CommonLayout, WorkspaceLayout } from '@/components'
-import { FormLayout } from '@/legacy_pages/layouts'
 import { lazy } from 'react'
+
+import { AuthGuard, AuthLayout, CommonLayout, FormLayout, WorkspaceLayout } from '@/components'
 
 export interface CustomRouteConfig {
   path: string
@@ -15,6 +15,7 @@ const Login = lazy(() => import('@/pages/auth/Login'))
 const SignUp = lazy(() => import('@/pages/auth/SignUp'))
 const ForgotPassword = lazy(() => import('@/pages/auth/ForgotPassword'))
 const ResetPassword = lazy(() => import('@/pages/auth/ResetPassword'))
+const OauthAuthorization = lazy(() => import('@/pages/auth/OauthAuthorization'))
 
 /* Verify email address */
 const VerifyEmail = lazy(() => import('@/pages/user/VerifyEmail'))
@@ -44,19 +45,16 @@ const Project = lazy(() => import('@/pages/project/Project'))
 const Trash = lazy(() => import('@/pages/project/Trash'))
 
 /* Form */
-// const CreateForm = lazy(() => import('@/legacy_pages/pages/CreateForm'))
+// const CreateForm = lazy(() => import('@/pages/CreateForm'))
 const FormBuilder = lazy(() => import('@/pages/form/Create'))
 // @Discard at Sep 8 2022
-// const ImportForm = lazy(() => import('@/legacy_pages/pages/ImportForm'))
-// const Templates = lazy(() => import('@/legacy_pages/pages/Templates'))
-// const TemplatePreview = lazy(() => import('@/legacy_pages/pages/TemplatePreview'))
-const Integration = lazy(() => import('@/legacy_pages/pages/Integration'))
-const Share = lazy(() => import('@/legacy_pages/pages/Share'))
-const Analytics = lazy(() => import('@/legacy_pages/pages/Analytics'))
-const Report = lazy(() => import('@/legacy_pages/pages/Report'))
-const Submissions = lazy(() => import('@/legacy_pages/pages/Submissions'))
+// const ImportForm = lazy(() => import('@/pages/ImportForm'))
+// const Templates = lazy(() => import('@/pages/Templates'))
+// const TemplatePreview = lazy(() => import('@/pages/TemplatePreview'))
+const Integration = lazy(() => import('@/pages/form/Integration'))
+const Analytics = lazy(() => import('@/pages/form/Analytics'))
+const Submissions = lazy(() => import('@/pages/form/Submissions'))
 const FormSettings = lazy(() => import('@/pages/form/FormSettings'))
-const OauthAuthorize = lazy(() => import('@/legacy_pages/pages/OauthAuthorize'))
 
 const config: CustomRouteConfig[] = [
   /* Login */
@@ -131,7 +129,7 @@ const config: CustomRouteConfig[] = [
     path: '/oauth/authorize',
     loginRequired: true,
     layout: AuthLayout,
-    component: OauthAuthorize,
+    component: OauthAuthorization,
     title: 'Authorize'
   },
 
@@ -236,27 +234,17 @@ const config: CustomRouteConfig[] = [
     component: Integration
   },
   {
-    path: '/workspace/:workspaceId/project/:projectId/form/:formId/share',
-    layout: FormLayout,
-    component: Share
-  },
-  {
-    path: '/workspace/:workspaceId/project/:projectId/form/:formId/results',
+    path: '/workspace/:workspaceId/project/:projectId/form/:formId/analytics',
     layout: FormLayout,
     component: Analytics
   },
   {
-    path: '/workspace/:workspaceId/project/:projectId/form/:formId/results/report',
-    layout: FormLayout,
-    component: Report
-  },
-  {
-    path: '/workspace/:workspaceId/project/:projectId/form/:formId/results/submissions',
+    path: '/workspace/:workspaceId/project/:projectId/form/:formId/submissions',
     layout: FormLayout,
     component: Submissions
   },
   {
-    path: '/workspace/:workspaceId/project/:projectId/form/:formId/results/submissions/:category',
+    path: '/workspace/:workspaceId/project/:projectId/form/:formId/submissions/:category',
     layout: FormLayout,
     component: Submissions
   },

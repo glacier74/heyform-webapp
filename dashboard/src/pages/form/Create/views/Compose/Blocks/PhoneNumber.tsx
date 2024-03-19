@@ -1,9 +1,11 @@
-import { COUNTRIES } from '@/pages/form/Create/consts'
-import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
-import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/outline'
+import { IconChevronDown, IconChevronRight } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { COUNTRIES } from '@/pages/form/Create/consts'
+import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
+
 import { FlagIcon } from '../FlagIcon'
 import type { BlockProps } from './Block'
 import { Block } from './Block'
@@ -19,11 +21,11 @@ export const PhoneNumber: FC<BlockProps> = ({ field, locale, ...restProps }) => 
       <div className="flex items-center">
         <div className="heyform-calling-code">
           <FlagIcon countryCode={field.properties?.defaultCountryCode} />
-          <ChevronDownIcon className="heyform-phone-arrow-icon" />
+          <IconChevronDown className="heyform-phone-arrow-icon" />
         </div>
         <input type="text" className="heyform-input" placeholder={placeholder} disabled={true} />
       </div>
-      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<IconChevronRight />} />
     </Block>
   )
 }

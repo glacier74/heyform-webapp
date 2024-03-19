@@ -4,7 +4,6 @@
  * @author: Mufeng
  * @date: 2021-06-16 11:42
  **/
-
 import {
   DELETE_INTEGRATION_SETTINGS_GQL,
   DROPBOX_FOLDERS_GQL,

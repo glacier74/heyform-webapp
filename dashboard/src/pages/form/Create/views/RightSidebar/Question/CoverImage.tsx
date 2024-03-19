@@ -1,11 +1,12 @@
-import { PhotoPicker } from '@/components'
-import { useStoreContext } from '@/pages/form/Create/store'
 import { FieldLayoutAlignEnum } from '@heyforms/shared-types-enums'
 import { Button } from '@heyforms/ui'
 import { isURL } from '@hpnp/utils/helper'
 import type { FC } from 'react'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { PhotoPicker } from '@/components'
+import { useStoreContext } from '@/pages/form/Create/store'
 
 export const CoverImage: FC = () => {
   const { t } = useTranslation()

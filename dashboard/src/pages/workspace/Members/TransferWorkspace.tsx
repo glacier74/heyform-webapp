@@ -1,11 +1,12 @@
-import type { UserModel } from '@/models'
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { useParam } from '@/utils'
 import { Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import type { UserModel } from '@/models'
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { useParam } from '@/utils'
 
 interface TransferWorkspaceProps extends IModalProps {
   member?: UserModel | null

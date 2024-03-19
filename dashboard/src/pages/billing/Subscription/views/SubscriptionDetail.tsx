@@ -1,9 +1,3 @@
-import { Async } from '@/components'
-import { PlanGradeEnum, SubscriptionStatusEnum } from '@/models'
-import { CancelPlan } from '@/pages/billing/Subscription/views/CancelPlan'
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { useParam, useVisible } from '@/utils'
 import { Button } from '@heyforms/ui'
 import { formatBytes, unixDate } from '@hpnp/utils'
 import dayjs from 'dayjs'
@@ -11,6 +5,13 @@ import { observer } from 'mobx-react-lite'
 import type { FC, ReactNode } from 'react'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { Async } from '@/components'
+import { PlanGradeEnum, SubscriptionStatusEnum } from '@/models'
+import { CancelPlan } from '@/pages/billing/Subscription/views/CancelPlan'
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { useParam, useVisible } from '@/utils'
 
 interface ItemProps {
   title: string
@@ -27,9 +28,9 @@ const Skeleton = () => {
   return (
     <dl className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-4">
       {Array.from({ length: 4 }).map((_, index) => (
-        <div key={index} className="px-4 py-5 bg-white rounded-md border border-gray-200 sm:p-6">
-          <dt className="skeleton w-16 h-4" />
-          <dd className="skeleton mt-2 w-32 h-7" />
+        <div key={index} className="rounded-md border border-gray-200 bg-white px-4 py-5 sm:p-6">
+          <dt className="skeleton h-4 w-16" />
+          <dd className="skeleton mt-2 h-7 w-32" />
         </div>
       ))}
     </dl>
@@ -38,8 +39,8 @@ const Skeleton = () => {
 
 const Item: FC<ItemProps> = ({ title, description }) => {
   return (
-    <div className="px-4 py-5 bg-white shadow rounded-lg overflow-hidden sm:p-6">
-      <dt className="text-sm font-medium text-slate-500 truncate">{title}</dt>
+    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt className="truncate text-sm font-medium text-slate-500">{title}</dt>
       <dd className="mt-4 text-2xl font-semibold text-slate-900">{description}</dd>
     </div>
   )
@@ -70,8 +71,14 @@ const SubmissionItem: FC<MemberItemProps> = ({ count, limit }) => {
       title={t('billing.submission')}
       description={
         <>
-          <div>{count || 0} / {(limit as number) < 0 ? '∞' : limit}</div>
-          <div className="text-[13px] font-normal text-gray-500">{t('billing.resetsOn', { date: dayjs().startOf('month').add(1, 'month').format('MMM DD, YYYY') })}</div>
+          <div>
+            {count || 0} / {(limit as number) < 0 ? '∞' : limit}
+          </div>
+          <div className="text-[13px] font-normal text-gray-500">
+            {t('billing.resetsOn', {
+              date: dayjs().startOf('month').add(1, 'month').format('MMM DD, YYYY')
+            })}
+          </div>
         </>
       }
     />
@@ -125,9 +132,9 @@ export const SubscriptionDetail: FC = observer(() => {
 
   return (
     <div>
-      <div className="flex flex-col justify-start items-start md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col items-start justify-start md:flex-row md:items-center md:justify-between">
         <div>
-          <h3 className="text-lg leading-6 font-medium text-slate-900">
+          <h3 className="text-lg font-medium leading-6 text-slate-900">
             {plan.name} {t('billing.Plan')}
           </h3>
           <p className="mt-1 text-sm font-medium text-slate-500">{description}</p>

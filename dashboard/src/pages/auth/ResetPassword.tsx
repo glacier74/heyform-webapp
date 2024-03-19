@@ -1,11 +1,12 @@
-import { AuthService } from '@/service'
-import { useStore } from '@/store'
-import { useQueryURL, useRouter } from '@/utils'
 import { Form, Input } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { AuthService } from '@/service'
+import { useStore } from '@/store'
+import { useQueryURL, useRouter } from '@/utils'
 
 const ResetPassword = () => {
   const { t } = useTranslation()

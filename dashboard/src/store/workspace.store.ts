@@ -1,7 +1,9 @@
-import type { PlanModel, ProjectModel, UserModel, WorkspaceModel } from '@/models'
 import type { FormModel } from '@heyforms/shared-types-enums'
 import { isValidArray } from '@hpnp/utils/helper'
 import { makeAutoObservable } from 'mobx'
+
+import type { PlanModel, ProjectModel, UserModel, WorkspaceModel } from '@/models'
+
 import { mobxStorage } from './mobxStorage'
 
 export class WorkspaceStore {

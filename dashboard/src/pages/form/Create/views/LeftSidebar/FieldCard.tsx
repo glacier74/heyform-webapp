@@ -1,8 +1,3 @@
-import { CollapseIcon } from '@/components'
-import { FormField } from '@/models'
-import { useStoreContext } from '@/pages/form/Create/store'
-import { FieldKindIcon } from '@/pages/form/Create/views/LeftSidebar/FieldKindIcon'
-import { DotsVerticalIcon } from '@heroicons/react/outline'
 import { htmlUtils } from '@heyforms/answer-utils'
 import {
   FieldKindEnum,
@@ -11,10 +6,17 @@ import {
 } from '@heyforms/shared-types-enums'
 import { Button, Dropdown, Menus, stopPropagation } from '@heyforms/ui'
 import { isEmpty, isValid } from '@hpnp/utils/helper'
+import { IconDotsVertical } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { FC, startTransition, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ReactSortable } from 'react-sortablejs'
+
+import { CollapseIcon } from '@/components'
+import { FormField } from '@/models'
+import { useStoreContext } from '@/pages/form/Create/store'
+
+import { FieldKindIcon } from './FieldKindIcon'
 
 interface FieldCardProps {
   field: FormField
@@ -118,8 +120,8 @@ export const FieldCard: FC<FieldCardProps> = ({
   const DropdownTrigger = useMemo(
     () => (
       <Button.Link
-        className="field-card-action w-8 h-8"
-        leading={<DotsVerticalIcon />}
+        className="field-card-action h-8 w-8"
+        leading={<IconDotsVertical />}
         onMouseDown={stopPropagation}
       />
     ),
@@ -191,7 +193,7 @@ export const FieldCard: FC<FieldCardProps> = ({
       })}
     >
       <div
-        className={clsx('field-card group flex items-center pt-2 pr-1 pb-2 cursor-pointer', {
+        className={clsx('field-card group flex cursor-pointer items-center pt-2 pr-1 pb-2', {
           'bg-slate-100': isSelected,
           'field-card-open': isOpen
         })}
@@ -205,13 +207,13 @@ export const FieldCard: FC<FieldCardProps> = ({
           {isGroup && (
             <CollapseIcon
               className={clsx({
-                'transform -rotate-90': field.isCollapsed
+                '-rotate-90 transform': field.isCollapsed
               })}
             />
           )}
         </div>
         <FieldKindIcon kind={field.kind} parentIndex={parentField?.index} index={field.index} />
-        <div className="field-card-title flex-1 ml-3 text-xs">
+        <div className="field-card-title ml-3 flex-1 text-xs">
           {htmlUtils.plain(field.title as string)}
         </div>
         <Dropdown

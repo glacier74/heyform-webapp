@@ -1,9 +1,10 @@
-import { UserService } from '@/service'
-import { useStore } from '@/store'
 import { Form, Input } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { UserService } from '@/service'
+import { useStore } from '@/store'
 
 export const UserName: FC = observer(() => {
   const userStore = useStore('userStore')

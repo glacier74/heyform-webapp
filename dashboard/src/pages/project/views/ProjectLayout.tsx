@@ -1,22 +1,19 @@
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { cropImage, useAsyncEffect, useParam, useVisible } from '@/utils'
-import {
-  ChevronDownIcon,
-  DotsHorizontalIcon,
-  PencilIcon,
-  TrashIcon
-} from '@heroicons/react/outline'
 import { Avatar, Button, Dropdown, Heading, Menus, Navbar } from '@heyforms/ui'
+import { IconChevronDown, IconDots, IconPencil, IconTrash } from '@tabler/icons-react'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate } from 'react-router-dom'
+
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { cropImage, useAsyncEffect, useParam, useVisible } from '@/utils'
+
 import { DeleteProject } from './DeleteProject'
-import './index.scss'
 import { ProjectMembers } from './ProjectMembers'
 import { RenameProject } from './RenameProject'
+import './index.scss'
 
 interface HeaderProps {
   onRename: () => void
@@ -63,18 +60,18 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
         <div className="flex items-center">
           <span>{workspaceStore.project?.name}</span>
           <Dropdown
-            className="ml-1 p-1 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 cursor-pointer"
+            className="ml-1 cursor-pointer rounded-md p-1 text-slate-500 hover:bg-slate-50 hover:text-slate-900"
             placement="bottom-start"
             overlay={
               <Menus onClick={handleMenuClick}>
-                <Menus.Item value="rename" icon={<PencilIcon />} label={t('project.rename')} />
+                <Menus.Item value="rename" icon={<IconPencil />} label={t('project.rename')} />
                 {workspaceStore.workspace?.isOwner && (
-                  <Menus.Item value="delete" icon={<TrashIcon />} label={t('project.del')} />
+                  <Menus.Item value="delete" icon={<IconTrash />} label={t('project.del')} />
                 )}
               </Menus>
             }
           >
-            <ChevronDownIcon className="w-5 h-5" />
+            <IconChevronDown className="h-5 w-5" />
           </Dropdown>
         </div>
       }
@@ -82,8 +79,8 @@ const Header: FC<HeaderProps> = observer(({ onRename, onDelete, onMemberManage }
         <div className="mt-2 flex items-center">
           <Avatar.Group options={members} size={32} maximum={8} circular rounded />
           <Button
-            className="ml-2 w-8 h-8 p-1.5"
-            leading={<DotsHorizontalIcon />}
+            className="ml-2 h-8 w-8 p-1.5"
+            leading={<IconDots />}
             rounded
             onClick={onMemberManage}
           />

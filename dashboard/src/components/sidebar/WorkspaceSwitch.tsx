@@ -1,15 +1,16 @@
-import type { WorkspaceModel } from '@/models'
-import { PlanGradeEnum } from '@/models'
-import { useStore } from '@/store'
-import { cropImage, useParam } from '@/utils'
-import { PlusIcon } from '@heroicons/react/outline'
-import { CheckCircleIcon, SelectorIcon } from '@heroicons/react/solid'
 import { Avatar, Dropdown, Menus } from '@heyforms/ui'
+import { IconCircleCheck, IconPlus, IconSelector } from '@tabler/icons-react'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+
+import type { WorkspaceModel } from '@/models'
+import { PlanGradeEnum } from '@/models'
+import { useStore } from '@/store'
+import { cropImage, useParam } from '@/utils'
+
 import { WorkspaceIcon } from '../icons'
 
 interface WorkspaceItemProps {
@@ -35,7 +36,7 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
 
   return (
     <div
-      className="group flex items-center px-4 py-2.5 text-sm text-slate-700 cursor-pointer hover:bg-slate-100"
+      className="group flex cursor-pointer items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-100"
       onClick={handleClick}
     >
       <Avatar
@@ -48,13 +49,13 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
       />
 
       <div className="ml-4 flex-auto">
-        <p className="text-sm font-medium text-slate-700 truncate">{workspace.name}</p>
-        <p className="text-sm text-slate-500 truncate">
+        <p className="truncate text-sm font-medium text-slate-700">{workspace.name}</p>
+        <p className="truncate text-sm text-slate-500">
           <span>
             {workspace.plan.name} {t('billing.plan')}
           </span>
           {workspace.plan.grade > PlanGradeEnum.FREE && workspace.subscription.trialing && (
-            <span className="text-blue-700 text-xs"> (trial)</span>
+            <span className="text-xs text-blue-700"> (trial)</span>
           )}
           <span> · </span>
           <span>
@@ -63,7 +64,7 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
         </p>
       </div>
 
-      {workspaceId === workspace.id && <CheckCircleIcon className="w-6 h-6 text-blue-500" />}
+      {workspaceId === workspace.id && <IconCircleCheck className="h-6 w-6 text-blue-500" />}
     </div>
   )
 }
@@ -91,30 +92,30 @@ const CurrentWorkspace = observer(() => {
   const { t } = useTranslation()
 
   return (
-    <button className="group w-full rounded-md text-sm text-left text-slate-700">
-      <span className="flex w-full justify-between items-center cursor-pointer">
+    <button className="group w-full rounded-md text-left text-sm text-slate-700">
+      <span className="flex w-full cursor-pointer items-center justify-between">
         <span className="flex min-w-0 items-center justify-between space-x-3">
           <Avatar
-            className="w-10 h-10 rounded-full flex-shrink-0"
+            className="h-10 w-10 flex-shrink-0 rounded-full"
             src={cropImage(workspaceStore.workspace?.avatar, 100, 100)}
             defaultIcon={<WorkspaceIcon />}
             size={40}
             rounded
             circular
           />
-          <span className="flex-1 flex flex-col min-w-0">
-            <span className="text-slate-900 text-sm font-medium truncate">
+          <span className="flex min-w-0 flex-1 flex-col">
+            <span className="truncate text-sm font-medium text-slate-900">
               {workspaceStore.workspace?.name}
             </span>
-            <span className="text-slate-500 text-sm truncate">
+            <span className="truncate text-sm text-slate-500">
               {workspaceStore.workspace?.plan.name} {t('billing.plan')}
               {workspaceStore.workspace.subscription.trialing && (
-                <span className="text-blue-700 text-xs"> (trial)</span>
+                <span className="text-xs text-blue-700"> (trial)</span>
               )}
             </span>
           </span>
         </span>
-        <SelectorIcon className="flex-shrink-0 h-5 w-5 text-slate-400 group-hover:text-slate-500" />
+        <IconSelector className="h-5 w-5 flex-shrink-0 text-slate-400 group-hover:text-slate-500" />
       </span>
     </button>
   )
@@ -134,7 +135,7 @@ export const WorkspaceSwitch: FC<WorkspaceSwitchProps> = ({ onCreateWorkspace })
       <Menus.Divider />
       <Menus.Item
         value="create"
-        icon={<PlusIcon />}
+        icon={<IconPlus />}
         label={t('other.labelList.CreateWorkspace')}
         onClick={onCreateWorkspace}
       />

@@ -1,13 +1,15 @@
-import { useStoreContext } from '@/pages/form/Create/store'
-import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
-import { ChevronRightIcon, XIcon } from '@heroicons/react/outline'
 import type { Choice } from '@heyforms/shared-types-enums'
 import { Button } from '@heyforms/ui'
 import { clone } from '@hpnp/utils'
 import { nanoid } from '@hpnp/utils/nanoid'
+import { IconChevronRight, IconX } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { startTransition, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { useStoreContext } from '@/pages/form/Create/store'
+import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
+
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
@@ -40,7 +42,7 @@ const Thead: FC<TheadProps> = ({ index, column, deletable, onChange, onRemove, .
     <th>
       <div className="heyform-input-table-thead" {...restProps}>
         <div className="heyform-radio-remove" onClick={handleRemove}>
-          <XIcon />
+          <IconX />
         </div>
         <input
           type="text"
@@ -120,7 +122,7 @@ export const InputTable: FC<BlockProps> = ({ field, locale, ...restProps }) => {
 
   return (
     <Block className="heyform-input-table" field={field} locale={locale} {...restProps}>
-      <div className="flex items-center justify-end mb-2">
+      <div className="mb-2 flex items-center justify-end">
         <Button.Link className="heyform-add-column" onClick={handleAddColumnCallback}>
           {t('formBuilder.addColumn')}
         </Button.Link>
@@ -152,7 +154,7 @@ export const InputTable: FC<BlockProps> = ({ field, locale, ...restProps }) => {
           </tbody>
         </table>
       </div>
-      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<IconChevronRight />} />
     </Block>
   )
 }

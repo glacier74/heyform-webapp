@@ -1,12 +1,13 @@
-import { UserService } from '@/service'
-import { useStore } from '@/store'
-import { useVisible } from '@/utils'
 import { Button, Form, Input, Modal, notification } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { UserService } from '@/service'
+import { useStore } from '@/store'
+import { useVisible } from '@/utils'
 
 const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
   const [values, setValues] = useState<IMapType>({})
@@ -29,7 +30,7 @@ const ChangePassword: FC<IModalProps> = ({ visible, onClose }) => {
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-slate-900">
+          <h1 className="text-lg font-medium leading-6 text-slate-900">
             {t('user.settings.password.changeP')}
           </h1>
         </div>

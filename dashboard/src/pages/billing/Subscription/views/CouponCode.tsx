@@ -1,9 +1,10 @@
-import { BillingCycleEnum, PlanModel } from '@/models'
-import { PaymentService } from '@/service'
-import { useParam } from '@/utils'
 import { Form, Input, Modal } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { BillingCycleEnum, PlanModel } from '@/models'
+import { PaymentService } from '@/service'
+import { useParam } from '@/utils'
 
 interface CouponCodeProps extends Omit<IModalProps, 'onComplete'> {
   plan?: PlanModel | null
@@ -39,7 +40,7 @@ export const CouponCode: FC<CouponCodeProps> = ({
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <div className="text-lg leading-6 font-medium text-slate-900">{t('billing.addCode')}</div>
+          <div className="text-lg font-medium leading-6 text-slate-900">{t('billing.addCode')}</div>
         </div>
 
         <Form.Custom

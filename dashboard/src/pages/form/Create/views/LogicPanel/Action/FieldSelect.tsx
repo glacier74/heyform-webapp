@@ -1,9 +1,10 @@
-import { type FormField } from '@/models'
-import { FieldKindIcon } from '@/pages/form/Create/views/LeftSidebar/FieldKindIcon'
-import { CheckIcon } from '@heroicons/react/solid'
 import { htmlUtils } from '@heyforms/answer-utils'
 import { Select } from '@heyforms/ui'
+import { IconCheck } from '@tabler/icons-react'
 import { type FC, useMemo } from 'react'
+
+import { type FormField } from '@/models'
+import { FieldKindIcon } from '@/pages/form/Create/views/LeftSidebar/FieldKindIcon'
 
 interface FieldSelectProps {
   fields: FormField[]
@@ -30,7 +31,7 @@ export const FieldSelect: FC<FieldSelectProps> = ({ fields, value, onChange }) =
     }
 
     return (
-      <div className="flex items-center w-full">
+      <div className="flex w-full items-center">
         <FieldKindIcon kind={option.kind} index={option.index} parentIndex={option.parentIndex} />
         <span className="flex-1 truncate">{option.label}</span>
       </div>
@@ -44,7 +45,7 @@ export const FieldSelect: FC<FieldSelectProps> = ({ fields, value, onChange }) =
         <span className="select-option-text flex-1 truncate">{option.label}</span>
         {value === option.value && (
           <span className="select-option-checkmark">
-            <CheckIcon />
+            <IconCheck />
           </span>
         )}
       </div>

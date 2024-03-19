@@ -1,6 +1,7 @@
+import { FieldKindEnum } from '@heyforms/shared-types-enums'
+
 import { NumberVariableIcon, StringVariableIcon } from '@/components'
 import { type FieldConfig } from '@/pages/form/Create/views/FieldConfig'
-import { FieldKindEnum } from '@heyforms/shared-types-enums'
 
 export const VARIABLE_KIND_CONFIGS: FieldConfig[] = [
   {

@@ -1,10 +1,12 @@
+import { Tabs } from '@heyforms/ui'
+import { memo } from 'react'
+import { useTranslation } from 'react-i18next'
+
 import { TabPanePlanCheck } from '@/components'
 import { PlanGradeEnum } from '@/models'
 import { useStoreContext } from '@/pages/form/Create/store'
 import { Design } from '@/pages/form/Create/views/RightSidebar/Design'
-import { Tabs } from '@heyforms/ui'
-import { memo } from 'react'
-import { useTranslation } from 'react-i18next'
+
 import { Logic } from './Logic'
 import { Question } from './Question'
 

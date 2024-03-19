@@ -16,6 +16,9 @@ export class AppStore {
   // Form preview is open or not
   isFormPreviewOpen = false
 
+  // Form share modal is open or not
+  isFormShareModalOpen = false
+
   // User settings is open or not
   isUserSettingsOpen = false
 

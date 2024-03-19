@@ -1,6 +1,7 @@
-import { useQueryURL } from '@/utils'
 import type { FC } from 'react'
 import { Link } from 'react-router-dom'
+
+import { useQueryURL } from '@/utils'
 
 interface RedirectUriLinkProps extends IComponentProps {
   href: string

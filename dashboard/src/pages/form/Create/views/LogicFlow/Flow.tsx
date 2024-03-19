@@ -1,6 +1,3 @@
-import { useStoreContext } from '@/pages/form/Create/store'
-import { fieldLogicToNodesEdges } from '@/pages/form/Create/utils'
-import { UNSELECTABLE_FIELD_KINDS } from '@/pages/form/Create/views/FieldConfig'
 import { useEffect } from 'react'
 import ReactFlow, {
   ConnectionLineType,
@@ -10,6 +7,11 @@ import ReactFlow, {
   useNodesState,
   useReactFlow
 } from 'react-flow-renderer'
+
+import { useStoreContext } from '@/pages/form/Create/store'
+import { fieldLogicToNodesEdges } from '@/pages/form/Create/utils'
+import { UNSELECTABLE_FIELD_KINDS } from '@/pages/form/Create/views/FieldConfig'
+
 import { ConnectionLine } from './ConnectionLine'
 import { CustomNode } from './CustomNode'
 

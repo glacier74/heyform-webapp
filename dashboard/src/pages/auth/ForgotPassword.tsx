@@ -1,10 +1,10 @@
+import { Form, Input } from '@heyforms/ui'
+import { useTranslation } from 'react-i18next'
+
 import { RedirectUriLink } from '@/components'
 import { AuthService } from '@/service'
 import { useStore } from '@/store'
 import { useQueryURL, useRouter } from '@/utils'
-import { ChevronLeftIcon } from '@heroicons/react/outline'
-import { Form, Input } from '@heyforms/ui'
-import { useTranslation } from 'react-i18next'
 
 const ForgotPassword = () => {
   const router = useRouter()

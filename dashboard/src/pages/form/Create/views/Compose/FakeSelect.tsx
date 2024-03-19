@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from '@heroicons/react/outline'
+import { IconChevronDown } from '@tabler/icons-react'
 import type { FC } from 'react'
 
 export const FakeSelect: FC<IComponentProps> = ({ placeholder, ...restProps }) => {
@@ -7,7 +7,7 @@ export const FakeSelect: FC<IComponentProps> = ({ placeholder, ...restProps }) =
       <div className="heyform-select-container">
         <span className="heyform-select-value" placeholder={placeholder} />
         <span className="heyform-select-arrow-icon">
-          <ChevronDownIcon />
+          <IconChevronDown />
         </span>
       </div>
     </div>

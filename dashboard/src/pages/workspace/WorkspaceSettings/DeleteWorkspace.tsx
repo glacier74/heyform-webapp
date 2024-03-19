@@ -1,11 +1,12 @@
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { useAsyncEffect, useParam, useVisible } from '@/utils'
 import { Button, Form, Input, Modal, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { useAsyncEffect, useParam, useVisible } from '@/utils'
 
 const DeleteWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) => {
   const { workspaceId } = useParam()
@@ -37,7 +38,7 @@ const DeleteWorkspaceModal: FC<IModalProps> = observer(({ visible, onClose }) =>
     <Modal contentClassName="max-w-md" visible={visible} showCloseIcon onClose={onClose}>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-slate-900">
+          <h1 className="text-lg font-medium leading-6 text-slate-900">
             {t('workspace.settings.delWorkspace.dissolve')}
           </h1>
           <div className="space-y-2">

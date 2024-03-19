@@ -1,12 +1,12 @@
-import { PaymentService } from '@/service'
-import { useStore } from '@/store'
-import { useParam, useWindow } from '@/utils'
-import { ExternalLinkIcon } from '@heroicons/react/outline'
-import { XCircleIcon } from '@heroicons/react/solid'
 import { Button, Modal } from '@heyforms/ui'
+import { IconExternalLink, IconX } from '@tabler/icons-react'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { PaymentService } from '@/service'
+import { useStore } from '@/store'
+import { useParam, useWindow } from '@/utils'
 
 export const ConnectStripeModal: FC<IModalProps> = observer(({ visible, onClose }) => {
   const { t } = useTranslation()
@@ -94,7 +94,7 @@ export const ConnectStripeModal: FC<IModalProps> = observer(({ visible, onClose 
           <div className="rounded-md bg-red-50 p-4">
             <div className="flex">
               <div className="flex-shrink-0">
-                <XCircleIcon className="h-5 w-5 text-red-400" />
+                <IconX className="h-5 w-5 text-red-400" />
               </div>
               <p className="ml-2 text-sm text-red-700">{error}</p>
             </div>
@@ -105,7 +105,7 @@ export const ConnectStripeModal: FC<IModalProps> = observer(({ visible, onClose 
           <Button onClick={onClose}>Cancel</Button>
           <Button
             type="primary"
-            trailing={<ExternalLinkIcon />}
+            trailing={<IconExternalLink />}
             loading={loading}
             onClick={handleClick}
           >

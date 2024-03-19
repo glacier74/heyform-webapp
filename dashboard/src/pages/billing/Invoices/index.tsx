@@ -1,14 +1,15 @@
-import { Async } from '@/components'
-import type { InvoiceModel } from '@/models'
-import { Skeleton } from '@/pages/audiences/Groups/Skeleton'
-import { PaymentService } from '@/service'
-import { useParam } from '@/utils'
-import { CreditCardIcon } from '@heroicons/react/outline'
-import { EmptyStates, Table } from '@heyforms/ui'
+import { EmptyStates, Spin, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/types/table'
 import { date } from '@hpnp/utils'
+import { IconCreditCard } from '@tabler/icons-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { Async } from '@/components'
+import type { InvoiceModel } from '@/models'
+import { PaymentService } from '@/service'
+import { useParam } from '@/utils'
+
 import { BillingLayout } from '../views/BillingLayout'
 
 const Invoices = () => {
@@ -58,11 +59,11 @@ const Invoices = () => {
       <Async
         request={request}
         deps={[]}
-        skeleton={<Skeleton />}
+        skeleton={<Spin />}
         emptyState={
           <EmptyStates
             className="empty-states-fit"
-            icon={<CreditCardIcon className="non-scaling-stroke" />}
+            icon={<IconCreditCard className="non-scaling-stroke" />}
             title={t('billing.billed')}
             description={t('billing.send')}
           />

@@ -1,5 +1,3 @@
-import { LAYOUT_OPTIONS } from '@/pages/form/Create/consts'
-import { useStoreContext } from '@/pages/form/Create/store'
 import { FieldLayoutAlignEnum } from '@heyforms/shared-types-enums'
 import { Input, Slider } from '@heyforms/ui'
 import { isURL } from '@hpnp/utils/helper'
@@ -7,6 +5,9 @@ import clsx from 'clsx'
 import type { FC } from 'react'
 import { startTransition, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { LAYOUT_OPTIONS } from '@/pages/form/Create/consts'
+import { useStoreContext } from '@/pages/form/Create/store'
 
 interface LayoutSwitchProps {
   value?: string
@@ -110,7 +111,7 @@ export const Layout: FC = () => {
       {field.layout?.align !== FieldLayoutAlignEnum.INLINE && (
         <div className="right-sidebar-group">
           <label className="form-item-label">{t('formBuilder.brightness')}</label>
-          <div className="flex items-center mt-1">
+          <div className="mt-1 flex items-center">
             <Slider
               min={-100}
               max={100}

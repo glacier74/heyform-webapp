@@ -1,10 +1,12 @@
-import { DATE_FORMAT_MAPS, TIME_FORMAT } from '@/pages/form/Create/consts'
-import { DateItem } from '@/pages/form/Create/views/Compose/Blocks/Date'
-import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
-import { ChevronRightIcon } from '@heroicons/react/outline'
+import { IconChevronRight } from '@tabler/icons-react'
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { DATE_FORMAT_MAPS, TIME_FORMAT } from '@/pages/form/Create/consts'
+import { DateItem } from '@/pages/form/Create/views/Compose/Blocks/Date'
+import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
+
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
@@ -17,7 +19,7 @@ export const DateRange: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   return (
     <Block className="heyform-date" field={field} locale={locale} {...restProps}>
       <div
-        className={clsx('flex items-center heyform-date-range', {
+        className={clsx('heyform-date-range flex items-center', {
           'heyform-date-range-with-time': field.properties?.allowTime
         })}
       >
@@ -56,7 +58,7 @@ export const DateRange: FC<BlockProps> = ({ field, locale, ...restProps }) => {
         </div>
       </div>
 
-      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<IconChevronRight />} />
     </Block>
   )
 }

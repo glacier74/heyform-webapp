@@ -1,6 +1,6 @@
-import { DocumentIcon, UploadIcon } from '@heroicons/react/outline'
 import { Button, stopEvent } from '@heyforms/ui'
 import { formatBytes, parseBytes } from '@hpnp/utils'
+import { IconFile, IconUpload } from '@tabler/icons-react'
 import clsx from 'clsx'
 import type { ChangeEvent, DragEvent, FC, MouseEvent } from 'react'
 import { useState } from 'react'
@@ -105,9 +105,9 @@ export const DragUploader: FC<DragUploaderProps> = ({
         onChange={handleFileChange}
       />
       {file ? (
-        <div className="flex justify-center w-full h-full px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+        <div className="flex h-full w-full justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
           <div className="flex flex-col justify-center space-y-1 text-center">
-            <DocumentIcon className="non-scaling-stroke mx-auto h-12 w-12 text-slate-400" />
+            <IconFile className="non-scaling-stroke mx-auto h-12 w-12 text-slate-400" />
             <p className="text-sm text-slate-500">
               {file!.name} <span>({formatBytes(file!.size)})</span>
             </p>
@@ -122,7 +122,7 @@ export const DragUploader: FC<DragUploaderProps> = ({
       ) : (
         <div
           className={clsx(
-            'flex justify-center w-full h-full px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md',
+            'flex h-full w-full justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6',
             {
               'border-blue-500': dragging
             }
@@ -134,7 +134,7 @@ export const DragUploader: FC<DragUploaderProps> = ({
           onDragLeave={handleDrop}
         >
           <div className="flex flex-col justify-center space-y-1 text-center">
-            <UploadIcon className="non-scaling-stroke mx-auto h-12 w-12 text-slate-400" />
+            <IconUpload className="non-scaling-stroke mx-auto h-12 w-12 text-slate-400" />
             <div className="flex items-center justify-center text-sm text-slate-500">
               <Button.Link type="primary" onClick={handleOpen}>
                 {t(selectText)}

@@ -1,19 +1,20 @@
-import { type FormField } from '@/models'
-import {
-  DATE_CONDITION_OPTIONS,
-  DEFAULT_CONDITION_OPTIONS,
-  MULTIPLE_CHOICE_CONDITION_OPTIONS,
-  NUMBER_CONDITION_OPTIONS,
-  SINGLE_CHOICE_CONDITION_OPTIONS,
-  SINGLE_CHOICE_CONDITIONS,
-  TEXT_CONDITION_OPTIONS
-} from '@/pages/form/Create/views/FieldConfig'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { type LogicCondition } from '@heyforms/shared-types-enums/types/form'
 import { Input, Select } from '@heyforms/ui'
 import { isArray, isValid, isValidArray } from '@hpnp/utils/helper'
 import { type FC, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { type FormField } from '@/models'
+import {
+  DATE_CONDITION_OPTIONS,
+  DEFAULT_CONDITION_OPTIONS,
+  MULTIPLE_CHOICE_CONDITION_OPTIONS,
+  NUMBER_CONDITION_OPTIONS,
+  SINGLE_CHOICE_CONDITIONS,
+  SINGLE_CHOICE_CONDITION_OPTIONS,
+  TEXT_CONDITION_OPTIONS
+} from '@/pages/form/Create/views/FieldConfig'
 
 interface ConditionProps {
   field: FormField

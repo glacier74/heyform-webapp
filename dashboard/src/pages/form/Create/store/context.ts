@@ -1,7 +1,9 @@
-import type { FormField } from '@/models'
 import type { Logic, Variable } from '@heyforms/shared-types-enums'
 import { deepEqual } from 'fast-equals'
 import { createContext } from 'react'
+
+import type { FormField } from '@/models'
+
 import * as actions from './actions'
 
 export interface IState {

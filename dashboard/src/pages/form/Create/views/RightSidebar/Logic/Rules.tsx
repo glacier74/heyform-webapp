@@ -1,14 +1,15 @@
-import { type FormField } from '@/models'
-import { useStoreContext } from '@/pages/form/Create/store'
-import { FieldKindIcon } from '@/pages/form/Create/views/LeftSidebar/FieldKindIcon'
-import { ChevronRightIcon, DotsHorizontalIcon } from '@heroicons/react/outline'
 import { htmlUtils } from '@heyforms/answer-utils'
 import { type Logic } from '@heyforms/shared-types-enums'
 import { Button, Dropdown, Menus, stopPropagation } from '@heyforms/ui'
 import { isValidArray } from '@hpnp/utils/helper'
+import { IconChevronRight, IconDots } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { type FormField } from '@/models'
+import { useStoreContext } from '@/pages/form/Create/store'
+import { FieldKindIcon } from '@/pages/form/Create/views/LeftSidebar/FieldKindIcon'
 
 interface LogicItemProps {
   fields: FormField[]
@@ -37,8 +38,8 @@ const LogicItem: FC<LogicItemProps> = ({ fields, logic, onEdit, onDelete }) => {
   const DropdownTrigger = useMemo(
     () => (
       <Button.Link
-        className="field-card-action w-8 h-8"
-        leading={<DotsHorizontalIcon />}
+        className="field-card-action h-8 w-8"
+        leading={<IconDots />}
         onMouseDown={stopPropagation}
       />
     ),
@@ -129,7 +130,7 @@ export const Rules: FC = () => {
           <span>{t('formBuilder.rules')}</span>
           <Button.Link
             className="text-slate-500 hover:text-slate-900"
-            trailing={<ChevronRightIcon />}
+            trailing={<IconChevronRight />}
             onClick={handleClick}
           >
             {t('formBuilder.bulkEdit')}

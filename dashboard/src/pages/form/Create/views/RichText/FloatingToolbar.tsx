@@ -1,8 +1,10 @@
-import { BoldIcon, ItalicIcon, LinkIcon, UnderlineIcon, UnlinkIcon } from '@/components'
 import { Button, Form, Input, Portal } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import type { CSSProperties, FC } from 'react'
 import { startTransition, useEffect, useState } from 'react'
+
+import { BoldIcon, ItalicIcon, LinkIcon, UnderlineIcon, UnlinkIcon } from '@/components'
+
 import { getRangeSelection, getStyleFromRect } from './utils'
 
 interface FloatingToolbarProps extends Omit<IComponentProps, 'onChange'>, IModalProps {
@@ -126,7 +128,7 @@ export const FloatingToolbar: FC<FloatingToolbarProps> = ({
       <div className="floating-toolbar">
         <div className="floating-toolbar-mask" onClick={onClose} />
         <div
-          className="floating-toolbar-container flex items-center px-1 py-0.5 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="floating-toolbar-container flex items-center rounded-md bg-white px-1 py-0.5 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           style={portalStyle}
           {...restProps}
         >

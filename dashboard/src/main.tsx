@@ -1,16 +1,18 @@
-import '@/locales'
-import Router from '@/router'
-import { store, StoreProvider } from '@/store'
-import { getDeviceId, setDeviceId } from '@/utils'
-import { register } from '@/utils/serviceWorker'
 import { ApolloError } from '@apollo/client'
-import { EmojiSadIcon } from '@heroicons/react/outline'
 import { EmptyStates } from '@heyforms/ui'
 import { ErrorBoundary, init } from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
+import { IconMoodSad } from '@tabler/icons-react'
 import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import 'unfetch/polyfill/polyfill.mjs'
+
+import '@/locales'
+import Router from '@/router'
+import { StoreProvider, store } from '@/store'
+import { getDeviceId, setDeviceId } from '@/utils'
+import { register } from '@/utils/serviceWorker'
+
 import './styles/index.scss'
 
 if (!getDeviceId()) {
@@ -35,8 +37,8 @@ if (import.meta.env.PROD) {
 const App = () => {
   const Fallback = (
     <EmptyStates
-      className="h-screen flex flex-col justify-center"
-      icon={<EmojiSadIcon />}
+      className="flex h-screen flex-col justify-center"
+      icon={<IconMoodSad />}
       title="Oops, Something went wrong"
       description="Brace yourself till we get the error fixed. You may also refresh the page or try again later."
     />

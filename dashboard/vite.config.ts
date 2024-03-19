@@ -25,24 +25,6 @@ export default ({ mode }: ConfigEnv) => {
       fontOptimizationPlugin({
         apply: 'build'
       }),
-      // uploadPlugin({
-      //   envFile: '.qiniurc',
-      //   prefix: 'webapp/',
-      //   base: 'dist/',
-      //   glob: 'dist/**',
-      //   globIgnore: [
-      //     'dist/**/*.map',
-      //     'dist/**/*.html',
-      //     'dist/asset-manifest.json',
-      //     'dist/static/manifest.webmanifest',
-      //     'dist/sw.js'
-      //   ],
-      //   bucket: 'heyform',
-      //   overrides: true,
-      //   parallelCount: 2,
-      //   zone: UploadZone.na0,
-      //   debug: true
-      // }),
       // @ts-ignore
       injectManifest({
         swSrc: 'src/sw.js',
@@ -97,14 +79,6 @@ export default ({ mode }: ConfigEnv) => {
       commonjsOptions: {
         ignoreTryCatch: false
       }
-      // rollupOptions: {
-      //   plugins: [
-      //     externalGlobals({
-      //       react: 'React',
-      //       'react-dom': 'ReactDOM'
-      //     })
-      //   ]
-      // }
     },
     server: {
       port: 3000,
@@ -119,6 +93,10 @@ export default ({ mode }: ConfigEnv) => {
           // Remove `Secure` and `SameSite from proxyRes's `set-cookie`
           // https://vitejs.dev/config/#server-proxy
           configure: proxy => {
+            proxy.on('proxyReq', function(proxyReq) {
+              proxyReq.setHeader('Authorization', 'Basic cm9vdDo2NjY=')
+            })
+
             // https://github.com/http-party/node-http-proxy/pull/1166#issuecomment-328764776
             proxy.on('proxyRes', function (proxyRes) {
               const removeSecure = str => str.replace(/; Secure|; SameSite=[^;]/gi, '')

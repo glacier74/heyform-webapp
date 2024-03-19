@@ -1,5 +1,7 @@
-import { EdgeArrow } from '@/components'
 import { ReactFlowProvider } from 'react-flow-renderer'
+
+import { EdgeArrow } from '@/components'
+
 import { Flow } from './Flow'
 
 export const LogicFlow = () => {

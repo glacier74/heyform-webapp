@@ -1,9 +1,10 @@
-import { ImageIcon, PhotoPicker } from '@/components'
-import { TrashIcon } from '@heroicons/react/outline'
 import { Button, Tooltip } from '@heyforms/ui'
 import { isURL } from '@hpnp/utils/helper'
+import { IconTrash } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { useState } from 'react'
+
+import { ImageIcon, PhotoPicker } from '@/components'
 
 interface BackgroundImageProps {
   value?: string
@@ -33,13 +34,13 @@ export const BackgroundImage: FC<BackgroundImageProps> = ({ value, onChange }) =
 
   return (
     <>
-      <div className="flex items-center justify-between right-sidebar__cover-image">
+      <div className="right-sidebar__cover-image flex items-center justify-between">
         <label className="form-item-label">Background image</label>
         {isEnabled ? (
           <div className="flex items-center">
             <Tooltip ariaLabel="Change">
               <Button
-                className="px-2 py-1 mr-2"
+                className="mr-2 px-2 py-1"
                 leading={<ImageIcon />}
                 aria-label="Change background image"
                 onClick={handleOpen}
@@ -48,7 +49,7 @@ export const BackgroundImage: FC<BackgroundImageProps> = ({ value, onChange }) =
             <Tooltip ariaLabel="Delete">
               <Button
                 className="px-2 py-1"
-                leading={<TrashIcon />}
+                leading={<IconTrash />}
                 aria-label="Delete background image"
                 onClick={handleRemove}
               />

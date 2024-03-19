@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+
 import { Rules } from './Rules'
 import { Variables } from './Variables'
 

@@ -1,9 +1,10 @@
-import { SwitchField } from '@/components'
-import { useStoreContext } from '@/pages/form/Create/store'
 import type { FormField } from '@heyforms/shared-types-enums'
 import type { FC } from 'react'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { SwitchField } from '@/components'
+import { useStoreContext } from '@/pages/form/Create/store'
 
 export interface IBasicProps {
   field: FormField

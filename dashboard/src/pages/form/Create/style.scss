@@ -1,6 +1,12 @@
 .form-builder {
-  @apply flex items-center flex-1;
-  height: calc(100vh - 3.75rem);
+  @apply flex h-[calc(100vh-68px)];
+
+  .right-sidebar {
+    .tabs-pane-group {
+      overflow-y: auto;
+      scrollbar-gutter: initial;
+    }
+  }
 }
 
 // ----------------------------------------------------------------------------

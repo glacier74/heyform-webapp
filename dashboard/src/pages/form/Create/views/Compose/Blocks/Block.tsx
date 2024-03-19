@@ -1,5 +1,3 @@
-import { useStoreContext } from '@/pages/form/Create/store'
-import { RichText } from '@/pages/form/Create/views/RichText'
 import { questionNumber } from '@heyforms/form-component'
 import { FieldLayoutAlignEnum, FormField, QUESTION_FIELD_KINDS } from '@heyforms/shared-types-enums'
 import { isURL } from '@hpnp/utils/helper'
@@ -7,6 +5,10 @@ import clsx from 'clsx'
 import type { FC } from 'react'
 import { RefObject, useCallback, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { useStoreContext } from '@/pages/form/Create/store'
+import { RichText } from '@/pages/form/Create/views/RichText'
+
 import { Layout } from '../Layout'
 
 export interface BlockProps extends IComponentProps {
@@ -97,7 +99,7 @@ export const Block: FC<BlockProps> = ({
           [`heyform-block-${field.layout?.align}`]: field.layout?.align
         })}
       >
-        <div className="flex flex-col items-center justify-center min-h-full">
+        <div className="flex min-h-full flex-col items-center justify-center">
           <div className={clsx('heyform-block', className)} {...restProps}>
             <div className="mb-10">
               {isLabelShow && (

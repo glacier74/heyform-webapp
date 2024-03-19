@@ -1,8 +1,10 @@
-import { NumberRange, SwitchField } from '@/components'
-import { useStoreContext } from '@/pages/form/Create/store'
 import type { FC } from 'react'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { NumberRange, SwitchField } from '@/components'
+import { useStoreContext } from '@/pages/form/Create/store'
+
 import type { IBasicProps } from './Basic'
 
 export const MultipleChoice: FC<IBasicProps> = ({ field }) => {

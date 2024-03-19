@@ -3,28 +3,28 @@ export const Skeleton = () => {
     <div className="mt-8">
       <div className="flex">
         <div className="px-6 py-3">
-          <div className="skeleton rounded-bl-sm w-20 h-3 mb-0.5" />
+          <div className="skeleton mb-0.5 h-3 w-20 rounded-bl-sm" />
         </div>
       </div>
       <div className="flex flex-col px-6 py-4">
-        <div className="skeleton rounded-bl-sm w-60 h-3.5 my-1" />
-        <div className="skeleton rounded-bl-sm w-28 h-3.5 my-1" />
+        <div className="skeleton my-1 h-3.5 w-60 rounded-bl-sm" />
+        <div className="skeleton my-1 h-3.5 w-28 rounded-bl-sm" />
       </div>
       <div className="flex flex-col px-6 py-4">
-        <div className="skeleton rounded-bl-sm w-60 h-3.5 my-1" />
-        <div className="skeleton rounded-bl-sm w-28 h-3.5 my-1" />
+        <div className="skeleton my-1 h-3.5 w-60 rounded-bl-sm" />
+        <div className="skeleton my-1 h-3.5 w-28 rounded-bl-sm" />
       </div>
       <div className="flex flex-col px-6 py-4">
-        <div className="skeleton rounded-bl-sm w-60 h-3.5 my-1" />
-        <div className="skeleton rounded-bl-sm w-28 h-3.5 my-1" />
+        <div className="skeleton my-1 h-3.5 w-60 rounded-bl-sm" />
+        <div className="skeleton my-1 h-3.5 w-28 rounded-bl-sm" />
       </div>
       <div className="flex flex-col px-6 py-4">
-        <div className="skeleton rounded-bl-sm w-60 h-3.5 my-1" />
-        <div className="skeleton rounded-bl-sm w-28 h-3.5 my-1" />
+        <div className="skeleton my-1 h-3.5 w-60 rounded-bl-sm" />
+        <div className="skeleton my-1 h-3.5 w-28 rounded-bl-sm" />
       </div>
       <div className="flex flex-col px-6 py-4">
-        <div className="skeleton rounded-bl-sm w-60 h-3.5 my-1" />
-        <div className="skeleton rounded-bl-sm w-28 h-3.5 my-1" />
+        <div className="skeleton my-1 h-3.5 w-60 rounded-bl-sm" />
+        <div className="skeleton my-1 h-3.5 w-28 rounded-bl-sm" />
       </div>
     </div>
   )

@@ -1,6 +1,3 @@
-import type { FormField } from '@/models'
-import { getValidLogics, serializeFields } from '@/pages/form/Create/utils'
-import { FormService } from '@/service'
 import { htmlUtils } from '@heyforms/answer-utils'
 import {
   FieldKindEnum,
@@ -11,6 +8,11 @@ import {
 import { clone } from '@hpnp/utils'
 import { isEmpty, isNil, isValid, isValidArray } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
+
+import type { FormField } from '@/models'
+import { getValidLogics, serializeFields } from '@/pages/form/Create/utils'
+import { FormService } from '@/service'
+
 import type {
   AddFieldAction,
   DeleteFieldAction,

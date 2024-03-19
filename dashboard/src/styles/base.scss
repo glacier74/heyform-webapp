@@ -1,7 +1,5 @@
 .scrollbar {
   overflow-y: auto;
-  overflow-y: overlay;
-  scrollbar-gutter: stable;
 
   @media (min-width: 768px) {
     &::-webkit-scrollbar {

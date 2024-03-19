@@ -1,4 +1,4 @@
-import { TEMPLATE_DETAIL_GQL, TEMPLATES_GQL, USE_TEMPLATE_GQL } from '@/consts'
+import { TEMPLATES_GQL, TEMPLATE_DETAIL_GQL, USE_TEMPLATE_GQL } from '@/consts'
 import { request } from '@/utils'
 
 export class TemplateService {

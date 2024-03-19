@@ -1,9 +1,10 @@
-import { CheckIcon } from '@heroicons/react/solid'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { Select } from '@heyforms/ui'
+import { IconCheck } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+
 import { useStoreContext } from '../../../store'
 import { FIELD_CONFIGS, FIELD_THANK_YOU_CONFIG, FIELD_WELCOME_CONFIG } from '../../FieldConfig'
 import { FieldIcon } from '../../FieldIcon'
@@ -59,7 +60,7 @@ export const TypeSelect: FC = () => {
         <span className="select-option-text">{t(option.label)}</span>
         {field.kind === option.kind && (
           <span className="select-option-checkmark">
-            <CheckIcon />
+            <IconCheck />
           </span>
         )}
       </div>

@@ -1,17 +1,3 @@
-import { Async } from '@/components'
-import { CreateForm } from './views/CreateForm'
-import { RenameForm } from './views/RenameForm'
-import { FormService } from '@/service'
-import { useStore } from '@/store'
-import { useParam, useVisible } from '@/utils'
-import {
-  ClipboardCheckIcon,
-  DocumentTextIcon,
-  DotsHorizontalIcon,
-  DuplicateIcon,
-  PencilIcon,
-  TrashIcon
-} from '@heroicons/react/outline'
 import type { FormModel } from '@heyforms/shared-types-enums'
 import { FormStatusEnum } from '@heyforms/shared-types-enums'
 import {
@@ -21,19 +7,35 @@ import {
   EmptyStates,
   Menus,
   Modal,
-  notification,
-  Table
+  Table,
+  notification
 } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/types/table'
 import { isValid } from '@hpnp/utils/helper'
+import {
+  IconClipboardCheck,
+  IconCopy,
+  IconDots,
+  IconFile,
+  IconPencil,
+  IconTrash
+} from '@tabler/icons-react'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import * as timeago from 'timeago.js'
+
+import { Async } from '@/components'
+import { FormService } from '@/service'
+import { useStore } from '@/store'
+import { useParam, useVisible } from '@/utils'
+
 import { ProjectLayout } from '../views/ProjectLayout'
 import { Skeleton } from '../views/Skeleton'
 import './index.scss'
+import { CreateForm } from './views/CreateForm'
+import { RenameForm } from './views/RenameForm'
 
 const Project = observer(() => {
   const navigate = useNavigate()
@@ -122,8 +124,8 @@ const Project = observer(() => {
       render(record) {
         return (
           <div>
-            <p className="text-sm font-semibold text-slate-800 truncate">{record.name}</p>
-            <p className="mt-0.5 flex items-center font-normal text-sm text-slate-500">
+            <p className="truncate text-sm font-semibold text-slate-800">{record.name}</p>
+            <p className="mt-0.5 flex items-center text-sm font-normal text-slate-500">
               <span className="truncate">
                 {record.submissionCount && record.submissionCount > 0
                   ? `${record.submissionCount} ${t('project.ProjectMembers.submissions')}`
@@ -187,18 +189,18 @@ const Project = observer(() => {
 
         return (
           <Dropdown
-            className="ml-1 p-1 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 cursor-pointer"
+            className="ml-1 cursor-pointer rounded-md p-1 text-slate-500 hover:bg-slate-50 hover:text-slate-900"
             placement="bottom-start"
             overlay={
               <Menus onClick={handleClick}>
-                <Menus.Item value="edit" icon={<DocumentTextIcon />} label={t('project.edit')} />
-                <Menus.Item value="duplicate" icon={<DuplicateIcon />} label={t('project.dup')} />
-                <Menus.Item value="rename" icon={<PencilIcon />} label={t('project.rename')} />
-                <Menus.Item value="delete" icon={<TrashIcon />} label={t('project.del')} />
+                <Menus.Item value="edit" icon={<IconPencil />} label={t('project.edit')} />
+                <Menus.Item value="duplicate" icon={<IconCopy />} label={t('project.dup')} />
+                <Menus.Item value="rename" icon={<IconPencil />} label={t('project.rename')} />
+                <Menus.Item value="delete" icon={<IconTrash />} label={t('project.del')} />
               </Menus>
             }
           >
-            <DotsHorizontalIcon className="w-5 h-5" />
+            <IconDots className="h-5 w-5" />
           </Dropdown>
         )
       }
@@ -214,7 +216,7 @@ const Project = observer(() => {
         emptyState={
           <EmptyStates
             className="empty-states-fit"
-            icon={<ClipboardCheckIcon className="non-scaling-stroke" />}
+            icon={<IconClipboardCheck className="non-scaling-stroke" />}
             title={t('project.noForm')}
             description={t('project.text')}
             action={<Button onClick={handleCreateForm}>{t('project.create2')}</Button>}

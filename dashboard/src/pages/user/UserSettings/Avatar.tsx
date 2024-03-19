@@ -1,10 +1,11 @@
-import { PhotoPickerField } from '@/components'
-import { UserService } from '@/service'
-import { useStore } from '@/store'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { PhotoPickerField } from '@/components'
+import { UserService } from '@/service'
+import { useStore } from '@/store'
 
 export const Avatar: FC = observer(() => {
   const userStore = useStore('userStore')

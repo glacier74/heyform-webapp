@@ -1,11 +1,13 @@
-import { CURRENCY_SYMBOLS } from '@/pages/form/Create/consts'
-import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
-import { ChevronRightIcon } from '@heroicons/react/outline'
 import { NumberPrice } from '@heyforms/shared-types-enums'
 import { isValid } from '@hpnp/utils/helper'
+import { IconChevronRight } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { CURRENCY_SYMBOLS } from '@/pages/form/Create/consts'
+import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
+
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
@@ -61,7 +63,7 @@ export const Payment: FC<BlockProps> = ({ field, locale, ...restProps }) => {
         </div>
       </div>
 
-      <FakeSubmit text={t('Next', { lng: locale })} icon={<ChevronRightIcon />} />
+      <FakeSubmit text={t('Next', { lng: locale })} icon={<IconChevronRight />} />
     </Block>
   )
 }

@@ -1,10 +1,11 @@
-import { FieldKindIcon } from '@/pages/form/Create/views/LeftSidebar/FieldKindIcon'
 import { htmlUtils } from '@heyforms/answer-utils'
 import type { IFormField } from '@heyforms/form-component/types/typings'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import type { FC } from 'react'
 import { memo, useMemo } from 'react'
 import { Handle, Node, Position } from 'react-flow-renderer'
+
+import { FieldKindIcon } from '../LeftSidebar/FieldKindIcon'
 
 interface CustomNodeProps extends Node {
   data: {

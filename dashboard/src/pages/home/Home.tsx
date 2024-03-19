@@ -1,9 +1,10 @@
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { useAsyncEffect, useQuery, useQueryURL, useRouter } from '@/utils'
 import { isEmpty, isValid } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
+
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { useAsyncEffect, useQuery, useQueryURL, useRouter } from '@/utils'
 
 const INVITATION_REGEX = /\/workspace\/[^\/]+\/invitation\/[^\/]+/i
 
@@ -17,7 +18,6 @@ const Home: FC = observer(() => {
     let list = workspaceStore.list
     const currentWorkspaceId = workspaceStore.currentWorkspaceId
     const redirectUri = query.redirect_uri
-    console.log(redirectUri, nextURL)
 
     // 如果用户从邀请链接跳转，不管是否有 workspace 都跳转到邀请页面
     if (INVITATION_REGEX.test(redirectUri)) {

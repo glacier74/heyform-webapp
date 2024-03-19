@@ -1,12 +1,12 @@
-import { PlusIcon } from '@heroicons/react/outline'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
 import { Button, Dropdown, Input, Tooltip } from '@heyforms/ui'
-import type { InputValue } from '@heyforms/ui/types/input/Input'
 import { isValid } from '@hpnp/utils/helper'
+import { IconPlus } from '@tabler/icons-react'
 import clsx from 'clsx'
 import type { FC } from 'react'
 import { startTransition, useCallback, useLayoutEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
 import { useStoreContext } from '../../store'
 import { getFieldFromKind } from '../../utils'
 import type { FieldConfig, FieldGroup } from '../FieldConfig'
@@ -52,7 +52,7 @@ const InsertFieldItem: FC<InsertFieldItemProps> = ({
   return (
     <div
       className={clsx(
-        'insert-field-item group flex items-center px-4 py-2 text-sm font-medium rounded-md cursor-pointer',
+        'insert-field-item group flex cursor-pointer items-center rounded-md px-4 py-2 text-sm font-medium',
         {
           'insert-field-item-disabled': isDisabled
         }
@@ -98,7 +98,7 @@ const InsertFieldMenu: FC<InsertFieldMenuProps> = ({ onClick }) => {
 
   const [groups, setGroups] = useState<FieldGroup[]>(filterGroups())
 
-  function handleKeywordChange(value?: InputValue) {
+  function handleKeywordChange(value?: any) {
     startTransition(() => {
       const result = filterGroups(value as string)
       setGroups(result)
@@ -127,14 +127,14 @@ const InsertFieldMenu: FC<InsertFieldMenuProps> = ({ onClick }) => {
   const handleKeywordChangeCallback = useCallback(handleKeywordChange, [])
 
   return (
-    <div className="insert-field-menu flex flex-col rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+    <div className="insert-field-menu flex flex-col rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
       <Input.Search
-        className="insert-field-search px-4 border-gray-200 outline-none focus:outline-none rounded-none border-t-0 border-r-0 border-l-0"
+        className="insert-field-search rounded-none border-t-0 border-r-0 border-l-0 border-gray-200 px-4 outline-none focus:outline-none"
         placeholder={t('formBuilder.searchFieldType')}
         onChange={handleKeywordChangeCallback}
       />
       <div className="px-4 py-5">{t('formBuilder.allFieldTypes')}</div>
-      <div className="insert-field-groups relative scrollbar">
+      <div className="insert-field-groups scrollbar relative">
         {groups.map(group => (
           <div key={group.name} className="insert-field-group absolute w-1/4">
             <div className="insert-field-group-title mb-1 pl-4 text-sm font-medium text-slate-500">
@@ -177,7 +177,7 @@ export const InsertFieldDropdown = () => {
   const dropdownTrigger = useMemo(
     () => (
       <Tooltip ariaLabel={t('formBuilder.addNewQuestion')}>
-        <Button.Link className="w-6 h-6" leading={<PlusIcon />} />
+        <Button.Link className="h-6 w-6" leading={<IconPlus />} />
       </Tooltip>
     ),
     []
@@ -189,7 +189,7 @@ export const InsertFieldDropdown = () => {
 
   return (
     <Dropdown
-      className="insert-field-dropdown w-6 h-6 rounded-md text-slate-500 hover:bg-slate-50 cursor-pointer"
+      className="insert-field-dropdown h-6 w-6 cursor-pointer rounded-md text-slate-500 hover:bg-slate-50"
       popupClassName="insert-field-popup"
       visible={visible}
       placement="right-start"

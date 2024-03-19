@@ -1,6 +1,3 @@
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { useParam } from '@/utils'
 import { Button, Form, Input, Modal, notification, useForm } from '@heyforms/ui'
 import { unixDate } from '@hpnp/utils'
 import { isEmpty, isValid } from '@hpnp/utils/helper'
@@ -8,6 +5,10 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { useParam } from '@/utils'
 
 export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => {
   const { workspaceId } = useParam()
@@ -46,7 +47,7 @@ export const InviteMember: FC<IModalProps> = observer(({ visible, onClose }) => 
     <Modal contentClassName="max-w-md" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-slate-900">
+          <h1 className="text-lg font-medium leading-6 text-slate-900">
             {t('workspace.members.inviteMember')} <span>{workspaceStore.project?.name}</span>
           </h1>
           <p className="mt-1 text-sm text-slate-500">

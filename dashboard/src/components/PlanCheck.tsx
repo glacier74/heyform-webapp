@@ -1,9 +1,10 @@
-import { PlanGradeEnum } from '@/models'
-import { useStore } from '@/store'
 import { Badge } from '@heyforms/ui'
 import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
+
+import { PlanGradeEnum } from '@/models'
+import { useStore } from '@/store'
 
 interface UpgradeButtonProps extends IComponentProps {
   permission: PlanGradeEnum
@@ -29,7 +30,7 @@ export const PlanCheck: FC<UpgradeButtonProps> = observer(
       <div className={clsx('plan-check relative', className)}>
         {children}
         <div
-          className="plan-check-container flex items-center justify-end absolute inset-0 z-10 cursor-pointer"
+          className="plan-check-container absolute inset-0 z-10 flex cursor-pointer items-center justify-end"
           onClick={handleClick}
         >
           {isBadgeShow && <Badge className="px-2" type="blue" text="Premium" rounded />}
@@ -58,7 +59,7 @@ export const TabPanePlanCheck: FC<UpgradeButtonProps> = observer(
       <div className="absolute inset-0 z-10 overflow-hidden">
         {children}
         <div
-          className="tab-pane_plan-check absolute inset-0 z-20 flex items-center justify-center backdrop-blur-sm bg-white bg-opacity-5 cursor-pointer"
+          className="tab-pane_plan-check absolute inset-0 z-20 flex cursor-pointer items-center justify-center bg-white bg-opacity-5 backdrop-blur-sm"
           onClick={handleClick}
         >
           {isBadgeShow && <Badge className="px-4 py-2" type="blue" text="Premium" rounded />}

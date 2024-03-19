@@ -1,9 +1,10 @@
-import { SearchIcon } from '@heroicons/react/outline'
 import type { FormField, Variable } from '@heyforms/shared-types-enums'
 import { Menus, Portal } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
+import { IconSearch } from '@tabler/icons-react'
 import type { CSSProperties, FC } from 'react'
 import { useEffect, useMemo, useState } from 'react'
+
 import { useStoreContext } from '../../store'
 import { FieldIcon, VariableIcon } from '../FieldIcon'
 
@@ -115,7 +116,7 @@ export const MentionMenu: FC<MentionMenuProps> = ({
               )}
             </>
           ) : (
-            <Menus.Item icon={<SearchIcon />} label="No questions found" />
+            <Menus.Item icon={<IconSearch />} label="No questions found" />
           )}
           <Menus.Divider />
           <Menus.Item label="Learn about mention" />

@@ -1,13 +1,14 @@
-import { CopyButton, PlanCheck, SwitchField } from '@/components'
-import { PlanGradeEnum } from '@/models'
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { useParam } from '@/utils'
 import { Form, Input } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { CopyButton, PlanCheck, SwitchField } from '@/components'
+import { PlanGradeEnum } from '@/models'
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { useParam } from '@/utils'
 
 export const Branding: FC = observer(() => {
   const { workspaceId } = useParam()

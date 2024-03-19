@@ -1,10 +1,12 @@
-import { PlanCheck, SwitchField } from '@/components'
-import { PlanGradeEnum } from '@/models'
-import { useStoreContext } from '@/pages/form/Create/store'
 import { Input } from '@heyforms/ui'
 import type { FC } from 'react'
 import { startTransition } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { PlanCheck, SwitchField } from '@/components'
+import { PlanGradeEnum } from '@/models'
+import { useStoreContext } from '@/pages/form/Create/store'
+
 import type { IBasicProps } from './Basic'
 
 export const ThankYou: FC<IBasicProps> = ({ field }) => {

@@ -23,9 +23,9 @@ const SidebarLink: FC<IOptionType & { active?: string }> = ({ label, value, acti
   return (
     <a
       className={clsx(
-        'block py-2 px-3 text-slate-900 rounded cursor-pointer hover:text-slate-900',
+        'block cursor-pointer rounded py-2 px-3 text-slate-900 hover:bg-slate-100 hover:text-slate-900',
         {
-          'bg-zinc-50/60': active === value
+          'bg-slate-100': active === value
         }
       )}
       href={`#${value}`}
@@ -39,7 +39,7 @@ export const Sidebar: FC = () => {
   const [active, setActive] = useState(SIDEBAR_LINK_OPTIONS[0].value)
 
   useEffect(() => {
-    const element = document.querySelector('.content')!
+    const element = document.querySelector('.form-content-container')!
     const elementRect = element.getBoundingClientRect()
     const selections = Array.from(element.querySelectorAll('.form-settings-selection'))
 
@@ -68,7 +68,7 @@ export const Sidebar: FC = () => {
   }, [])
 
   return (
-    <div className="w-64 hidden md:block">
+    <div className="hidden w-64 md:block">
       <div className="sticky top-14 mt-14">
         <div className="space-y-1">
           {SIDEBAR_LINK_OPTIONS.map((row, index) => (

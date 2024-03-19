@@ -1,22 +1,22 @@
-import { PlanCheck } from '@/components'
-import { PlanGradeEnum } from '@/models'
-import { useStore } from '@/store'
-import { useParam } from '@/utils'
 import {
-  CogIcon,
-  CreditCardIcon,
-  DocumentTextIcon,
-  GiftIcon,
-  HomeIcon,
-  MailIcon,
-  PlayIcon,
-  QuestionMarkCircleIcon,
-  UsersIcon
-} from '@heroicons/react/outline'
+  IconCreditCard,
+  IconFileStack,
+  IconGift,
+  IconHelp,
+  IconHome,
+  IconPlayerPlay,
+  IconSettings,
+  IconUsers
+} from '@tabler/icons-react'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, NavLinkProps } from 'react-router-dom'
+
+import { PlanCheck } from '@/components'
+import { PlanGradeEnum } from '@/models'
+import { useStore } from '@/store'
+import { useParam } from '@/utils'
 
 interface SidebarNavProps {
   isMobile?: boolean
@@ -52,56 +52,45 @@ export const Navbar: FC<SidebarNavProps> = observer(
     }
 
     return (
-      <nav className="sidebar-nav scrollbar flex-1 mt-5 px-2 pb-4">
+      <nav className="sidebar-nav scrollbar mt-5 flex-1 px-2 pb-4">
         <div className="space-y-1">
           <CustomLink
             isMobile={isMobile}
             to={`/workspace/${workspaceId}`}
             end={true}
-            className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
+            className="group flex items-center rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-200 hover:text-slate-900"
             onClick={handleCloseSidebar}
           >
-            <HomeIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
+            <IconHome className="mr-3 h-5 w-5 flex-shrink-0 text-slate-700" />
             {t('other.labelList.Dashboard')}
           </CustomLink>
           <PlanCheck permission={PlanGradeEnum.PREMIUM}>
             <CustomLink
               isMobile={isMobile}
               to={`/workspace/${workspaceId}/member`}
-              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
+              className="group flex items-center rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-200 hover:text-slate-900"
               onClick={handleCloseSidebar}
             >
-              <UsersIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
+              <IconUsers className="mr-3 h-5 w-5 flex-shrink-0 text-slate-700" />
               {t('other.labelList.TeamMembers')}
             </CustomLink>
           </PlanCheck>
-          {/* <PlanCheck permission={PlanGradeEnum.PREMIUM}>
-            <CustomLink
-              isMobile={isMobile}
-              to={`/workspace/${workspaceId}/audience`}
-              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
-              onClick={handleCloseSidebar}
-            >
-              <MailIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5" />
-              {t('other.labelList.Audiences')}
-            </CustomLink>
-          </PlanCheck> */}
           {workspaceStore.workspace?.isOwner && (
             <>
               <CustomLink
                 isMobile={isMobile}
                 to={`/workspace/${workspaceId}/billing`}
-                className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
+                className="group flex items-center rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-200 hover:text-slate-900"
                 onClick={handleCloseSidebar}
               >
-                <CreditCardIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
+                <IconCreditCard className="mr-3 h-5 w-5 flex-shrink-0 text-slate-700" />
                 {t('other.labelList.Billing')}
               </CustomLink>
               <div
-                className="text-slate-600 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md cursor-pointer"
+                className="group flex cursor-pointer items-center rounded-md px-2 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 hover:text-slate-900"
                 onClick={onWorkspaceSettingsOpen}
               >
-                <CogIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
+                <IconSettings className="mr-3 h-5 w-5 flex-shrink-0 text-slate-700" />
                 {t('other.labelList.Workspace')}
               </div>
             </>
@@ -111,7 +100,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
         {/* Projects */}
         <div className="mt-8">
           <h3
-            className="px-2 mb-2 text-xs font-semibold text-slate-900 uppercase tracking-wider"
+            className="mb-2 px-2 text-xs font-semibold uppercase tracking-wider text-slate-900"
             id="projects-headline"
           >
             {t('other.labelList.Projects')}
@@ -122,7 +111,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
                 key={project.id}
                 isMobile={isMobile}
                 to={`/workspace/${workspaceId}/project/${project.id}`}
-                className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
+                className="group flex items-center rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-200 hover:text-slate-900"
                 onClick={handleCloseSidebar}
               >
                 {project.name}
@@ -134,7 +123,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
         {/* Resources links */}
         <div className="mt-8">
           <h3
-            className="px-2 mb-2 text-xs font-semibold text-slate-900 uppercase tracking-wider"
+            className="mb-2 px-2 text-xs font-semibold uppercase tracking-wider text-slate-900"
             id="resources-headline"
           >
             {t('other.labelList.Resources')}
@@ -143,33 +132,33 @@ export const Navbar: FC<SidebarNavProps> = observer(
             <a
               href="https://heyform.net/help/create-your-first-heyform"
               target="_blank"
-              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
+              className="group flex items-center rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-200 hover:text-slate-900"
             >
-              <PlayIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
+              <IconPlayerPlay className="mr-3 h-5 w-5 flex-shrink-0 text-slate-700" />
               <span className="truncate">{t('other.labelList.GettingStarted')}</span>
             </a>
             <a
               href="https://heyform.net/help"
               target="_blank"
-              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
+              className="group flex items-center rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-200 hover:text-slate-900"
             >
-              <QuestionMarkCircleIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
+              <IconHelp className="mr-3 h-5 w-5 flex-shrink-0 text-slate-700" />
               <span className="truncate">{t('other.labelList.Help')}</span>
             </a>
             <a
               href="https://heyform.net/templates"
               target="_blank"
-              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
+              className="group flex items-center rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-200 hover:text-slate-900"
             >
-              <DocumentTextIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
+              <IconFileStack className="mr-3 h-5 w-5 flex-shrink-0 text-slate-700" />
               <span className="truncate">{t('other.labelList.Template')}</span>
             </a>
             <a
               href="https://heyform.net/changelog"
               target="_blank"
-              className="text-slate-700 hover:bg-slate-200 hover:text-slate-900 group flex items-center px-2 py-1 text-sm rounded-md"
+              className="group flex items-center rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-200 hover:text-slate-900"
             >
-              <GiftIcon className="text-slate-700 mr-3 flex-shrink-0 h-5 w-5 stroke-1" />
+              <IconGift className="mr-3 h-5 w-5 flex-shrink-0 text-slate-700" />
               <span className="truncate">{t('other.labelList.Changelog')}</span>
             </a>
           </div>

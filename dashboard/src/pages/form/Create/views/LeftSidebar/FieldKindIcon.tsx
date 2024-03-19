@@ -1,5 +1,6 @@
 import { questionNumber } from '@heyforms/form-component'
 import type { FC } from 'react'
+
 import type { FieldIconProps } from '../FieldIcon'
 import { FieldIcon } from '../FieldIcon'
 

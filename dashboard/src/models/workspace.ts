@@ -1,6 +1,8 @@
+import { CF_DnsRecord } from '@heyforms/shared-types-enums'
+
 import { ProjectModel } from '@/models/project'
 import { UserModel } from '@/models/user'
-import { CF_DnsRecord } from '@heyforms/shared-types-enums'
+
 import { BillingCycleEnum } from './invoice'
 import { PlanModel } from './plan'
 

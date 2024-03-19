@@ -1,19 +1,16 @@
-import type { UserModel } from '@/models'
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { cropImage, useAsyncEffect, useParam, useVisible } from '@/utils'
-import {
-  DotsHorizontalIcon,
-  LogoutIcon,
-  SwitchHorizontalIcon,
-  TrashIcon
-} from '@heroicons/react/outline'
 import { Avatar, Button, Dropdown, Heading, Menus, Table } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/types/table'
+import { IconDots, IconLogout, IconSwitchHorizontal, IconTrash } from '@tabler/icons-react'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import * as timeago from 'timeago.js'
+
+import type { UserModel } from '@/models'
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { cropImage, useAsyncEffect, useParam, useVisible } from '@/utils'
+
 import { DeleteMember } from './DeleteMember'
 import { InviteMember } from './InviteMember'
 import { LeaveWorkspace } from './LeaveWorkspace'
@@ -44,10 +41,10 @@ const Members = observer(() => {
               <Avatar src={cropImage(record.avatar, 60, 60)} size={36} rounded circular />
             </div>
             <div className="flex-1 px-4">
-              <p className="text-sm font-semibold text-slate-800 truncate">
+              <p className="truncate text-sm font-semibold text-slate-800">
                 {record.name} {userStore.user.id === record.id && <span>(You)</span>}
               </p>
-              <p className="mt-0.5 flex items-center font-normal text-sm text-slate-500">
+              <p className="mt-0.5 flex items-center text-sm font-normal text-slate-500">
                 <span className="truncate">{record.email}</span>
               </p>
             </div>
@@ -63,7 +60,7 @@ const Members = observer(() => {
         if (record.id === workspaceStore.workspace.ownerId) {
           return (
             <>
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+              <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
                 {t('workspace.members.index.owner')}
               </span>
             </>
@@ -71,7 +68,7 @@ const Members = observer(() => {
         }
         return (
           <>
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
+            <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-800">
               {t('workspace.members.index.member')}
             </span>
           </>
@@ -125,10 +122,10 @@ const Members = observer(() => {
           <Menus onClick={handleMenuClick}>
             <Menus.Item
               value="transfer"
-              icon={<SwitchHorizontalIcon />}
+              icon={<IconSwitchHorizontal />}
               label={t('workspace.members.index.transfer')}
             />
-            <Menus.Item value="remove" icon={<TrashIcon />} label={t('workspace.members.remove')} />
+            <Menus.Item value="remove" icon={<IconTrash />} label={t('workspace.members.remove')} />
           </Menus>
         )
 
@@ -136,7 +133,7 @@ const Members = observer(() => {
           <Menus onClick={handleMenuClick}>
             <Menus.Item
               value="leave"
-              icon={<LogoutIcon />}
+              icon={<IconLogout />}
               label={t('workspace.members.index.leave')}
             />
           </Menus>
@@ -144,10 +141,10 @@ const Members = observer(() => {
 
         return (
           <Dropdown
-            className="inline-flex p-1 hover:bg-slate-100 rounded-md cursor-pointer"
+            className="inline-flex cursor-pointer rounded-md p-1 hover:bg-slate-100"
             overlay={workspaceStore.workspace.isOwner ? OwnerOverlay : MemberOverlay}
           >
-            <DotsHorizontalIcon className="w-5 h-5 text-slate-400 hover:text-slate-900" />
+            <IconDots className="h-5 w-5 text-slate-400 hover:text-slate-900" />
           </Dropdown>
         )
       }

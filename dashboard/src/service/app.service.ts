@@ -1,6 +1,7 @@
-import { APP_AUTHORIZE_URL_GQL, APP_DETAIL_GQL, APPS_GQL } from '@/consts'
-import { request } from '@/utils'
 import axios from 'axios'
+
+import { APPS_GQL, APP_AUTHORIZE_URL_GQL, APP_DETAIL_GQL } from '@/consts'
+import { request } from '@/utils'
 
 export class AppService {
   static async apps() {

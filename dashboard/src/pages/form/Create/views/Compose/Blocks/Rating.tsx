@@ -1,6 +1,8 @@
-import { RATING_SHAPE_CONFIG } from '@/pages/form/Create/consts'
 import { Rate } from '@heyforms/ui'
 import type { FC } from 'react'
+
+import { RATING_SHAPE_CONFIG } from '@/pages/form/Create/consts'
+
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 

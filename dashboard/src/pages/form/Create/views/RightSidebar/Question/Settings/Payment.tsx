@@ -1,16 +1,18 @@
+import { NumberPrice } from '@heyforms/shared-types-enums'
+import { Button, Input, Select, notification } from '@heyforms/ui'
+import { isValid } from '@hpnp/utils/helper'
+import { IconChevronRight } from '@tabler/icons-react'
+import { observer } from 'mobx-react-lite'
+import type { FC } from 'react'
+import { startTransition, useCallback, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
 import { CURRENCY_OPTIONS } from '@/pages/form/Create/consts'
 import { useStoreContext } from '@/pages/form/Create/store'
 import { PaymentService } from '@/service'
 import { useStore } from '@/store'
 import { useParam, useVisible } from '@/utils'
-import { ChevronRightIcon } from '@heroicons/react/outline'
-import { NumberPrice } from '@heyforms/shared-types-enums'
-import { Button, Input, notification, Select } from '@heyforms/ui'
-import { isValid } from '@hpnp/utils/helper'
-import { observer } from 'mobx-react-lite'
-import type { FC } from 'react'
-import { startTransition, useCallback, useMemo, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+
 import type { IBasicProps } from './Basic'
 import { ConnectStripeModal } from './ConnectStripeModal'
 
@@ -103,7 +105,7 @@ export const Payment: FC<IBasicProps> = observer(({ field }) => {
               Revoke
             </Button>
           </div>
-          <div className="mt-2 p-2 rounded bg-slate-100">
+          <div className="mt-2 rounded bg-slate-100 p-2">
             {formStore.current?.stripeAccount?.email}
           </div>
         </div>
@@ -112,7 +114,7 @@ export const Payment: FC<IBasicProps> = observer(({ field }) => {
           <Button.Link className="connect-stripe" onClick={openModal}>
             <div className="flex items-center justify-between">
               <span>{t('formBuilder.ConnectStripe')}</span>
-              <ChevronRightIcon className="w-5 h-5 text-slate-500" />
+              <IconChevronRight className="h-5 w-5 text-slate-500" />
             </div>
           </Button.Link>
         </div>

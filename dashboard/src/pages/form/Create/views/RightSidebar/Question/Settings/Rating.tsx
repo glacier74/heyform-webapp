@@ -1,14 +1,16 @@
+import { Select } from '@heyforms/ui'
+import { IconCheck } from '@tabler/icons-react'
+import type { FC } from 'react'
+import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+
 import {
   RATING_SHAPE_CONFIG,
   RATING_SHAPE_OPTIONS,
   RATING_TOTAL_OPTIONS
 } from '@/pages/form/Create/consts'
 import { useStoreContext } from '@/pages/form/Create/store'
-import { CheckIcon } from '@heroicons/react/solid'
-import { Select } from '@heyforms/ui'
-import type { FC } from 'react'
-import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+
 import type { IBasicProps } from './Basic'
 
 export const Rating: FC<IBasicProps> = ({ field }) => {
@@ -35,7 +37,7 @@ export const Rating: FC<IBasicProps> = ({ field }) => {
         <span className="select-option-text">{t(option.label)}</span>
         {isActive && (
           <span className="select-option-checkmark">
-            <CheckIcon />
+            <IconCheck />
           </span>
         )}
       </>
@@ -79,7 +81,7 @@ export const Rating: FC<IBasicProps> = ({ field }) => {
     <div className="right-sidebar-settings-item right-sidebar-rating">
       <div className="flex items-center">
         <Select
-          className="w-20 mr-4"
+          className="mr-4 w-20"
           options={RATING_TOTAL_OPTIONS}
           value={field.properties?.total}
           onChange={handleTotalCallback}

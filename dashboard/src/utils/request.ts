@@ -1,11 +1,12 @@
-import { clearAuthState, getDeviceId } from '@/utils'
-import { ApolloClient, ApolloQueryResult, from, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloQueryResult, InMemoryCache, from } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
 import { isValid } from '@hpnp/utils/helper'
 import { RetryLink } from 'apollo-link-retry'
 import ApolloLinkTimeout from 'apollo-link-timeout'
 import { createUploadLink } from 'apollo-upload-client'
+
+import { clearAuthState, getDeviceId } from '@/utils'
 
 const uploadLink = createUploadLink({
   uri: import.meta.env.VITE_GRAPHQL_URI as string,

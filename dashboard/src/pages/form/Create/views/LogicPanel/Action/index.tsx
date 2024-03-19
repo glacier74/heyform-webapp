@@ -1,14 +1,16 @@
-import { type FormField } from '@/models'
-import { useStoreContext } from '@/pages/form/Create/store'
-import { KIND_OPTIONS, OPERATOR_OPTIONS } from '@/pages/form/Create/views/FieldConfig'
-import { PlusIcon } from '@heroicons/react/outline'
 import { flattenFieldsWithGroups } from '@heyforms/form-component'
 import { ActionEnum, type LogicAction, type Variable } from '@heyforms/shared-types-enums'
 import { Button, Input, Select } from '@heyforms/ui'
 import { isEmpty, isValidArray } from '@hpnp/utils/helper'
+import { IconPlus } from '@tabler/icons-react'
 import clsx from 'clsx'
 import { type FC, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { type FormField } from '@/models'
+import { useStoreContext } from '@/pages/form/Create/store'
+import { KIND_OPTIONS, OPERATOR_OPTIONS } from '@/pages/form/Create/views/FieldConfig'
+
 import { FieldSelect } from './FieldSelect'
 
 interface ActionProps {
@@ -149,7 +151,7 @@ export const Action: FC<ActionProps> = ({
           />
         </>
       ) : (
-        <Button.Link leading={<PlusIcon />} onClick={handleAddVariable}>
+        <Button.Link leading={<IconPlus />} onClick={handleAddVariable}>
           {t('formBuilder.variable.add')}
         </Button.Link>
       )}

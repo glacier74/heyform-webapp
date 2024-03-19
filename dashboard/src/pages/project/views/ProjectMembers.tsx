@@ -1,13 +1,14 @@
-import type { UserModel } from '@/models'
-import { ProjectService } from '@/service'
-import { useStore } from '@/store'
-import { cropImage, useParam } from '@/utils'
 import { Avatar, Badge, Button, Modal, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+
+import type { UserModel } from '@/models'
+import { ProjectService } from '@/service'
+import { useStore } from '@/store'
+import { cropImage, useParam } from '@/utils'
 
 interface MemberItemProps {
   member: UserModel
@@ -86,14 +87,14 @@ export const MemberItem: FC<MemberItemProps> = ({ member, disabled }) => {
       <Avatar src={cropImage(member.avatar, 60, 60)} size={40} retainLength={2} rounded circular />
 
       <div className="ml-4 flex-auto">
-        <p className="text-sm font-medium text-slate-700 truncate">
+        <p className="truncate text-sm font-medium text-slate-700">
           {member.name}
           {member.isSelf && t('project.ProjectMembers.you')}
           {member.isOwner && (
             <Badge className="ml-1" type="blue" text={t('workspace.members.index.owner')} />
           )}
         </p>
-        <p className="text-sm text-slate-500 truncate">{member.email}</p>
+        <p className="truncate text-sm text-slate-500">{member.email}</p>
       </div>
 
       {!(member.isSelf && member.isOwner) && (
@@ -139,7 +140,7 @@ export const ProjectMembers: FC<IModalProps> = observer(({ visible, onClose }) =
     <Modal visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
-          <h1 className="text-lg leading-6 font-medium text-slate-900">
+          <h1 className="text-lg font-medium leading-6 text-slate-900">
             {t('project.ProjectMembers.members')}
           </h1>
           <p className="mt-1 text-sm text-slate-500">{t('project.ProjectMembers.explain')}</p>

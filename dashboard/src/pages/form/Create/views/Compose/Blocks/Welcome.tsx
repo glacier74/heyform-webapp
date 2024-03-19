@@ -1,6 +1,8 @@
-import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { FakeSubmit } from '@/pages/form/Create/views/Compose/FakeSubmit'
+
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 

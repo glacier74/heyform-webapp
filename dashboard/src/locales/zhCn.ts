@@ -457,7 +457,10 @@ export default {
     share: '分享',
     results: '结果',
     settings: '设置',
+    analytics: '统计',
+    preview: '预览',
     published: '已发布',
+    submissions: '提交',
     publish: '发布'
   },
   share: {

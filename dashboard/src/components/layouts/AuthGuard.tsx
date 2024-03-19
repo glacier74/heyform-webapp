@@ -1,13 +1,14 @@
-import { PlanModal } from '@/components'
-import UserSettings from '@/pages/user/UserSettings'
-import { UserService } from '@/service'
-import { useStore } from '@/store'
-import { useAsyncEffect, useQueryURL, useRouter, useVisible } from '@/utils'
 import { Modal, notification } from '@heyforms/ui'
 import { timestamp } from '@hpnp/utils'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect, useMemo, useState } from 'react'
+
+import { PlanModal } from '@/components'
+import UserSettings from '@/pages/user/UserSettings'
+import { UserService } from '@/service'
+import { useStore } from '@/store'
+import { useAsyncEffect, useQueryURL, useRouter, useVisible } from '@/utils'
 
 const DeletionWarning: FC = observer(() => {
   const userStore = useStore('userStore')

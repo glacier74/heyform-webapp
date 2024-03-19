@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
 import { FakeRadio } from '../FakeRadio'
 import type { BlockProps } from './Block'
 import { Block } from './Block'

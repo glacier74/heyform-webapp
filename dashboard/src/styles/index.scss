@@ -67,3 +67,30 @@ body {
     @apply bg-slate-200;
   }
 }
+
+.share-modal {
+  .modal-mask {
+    @apply md:bg-transparent z-[99];
+  }
+
+  .modal-container {
+    @apply md:pt-[80px] md:items-start md:justify-end z-[99];
+  }
+
+  .modal-content {
+    @apply border border-slate-200;
+  }
+
+  .modal-body {
+    @apply p-6;
+  }
+}
+
+.select-button {
+  @apply pr-8;
+}
+
+.form-content-container {
+  @apply h-[calc(100vh-68px)];
+  @extend .scrollbar;
+}

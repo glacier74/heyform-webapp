@@ -1,5 +1,7 @@
-import { UserModel } from '@/models'
 import { makeAutoObservable } from 'mobx'
+
+import { UserModel } from '@/models'
+
 import { mobxStorage } from './mobxStorage'
 
 export class UserStore {

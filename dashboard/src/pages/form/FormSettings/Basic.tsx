@@ -1,11 +1,12 @@
-import { TimeInput } from '@/components/TimeInput'
-import { FORM_LOCALES_OPTIONS, IP_LIMIT_OPTIONS, TIME_LIMIT_OPTIONS } from '@/consts'
-import { SubmissionArchive } from '@/pages/form/FormSettings/SubmissionArchive'
-import { useStore } from '@/store'
 import { Form, Input, Select, Switch } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { TimeInput } from '@/components/TimeInput'
+import { FORM_LOCALES_OPTIONS, IP_LIMIT_OPTIONS, TIME_LIMIT_OPTIONS } from '@/consts'
+import { SubmissionArchive } from '@/pages/form/FormSettings/SubmissionArchive'
+import { useStore } from '@/store'
 
 export const Basic: FC = observer(() => {
   const { t } = useTranslation()
@@ -14,28 +15,28 @@ export const Basic: FC = observer(() => {
   return (
     <div
       id="form-settings-basic"
-      className="form-settings-selection px-6 pt-6 pb-8 bg-white sm:rounded-md shadow space-y-6"
+      className="form-settings-selection space-y-6 bg-white px-6 pt-6 pb-8 shadow sm:rounded-md"
     >
       <div className="text-lg font-medium text-slate-900">Basic</div>
 
       {/* Language */}
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
-          <div className="text-sm leading-6 font-medium text-slate-900">
+          <div className="text-sm font-medium leading-6 text-slate-900">
             {t('formSettings.Language')}
           </div>
           <p className="mt-1 text-sm text-slate-500">{t('formSettings.LanguageDescription')}</p>
         </div>
 
-        <Form.Item className="ml-4 mb-0" name="locale" rules={[{required: false}]}>
-          <Select options={FORM_LOCALES_OPTIONS} popupClassName="locale-select"/>
+        <Form.Item className="ml-4 mb-0" name="locale" rules={[{ required: false }]}>
+          <Select options={FORM_LOCALES_OPTIONS} popupClassName="locale-select !w-[160px]" />
         </Form.Item>
       </div>
 
       {/* Submission archive */}
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
-          <div className="text-sm leading-6 font-medium text-slate-900">
+          <div className="text-sm font-medium leading-6 text-slate-900">
             {t('formSettings.subArchive')}
           </div>
           <p className="mt-1 text-sm text-slate-500">{t('formSettings.archiveText')}</p>
@@ -49,7 +50,7 @@ export const Basic: FC = observer(() => {
       {/* Progress bar */}
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
-          <div className="text-sm leading-6 font-medium text-slate-900">
+          <div className="text-sm font-medium leading-6 text-slate-900">
             {t('formSettings.progressBar')}
           </div>
           <p className="mt-1 text-sm text-slate-500">{t('formSettings.progressText')}</p>
@@ -64,7 +65,7 @@ export const Basic: FC = observer(() => {
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
-            <div className="text-sm leading-6 font-medium text-slate-900">
+            <div className="text-sm font-medium leading-6 text-slate-900">
               {t('formSettings.timeLimit')}
             </div>
             <p className="mt-1 text-sm text-slate-500">{t('formSettings.timeText')}</p>

@@ -1,19 +1,21 @@
-import { Async } from '@/components'
-import { Queue } from '@/legacy_pages/utils/queue'
-import { FormService } from '@/service'
-import { useStore } from '@/store'
-import { useParam } from '@/utils'
 import { htmlUtils } from '@heyforms/answer-utils'
 import { IFormField } from '@heyforms/form-component/types/typings'
 import type { FormModel } from '@heyforms/shared-types-enums'
 import { FieldKindEnum } from '@heyforms/shared-types-enums'
-import { notification, Spin } from '@heyforms/ui'
+import { Spin, notification } from '@heyforms/ui'
 import { isValidArray } from '@hpnp/utils/helper'
 import { type FC, useEffect, useMemo, useReducer, useState } from 'react'
+
+import { Async } from '@/components'
+import { FormService } from '@/service'
+import { useStore } from '@/store'
+import { useParam } from '@/utils'
+
 import type { IState } from './store'
 import { StoreContext, storeReducer } from './store'
 import './style.scss'
 import { initFields } from './utils'
+import { Queue } from './utils/queue'
 import { Compose } from './views/Compose'
 import { LeftSidebar } from './views/LeftSidebar'
 import { LogicBulkEditPanel } from './views/LogicBulkEditPanel'
@@ -147,7 +149,7 @@ const FormCreate = () => {
   }
 
   const Skeleton = (
-    <div className="h-full flex items-center justify-center text-blue-700">
+    <div className="flex h-full items-center justify-center text-blue-700">
       <Spin />
     </div>
   )

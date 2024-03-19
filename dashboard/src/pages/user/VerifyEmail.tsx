@@ -1,3 +1,9 @@
+import { Button, Form, Input, notification } from '@heyforms/ui'
+import { observer } from 'mobx-react-lite'
+import type { FC } from 'react'
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+
 import { LogoIcon } from '@/components'
 import {
   FormValues,
@@ -7,11 +13,6 @@ import {
 import { UserService } from '@/service'
 import { useStore } from '@/store'
 import { useQueryURL, useRouter, useVisible } from '@/utils'
-import { Button, Form, Input, notification } from '@heyforms/ui'
-import { observer } from 'mobx-react-lite'
-import type { FC } from 'react'
-import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 const VerifyEmail: FC = () => {
   const { t } = useTranslation()
@@ -98,7 +99,7 @@ const VerifyEmail: FC = () => {
             </Form.Item>
           </Form.Custom>
 
-          <div className="flex items-center justify-center mt-6 sm:text-sm">
+          <div className="mt-6 flex items-center justify-center sm:text-sm">
             {t('user.text')}{' '}
             <Button.Link
               className="ml-2"

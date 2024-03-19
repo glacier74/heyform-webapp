@@ -1,8 +1,10 @@
-import { useStore } from '@/store'
 import { Form, Input, Switch } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { useStore } from '@/store'
+
 import { ExpirationDate } from './ExpirationDate'
 
 export const FormStatus: FC = observer(() => {
@@ -12,7 +14,7 @@ export const FormStatus: FC = observer(() => {
   return (
     <div
       id="form-settings-status"
-      className="form-settings-selection px-6 pt-6 pb-8 bg-white sm:rounded-md shadow space-y-6"
+      className="form-settings-selection space-y-6 bg-white px-6 pt-6 pb-8 shadow sm:rounded-md"
     >
       <div className="text-lg font-medium text-slate-900">{t('formSettings.status')}</div>
 
@@ -73,7 +75,7 @@ export const FormStatus: FC = observer(() => {
               }
             ]}
           >
-            <Input className="w-32" type="number" placeholder={t('formSettings.closedFormTitle')} />
+            <Input className="w-32" type="number" />
           </Form.Item>
         )}
       </div>

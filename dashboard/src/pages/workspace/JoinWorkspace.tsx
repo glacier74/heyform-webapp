@@ -1,13 +1,14 @@
-import { LogoIcon, WorkspaceIcon } from '@/components'
-import type { WorkspaceModel } from '@/models'
-import { WorkspaceService } from '@/service'
-import { useStore } from '@/store'
-import { useParam } from '@/utils'
 import { Avatar, Button } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+
+import { LogoIcon, WorkspaceIcon } from '@/components'
+import type { WorkspaceModel } from '@/models'
+import { WorkspaceService } from '@/service'
+import { useStore } from '@/store'
+import { useParam } from '@/utils'
 
 const JoinWorkspace = () => {
   const navigate = useNavigate()
@@ -69,7 +70,7 @@ const JoinWorkspace = () => {
 
       <div className="mt-8">
         <div className="mt-6">
-          <div className="group flex items-center py-2.5 rounded-md text-sm text-slate-700">
+          <div className="group flex items-center rounded-md py-2.5 text-sm text-slate-700">
             <Avatar
               src={workspace?.avatar}
               size={48}
@@ -79,8 +80,8 @@ const JoinWorkspace = () => {
             />
 
             <div className="ml-4 flex-auto">
-              <p className="text-sm font-medium text-slate-700 truncate">{workspace?.name}</p>
-              <p className="text-sm text-slate-500 truncate">
+              <p className="truncate text-sm font-medium text-slate-700">{workspace?.name}</p>
+              <p className="truncate text-sm text-slate-500">
                 {workspace?.memberCount} {t('workspace.join.member')}
               </p>
             </div>

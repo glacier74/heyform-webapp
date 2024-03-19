@@ -1,13 +1,14 @@
+import { Answer, SubmissionCategoryEnum } from '@heyforms/shared-types-enums'
+
 import {
   DELETE_SUBMISSIONS_GQL,
+  SUBMISSIONS_GQL,
   SUBMISSION_ANSWERS_GQL,
   SUBMISSION_LOCATIONS_GQL,
-  SUBMISSIONS_GQL,
-  UPDATE_SUBMISSION_ANSWER_GQL,
-  UPDATE_SUBMISSIONS_CATEGORY_GQL
+  UPDATE_SUBMISSIONS_CATEGORY_GQL,
+  UPDATE_SUBMISSION_ANSWER_GQL
 } from '@/consts'
 import { request } from '@/utils'
-import { Answer, SubmissionCategoryEnum } from '@heyforms/shared-types-enums'
 
 export class SubmissionService {
   static submissions(input: { formId: string; category: string; page: number }) {

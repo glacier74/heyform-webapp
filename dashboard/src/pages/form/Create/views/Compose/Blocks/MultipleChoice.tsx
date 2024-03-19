@@ -1,11 +1,13 @@
-import { useStoreContext } from '@/pages/form/Create/store'
-import { XIcon } from '@heroicons/react/outline'
 import { Choice } from '@heyforms/shared-types-enums'
 import { Button, Input, KeyCode } from '@heyforms/ui'
 import { nanoid } from '@hpnp/utils/nanoid'
+import { IconX } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { useStoreContext } from '@/pages/form/Create/store'
+
 import type { BlockProps } from './Block'
 import { Block } from './Block'
 
@@ -59,7 +61,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
           </div>
           {enableRemove && (
             <div className="heyform-radio-remove" onClick={handleRemove}>
-              <XIcon />
+              <IconX />
             </div>
           )}
         </div>

@@ -1,17 +1,19 @@
-import { Async, RestoreIcon } from '@/components'
-import { FormService } from '@/service'
-import { useStore } from '@/store'
-import { useParam, useVisible } from '@/utils'
-import { DotsHorizontalIcon, TrashIcon } from '@heroicons/react/outline'
 import type { FormModel } from '@heyforms/shared-types-enums'
 import { FormStatusEnum } from '@heyforms/shared-types-enums'
-import { Badge, Dropdown, EmptyStates, Menus, Modal, notification, Table } from '@heyforms/ui'
+import { Badge, Dropdown, EmptyStates, Menus, Modal, Table, notification } from '@heyforms/ui'
 import type { TableColumn } from '@heyforms/ui/types/table'
 import { isValid } from '@hpnp/utils/helper'
+import { IconDots, IconTrash } from '@tabler/icons-react'
 import { observer } from 'mobx-react-lite'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import * as timeago from 'timeago.js'
+
+import { Async, RestoreIcon } from '@/components'
+import { FormService } from '@/service'
+import { useStore } from '@/store'
+import { useParam, useVisible } from '@/utils'
+
 import { ProjectLayout } from './views/ProjectLayout'
 import { Skeleton } from './views/Skeleton'
 
@@ -77,8 +79,8 @@ const Trash = observer(() => {
       render(record) {
         return (
           <div>
-            <p className="text-sm font-semibold text-slate-800 truncate">{record.name}</p>
-            <p className="mt-0.5 flex items-center font-normal text-sm text-slate-500">
+            <p className="truncate text-sm font-semibold text-slate-800">{record.name}</p>
+            <p className="mt-0.5 flex items-center text-sm font-normal text-slate-500">
               <span className="truncate">
                 {record.submissionCount && record.submissionCount > 0
                   ? `${record.submissionCount} ${t('project.ProjectMembers.submissions')}`
@@ -127,7 +129,7 @@ const Trash = observer(() => {
 
         return (
           <Dropdown
-            className="ml-1 p-1 rounded-md text-slate-500 hover:bg-slate-50 hover:text-slate-900 cursor-pointer"
+            className="ml-1 cursor-pointer rounded-md p-1 text-slate-500 hover:bg-slate-50 hover:text-slate-900"
             placement="bottom-start"
             overlay={
               <Menus onClick={handleClick}>
@@ -138,13 +140,13 @@ const Trash = observer(() => {
                 />
                 <Menus.Item
                   value="delete"
-                  icon={<TrashIcon />}
+                  icon={<IconTrash />}
                   label={t('project.trash.delForever')}
                 />
               </Menus>
             }
           >
-            <DotsHorizontalIcon className="w-5 h-5" />
+            <IconDots className="h-5 w-5" />
           </Dropdown>
         )
       }
@@ -171,7 +173,7 @@ const Trash = observer(() => {
         emptyState={
           <EmptyStates
             className="empty-states-fit"
-            icon={<TrashIcon className="non-scaling-stroke" />}
+            icon={<IconTrash className="non-scaling-stroke" />}
             title={t('project.trash.noForm')}
             description={t('project.trash.daysExplain')}
           />

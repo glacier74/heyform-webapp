@@ -1,7 +1,8 @@
-import { useVisible } from '@/utils'
 import { Modal, Switch } from '@heyforms/ui'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { useVisible } from '@/utils'
 
 interface SubmissionArchiveProps {
   value?: boolean
@@ -34,8 +35,10 @@ export const SubmissionArchive: FC<SubmissionArchiveProps> = ({ value, onChange 
         visible={visible}
         title={t('formSettings.archive')}
         description={
-          <p>Once you confirm to disable Submission Archive, <strong className="text-red-500">all submissions will be
-            deleted</strong>.</p>
+          <p>
+            Once you confirm to disable Submission Archive,{' '}
+            <strong className="text-red-500">all submissions will be deleted</strong>.
+          </p>
         }
         cancelLabel={t('formSettings.Cancel')}
         confirmLabel={t('formSettings.Confirm')}

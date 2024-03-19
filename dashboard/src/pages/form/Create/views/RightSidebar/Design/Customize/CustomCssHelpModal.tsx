@@ -99,7 +99,7 @@ const CustomCssHelpModal: FC<IModalProps> = ({ visible, onClose }) => {
 
         <div>
           <h2 className="text-base font-medium text-slate-900">Example</h2>
-          <pre className="mt-2 p-2 bg-slate-100 rounded overflow-x-auto">
+          <pre className="mt-2 overflow-x-auto rounded bg-slate-100 p-2">
             <code dangerouslySetInnerHTML={{ __html: codeExample }} />
           </pre>
         </div>

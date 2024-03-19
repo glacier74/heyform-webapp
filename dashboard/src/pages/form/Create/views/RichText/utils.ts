@@ -1,4 +1,4 @@
-import type { ClipboardEvent, CSSProperties } from 'react'
+import type { CSSProperties, ClipboardEvent } from 'react'
 
 export interface RichTextTriggerSelection {
   anchorNode: Node

@@ -1,4 +1,3 @@
-import type { FormModel } from '@/legacy_pages/models'
 import { htmlUtils } from '@heyforms/answer-utils'
 import { getTheme } from '@heyforms/form-component'
 import { FormSettings, FormThemeV3 } from '@heyforms/shared-types-enums'
@@ -10,6 +9,8 @@ import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import { makeAutoObservable } from 'mobx'
+
+import type { FormModel } from '@/models'
 
 interface TempFormSettings extends FormSettings {
   closeForm?: boolean
@@ -57,7 +58,6 @@ export class FormStore {
     if (form?.settings) {
       const tempSettings: TempFormSettings = {
         closeForm: !form.settings.active,
-        locale: 'en',
         ...form.settings
       }
 
@@ -71,6 +71,10 @@ export class FormStore {
 
       if (form.settings.closedAt && form.settings.closedAt > 0) {
         tempSettings.endDate = unix(form.settings.closedAt).tz(tempSettings.expirationTimeZone)
+      }
+
+      if (!form.settings.locale) {
+        tempSettings.locale = 'en'
       }
 
       this.tempSettings = tempSettings

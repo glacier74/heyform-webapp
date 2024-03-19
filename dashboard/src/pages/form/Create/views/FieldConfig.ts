@@ -1,4 +1,28 @@
 import {
+  ActionEnum,
+  CalculateEnum,
+  ComparisonEnum,
+  FieldKindEnum
+} from '@heyforms/shared-types-enums'
+import {
+  IconCalendar,
+  IconChartBar,
+  IconCheck,
+  IconCreditCard,
+  IconFolder,
+  IconGlobe,
+  IconHash,
+  IconLibrary,
+  IconLocation,
+  IconMail,
+  IconPhone,
+  IconStar,
+  IconUpload,
+  IconUser
+} from '@tabler/icons-react'
+import type { FC } from 'react'
+
+import {
   ConcentricCirclesIcon,
   DateRangeIcon,
   DateTimeIcon,
@@ -13,29 +37,6 @@ import {
   WelcomeIcon,
   YesOrNoIcon
 } from '@/components'
-import {
-  CalendarIcon,
-  ChartBarIcon,
-  CheckIcon,
-  CreditCardIcon,
-  FolderIcon,
-  GlobeIcon,
-  HashtagIcon,
-  LibraryIcon,
-  LocationMarkerIcon,
-  MailIcon,
-  PhoneIcon,
-  StarIcon,
-  UploadIcon,
-  UserIcon
-} from '@heroicons/react/outline'
-import {
-  ActionEnum,
-  CalculateEnum,
-  ComparisonEnum,
-  FieldKindEnum
-} from '@heyforms/shared-types-enums'
-import type { FC } from 'react'
 
 export interface FieldConfig {
   kind: FieldKindEnum
@@ -70,14 +71,14 @@ export const FIELD_THANK_YOU_CONFIG = {
 export const CUSTOM_FIELDS_CONFIGS: FieldConfig[] = [
   {
     kind: 'contact' as FieldKindEnum,
-    icon: MailIcon,
+    icon: IconMail,
     label: 'formBuilder.contact',
     textColor: '#1d4ed8',
     backgroundColor: '#dbeafe'
   },
   {
     kind: 'submit_date' as FieldKindEnum,
-    icon: CalendarIcon,
+    icon: IconCalendar,
     label: 'formBuilder.submitDate',
     textColor: '#1d4ed8',
     backgroundColor: '#dbeafe'
@@ -98,7 +99,7 @@ export const CUSTOM_FIELDS_CONFIGS: FieldConfig[] = [
   },
   {
     kind: FieldKindEnum.CUSTOM_MULTIPLE,
-    icon: CheckIcon,
+    icon: IconCheck,
     label: 'formBuilder.customMultiple',
     textColor: '#1d4ed8',
     backgroundColor: '#dbeafe'
@@ -110,14 +111,14 @@ export const FIELD_CONFIGS: FieldConfig[] = [
   FIELD_THANK_YOU_CONFIG,
   {
     kind: FieldKindEnum.MULTIPLE_CHOICE,
-    icon: CheckIcon,
+    icon: IconCheck,
     label: 'formBuilder.multipleChoice',
     textColor: '#b91c1c',
     backgroundColor: '#fee2e2'
   },
   {
     kind: FieldKindEnum.PHONE_NUMBER,
-    icon: PhoneIcon,
+    icon: IconPhone,
     label: 'formBuilder.phoneNumber',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
@@ -138,14 +139,14 @@ export const FIELD_CONFIGS: FieldConfig[] = [
   },
   {
     kind: FieldKindEnum.PAYMENT,
-    icon: CreditCardIcon,
+    icon: IconCreditCard,
     label: 'formBuilder.payment',
     textColor: '#a16207',
     backgroundColor: '#fef9c3'
   },
   {
     kind: FieldKindEnum.GROUP,
-    icon: FolderIcon,
+    icon: IconFolder,
     label: 'formBuilder.questionGroup',
     textColor: '#334155',
     backgroundColor: '#e5e7eb'
@@ -173,28 +174,28 @@ export const FIELD_CONFIGS: FieldConfig[] = [
   },
   {
     kind: FieldKindEnum.EMAIL,
-    icon: MailIcon,
+    icon: IconMail,
     label: 'formBuilder.email',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
   },
   {
     kind: FieldKindEnum.FULL_NAME,
-    icon: UserIcon,
+    icon: IconUser,
     label: 'formBuilder.fullName',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
   },
   {
     kind: FieldKindEnum.RATING,
-    icon: StarIcon,
+    icon: IconStar,
     label: 'formBuilder.rating',
     textColor: '#a21caf',
     backgroundColor: '#fae8ff'
   },
   {
     kind: FieldKindEnum.OPINION_SCALE,
-    icon: ChartBarIcon,
+    icon: IconChartBar,
     label: 'formBuilder.opinionScale',
     textColor: '#a21caf',
     backgroundColor: '#fae8ff'
@@ -215,35 +216,35 @@ export const FIELD_CONFIGS: FieldConfig[] = [
   },
   {
     kind: FieldKindEnum.NUMBER,
-    icon: HashtagIcon,
+    icon: IconHash,
     label: 'formBuilder.number',
     textColor: '#1d4ed8',
     backgroundColor: '#dbeafe'
   },
   {
     kind: FieldKindEnum.FILE_UPLOAD,
-    icon: UploadIcon,
+    icon: IconUpload,
     label: 'formBuilder.fileUpload',
     textColor: '#0f766e',
     backgroundColor: '#ccfbf1'
   },
   {
     kind: FieldKindEnum.ADDRESS,
-    icon: LocationMarkerIcon,
+    icon: IconLocation,
     label: 'formBuilder.address',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
   },
   {
     kind: FieldKindEnum.COUNTRY,
-    icon: GlobeIcon,
+    icon: IconGlobe,
     label: 'formBuilder.country',
     textColor: '#0369a1',
     backgroundColor: '#e0f2fe'
   },
   {
     kind: FieldKindEnum.LEGAL_TERMS,
-    icon: LibraryIcon,
+    icon: IconLibrary,
     label: 'formBuilder.legalTerms',
     textColor: '#1d4ed8',
     backgroundColor: '#dbeafe'

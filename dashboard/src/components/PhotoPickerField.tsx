@@ -1,8 +1,10 @@
-import { cropImage, useVisible } from '@/utils'
 import { Avatar, Button } from '@heyforms/ui'
 import clsx from 'clsx'
 import type { FC, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { cropImage, useVisible } from '@/utils'
+
 import { PhotoPicker } from './photoPicker'
 
 interface PhotoPickerFieldProps extends Omit<IComponentProps, 'onChange'> {

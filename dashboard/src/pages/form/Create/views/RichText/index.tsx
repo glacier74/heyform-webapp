@@ -1,8 +1,9 @@
 import type { FormField, Variable } from '@heyforms/shared-types-enums'
 import { isEmpty, isValid } from '@hpnp/utils/helper'
 import clsx from 'clsx'
-import type { ClipboardEvent, CSSProperties, FC, KeyboardEvent, RefObject } from 'react'
+import type { CSSProperties, ClipboardEvent, FC, KeyboardEvent, RefObject } from 'react'
 import { startTransition, useCallback, useEffect, useState } from 'react'
+
 import { FloatingToolbar } from './FloatingToolbar'
 import { MentionMenu } from './MentionMenu'
 import type { RichTextTriggerSelection } from './utils'

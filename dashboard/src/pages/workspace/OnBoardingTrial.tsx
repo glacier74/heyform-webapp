@@ -1,8 +1,9 @@
-import { PaymentService } from '@/service'
-import { redirectToStripeCheckout, useParam, useRouter } from '@/utils'
 import { Button, notification } from '@heyforms/ui'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { PaymentService } from '@/service'
+import { redirectToStripeCheckout, useParam, useRouter } from '@/utils'
 
 const OnBoarding = () => {
   const { t } = useTranslation()
@@ -31,18 +32,18 @@ const OnBoarding = () => {
   }
 
   return (
-    <div className="free-trial bg-white grid place-items-center h-screen">
-      <div className="max-w-3xl mx-auto py-28">
+    <div className="free-trial grid h-screen place-items-center bg-white">
+      <div className="mx-auto max-w-3xl py-28">
         <img
-          className="w-72 h-72 mx-auto"
+          className="mx-auto h-72 w-72"
           src="https://forms.b-cdn.net/website/dashboard/free-trial.webp"
         ></img>
-        <h1 className="text-3xl font-semibold text-slate-900 text-center mb-4">
+        <h1 className="mb-4 text-center text-3xl font-semibold text-slate-900">
           {t('onboarding.trialTitle')}
         </h1>
-        <p className="text-lg text-slate-500 text-center">{t('onboarding.trialDesc')}</p>
+        <p className="text-center text-lg text-slate-500">{t('onboarding.trialDesc')}</p>
 
-        <div className="flex items-center justify-center mt-12">
+        <div className="mt-12 flex items-center justify-center">
           <span>
             <Button
               type="primary"
@@ -54,7 +55,7 @@ const OnBoarding = () => {
             </Button>
           </span>
           <span>
-            <button className="ml-4 text-slate-700 underline text-sm" onClick={handleUseFreePlan}>
+            <button className="ml-4 text-sm text-slate-700 underline" onClick={handleUseFreePlan}>
               {t('onboarding.trialGofree')}
             </button>
           </span>

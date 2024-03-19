@@ -1,13 +1,15 @@
-import { useStore } from '@/store'
-import { insertThemeStyle } from '@/utils'
 import { insertWebFont } from '@heyforms/form-component'
 import { Tabs } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { useStore } from '@/store'
+import { insertThemeStyle } from '@/utils'
+
 import { Customize } from './Customize'
-import './style.scss'
 import { Theme } from './Theme'
+import './style.scss'
 
 const DesignComponent = () => {
   const { t } = useTranslation()

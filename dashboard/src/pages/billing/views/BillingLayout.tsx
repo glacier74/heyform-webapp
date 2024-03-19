@@ -1,8 +1,9 @@
-import { useParam } from '@/utils'
 import { Heading, Navbar } from '@heyforms/ui'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
+
+import { useParam } from '@/utils'
 
 export const BillingLayout: FC<IComponentProps> = ({ children }) => {
   const { workspaceId } = useParam()

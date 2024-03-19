@@ -495,6 +495,9 @@ export default {
     results: 'Results',
     settings: 'Settings',
     published: 'Published',
+    analytics: 'Analytics',
+    submissions: 'Submissions',
+    preview: 'Preview',
     publish: 'Publish'
   },
   share: {

@@ -1,11 +1,12 @@
-import type { UserModel } from '@/models'
-import { useStore } from '@/store'
 import { Avatar, Badge, Button } from '@heyforms/ui'
 import { uniqueArray } from '@hpnp/utils/helper'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import type { UserModel } from '@/models'
+import { useStore } from '@/store'
 
 interface MemberItemProps {
   member: UserModel
@@ -19,18 +20,18 @@ export const MemberItem: FC<MemberItemProps> = ({ member, onClick }) => {
 
   const { t } = useTranslation()
   return (
-    <div className="group flex items-center p-2.5 -mx-2.5 rounded-md text-sm text-slate-700 hover:bg-slate-50">
+    <div className="group -mx-2.5 flex items-center rounded-md p-2.5 text-sm text-slate-700 hover:bg-slate-50">
       <Avatar src={member.avatar} size={40} retainLength={2} rounded circular />
 
       <div className="ml-4 flex-auto">
-        <p className="text-sm font-medium text-slate-700 truncate">
+        <p className="truncate text-sm font-medium text-slate-700">
           {member.name}
           {member.isSelf && t('project.ProjectMembers.you')}
           {member.isOwner && (
             <Badge className="ml-1" type="blue" text={t('workspace.members.index.owner')} />
           )}
         </p>
-        <p className="text-sm text-slate-500 truncate">{member.email}</p>
+        <p className="truncate text-sm text-slate-500">{member.email}</p>
       </div>
 
       <Button

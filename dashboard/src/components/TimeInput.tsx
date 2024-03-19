@@ -1,7 +1,8 @@
-import { SecondUtils } from '@/utils'
 import { Input, Select } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { FC, useEffect, useState } from 'react'
+
+import { SecondUtils } from '@/utils'
 
 interface TimeInputProps {
   options: IOptionType[]

@@ -1,5 +1,5 @@
-import { CheckIcon, MinusIcon } from '@heroicons/react/outline'
 import { isBoolean } from '@hpnp/utils/helper'
+import { IconCheck, MinusIcon } from '@tabler/icons-react'
 import type { FC } from 'react'
 
 interface SectionProps {
@@ -12,7 +12,7 @@ export const Section: FC<SectionProps> = ({ title, values }) => {
     <>
       <tr>
         <th
-          className="bg-slate-50 py-3 text-sm font-medium text-slate-900 text-left"
+          className="bg-slate-50 py-3 text-left text-sm font-medium text-slate-900"
           colSpan={5}
           scope="colgroup"
         >
@@ -23,10 +23,10 @@ export const Section: FC<SectionProps> = ({ title, values }) => {
       {values.map((row, i) => (
         <tr key={i}>
           {row.map((value, k) => (
-            <td key={k} className="py-5 text-sm font-normal text-slate-500 text-left" scope="row">
+            <td key={k} className="py-5 text-left text-sm font-normal text-slate-500" scope="row">
               {isBoolean(value) ? (
                 value ? (
-                  <CheckIcon className="h-5 w-5 text-green-500" aria-hidden="true" />
+                  <IconCheck className="h-5 w-5 text-green-500" aria-hidden="true" />
                 ) : (
                   <MinusIcon className="h-5 w-5 text-slate-400" aria-hidden="true" />
                 )

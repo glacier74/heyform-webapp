@@ -1,6 +1,7 @@
 import { locales } from '@heyforms/form-component'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+
 import en from './en'
 import zhCn from './zhCn'
 

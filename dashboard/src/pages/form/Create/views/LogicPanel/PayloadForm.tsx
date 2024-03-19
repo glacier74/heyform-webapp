@@ -1,7 +1,3 @@
-import { type FormField } from '@/models'
-import { Action } from '@/pages/form/Create/views/LogicPanel/Action'
-import { Condition } from '@/pages/form/Create/views/LogicPanel/Condition'
-import { PlusIcon, TrashIcon } from '@heroicons/react/outline'
 import { validatePayload } from '@heyforms/answer-utils'
 import {
   ActionEnum,
@@ -15,8 +11,13 @@ import {
 import { type LogicCondition } from '@heyforms/shared-types-enums/types/form'
 import { Button, Form, Tooltip } from '@heyforms/ui'
 import { nanoid } from '@hpnp/utils/nanoid'
+import { IconPlus, IconTrash } from '@tabler/icons-react'
 import { type FC, type ReactNode, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { type FormField } from '@/models'
+import { Action } from '@/pages/form/Create/views/LogicPanel/Action'
+import { Condition } from '@/pages/form/Create/views/LogicPanel/Condition'
 
 interface PayloadFormProps {
   form: any
@@ -131,7 +132,7 @@ export const PayloadItem: FC<PayloadItemProps> = ({
           />
         </div>
         <Tooltip ariaLabel={t('formBuilder.deleteRule')}>
-          <Button.Link className="-mr-2" leading={<TrashIcon />} onClick={handleDelete} />
+          <Button.Link className="-mr-2" leading={<IconTrash />} onClick={handleDelete} />
         </Tooltip>
       </div>
     </div>
@@ -170,7 +171,7 @@ export const PayloadList: FC<PayloadListProps> = ({
             {children}
 
             {listFields.length > 0 && (
-              <div className="space-y-6 mb-4">
+              <div className="mb-4 space-y-6">
                 {listFields.map((listField, index) => {
                   function handleDelete() {
                     remove(index)
@@ -205,7 +206,7 @@ export const PayloadList: FC<PayloadListProps> = ({
               </div>
             )}
 
-            <Button className="px-4 py-1.5" leading={<PlusIcon />} onClick={handleAdd}>
+            <Button className="px-4 py-1.5" leading={<IconPlus />} onClick={handleAdd}>
               Add rule
             </Button>
           </div>

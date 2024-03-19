@@ -1,15 +1,25 @@
 import {
+  FormField,
+  FormKindEnum,
+  FormStatusEnum,
+  InteractiveModeEnum,
+  Logic,
+  ThemeSettings,
+  Variable
+} from '@heyforms/shared-types-enums'
+
+import {
   CREATE_FORM_FIELD_GQL,
   CREATE_FORM_GQL,
   DELETE_FORM_FIELD_GQL,
   DELETE_FORM_GQL,
   DUPLICATE_FORM_GQL,
+  FORMS_GQL,
   FORM_ANALYTIC_GQL,
   FORM_DETAIL_GQL,
   FORM_INTEGRATIONS_GQL,
   FORM_REPORT_GQL,
   FORM_SUMMARY_GQL,
-  FORMS_GQL,
   IMPORT_FORM_GQL,
   MOVE_FORM_TO_TRASH_GQL,
   RESTORE_FORM_GQL,
@@ -24,15 +34,6 @@ import {
   UPDATE_FORM_VARIABLES
 } from '@/consts'
 import { request } from '@/utils'
-import {
-  FormField,
-  FormKindEnum,
-  FormStatusEnum,
-  InteractiveModeEnum,
-  Logic,
-  ThemeSettings,
-  Variable
-} from '@heyforms/shared-types-enums'
 
 export class FormService {
   static async forms(projectId: string, status = FormStatusEnum.NORMAL) {

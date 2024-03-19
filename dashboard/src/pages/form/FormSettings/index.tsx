@@ -1,13 +1,12 @@
-import { EXPIRATION_DATE_FORMAT } from '@/consts'
+import { Form, notification } from '@heyforms/ui'
+import { observer } from 'mobx-react-lite'
+import type { FC } from 'react'
+import { useTranslation } from 'react-i18next'
+
 import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
-import { Form, notification } from '@heyforms/ui'
-import dayjs, { unix } from 'dayjs'
-import { observer } from 'mobx-react-lite'
-import { useEffect } from 'react'
-import type { FC } from 'react'
-import { useTranslation } from 'react-i18next'
+
 import { Basic } from './Basic'
 import { FormStatus } from './FormStatus'
 import { Protection } from './Protection'
@@ -52,33 +51,35 @@ const FormSettings: FC = () => {
   }
 
   return (
-    <div className="container max-w-5xl mx-auto">
-      <div className="flex">
-        <Sidebar />
+    <div className="form-content-container">
+      <div className="container mx-auto max-w-5xl">
+        <div className="flex">
+          <Sidebar />
 
-        <div className="flex-1 ml-16 mb-16">
-          <div className="mt-14 mb-10 space-y-1">
-            <h1 className="text-3xl font-extrabold text-slate-900">{t('formSettings.Form')}</h1>
-            <p className="text-sm text-slate-500">{t('formSettings.subTitle')}</p>
-          </div>
-
-          <Form.Custom
-            initialValues={formStore.tempSettings}
-            submitText={t('workspace.settings.up')}
-            submitOptions={{
-              type: 'primary',
-              className: 'mt-10'
-            }}
-            onlySubmitOnValueChange={true}
-            onValuesChange={handleValuesChange}
-            request={handleFinish}
-          >
-            <div className="space-y-10">
-              <FormStatus />
-              <Basic />
-              <Protection />
+          <div className="ml-16 mb-16 flex-1">
+            <div className="mt-14 mb-10 space-y-1">
+              <h1 className="text-3xl font-extrabold text-slate-900">{t('formSettings.Form')}</h1>
+              <p className="text-sm text-slate-500">{t('formSettings.subTitle')}</p>
             </div>
-          </Form.Custom>
+
+            <Form.Custom
+              initialValues={formStore.tempSettings}
+              submitText={t('workspace.settings.up')}
+              submitOptions={{
+                type: 'primary',
+                className: 'mt-10'
+              }}
+              onlySubmitOnValueChange={true}
+              onValuesChange={handleValuesChange}
+              request={handleFinish}
+            >
+              <div className="space-y-10">
+                <FormStatus />
+                <Basic />
+                <Protection />
+              </div>
+            </Form.Custom>
+          </div>
         </div>
       </div>
     </div>

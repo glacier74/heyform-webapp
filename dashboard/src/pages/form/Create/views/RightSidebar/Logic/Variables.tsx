@@ -1,12 +1,13 @@
-import { useStoreContext } from '@/pages/form/Create/store'
-import { VariableIcon } from '@/pages/form/Create/views/FieldIcon'
-import { ChevronRightIcon, DotsHorizontalIcon } from '@heroicons/react/outline'
 import type { Variable } from '@heyforms/shared-types-enums'
 import { Button, Dropdown, Menus, stopPropagation } from '@heyforms/ui'
 import { isValidArray } from '@hpnp/utils/helper'
+import { IconChevronRight, IconDots } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { useStoreContext } from '@/pages/form/Create/store'
+import { VariableIcon } from '@/pages/form/Create/views/FieldIcon'
 
 interface VariableItemProps {
   variable: Variable
@@ -30,8 +31,8 @@ const VariableItem: FC<VariableItemProps> = ({ variable, onEdit, onDelete }) => 
   const DropdownTrigger = useMemo(
     () => (
       <Button.Link
-        className="field-card-action w-8 h-8"
-        leading={<DotsHorizontalIcon />}
+        className="field-card-action h-8 w-8"
+        leading={<IconDots />}
         onMouseDown={stopPropagation}
       />
     ),
@@ -109,7 +110,7 @@ export const Variables: FC = () => {
             <span>{t('formBuilder.variable.title')}</span>
             <Button.Link
               className="text-slate-500 hover:text-slate-900"
-              trailing={<ChevronRightIcon />}
+              trailing={<IconChevronRight />}
               onClick={handleClick}
             >
               {t('formBuilder.variable.add')}

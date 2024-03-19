@@ -1,9 +1,10 @@
-import { useStore } from '@/store'
-import { clearAuthState, cropImage } from '@/utils'
 import { Avatar, Dropdown, Menus } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { useStore } from '@/store'
+import { clearAuthState, cropImage } from '@/utils'
 
 export const UserAccount: FC = observer(() => {
   const userStore = useStore('userStore')
@@ -29,20 +30,20 @@ export const UserAccount: FC = observer(() => {
       <Menus.Item value="logout" label={t('other.labelList.Logout')} />
       <Menus.Divider />
       <Menus.Item
-        className="text-slate-400 hover:bg-transparent cursor-default"
+        className="cursor-default text-slate-400 hover:bg-transparent"
         label={`${t('other.labelList.Version')} ${import.meta.env.PACKAGE_VERSION}`}
       />
     </Menus>
   )
 
   return (
-    <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
+    <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
       <Dropdown
-        className="flex-shrink-0 group block w-full"
+        className="group block w-full flex-shrink-0"
         placement="top-start"
         overlay={Overlay}
       >
-        <div className="flex items-center cursor-pointer">
+        <div className="flex cursor-pointer items-center">
           <div>
             <Avatar
               className="inline-block h-8 w-8"
@@ -52,7 +53,7 @@ export const UserAccount: FC = observer(() => {
             />
           </div>
           <div className="ml-3">
-            <p className="text-sm font-medium text-slate-700 truncate group-hover:text-slate-900">
+            <p className="truncate text-sm font-medium text-slate-700 group-hover:text-slate-900">
               {userStore.user.name}
             </p>
             <p className="text-sm text-slate-500 group-hover:text-slate-700">
