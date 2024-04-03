@@ -86,7 +86,7 @@ const SignUp = () => {
                 <p className="text-sm text-slate-500">
                   {t('auth.signup.agreeTo')}{' '}
                   <a
-                    href="https://heyform.net/help/terms-conditions"
+                    href="https://docs.heyform.net/terms-conditions"
                     className="font-medium text-slate-700 underline"
                     target="_blank"
                   >
@@ -94,7 +94,7 @@ const SignUp = () => {
                   </a>{' '}
                   {t('auth.signup.and')}{' '}
                   <a
-                    href="https://heyform.net/help/privacy-policy"
+                    href="https://docs.heyform.net/privacy-policy"
                     className="font-medium text-slate-700 underline"
                     target="_blank"
                   >

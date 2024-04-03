@@ -130,7 +130,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
           </h3>
           <div className="mt-1 space-y-1" aria-labelledby="resources-headline">
             <a
-              href="https://heyform.net/help/create-your-first-heyform"
+              href="https://docs.heyform.net/create-your-first-heyform"
               target="_blank"
               className="group flex items-center rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-200 hover:text-slate-900"
             >
@@ -138,7 +138,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
               <span className="truncate">{t('other.labelList.GettingStarted')}</span>
             </a>
             <a
-              href="https://heyform.net/help"
+              href="https://docs.heyform.net"
               target="_blank"
               className="group flex items-center rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-200 hover:text-slate-900"
             >

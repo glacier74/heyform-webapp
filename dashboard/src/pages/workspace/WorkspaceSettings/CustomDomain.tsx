@@ -67,7 +67,7 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
           </h1>
           <p className="mt-1 text-sm text-slate-500">
             {t('workspace.settings.domainExplain')}{' '}
-            <a href="https://heyform.net/help" className="text-slate-900 hover:underline">
+            <a href="https://docs.heyform.net" className="text-slate-900 hover:underline">
               {t('workspace.settings.domainLink')}
             </a>
             .
@@ -157,7 +157,7 @@ export const CustomDomain: FC = observer(() => {
           description={
             <>
               {t('workspace.settings.domainExplain2')}{' '}
-              <a href="https://heyform.net/help" className="text-slate-900 hover:underline">
+              <a href="https://docs.heyform.net" className="text-slate-900 hover:underline">
                 {t('workspace.settings.domainLink')}
               </a>
               .

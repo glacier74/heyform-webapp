@@ -158,7 +158,7 @@ const Trash = observer(() => {
       <div className="mt-8 text-sm text-slate-700">
         {t('project.trash.explain')}{' '}
         <a
-          href="https://heyform.net/help"
+          href="https://docs.heyform.net"
           target="_blank"
           className="text-blue-500 hover:text-blue-700"
         >
