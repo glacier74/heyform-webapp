@@ -201,7 +201,7 @@ export const AnswerList: FC<AnswerListProps> = ({ response }) => {
   }
 
   return (
-    <div className="mb-5 rounded-[3px] bg-[#fafbfc] p-6">
+    <div className="mb-5 rounded-lg bg-[#fafbfc] p-6">
       {response.answers?.map(row => (
         <div className="flex items-center border-b border-[#f3f3f3] py-3" key={row.submissionId}>
           <AnswerValue answer={row} columns={response.properties?.tableColumns} />

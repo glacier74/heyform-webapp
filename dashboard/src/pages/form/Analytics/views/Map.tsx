@@ -101,8 +101,8 @@ export const Map: FC<MapProps> = ({ range }) => {
   return (
     <div className="mb-12">
       <SubHeading>{t('analytics.topAudience')}</SubHeading>
-      <div className="flex flex-col rounded-[3px] bg-white p-6 lg:flex-row lg:justify-between">
-        <div className="mb-4 w-auto border-r border-gray-200 pr-8 pl-5 lg:my-8 lg:w-[300px]">
+      <div className="flex flex-col rounded-lg bg-white p-6 lg:flex-row lg:justify-between">
+        <div className="mb-4 w-auto px-4 lg:my-8 lg:w-[300px] lg:border-r lg:border-gray-200 lg:pr-8 lg:pl-5">
           <div>
             {records.map(row => (
               <CountryItem key={row.code} {...row} />

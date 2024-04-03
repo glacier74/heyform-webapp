@@ -75,7 +75,7 @@ const Integration: FC = observer(() => {
     <div className="form-content-container">
       <div className="flex justify-center">
         <div className="hidden w-[280px] md:block">
-          <div className="sticky top-10 mt-20 rounded-[3px] bg-white p-5">
+          <div className="sticky top-10 mt-20 rounded-lg bg-white p-5">
             <div className="px-3 py-2 text-gray-600">{t('integration.Categories')}</div>
             {INTEGRATION_CATEGORIES.map((name, index) => (
               <CategoryItem key={index} name={name} />
@@ -83,7 +83,7 @@ const Integration: FC = observer(() => {
           </div>
         </div>
 
-        <div className="mx-4 mb-16 mt-20 w-full rounded-[3px] md:ml-16 md:mr-0 md:w-[700px]">
+        <div className="mx-4 mb-16 mt-20 w-full rounded-lg md:ml-16 md:mr-0 md:w-[700px]">
           <Heading
             description={
               <>

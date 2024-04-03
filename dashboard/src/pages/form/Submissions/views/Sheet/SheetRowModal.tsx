@@ -143,7 +143,7 @@ const PictureChoiceItem: FC<SheetCellProps> = ({ column, row }) => {
         <div className="ml-[-6px] mr-[-6px] mb-[-12px] flex flex-wrap justify-between">
           {choices!.map((choice, index) => (
             <div key={index}>
-              <div className="mx-[6px] mb-3 rounded-[3px] border border-[rgba(0,0,0,0.2)] bg-white p-2">
+              <div className="mx-[6px] mb-3 rounded-lg border border-[rgba(0,0,0,0.2)] bg-white p-2">
                 <div className="relative flex min-h-[50px] w-screen before:block before:w-screen before:pt-[100%] before:content-['']">
                   <div className="absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center overflow-hidden">
                     {choice.image ? (

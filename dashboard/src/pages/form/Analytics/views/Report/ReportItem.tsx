@@ -45,11 +45,15 @@ const Choices: FC<ChoicesProps> = ({ chooses }) => {
             <div>
               {row.label} · {total > 0 ? Math.round((row.count * 100) / total) : 0}%
             </div>
-            <div className="text-xs text-[#b0b7c3]">
+            <div className="text-[13px] text-[#b0b7c3]">
               {row.count} {t('report.responses')}
             </div>
           </div>
-          <Progress className="!h-[5px] w-full" percent={row.count / total} />
+          <Progress
+            className="!h-1 w-full"
+            barClassName="!h-1"
+            percent={(row.count * 100) / total}
+          />
         </div>
       ))}
     </div>
@@ -102,7 +106,7 @@ const Rating: FC<RatingProps> = ({ length, leftLabel, rightLabel, chooses }) => 
                 />
                 {total > 0 ? Math.round((num * 100) / total) : 0}%
               </div>
-              <div className="text-xs text-[#b0b7c3]">
+              <div className="text-[13px] text-[#b0b7c3]">
                 {num} {t('report.responses')}
               </div>
             </div>
@@ -118,7 +122,7 @@ export const ReportItem: FC<ReportItemProps> = ({ index, response }) => {
   const { t } = useTranslation()
 
   return (
-    <div className="mb-10 rounded-[3px] bg-white px-[34px] pb-4 print:p-0">
+    <div className="mb-10 rounded-lg bg-white px-4 pb-4 print:p-0 lg:px-[34px]">
       <div className="mb-1 pt-[34px] text-[16px] font-medium" id={`field-${response.id}`}>
         {index}. {response.title}
       </div>
