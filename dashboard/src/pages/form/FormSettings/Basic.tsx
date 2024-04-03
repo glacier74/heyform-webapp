@@ -15,7 +15,7 @@ export const Basic: FC = observer(() => {
   return (
     <div
       id="form-settings-basic"
-      className="form-settings-selection space-y-6 bg-white px-6 pt-6 pb-8 shadow sm:rounded-md"
+      className="form-settings-selection space-y-6 bg-white px-6 pb-8 pt-6 shadow sm:rounded-md"
     >
       <div className="text-lg font-medium text-slate-900">Basic</div>
 
@@ -28,7 +28,7 @@ export const Basic: FC = observer(() => {
           <p className="mt-1 text-sm text-slate-500">{t('formSettings.LanguageDescription')}</p>
         </div>
 
-        <Form.Item className="ml-4 mb-0" name="locale" rules={[{ required: false }]}>
+        <Form.Item className="mb-0 ml-4" name="locale" rules={[{ required: false }]}>
           <Select options={FORM_LOCALES_OPTIONS} popupClassName="locale-select !w-[160px]" />
         </Form.Item>
       </div>
@@ -42,7 +42,7 @@ export const Basic: FC = observer(() => {
           <p className="mt-1 text-sm text-slate-500">{t('formSettings.archiveText')}</p>
         </div>
 
-        <Form.Item className="ml-4 mb-0" name="allowArchive" rules={[{ required: false }]}>
+        <Form.Item className="mb-0 ml-4" name="allowArchive" rules={[{ required: false }]}>
           <SubmissionArchive />
         </Form.Item>
       </div>
@@ -56,7 +56,7 @@ export const Basic: FC = observer(() => {
           <p className="mt-1 text-sm text-slate-500">{t('formSettings.progressText')}</p>
         </div>
 
-        <Form.Item className="ml-4 mb-0" name="enableProgress" rules={[{ required: false }]}>
+        <Form.Item className="mb-0 ml-4" name="enableProgress" rules={[{ required: false }]}>
           <Switch />
         </Form.Item>
       </div>
@@ -71,7 +71,7 @@ export const Basic: FC = observer(() => {
             <p className="mt-1 text-sm text-slate-500">{t('formSettings.timeText')}</p>
           </div>
 
-          <Form.Item className="ml-4 mb-0" name="enableTimeLimit" rules={[{ required: false }]}>
+          <Form.Item className="mb-0 ml-4" name="enableTimeLimit" rules={[{ required: false }]}>
             <Switch />
           </Form.Item>
         </div>
@@ -91,7 +91,7 @@ export const Basic: FC = observer(() => {
             <p className="mt-1 text-sm text-slate-500">{t('formSettings.IpLimitText')}</p>
           </div>
 
-          <Form.Item className="ml-4 mb-0" name="enableIpLimit" rules={[{ required: false }]}>
+          <Form.Item className="mb-0 ml-4" name="enableIpLimit" rules={[{ required: false }]}>
             <Switch />
           </Form.Item>
         </div>

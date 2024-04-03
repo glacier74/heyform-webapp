@@ -120,20 +120,26 @@ const FormBuilder: FC<{ form: FormModel }> = ({ form }) => {
 
   return (
     <StoreContext.Provider value={store}>
-      <div className="form-builder">
-        {state.activeTabName === 'logic' ? (
-          <LogicFlow />
-        ) : (
-          <>
-            <LeftSidebar />
-            <Compose />
-          </>
-        )}
-        <RightSidebar />
-        {state.isLogicPanelOpen && <LogicPanel />}
-        {state.isVariablePanelOpen && <VariablePanel />}
-        {state.isBulkEditPanelOpen && <LogicBulkEditPanel />}
-      </div>
+      <>
+        <div className="form-builder">
+          {state.activeTabName === 'logic' ? (
+            <LogicFlow />
+          ) : (
+            <>
+              <LeftSidebar />
+              <Compose />
+            </>
+          )}
+          <RightSidebar />
+          {state.isLogicPanelOpen && <LogicPanel />}
+          {state.isVariablePanelOpen && <VariablePanel />}
+          {state.isBulkEditPanelOpen && <LogicBulkEditPanel />}
+        </div>
+
+        <div className="flex h-full items-center justify-center px-8 text-center md:hidden">
+          Please edit the form via the web page on your computer.
+        </div>
+      </>
     </StoreContext.Provider>
   )
 }

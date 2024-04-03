@@ -55,9 +55,9 @@ function formatSeconds(t: number): string {
 
 const SummaryItem: FC<SummaryItemProps> = ({ count, text, ...restProps }) => {
   return (
-    <div className="analytics-item-container h-32 w-1/4" {...restProps}>
-      <div className="analytics-item-wrapper rounded-[3px] bg-white px-9 py-8">
-        <div className="mt-3 mb-5 text-base font-medium">{text}</div>
+    <div className="analytics-item-container md:mb-0" {...restProps}>
+      <div className="analytics-item-wrapper rounded-lg bg-white p-4 md:px-9 md:py-8">
+        <div className="mb-5 mt-3 text-base font-medium">{text}</div>
         <div className="text-xl font-medium">{count}</div>
       </div>
     </div>
@@ -138,7 +138,7 @@ const Summary: FC = () => {
         className="mb-5 flex items-center justify-between"
         action={
           <Select
-            className="w-auto"
+            className="!w-auto"
             popupClassName="!w-[200px]"
             value={range}
             options={options as any}
@@ -149,7 +149,7 @@ const Summary: FC = () => {
       >
         {t('analytics.AnalyticsOverview')}
       </SubHeading>
-      <div className="mb-6 flex gap-5">
+      <div className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
         <SummaryItem count={summary.totalVisits} text={t('analytics.Views')} />
         <SummaryItem count={summary.submissionCount} text={t('analytics.Submissions')} />
         <SummaryItem count={`${summary.completeRate}%`} text={t('analytics.complete')} />

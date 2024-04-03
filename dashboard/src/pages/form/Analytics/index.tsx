@@ -7,8 +7,10 @@ const Analytics: FC = () => {
   return (
     <div className="form-content-container">
       <div className="container mx-auto max-w-5xl pt-14">
-        <Summary />
-        <Report />
+        <div className="mx-4 md:mx-0">
+          <Summary />
+          <Report />
+        </div>
       </div>
     </div>
   )

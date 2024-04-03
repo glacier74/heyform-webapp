@@ -102,15 +102,14 @@ export const AppItem: FC<AppItemProps> = ({ app, onClick, onDelete, ...restProps
   }
 
   return (
-    <div className="mb-6" {...restProps}>
-      <div className="my-2.5 flex items-center">
-        <LazyLoad className="relative h-[54px] w-[54px] overflow-hidden rounded-xl bg-white p-[10px]">
-          <img className="aspect-square h-9 w-9 rounded-xl object-cover" src={app.avatar!} />
-          <div className="z-9 absolute top-0 left-0 bottom-0 right-0 rounded-xl border border-solid border-gray-200"></div>
-        </LazyLoad>
-        <div className="ml-5 mr-8 flex-1">
-          <div className="mb-1 text-sm font-medium text-slate-900">{t(app.name)}</div>
-          <div className="text-slate-600">{t(app.description as any)}</div>
+    <div className="mb-10" {...restProps}>
+      <div className="mb-2.5 flex items-center">
+        <div className="relative h-12 w-12 overflow-hidden rounded-xl bg-white p-2">
+          <img className="aspect-square h-8 w-8 rounded-xl object-cover" src={app.avatar!} />
+          <div className="z-9 absolute bottom-0 left-0 right-0 top-0 rounded-xl border border-solid border-gray-200"></div>
+        </div>
+        <div className="ml-4 mr-8 flex-1">
+          <div className="mb-1 text-base font-semibold text-slate-900">{t(app.name)}</div>
         </div>
         {app.status === AppStatusEnum.ACTIVE ? (
           <AppItemAction app={app} onClick={handleClick} onDelete={onDelete} />
@@ -120,6 +119,7 @@ export const AppItem: FC<AppItemProps> = ({ app, onClick, onDelete, ...restProps
           </span>
         )}
       </div>
+      <div className="text-slate-600">{t(app.description as any)}</div>
     </div>
   )
 }

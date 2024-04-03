@@ -1,5 +1,5 @@
 .form-builder {
-  @apply flex h-[calc(100vh-68px)];
+  @apply hidden md:flex h-[calc(100vh-68px)];
 
   .right-sidebar {
     .tabs-pane-group {
@@ -920,7 +920,7 @@
 // ----------------------------------------------------------------------------
 // Right sidebar
 .right-sidebar {
-  @apply flex flex-col w-64 h-full bg-white border-l border-gray-200;
+  @apply flex flex-col w-80 h-full bg-white border-l border-gray-200;
 
   .tabs-wrapper {
     @apply flex flex-col h-full;

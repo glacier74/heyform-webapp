@@ -65,7 +65,7 @@ export const FormPreviewModal: FC = observer(() => {
           <div className="form-preview-header">
             <div className="flex flex-1 items-center justify-center">
               <Switch.Group
-                className="text-sm"
+                className="!hidden text-sm md:!inline-flex"
                 value={value}
                 options={[
                   { value: 'desktop', label: 'Desktop' },

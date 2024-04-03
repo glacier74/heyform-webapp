@@ -25,7 +25,7 @@ export const UserAccount: FC<IComponentProps> = observer(({ className, style }) 
   function handleClick(value: any) {
     switch (value) {
       case 'help':
-        window.open('https://heyform.net/help')
+        window.open('https://docs.heyform.net')
         break
 
       case 'contact':

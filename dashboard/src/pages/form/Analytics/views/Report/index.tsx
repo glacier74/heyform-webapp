@@ -5,8 +5,10 @@ import {
   FieldKindEnum,
   QUESTION_FIELD_KINDS
 } from '@heyforms/shared-types-enums'
+import { EmptyStates } from '@heyforms/ui'
 import { isArray, isEmpty, isValidArray } from '@hpnp/utils/helper'
 import { pickValidValues } from '@hpnp/utils/object'
+import { IconChartBar } from '@tabler/icons-react'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -86,9 +88,9 @@ const Report: FC = observer(() => {
   }
 
   return (
-    <div className="mx-auto flex w-[1044px] print:bg-white">
+    <div className="mx-auto flex print:bg-white md:w-[1044px]">
       <FieldList />
-      <div className="mt-11 mb-16 ml-16 w-[700px] rounded-[3px] print:ml-0">
+      <div className="mx-4 mb-16 mt-10 w-full rounded-[3px] print:ml-0 md:ml-16 md:mr-0 md:w-[700px]">
         <SubHeading
           style={{
             marginTop: 0
@@ -97,7 +99,18 @@ const Report: FC = observer(() => {
           {t('analytics.Report')}
         </SubHeading>
 
-        <Async request={fetchReport} deps={[formStore.current]}>
+        <Async
+          request={fetchReport}
+          deps={[formStore.current]}
+          emptyState={
+            <EmptyStates
+              className="empty-states-fit"
+              icon={<IconChartBar className="non-scaling-stroke" />}
+              title={t('submissions.NoSubmissions')}
+              description={t('submissions.SubHeadline')}
+            />
+          }
+        >
           {responses.map((row, index) => (
             <ReportItem key={index} index={index + 1} response={row} />
           ))}

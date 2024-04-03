@@ -19,11 +19,9 @@ const INTEGRATION_CATEGORIES = [
   'Reporting',
   'Analytics',
   'Marketing',
-  'Sharing',
   'Automation',
   'Customer Support',
   'Developer tools',
-  'Payment',
   'Productivity',
   'IT & Engineering',
   'File Management'
@@ -76,7 +74,7 @@ const Integration: FC = observer(() => {
   return (
     <div className="form-content-container">
       <div className="flex justify-center">
-        <div className="w-[280px]">
+        <div className="hidden w-[280px] md:block">
           <div className="sticky top-10 mt-20 rounded-[3px] bg-white p-5">
             <div className="px-3 py-2 text-gray-600">{t('integration.Categories')}</div>
             {INTEGRATION_CATEGORIES.map((name, index) => (
@@ -85,12 +83,12 @@ const Integration: FC = observer(() => {
           </div>
         </div>
 
-        <div className="mt-20 mb-16 ml-16 w-[700px] rounded-[3px]">
+        <div className="mx-4 mb-16 mt-20 w-full rounded-[3px] md:ml-16 md:mr-0 md:w-[700px]">
           <Heading
             description={
               <>
                 {t('integration.connectText')}&nbsp;
-                <a href="https://heyform.net/help" target="_blank">
+                <a href="https://docs.heyform.net" target="_blank">
                   {t('integration.help')}
                 </a>
                 &nbsp;

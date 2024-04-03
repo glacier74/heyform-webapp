@@ -1,5 +1,5 @@
 import { isValid } from '@hpnp/utils/helper'
-import { FC, useState } from 'react'
+import { FC, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { SubHeading } from '@/components'
@@ -62,6 +62,22 @@ export const Map: FC<MapProps> = ({ range }) => {
   const { formId } = useParam()
   const [records, setRecords] = useState<CountryItemProps[]>([])
 
+  const mapSize = useMemo(() => {
+    if (window.DEVICE_INFO.mobile) {
+      const width = window.innerWidth - 80
+
+      return {
+        width,
+        height: (400 / 650) * width
+      }
+    }
+
+    return {
+      width: 650,
+      height: 400
+    }
+  }, [])
+
   useAsyncEffect(async () => {
     if (isValid(range.start) && isValid(range.end)) {
       const result = await SubmissionService.locations({
@@ -85,15 +101,15 @@ export const Map: FC<MapProps> = ({ range }) => {
   return (
     <div className="mb-12">
       <SubHeading>{t('analytics.topAudience')}</SubHeading>
-      <div className="flex justify-between rounded-[3px] bg-white p-6">
-        <div className="my-8 w-[300px] border-r border-gray-200 pr-8 pl-5">
+      <div className="flex flex-col rounded-[3px] bg-white p-6 lg:flex-row lg:justify-between">
+        <div className="mb-4 w-auto border-r border-gray-200 pr-8 pl-5 lg:my-8 lg:w-[300px]">
           <div>
             {records.map(row => (
               <CountryItem key={row.code} {...row} />
             ))}
           </div>
         </div>
-        <WorldMap width={650} height={400} data={records} />
+        <WorldMap {...mapSize} data={records} />
       </div>
     </div>
   )

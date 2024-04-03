@@ -24,7 +24,7 @@ export const CategorySelect: FC<CategorySelectProps> = ({ category: rowCategory,
   const DropdownOverlay = (
     <Menus className="w-[13.75rem]" onClick={handleClick}>
       {categories.map(row => (
-        <Menus.Item key={row} label={t(CATEGORY_MAPS[row])} />
+        <Menus.Item key={row} value={row} label={t(CATEGORY_MAPS[row])} />
       ))}
     </Menus>
   )

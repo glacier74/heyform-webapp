@@ -94,3 +94,13 @@ body {
   @apply h-[calc(100vh-68px)];
   @extend .scrollbar;
 }
+
+.third-party-signin-container {
+  .button-content {
+    @apply flex items-center;
+
+    svg {
+      @apply mr-2;
+    }
+  }
+}

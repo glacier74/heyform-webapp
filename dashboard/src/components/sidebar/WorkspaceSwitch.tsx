@@ -50,7 +50,7 @@ const WorkspaceItem: FC<WorkspaceItemProps> = ({ workspace, onClick }) => {
 
       <div className="ml-4 flex-auto">
         <p className="truncate text-sm font-medium text-slate-700">{workspace.name}</p>
-        <p className="truncate text-sm text-slate-500">
+        <p className="truncate text-[13px] text-slate-500">
           <span>
             {workspace.plan.name} {t('billing.plan')}
           </span>
@@ -107,7 +107,7 @@ const CurrentWorkspace = observer(() => {
             <span className="truncate text-sm font-medium text-slate-900">
               {workspaceStore.workspace?.name}
             </span>
-            <span className="truncate text-sm text-slate-500">
+            <span className="truncate text-[13px] text-slate-500">
               {workspaceStore.workspace?.plan.name} {t('billing.plan')}
               {workspaceStore.workspace.subscription.trialing && (
                 <span className="text-xs text-blue-700"> (trial)</span>

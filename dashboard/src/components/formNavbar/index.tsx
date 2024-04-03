@@ -1,88 +1,93 @@
 import { Button } from '@heyforms/ui'
-import {
-  IconArrowLeft,
-  IconBolt,
-  IconChartBar,
-  IconDatabase,
-  IconEdit,
-  IconSettings
-} from '@tabler/icons-react'
+import { IconArrowLeft, IconMenu2, IconX } from '@tabler/icons-react'
 import { observer } from 'mobx-react-lite'
 import { FC } from 'react'
-import { useTranslation } from 'react-i18next'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { CSSTransition } from 'react-transition-group'
 
 import { useStore } from '@/store'
-import { useParam } from '@/utils'
+import { useParam, useVisible } from '@/utils'
 
 import { FormActions } from './FormActions'
+import { Navigation } from './Navigation'
 import { UserAccount } from './UserAccount'
 
 export const FormNavbar: FC<IComponentProps> = observer(() => {
-  const { t } = useTranslation()
-  const { workspaceId, projectId, formId } = useParam()
+  const { workspaceId, projectId } = useParam()
   const workspaceStore = useStore('workspaceStore')
   const navigate = useNavigate()
 
-  const navLinks = [
-    {
-      to: `/workspace/${workspaceId}/project/${projectId}/form/${formId}/create`,
-      label: t('form.create'),
-      icon: IconEdit
-    },
-    {
-      to: `/workspace/${workspaceId}/project/${projectId}/form/${formId}/connect`,
-      label: t('form.connect'),
-      icon: IconBolt
-    },
-    {
-      to: `/workspace/${workspaceId}/project/${projectId}/form/${formId}/analytics`,
-      label: t('form.analytics'),
-      icon: IconChartBar
-    },
-    {
-      to: `/workspace/${workspaceId}/project/${projectId}/form/${formId}/submissions`,
-      label: t('form.submissions'),
-      icon: IconDatabase
-    },
-    {
-      to: `/workspace/${workspaceId}/project/${projectId}/form/${formId}/settings`,
-      label: t('form.settings'),
-      icon: IconSettings
-    }
-  ]
+  const [visible, open, close] = useVisible()
 
   function toProject() {
     navigate(`/workspace/${workspaceId}/project/${projectId}`)
   }
 
   return (
-    <div className="space-between -mt-px grid grid-cols-3 gap-3 border-b border-slate-200 py-3 px-4">
-      <div className="flex items-center">
-        <Button
-          className="group !border-none bg-none !p-0 text-[#4e5d78] !shadow-none hover:!bg-transparent hover:text-[#0252d7]"
-          leading={<IconArrowLeft className="h-4 w-4 text-[#4e5d78] group-hover:text-[#0252d7]" />}
-          onClick={toProject}
-        >
-          {workspaceStore.project?.name}
-        </Button>
-      </div>
-      <div role="navigation" className="flex items-center gap-x-12 text-xs">
-        {navLinks.map((link, index) => (
-          <NavLink
-            key={index}
-            to={link.to}
-            className="flex flex-col items-center text-slate-700 hover:text-[#0252d7]"
+    <>
+      <div className="space-between -mt-px grid h-[68px] grid-cols-2 gap-3 border-b border-slate-200 px-4 py-3 md:grid-cols-3">
+        <div className="flex items-center">
+          <Button
+            className="group !border-none bg-none !p-0 text-[#4e5d78] !shadow-none hover:!bg-transparent hover:text-[#0252d7]"
+            leading={
+              <IconArrowLeft className="h-4 w-4 text-[#4e5d78] group-hover:text-[#0252d7]" />
+            }
+            onClick={toProject}
           >
-            <link.icon className="mx-auto mb-1 h-5 w-5" />
-            {link.label}
-          </NavLink>
-        ))}
+            {workspaceStore.project?.name}
+          </Button>
+        </div>
+
+        <div className="hidden md:block">
+          <Navigation />
+        </div>
+
+        <div className="flex items-center justify-end">
+          <div className="hidden md:block">
+            <FormActions />
+          </div>
+
+          <Button.Link className="mr-2 !block !p-2 md:!hidden" onClick={open}>
+            <IconMenu2 />
+          </Button.Link>
+
+          <UserAccount />
+        </div>
       </div>
-      <div className="flex justify-end">
-        <FormActions />
-        <UserAccount />
-      </div>
-    </div>
+
+      <CSSTransition
+        in={visible}
+        timeout={0}
+        mountOnEnter={true}
+        classNames="sidebar-popup-right"
+        unmountOnExit={false}
+        onExited={close}
+      >
+        <div className="sidebar fixed inset-0 z-10 flex md:hidden">
+          <div
+            className="sidebar-overlay fixed inset-0 bg-slate-600 bg-opacity-75 transition-opacity duration-300 ease-in-out"
+            aria-hidden="true"
+          />
+          <div className="sidebar-wrapper relative ml-auto flex h-full w-full max-w-xs flex-1 transform-gpu flex-col bg-white transition-transform duration-300 ease-in-out">
+            <div className="px-4 py-10">
+              <Navigation />
+              <div className="my-10 h-px bg-slate-200"></div>
+              <FormActions />
+            </div>
+
+            <div className="absolute left-0 top-0 -ml-12 pt-2 md:hidden">
+              <button
+                type="button"
+                className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                onClick={close}
+              >
+                <span className="sr-only">Close sidebar</span>
+                <IconX className="h-6 w-6 text-white" aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </CSSTransition>
+    </>
   )
 })

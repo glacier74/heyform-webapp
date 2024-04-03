@@ -1,7 +1,8 @@
 import { Answer, SubmissionCategoryEnum } from '@heyforms/shared-types-enums'
-import { Button, Spin, notification } from '@heyforms/ui'
+import { Button, EmptyStates, Spin, notification } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { parseNumber } from '@hpnp/utils/parse'
+import { IconDatabase } from '@tabler/icons-react'
 import throttle from 'lodash/throttle'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -222,6 +223,14 @@ const Submissions: FC = () => {
           request={fetchData}
           deps={[category, page]}
           skeleton={<Spin className="h-5 w-5 text-[#1d4ed8]" />}
+          emptyState={
+            <EmptyStates
+              className="empty-states-fit"
+              icon={<IconDatabase className="non-scaling-stroke" />}
+              title={t('submissions.NoSubmissions')}
+              description={t('submissions.SubHeadline')}
+            />
+          }
         >
           <Sheet
             loading={false}

@@ -56,8 +56,8 @@ const FormSettings: FC = () => {
         <div className="flex">
           <Sidebar />
 
-          <div className="ml-16 mb-16 flex-1">
-            <div className="mt-14 mb-10 space-y-1">
+          <div className="mx-4 mb-16 flex-1 md:ml-16 md:mr-0">
+            <div className="mb-10 mt-14 space-y-1">
               <h1 className="text-3xl font-extrabold text-slate-900">{t('formSettings.Form')}</h1>
               <p className="text-sm text-slate-500">{t('formSettings.subTitle')}</p>
             </div>
@@ -67,7 +67,7 @@ const FormSettings: FC = () => {
               submitText={t('workspace.settings.up')}
               submitOptions={{
                 type: 'primary',
-                className: 'mt-10'
+                className: 'w-full md:w-[120px] mt-10'
               }}
               onlySubmitOnValueChange={true}
               onValuesChange={handleValuesChange}

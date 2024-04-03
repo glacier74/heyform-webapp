@@ -21,7 +21,7 @@ export const SelectedPanel: FC<SelectedPanelProps> = ({
   return (
     <>
       {size > 0 && (
-        <div className="fixed left-0 bottom-10 z-[99] w-full">
+        <div className="fixed bottom-10 left-0 z-[99] w-full">
           <div
             className="mx-auto flex w-[600px] items-center justify-between rounded-xl bg-white/90 px-4 py-2 shadow-2xl backdrop-blur-3xl"
             {...restProps}
