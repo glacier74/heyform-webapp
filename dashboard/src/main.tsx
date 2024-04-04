@@ -11,7 +11,7 @@ import '@/locales'
 import Router from '@/router'
 import { StoreProvider, store } from '@/store'
 import { getDeviceId, setDeviceId } from '@/utils'
-import { register } from '@/utils/serviceWorker'
+import { unregister } from '@/utils/serviceWorker'
 
 import './styles/index.scss'
 
@@ -55,8 +55,8 @@ const App = () => {
   )
 }
 
-// Register service worker
-register()
+// Unregister service worker
+unregister()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
