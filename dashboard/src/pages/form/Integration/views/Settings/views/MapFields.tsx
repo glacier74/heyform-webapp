@@ -78,8 +78,10 @@ export const MapFields: FC<MapFieldsProps> = ({
 
         return (
           <div className="relative pb-6">
-            <div className="mb-3">{t(label)}</div>
-            <div className="hey-form-item-content mb-3 text-gray-500">{t(extra as any)}</div>
+            <div className="mb-1">{t(label)}</div>
+            <div className="hey-form-item-content mb-3 text-sm text-gray-500">
+              {t(extra as any)}
+            </div>
 
             {fields.map((field, index) => (
               <Form.Field {...field}>
@@ -116,7 +118,7 @@ export const MapFields: FC<MapFieldsProps> = ({
 
                       {rightOptions ? (
                         <Select
-                          className="flex-1"
+                          className="w-1/2 flex-1"
                           value={value[1]}
                           options={rightOptions}
                           valueKey={rightValueKey}
@@ -128,7 +130,7 @@ export const MapFields: FC<MapFieldsProps> = ({
                         />
                       ) : (
                         <Input
-                          className="flex-1"
+                          className="w-1/2 flex-1"
                           value={value[1]}
                           placeholder={t(rightPlaceholder as any)}
                           onChange={handleRightChange}
@@ -148,7 +150,7 @@ export const MapFields: FC<MapFieldsProps> = ({
             ))}
 
             <div
-              className="mt-2 flex cursor-pointer items-center text-[#8a94a6]"
+              className="mt-2 flex cursor-pointer items-center text-sm text-[#8a94a6]"
               onClick={handleAddField}
             >
               <IconPlus className="text-[#8a94a6]" /> {t('integration.AddField')}

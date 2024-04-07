@@ -78,6 +78,7 @@ export const Airtable: FC<SettingsProps> = observer(({ app, onFinish }) => {
         extra={t('integration.tableText3')}
         leftOptions={formFields}
         leftLabelKey="title"
+        leftValueKey="id"
         leftPlaceholder="HeyForm question"
         leftTipText="Select HeyForm question"
         rightPlaceholder="Airtable field"

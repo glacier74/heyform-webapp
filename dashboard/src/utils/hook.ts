@@ -270,9 +270,15 @@ export function useWindow(
 
   useEffect(() => {
     if (url) {
-      windowRef.current = window.open(url, '_blank', options?.features)
+      windowRef.current = window.open(
+        url,
+        'HeyForm Popup',
+        `width=600,height=${screen.height},top=0,left=${
+          screen.height / 2 - 300
+        },menubar=1,resizable=1,${options?.features}`
+      )
     }
-  }, [url])
+  }, [options?.features, url])
 
   useEffect(() => {
     window.addEventListener('message', messageListener)
