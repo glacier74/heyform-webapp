@@ -1,4 +1,4 @@
-import { isObject, isValid } from '@hpnp/utils/helper'
+import { isArray, isObject, isValid } from '@hpnp/utils/helper'
 import { FC, useMemo } from 'react'
 
 import { SheetCellProps } from '../types'
@@ -7,7 +7,9 @@ export const OpinionScaleCell: FC<SheetCellProps> = ({ column, row }) => {
   const value = useMemo(() => {
     const v = row[column.key]
 
-    return [isObject(v) ? undefined : v, column.properties?.total].filter(isValid).join(' / ')
+    return [isObject(v) || isArray(v) ? undefined : v, column.properties?.total]
+      .filter(isValid)
+      .join(' / ')
   }, [column.key, column.properties?.total, row])
 
   return (
