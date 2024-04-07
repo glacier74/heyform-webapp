@@ -95,7 +95,7 @@ export const Monday: FC<SettingsProps> = observer(({ app, onFinish }) => {
         />
       </Form.Item>
       <Form.Item name="itemName" label={t('integration.ItemName')} rules={[{ required: true }]}>
-        <Select options={formFields as any} labelKey="title" />
+        <Select options={formFields as any} labelKey="title" valueKey="id" />
       </Form.Item>
       <MapFields
         name="fields"
@@ -104,6 +104,7 @@ export const Monday: FC<SettingsProps> = observer(({ app, onFinish }) => {
         extra={t('integration.mondayText')}
         leftOptions={formFields}
         leftLabelKey="title"
+        leftValueKey="id"
         leftPlaceholder="HeyForm question"
         leftTipText={t('integration.leftTipText')}
         rightLoading={loading}

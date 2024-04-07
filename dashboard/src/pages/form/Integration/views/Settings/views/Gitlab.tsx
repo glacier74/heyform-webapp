@@ -140,10 +140,20 @@ export const Gitlab: FC<SettingsProps> = observer(({ app, onFinish }) => {
         />
       </Form.Item>
       <Form.Item name="title" label={t('integration.issueTitle')} rules={[{ required: true }]}>
-        <Select options={fields as any} labelKey="title" placeholder="Select a question" />
+        <Select
+          options={fields as any}
+          labelKey="title"
+          valueKey="id"
+          placeholder="Select a question"
+        />
       </Form.Item>
       <Form.Item name="body" label={t('integration.issueDescription')}>
-        <Select options={fields as any} labelKey="title" placeholder="Select a question" />
+        <Select
+          options={fields as any}
+          labelKey="title"
+          valueKey="id"
+          placeholder="Select a question"
+        />
       </Form.Item>
     </SettingsWrapper>
   )

@@ -54,6 +54,7 @@ export const Mailchimp: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={fields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>
@@ -65,6 +66,7 @@ export const Mailchimp: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={fields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>
@@ -72,6 +74,7 @@ export const Mailchimp: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={fields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>
@@ -83,6 +86,7 @@ export const Mailchimp: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={fields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>

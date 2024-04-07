@@ -40,6 +40,7 @@ export const Hubspot: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
           disabled={!authorized}
         />
@@ -48,6 +49,7 @@ export const Hubspot: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
           disabled={!authorized}
         />
@@ -56,6 +58,7 @@ export const Hubspot: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
           disabled={!authorized}
         />
@@ -64,6 +67,7 @@ export const Hubspot: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
           disabled={!authorized}
         />

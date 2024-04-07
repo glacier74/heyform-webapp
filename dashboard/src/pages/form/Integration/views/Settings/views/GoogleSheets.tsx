@@ -159,6 +159,7 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
         extra={t('integration.googleSheet')}
         leftOptions={formFields}
         leftLabelKey="title"
+        leftValueKey="id"
         leftPlaceholder={t('integration.leftPlaceholder')}
         leftTipText={t('integration.leftTipText')}
         rightLoading={loading}

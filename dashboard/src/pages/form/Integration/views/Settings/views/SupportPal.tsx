@@ -105,6 +105,7 @@ export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>
@@ -112,6 +113,7 @@ export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>
@@ -119,6 +121,7 @@ export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>
@@ -126,6 +129,7 @@ export const SupportPal: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>

@@ -49,7 +49,8 @@ export const ThirdPartySignIn: FC<ThirdPartySignInProps> = ({
     setLoading(false)
   }
 
-  useWindow(oauthUrl, { source: 'heyform-integration' }, async (payload: any) => {
+  useWindow(oauthUrl, { source: 'heyform-integration' }, async (popWindow, payload: any) => {
+    popWindow.close()
     await oauthRequest(payload.code)
   })
 

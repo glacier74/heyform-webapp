@@ -55,6 +55,7 @@ export const Osticket: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>
@@ -66,6 +67,7 @@ export const Osticket: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>
@@ -73,6 +75,7 @@ export const Osticket: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>
@@ -80,6 +83,7 @@ export const Osticket: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>
@@ -87,6 +91,7 @@ export const Osticket: FC<SettingsProps> = observer(({ app, onFinish }) => {
         <Select
           options={formFields as any}
           labelKey="title"
+          valueKey="id"
           placeholder={t('integration.selectQuestion')}
         />
       </Form.Item>
