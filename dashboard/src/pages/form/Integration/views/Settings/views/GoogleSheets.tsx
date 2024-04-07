@@ -29,7 +29,7 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
   const formStore = useStore('formStore')
   const formFields = formStore.fields
   const appId = app!.id
-  const [sheetFields, setSheetFields] = useState<string[]>([])
+  const [sheetFields, setSheetFields] = useState<any[]>([])
   const { t } = useTranslation()
 
   async function fetchDrives() {
@@ -70,6 +70,7 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
 
       try {
         const sheetFields = await fetchFields()
+
         setSheetFields(sheetFields)
       } catch (err: any) {
         console.error(err)
@@ -165,6 +166,7 @@ export const GoogleSheets: FC<SettingsProps> = observer(({ app, onFinish }) => {
         rightLoading={loading}
         rightOptions={sheetFields}
         rightLabelKey="name"
+        rightValueKey="id"
         rightPlaceholder={t('integration.rightPlaceholder')}
         rightTipText={t('integration.rightTipText')}
       />
