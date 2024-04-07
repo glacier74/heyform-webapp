@@ -7,7 +7,7 @@
 import { Form, Input, Select } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { IconArrowRight, IconPlus, IconX } from '@tabler/icons-react'
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 interface MapFieldsProps {
@@ -62,8 +62,16 @@ export const MapFields: FC<MapFieldsProps> = ({
                     throw new Error('Please setup Map fields')
                   }
 
-                  if (!value.every((row: string[]) => isValid(row[0]) && row[1])) {
-                    throw new Error('Some field is empty')
+                  for (let index = 0; index < value.length; index++) {
+                    const row = value[index]
+                    const isLeftEmpty = !row[0]
+                    const isRightEmpty = !row[1]
+
+                    if (isLeftEmpty || isRightEmpty) {
+                      throw new Error(
+                        `Field ${index + 1} ${isLeftEmpty ? 'left side' : 'right side'} is empty`
+                      )
+                    }
                   }
                 }
               }
@@ -86,14 +94,12 @@ export const MapFields: FC<MapFieldsProps> = ({
             {fields.map((field, index) => (
               <Form.Field {...field}>
                 {({ value, onChange }) => {
-                  function handleLeftChange(left: any) {
-                    value[0] = left
-                    onChange(value)
+                  const handleLeftChange = (left: any) => {
+                    onChange([left, value[1]])
                   }
 
-                  function handleRightChange(right: any) {
-                    value[1] = right
-                    onChange(value)
+                  const handleRightChange = (right: any) => {
+                    onChange([value[0], right])
                   }
 
                   function handleRemoveField() {
