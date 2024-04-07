@@ -90,7 +90,7 @@ const Report: FC = observer(() => {
   return (
     <div className="mx-auto flex print:bg-white md:w-[1044px]">
       <FieldList />
-      <div className="mx-0 lg:mx-4 mb-16 mt-10 w-full rounded-lg print:ml-0 md:ml-16 md:mr-0 md:w-[700px]">
+      <div className="mx-0 mb-16 mt-10 w-full rounded-lg print:ml-0 md:ml-16 md:mr-0 md:w-[700px] lg:mx-4">
         <SubHeading
           style={{
             marginTop: 0

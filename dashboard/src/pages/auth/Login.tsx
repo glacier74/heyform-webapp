@@ -18,7 +18,7 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className="mx-4 lg:mx-0">
       <div>
         <h1 className="mt-6 text-center text-3xl font-bold text-slate-900">{t('login.signIn')}</h1>
         <p className="mt-2 text-center text-sm text-slate-500">
@@ -33,8 +33,23 @@ const Login = () => {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="rounded-lg bg-white py-8 px-4 shadow sm:px-10">
+          <div>
+            <p className="text-sm font-medium text-slate-700"> {t('login.signWith')}</p>
+            <ThirdPartyLogin />
+          </div>
+
+          <div className="relative mt-6">
+            <div className="absolute inset-0 flex items-center" aria-hidden="true">
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="bg-white px-2 text-slate-500">{t('auth.signup.continueWith')}</span>
+            </div>
+          </div>
+
           <Form.Custom
+            className="mt-6"
             submitText={t('login.button')}
             submitOptions={{
               type: 'primary',
@@ -74,19 +89,6 @@ const Login = () => {
               </div>
             </div>
           </Form.Custom>
-
-          <div className="relative mt-6 mb-4">
-            <div className="absolute inset-0 flex items-center" aria-hidden="true">
-              <div className="w-full border-t border-gray-300" />
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="bg-white px-2 text-slate-500">{t('login.continueWith')}</span>
-            </div>
-          </div>
-
-          <div>
-            <ThirdPartyLogin />
-          </div>
         </div>
       </div>
     </div>

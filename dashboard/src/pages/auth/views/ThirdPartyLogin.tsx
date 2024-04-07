@@ -29,14 +29,14 @@ export const ThirdPartyLogin = () => {
   }
 
   return (
-    <div className="mt-1 grid grid-cols-2 gap-2">
+    <div className="mt-1.5 grid grid-cols-2 gap-2">
       <div>
         <div
           className="inline-flex w-full cursor-pointer justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-slate-500 shadow-sm hover:bg-slate-50"
           onClick={handleSignInWithGoogle}
         >
-          <span className="sr-only">{t('login.Google')}</span>
-          <GoogleIcon className="h-5 w-5" />
+          <GoogleIcon className="mr-2 h-5 w-5" />
+          <span>{t('login.Google')}</span>
         </div>
       </div>
 
@@ -45,8 +45,8 @@ export const ThirdPartyLogin = () => {
           className="inline-flex w-full cursor-pointer justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-slate-500 shadow-sm hover:bg-slate-50"
           onClick={handleSignInWithApple}
         >
-          <span className="sr-only">{t('login.Apple')}</span>
-          <AppleIcon className="h-5 w-5" />
+          <AppleIcon className="mr-2 h-5 w-5" />
+          <span>{t('login.Apple')}</span>
         </div>
       </div>
     </div>

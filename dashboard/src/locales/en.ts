@@ -18,8 +18,8 @@ export default {
     Email: 'Email address',
     Password: 'Password',
     button: 'Log in',
-    Google: 'Log in with Google',
-    Apple: 'Log in with Apple',
+    Google: 'Google',
+    Apple: 'Apple',
     Code: 'Verification code',
     GetCode: 'Get code',
     CountDown: 'Resend in {{count}}s',
@@ -577,7 +577,7 @@ export default {
     selected: 'selected',
     Deselect: 'Deselect all',
     NoSubmissions: 'No submissions yet',
-		SubHeadline: 'Share the form online to engage a broader audience.'
+    SubHeadline: 'Share the form online to engage a broader audience.'
   },
   formSettings: {
     Form: 'Form settings',

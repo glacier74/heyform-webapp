@@ -25,7 +25,7 @@ export const FieldList: FC = observer(() => {
   }
 
   return (
-    <div className="hidden w-[280px] md:block print:hidden">
+    <div className="hidden w-[280px] print:hidden md:block">
       <div className="sticky top-10 mt-11 h-[calc(100vh-212px)] overflow-y-auto rounded-lg bg-white p-5">
         <div className="px-[14px] py-2 text-[#8a94a6]">{t('report.Questions')}</div>
         {fields?.map((row, index) => {

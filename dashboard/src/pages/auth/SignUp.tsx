@@ -1,6 +1,7 @@
 import { Form, Input } from '@heyforms/ui'
 import { useTranslation } from 'react-i18next'
 
+import { RedirectUriLink } from '@/components'
 import { AuthService } from '@/service'
 import { useQueryURL, useRouter } from '@/utils'
 
@@ -17,7 +18,7 @@ const SignUp = () => {
   }
 
   return (
-    <div>
+    <div className="mx-4 lg:mx-0">
       <div>
         <h1 className="mt-6 text-center text-3xl font-bold text-slate-900">
           {t('auth.signup.signUp')}
@@ -26,7 +27,7 @@ const SignUp = () => {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="rounded-lg bg-white py-8 px-4 shadow sm:px-10">
           <div>
             <p className="text-sm font-medium text-slate-700"> {t('auth.signup.signWith')}</p>
             <ThirdPartyLogin />
@@ -104,6 +105,12 @@ const SignUp = () => {
                 </p>
               </div>
             </Form.Custom>
+
+            <div className="mt-6 text-center text-blue-700 hover:text-blue-800 sm:text-sm">
+              <RedirectUriLink href="/login" className="inline-flex items-center">
+                {t('auth.forgotPassword.link')}
+              </RedirectUriLink>
+            </div>
           </div>
         </div>
       </div>

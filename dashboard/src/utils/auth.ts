@@ -36,9 +36,8 @@ export function clearAuthState() {
   })
 
   // Clear logged in cookie
-  cookies.remove(loggedInKey, {
-    path: '/',
-    domain: import.meta.env.VITE_COOKIE_DOMAIN as string
+  setCookie(loggedInKey, '', {
+    expires: -1
   })
 }
 
