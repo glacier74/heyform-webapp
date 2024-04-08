@@ -39,7 +39,7 @@ const errorLink = onError(({ response }) => {
 
     if (isValid(error) && error.status === 401) {
       clearAuthState()
-      window.location.href = '/login'
+      window.location.href = '/logout'
       return
     }
   }

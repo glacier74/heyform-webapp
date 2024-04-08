@@ -1,4 +1,4 @@
-import { isEqual, isValid } from '@hpnp/utils/helper'
+import { isEqual, isTrue, isValid } from '@hpnp/utils/helper'
 import { nanoid } from '@hpnp/utils/nanoid'
 import type { CookieAttributes } from 'js-cookie'
 import cookies from 'js-cookie'
@@ -24,7 +24,7 @@ export function getCookie(key: string) {
 
 export function getAuthState() {
   const value = getCookie(loggedInKey)
-  return isValid(value)
+  return isTrue(value)
 }
 
 export function clearAuthState() {
@@ -37,7 +37,7 @@ export function clearAuthState() {
 
   // Clear logged in cookie
   setCookie(loggedInKey, '', {
-    expires: -1
+    expires: 0
   })
 }
 

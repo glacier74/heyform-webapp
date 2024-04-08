@@ -19,7 +19,7 @@ export const UserAccount: FC = observer(() => {
 
       case 'logout':
         clearAuthState()
-        window.location.href = '/login'
+        window.location.href = '/logout'
         break
     }
   }

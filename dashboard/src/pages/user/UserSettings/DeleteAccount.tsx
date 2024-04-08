@@ -17,7 +17,7 @@ const VerifyEmail: FC<IModalProps> = observer(({ visible, onClose, onComplete })
     // Clear the auth state and logout the user
     setTimeout(() => {
       clearAuthState()
-      window.location.href = '/login'
+      window.location.href = '/logout'
     }, 10_000)
 
     onComplete?.()

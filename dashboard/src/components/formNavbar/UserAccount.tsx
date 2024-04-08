@@ -38,7 +38,7 @@ export const UserAccount: FC<IComponentProps> = observer(({ className, style }) 
 
       case 'logout':
         clearAuthState()
-        window.location.href = '/login'
+        window.location.href = '/logout'
         break
     }
   }
