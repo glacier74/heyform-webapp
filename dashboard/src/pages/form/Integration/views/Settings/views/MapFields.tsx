@@ -5,9 +5,9 @@
  * @date: 2021-06-17 11:55
  **/
 import { Form, Input, Select } from '@heyforms/ui'
-import { isValid } from '@hpnp/utils/helper'
+import { isNil } from '@hpnp/utils/helper'
 import { IconArrowRight, IconPlus, IconX } from '@tabler/icons-react'
-import { FC, ReactNode, useCallback } from 'react'
+import { FC, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
 interface MapFieldsProps {
@@ -64,8 +64,8 @@ export const MapFields: FC<MapFieldsProps> = ({
 
                   for (let index = 0; index < value.length; index++) {
                     const row = value[index]
-                    const isLeftEmpty = !row[0]
-                    const isRightEmpty = !row[1]
+                    const isLeftEmpty = isNil(row[0])
+                    const isRightEmpty = isNil(row[1])
 
                     if (isLeftEmpty || isRightEmpty) {
                       throw new Error(
@@ -109,7 +109,7 @@ export const MapFields: FC<MapFieldsProps> = ({
                   return (
                     <div className="mb-1 flex items-center">
                       <Select
-                        className="flex-1 placeholder:text-[#b0b7c3]"
+                        className="w-1/2 flex-1 placeholder:text-[#b0b7c3]"
                         value={value[0]}
                         options={leftOptions}
                         valueKey={leftValueKey}

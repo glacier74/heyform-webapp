@@ -2,6 +2,7 @@ import type { FormField as IFormField } from '@heyforms/shared-types-enums'
 import { Property } from '@heyforms/shared-types-enums/types/form'
 
 export enum IntegrationStatusEnum {
+  PERMITTED = 0,
   ACTIVE = 1,
   DISABLED
 }

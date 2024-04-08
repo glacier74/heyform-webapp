@@ -250,6 +250,7 @@ export class FormService {
   static async integrations(formId: string) {
     return request.query({
       query: FORM_INTEGRATIONS_GQL,
+      fetchPolicy: 'no-cache',
       variables: {
         input: {
           formId
