@@ -263,14 +263,14 @@ const FullNameItem: FC<SheetCellProps> = ({ column, row }) => {
   const value = row[column.key]
 
   return (
-    <div className="justify-between">
-      <div className="mb-0 flex w-[50%] pr-[6px] md:w-screen md:pr-0">
+    <div className="flex items-center justify-between gap-5">
+      <div className="mb-0 flex w-[50%] flex-col">
         <div className="heygrid-modal-form-label">First name </div>
         <div className="min-h-11 cursor-not-allowed whitespace-pre-line rounded-lg bg-white p-[10px] text-sm font-normal leading-6 text-[#4e5d78]">
           {value?.firstName}
         </div>
       </div>
-      <div className="mb-0 flex w-[50%] pl-[6px] md:w-screen md:pl-0">
+      <div className="mb-0 flex w-[50%] flex-col">
         <div className="heygrid-modal-form-label">Last name </div>
         <div className="min-h-11 cursor-not-allowed whitespace-pre-line rounded-lg bg-white p-[10px] text-sm font-normal leading-6 text-[#4e5d78]">
           {value?.lastName}
