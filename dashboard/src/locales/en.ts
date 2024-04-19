@@ -285,7 +285,18 @@ export default {
       type: 'Type',
       domainName: 'Name',
       content: 'Content',
+      aname: 'A',
       cname: 'CNAME',
+      ttl: 'TTL',
+      ttlAuto: 'Auto / Default',
+      dnsOnly: 'DNS only',
+      dnsTip:
+        'To domain name providers such as Cloudflare, we request that you disable the Proxy feature',
+      dnsTip2:
+        "Add these DNS records below to your domain name provider's DNS settings. You can check the DNS records of your domain with this tool: <a>DNS Lookup</a>",
+      dnsError: "We couldn't verify your DNS records. If you set this up already, try again later.",
+      proxyStatus: 'Proxy status',
+      save: 'Save',
       domainUp: 'Custom domain has been updated',
       invalid: 'Invalid domain name',
       domain: 'eg: yourcustomdomain.com',

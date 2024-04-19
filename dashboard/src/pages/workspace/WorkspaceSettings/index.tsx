@@ -11,7 +11,7 @@ import { LogoUploader } from './LogoUploader'
 const WorkspaceSettings: FC<IModalProps> = ({ visible, onClose }) => {
   const { t } = useTranslation()
   return (
-    <Modal visible={visible} onClose={onClose} showCloseIcon>
+    <Modal visible={visible} maskClosable={false} showCloseIcon={true} onClose={onClose}>
       <div className="space-y-6">
         <div>
           <h1 className="text-lg font-extrabold leading-6 text-slate-900">

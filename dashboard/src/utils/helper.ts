@@ -4,6 +4,7 @@ import { qs, removeObjectNil } from '@hpnp/utils'
 import { isURL, isValid } from '@hpnp/utils/helper'
 import { stringify } from '@hpnp/utils/qs'
 import isMobilePhone from 'validator/lib/isMobilePhone'
+import isFQDN from "validator/lib/isFQDN";
 
 export function urlBuilder(prefix: string, query: Record<string, any>): string {
   return prefix + '?' + stringify(removeObjectNil(query), { encode: true })
@@ -183,4 +184,51 @@ export function insertThemeStyle(customTheme?: FormTheme) {
   }
 
   style.innerHTML = content
+}
+
+export function getSubdomain(domain: string) {
+  if (!isValidDomain(domain)) {
+    return
+  }
+
+  const arr = domain.split('.')
+
+  if (arr.length === 2) {
+    return 'www'
+  }
+
+  return arr[0]
+}
+
+export function getDomainName(domain: string) {
+  if (!isValidDomain(domain)) {
+    return
+  }
+
+  const arr = domain.split('.')
+
+  if (arr.length === 2) {
+    return '@'
+  }
+
+  return arr[0]
+}
+
+export function isRootDomain(domain: string) {
+  return isValidDomain(domain) && domain.split('.').length === 2
+}
+
+export function isValidDomain(domain: string) {
+  if (
+    !domain ||
+    !isFQDN(domain, {
+      allow_underscores: true,
+      allow_numeric_tld: true,
+      allow_wildcard: true
+    })
+  ) {
+    return false
+  }
+
+  return domain.split('.').length <= 3
 }

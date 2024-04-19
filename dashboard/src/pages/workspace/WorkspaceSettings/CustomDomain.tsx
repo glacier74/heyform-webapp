@@ -1,15 +1,15 @@
-import { Button, Form, Input, Modal, notification } from '@heyforms/ui'
+import { Button, Form, Input, Modal, Tooltip, notification } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import isFQDN from 'validator/lib/isFQDN'
 
 import { PlanCheck, SwitchField } from '@/components'
 import { PlanGradeEnum } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useParam, useVisible } from '@/utils'
+import { getDomainName, isRootDomain, useParam, useVisible } from '@/utils'
 
 interface CustomDomainModalProps extends IModalProps {
   domain?: string
@@ -18,13 +18,18 @@ interface CustomDomainModalProps extends IModalProps {
 const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClose }) => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
-  const timerRef = useRef<any>()
   const { t } = useTranslation()
+
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<Error | null>(null)
 
   async function handleAddDomain() {
     if (!domain) {
       return
     }
+
+    setError(null)
+    setLoading(true)
 
     try {
       const result = await WorkspaceService.addCustomDomain(workspaceId, domain!)
@@ -37,29 +42,23 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
         // Close modal
         onClose?.()
 
+        setLoading(false)
+
         return notification.success({
           title: t('workspace.settings.domainUp')
         })
+      } else {
+        setError(new Error(t('workspace.settings.dnsError')))
       }
     } catch (err: any) {
-      notification.error({
-        title: err.message
-      })
+      setError(err)
     }
+
+    setLoading(false)
   }
 
-  useEffect(() => {
-    if (visible && domain) {
-      timerRef.current = setInterval(handleAddDomain, 2_000)
-    }
-
-    return () => {
-      timerRef.current && clearInterval(timerRef.current)
-    }
-  }, [visible])
-
   return (
-    <Modal contentClassName="max-w-2xl" visible={visible} onClose={onClose} showCloseIcon>
+    <Modal contentClassName="max-w-3xl" visible={visible} onClose={onClose} showCloseIcon>
       <div className="space-y-6">
         <div>
           <h1 className="text-lg font-medium leading-6 text-slate-900">
@@ -74,6 +73,22 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
           </p>
         </div>
 
+        <div className="text-sm text-slate-500">
+          <Trans
+            i18nKey="workspace.settings.dnsTip2"
+            t={t}
+            components={{
+              a: (
+                <a
+                  href="https://dnschecker.org/all-dns-records-of-domain.php"
+                  className="text-slate-900 underline"
+                  target="_blank"
+                />
+              )
+            }}
+          />
+        </div>
+
         <div>
           <table className="mt-8 table">
             <thead className="table-head">
@@ -81,20 +96,44 @@ const CustomDomainModal: FC<CustomDomainModalProps> = ({ visible, domain, onClos
                 <th>{t('workspace.settings.type')}</th>
                 <th>{t('workspace.settings.domainName')}</th>
                 <th>{t('workspace.settings.content')}</th>
+                <th>{t('workspace.settings.ttl')}</th>
+                <th>{t('workspace.settings.proxyStatus')}</th>
               </tr>
             </thead>
             <tbody className="table-body">
               <tr>
-                <td>{t('workspace.settings.cname')}</td>
-                <td>{domain}</td>
-                <td>{import.meta.env.VITE_CUSTOM_DOMAIN_CNAME_PROXY}</td>
+                <td>
+                  {isRootDomain(domain as string)
+                    ? t('workspace.settings.aname')
+                    : t('workspace.settings.cname')}
+                </td>
+                <td>{getDomainName(domain as string)}</td>
+                <td>
+                  {isRootDomain(domain as string)
+                    ? import.meta.env.VITE_CUSTOM_DOMAIN_ANAME_PROXY
+                    : import.meta.env.VITE_CUSTOM_DOMAIN_CNAME_PROXY}
+                </td>
+                <td>{t('workspace.settings.ttlAuto')}</td>
+                <td>
+                  <Tooltip
+                    ariaLabel={
+                      <div className="h-auto w-56 whitespace-pre-line p-1 text-left">
+                        {t('workspace.settings.dnsTip')}
+                      </div>
+                    }
+                  >
+                    <span className="underline">{t('workspace.settings.dnsOnly')}</span>
+                  </Tooltip>
+                </td>
               </tr>
             </tbody>
           </table>
 
-          <Button className="mt-4" type="primary" loading={true} disabled={true}>
-            {t('workspace.settings.domainChecking')}...
+          <Button className="mt-4" type="primary" loading={loading} onClick={handleAddDomain}>
+            {t('workspace.settings.save')}
           </Button>
+
+          {error && <div className="form-item-error">{error.message}</div>}
         </div>
       </div>
     </Modal>
@@ -133,18 +172,6 @@ export const CustomDomain: FC = observer(() => {
   }
 
   async function handleFinish(values: IMapType) {
-    const result = await WorkspaceService.addCustomDomain(workspaceId, values.domain)
-
-    if (result) {
-      workspaceStore.updateWorkspace(workspaceId, {
-        customDomain: values.domain
-      })
-
-      return notification.success({
-        title: t('workspace.settings.domainUp')
-      })
-    }
-
     setDomain(values.domain)
     handleOpen()
   }
