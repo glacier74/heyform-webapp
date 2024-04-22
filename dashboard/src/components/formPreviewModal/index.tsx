@@ -92,6 +92,8 @@ export const FormPreviewModal: FC = observer(() => {
               <Renderer
                 form={formStore.current as IFormModel}
                 autoSave={false}
+                query={{}}
+                locale={formStore.current?.settings?.locale || 'en'}
                 stripeApiKey={import.meta.env.VITE_STRIPE_KEY}
                 stripeAccountId={formStore.current?.stripeAccount?.accountId}
               />

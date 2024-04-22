@@ -1,4 +1,4 @@
-import { Choice, FieldKindEnum, FormField, SubmissionModel } from '@heyforms/shared-types-enums'
+import {Choice, FieldKindEnum, FormField, HiddenField, SubmissionModel} from '@heyforms/shared-types-enums'
 import type { Key, ReactElement } from 'react'
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
@@ -300,6 +300,7 @@ export interface SheetProps
   width?: number
   loading: boolean
   formFields: FormField[]
+  hiddenFields: HiddenField[]
   submissions: SubmissionModel[]
   selectedRows?: ReadonlySet<Key>
   onSelectedRowsChange?: (selectedRows: Set<Key>) => void

@@ -11,6 +11,17 @@ interface UpgradeButtonProps extends IComponentProps {
   isBadgeShow?: boolean
 }
 
+export const PlanBadge: FC<UpgradeButtonProps> = ({ permission }) => {
+  const workspaceStore = useStore('workspaceStore')
+  const grade = workspaceStore.workspace?.plan.grade || PlanGradeEnum.FREE
+
+  if (grade >= permission) {
+    return null
+  }
+
+  return <Badge className="px-2" type="blue" text="Premium" rounded />
+}
+
 export const PlanCheck: FC<UpgradeButtonProps> = observer(
   ({ className, permission, isBadgeShow = true, children }) => {
     const appStore = useStore('appStore')

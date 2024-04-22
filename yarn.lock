@@ -1328,10 +1328,10 @@
   resolved "https://npm.cnnic.eu/@heroicons%2freact/-/react-1.0.6.tgz"
   integrity sha512-JJCXydOFWMDpCP4q13iEplA503MQO3xLoZiKum+955ZCtHINWnx26CUxVxxFQu/uLb4LW3ge15ZpzIkXKkJ8oQ==
 
-"@heyforms/answer-utils@^0.8.0":
-  version "0.8.0"
-  resolved "https://npm.cnnic.eu/@heyforms%2fanswer-utils/-/answer-utils-0.8.0.tgz"
-  integrity sha512-UH7VZtrH8KMci3sNdF7zDitaC2p5Rkn0Il7125sY3FZJmsYuFepEj6pPF0ltkaQvKg7cZ45X0+ik5PvqdYoueg==
+"@heyforms/answer-utils@^0.9.3":
+  version "0.9.3"
+  resolved "https://npm.cnnic.eu/@heyforms%2fanswer-utils/-/answer-utils-0.9.3.tgz#6707927b8b6e6c6bf15f79ab950d790b9cdd5e81"
+  integrity sha512-7iBN3em1176s87fpyBE4LbyIUz3HN+0zACdn2cMzYIVBySraLoD/rPAvkooWdSRST+jSXfvNHhxGSWIxuAuvrw==
   dependencies:
     "@heyforms/shared-types-enums" "^4.7.6"
     "@hpnp/utils" "^2.9.3"
@@ -1341,14 +1341,14 @@
     libphonenumber-js "^1.10.7"
     validator "^13.7.0"
 
-"@heyforms/form-component@^2024.1.1":
-  version "2024.1.1"
-  resolved "https://npm.cnnic.eu/@heyforms%2fform-component/-/form-component-2024.1.1.tgz#5337a158bd7ec83f327260f386d4a72cc04a8a16"
-  integrity sha512-bpZr86mdZnR4xO7a81G1hPpzSJ0LbRslANSh6YyFRCSdIZyIMpBdVytDpKIkLjiQvkm+EtoMBpGjiR2/P2BerQ==
+"@heyforms/form-component@^2024.4.5":
+  version "2024.4.5"
+  resolved "https://npm.cnnic.eu/@heyforms%2fform-component/-/form-component-2024.4.5.tgz#6091f3fe3b336c9130d41dc7ae0eee6144c9ee78"
+  integrity sha512-Qhqf5kBbI2W3NBePEaDTZIX8xnQdkry3UjxTpLuG/bzhD4ZergXEB20a4RpmDCmL1VKCEn3A/VZ2nIbJfaPscA==
   dependencies:
     "@heroicons/react" "^1.0.6"
-    "@heyforms/answer-utils" "^0.8.0"
-    "@heyforms/shared-types-enums" "^4.7.6"
+    "@heyforms/answer-utils" "^0.9.3"
+    "@heyforms/shared-types-enums" "^4.8.0"
     "@heyforms/ui" "^2022.9.6"
     "@hpnp/utils" "^2.9.3"
     big.js "^6.2.1"
@@ -1370,6 +1370,11 @@
   version "4.7.6"
   resolved "https://npm.cnnic.eu/@heyforms%2fshared-types-enums/-/shared-types-enums-4.7.6.tgz"
   integrity sha512-I6LzoGt5KFrxzu4GNfWynUNrxkFohCjzxpS8FhVClwnSkB0K5Wlo8uxC0FjyaLfkocEh12pg+PPM0GDqu/UyhA==
+
+"@heyforms/shared-types-enums@^4.8.0":
+  version "4.8.0"
+  resolved "https://npm.cnnic.eu/@heyforms%2fshared-types-enums/-/shared-types-enums-4.8.0.tgz#06594320b133f7111d88a6aa454b34bb083e1939"
+  integrity sha512-RBee6O5SvfgGx2fj9eWkGnEs0ADXO3EmFiSLEtiB6V1/OM2yM7JCMK/Qa2EAENz9IwC6em9O1YNwtbGEdvEa6w==
 
 "@heyforms/ui@^2022.9.6", "@heyforms/ui@^2024.3.2":
   version "2024.3.2"
@@ -6814,6 +6819,11 @@ react-refresh@^0.10.0:
   version "0.10.0"
   resolved "https://npm.cnnic.eu/react-refresh/-/react-refresh-0.10.0.tgz"
   integrity sha512-PgidR3wST3dDYKr6b4pJoqQFpPGNKDSCDx4cZoshjXipw3LzO7mG1My2pwEzz2JVkF+inx3xRpDeQLFQGH/hsQ==
+
+react-resizable-panels@^2.0.16:
+  version "2.0.18"
+  resolved "https://npm.cnnic.eu/react-resizable-panels/-/react-resizable-panels-2.0.18.tgz#976d317a58dd1975edbd55197d9a7d849b63bbc5"
+  integrity sha512-rKagCW6C8tTjWRq5jNsASsi4TB2a+IixL9++0G1+kPgAgvULPVf7kE0VbHysC3wdvcGYMa70O46C9YpG7CCkeA==
 
 react-router-dom@^6.3.0:
   version "6.3.0"

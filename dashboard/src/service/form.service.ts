@@ -11,8 +11,10 @@ import {
 import {
   CREATE_FORM_FIELD_GQL,
   CREATE_FORM_GQL,
+  CREATE_FORM_HIDDEN_FIELD_GQL,
   DELETE_FORM_FIELD_GQL,
   DELETE_FORM_GQL,
+  DELETE_FORM_HIDDEN_FIELD_GQL,
   DUPLICATE_FORM_GQL,
   FORMS_GQL,
   FORM_ANALYTIC_GQL,
@@ -27,6 +29,7 @@ import {
   UPDATE_FORM_ARCHIVE_GQL,
   UPDATE_FORM_FIELD_GQL,
   UPDATE_FORM_GQL,
+  UPDATE_FORM_HIDDEN_FIELD_GQL,
   UPDATE_FORM_INTEGRATIONS_GQL,
   UPDATE_FORM_LOGICS,
   UPDATE_FORM_SCHEMAS_GQL,
@@ -319,6 +322,33 @@ export class FormService {
         input: {
           formId
         }
+      }
+    })
+  }
+
+  static async createHiddenField(input: { formId: string; fieldId: string; fieldName: string }) {
+    return request.mutate({
+      mutation: CREATE_FORM_HIDDEN_FIELD_GQL,
+      variables: {
+        input
+      }
+    })
+  }
+
+  static async updateHiddenField(input: { formId: string; fieldId: string; fieldName: string }) {
+    return request.mutate({
+      mutation: UPDATE_FORM_HIDDEN_FIELD_GQL,
+      variables: {
+        input
+      }
+    })
+  }
+
+  static async deleteHiddenField(input: { formId: string; fieldId: string }) {
+    return request.mutate({
+      mutation: DELETE_FORM_HIDDEN_FIELD_GQL,
+      variables: {
+        input
       }
     })
   }

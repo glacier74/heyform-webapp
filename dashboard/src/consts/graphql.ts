@@ -102,6 +102,7 @@ export const WORKSPACES_GQL = gql`
         submissionLimit
         storageLimit
         apiAccessLimit
+        multiLanguage
         customDomain
         grade
       }
@@ -212,6 +213,7 @@ export const PLANS_GQL = gql`
       customDomain
       customThankYouPage
       whitelabelBranding
+      multiLanguage
       fileExport
       grade
       prices {
@@ -385,6 +387,10 @@ export const TEMPLATE_DETAIL_GQL = gql`
         validations
         properties
       }
+      hiddenFields {
+        id
+        name
+      }
       themeSettings {
         theme
       }
@@ -500,6 +506,7 @@ export const FORMS_GQL = gql`
         ipLimitTime
         enableProgress
         locale
+        languages
         enableClosedMessage
         closedFormTitle
         closedFormDescription
@@ -571,6 +578,7 @@ export const FORM_SUMMARY_GQL = gql`
         ipLimitCount
         ipLimitTime
         locale
+        languages
         enableClosedMessage
         closedFormTitle
         closedFormDescription
@@ -617,6 +625,7 @@ export const FORM_DETAIL_GQL = gql`
         ipLimitTime
         enableProgress
         locale
+        languages
         enableClosedMessage
         closedFormTitle
         closedFormDescription
@@ -631,6 +640,11 @@ export const FORM_DETAIL_GQL = gql`
         properties
         layout
       }
+      hiddenFields {
+        id
+        name
+      }
+      translations
       logics
       variables
       fieldUpdateAt
@@ -654,6 +668,24 @@ export const CREATE_FORM_GQL = gql`
 export const IMPORT_FORM_GQL = gql`
   query importExternalForm($input: ImportExternalFormInput!) {
     importExternalForm(input: $input)
+  }
+`
+
+export const CREATE_FORM_HIDDEN_FIELD_GQL = gql`
+  mutation createFormHiddenField($input: CreateHiddenFieldInput!) {
+    createFormHiddenField(input: $input)
+  }
+`
+
+export const UPDATE_FORM_HIDDEN_FIELD_GQL = gql`
+  mutation updateFormHiddenField($input: CreateHiddenFieldInput!) {
+    updateFormHiddenField(input: $input)
+  }
+`
+
+export const DELETE_FORM_HIDDEN_FIELD_GQL = gql`
+  mutation deleteFormHiddenField($input: DeleteHiddenFieldInput!) {
+    deleteFormHiddenField(input: $input)
   }
 `
 
@@ -808,14 +840,13 @@ export const SUBMISSIONS_GQL = gql`
       submissions {
         id
         category
-        contact {
-          id
-          fullName
-          avatar
-          email
-        }
         title
         answers
+        hiddenFields {
+          id
+          name
+          value
+        }
         endAt
       }
     }
