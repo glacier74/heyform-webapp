@@ -35,7 +35,7 @@ interface RatingAverageProps {
 
 const Choices: FC<ChoicesProps> = ({ chooses }) => {
   const { t } = useTranslation()
-  const total = chooses.reduce((prev, next) => prev + next.count, 0)
+  const total = chooses.reduce((prev, next) => prev + next.count, 0) || 1
 
   return (
     <div className="mb-4">
@@ -110,7 +110,7 @@ const Rating: FC<RatingProps> = ({ length, leftLabel, rightLabel, chooses }) => 
                 {num} {t('report.responses')}
               </div>
             </div>
-            <Progress className="!h-[5px] w-full" percent={num / total} />
+            <Progress className="!h-1 w-full" barClassName="!h-1" percent={(num * 100) / total} />
           </div>
         )
       })}

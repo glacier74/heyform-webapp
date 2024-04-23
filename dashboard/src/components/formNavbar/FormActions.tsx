@@ -76,7 +76,6 @@ export const FormActions = observer(() => {
           key={index}
           className="!flex w-full items-center !justify-start gap-3 !px-0 !py-1 !text-sm md:w-auto md:flex-col md:!justify-center md:gap-0 md:!px-1.5 md:!text-xs"
           leading={<action.icon className="-mr-1.5 text-slate-900 md:mb-1" />}
-          loaderClassName="!bg-white"
           loading={action.loading}
           disabled={action.disabled}
           onClick={action.onClick}

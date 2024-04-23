@@ -83,8 +83,8 @@ export const AnswerValue: FC<{ answer: AnswerModel; columns?: Column[] }> = ({
           case FieldKindEnum.FILE_UPLOAD:
             return (
               <a
-                href={`${answer.value.cdnUrlPrefix}/${
-                  answer.value.cdnKey
+                href={`${answer.value?.cdnUrlPrefix}/${
+                  answer.value?.cdnKey
                 }?attname=${encodeURIComponent(answer.value?.filename)}`}
                 target="_blank"
                 rel="noreferrer"

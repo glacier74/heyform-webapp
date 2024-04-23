@@ -142,6 +142,10 @@
     width: 16px;
     height: 16px;
   }
+
+  .checkbox-description {
+    @apply hidden pointer-events-none;
+  }
 }
 
 .heygrid-header-add-cell {

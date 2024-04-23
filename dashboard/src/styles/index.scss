@@ -114,3 +114,13 @@ body {
     @apply underline;
   }
 }
+
+.progress, .progress-background {
+  @apply h-full;
+}
+
+.button-loading {
+  & > *:not(.button-loader) {
+    @apply opacity-0;
+  }
+}

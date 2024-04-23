@@ -70,7 +70,7 @@ const Report: FC = observer(() => {
           ? htmlUtils.plain(htmlUtils.serialize(field.title as any))
           : field.title
         response.kind = field.kind
-        response.properties = pickValidValues(field.properties as any, [
+        response.properties = pickValidValues((field.properties as any) || {}, [
           'tableColumns',
           'total',
           'average',

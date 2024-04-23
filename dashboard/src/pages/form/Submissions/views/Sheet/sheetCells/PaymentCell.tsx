@@ -1,23 +1,35 @@
 import { CURRENCY_SYMBOLS } from '@heyforms/answer-utils'
 import { ServerSidePaymentValue } from '@heyforms/shared-types-enums'
-import { isValid } from '@hpnp/utils/helper'
+import { isObject, isValid } from '@hpnp/utils/helper'
 import { IconCheck, IconClock, IconExternalLink } from '@tabler/icons-react'
-import { FC } from 'react'
+import Big from 'big.js'
+import { FC, useMemo } from 'react'
 
 import { SheetCellProps } from '../types'
 
 export const PaymentCell: FC<SheetCellProps> = ({ column, row }) => {
-  const value: ServerSidePaymentValue = row[column.key]
-  const amount = value.amount || 0
-  const amountString = CURRENCY_SYMBOLS[value.currency] + Big(amount).div(100).toFixed(2)
-  const isCompleted = isValid(value.paymentIntentId)
+  const value = useMemo(() => {
+    const v: ServerSidePaymentValue = row[column.key]
+
+    if (isValid(v) && isObject(v)) {
+      const amount = v!.amount || 0
+      const amountString = CURRENCY_SYMBOLS[v!.currency] + Big(amount).div(100).toFixed(2)
+      const isCompleted = isValid(v!.paymentIntentId)
+
+      return {
+        amountString,
+        isCompleted,
+        receiptUrl: v.receiptUrl
+      }
+    }
+  }, [column.key, row])
 
   return (
     <div className="heygrid-cell-text overflow-hidden">
       {value && (
         <div className="flex h-full items-center">
           <div className="flex h-full flex-1 items-center overflow-hidden truncate">
-            {isCompleted ? (
+            {value.isCompleted ? (
               <div className="flex h-6 items-center rounded bg-green-100 pl-1 pr-2 text-sm text-green-800">
                 <IconCheck className="h-4 w-4" />
                 <span className="ml-1">Succeeded</span>
@@ -28,9 +40,9 @@ export const PaymentCell: FC<SheetCellProps> = ({ column, row }) => {
                 <span className="ml-1">Incomplete</span>
               </div>
             )}
-            <div className="ml-2">{amountString}</div>
+            <div className="ml-2">{value.amountString}</div>
           </div>
-          {isCompleted && (
+          {value.isCompleted && (
             <div className="ml-2">
               <a href={value.receiptUrl} target="_blank">
                 <IconExternalLink className="h-4 w-4" />

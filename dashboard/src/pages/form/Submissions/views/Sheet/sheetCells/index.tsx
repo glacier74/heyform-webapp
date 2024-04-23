@@ -7,6 +7,7 @@ import { DateRangeCell } from './DateRangeCell'
 import { DropPickerCell } from './DropPickerCell'
 import { FileUploadCell } from './FileUploadCell'
 import { FullNameCell } from './FullNameCell'
+import { HiddenFieldCell } from './HiddenFieldCell'
 import { InputTableCell } from './InputTableCell'
 import { MultipleChoiceCell } from './MultipleChoiceCell'
 import { OpinionScaleCell } from './OpinionScaleCell'
@@ -60,6 +61,9 @@ export const SheetCell: FC<SheetCellProps> = props => {
 
     case FieldKindEnum.PAYMENT:
       return <PaymentCell {...props} />
+
+    case 'hidden_fields':
+      return <HiddenFieldCell {...props} />
 
     default:
       return <TextCell {...props} />
