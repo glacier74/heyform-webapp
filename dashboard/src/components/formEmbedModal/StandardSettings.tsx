@@ -1,5 +1,6 @@
 import { Select } from '@heyforms/ui'
 import { isTrue } from '@hpnp/utils/helper'
+import { observer } from 'mobx-react-lite'
 
 import { useStore } from '@/store'
 
@@ -17,7 +18,7 @@ const HEIGHT_OPTIONS = [
   }
 ]
 
-export const StandardSettings = () => {
+export const StandardSettings = observer(() => {
   const formStore = useStore('formStore')
 
   function handleChange(autoResizeHeight: any) {
@@ -52,4 +53,4 @@ export const StandardSettings = () => {
       </div>
     </FullpageSettings>
   )
-}
+})
