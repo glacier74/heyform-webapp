@@ -1,11 +1,13 @@
-import { Form, Select, Switch } from '@heyforms/ui'
+import { Form, Input, Select, Switch } from '@heyforms/ui'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { CAPTCHA_KIND_OPTIONS } from '@/consts'
+import { useStore } from '@/store'
 
 export const Protection: FC = () => {
   const { t } = useTranslation()
+  const formStore = useStore('formStore')
 
   return (
     <div
@@ -29,15 +31,17 @@ export const Protection: FC = () => {
           </Form.Item>
         </div>
 
-        <div className="mt-4">
-          <Form.Item
-            className="mb-0"
-            name="password"
-            extra={<p className="text-slate-500">Set the password for this site</p>}
-          >
-            <Input className="w-full lg:w-[280px]" />
-          </Form.Item>
-        </div>
+        {formStore.tempSettings.requirePassword && (
+          <div className="mt-4">
+            <Form.Item
+              className="mb-0"
+              name="password"
+              extra={<p className="text-slate-500">Set the password for this site</p>}
+            >
+              <Input className="w-full lg:w-[280px]" />
+            </Form.Item>
+          </div>
+        )}
       </div>
 
       {/* Captcha */}
