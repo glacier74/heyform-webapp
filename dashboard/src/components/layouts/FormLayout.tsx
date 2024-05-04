@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { FormPreviewModal } from '@/components'
 
 import { FormShareModal } from '../FormShareModal'
+import { FormEmbedModal } from '../formEmbedModal'
 import { FormNavbar } from '../formNavbar'
 import { FormGuardLayout } from './FormGuardLayout'
 
@@ -16,6 +17,7 @@ export const FormLayout: FC<IComponentProps> = ({ children }) => {
 
       <FormPreviewModal />
       <FormShareModal />
+      <FormEmbedModal />
     </FormGuardLayout>
   )
 }

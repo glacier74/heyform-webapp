@@ -1,6 +1,5 @@
-import { Button, Modal, Switch, notification } from '@heyforms/ui'
+import { Button, Modal, Tooltip } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
-import { random } from '@hpnp/utils/random'
 import {
   IconBrandFacebook,
   IconBrandLinkedin,
@@ -9,15 +8,15 @@ import {
   IconX
 } from '@tabler/icons-react'
 import { observer } from 'mobx-react-lite'
-import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import isFQDN from 'validator/lib/isFQDN'
 
 import { WorkspaceModel } from '@/models'
-import { FormService } from '@/service'
 import { useStore } from '@/store'
-import { urlBuilder } from '@/utils'
+import { urlBuilder, useParam } from '@/utils'
 
 import { CopyButton } from './CopyButton'
+import { FORM_EMBED_OPTIONS } from './formEmbedModal'
 
 function getShareURL(workspace?: WorkspaceModel, formId?: string) {
   let urlPrefix = import.meta.env.VITE_PUBLIC_FORM_PREFIX
@@ -35,53 +34,13 @@ function getShareURL(workspace?: WorkspaceModel, formId?: string) {
 }
 
 export const FormShareModal = observer(() => {
-  const [loading, setLoading] = useState(false)
-  const [loading2, setLoading2] = useState(false)
+  const { workspaceId, projectId, formId } = useParam()
+
   const workspaceStore = useStore('workspaceStore')
   const formStore = useStore('formStore')
   const appStore = useStore('appStore')
 
   const sharingLinkUrl = getShareURL(workspaceStore.workspace, formStore.current?.id)
-
-  async function handleChange(requirePassword: boolean) {
-    if (loading) {
-      return
-    }
-
-    setLoading(true)
-
-    await handleUpdate({
-      requirePassword
-    })
-
-    setLoading(false)
-  }
-
-  async function handleClick() {
-    if (loading2) {
-      return
-    }
-
-    setLoading2(true)
-
-    const password = random(4)
-    await handleUpdate({
-      password
-    })
-
-    setLoading2(false)
-  }
-
-  async function handleUpdate(updates: IMapType) {
-    try {
-      await FormService.update(formStore.current!.id, updates)
-      formStore.updateSettings(updates)
-    } catch (err: any) {
-      notification.error({
-        title: 'Failed to update form settings'
-      })
-    }
-  }
 
   function handleClose() {
     appStore.isFormShareModalOpen = false
@@ -117,6 +76,11 @@ export const FormShareModal = observer(() => {
     window.open(url)
   }
 
+  function openEmbedModal(type: string) {
+    appStore.isFormShareModalOpen = false
+    formStore.embedType = type
+  }
+
   return (
     <Modal
       className="share-modal"
@@ -124,65 +88,78 @@ export const FormShareModal = observer(() => {
       visible={appStore.isFormShareModalOpen}
       onClose={handleClose}
     >
-      <div className="space-y-6 text-sm text-slate-700">
+      <div className="space-y-7 text-sm text-slate-900">
         <div className="flex items-center justify-between">
-          <h1 className="text-base font-medium leading-6 text-slate-900">Share this form</h1>
+          <h1 className="text-lg font-bold leading-6 text-slate-900">Share this form</h1>
 
           <button onClick={handleClose}>
             <IconX className="text-slate-700 hover:text-slate-900" />
           </button>
         </div>
 
-        <div>
-          <div className="mb-1 font-medium">Share on social networks</div>
-          <div className="flex items-center gap-2">
-            <Button.Link
-              leading={<IconBrandX className="text-slate-900" />}
-              onClick={handleTwitter}
-            />
-            <Button.Link
-              leading={<IconBrandFacebook className="text-slate-900" />}
-              onClick={handleFacebook}
-            />
-            <Button.Link
-              leading={<IconBrandLinkedin className="text-slate-900" />}
-              onClick={handleLinkedin}
-            />
-            <Button.Link leading={<IconMail className="text-slate-900" />} onClick={handleEmail} />
-          </div>
+        <div className="flex items-center gap-2">
+          <Tooltip ariaLabel="Share on X">
+            <div>
+              <Button.Link
+                leading={<IconBrandX className="text-slate-900" />}
+                onClick={handleTwitter}
+              />
+            </div>
+          </Tooltip>
+
+          <Tooltip ariaLabel="Share on Facebook">
+            <div>
+              <Button.Link
+                leading={<IconBrandFacebook className="text-slate-900" />}
+                onClick={handleFacebook}
+              />
+            </div>
+          </Tooltip>
+
+          <Tooltip ariaLabel="Share on LinkedIn">
+            <div>
+              <Button.Link
+                leading={<IconBrandLinkedin className="text-slate-900" />}
+                onClick={handleLinkedin}
+              />
+            </div>
+          </Tooltip>
+
+          <Tooltip ariaLabel="Share via Email">
+            <div>
+              <Button.Link
+                leading={<IconMail className="text-slate-900" />}
+                onClick={handleEmail}
+              />
+            </div>
+          </Tooltip>
         </div>
 
         <div>
-          <div className="mb-1 font-medium">URL link</div>
+          <div className="mb-1 text-sm font-medium">Share link</div>
           <div className="relative">
             <div className="h-10 rounded-lg border border-slate-200 px-3 leading-10">
               {sharingLinkUrl}
             </div>
-            <CopyButton className="!absolute right-2 top-1.5 !p-1" text={sharingLinkUrl} />
+            <CopyButton className="!absolute right-2 top-1.5 !p-1" text={sharingLinkUrl}/>
+          </div>
+        </div>
+
+        <div>
+          <div className="mb-1 text-sm font-medium">Embed form</div>
+          <div className="mb-4 text-sm text-slate-600">
+            Use these options to embed your form into your own website.
           </div>
 
-          <div className="mt-6 mb-2 flex items-center">
-            <div className="flex-1 font-medium">Password protection</div>
-            <Switch
-              value={formStore.current?.settings?.requirePassword}
-              loading={loading}
-              disabled={loading}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex gap-x-2">
-            <div className="relative flex-1">
-              <div className="h-10 rounded-lg border border-slate-200 px-3 leading-10">
-                {formStore.current?.settings?.password}
+          <div className="grid grid-cols-4 gap-5">
+            {FORM_EMBED_OPTIONS.map(row => (
+              <div className="cursor-pointer" onClick={() => openEmbedModal(row.type)}>
+                <div className="rounded-md border border-black/10">
+                  <row.icon className="w-full rounded-md" />
+                </div>
+                <div className="mt-1.5 text-center text-sm text-slate-600">{row.label}</div>
               </div>
-              <CopyButton
-                className="!absolute right-2 top-1.5 !p-1"
-                text={formStore.current?.settings?.password || ''}
-              />
-            </div>
-            <Button type="primary" loading={loading2} onClick={handleClick}>
-              Generate
-            </Button>
+            ))}
           </div>
         </div>
       </div>
