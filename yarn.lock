@@ -1341,14 +1341,14 @@
     libphonenumber-js "^1.10.7"
     validator "^13.7.0"
 
-"@heyforms/form-component@^2024.5.2":
-  version "2024.5.2"
-  resolved "https://npm.cnnic.eu/@heyforms%2fform-component/-/form-component-2024.5.2.tgz#ab1a2a8cf862125de2a56a955d231336a854118e"
-  integrity sha512-ESBB09bPZgWnRbwTZWNWiP5W1N3WWV1ys84AZfMaqMKSZByXzdbw3DQ2lX7QXmTTUihe6W6MTws68+gaBFOatA==
+"@heyforms/form-component@^2024.5.4":
+  version "2024.5.4"
+  resolved "https://npm.cnnic.eu/@heyforms%2fform-component/-/form-component-2024.5.4.tgz#abc4142c54a6490bae0eeef5dbe1a31e2f791083"
+  integrity sha512-7GcUcrPXQTeTPihVYTiUdc+8+pblMR6LTv5RUOV/yyBUa1uiRbnaQOgkTwhgEF2tL7hKm6BrkwBtajw5MVGLDg==
   dependencies:
     "@heroicons/react" "^1.0.6"
     "@heyforms/answer-utils" "^0.9.3"
-    "@heyforms/shared-types-enums" "^4.8.0"
+    "@heyforms/shared-types-enums" "^4.8.1"
     "@heyforms/ui" "^2022.9.6"
     "@hpnp/utils" "^2.9.3"
     big.js "^6.2.1"
@@ -1371,10 +1371,10 @@
   resolved "https://npm.cnnic.eu/@heyforms%2fshared-types-enums/-/shared-types-enums-4.7.6.tgz"
   integrity sha512-I6LzoGt5KFrxzu4GNfWynUNrxkFohCjzxpS8FhVClwnSkB0K5Wlo8uxC0FjyaLfkocEh12pg+PPM0GDqu/UyhA==
 
-"@heyforms/shared-types-enums@^4.8.0":
-  version "4.8.0"
-  resolved "https://npm.cnnic.eu/@heyforms%2fshared-types-enums/-/shared-types-enums-4.8.0.tgz#06594320b133f7111d88a6aa454b34bb083e1939"
-  integrity sha512-RBee6O5SvfgGx2fj9eWkGnEs0ADXO3EmFiSLEtiB6V1/OM2yM7JCMK/Qa2EAENz9IwC6em9O1YNwtbGEdvEa6w==
+"@heyforms/shared-types-enums@^4.8.1":
+  version "4.8.1"
+  resolved "https://npm.cnnic.eu/@heyforms%2fshared-types-enums/-/shared-types-enums-4.8.1.tgz#11689cb453071323be1232dcb9f06418c45a124b"
+  integrity sha512-9jMbPynUrA7CaCTxGFcJDJ36HCcqKf4BSssxegLfHLbiB6Ja4VOlQN/WAzxHukCF4pbdE76f6U1OwRDmVAbFng==
 
 "@heyforms/ui@^2022.9.6", "@heyforms/ui@^2024.5.1":
   version "2024.5.1"

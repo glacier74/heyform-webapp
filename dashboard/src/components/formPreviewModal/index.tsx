@@ -95,6 +95,7 @@ export const FormPreviewModal: FC = observer(() => {
                 autoSave={false}
                 query={{}}
                 locale={formStore.current?.settings?.locale || 'en'}
+                enableQuestionList={formStore.current?.settings?.enableQuestionList}
                 stripeApiKey={import.meta.env.VITE_STRIPE_KEY}
                 stripeAccountId={formStore.current?.stripeAccount?.accountId}
               />

@@ -505,6 +505,7 @@ export const FORMS_GQL = gql`
         ipLimitCount
         ipLimitTime
         enableProgress
+        enableQuestionList
         locale
         languages
         enableClosedMessage
@@ -624,6 +625,7 @@ export const FORM_DETAIL_GQL = gql`
         ipLimitCount
         ipLimitTime
         enableProgress
+        enableQuestionList
         locale
         languages
         enableClosedMessage

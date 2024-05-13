@@ -56,7 +56,7 @@ export const UserAccount: FC = observer(() => {
             <p className="truncate text-sm font-medium text-slate-700 group-hover:text-slate-900">
               {userStore.user.name}
             </p>
-            <p className="text-sm text-slate-500 group-hover:text-slate-700">
+            <p className="text-xs text-slate-500 group-hover:text-slate-700">
               {t('other.labelList.View')}
             </p>
           </div>
