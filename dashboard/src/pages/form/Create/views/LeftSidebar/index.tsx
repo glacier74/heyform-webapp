@@ -2,6 +2,9 @@ import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
 
+import { PlanCheck } from '@/components'
+import { PlanGradeEnum } from '@/models'
+
 import { FieldList } from './FieldList'
 import { HiddenFields } from './HiddenFields'
 import { InsertFieldDropdown } from './InsertFieldDropdown'
@@ -24,7 +27,9 @@ const LeftSidebarComponent = () => {
         <PanelResizeHandle className="border-t border-slate-200" />
 
         <Panel defaultSize={20} maxSize={65}>
-          <HiddenFields />
+          <PlanCheck containerClassName="right-5" permission={PlanGradeEnum.BASIC}>
+            <HiddenFields />
+          </PlanCheck>
         </Panel>
       </PanelGroup>
     </div>

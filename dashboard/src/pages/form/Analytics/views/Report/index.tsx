@@ -5,15 +5,16 @@ import {
   FieldKindEnum,
   QUESTION_FIELD_KINDS
 } from '@heyforms/shared-types-enums'
-import { EmptyStates } from '@heyforms/ui'
+import { Button, EmptyStates } from '@heyforms/ui'
 import { isArray, isEmpty, isValidArray } from '@hpnp/utils/helper'
 import { pickValidValues } from '@hpnp/utils/object'
-import { IconChartBar } from '@tabler/icons-react'
+import { IconChartBar, IconDiamond } from '@tabler/icons-react'
 import { observer } from 'mobx-react-lite'
 import { FC, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Async, SubHeading } from '@/components'
+import { Async, SubHeading, usePlanCheck } from '@/components'
+import { PlanGradeEnum } from '@/models'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
 import { useParam } from '@/utils'
@@ -26,8 +27,12 @@ const CHOICE_KINDS = [FieldKindEnum.YES_NO, ...CHOICES_FIELD_KINDS, ...CUSTOM_CO
 const Report: FC = observer(() => {
   const { t } = useTranslation()
   const { formId } = useParam()
+
   const formStore = useStore('formStore')
+  const appStore = useStore('appStore')
+
   const [responses, setResponses] = useState([])
+  const isAllowed = usePlanCheck(PlanGradeEnum.BASIC)
 
   async function fetchReport() {
     const result = await FormService.report(formId)
@@ -85,6 +90,27 @@ const Report: FC = observer(() => {
     }
 
     return result.responses.length
+  }
+
+  function openPlanModal() {
+    appStore.isPlanModalOpen = true
+  }
+
+  if (!isAllowed) {
+    return (
+      <div className="mx-auto">
+        <EmptyStates
+          className="py-40"
+          icon={<IconDiamond className="non-scaling-stroke" />}
+          title={t('submissions.upgradeFormReport')}
+          action={
+            <Button type="primary" onClick={openPlanModal}>
+              {t('submissions.upgradePlan')}
+            </Button>
+          }
+        />
+      </div>
+    )
   }
 
   return (

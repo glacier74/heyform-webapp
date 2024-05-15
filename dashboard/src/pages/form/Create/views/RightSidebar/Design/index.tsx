@@ -4,6 +4,8 @@ import { observer } from 'mobx-react-lite'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { TabPanePlanCheck } from '@/components'
+import { PlanGradeEnum } from '@/models'
 import { useStore } from '@/store'
 import { insertThemeStyle } from '@/utils'
 
@@ -23,10 +25,14 @@ const DesignComponent = () => {
   return (
     <Tabs className="right-sidebar-design" type="segment" defaultActiveName="theme">
       <Tabs.Pane name="theme" title={t('formBuilder.theme')}>
-        <Theme />
+        <TabPanePlanCheck permission={PlanGradeEnum.BASIC}>
+          <Theme />
+        </TabPanePlanCheck>
       </Tabs.Pane>
       <Tabs.Pane name="customize" title={t('formBuilder.customize')}>
-        <Customize />
+        <TabPanePlanCheck permission={PlanGradeEnum.BASIC}>
+          <Customize />
+        </TabPanePlanCheck>
       </Tabs.Pane>
     </Tabs>
   )

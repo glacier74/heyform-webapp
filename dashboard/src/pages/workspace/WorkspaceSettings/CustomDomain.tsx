@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import isFQDN from 'validator/lib/isFQDN'
 
-import { PlanCheck, SwitchField } from '@/components'
+import {PlanBadge, PlanCheck, SwitchField} from '@/components'
 import { PlanGradeEnum } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
@@ -178,9 +178,14 @@ export const CustomDomain: FC = observer(() => {
 
   return (
     <div>
-      <PlanCheck permission={PlanGradeEnum.PREMIUM}>
+      <PlanCheck permission={PlanGradeEnum.PREMIUM} isBadgeShow={false}>
         <SwitchField
-          label={t('workspace.settings.customDomain')}
+          label={
+            <div className="flex items-center gap-2">
+              <span>{t('workspace.settings.customDomain')}</span>
+              <PlanBadge permission={PlanGradeEnum.PREMIUM} />
+            </div>
+          }
           description={
             <>
               {t('workspace.settings.domainExplain2')}{' '}

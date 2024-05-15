@@ -11,29 +11,41 @@ interface UpgradeButtonProps extends IComponentProps {
   isBadgeShow?: boolean
 }
 
-export const PlanBadge: FC<UpgradeButtonProps> = ({ permission }) => {
-  const workspaceStore = useStore('workspaceStore')
-  const grade = workspaceStore.workspace?.plan.grade || PlanGradeEnum.FREE
+const BADGE_TEXTS: any = {
+  [PlanGradeEnum.FREE]: 'Free',
+  [PlanGradeEnum.BASIC]: 'Basic',
+  [PlanGradeEnum.PREMIUM]: 'Premium',
+  [PlanGradeEnum.BUSINESS]: 'Business'
+}
 
-  if (grade >= permission) {
+export const PlanBadge: FC<UpgradeButtonProps> = ({ permission }) => {
+  const isAllowed = usePlanCheck(permission)
+
+  if (isAllowed) {
     return null
   }
 
-  return <Badge className="px-2" type="blue" text="Premium" rounded />
+  return <Badge className="px-2" type="blue" text={BADGE_TEXTS[permission]} rounded />
 }
 
-export const PlanCheck: FC<UpgradeButtonProps> = observer(
-  ({ className, permission, isBadgeShow = true, children }) => {
+export function usePlanCheck(permission: PlanGradeEnum) {
+  const workspaceStore = useStore('workspaceStore')
+  const grade = workspaceStore.workspace?.plan.grade || PlanGradeEnum.FREE
+
+  return grade >= permission
+}
+
+export const PlanCheck: FC<UpgradeButtonProps & { containerClassName?: string }> = observer(
+  ({ className, containerClassName, permission, isBadgeShow = true, children }) => {
     const appStore = useStore('appStore')
-    const workspaceStore = useStore('workspaceStore')
-    const grade = workspaceStore.workspace?.plan.grade || PlanGradeEnum.FREE
+    const isAllowed = usePlanCheck(permission)
 
     function handleClick(event: any) {
       event.stopPropagation()
       appStore.isPlanModalOpen = true
     }
 
-    if (grade >= permission) {
+    if (isAllowed) {
       return <>{children}</>
     }
 
@@ -41,10 +53,15 @@ export const PlanCheck: FC<UpgradeButtonProps> = observer(
       <div className={clsx('plan-check relative', className)}>
         {children}
         <div
-          className="plan-check-container absolute inset-0 z-10 flex cursor-pointer items-center justify-end"
+          className={clsx(
+            'plan-check-container absolute inset-0 z-10 flex cursor-pointer items-center justify-end',
+            containerClassName
+          )}
           onClick={handleClick}
         >
-          {isBadgeShow && <Badge className="px-2" type="blue" text="Premium" rounded />}
+          {isBadgeShow && (
+            <Badge className="px-2" type="blue" text={BADGE_TEXTS[permission]} rounded />
+          )}
         </div>
       </div>
     )
@@ -67,13 +84,15 @@ export const TabPanePlanCheck: FC<UpgradeButtonProps> = observer(
     }
 
     return (
-      <div className="absolute inset-0 z-10 overflow-hidden">
+      <div className="relative">
         {children}
         <div
           className="tab-pane_plan-check absolute inset-0 z-20 flex cursor-pointer items-center justify-center bg-white bg-opacity-5 backdrop-blur-sm"
           onClick={handleClick}
         >
-          {isBadgeShow && <Badge className="px-4 py-2" type="blue" text="Premium" rounded />}
+          {isBadgeShow && (
+            <Badge className="px-4 py-2" type="blue" text={BADGE_TEXTS[permission]} rounded />
+          )}
         </div>
       </div>
     )

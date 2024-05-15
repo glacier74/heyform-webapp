@@ -416,7 +416,7 @@ export default {
     downText:
       'Notice: once you confirm to downgrade the plan, your workspace will no longer be able to access features of premium plans.',
     Downgrade: 'Downgrade',
-    upgrade: 'Continue',
+    upgrade: 'Upgrade',
     cancel: 'Cancel plan',
     cancelHead: 'Cancel your plan?',
     cancelConfirm: 'Cancel plan',
@@ -454,11 +454,44 @@ export default {
     View: 'View invoice',
     Billing: 'Billing',
     invoices: 'Manage your subscription and invoices',
-    Upgrade: 'Upgrade to unlock all features',
+    viewPlans: 'View plans',
+    Upgrade: 'Upgrade your plan',
     Unlock:
-      'HeyForm is completely free to use, but if you need advanced features, consider upgrading to HeyForm Premium.',
-    Monthly: 'Billed monthly',
-    Annually: 'Billed annually',
+      "You've reached the limit of your current plan or are trying to access an advanced feature. Please upgrade to unlock it.",
+    Monthly: 'Monthly',
+    Annually: 'Annually',
+    save16: 'Save 16%',
+    month: 'month',
+    keepFreePlan: 'Keep using the free plan',
+    basicPlan: {
+      unlimitedForms: 'Unlimited forms',
+      responsesPerMonth: '5,000 responses per month',
+      workspaceStorage: '10GB workspace storage',
+      formReport: 'Form report',
+      customMetaData: 'Custom meta data',
+      hiddenFields: 'Hidden fields',
+      themeCustomization: 'Theme customization',
+      redirectOnCompletion: 'Redirect on completion',
+      downloadData: 'Download data'
+    },
+    premiumPlan: {
+      everythingInBasic: 'Everything in BASIC',
+      responsesPerMonth: '20,000 responses per month',
+      workspaceStorage: '20GB workspace storage',
+      inviteUpTo3Members: 'Invite up to 3 members',
+      customDomain: 'Custom domain',
+      customCss: 'Custom CSS',
+      removeHeyFormBranding: 'Remove HeyForm branding',
+      prioritySupport: 'Priority support'
+    },
+    businessPlan: {
+      everythingInPremium: 'Everything in PREMIUM',
+      responsesPerMonth: '150,000 responses per month',
+      workspaceStorage: '50GB workspace storage',
+      inviteUpTo10Members: 'Invite up to 10 members',
+      noCommissionOnPayments: 'No commission on payments',
+      noSizeLimitOnFileUpload: 'No size limit on file upload'
+    },
     plans: {
       plan: 'Plans',
       usage: 'Usage',
@@ -589,7 +622,9 @@ export default {
     selected: 'selected',
     Deselect: 'Deselect all',
     NoSubmissions: 'No submissions yet',
-    SubHeadline: 'Share the form online to engage a broader audience.'
+    SubHeadline: 'Share the form online to engage a broader audience.',
+    upgradeFormReport: 'Upgrade to your plan to access form reports',
+    upgradePlan: 'Upgrade plan'
   },
   formSettings: {
     Form: 'Form settings',

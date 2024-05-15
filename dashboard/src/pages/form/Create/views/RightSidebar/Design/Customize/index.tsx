@@ -23,6 +23,8 @@ import { useParam, useVisible } from '@/utils'
 import { BackgroundBrightness } from './BackgroundBrightness'
 import { BackgroundImage } from './BackgroundImage'
 import { ColorPickerField } from './ColorPickerField'
+import {PlanGradeEnum} from "@/models";
+import { PlanCheck } from '@/components'
 
 export const Customize: FC = observer(() => {
   const { formId } = useParam()
@@ -120,23 +122,25 @@ export const Customize: FC = observer(() => {
           )}
 
           <div className="right-sidebar-group">
-            <Form.Item
-              name="customCSS"
-              label={
-                <div className="flex items-center">
-                  <span>Custom CSS</span>
-                  <Tooltip ariaLabel="Learn more about custom css">
-                    <Button.Link
-                      className="custom-css-help"
-                      leading={<IconHelp />}
-                      onClick={openModal}
-                    />
-                  </Tooltip>
-                </div>
-              }
-            >
-              <Input.Textarea className="mt-2" rows={12} />
-            </Form.Item>
+            <PlanCheck containerClassName="!items-start" permission={PlanGradeEnum.PREMIUM}>
+              <Form.Item
+                name="customCSS"
+                label={
+                  <div className="flex items-center">
+                    <span>Custom CSS</span>
+                    <Tooltip ariaLabel="Learn more about custom css">
+                      <Button.Link
+                        className="custom-css-help"
+                        leading={<IconHelp />}
+                        onClick={openModal}
+                      />
+                    </Tooltip>
+                  </div>
+                }
+              >
+                <Input.Textarea className="mt-2" rows={12} />
+              </Form.Item>
+            </PlanCheck>
           </div>
         </div>
 

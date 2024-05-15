@@ -3,7 +3,7 @@ import { IconDownload } from '@tabler/icons-react'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { PlanCheck } from '@/components'
+import {PlanBadge, PlanCheck} from '@/components'
 import { PlanGradeEnum } from '@/models'
 import { useParam } from '@/utils'
 
@@ -16,13 +16,14 @@ export const ExportLink: FC = () => {
   }
 
   return (
-    <PlanCheck permission={PlanGradeEnum.PREMIUM}>
+    <PlanCheck permission={PlanGradeEnum.BASIC} isBadgeShow={false}>
       <Button
         className="ml-5"
         leading={<IconDownload className="h-6 w-6 text-slate-500" />}
         onClick={handleClick}
       >
-        <span className="ml-2">{t('submissions.export')}</span>
+        <span className="mr-2">{t('submissions.export')}</span>
+        <PlanBadge permission={PlanGradeEnum.BASIC} />
       </Button>
     </PlanCheck>
   )

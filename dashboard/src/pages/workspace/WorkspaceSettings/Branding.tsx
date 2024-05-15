@@ -4,7 +4,7 @@ import type { FC } from 'react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { CopyButton, PlanCheck, SwitchField } from '@/components'
+import { CopyButton, PlanBadge, PlanCheck, SwitchField } from '@/components'
 import { PlanGradeEnum } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
@@ -78,10 +78,15 @@ export const Branding: FC = observer(() => {
         </Form.Item>
       </Form.Custom>
 
-      <PlanCheck permission={PlanGradeEnum.PREMIUM}>
+      <PlanCheck permission={PlanGradeEnum.PREMIUM} isBadgeShow={false}>
         <SwitchField
           className="mt-6"
-          label={t('workspace.settings.removeBranding')}
+          label={
+            <div className="flex items-center gap-2">
+              <span>{t('workspace.settings.removeBranding')}</span>
+              <PlanBadge permission={PlanGradeEnum.PREMIUM} />
+            </div>
+          }
           description={
             <>
               {t('workspace.settings.brandingExplain')}{' '}

@@ -7,24 +7,27 @@ import { useStore } from '@/store'
 import { PlanItem } from './PlanItem'
 
 interface PaymentProps {
-  plan: PlanModel
+  plans: PlanModel[]
   billingCycle: BillingCycleEnum
   onUpgrade: (plan: PlanModel) => void
   onDowngrade: (plan: PlanModel) => void
 }
 
-export const Payment = observer(({ plan, billingCycle, onUpgrade, onDowngrade }: PaymentProps) => {
+export const Payment = observer(({ plans, billingCycle, onUpgrade, onDowngrade }: PaymentProps) => {
   const workspaceStore = useStore('workspaceStore')
 
   return (
-    <div className="flex items-center justify-center">
-      <PlanItem
-        plan={plan}
-        billingCycle={billingCycle}
-        workspace={workspaceStore.workspace}
-        onUpgrade={onUpgrade}
-        onDowngrade={onDowngrade}
-      />
+    <div className="flex flex-col gap-10 lg:flex-row lg:justify-center">
+      {plans.map(plan => (
+        <PlanItem
+          key={plan.id}
+          plan={plan}
+          billingCycle={billingCycle}
+          workspace={workspaceStore.workspace}
+          onUpgrade={onUpgrade}
+          onDowngrade={onDowngrade}
+        />
+      ))}
     </div>
   )
 })

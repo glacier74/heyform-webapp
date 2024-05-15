@@ -16,12 +16,11 @@ import { BillingCycleEnum } from './invoice'
  */
 export enum PlanGradeEnum {
   FREE = 0,
-  // @Discard at Sep 15, 2022
-  // BASIC, // @Discard
-  // PRO,
-  // BUSINESS, // @Discard
-  // ENTERPRISE // @Discard
-  PREMIUM = 3
+  BASIC = 1,
+  PRO = 2,
+  PREMIUM = 2,
+  BUSINESS = 3,
+  ENTERPRISE = 4
 }
 
 export enum PlanPriceTypeEnum {

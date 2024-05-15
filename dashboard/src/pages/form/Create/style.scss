@@ -960,6 +960,10 @@
   }
 }
 
+.form-builder .right-sidebar .tabs-pane-group {
+  @apply overflow-hidden;
+}
+
 .right-sidebar-group {
   @apply px-4 pt-4 pb-6 border-b border-gray-200;
 

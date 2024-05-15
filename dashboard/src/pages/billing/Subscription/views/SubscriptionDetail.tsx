@@ -7,11 +7,10 @@ import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Async } from '@/components'
-import { PlanGradeEnum, SubscriptionStatusEnum } from '@/models'
-import { CancelPlan } from '@/pages/billing/Subscription/views/CancelPlan'
+import { PlanGradeEnum } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
-import { useParam, useVisible } from '@/utils'
+import { useParam } from '@/utils'
 
 interface ItemProps {
   title: string
@@ -102,11 +101,22 @@ const StorageItem: FC<MemberItemProps> = ({ count, limit }) => {
 export const SubscriptionDetail: FC = observer(() => {
   const { workspaceId } = useParam()
   const workspaceStore = useStore('workspaceStore')
+  const appStore = useStore('appStore')
+
   const { plan, subscription } = workspaceStore.workspace!
   const { t } = useTranslation()
 
   const [detail, setDetail] = useState<any>({})
-  const [cancelPlanVisible, openCancelPlan, closeCancelPlan] = useVisible()
+
+  const isSubscribed = useMemo(
+    () => plan.grade > PlanGradeEnum.FREE && subscription.endAt > 0,
+    [plan.grade, subscription.endAt]
+  )
+
+  const isNeverExpires = useMemo(
+    () => plan.grade > PlanGradeEnum.FREE && subscription.endAt <= 0,
+    [plan.grade, subscription.endAt]
+  )
 
   const description = useMemo(() => {
     if (subscription.endAt > 0) {
@@ -130,6 +140,14 @@ export const SubscriptionDetail: FC = observer(() => {
     return false
   }
 
+  function handleViewPlans() {
+    appStore.isPlanModalOpen = true
+  }
+
+  function handleManageSubscription() {
+    window.location.href = import.meta.env.VITE_STRIPE_PORTAL_URL
+  }
+
   return (
     <div>
       <div className="flex flex-col items-start justify-start md:flex-row md:items-center md:justify-between">
@@ -139,17 +157,24 @@ export const SubscriptionDetail: FC = observer(() => {
           </h3>
           <p className="mt-1 text-sm font-medium text-slate-500">{description}</p>
         </div>
-        {plan.grade > PlanGradeEnum.FREE &&
-          subscription.status === SubscriptionStatusEnum.ACTIVE &&
-          !subscription.canceledAt && (
+
+        <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-center">
+          {!isNeverExpires && (
             <Button
-              className="mt-4 w-full md:mt-0 md:w-auto"
-              type="danger"
-              onClick={openCancelPlan}
+              className="w-full !py-1 !px-2 lg:w-auto"
+              type="primary"
+              onClick={handleViewPlans}
             >
-              {t('billing.cancel')}
+              {t('billing.viewPlans')}
             </Button>
           )}
+
+          {isSubscribed && (
+            <Button className="w-full !py-1 !px-2 lg:w-auto" onClick={handleManageSubscription}>
+              {t('billing.manageSubscription')}
+            </Button>
+          )}
+        </div>
       </div>
 
       <Async request={fetchSubscription} skeleton={<Skeleton />}>
@@ -164,8 +189,6 @@ export const SubscriptionDetail: FC = observer(() => {
           <StorageItem count={detail.storageQuota} limit={plan.storageLimit} />
         </dl>
       </Async>
-
-      <CancelPlan visible={cancelPlanVisible} onClose={closeCancelPlan} />
     </div>
   )
 })

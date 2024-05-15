@@ -4,7 +4,7 @@
   }
 
   .modal-content {
-    @apply p-0 w-full max-w-full h-full bg-white;
+    @apply p-0 w-full max-w-full h-full bg-white lg:flex-col lg:items-center lg:justify-center;
     overflow-y: auto;
     overflow-y: overlay;
     scrollbar-gutter: stable;
@@ -15,7 +15,7 @@
   }
 
   .modal-close-button {
-    @apply fixed top-16 right-16 z-50;
+    @apply fixed lg:top-16 lg:right-16 z-50;
   }
 
   .plans-heading {

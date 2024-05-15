@@ -1,4 +1,4 @@
-import { Modal } from '@heyforms/ui'
+import { Button, Modal } from '@heyforms/ui'
 import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -23,10 +23,9 @@ export const PlanModal: FC = observer(() => {
       showCloseIcon
       onClose={handleClose}
     >
-      <div className="space-y-6">
+      <div className="space-y-6 py-20">
         <div className="my-4">
-          <img src="https://forms.b-cdn.net/website/upgrade.png" className="mx-auto w-48"></img>
-          <h1 className="text-center text-2xl font-bold text-slate-900 sm:tracking-tight">
+          <h1 className="text-center text-3xl font-bold text-slate-900 sm:tracking-tight">
             {t('billing.Upgrade')}
           </h1>
           <p className="mx-auto mt-2 max-w-3xl text-center text-base text-slate-500">
@@ -35,6 +34,12 @@ export const PlanModal: FC = observer(() => {
         </div>
 
         <Plans />
+
+        <div className="mt-40 flex items-center justify-center">
+          <Button.Link className="!text-xs !text-slate-900/40" onClick={handleClose}>
+            {t('billing.keepFreePlan')}
+          </Button.Link>
+        </div>
       </div>
     </Modal>
   )

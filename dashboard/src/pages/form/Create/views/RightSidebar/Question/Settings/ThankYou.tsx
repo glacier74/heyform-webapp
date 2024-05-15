@@ -43,7 +43,7 @@ export const ThankYou: FC<IBasicProps> = ({ field }) => {
   }
 
   return (
-    <PlanCheck className="plan-check__redirect" permission={PlanGradeEnum.PREMIUM}>
+    <PlanCheck className="plan-check__redirect" permission={PlanGradeEnum.BASIC}>
       <div className="right-sidebar-settings-item">
         <SwitchField
           label={t('formBuilder.redirect')}

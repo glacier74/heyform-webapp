@@ -38,7 +38,7 @@ export const CategorySelect: FC<CategorySelectProps> = ({ category: rowCategory,
 
   return (
     <Dropdown overlay={DropdownOverlay}>
-      <Button trailing={<IconChevronDown className="ml-2 h-6 w-6" />}>
+      <Button trailing={<IconChevronDown className="!h-6 !w-6" />}>
         {t(CATEGORY_MAPS[category])}
       </Button>
     </Dropdown>
