@@ -24,7 +24,7 @@ export const FreeTrialAlert = observer(() => {
           <IconExclamationCircle className="h-5 w-5 text-slate-500" aria-hidden="true" />
         </div>
         <div className="ml-3 flex-1 md:flex md:justify-between">
-          <p className="text-sm text-slate-800">Premium plan free trial ends on {date}</p>
+          <p className="text-sm text-slate-800">Business plan free trial ends on {date}</p>
           <p className="mt-3 text-sm md:mt-0 md:ml-6">
             <NavLink
               to={`/workspace/${workspaceId}/billing`}

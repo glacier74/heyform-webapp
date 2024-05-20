@@ -1035,7 +1035,7 @@ export default {
     other: 'Other'
   },
   onboarding: {
-    trialTitle: 'Start your 14-day free trial',
+    trialTitle: 'Start your 7-day free trial',
     trialDesc:
       'No contracts, downgrade or cancel the subscription anytime within a single click from your dashboard.',
     trialButton: 'Start trial',
