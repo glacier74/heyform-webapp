@@ -154,7 +154,7 @@ export const Navbar: FC<SidebarNavProps> = observer(
               <span className="truncate">{t('other.labelList.Template')}</span>
             </a>
             <a
-              href="https://heyform.net/changelog"
+              href="https://docs.heyform.net/changelog"
               target="_blank"
               className="group flex items-center rounded-md px-2 py-1 text-sm text-slate-700 hover:bg-slate-200 hover:text-slate-900"
             >
