@@ -1,6 +1,7 @@
 import { Spin, Switch } from '@heyforms/ui'
+import clsx from 'clsx'
 import { observer } from 'mobx-react-lite'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Async } from '@/components'
@@ -21,6 +22,8 @@ export const Plans = observer(() => {
   const [billingCycle, setBillingCycle] = useState<BillingCycleEnum>(
     workspaceStore.workspace?.subscription.billingCycle || BillingCycleEnum.ANNUALLY
   )
+
+  const isAnnually = useMemo(() => billingCycle === BillingCycleEnum.ANNUALLY, [billingCycle])
 
   const [upgradePlanVisible, openUpgradePlan, closeUpgradePlan] = useVisible()
   const [downgradePlanVisible, openDowngradePlan, closeDowngradePlan] = useVisible()
@@ -49,13 +52,16 @@ export const Plans = observer(() => {
     <div className="p-4">
       <Async request={fetchPlans} skeleton={<Spin />} cacheFirst>
         <div className="mb-8 flex items-center justify-center gap-4 text-sm text-slate-600">
-          <span>{t('billing.Monthly')}</span>
-          <Switch
-            value={billingCycle === BillingCycleEnum.ANNUALLY}
-            onChange={handleBillingCycleChange}
-          />
+          <span className={clsx(!isAnnually ? 'font-medium text-slate-900' : 'text-slate-500')}>
+            {t('billing.Monthly')}
+          </span>
+
+          <Switch value={isAnnually} onChange={handleBillingCycleChange} />
+
           <span>
-            <span>{t('billing.Annually')}</span>
+            <span className={clsx(isAnnually ? 'font-medium text-slate-900' : 'text-slate-500')}>
+              {t('billing.Annually')}
+            </span>
             <span className="pl-2 text-xs text-red-500">({t('billing.save16')})</span>
           </span>
         </div>

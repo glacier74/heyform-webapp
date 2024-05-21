@@ -25,10 +25,10 @@ export const PlanModal: FC = observer(() => {
     >
       <div className="space-y-6 py-20">
         <div className="my-4">
-          <h1 className="text-center text-3xl font-bold text-slate-900 sm:tracking-tight">
+          <h1 className="text-center text-4xl font-bold text-slate-900 sm:tracking-tight">
             {t('billing.Upgrade')}
           </h1>
-          <p className="mx-auto mt-2 max-w-3xl text-center text-base text-slate-500">
+          <p className="mx-auto mt-4 max-w-3xl text-center text-base text-slate-600">
             {t('billing.Unlock')}
           </p>
         </div>

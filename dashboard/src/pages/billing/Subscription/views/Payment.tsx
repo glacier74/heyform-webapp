@@ -17,7 +17,7 @@ export const Payment = observer(({ plans, billingCycle, onUpgrade, onDowngrade }
   const workspaceStore = useStore('workspaceStore')
 
   return (
-    <div className="flex flex-col gap-10 lg:flex-row lg:justify-center">
+    <div className="flex flex-col gap-6 lg:flex-row lg:justify-center">
       {plans.map(plan => (
         <PlanItem
           key={plan.id}

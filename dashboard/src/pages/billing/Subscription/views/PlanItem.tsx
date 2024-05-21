@@ -107,21 +107,23 @@ export const PlanItem: FC<PlanItemProps> = ({
   }, [workspace?.plan.grade, plan.grade, handleUpgrade, handleDowngrade])
 
   return (
-    <div className="justify-self-stretch rounded-2xl border border-slate-100 px-6 py-5 lg:min-w-[300px]">
+    <div className="justify-self-stretch rounded-2xl border border-slate-200 px-6 py-5 lg:min-w-[300px]">
       <div className="flex h-full flex-col">
         <div className="text-base font-bold uppercase text-slate-900/90">{plan.name}</div>
-        <div className="mt-2 mb-4 border-b border-slate-100 pb-4 text-3xl font-bold">
+        <div className="mt-2 mb-4 text-3xl font-bold">
           ${price}/<span className="text-2xl">{t('billing.month')}</span>
         </div>
-        <div className="mt-4 mb-6 flex-1 space-y-1.5">
+
+        {children}
+
+        <div className="mt-4 mb-6 flex-1 space-y-2 border-t border-slate-200 pt-4">
           {PLAN_FEATURES[plan.grade].map((feature: string) => (
-            <div key={feature} className="flex items-center gap-2 text-sm text-slate-600">
+            <div key={feature} className="flex items-center gap-2 text-sm text-slate-800">
               <IconCheck className="h-4 w-4 text-blue-600" />
               <span>{t(feature)}</span>
             </div>
           ))}
         </div>
-        {children}
       </div>
     </div>
   )
