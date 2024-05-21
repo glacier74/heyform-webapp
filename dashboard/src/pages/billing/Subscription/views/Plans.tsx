@@ -5,7 +5,7 @@ import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Async } from '@/components'
-import { BillingCycleEnum, PlanModel } from '@/models'
+import { BillingCycleEnum, PlanGradeEnum, PlanModel } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
 import { useVisible } from '@/utils'
@@ -17,6 +17,11 @@ import { UpgradePlan } from './UpgradePlan'
 export const Plans = observer(() => {
   const { t } = useTranslation()
   const workspaceStore = useStore('workspaceStore')
+
+  const plans = useMemo(
+    () => (workspaceStore.plans || []).filter(p => p.grade > PlanGradeEnum.FREE),
+    [workspaceStore.plans]
+  )
 
   const [plan, setPlan] = useState<PlanModel | null>(null)
   const [billingCycle, setBillingCycle] = useState<BillingCycleEnum>(
@@ -66,9 +71,9 @@ export const Plans = observer(() => {
           </span>
         </div>
 
-        {workspaceStore.plans.length > 0 && (
+        {plans.length > 0 && (
           <Payment
-            plans={workspaceStore.plans}
+            plans={plans}
             billingCycle={billingCycle}
             onUpgrade={handleUpgrade}
             onDowngrade={handleDowngrade}

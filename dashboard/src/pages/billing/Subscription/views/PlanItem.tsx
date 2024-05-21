@@ -55,7 +55,6 @@ export const PlanItem: FC<PlanItemProps> = ({
   onDowngrade
 }) => {
   const { t } = useTranslation()
-  console.log(JSON.stringify(plan.prices))
 
   const price = useMemo(
     () => plan.prices.find(price => price.billingCycle === billingCycle)?.price,
