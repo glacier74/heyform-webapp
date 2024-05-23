@@ -38,7 +38,7 @@
   "dependencies": {
     "@apollo/client": "^3.5.9",
     "@heyforms/answer-utils": "^0.9.3",
-    "@heyforms/form-component": "^2024.5.6",
+    "@heyforms/form-component": "^2024.5.7",
     "@heyforms/shared-types-enums": "^4.8.1",
     "@heyforms/ui": "^2024.5.1",
     "@hpnp/utils": "^2.9.3",
