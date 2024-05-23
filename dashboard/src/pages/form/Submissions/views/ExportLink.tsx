@@ -3,7 +3,7 @@ import { IconDownload } from '@tabler/icons-react'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import {PlanBadge, PlanCheck} from '@/components'
+import { PlanBadge, PlanCheck } from '@/components'
 import { PlanGradeEnum } from '@/models'
 import { useParam } from '@/utils'
 

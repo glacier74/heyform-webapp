@@ -38,7 +38,7 @@
   "dependencies": {
     "@apollo/client": "^3.5.9",
     "@heyforms/answer-utils": "^0.9.3",
-    "@heyforms/form-component": "^2024.5.4",
+    "@heyforms/form-component": "^2024.5.6",
     "@heyforms/shared-types-enums": "^4.8.1",
     "@heyforms/ui": "^2024.5.1",
     "@hpnp/utils": "^2.9.3",
@@ -57,6 +57,7 @@
     "fast-equals": "^3.0.1",
     "geojson": "^0.5.0",
     "i18next": "^21.6.11",
+    "i18next-browser-languagedetector": "^8.0.0",
     "js-cookie": "^3.0.1",
     "mobx": "^6.3.13",
     "mobx-react-lite": "^3.2.3",

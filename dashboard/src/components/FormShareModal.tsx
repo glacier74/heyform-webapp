@@ -130,7 +130,7 @@ export const FormShareModal = observer(() => {
             <h1 className="text-lg font-bold leading-6 text-slate-900">Share this form</h1>
 
             <button onClick={handleClose}>
-              <IconX className="text-slate-700 hover:text-slate-900"/>
+              <IconX className="text-slate-700 hover:text-slate-900" />
             </button>
           </div>
 
@@ -138,7 +138,7 @@ export const FormShareModal = observer(() => {
             <Tooltip ariaLabel="Share on X">
               <div>
                 <Button.Link
-                  leading={<IconBrandX className="text-slate-900"/>}
+                  leading={<IconBrandX className="text-slate-900" />}
                   onClick={handleTwitter}
                 />
               </div>
@@ -147,7 +147,7 @@ export const FormShareModal = observer(() => {
             <Tooltip ariaLabel="Share on Facebook">
               <div>
                 <Button.Link
-                  leading={<IconBrandFacebook className="text-slate-900"/>}
+                  leading={<IconBrandFacebook className="text-slate-900" />}
                   onClick={handleFacebook}
                 />
               </div>
@@ -156,7 +156,7 @@ export const FormShareModal = observer(() => {
             <Tooltip ariaLabel="Share on LinkedIn">
               <div>
                 <Button.Link
-                  leading={<IconBrandLinkedin className="text-slate-900"/>}
+                  leading={<IconBrandLinkedin className="text-slate-900" />}
                   onClick={handleLinkedin}
                 />
               </div>
@@ -165,7 +165,7 @@ export const FormShareModal = observer(() => {
             <Tooltip ariaLabel="Share via Email">
               <div>
                 <Button.Link
-                  leading={<IconMail className="text-slate-900"/>}
+                  leading={<IconMail className="text-slate-900" />}
                   onClick={handleEmail}
                 />
               </div>
@@ -174,7 +174,7 @@ export const FormShareModal = observer(() => {
             <Tooltip ariaLabel="Share via QR Code">
               <div>
                 <Button.Link
-                  leading={<IconQrcode className="text-slate-900"/>}
+                  leading={<IconQrcode className="text-slate-900" />}
                   onClick={openQrcode}
                 />
               </div>
@@ -187,7 +187,7 @@ export const FormShareModal = observer(() => {
               <div className="h-10 rounded-lg border border-slate-200 px-3 leading-10">
                 {sharingLinkUrl}
               </div>
-              <CopyButton className="!absolute right-2 top-1.5 !p-1" text={sharingLinkUrl}/>
+              <CopyButton className="!absolute right-2 top-1.5 !p-1" text={sharingLinkUrl} />
             </div>
           </div>
 
@@ -201,7 +201,7 @@ export const FormShareModal = observer(() => {
               {FORM_EMBED_OPTIONS.map(row => (
                 <div className="cursor-pointer" onClick={() => openEmbedModal(row.type)}>
                   <div className="rounded-md border border-black/10">
-                    <row.icon className="w-full rounded-md"/>
+                    <row.icon className="w-full rounded-md" />
                   </div>
                   <div className="mt-1.5 text-center text-sm text-slate-600">{row.label}</div>
                 </div>

@@ -3,8 +3,8 @@ import { FormTheme } from '@heyforms/shared-types-enums'
 import { qs, removeObjectNil } from '@hpnp/utils'
 import { isURL, isValid } from '@hpnp/utils/helper'
 import { stringify } from '@hpnp/utils/qs'
+import isFQDN from 'validator/lib/isFQDN'
 import isMobilePhone from 'validator/lib/isMobilePhone'
-import isFQDN from "validator/lib/isFQDN";
 
 export function urlBuilder(prefix: string, query: Record<string, any>): string {
   return prefix + '?' + stringify(removeObjectNil(query), { encode: true })

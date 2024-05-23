@@ -137,3 +137,18 @@ body {
 .notification-list:not(:empty) {
   padding: 72px 24px 24px 24px;
 }
+
+.sidebar-submenu {
+	.menu-item-content {
+		@apply max-w-full;
+
+		svg {
+			@apply -mr-1;
+		}
+	}
+
+	.menu-item-label {
+		@apply overflow-visible;
+	}
+}
+

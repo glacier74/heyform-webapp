@@ -1037,6 +1037,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.23.2":
+  version "7.24.5"
+  resolved "https://npm.cnnic.eu/@babel%2fruntime/-/runtime-7.24.5.tgz#230946857c053a36ccc66e1dd03b17dd0c4ed02c"
+  integrity sha512-Nms86NXrsaeU9vbBJKni6gXiEXZ4CVpYVzEjDH9Sb8vmZ3UljyA1GSOJl/6LGPO8EHLuSF9H+IxNXHPX8QHJ4g==
+  dependencies:
+    regenerator-runtime "^0.14.0"
+
 "@babel/standalone@^7.17.11":
   version "7.18.5"
   resolved "https://npm.cnnic.eu/@babel%2fstandalone/-/standalone-7.18.5.tgz"
@@ -1341,10 +1348,10 @@
     libphonenumber-js "^1.10.7"
     validator "^13.7.0"
 
-"@heyforms/form-component@^2024.5.4":
-  version "2024.5.4"
-  resolved "https://npm.cnnic.eu/@heyforms%2fform-component/-/form-component-2024.5.4.tgz#abc4142c54a6490bae0eeef5dbe1a31e2f791083"
-  integrity sha512-7GcUcrPXQTeTPihVYTiUdc+8+pblMR6LTv5RUOV/yyBUa1uiRbnaQOgkTwhgEF2tL7hKm6BrkwBtajw5MVGLDg==
+"@heyforms/form-component@^2024.5.6":
+  version "2024.5.6"
+  resolved "https://npm.cnnic.eu/@heyforms%2fform-component/-/form-component-2024.5.6.tgz#154749642178091757bd632efa18c2da5784fe6a"
+  integrity sha512-kIWEXQXa4HYUhx91mm/5HKc1MTYxVTZnTJoCfyyMFDNBq94ZtZuIAI/ChtXc4cURexHsUFGjmpC2Zff7Z2m/CQ==
   dependencies:
     "@heroicons/react" "^1.0.6"
     "@heyforms/answer-utils" "^0.9.3"
@@ -4806,6 +4813,13 @@ hyphenate-style-name@^1.0.2:
   resolved "https://npm.cnnic.eu/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz"
   integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
 
+i18next-browser-languagedetector@^8.0.0:
+  version "8.0.0"
+  resolved "https://npm.cnnic.eu/i18next-browser-languagedetector/-/i18next-browser-languagedetector-8.0.0.tgz#b6fdd9b43af67c47f2c26c9ba27710a1eaf31e2f"
+  integrity sha512-zhXdJXTTCoG39QsrOCiOabnWj2jecouOqbchu3EfhtSHxIB5Uugnm9JaizenOy39h7ne3+fLikIjeW88+rgszw==
+  dependencies:
+    "@babel/runtime" "^7.23.2"
+
 i18next@^21.6.11, i18next@^21.8.11, i18next@^21.9.1:
   version "21.10.0"
   resolved "https://npm.cnnic.eu/i18next/-/i18next-21.10.0.tgz#85429af55fdca4858345d0e16b584ec29520197d"
@@ -6935,6 +6949,11 @@ regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.9:
   version "0.13.9"
   resolved "https://npm.cnnic.eu/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz"
   integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
+
+regenerator-runtime@^0.14.0:
+  version "0.14.1"
+  resolved "https://npm.cnnic.eu/regenerator-runtime/-/regenerator-runtime-0.14.1.tgz#356ade10263f685dda125100cd862c1db895327f"
+  integrity sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==
 
 regenerator-transform@^0.15.0:
   version "0.15.0"

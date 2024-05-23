@@ -14,7 +14,9 @@ import { observer } from 'mobx-react-lite'
 import type { FC } from 'react'
 import { useState } from 'react'
 
+import { PlanCheck } from '@/components'
 import { GOOGLE_FONTS_OPTIONS } from '@/consts'
+import { PlanGradeEnum } from '@/models'
 import CustomCssHelpModal from '@/pages/form/Create/views/RightSidebar/Design/Customize/CustomCssHelpModal'
 import { FormService } from '@/service'
 import { useStore } from '@/store'
@@ -23,8 +25,6 @@ import { useParam, useVisible } from '@/utils'
 import { BackgroundBrightness } from './BackgroundBrightness'
 import { BackgroundImage } from './BackgroundImage'
 import { ColorPickerField } from './ColorPickerField'
-import {PlanGradeEnum} from "@/models";
-import { PlanCheck } from '@/components'
 
 export const Customize: FC = observer(() => {
   const { formId } = useParam()

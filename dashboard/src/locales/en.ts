@@ -71,78 +71,6 @@ export default {
       passwordMismatch: 'Your new password and repeat password do not match.'
     }
   },
-  audiences: {
-    contact: {
-      addContact: {
-        add: 'Add contact',
-        addPeople: 'Add people who needs to take part in the survey or data collection.',
-        groups: 'Groups',
-        selectGroup: 'Select at least one group or create a new one',
-        findGroup: 'Find or create a group',
-        createGroup: 'Create new group',
-        fullName: 'Full name',
-        notEmpty: "Full name can't be empty",
-        invalidEmail: 'Invalid email address',
-        phoneNumber: 'Phone number',
-        optional: 'optional',
-        phoneNotEmpty: "Phone number can't be empty",
-        jobTitle: ' Job title',
-        jobNotEmpty: "Job title can't be empty",
-        successCreate: 'Contact has been created',
-        Filter: 'Filter'
-      },
-      importContact: {
-        Import: 'Import contacts',
-        CSVFile: 'You can bulk create contacts from CSV file.',
-        download: 'Download the template',
-        csv: 'The number of columns in your CSV should be the same as the example below.',
-        blankTemplate: 'Download blank template',
-        imp: 'Import',
-        groupSelect: 'Select groups',
-        selectOne: 'Select at least one group or create a new one',
-        uploadCsv: 'Upload completed CSV file',
-        invalid: 'Invalid CSV file'
-      },
-      editContact: {
-        detail: 'Contact detail',
-        update: 'Update contact',
-        selectGroup: 'Select at least one group or create a new one',
-        name: 'Full name',
-        nameNotEmpty: "Full name can't be empty",
-        phoneNotEmpty: "Phone number can't be empty",
-        contactUpdate: 'Contact has been updated'
-      },
-      index: {
-        delContact: 'Deleting contact...',
-        deleted: 'Contact has been deleted',
-        edit: 'Edit',
-        rename: 'Rename',
-        noContact: "You don't have any contacts yet",
-        addPeople: 'Add people who needs to take part in the survey or data collection.',
-        Contact: 'Contact',
-        Phone: 'Phone number',
-        Company: 'Company'
-      }
-    },
-    groups: {
-      addGroup: {
-        add: 'Add group',
-        explain: 'You can organize your contacts into groups to work with them more easily.',
-        GroupName: 'Group name',
-        groupNotEmpty: "Group name can't be empty"
-      },
-      renameGroup: {
-        rename: 'Rename group',
-        up: 'Update'
-      },
-      contact: 'Contacts',
-      noGroup: "You don't have any groups yet",
-      explain: 'You can organize your contacts into groups to work with them more easily.',
-      count: 'Contact count'
-    },
-    Title: 'Audience',
-    subText: 'Create the right audience for accurate results'
-  },
   setup: {
     createW: 'Step 1: create a new workspace',
     explain: 'Workspace is a shared environment where members can collaborate.',
@@ -875,7 +803,8 @@ export default {
     Remove: 'Remove',
     Search: 'Search unsplash images',
     Upload: 'Upload',
-    Unsplash: 'Unsplash'
+    Unsplash: 'Unsplash',
+    language: 'Language'
   },
   formBuilder: {
     type: 'Type',

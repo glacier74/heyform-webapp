@@ -1,13 +1,14 @@
-import type {FieldKindEnum, FormField, HiddenField, Variable} from '@heyforms/shared-types-enums'
+import type { FieldKindEnum, FormField, HiddenField, Variable } from '@heyforms/shared-types-enums'
 import { Menus, Portal } from '@heyforms/ui'
 import { isValid } from '@hpnp/utils/helper'
 import { IconSearch } from '@tabler/icons-react'
 import type { CSSProperties, FC } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 
+import { CUSTOM_FIELDS_CONFIGS } from '@/pages/form/Create/views/FieldConfig'
+
 import { useStoreContext } from '../../store'
 import { FieldIcon, VariableIcon } from '../FieldIcon'
-import {CUSTOM_FIELDS_CONFIGS} from "@/pages/form/Create/views/FieldConfig";
 
 interface MentionMenuProps extends Omit<IModalProps, 'onComplete'> {
   keyword?: string

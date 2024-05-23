@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import isFQDN from 'validator/lib/isFQDN'
 
-import {PlanBadge, PlanCheck, SwitchField} from '@/components'
+import { PlanBadge, PlanCheck, SwitchField } from '@/components'
 import { PlanGradeEnum } from '@/models'
 import { WorkspaceService } from '@/service'
 import { useStore } from '@/store'
