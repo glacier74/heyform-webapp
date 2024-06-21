@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply text-primary antialiased lg:bg-zinc-100;
+}
+
+@layer components {
+  .content-scrollbar {
+    overflow-y: auto;
+
+    @media (min-width: 768px) {
+      &::-webkit-scrollbar {
+        height: 12px;
+        width: 12px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 6px;
+      }
+
+      &:hover::-webkit-scrollbar-thumb {
+        border: 3px solid transparent;
+        background-color: rgba(0, 0, 0, 0.2);
+        background-clip: content-box;
+      }
+
+      &::-webkit-scrollbar-track-piece {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-corner {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-resizer {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar-button:start:increment,
+      &::-webkit-scrollbar-button:end:decrement,
+      &::-webkit-scrollbar-button:increment,
+      &::-webkit-scrollbar-button:decrement,
+      &::-webkit-scrollbar-track {
+        display: none;
+      }
+    }
+  }
+}
+
+.color-picker {
+  @apply space-y-2;
+
+  .react-colorful {
+    @apply h-40 w-full;
+  }
+
+  .react-colorful__pointer {
+    @apply h-[0.875rem] w-[0.875rem] border-none bg-transparent;
+    box-shadow:
+      white 0 0 0 3px inset,
+      rgb(0 0 0 / 10%) 0 0 0 4px inset,
+      rgb(0 0 0 / 10%) 0 0 0 1px;
+  }
+
+  .react-colorful__pointer-fill {
+    @apply opacity-0;
+  }
+
+  .react-colorful__saturation {
+    @apply overflow-hidden rounded-lg border-none shadow-none;
+
+    .react-colorful__interactive {
+      @apply inset-0.5;
+    }
+  }
+
+  .react-colorful__hue,
+  .react-colorful__alpha {
+    @apply mt-2.5 h-2 cursor-pointer rounded-lg;
+
+    .react-colorful__interactive {
+      @apply left-1 right-1;
+    }
+  }
+}

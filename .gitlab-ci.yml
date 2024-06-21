@@ -9,9 +9,7 @@ cache:
     - node_modules/
 
 before_script:
-  - /bin/bash -c "$(curl -fsSL https://git.heyooo.com/snippets/2/raw)" $NPM_HOST $USERNAME $PASSWORD
-  - npm config set always-auth true
-  - yarn install
+  - pnpm install
 
 development:
   stage: development
@@ -22,18 +20,15 @@ development:
       - node_modules/
   script: |
     echo "=> Building"
-    echo "${QINIU_CONFIG}" > dashboard/.qiniurc
-    yarn install
-    yarn workspace @heyforms/vite-plugin-html-injection build
-    yarn workspace @heyforms/vite-plugin-upload build
-    yarn workspace heyform staging
+    cp .env.development .env.production
+    pnpm install
+    pnpm build
 
     echo "=> Packing"
     mkdir -p tmp/view/
     mkdir -p tmp/static/
-    cp dashboard/dist/*.html tmp/view/
-    cp dashboard/dist/sw.js tmp/static/sw.js
-    cp -r dashboard/dist/static/* tmp/static/
+    cp dist/*.html tmp/view/
+    cp -r dist/static/* tmp/static/
 
     if [ -f d.tar.gz ]; then
       rm d.tar.gz
@@ -55,18 +50,14 @@ release:
       - node_modules/
   script: |
     echo "=> Building"
-    echo "${QINIU_CONFIG}" > dashboard/.qiniurc
-    yarn install
-    yarn workspace @heyforms/vite-plugin-html-injection build
-    yarn workspace @heyforms/vite-plugin-upload build
-    yarn workspace heyform build
+    pnpm install
+    pnpm build
 
     echo "=> Packing"
     mkdir -p tmp/view/
     mkdir -p tmp/static/
-    cp dashboard/dist/*.html tmp/view/
-    cp dashboard/dist/sw.js tmp/static/sw.js
-    cp -r dashboard/dist/static/* tmp/static/
+    cp dist/*.html tmp/view/
+    cp -r dist/static/* tmp/static/
 
     if [ -f fe.tar.gz ]; then
       rm fe.tar.gz

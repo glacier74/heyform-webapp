@@ -1,0 +1,57 @@
+{
+  "name": "HeyForm",
+  "short_name": "HeyForm",
+  "description": "Use HeyForm to create beautiful, interactive free online forms.",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "src": "/static/icon-maskable-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "src": "/static/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "src": "/static/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icon-120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    }
+  ],
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "lang": "en",
+  "theme_color": "#ffffff",
+  "start_url": "/login",
+  "scope": "/",
+  "id": "/login"
+}

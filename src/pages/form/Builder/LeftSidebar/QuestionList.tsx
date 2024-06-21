@@ -1,0 +1,413 @@
+import { htmlUtils } from '@heyform-inc/answer-utils'
+import { questionNumber } from '@heyform-inc/form-renderer'
+import {
+  FieldKindEnum,
+  OTHER_FIELD_KINDS,
+  QUESTION_FIELD_KINDS
+} from '@heyform-inc/shared-types-enums'
+import { helper } from '@heyform-inc/utils'
+import { IconCaretDownFilled, IconDotsVertical } from '@tabler/icons-react'
+import { FC, MouseEvent, useCallback, useMemo } from 'react'
+import { ReactSortable } from 'react-sortablejs'
+
+import { Button, Dropdown } from '@/components'
+import { ALL_FIELD_CONFIGS } from '@/consts'
+import { FormFieldType } from '@/types'
+import { cn } from '@/utils'
+
+import { useStoreContext } from '../store'
+
+interface QuestionIconProps extends ComponentProps {
+  configs?: AnyMap[]
+  kind: FieldKindEnum
+  index?: number
+  parentIndex?: number
+}
+
+export const QuestionIcon: FC<QuestionIconProps> = ({
+  className,
+  configs = ALL_FIELD_CONFIGS,
+  kind,
+  index,
+  parentIndex,
+  style: rawStyle
+}) => {
+  const config = useMemo(() => configs.find(c => c.kind === kind), [configs, kind])
+
+  const style = useMemo(
+    () => ({
+      ...rawStyle,
+      backgroundColor: config?.backgroundColor,
+      color: config?.textColor
+    }),
+    [config?.backgroundColor, config?.textColor, rawStyle]
+  )
+
+  const iconStyle = useMemo(
+    () => ({
+      color: config?.textColor
+    }),
+    [config?.textColor]
+  )
+
+  const label = useMemo(() => questionNumber(index, parentIndex), [index, parentIndex])
+
+  return (
+    <div
+      className={cn(
+        'flex h-6 w-12 items-center justify-between rounded px-1.5 [&_[data-slot=icon]]:-ml-0.5 [&_[data-slot=icon]]:h-4 [&_[data-slot=icon]]:w-4 [&_[data-slot=index]]:text-xs [&_[data-slot=index]]:font-medium',
+        className
+      )}
+      style={style}
+      data-slot="question-icon"
+    >
+      {config?.icon && <config.icon data-slot="icon" style={iconStyle} />}
+      {helper.isValid(label) && (
+        <span className="text-xs/6 font-medium" data-slot="index">
+          {label}
+        </span>
+      )}
+    </div>
+  )
+}
+
+interface QuestionProps extends ComponentProps {
+  field: FormFieldType
+  currentId?: string
+  parentField?: FormFieldType
+  isDeleteEnabled?: boolean
+}
+
+const Question: FC<QuestionProps> = ({
+  className,
+  field,
+  currentId,
+  parentField,
+  isDeleteEnabled
+}) => {
+  const { dispatch } = useStoreContext()
+
+  const isSelected = useMemo(() => currentId === field.id, [currentId, field.id])
+  const isGroup = useMemo(() => field.kind === FieldKindEnum.GROUP, [field.kind])
+  const isGroupSelected = useMemo(
+    () => isGroup && (isSelected || field.properties?.fields?.some(f => f.id === currentId)),
+    [isGroup, isSelected, field.properties?.fields, currentId]
+  )
+
+  const options = useMemo(() => {
+    const result = []
+
+    if (!OTHER_FIELD_KINDS.includes(field.kind)) {
+      result.push({
+        label: 'components.duplicate',
+        value: 'duplicate'
+      })
+    }
+
+    if (!helper.isValid(field.index) || (helper.isValid(field.index) && isDeleteEnabled)) {
+      result.push({
+        label: 'components.delete',
+        value: 'delete'
+      })
+    }
+
+    return result
+  }, [field.index, field.kind, isDeleteEnabled])
+
+  const handleToggleCollapse = useCallback(
+    (event: MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation()
+
+      dispatch({
+        type: 'updateField',
+        payload: {
+          id: field.id,
+          updates: {
+            isCollapsed: !field.isCollapsed
+          }
+        }
+      })
+    },
+    [dispatch, field.id, field.isCollapsed]
+  )
+
+  const handleSortStart = useCallback(
+    (event: Any) => {
+      dispatch({
+        type: 'selectField',
+        payload: {
+          id: field.properties!.fields![event.oldIndex].id,
+          parentId: field.id
+        }
+      })
+    },
+    [dispatch, field.id, field.properties]
+  )
+
+  const handleSortNestedFields = useCallback(
+    (nestedFields: FormFieldType[], element: Any) => {
+      if (element) {
+        setTimeout(() => {
+          dispatch({
+            type: 'updateNestFields',
+            payload: {
+              id: field.id,
+              nestedFields
+            }
+          })
+        }, 10)
+      }
+    },
+    [dispatch, field.id]
+  )
+
+  const handleClick = useCallback(() => {
+    dispatch({
+      type: 'selectField',
+      payload: {
+        id: field.id,
+        parentId: parentField?.id
+      }
+    })
+  }, [dispatch, field.id, parentField?.id])
+
+  const handleMenuClick = useCallback(
+    (value: string) => {
+      switch (value) {
+        case 'duplicate':
+          dispatch({
+            type: 'duplicateField',
+            payload: {
+              id: field.id,
+              parentId: parentField?.id
+            }
+          })
+          break
+
+        case 'delete':
+          dispatch({
+            type: 'deleteField',
+            payload: {
+              id: field.id,
+              parentId: parentField?.id
+            }
+          })
+          break
+      }
+    },
+    [dispatch, field.id, parentField?.id]
+  )
+
+  const NestedFields = useMemo(() => {
+    if (!isGroup) {
+      return null
+    }
+
+    let index = 1
+    const nestedFields = (field.properties?.fields || []).map(child => ({
+      ...child,
+      index: QUESTION_FIELD_KINDS.includes(child.kind) ? index++ : undefined
+    }))
+
+    return (
+      <ReactSortable
+        className="question-children space-y-1 p-1"
+        ghostClass="question-ghost"
+        chosenClass="question-chosen"
+        dragClass="question-dragging"
+        fallbackClass="question-cloned"
+        list={nestedFields}
+        setList={handleSortNestedFields}
+        onStart={handleSortStart}
+        group={{
+          name: 'nested',
+          pull: true,
+          put: ['root', 'nested']
+        }}
+        delay={10}
+        animation={240}
+        swapThreshold={0.65}
+        fallbackOnBody
+      >
+        {nestedFields.map(child => (
+          <Question
+            key={child.id}
+            field={child}
+            currentId={currentId}
+            parentField={field}
+            isDeleteEnabled={true}
+          />
+        ))}
+      </ReactSortable>
+    )
+  }, [field, handleSortNestedFields, handleSortStart, isGroup, currentId])
+
+  return (
+    <div
+      className={cn(
+        'question cursor-pointer select-none',
+        {
+          'question-selected': isSelected,
+          'question-group': isGroup,
+          'question-group-selected': isGroupSelected,
+          'question-collapsed': field.isCollapsed
+        },
+        className
+      )}
+      data-active={isGroupSelected || isSelected}
+    >
+      <div
+        className="question-item-body group flex h-12 items-center rounded-lg p-2"
+        onClick={handleClick}
+      >
+        {/* Icon */}
+        <QuestionIcon kind={field.kind} index={field.index} parentIndex={parentField?.index} />
+
+        {/* Title */}
+        <div className="question-title ml-3 mr-1 line-clamp-2 flex-1 shrink basis-0 overflow-hidden break-words text-xs text-secondary group-hover:text-primary group-data-[active=true]/root:text-primary">
+          {htmlUtils.plain(field.title as string)}
+        </div>
+
+        <div className="flex items-center gap-x-1">
+          {/* Dropdown */}
+          {options.length > 0 && (
+            <Dropdown
+              contentProps={{
+                className: 'min-w-36 [&_[data-value=delete]]:text-error',
+                side: 'bottom',
+                sideOffset: 8,
+                align: 'start'
+              }}
+              options={options}
+              multiLanguage
+              onClick={handleMenuClick}
+            >
+              <Button.Link
+                className="question-dropdown !h-5 !w-5 rounded opacity-0 aria-expanded:bg-accent-light aria-expanded:opacity-100"
+                size="sm"
+                iconOnly
+              >
+                <IconDotsVertical className="h-4 w-4 text-secondary" />
+              </Button.Link>
+            </Dropdown>
+          )}
+
+          {isGroup && (
+            <Button.Link
+              className="question-collapsed !h-5 !w-5 rounded opacity-0"
+              size="sm"
+              iconOnly
+              onClick={handleToggleCollapse}
+            >
+              <IconCaretDownFilled className="h-4 w-4 rotate-180 text-secondary transition-transform duration-150" />
+            </Button.Link>
+          )}
+        </div>
+      </div>
+
+      {/* Questions inside group */}
+      {NestedFields}
+    </div>
+  )
+}
+
+export default function QuestionList() {
+  const { state, dispatch } = useStoreContext()
+
+  const isDeleteEnabled = useMemo(() => state.questions.length > 1, [state.questions])
+  const data = useMemo(() => {
+    let welcome: FormFieldType | null = null
+    let thankYou: FormFieldType | null = null
+    const fields: FormFieldType[] = []
+
+    for (const field of state.fields) {
+      if (field.kind === FieldKindEnum.WELCOME) {
+        welcome = field
+      } else if (field.kind === FieldKindEnum.THANK_YOU) {
+        thankYou = field
+      } else {
+        fields.push(field)
+      }
+    }
+
+    return {
+      welcome,
+      fields,
+      thankYou
+    }
+  }, [state.fields])
+
+  function handleSortStart(event: Any) {
+    dispatch({
+      type: 'selectField',
+      payload: {
+        id: data.fields[event.oldIndex].id
+      }
+    })
+  }
+
+  function handleSortFields(fields: FormFieldType[]) {
+    dispatch({
+      type: 'setFields',
+      payload: {
+        fields: [data.welcome, ...fields, data.thankYou].filter(helper.isValid) as FormFieldType[]
+      }
+    })
+  }
+
+  const Sortable = useMemo(
+    () => (
+      <ReactSortable
+        className="space-y-1"
+        ghostClass="question-ghost"
+        chosenClass="question-chosen"
+        dragClass="question-dragging"
+        fallbackClass="question-cloned"
+        list={data.fields}
+        setList={handleSortFields}
+        onStart={handleSortStart}
+        group={{
+          name: 'root',
+          put: ['nested'],
+          pull: true
+        }}
+        delay={10}
+        animation={240}
+      >
+        {data.fields.map(field => (
+          <Question
+            key={field.id}
+            field={field}
+            currentId={state.currentId}
+            isDeleteEnabled={isDeleteEnabled}
+          />
+        ))}
+      </ReactSortable>
+    ),
+    [data.fields, handleSortFields, handleSortStart, isDeleteEnabled, state.currentId]
+  )
+
+  return (
+    <div className="scrollbar h-full px-2 pb-2">
+      {data.welcome && (
+        <Question
+          className="mb-1"
+          field={data.welcome}
+          currentId={state.currentId}
+          isDeleteEnabled={isDeleteEnabled}
+        />
+      )}
+
+      {Sortable}
+
+      {data.thankYou && (
+        <Question
+          className="mb-2 mt-1"
+          field={data.thankYou}
+          currentId={state.currentId}
+          isDeleteEnabled={isDeleteEnabled}
+        />
+      )}
+    </div>
+  )
+}

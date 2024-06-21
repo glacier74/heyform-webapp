@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>HeyForm</title>
+    <meta content="on" http-equiv="x-dns-prefetch-control" />
+    <link href="https://https://rsms.me" rel="dns-prefetch" />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="/static/favicon.ico" rel="shortcut icon" />
+    <link href="/static/favicon.svg" rel="mask-icon" />
+    <link href="/static/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
+    <meta content="HeyForm" name="application-name" />
+    <meta content="yes" name="mobile-web-app-capable" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="white" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="#fff" name="theme-color" />
+    <meta content="HeyForm" name="apple-mobile-web-app-title" />
+    <meta content="telephone=no,email=no" name="format-detection" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link href="/static/style.css" rel="stylesheet" />
+    <link href="/static/manifest.webmanifest" rel="manifest" />
+    <script>
+      // https://github.com/heyform/heyform/blob/11f0ffcb42793d9fbbeadef46131604bbff83db8/packages/webapp/index.html#L30
+      // https://github.com/heyform/heyform/blob/11f0ffcb42793d9fbbeadef46131604bbff83db8/packages/form-renderer/src/Renderer.tsx#L116
+      ;(function () {
+        const userAgent = window.navigator.userAgent
+        const heyform = {}
+
+        heyform.device = {
+          ios: /iPad|iPhone|iPod/i.test(userAgent),
+          android: /Android/i.test(userAgent),
+          mobile: /Android|iPad|iPhone|iPod/i.test(userAgent),
+          windowHeight: window.innerHeight,
+          screenHeight: window.screen.height
+        }
+
+        window.heyform = heyform
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="loading">
+      <svg
+        class="loading-icon"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="9"
+          stroke="currentColor"
+          stroke-opacity="0.25"
+          stroke-width="2"
+          stroke-linejoin="round"
+        ></circle>
+        <path
+          d="M6.70993 19.2812C5.1723 18.164 4.02781 16.5887 3.44049 14.7812C2.85317 12.9736 2.85317 11.0264 3.44049 9.21885C4.02781 7.41126 5.1723 5.836 6.70993 4.71885C8.24756 3.60169 10.0994 3 12 3"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+      </svg>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
