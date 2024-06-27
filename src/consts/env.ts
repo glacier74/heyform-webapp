@@ -11,16 +11,14 @@ export const CDN_UPLOAD_URL = import.meta.env.VITE_CDN_UPLOAD_URL as string
 export const COOKIE_DOMAIN = import.meta.env.VITE_COOKIE_DOMAIN as string
 
 export const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN as string
-export const STRIPE_KEY = import.meta.env.VITE_STRIPE_KEY as string
 
 export const CUSTOM_DOMAIN_CNAME_VALUE = import.meta.env.VITE_CUSTOM_DOMAIN_CNAME_VALUE as string
 export const CUSTOM_DOMAIN_ANAME_VALUE = import.meta.env.VITE_CUSTOM_DOMAIN_ANAME_VALUE as string
 
-export const GEETEST_ID = import.meta.env.VITE_GEETEST_ID as string
-
 export const STRIPE_PORTAL_URL = import.meta.env.VITE_STRIPE_PORTAL_URL as string
 
 export const IS_PROD = import.meta.env.NODE_ENV === 'production'
+export const PACKAGE_VERSION = import.meta.env.PACKAGE_VERSION
 
 export const COOKIE_OPTIONS: AnyMap = {
   expires: 365,

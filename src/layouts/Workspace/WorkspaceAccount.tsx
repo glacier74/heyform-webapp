@@ -9,6 +9,7 @@ import {
   APPEARANCE_OPTIONS,
   APPEARANCE_STORAGE_KEY,
   LOCALE_OPTIONS,
+  PACKAGE_VERSION
 } from '@/consts'
 import { useAppStore, useUserStore } from '@/store'
 import { clearAuthState, cn, useRouter } from '@/utils'
@@ -185,7 +186,7 @@ export default function WorkspaceAccount({
 
             <DropdownMenu.Item>
               <div className="px-3 py-2.5 text-sm/6 text-secondary sm:px-2 sm:py-2">
-                {t('workspace.sidebar.version', { version: import.meta.env.PACKAGE_VERSION })}
+                {t('workspace.sidebar.version', { version: PACKAGE_VERSION })}
               </div>
             </DropdownMenu.Item>
           </DropdownMenu.Content>
