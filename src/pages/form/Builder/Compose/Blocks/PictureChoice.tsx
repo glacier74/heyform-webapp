@@ -9,9 +9,10 @@ import {
   IconTrash,
   IconX
 } from '@tabler/icons-react'
-import type { FC } from 'react'
-import { useCallback, useState } from 'react'
+import { FC, useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { ImagePicker, ImagePickerRef } from '@/components'
 
 import { useStoreContext } from '../../store'
 import type { BlockProps } from './Block'
@@ -96,7 +97,7 @@ const PictureChoiceItem: FC<PictureChoiceItemProps> = ({
             ) : (
               <Input
                 value={choice.label}
-                placeholder={isFocused ? t('builder.choicePlaceholder') : undefined}
+                placeholder={isFocused ? t('form.builder.compose.choicePlaceholder') : undefined}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 onChange={handleLabelChange}
@@ -128,10 +129,13 @@ const AddPictureChoice: FC<ComponentProps> = props => {
 
 export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) => {
   const { t } = useTranslation()
+
   const { dispatch } = useStoreContext()
+  const imagePickerRef = useRef<ImagePickerRef | null>(null)
   const [choiceId, setChoiceId] = useState<string>()
 
   function handleSelectImage(id: string) {
+    imagePickerRef.current?.open()
     setChoiceId(id)
   }
 
@@ -187,7 +191,7 @@ export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) =
   }
 
   function handleLabelChange(id: string, label: string) {
-    const choices = field.properties?.choices || []
+    const choices = clone(field.properties?.choices || [])
     const index = choices.findIndex(c => c.id === id)
 
     choices[index].label = label
@@ -206,8 +210,8 @@ export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) =
     })
   }
 
-  function handleImageChange(value: string) {
-    const choices = field.properties?.choices || []
+  function handleImageChange(value?: string) {
+    const choices = clone(field.properties?.choices || [])
     const index = choices.findIndex(c => c.id === choiceId)
 
     choices[index].image = value
@@ -246,10 +250,10 @@ export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) =
     })
   }
 
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function handleClose() {
-    setChoiceId(undefined)
+  function handleClose(open: boolean) {
+    if (!open) {
+      setChoiceId(undefined)
+    }
   }
 
   const handleAddChoiceCallback = useCallback(handleAddChoice, [field.properties])
@@ -257,8 +261,6 @@ export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) =
   const handleLabelChangeCallback = useCallback(handleLabelChange, [field.properties])
   const handleSelectImageCallback = useCallback(handleSelectImage, [field.properties])
   const handleRemoveImageCallback = useCallback(handleRemoveImage, [field.properties])
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleImageChangeCallback = useCallback(handleImageChange, [field.properties, choiceId])
 
   return (
@@ -283,7 +285,7 @@ export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) =
             choice={
               {
                 id: 'other',
-                label: t('builder.other')
+                label: t('form.builder.compose.otherChoice')
               } as Choice
             }
             isOther={true}
@@ -295,11 +297,12 @@ export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) =
         <AddPictureChoice onClick={handleAddChoiceCallback} />
       </div>
 
-      {/*<PhotoPicker*/}
-      {/*  visible={!!choiceId}*/}
-      {/*  onClose={handleClose}*/}
-      {/*  onChange={handleImageChangeCallback}*/}
-      {/*/>*/}
+      <ImagePicker
+        ref={imagePickerRef}
+        tabs={['image', 'unsplash']}
+        onOpenChange={handleClose}
+        onChange={handleImageChangeCallback}
+      />
     </Block>
   )
 }

@@ -605,11 +605,7 @@
     "planName": "{{name}}-Plan",
     "year": "Jahr",
     "month": "Monat",
-    "cycles": [
-      "Für immer",
-      "Monatlich",
-      "Jährlich"
-    ],
+    "cycles": ["Für immer", "Monatlich", "Jährlich"],
     "save16": "Sparen Sie 16%",
     "keepFreePlan": "Weiterhin den kostenlosen Plan nutzen",
     "plans": {
@@ -1220,6 +1216,7 @@
       }
     },
     "builder": {
+      "title": "Ersteller",
       "question": {
         "title": "Frage",
         "answer": "Antwort",
@@ -1267,7 +1264,13 @@
       "compose": {
         "question": "Geben Sie eine Frage ein",
         "description": "Beschreibung hinzufügen (optional)",
-        "pasteLink": "Fügen Sie hier den Link ein oder geben Sie ihn ein"
+        "pasteLink": "Fügen Sie hier den Link ein oder geben Sie ihn ein",
+        "choicePlaceholder": "Auswahl",
+        "otherChoice": "Andere",
+        "addChoice": "Auswahl hinzufügen",
+        "dateRangeTo": "bis",
+        "addColumn": "Spalte hinzufügen",
+        "columnPlaceholder": "Spalte {{index}}"
       },
       "settings": {
         "title": "Einstellungen",
@@ -1317,6 +1320,11 @@
           "mxn": "MXN — Mexikanischer Peso",
           "nzd": "NZD — Neuseeländischer Dollar",
           "brl": "BRL — Brasilianischer Real"
+        },
+        "multipleChoice": {
+          "unlimited": "Unbegrenzt",
+          "exactNumber": "Genaue Anzahl",
+          "range": "Bereich"
         }
       },
       "design": {

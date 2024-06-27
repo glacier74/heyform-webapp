@@ -33,7 +33,9 @@ const Thead: FC<TheadProps> = ({ index, column, deletable, onChange, onRemove, .
   }
 
   function handleRemove() {
-    onRemove?.(column.id!)
+    if (deletable) {
+      onRemove?.(column.id!)
+    }
   }
 
   return (
@@ -45,7 +47,7 @@ const Thead: FC<TheadProps> = ({ index, column, deletable, onChange, onRemove, .
         <input
           type="text"
           value={value}
-          placeholder={t('builder.columnPlaceholder', { index: index + 1 })}
+          placeholder={t('form.builder.compose.columnPlaceholder', { index: index + 1 })}
           onChange={handleChange}
         />
       </div>
@@ -122,7 +124,7 @@ export const InputTable: FC<BlockProps> = ({ field, locale, ...restProps }) => {
     <Block className="heyform-input-table" field={field} locale={locale} {...restProps}>
       <div className="mb-2 flex items-center justify-end">
         <Button.Link className="heyform-add-column" onClick={handleAddColumnCallback}>
-          {t('builder.addColumn')}
+          {t('form.builder.compose.addColumn')}
         </Button.Link>
       </div>
       <div className="heyform-table-scrollable">

@@ -1,4 +1,4 @@
-import { toSecond } from '@heyform-inc/utils'
+import { helper, toSecond } from '@heyform-inc/utils'
 import { useRequest } from 'ahooks'
 import { useForm as useRCForm } from 'rc-field-form'
 import { useCallback, useEffect, useState } from 'react'
@@ -42,6 +42,11 @@ export default function FormSettings() {
       // Form status
       settings.active = !settings.closeForm
       delete settings.closeForm
+
+      // Translations
+      if (helper.isValid(settings.languages)) {
+        settings.languages = settings.languages.filter((l: string) => l !== settings.locale)
+      }
 
       // Save form settings
       await FormService.update(formId, settings)

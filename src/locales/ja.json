@@ -605,11 +605,7 @@
     "planName": "{{name}} プラン",
     "year": "年",
     "month": "月",
-    "cycles": [
-      "永久",
-      "毎月",
-      "毎年"
-    ],
+    "cycles": ["永久", "毎月", "毎年"],
     "save16": "16% 節約",
     "keepFreePlan": "無料プランを続ける",
     "plans": {
@@ -1220,6 +1216,7 @@
       }
     },
     "builder": {
+      "title": "ビルダー",
       "question": {
         "title": "質問",
         "answer": "回答",
@@ -1267,7 +1264,13 @@
       "compose": {
         "question": "質問を入力",
         "description": "説明を追加（任意）",
-        "pasteLink": "リンクを貼り付けまたは入力してください"
+        "pasteLink": "リンクを貼り付けまたは入力してください",
+        "choicePlaceholder": "選択肢",
+        "otherChoice": "その他",
+        "addChoice": "選択肢を追加",
+        "dateRangeTo": "から",
+        "addColumn": "列を追加",
+        "columnPlaceholder": "列 {{index}}"
       },
       "settings": {
         "title": "設定",
@@ -1317,6 +1320,11 @@
           "mxn": "MXN — メキシコペソ",
           "nzd": "NZD — ニュージーランドドル",
           "brl": "BRL — ブラジルレアル"
+        },
+        "multipleChoice": {
+          "unlimited": "無制限",
+          "exactNumber": "正確な数",
+          "range": "範囲"
         }
       },
       "design": {

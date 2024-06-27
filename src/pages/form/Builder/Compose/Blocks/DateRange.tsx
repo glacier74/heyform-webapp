@@ -40,7 +40,7 @@ export const DateRange: FC<BlockProps> = ({ field, locale, ...restProps }) => {
           )}
         </div>
 
-        <div className="heyform-date-range-divider">{t('builder.dateRangeTo')}</div>
+        <div className="heyform-date-range-divider">{t('form.builder.compose.dateRangeTo')}</div>
 
         <div className="heyform-date-root heyform-end-date">
           <DateItem locale={locale} format={x} />

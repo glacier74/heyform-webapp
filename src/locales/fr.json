@@ -605,11 +605,7 @@
     "planName": "Plan {{name}}",
     "year": "année",
     "month": "mois",
-    "cycles": [
-      "Pour toujours",
-      "Mensuel",
-      "Annuel"
-    ],
+    "cycles": ["Pour toujours", "Mensuel", "Annuel"],
     "save16": "Économisez 16%",
     "keepFreePlan": "Continuer à utiliser le plan gratuit",
     "plans": {
@@ -1220,6 +1216,7 @@
       }
     },
     "builder": {
+      "title": "Constructeur",
       "question": {
         "title": "Question",
         "answer": "Réponse",
@@ -1267,7 +1264,13 @@
       "compose": {
         "question": "Tapez une question",
         "description": "Ajoutez une description (optionnel)",
-        "pasteLink": "Collez ou entrez le lien ici"
+        "pasteLink": "Collez ou entrez le lien ici",
+        "choicePlaceholder": "Choix",
+        "otherChoice": "Autre",
+        "addChoice": "Ajouter un choix",
+        "dateRangeTo": "à",
+        "addColumn": "Ajouter une colonne",
+        "columnPlaceholder": "Colonne {{index}}"
       },
       "settings": {
         "title": "Paramètres",
@@ -1317,6 +1320,11 @@
           "mxn": "MXN — Peso mexicain",
           "nzd": "NZD — Dollar néo-zélandais",
           "brl": "BRL — Réal brésilien"
+        },
+        "multipleChoice": {
+          "unlimited": "Illimité",
+          "exactNumber": "Nombre exact",
+          "range": "Plage"
         }
       },
       "design": {

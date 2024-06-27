@@ -54,6 +54,7 @@ export default function Rating({ field }: RequiredSettingsProps) {
         </label>
 
         <Select
+          type="number"
           options={totalItems}
           value={field.properties?.total || 5}
           onChange={value => handleChange('total', value)}

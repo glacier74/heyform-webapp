@@ -41,6 +41,7 @@ export default function OpinionScale({ field }: RequiredSettingsProps) {
         </label>
 
         <Select
+          type="number"
           options={options}
           value={field.properties?.total || 5}
           onChange={value => handleChange('total', value)}

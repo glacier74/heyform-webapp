@@ -1216,6 +1216,7 @@
       }
     },
     "builder": {
+      "title": "构建器",
       "question": {
         "title": "问题",
         "answer": "答案",
@@ -1263,7 +1264,13 @@
       "compose": {
         "question": "输入问题",
         "description": "添加描述（可选）",
-        "pasteLink": "粘贴或输入链接"
+        "pasteLink": "粘贴或输入链接",
+        "choicePlaceholder": "选项",
+        "otherChoice": "其他",
+        "addChoice": "添加选项",
+        "dateRangeTo": "至",
+        "addColumn": "添加列",
+        "columnPlaceholder": "列 {{index}}"
       },
       "settings": {
         "title": "设置",
@@ -1313,6 +1320,11 @@
           "mxn": "MXN — 墨西哥比索",
           "nzd": "NZD — 新西兰元",
           "brl": "BRL — 巴西雷亚尔"
+        },
+        "multipleChoice": {
+          "unlimited": "不限",
+          "exactNumber": "确切数字",
+          "range": "范围"
         }
       },
       "design": {

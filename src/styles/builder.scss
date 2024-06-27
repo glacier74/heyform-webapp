@@ -279,7 +279,7 @@
   // ----------------------------------------------------------------------------
   // Block
   .heyform-block-container {
-    @apply absolute scrollbar inset-0 inset-0 z-10 px-20;
+    @apply scrollbar absolute inset-0 inset-0 z-10 px-20;
 
     &.heyform-block-float_left,
     &.heyform-block-split_left {
@@ -903,7 +903,7 @@
   }
 
   .tabs-pane-group {
-    @apply relative flex-1 scrollbar;
+    @apply scrollbar relative flex-1;
   }
 }
 

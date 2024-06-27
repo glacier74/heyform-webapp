@@ -237,7 +237,7 @@ export function updateNestFields(
 }
 
 export function updateField(state: IState, { id, updates }: UpdateFieldAction['payload']): IState {
-  let fields = [...state.fields]
+  let fields = clone(state.fields)
   const parentId = state.parentId
   let currentField: FormFieldType | undefined
 
@@ -327,7 +327,7 @@ export function deleteField(state: IState, { id, parentId }: DeleteFieldAction['
     if (parentField) {
       const index = fieldIndex(parentField.properties?.fields, id)
 
-      if (index > 0) {
+      if (index > -1) {
         currentId = index > 0 ? parentField.properties!.fields![index - 1].id : parentId
         parentId = index > 0 ? parentId : undefined
         parentField.properties!.fields!.splice(index, 1)
@@ -336,8 +336,8 @@ export function deleteField(state: IState, { id, parentId }: DeleteFieldAction['
   } else {
     const index = fields.findIndex(f => f.id === id)
 
-    if (index > 0) {
-      currentId = fields[index - 1]?.id
+    if (index > -1) {
+      currentId = fields[index > 0 ? index - 1 : index + 1]?.id
       fields.splice(index, 1)
     }
   }

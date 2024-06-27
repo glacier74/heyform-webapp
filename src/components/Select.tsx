@@ -109,7 +109,7 @@ const NativeSelect: FC<NativeSelectProps> = ({
   return (
     <select
       className={cn(
-        'inline-flex appearance-none items-center gap-x-4 rounded-lg border bg-transparent px-3.5 py-2 text-base/[1.4rem] placeholder:text-secondary focus:outline-none sm:px-3 sm:py-1.5 sm:text-sm/[1.4rem] [&_[data-slot=value]]:flex [&_[data-slot=value]]:flex-1 [&_[data-slot=value]]:items-center [&_[data-slot=value]]:gap-x-2.5 [&_[data-slot=value]]:pl-1 [&_[data-slot=value]]:sm:gap-x-2',
+        'inline-flex appearance-none items-center gap-x-4 rounded-lg border bg-foreground px-3.5 py-2 text-base/[1.4rem] placeholder:text-secondary focus:outline-none sm:px-3 sm:py-1.5 sm:text-sm/[1.4rem] [&_[data-slot=value]]:flex [&_[data-slot=value]]:flex-1 [&_[data-slot=value]]:items-center [&_[data-slot=value]]:gap-x-2.5 [&_[data-slot=value]]:pl-1 [&_[data-slot=value]]:sm:gap-x-2',
         hasError ? 'border-error' : 'border-input',
         className
       )}

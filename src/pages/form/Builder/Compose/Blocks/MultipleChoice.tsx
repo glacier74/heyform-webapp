@@ -1,6 +1,6 @@
 import { Button, CHAR_A_KEY_CODE, Input } from '@heyform-inc/form-renderer'
 import { Choice } from '@heyform-inc/shared-types-enums'
-import { nanoid } from '@heyform-inc/utils'
+import { clone, nanoid } from '@heyform-inc/utils'
 import { IconX } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { useCallback, useState } from 'react'
@@ -57,7 +57,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
             ) : (
               <Input
                 value={choice.label}
-                placeholder={isFocused ? t('builder.choicePlaceholder') : undefined}
+                placeholder={isFocused ? t('form.builder.compose.choicePlaceholder') : undefined}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 onChange={handleChange}
@@ -125,7 +125,7 @@ export const MultipleChoice: FC<BlockProps> = ({ field, locale, ...restProps }) 
   }
 
   function handleLabelChange(id: string, label: string) {
-    const choices = field.properties?.choices || []
+    const choices = clone(field.properties?.choices || [])
     const index = choices.findIndex(c => c.id === id)
 
     choices[index].label = label
@@ -168,7 +168,7 @@ export const MultipleChoice: FC<BlockProps> = ({ field, locale, ...restProps }) 
             choice={
               {
                 id: 'other',
-                label: t('builder.other')
+                label: t('form.builder.compose.otherChoice')
               } as Choice
             }
             isOther={true}
@@ -179,7 +179,7 @@ export const MultipleChoice: FC<BlockProps> = ({ field, locale, ...restProps }) 
       </div>
       <div className="heyform-add-choice">
         <Button.Link className="heyform-add-column" onClick={handleAddChoiceCallback}>
-          {t('builder.addChoice')}
+          {t('form.builder.compose.addChoice')}
         </Button.Link>
       </div>
     </Block>
