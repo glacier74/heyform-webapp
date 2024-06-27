@@ -28,6 +28,7 @@ export const PLAN_NAMES = {
 
 export const USER_STORAGE_KEY = 'HEYFORM_USER'
 export const WORKSPACE_STORAGE_KEY = 'HEYFORM_WORKSPACE'
+export const APPEARANCE_STORAGE_KEY = 'HEYFORM_APPEARANCE'
 
 export const DEFAULT_PROJECT_NAMES: AnyMap = {
   de: "{name}'s Projekt",
@@ -39,3 +40,18 @@ export const DEFAULT_PROJECT_NAMES: AnyMap = {
   'zh-hk': '{name}的項目',
   'zh-tw': '{name}的專案'
 }
+
+export const APPEARANCE_OPTIONS = [
+  {
+    label: 'workspace.appearance.system',
+    value: 'system'
+  },
+  {
+    label: 'workspace.appearance.light',
+    value: 'light'
+  },
+  {
+    label: 'workspace.appearance.dark',
+    value: 'dark'
+  }
+]

@@ -196,7 +196,7 @@ const SelectComponent: FC<SelectProps> = ({
           align="end"
           {...contentProps}
           className={cn(
-            'isolate z-10 max-h-[18.5rem] rounded-xl bg-white p-1 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light focus:outline-none',
+            'isolate z-10 max-h-[18.5rem] rounded-xl bg-foreground p-1 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light focus:outline-none',
             contentProps?.className
           )}
           data-slot="content"
@@ -338,7 +338,7 @@ const MultiSelect: FC<MultiSelectProps> = ({
           align="start"
           {...contentProps}
           className={cn(
-            'isolate z-10 max-h-[22rem] origin-top-left rounded-xl bg-white p-1 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-90 data-[state=open]:zoom-in-90 sm:max-h-[20rem]',
+            'isolate z-10 max-h-[22rem] origin-top-left rounded-xl bg-foreground p-1 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-90 data-[state=open]:zoom-in-90 sm:max-h-[20rem]',
             contentProps?.className
           )}
           data-slot="content"

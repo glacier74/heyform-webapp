@@ -29,7 +29,7 @@ export const Checkbox: FC<CheckboxProps> = ({ value, disabled, onChange }) => {
       {value && (
         <span
           data-state="checked"
-          className="pointer-events-none flex items-center justify-center text-white"
+          className="pointer-events-none flex items-center justify-center text-foreground"
         >
           <IconCheck className="h-4 w-4" data-slot="icon" />
         </span>

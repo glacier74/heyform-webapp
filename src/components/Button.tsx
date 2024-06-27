@@ -59,7 +59,7 @@ const ButtonComponent: FC<ButtonProps> = ({
 const GhostButton: FC<ButtonProps> = ({ className, ...restProps }) => (
   <ButtonComponent
     className={cn(
-      'border border-input bg-background text-primary hover:bg-accent-light',
+      'border border-input bg-foreground text-primary hover:bg-accent-light',
       className
     )}
     {...restProps}

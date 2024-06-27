@@ -412,7 +412,7 @@ const EmbedComponent = () => {
         </div>
       </div>
 
-      <div className="h-full flex-1 bg-zinc-100">
+      <div className="h-full flex-1 bg-background">
         <div className="hidden h-full w-full lg:block">
           <iframe className="h-full w-full border-0" srcDoc={content} />
         </div>
@@ -436,7 +436,7 @@ function CodeModal() {
         }}
         onOpenChange={onOpenChange}
       >
-        <pre className="my-6 overflow-x-auto rounded bg-primary p-4 text-sm text-white">
+        <pre className="my-6 overflow-x-auto rounded bg-primary p-4 text-sm text-foreground">
           <code>{payload?.code}</code>
         </pre>
 
@@ -458,7 +458,7 @@ export default function EmbedModal() {
         }}
         contentProps={{
           className:
-            'p-0 w-screen max-w-screen max-h-screen overflow-hidden h-screen bg-white focus:outline-none focus-visible:outline-none'
+            'p-0 w-screen max-w-screen max-h-screen overflow-hidden h-screen bg-foreground focus:outline-none focus-visible:outline-none'
         }}
         onOpenChange={onOpenChange}
       >

@@ -191,7 +191,7 @@ export default function Customize() {
           </Form.Item>
         </div>
 
-        <div className="sticky bottom-4 flex items-center gap-x-4 border-t border-accent-light bg-white pt-4">
+        <div className="sticky bottom-4 flex items-center gap-x-4 border-t border-accent-light bg-foreground pt-4">
           <Button.Ghost size="md">{t('components.revert')}</Button.Ghost>
           <Button type="submit" size="md" className="flex-1">
             {t('components.saveChanges')}

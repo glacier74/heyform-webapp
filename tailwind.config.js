@@ -15,21 +15,22 @@ module.exports = {
     },
     extend: {
       colors: {
-        background: '#fff',
-        input: 'rgb(9 9 11 / 15%)',
+        background: 'rgba(var(--hf-background))',
+        foreground: 'rgba(var(--hf-foreground))',
+        input: 'rgba(var(--hf-input))',
         primary: {
-          DEFAULT: 'rgb(9 9 11)',
-          light: '#fff'
+          DEFAULT: 'rgba(var(--hf-primary))',
+          light: 'rgba(var(--hf-primary-light))'
         },
         secondary: {
-          DEFAULT: 'rgb(113 113 122)',
-          light: 'rgb(9 9 11 / 2.5%)'
+          DEFAULT: 'rgba(var(--hf-secondary))',
+          light: 'rgba(var(--hf-secondary-light))'
         },
         accent: {
-          DEFAULT: 'rgb(9 9 11 / 10%)',
-          light: 'rgb(9 9 11 / 5%)'
+          DEFAULT: 'rgba(var(--hf-accent))',
+          light: 'rgba(var(--hf-accent-light))'
         },
-        error: '#dc2626'
+        error: 'rgba(var(--hf-error))'
       }
     }
   },

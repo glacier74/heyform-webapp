@@ -65,7 +65,7 @@ export default function OAuth() {
           </p>
         </div>
 
-        <div className="mx-auto mt-12 max-w-lg rounded-lg bg-zinc-100/50 p-6">
+        <div className="mx-auto mt-12 max-w-lg rounded-lg bg-background/50 p-6">
           <h2 className="text-center text-base font-bold text-primary">
             {t('oauth.would', { name: app?.name })}
           </h2>

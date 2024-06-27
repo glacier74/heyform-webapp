@@ -21,13 +21,6 @@ export default ({ mode }: ConfigEnv) => {
         '@': resolve(__dirname, './src')
       }
     },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: `@import "./src/styles/base";`
-        }
-      }
-    },
     build: {
       target: 'es2015',
       assetsDir: 'static'

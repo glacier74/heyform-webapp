@@ -503,6 +503,12 @@
   "workspace": {
     "notExist": "该工作区不存在。",
     "backHome": "返回 HeyForm",
+    "appearance": {
+      "title": "外观",
+      "system": "系统偏好",
+      "light": "浅色模式",
+      "dark": "深色模式"
+    },
     "sidebar": {
       "workspaces": "工作区",
       "projects": "项目",

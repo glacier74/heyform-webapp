@@ -2,12 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base {
+  :root {
+    --hf-background: 244, 244, 245;
+    --hf-foreground: 255, 255, 255;
+    --hf-input: 9, 9, 11, 15%;
+    --hf-primary: 9, 9, 11;
+    --hf-primary-light: 255, 255, 255;
+    --hf-secondary: 113, 113, 122;
+    --hf-secondary-light: 9, 9, 11, 2.5%;
+    --hf-accent: 9, 9, 11, 10%;
+    --hf-accent-light: 9, 9, 11, 5%;
+    --hf-error: 220, 38, 38;
+  }
+
+  .dark {
+    --hf-background: 9, 9, 11;
+    --hf-foreground: 24, 24, 27;
+    --hf-input: 255, 255, 255, 10%;
+    --hf-primary: 255, 255, 255;
+    --hf-primary-light: 24, 24, 27;
+    --hf-secondary: 161, 161, 170;
+    --hf-secondary-light: 255, 255, 255, 2.5%;
+    --hf-accent: 9, 9, 11, 10%;
+    --hf-accent-light: 255, 255, 255, 5%;
+    --hf-error: 220, 38, 38;
+  }
+}
+
 body {
-  @apply text-primary antialiased lg:bg-zinc-100;
+  @apply text-primary antialiased lg:bg-background;
 }
 
 @layer components {
-  .content-scrollbar {
+  .scrollbar {
     overflow-y: auto;
 
     @media (min-width: 768px) {
@@ -48,8 +77,31 @@ body {
       }
     }
   }
+
+  @keyframes skeleton {
+    from {
+      background-position: 100% 50%;
+    }
+
+    to {
+      background-position: 0 50%;
+    }
+  }
+
+  .skeleton {
+    @apply bg-gradient-to-r from-background from-25% via-input via-40% to-background to-65%;
+    background-size: 400% 100%;
+    animation: skeleton 1.4s ease infinite;
+  }
+
+  .non-scaling-stroke {
+    path {
+      vector-effect: non-scaling-stroke;
+    }
+  }
 }
 
+// Color picker
 .color-picker {
   @apply space-y-2;
 

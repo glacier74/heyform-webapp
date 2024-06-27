@@ -153,7 +153,7 @@ const PlanItem: FC<PlanItemProps> = ({ plan, billingCycle }) => {
         <div className="mt-4 flex-1 space-y-2 border-t border-input pt-4">
           <Repeat count={(PLAN_FEATURE_COUNTS as AnyMap)[plan.name.toLowerCase()]}>
             {(index: number) => (
-              <div key={index} className="flex items-center gap-2 text-sm text-slate-800">
+              <div key={index} className="flex items-center gap-2 text-sm text-primary">
                 <IconCheck className="h-4 w-4 text-blue-600" />
                 <span>{t(`billing.features.${plan.name.toLowerCase()}.${index}`)}</span>
               </div>
@@ -278,7 +278,7 @@ export default function UpgradeModal() {
       }}
       contentProps={{
         className:
-          'scrollbar max-w-screen max-h-screen w-screen h-screen bg-white focus:outline-none focus-visible:outline-none',
+          'scrollbar max-w-screen max-h-screen w-screen h-screen bg-foreground focus:outline-none focus-visible:outline-none',
         forceMount: true
       }}
       onOpenChange={onOpenChange}

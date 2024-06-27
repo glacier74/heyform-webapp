@@ -89,7 +89,7 @@ export const MentionMenu: FC<MentionMenuProps> = ({
       <div className="mention-menu">
         <div className="mention-menu-mask" onClick={onClose} />
         <div
-          className="mention-menu-container scrollbar isolate z-10 w-max min-w-52 overflow-y-auto rounded-xl bg-white p-1 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light animate-in fade-in-0 zoom-in-95 focus:outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
+          className="mention-menu-container scrollbar isolate z-10 w-max min-w-52 overflow-y-auto rounded-xl bg-foreground p-1 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light animate-in fade-in-0 zoom-in-95 focus:outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
           style={portalStyle}
         >
           {questions.length > 0 || variables.length > 0 || hiddenFields.length > 0 ? (

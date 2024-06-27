@@ -164,7 +164,7 @@ export default function FormSubmissions() {
   }
 
   return (
-    <div className={cn(isMaximized ? 'fixed inset-0 bg-white p-4' : 'mt-4')}>
+    <div className={cn(isMaximized ? 'fixed inset-0 bg-foreground p-4' : 'mt-4')}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-2.5">
           <Select
@@ -241,7 +241,7 @@ export default function FormSubmissions() {
               isMaximized ? 'h-[calc(100vh-9rem)]' : 'h-[calc(100vh-23.45rem)]'
             ),
             table:
-              'min-w-full text-left [&_tbody_td]:text-nowrap [&_tbody_td]:h-10 [&_tbody_td]:px-4 [&_tbody_td]:text-left [&_tbody_td]:font-normal [&_thead_th]:text-nowrap [&_thead_th]:px-4 [&_thead_th]:h-10 [&_thead_th]:text-left [&_thead_th]:font-normal [&_thead_tr]:sticky [&_thead_tr]:top-0 [&_thead_tr]:bg-white [&_thead]:text-secondary',
+              'min-w-full text-left [&_tbody_td]:text-nowrap [&_tbody_td]:h-10 [&_tbody_td]:px-4 [&_tbody_td]:text-left [&_tbody_td]:font-normal [&_thead_th]:text-nowrap [&_thead_th]:px-4 [&_thead_th]:h-10 [&_thead_th]:text-left [&_thead_th]:font-normal [&_thead_tr]:sticky [&_thead_tr]:top-0 [&_thead_tr]:bg-foreground [&_thead]:text-secondary',
             footer: 'text-sm justify-end'
           }}
           columns={columns}

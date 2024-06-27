@@ -79,7 +79,7 @@ const ThemeItem: FC<{ theme: FormTheme }> = ({ theme }) => {
 
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center rounded-md bg-slate-900 bg-opacity-50">
-          <Loader className="text-white" />
+          <Loader className="text-foreground" />
         </div>
       )}
     </Image.Background>

@@ -17,8 +17,8 @@ export const AuthLayout: FC<LayoutProps> = ({ options, children }) => {
   }, [options, t])
 
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <div className="sticky top-0 flex items-center justify-between bg-white p-4">
+    <div className="flex min-h-screen flex-col bg-foreground">
+      <div className="sticky top-0 flex items-center justify-between bg-foreground p-4">
         <a href="/" className="flex items-center gap-2" title="HeyForm">
           <Logo className="h-8 w-auto" />
           <span className="text-xl font-medium">HeyForm</span>

@@ -521,7 +521,7 @@ const YearCell: FC<{ year: number }> = ({ year }) => {
       name="year"
       role="gridcell"
       className={cn('h-9 rounded px-2 hover:bg-accent-light', {
-        'bg-primary text-white hover:bg-primary': isSelected
+        'bg-primary text-foreground hover:bg-primary': isSelected
       })}
       aria-selected={isSelected}
       tabIndex={-1}
@@ -574,7 +574,7 @@ const MonthCell: FC<{ month: MonthType }> = ({ month }) => {
       name="month"
       role="gridcell"
       className={cn('h-9 rounded px-3.5 hover:bg-accent-light', {
-        'bg-primary text-white hover:bg-primary': isSelected
+        'bg-primary text-foreground hover:bg-primary': isSelected
       })}
       aria-selected={isSelected}
       aria-label={month.ariaLabel}
@@ -672,7 +672,7 @@ const DayCell: FC<{ date: DateType }> = ({ date }) => {
           {
             'text-secondary': date.isOutOfMonth,
             'border-accent': date.isToday,
-            'bg-primary text-white hover:bg-primary': date.isSelected,
+            'bg-primary text-foreground hover:bg-primary': date.isSelected,
             'pointer-events-none': date.isDisabled
           }
         )}
@@ -785,7 +785,7 @@ const TimeCell: FC<TimeCellProps> = ({ time, timeFormat }) => {
         tabIndex={-1}
         key={time.isoString}
         className={cn('block rounded px-2 py-0.5 text-sm/6 hover:bg-accent-light', {
-          'bg-primary text-white hover:bg-primary': time.isSelected,
+          'bg-primary text-foreground hover:bg-primary': time.isSelected,
           'pointer-events-none': time.isDisabled
         })}
         disabled={time.isDisabled}
@@ -951,7 +951,7 @@ export const DatePicker: FC<DatePickerProps> = ({
 
         <Portal>
           <Content
-            className="z-10 origin-top-left rounded-lg bg-white text-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-90 data-[state=open]:zoom-in-90"
+            className="z-10 origin-top-left rounded-lg bg-foreground text-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-90 data-[state=open]:zoom-in-90"
             sideOffset={8}
             align="start"
           >

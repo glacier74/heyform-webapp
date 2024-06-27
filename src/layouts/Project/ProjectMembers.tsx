@@ -33,7 +33,7 @@ export default function ProjectMembers() {
           refreshDeps={[workspaceId]}
           loader={
             <Repeat count={6}>
-              <div className="skeleton h-9 w-9 rounded-full ring-2 ring-white"></div>
+              <div className="skeleton h-9 w-9 rounded-full ring-2 ring-foreground"></div>
             </Repeat>
           }
         >
@@ -41,7 +41,7 @@ export default function ProjectMembers() {
             <Tooltip key={m.id} label={m.name}>
               <div>
                 <Avatar
-                  className="h-9 w-9 rounded-full ring-2 ring-white"
+                  className="h-9 w-9 rounded-full ring-2 ring-foreground"
                   src={m.avatar}
                   fallback={m.name}
                 />
@@ -54,7 +54,7 @@ export default function ProjectMembers() {
             isUpgradeShow={false}
             fallback={openUpgradeModal => (
               <Button.Ghost
-                className="group rounded-full !p-0 hover:bg-background"
+                className="group rounded-full !p-0 hover:bg-foreground"
                 size="md"
                 iconOnly
                 onClick={openUpgradeModal}
@@ -65,7 +65,7 @@ export default function ProjectMembers() {
           >
             <Tooltip label={t('project.members.addMember', { name: project?.name })}>
               <Button.Ghost
-                className="group rounded-full !p-0 hover:bg-background"
+                className="group rounded-full !p-0 hover:bg-foreground"
                 size="md"
                 iconOnly
                 onClick={() => openModal('ProjectMembersModal')}

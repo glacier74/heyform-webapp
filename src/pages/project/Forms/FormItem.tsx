@@ -252,7 +252,7 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
       isInTrash={isInTrash}
       isSuspended={form.suspended}
     >
-      <div className="flex-1">
+      <div className="flex-1 pl-2">
         <div className="text-sm/6 font-medium">{form.name}</div>
         <div className="text-sm/6 text-secondary">
           {isInTrash

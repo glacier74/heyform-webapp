@@ -27,7 +27,7 @@ interface IBuilderProps {
 }
 
 const Skeleton = () => (
-  <div className="flex h-screen flex-col bg-zinc-100 ">
+  <div className="flex h-screen flex-col bg-background ">
     <div className="h-14"></div>
     <main className="flex h-[calc(100vh-3.5rem)] flex-1 gap-2 px-2 pb-2"></main>
   </div>
@@ -49,7 +49,7 @@ const Builder: FC<IBuilderProps> = ({ form }) => {
 
   return (
     <StoreContext.Provider value={store}>
-      <div className="flex h-screen flex-col bg-zinc-100 ">
+      <div className="flex h-screen flex-col bg-background ">
         <BuilderNavBar />
 
         <main className="flex h-[calc(100vh-3.5rem)] flex-1 sm:gap-2 sm:px-2 sm:pb-2">

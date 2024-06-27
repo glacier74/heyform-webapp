@@ -61,7 +61,7 @@ const PreviewComponent: FC<PreviewComponentProps> = ({ onClose }) => {
         </Button.Link>
       </div>
 
-      <div className="h-[calc(100vh-4rem)] bg-white lg:rounded-lg lg:shadow-sm lg:ring-1 lg:ring-primary/5">
+      <div className="h-[calc(100vh-4rem)] bg-foreground lg:rounded-lg lg:shadow-sm lg:ring-1 lg:ring-primary/5">
         <div className={cn('form-preview relative h-full w-full', `form-preview-${platform}`)}>
           <FormRenderer
             form={form}
@@ -87,7 +87,7 @@ export default function PreviewModal() {
       }}
       contentProps={{
         className:
-          'max-w-screen max-h-screen !overflow-hidden w-screen h-screen bg-white p-0 bg-zinc-100 focus:outline-none focus-visible:outline-none'
+          'max-w-screen max-h-screen !overflow-hidden w-screen h-screen bg-foreground p-0 bg-background focus:outline-none focus-visible:outline-none'
       }}
       onOpenChange={onOpenChange}
     >

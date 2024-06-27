@@ -60,7 +60,7 @@ export default function WorkspaceSwitcher() {
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content
-          className="isolate z-10 min-w-80 origin-top-left rounded-xl bg-white p-1 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light duration-100 animate-in fade-in-0 zoom-in-95 focus:outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 lg:min-w-64"
+          className="isolate z-10 min-w-80 origin-top-left rounded-xl bg-foreground p-1 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light duration-100 animate-in fade-in-0 zoom-in-95 focus:outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 lg:min-w-64"
           align="start"
           sideOffset={8}
         >

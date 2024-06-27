@@ -83,7 +83,7 @@ const WorkspaceSidebarComponent = () => {
   const { workspace } = useWorkspaceStore()
 
   return (
-    <div className="flex h-full flex-col max-lg:rounded-lg max-lg:bg-white">
+    <div className="flex h-full flex-col max-lg:rounded-lg max-lg:bg-foreground">
       <div className="border-b border-accent-light p-4">
         <WorkspaceSwitcher />
       </div>
@@ -203,7 +203,7 @@ export const WorkspaceSidebarModal = () => {
     <Root open={isOpen} onOpenChange={onOpenChange}>
       <Portal>
         <Overlay className="fixed inset-0 z-10 bg-black/60 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-        <Content className="fixed bottom-2 left-2 top-2 z-10 w-72 rounded-lg border bg-background shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-left-0 data-[state=open]:slide-in-from-left-[80%]">
+        <Content className="fixed bottom-2 left-2 top-2 z-10 w-72 rounded-lg border border-accent-light bg-foreground shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-left-0 data-[state=open]:slide-in-from-left-[80%]">
           <Title>
             <VisuallyHidden />
           </Title>

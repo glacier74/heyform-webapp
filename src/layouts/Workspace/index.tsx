@@ -211,7 +211,7 @@ const LayoutComponent: FC<LayoutProps> = ({ options, children }) => {
     <>
       <div
         className={cn(
-          'relative isolate flex min-h-svh w-full bg-white max-lg:flex-col lg:bg-zinc-100',
+          'relative isolate flex min-h-svh w-full bg-foreground max-lg:flex-col lg:bg-background',
           {
             '[&_[data-slot=layout-main]]:pt-16 [&_[data-slot=layout-main]]:lg:pt-16 [&_[data-slot=layout-sidebar]]:top-16':
               workspace?.subscription?.trialing
@@ -243,7 +243,7 @@ const LayoutComponent: FC<LayoutProps> = ({ options, children }) => {
           data-slot="layout-main"
         >
           <div
-            className="grow p-6 lg:rounded-lg lg:bg-white lg:p-10 lg:shadow-sm lg:ring-1 lg:ring-zinc-950/5"
+            className="grow p-6 lg:rounded-lg lg:bg-foreground lg:p-10 lg:shadow-sm lg:ring-1 lg:ring-accent-light dark:lg:ring-input"
             data-slot="layout-container"
           >
             <div className="mx-auto flex min-h-full max-w-6xl flex-col" data-slot="layout-inner">

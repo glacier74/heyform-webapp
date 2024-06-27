@@ -338,7 +338,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({ contentProps, ...restProps }
           sideOffset={8}
           {...contentProps}
           className={cn(
-            'z-10 w-[16.5rem] origin-top-left rounded-lg bg-white p-4 text-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[align=end]:origin-top-right data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-90 data-[state=open]:zoom-in-90',
+            'z-10 w-[16.5rem] origin-top-left rounded-lg bg-foreground p-4 text-sm shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none data-[align=end]:origin-top-right data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-90 data-[state=open]:zoom-in-90',
             contentProps?.className
           )}
         >

@@ -32,7 +32,7 @@ const InputOTP: FC<InputOTPProps> = ({
     >
       {children}
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white">
+        <div className="absolute inset-0 flex items-center justify-center bg-foreground">
           <Loader />
         </div>
       )}
@@ -64,7 +64,7 @@ const InputOTPSlot: FC<ComponentProps & { index: number }> = ({
       {char}
       {hasFakeCaret && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="animate-caret-blink bg-foreground h-4 w-px duration-1000" />
+          <div className="animate-caret-blink h-4 w-px bg-foreground duration-1000" />
         </div>
       )}
     </div>

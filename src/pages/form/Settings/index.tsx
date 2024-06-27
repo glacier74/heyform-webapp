@@ -116,7 +116,7 @@ export default function FormSettings() {
             {/*<FormSettingsEmailNotifications />*/}
             <FormSettingsProtection />
 
-            <div className="sticky bottom-0 mt-10 flex items-center justify-end gap-x-4 border-t border-accent bg-background py-6">
+            <div className="sticky bottom-0 mt-10 flex items-center justify-end gap-x-4 border-t border-accent bg-foreground py-6">
               {error && !loading && <div className="text-sm/6 text-error">{error.message}</div>}
 
               <Button type="submit" loading={loading} disabled={isDisabled}>

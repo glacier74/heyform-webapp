@@ -24,8 +24,8 @@
       // https://github.com/heyform/heyform/blob/11f0ffcb42793d9fbbeadef46131604bbff83db8/packages/webapp/index.html#L30
       // https://github.com/heyform/heyform/blob/11f0ffcb42793d9fbbeadef46131604bbff83db8/packages/form-renderer/src/Renderer.tsx#L116
       ;(function () {
-        const userAgent = window.navigator.userAgent
-        const heyform = {}
+        const userAgent = window.navigator.userAgent;
+        const heyform = {};
 
         heyform.device = {
           ios: /iPad|iPhone|iPod/i.test(userAgent),
@@ -33,9 +33,20 @@
           mobile: /Android|iPad|iPhone|iPod/i.test(userAgent),
           windowHeight: window.innerHeight,
           screenHeight: window.screen.height
-        }
+        };
 
-        window.heyform = heyform
+        window.heyform = heyform;
+
+        // Dark mode
+        const APPEARANCE_STORAGE_KEY = 'HEYFORM_APPEARANCE';
+        const darkMode = (
+          window.localStorage.getItem(APPEARANCE_STORAGE_KEY) === JSON.stringify('dark') ||
+          window.matchMedia('(prefers-color-scheme: dark)').matches
+        );
+
+        if (darkMode) {
+          document.documentElement.classList.add('dark');
+        }
       })()
     </script>
   </head>

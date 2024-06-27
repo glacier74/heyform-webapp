@@ -26,7 +26,13 @@ export const Avatar: FC<AvatarProps> = ({ src, fallback = '', className, ...rest
   const [isLoaded, setLoaded] = useState(false)
 
   return (
-    <div className={cn('h-10 w-10 select-none', className)} {...restProps}>
+    <div
+      className={cn(
+        'relative h-10 w-10 select-none after:pointer-events-none after:absolute after:inset-0 after:rounded-full after:border after:border-input',
+        className
+      )}
+      {...restProps}
+    >
       {!isLoaded && (
         <span
           className="flex h-full w-full items-center justify-center rounded-full bg-accent text-primary"

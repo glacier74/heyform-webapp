@@ -503,6 +503,12 @@
   "workspace": {
     "notExist": "Cet espace de travail n'existe pas.",
     "backHome": "Retour à HeyForm",
+    "appearance": {
+      "title": "Apparence",
+      "system": "Préférence du système",
+      "light": "Clair",
+      "dark": "Sombre"
+    },
     "sidebar": {
       "workspaces": "Espaces de travail",
       "projects": "Projets",

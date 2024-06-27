@@ -503,6 +503,12 @@
   "workspace": {
     "notExist": "このワークスペースは存在しません。",
     "backHome": "HeyForm に戻る",
+    "appearance": {
+      "title": "外観",
+      "system": "システム設定",
+      "light": "ライトモード",
+      "dark": "ダークモード"
+    },
     "sidebar": {
       "workspaces": "ワークスペース",
       "projects": "プロジェクト",

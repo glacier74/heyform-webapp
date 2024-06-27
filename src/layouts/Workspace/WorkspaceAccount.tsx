@@ -1,9 +1,15 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { IconCheck, IconChevronRight } from '@tabler/icons-react'
+import { useLocalStorageState } from 'ahooks'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Avatar, Button } from '@/components'
-import { LOCALE_OPTIONS } from '@/consts'
+import {
+  APPEARANCE_OPTIONS,
+  APPEARANCE_STORAGE_KEY,
+  LOCALE_OPTIONS,
+} from '@/consts'
 import { useAppStore, useUserStore } from '@/store'
 import { clearAuthState, cn, useRouter } from '@/utils'
 
@@ -23,12 +29,24 @@ export default function WorkspaceAccount({
   const { user } = useUserStore()
   const { openModal } = useAppStore()
 
+  const [appearance, setAppearance] = useLocalStorageState(APPEARANCE_STORAGE_KEY, {
+    defaultValue: 'system'
+  })
+
   function handleLogout() {
     clearAuthState()
     router.redirect('/logout', {
       extend: false
     })
   }
+
+  useEffect(() => {
+    if (appearance === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [appearance])
 
   return (
     <div className={cn('border-t border-accent-light px-2.5 py-2.5 sm:py-2.5', containerClassName)}>
@@ -57,7 +75,7 @@ export default function WorkspaceAccount({
 
         <DropdownMenu.Portal>
           <DropdownMenu.Content
-            className="isolate z-10 min-w-80 rounded-xl bg-white p-1.5 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light focus:outline-none lg:min-w-64"
+            className="isolate z-10 min-w-80 rounded-xl bg-foreground p-1.5 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light focus:outline-none lg:min-w-64"
             align="start"
             sideOffset={8}
           >
@@ -71,6 +89,7 @@ export default function WorkspaceAccount({
               </Button.Link>
             </DropdownMenu.Item>
 
+            {/* Locale switcher */}
             <DropdownMenu.Sub>
               <DropdownMenu.SubTrigger asChild>
                 <Button.Link
@@ -84,7 +103,7 @@ export default function WorkspaceAccount({
 
               <DropdownMenu.Portal>
                 <DropdownMenu.SubContent
-                  className="isolate z-10 min-w-80 rounded-xl bg-white p-1.5 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light focus:outline-none lg:min-w-64"
+                  className="isolate z-10 min-w-80 rounded-xl bg-foreground p-1.5 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light focus:outline-none lg:min-w-64"
                   sideOffset={8}
                   alignOffset={-8}
                 >
@@ -110,6 +129,45 @@ export default function WorkspaceAccount({
                         <div className="text-xs text-secondary" data-slot="translated">
                           {t(l.translated)}
                         </div>
+                      </div>
+                    </DropdownMenu.Item>
+                  ))}
+                </DropdownMenu.SubContent>
+              </DropdownMenu.Portal>
+            </DropdownMenu.Sub>
+
+            {/* Appearance switcher */}
+            <DropdownMenu.Sub>
+              <DropdownMenu.SubTrigger asChild>
+                <Button.Link
+                  className="hidden w-full data-[highlighted]:bg-accent-light data-[state=open]:bg-accent-light sm:block [&_[data-slot=button]]:justify-between"
+                  size="md"
+                >
+                  {t('workspace.appearance.title')}
+                  <IconChevronRight className="h-[1.125rem] w-[1.125rem] text-secondary" />
+                </Button.Link>
+              </DropdownMenu.SubTrigger>
+
+              <DropdownMenu.Portal>
+                <DropdownMenu.SubContent
+                  className="isolate z-10 min-w-80 rounded-xl bg-foreground p-1.5 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light focus:outline-none lg:min-w-64"
+                  sideOffset={8}
+                  alignOffset={-8}
+                >
+                  {APPEARANCE_OPTIONS.map(l => (
+                    <DropdownMenu.Item
+                      key={l.value}
+                      className="grid cursor-pointer grid-cols-[theme(spacing.5),1fr] items-center gap-x-2.5 rounded-lg px-3 py-2.5 text-base/6 text-primary outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accent-light data-[disabled]:opacity-50 sm:grid-cols-[theme(spacing.4),1fr] sm:px-2 sm:py-1.5 sm:text-sm/6"
+                      onClick={() => setAppearance(l.value)}
+                    >
+                      {appearance === l.value ? (
+                        <IconCheck className="h-[1.125rem] w-[1.125rem] text-secondary" />
+                      ) : (
+                        <i />
+                      )}
+
+                      <div className="text-sm/[1.4rem] font-medium text-primary" data-slot="label">
+                        {t(l.label)}
                       </div>
                     </DropdownMenu.Item>
                   ))}

@@ -43,7 +43,7 @@ export default function MultipleChoiceSettings({ field }: RequiredSettingsProps)
 
         <select
           name="status"
-          className="[&amp;_optgroup]:font-semibold relative block w-full appearance-none rounded-lg border border-accent-light bg-transparent py-[calc(theme(spacing[2.5])-1px)] pl-[calc(theme(spacing[3.5])-1px)] pr-[calc(theme(spacing.10)-1px)] text-base/6 text-primary placeholder:text-zinc-500 focus:outline-none sm:py-[calc(theme(spacing[1.5])-1px)] sm:pl-[calc(theme(spacing.3)-1px)] sm:pr-[calc(theme(spacing.9)-1px)] sm:text-sm/6"
+          className="[&amp;_optgroup]:font-semibold relative block w-full appearance-none rounded-lg border border-accent-light bg-transparent py-[calc(theme(spacing[2.5])-1px)] pl-[calc(theme(spacing[3.5])-1px)] pr-[calc(theme(spacing.10)-1px)] text-base/6 text-primary placeholder:text-secondary focus:outline-none sm:py-[calc(theme(spacing[1.5])-1px)] sm:pl-[calc(theme(spacing.3)-1px)] sm:pr-[calc(theme(spacing.9)-1px)] sm:text-sm/6"
           id="headlessui-control-:ro:"
           data-headlessui-state=""
           aria-labelledby="headlessui-label-:rp:"

@@ -21,7 +21,7 @@ const BADGE_COLORS = {
   fuchsia: 'bg-fuchsia-400/15 text-fuchsia-700 group-data-[hover]:bg-fuchsia-400/25 ',
   pink: 'bg-pink-400/15 text-pink-700 group-data-[hover]:bg-pink-400/25 ',
   rose: 'bg-rose-400/15 text-rose-700 group-data-[hover]:bg-rose-400/25 ',
-  zinc: 'bg-zinc-600/10 text-zinc-700 group-data-[hover]:bg-zinc-600/20 '
+  zinc: 'bg-zinc-600/10 text-secondary group-data-[hover]:bg-zinc-600/20 '
 }
 
 interface BadgeProps extends ComponentProps {

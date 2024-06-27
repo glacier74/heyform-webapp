@@ -46,7 +46,7 @@
 }
 
 .react-flow {
-  @apply h-full flex-1 bg-white lg:rounded-lg lg:shadow-sm lg:ring-1 lg:ring-primary/5;
+  @apply h-full flex-1 bg-foreground lg:rounded-lg lg:shadow-sm lg:ring-1 lg:ring-primary/5;
 }
 
 // ----------------------------------------------------------------------------
@@ -189,7 +189,7 @@
   }
 
   .heyform-radio-hotkey {
-    @apply flex h-6 w-6 items-center justify-center rounded-sm bg-white text-xs font-bold;
+    @apply flex h-6 w-6 items-center justify-center rounded-sm bg-foreground text-xs font-bold;
     background-color: var(--heyform-background-color);
     box-shadow: var(--heyform-answer-opacity-60-color) 0 0 0 1px inset;
   }
@@ -279,8 +279,7 @@
   // ----------------------------------------------------------------------------
   // Block
   .heyform-block-container {
-    @apply absolute inset-0 inset-0 z-10 px-20;
-    @extend .scrollbar;
+    @apply absolute scrollbar inset-0 inset-0 z-10 px-20;
 
     &.heyform-block-float_left,
     &.heyform-block-split_left {
@@ -869,7 +868,7 @@
 // ----------------------------------------------------------------------------
 // Right sidebar
 .right-sidebar {
-  @apply flex h-full w-80 flex-col border-l border-gray-200 bg-white;
+  @apply flex h-full w-80 flex-col border-l border-gray-200 bg-foreground;
 
   .tabs-wrapper {
     @apply flex h-full flex-col;
@@ -904,8 +903,7 @@
   }
 
   .tabs-pane-group {
-    @apply relative flex-1;
-    @extend .scrollbar;
+    @apply relative flex-1 scrollbar;
   }
 }
 
@@ -1131,7 +1129,7 @@
 .logic-panel,
 .logic-bulk-edit-panel,
 .variable-panel {
-  @apply fixed right-0 z-20 flex flex-col border-l border-gray-200 bg-white shadow-xl;
+  @apply fixed right-0 z-20 flex flex-col border-l border-gray-200 bg-foreground shadow-xl;
   width: 40rem;
   top: 3.75rem;
   bottom: 0;
@@ -1200,7 +1198,7 @@
 }
 
 .flow-custom-node {
-  @apply h-28 w-56 rounded-lg bg-white p-4 text-sm text-slate-700 transition-all;
+  @apply h-28 w-56 rounded-lg bg-foreground p-4 text-sm text-slate-700 transition-all;
   box-shadow:
     rgba(0, 0, 0, 0.08) 0 0.125rem 0.25rem,
     rgba(0, 0, 0, 0.06) 0 0.125rem 0.75rem;
@@ -1325,6 +1323,10 @@ button.connect-stripe {
 
   .heyform-block-container {
     @apply w-full p-0 #{!important};
+
+    &.heyform-block-split_left {
+      @apply left-0 #{!important};
+    }
   }
 
   .heyform-block {

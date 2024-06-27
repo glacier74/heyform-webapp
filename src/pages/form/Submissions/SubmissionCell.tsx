@@ -67,10 +67,10 @@ const AddressItem: FC<SubmissionCellProps> = ({ answer, field, isTableCell }) =>
     <dl className="grid grid-cols-1 text-base/6 sm:grid-cols-[min(50%,theme(spacing.80))_auto] sm:text-sm/6">
       {result.map((row, index) => (
         <Fragment key={index}>
-          <dt className="col-start-1 border-t border-accent-light pt-3 text-zinc-500 first:border-none sm:border-t sm:border-accent-light sm:py-3">
+          <dt className="col-start-1 border-t border-accent-light pt-3 text-secondary first:border-none sm:border-t sm:border-accent-light sm:py-3">
             {row.label}
           </dt>
-          <dd className="sm:[&amp;:nth-child(2)]:border-none pb-3 pt-1 text-zinc-950 sm:border-t sm:border-accent-light sm:py-3">
+          <dd className="sm:[&amp;:nth-child(2)]:border-none pb-3 pt-1 text-primary sm:border-t sm:border-accent-light sm:py-3">
             {row.value}
           </dd>
         </Fragment>
@@ -235,7 +235,7 @@ const PaymentItem: FC<SubmissionCellProps> = ({ answer, field }) => {
             <span className="ml-1">Succeeded</span>
           </div>
         ) : (
-          <div className="flex h-6 items-center rounded bg-gray-100 pl-1 pr-2 text-sm text-slate-800">
+          <div className="flex h-6 items-center rounded bg-gray-100 pl-1 pr-2 text-sm text-primary">
             <IconClock className="h-4 w-4" />
             <span className="ml-1">Incomplete</span>
           </div>
