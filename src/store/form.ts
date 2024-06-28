@@ -4,7 +4,7 @@ import { FormSettings, FormTheme } from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
 import { type Dayjs } from 'dayjs'
 import { create } from 'zustand'
-import { compute, computed } from 'zustand-computed-state'
+import computed from 'zustand-computed'
 import { immer } from 'zustand/middleware/immer'
 
 import { TypeNumberValue } from '@/components'
@@ -40,11 +40,6 @@ interface FormStoreType {
   // Form preview
   previewMode?: 'desktop' | 'mobile'
 
-  // Computed properties
-  formFields: Any[]
-  embedConfig?: Any
-  integratedApps: IntegratedAppType[]
-
   setForm: (form?: FormType) => void
   updateForm: (updates: Partial<FormType>) => void
   setTempSettings: (tempSettings?: TempSettings) => void
@@ -61,46 +56,52 @@ interface FormStoreType {
   setPreviewMode: (mode: 'desktop' | 'mobile') => void
 }
 
+interface ComputedStoreType {
+  formFields: Any[]
+  embedConfig?: Any
+  integratedApps: IntegratedAppType[]
+}
+
+const computeState = (state: FormStoreType): ComputedStoreType => {
+  const embedConfig = state.embedConfigs[state.embedType]
+  const integratedApps = state.apps.map(app => {
+    const integration = state.integrations.find(row => row.appId === app.id)
+
+    let status = APP_STATUS_ENUM.PENDING
+
+    if (helper.isValid(integration?.attributes)) {
+      status = APP_STATUS_ENUM.ACTIVE
+    } else if (app.internalType === 3) {
+      status = APP_STATUS_ENUM.REDIRECT_TO_EXTERNAL
+    }
+
+    return {
+      ...app,
+      integration,
+      status
+    }
+  })
+
+  return {
+    embedConfig,
+    integratedApps: integratedApps as IntegratedAppType[],
+    formFields: (state.form?.drafts || []).map(field => ({
+      id: field.id,
+      title: helper.isArray(field.title)
+        ? htmlUtils.plain(htmlUtils.serialize(field.title as Any))
+        : field.title
+    }))
+  }
+}
+
 export const useFormStore = create<FormStoreType>()(
   computed(
-    immer((set, get) => ({
+    immer(set => ({
       isFormLoaded: false,
       embedConfigs: DEFAULT_EMBED_CONFIGS,
       embedType: 'standard',
       apps: [],
       integrations: [],
-
-      ...compute(get, state => {
-        const embedConfig = state.embedConfigs[state.embedType]
-        const integratedApps = state.apps.map(app => {
-          const integration = state.integrations.find(row => row.appId === app.id)
-
-          let status = APP_STATUS_ENUM.PENDING
-
-          if (helper.isValid(integration?.attributes)) {
-            status = APP_STATUS_ENUM.ACTIVE
-          } else if (app.internalType === 3) {
-            status = APP_STATUS_ENUM.REDIRECT_TO_EXTERNAL
-          }
-
-          return {
-            ...app,
-            integration,
-            status
-          }
-        })
-
-        return {
-          embedConfig,
-          integratedApps: integratedApps as IntegratedAppType[],
-          formFields: (state.form?.drafts || []).map(field => ({
-            id: field.id,
-            title: helper.isArray(field.title)
-              ? htmlUtils.plain(htmlUtils.serialize(field.title as Any))
-              : field.title
-          }))
-        }
-      }),
 
       setForm: form => {
         set(state => {
@@ -242,6 +243,7 @@ export const useFormStore = create<FormStoreType>()(
           state.previewMode = mode
         })
       }
-    }))
+    })),
+    computeState
   )
 )

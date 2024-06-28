@@ -20,7 +20,7 @@ import {
 } from 'react'
 import { useTranslation } from 'react-i18next'
 import { createStore as createZStore, useStore as useZStore } from 'zustand'
-import { compute, computed } from 'zustand-computed-state'
+import computed from 'zustand-computed'
 import { immer } from 'zustand/middleware/immer'
 
 import { DATE_FORMATS } from '@/consts'
@@ -49,9 +49,12 @@ interface SharedProps extends DateRangeProps {
   onChange?: (date: Dayjs) => void
 }
 
-interface StoreType extends SharedProps {
+interface ComputedStoreType {
   format: (typeof DATE_FORMATS)['en']
   localeDateString: string
+}
+
+interface StoreType extends SharedProps {
   updateState: (updates: Partial<SharedProps>) => void
   togglePicker: () => void
   toggleYearPicker: () => void
@@ -266,23 +269,23 @@ function getAdjustDate(date: Dayjs, { timeIntervals, minDate, maxDate }: GetAdju
   return getNearestMinutes(result, timeIntervals)
 }
 
+const computeState = (state: StoreType): ComputedStoreType => {
+  const format = DATE_FORMATS[state.locale as keyof typeof DATE_FORMATS] || DATE_FORMATS.en
+  const localeDateString = isValidDayjs(state.value)
+    ? (state.value as Dayjs).format(format.date)
+    : ''
+
+  return {
+    format,
+    localeDateString
+  }
+}
+
 const createStore = (initialState: SharedProps) => {
   return createZStore<StoreType>()(
     computed(
-      immer((set, get) => ({
+      immer(set => ({
         ...initialState,
-
-        ...compute(get, state => {
-          const format = DATE_FORMATS[state.locale as keyof typeof DATE_FORMATS] || DATE_FORMATS.en
-          const localeDateString = isValidDayjs(state.value)
-            ? (state.value as Dayjs).format(format.date)
-            : ''
-
-          return {
-            format,
-            localeDateString
-          }
-        }),
 
         updateState(updates: Partial<SharedProps>) {
           set(state => {
@@ -399,11 +402,12 @@ const createStore = (initialState: SharedProps) => {
 
               state.onChange?.(newDate)
             } else {
-              callback?.(date, state.localeDateString)
+              callback?.(date, (state as unknown as ComputedStoreType).localeDateString)
             }
           })
         }
-      }))
+      })),
+      computeState
     )
   )
 }
@@ -413,7 +417,10 @@ const Context = createContext<StoreType | null>(null)
 const useStore = () => {
   const store = useContext(Context)
 
-  return useZStore<Any, StoreType>(store, state => state as StoreType)
+  return useZStore<Any, StoreType & ComputedStoreType>(
+    store,
+    state => state as StoreType & ComputedStoreType
+  )
 }
 
 const Navigation = () => {

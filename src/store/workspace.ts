@@ -1,6 +1,6 @@
 import { helper } from '@heyform-inc/utils'
 import { create } from 'zustand'
-import { compute, computed } from 'zustand-computed-state'
+import computed from 'zustand-computed'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 
@@ -16,13 +16,6 @@ type WorkspaceStoreType = {
   currentWorkspaceId?: string
   currentProjectId?: string
   currentFormId?: string
-
-  // Computed properties
-  workspace: WorkspaceType
-  sharingURL: string
-  project?: ProjectType
-  members: MemberType[]
-  forms: FormType[]
 
   setWorkspaces: (workspaces: WorkspaceType[]) => void
   selectWorkspace: (workspaceId: string) => void
@@ -45,10 +38,53 @@ type WorkspaceStoreType = {
   setPlans: (plans: PlanType[]) => void
 }
 
+interface ComputedStoreType {
+  workspace: WorkspaceType
+  sharingURL: string
+  project?: ProjectType
+  members: MemberType[]
+  forms: FormType[]
+}
+
+const computeState = (state: WorkspaceStoreType): ComputedStoreType => {
+  let project: ProjectType | undefined
+  let members: MemberType[] = []
+  let forms: FormType[] = []
+  let sharingURL = WEBSITE_URL
+
+  const workspace = state.workspaces.find(w => w.id === state.currentWorkspaceId)
+
+  if (workspace) {
+    members = state._memberMap[workspace.id] || []
+    project = workspace.projects.find(p => p.id === state.currentProjectId)
+
+    if (project) {
+      forms = state._formMap[project.id] || []
+    }
+
+    if (
+      workspace.plan.customDomain &&
+      workspace.enableCustomDomain &&
+      helper.isValid(workspace.customDomain) &&
+      helper.isFQDN(workspace.customDomain as string)
+    ) {
+      sharingURL = `https://${workspace!.customDomain}`
+    }
+  }
+
+  return {
+    workspace: workspace as WorkspaceType,
+    project,
+    members,
+    forms,
+    sharingURL
+  }
+}
+
 export const useWorkspaceStore = create<WorkspaceStoreType>()(
   persist(
     computed(
-      immer((set, get) => ({
+      immer(set => ({
         workspaces: [],
         _memberMap: {},
         _formMap: {},
@@ -56,41 +92,6 @@ export const useWorkspaceStore = create<WorkspaceStoreType>()(
         currentWorkspaceId: undefined,
         currentProjectId: undefined,
         currentFormId: undefined,
-
-        ...compute(get, state => {
-          let project: ProjectType | undefined
-          let members: MemberType[] = []
-          let forms: FormType[] = []
-          let sharingURL = WEBSITE_URL
-
-          const workspace = state.workspaces.find(w => w.id === state.currentWorkspaceId)
-
-          if (workspace) {
-            members = state._memberMap[workspace.id] || []
-            project = workspace.projects.find(p => p.id === state.currentProjectId)
-
-            if (project) {
-              forms = state._formMap[project.id] || []
-            }
-
-            if (
-              workspace.plan.customDomain &&
-              workspace.enableCustomDomain &&
-              helper.isValid(workspace.customDomain) &&
-              helper.isFQDN(workspace.customDomain as string)
-            ) {
-              sharingURL = `https://${workspace!.customDomain}`
-            }
-          }
-
-          return {
-            workspace: workspace as WorkspaceType,
-            project,
-            members,
-            forms,
-            sharingURL
-          }
-        }),
 
         setWorkspaces: workspaces => {
           set(state => {
@@ -261,7 +262,8 @@ export const useWorkspaceStore = create<WorkspaceStoreType>()(
             state.plans = plans
           })
         }
-      }))
+      })),
+      computeState
     ),
     {
       name: WORKSPACE_STORAGE_KEY,
