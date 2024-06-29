@@ -100,13 +100,19 @@ export default function FormSubmissions() {
       QUESTION_FIELD_KINDS.includes(row.kind)
     )
 
+    const variables = (form?.variables || []).map(row => ({
+      id: row.id,
+      kind: FieldKindEnum.VARIABLE,
+      title: row.name
+    }))
+
     const hiddenFields = (form?.hiddenFields || []).map(row => ({
       id: row.id,
       kind: FieldKindEnum.HIDDEN_FIELDS,
       title: row.name
     }))
 
-    return [submitDateField, ...questionFields, ...hiddenFields] as FormField[]
+    return [submitDateField, ...questionFields, ...variables, ...hiddenFields] as FormField[]
   }, [form?.drafts, form?.hiddenFields, t])
 
   async function fetch({ current, pageSize }: TableFetchParams) {
@@ -121,10 +127,20 @@ export default function FormSubmissions() {
       ...row,
       answers: [
         ...row.answers,
-        ...row.hiddenFields.map(v => ({
+
+        // Variables
+        ...(row.variables || []).map(v => ({
+          ...v,
+          kind: FieldKindEnum.VARIABLE
+        })),
+
+        // Hidden fields
+        ...(row.hiddenFields || []).map(v => ({
           ...v,
           kind: FieldKindEnum.HIDDEN_FIELDS
         })),
+
+        // Submit date
         {
           id: FieldKindEnum.SUBMIT_DATE,
           kind: FieldKindEnum.SUBMIT_DATE,
@@ -269,8 +285,8 @@ export default function FormSubmissions() {
           selectedRowKeys={selectedRowKeys}
           isExpandable
           onSelectionChange={setSelectedRowKeys}
-          detailRender={(submission, props) => (
-            <SubmissionPanel submission={submission} fields={fields} props={props} />
+          detailRender={(submission, options) => (
+            <SubmissionPanel submission={submission} fields={fields} options={options} isMaximized={isMaximized} />
           )}
         />
       </div>

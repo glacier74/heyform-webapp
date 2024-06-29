@@ -50,13 +50,14 @@ export default function WorkspaceCustomDomain() {
               components={{
                 a: (
                   <a
+                    key="a"
                     className="underline underline-offset-4 hover:text-primary"
                     href="https://docs.heyform.net/custom-domain"
                     target="_blank"
                     rel="noopener noreferrer"
                   />
                 ),
-                icon: <IconArrowUpRight className="inline h-4 w-4" stroke={1.5} />
+                icon: <IconArrowUpRight key="icon" className="inline h-4 w-4" stroke={1.5} />
               }}
             />
           </p>

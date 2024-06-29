@@ -104,7 +104,7 @@ export const ProjectJoinedMemberItem: FC<ProjectMemberItemProps> = ({ member }) 
       } else if (workspace?.isOwner) {
         return (
           <Button
-            className="bg-error hover:bg-error"
+            className="bg-error text-primary-light hover:bg-error dark:text-primary"
             size="md"
             loading={removeLoading}
             onClick={handleRemove}

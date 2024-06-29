@@ -6,11 +6,13 @@ import { Button, TableDetailRenderProps } from '@/components'
 import { SubmissionType } from '@/types'
 
 import SubmissionCell, { SubmissionHeaderCell } from './SubmissionCell'
+import { cn } from '@/utils'
 
 interface SubmissionPanelProps {
   submission: SubmissionType
   fields: FormField[]
-  props: TableDetailRenderProps
+  options: TableDetailRenderProps
+  isMaximized?: boolean
 }
 
 interface SubmissionItemProps {
@@ -39,10 +41,11 @@ const SubmissionItem: FC<SubmissionItemProps> = ({ submission, field }) => {
 export default function SubmissionPanel({
   submission,
   fields,
-  props: { isPreviousDisabled, isNextDisabled, loading, toPrevious, toNext, closePanel }
+  options: { isPreviousDisabled, isNextDisabled, loading, toPrevious, toNext, closePanel },
+  isMaximized
 }: SubmissionPanelProps) {
   return (
-    <div className="flex h-[calc(100vh-23.45rem)] flex-col rounded-md border border-accent text-sm">
+    <div className={cn("flex flex-col rounded-md border border-accent text-sm", isMaximized ? 'h-[calc(100vh-9rem)]' : 'h-[calc(100vh-23.45rem)]')}>
       <div className="flex items-center justify-between border-b border-accent-light px-4 py-2">
         <div className="flex items-center gap-x-1.5">
           <Button.Ghost

@@ -51,7 +51,7 @@ export default function TypeSwitcher() {
         },
         confirmProps: {
           label: t('components.change'),
-          className: 'bg-error hover:bg-error'
+          className: 'bg-error text-primary-light dark:text-primary hover:bg-error'
         },
         onConfirm: () => {
           dispatch({

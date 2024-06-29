@@ -94,7 +94,11 @@ function LogicBulkEditComponent() {
       </div>
 
       <div className="scrollbar h-[calc(70vh-10.35rem)] flex-1 space-y-4 p-4">
-        <Form className="space-y-6 divide-y divide-gray-100" form={rcForm} onFinish={handleFinish}>
+        <Form
+          className="space-y-6 divide-y divide-accent-light"
+          form={rcForm}
+          onFinish={handleFinish}
+        >
           {fields.map(field => (
             <PayloadList
               className="payload-list"
@@ -104,13 +108,13 @@ function LogicBulkEditComponent() {
               currentField={field}
               variables={variables}
             >
-              <div className="mb-4 flex items-center">
+              <div className="mb-4 flex items-center gap-2">
                 <QuestionIcon
                   kind={field.kind}
                   index={field.index}
                   parentIndex={field.parent?.index}
                 />
-                <div className="truncate">{htmlUtils.plain(field.title as string)}</div>
+                <div className="truncate text-sm/6">{htmlUtils.plain(field.title as string)}</div>
               </div>
             </PayloadList>
           ))}

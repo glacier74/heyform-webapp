@@ -65,7 +65,7 @@ const Builder: FC<IBuilderProps> = ({ form }) => {
         </main>
       </div>
 
-      {window.heyform.device.mobile && <BuilderLeftSidebarModal />}
+      <BuilderLeftSidebarModal />
       <QuestionTypesModal />
       <PreviewModal />
       <HiddenFieldsModal />

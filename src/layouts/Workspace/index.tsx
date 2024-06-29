@@ -1,9 +1,9 @@
 import { helper, timestamp, unixDate } from '@heyform-inc/utils'
 import { LayoutProps } from '@heyooo-inc/react-router'
-import { IconChevronLeft, IconDiamond, IconMenu } from '@tabler/icons-react'
-import { useAsyncEffect } from 'ahooks'
+import { IconChevronLeft, IconDiamond, IconMenu, IconX } from '@tabler/icons-react'
+import { useAsyncEffect, useSessionStorageState } from 'ahooks'
 import dayjs from 'dayjs'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -52,7 +52,7 @@ export const LoginGuard: FC<LayoutProps> = ({ children }) => {
         },
         confirmProps: {
           label: t('user.deletion.scheduled.cancel'),
-          className: 'bg-error hover:bg-error'
+          className: 'bg-error text-primary-light dark:text-primary hover:bg-error'
         },
         fetch: async () => {
           await UserService.cancelDeletion()
@@ -189,6 +189,18 @@ const LayoutComponent: FC<LayoutProps> = ({ options, children }) => {
   const { openModal } = useAppStore()
   const { workspace, workspaces } = useWorkspaceStore()
 
+  const [isTrialBannerHidden, setTrialBannerHidden] = useSessionStorageState(
+    `${workspaceId}:isTrialBannerHidden`,
+    {
+      defaultValue: false
+    }
+  )
+
+  const isTrialBannerShow = useMemo(
+    () => workspace?.subscription?.trialing && !isTrialBannerHidden,
+    [isTrialBannerHidden, workspace?.subscription?.trialing]
+  )
+
   if (!workspaces.find(w => w.id === workspaceId)) {
     return (
       <AuthLayout>
@@ -214,15 +226,15 @@ const LayoutComponent: FC<LayoutProps> = ({ options, children }) => {
           'relative isolate flex min-h-svh w-full bg-foreground max-lg:flex-col lg:bg-background',
           {
             '[&_[data-slot=layout-main]]:pt-16 [&_[data-slot=layout-main]]:lg:pt-16 [&_[data-slot=layout-sidebar]]:top-16':
-              workspace?.subscription?.trialing
+              isTrialBannerShow
           },
           options?.className
         )}
       >
-        {workspace?.subscription?.trialing && (
+        {isTrialBannerShow && (
           <div className="fixed left-0 right-0 top-0 flex h-[3.875rem] items-center justify-center p-2">
-            <div className="flex h-full w-full items-center justify-center gap-x-2 rounded-lg bg-yellow-100 py-1 text-sm/6">
-              <IconDiamond className="h-5 w-5 text-yellow-700" />
+            <div className="flex h-full w-full items-center justify-center gap-x-2 rounded-lg bg-yellow-100 py-1 text-sm/6 dark:bg-yellow-800">
+              <IconDiamond className="h-5 w-5 text-yellow-700 dark:text-yellow-200" />
               <span>
                 {t('billing.upgrade.trialTip', {
                   name: workspace.plan?.name,
@@ -233,6 +245,15 @@ const LayoutComponent: FC<LayoutProps> = ({ options, children }) => {
                 {t('billing.payment.confirm')}
               </Button>
             </div>
+
+            <Button.Link
+              size="sm"
+              className="absolute right-4 text-secondary hover:text-primary"
+              iconOnly
+              onClick={() => setTrialBannerHidden(true)}
+            >
+              <IconX className="h-5 w-5" />
+            </Button.Link>
           </div>
         )}
 
@@ -270,7 +291,7 @@ const LayoutComponent: FC<LayoutProps> = ({ options, children }) => {
         </main>
       </div>
 
-      {window.heyform.device.mobile && <WorkspaceSidebarModal />}
+      <WorkspaceSidebarModal />
       <CreateWorkspaceModal />
       <CreateProjectModal />
       <DeleteProjectModal />

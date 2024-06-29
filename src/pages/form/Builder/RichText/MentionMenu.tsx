@@ -93,35 +93,35 @@ export const MentionMenu: FC<MentionMenuProps> = ({
           style={portalStyle}
         >
           {questions.length > 0 || variables.length > 0 || hiddenFields.length > 0 ? (
-            <div className="py-2">
+            <div className="space-y-3 py-2">
               {questions.length > 0 && (
-                <>
-                  <div className="px-3.5 py-2.5 text-sm/6 text-secondary sm:px-3 sm:py-1.5">
-                    Mention a question
-                  </div>
+                <div>
+                  <div className="px-3.5 text-sm/6 text-secondary sm:px-3">Mention a question</div>
                   {questions.map(row => (
                     <div
                       key={row.id}
-                      className="flex cursor-pointer items-center gap-x-2 rounded-lg border-0 px-3.5 py-2.5 text-left text-base/6 outline-none hover:bg-accent-light disabled:opacity-60 sm:px-3 sm:py-1.5 sm:text-sm/6"
+                      className="flex cursor-pointer items-center gap-x-2 rounded-lg border-0 px-3.5 py-2.5 text-left text-base/6 outline-none hover:bg-input disabled:opacity-60 sm:px-3 sm:py-1.5 sm:text-sm/6"
                       onClick={() => handleSelect(row.id!)}
                     >
                       <QuestionIcon
                         className="insert-field-item-icon mr-3 flex-shrink-0"
                         kind={row.kind!}
                       />
-                      <span>{row.label}</span>
+                      <span>{row.title}</span>
                     </div>
                   ))}
-                </>
+                </div>
               )}
 
               {hiddenFields.length > 0 && (
-                <>
-                  <div>Mention a hidden field</div>
+                <div>
+                  <div className="px-3.5 text-sm/6 text-secondary sm:px-3">
+                    Mention a hidden field
+                  </div>
                   {hiddenFields.map(row => (
                     <div
                       key={row.id}
-                      className="flex cursor-pointer items-center gap-x-2 rounded-lg border-0 px-3.5 py-2.5 text-left text-base/6 outline-none hover:bg-accent-light disabled:opacity-60 sm:px-3 sm:py-1.5 sm:text-sm/6"
+                      className="flex cursor-pointer items-center gap-x-2 rounded-lg border-0 px-3.5 py-2.5 text-left text-base/6 outline-none hover:bg-input disabled:opacity-60 sm:px-3 sm:py-1.5 sm:text-sm/6"
                       onClick={() => handleSelect(row.id)}
                     >
                       <QuestionIcon
@@ -132,16 +132,16 @@ export const MentionMenu: FC<MentionMenuProps> = ({
                       <span>{row.name}</span>
                     </div>
                   ))}
-                </>
+                </div>
               )}
 
               {variables.length > 0 && (
-                <>
-                  <div>Mention a variable</div>
+                <div>
+                  <div className="px-3.5 text-sm/6 text-secondary sm:px-3">Mention a variable</div>
                   {variables.map(row => (
                     <div
                       key={row.id}
-                      className="flex cursor-pointer items-center gap-x-2 rounded-lg border-0 px-3.5 py-2.5 text-left text-base/6 outline-none hover:bg-accent-light disabled:opacity-60 sm:px-3 sm:py-1.5 sm:text-sm/6"
+                      className="flex cursor-pointer items-center gap-x-2 rounded-lg border-0 px-3.5 py-2.5 text-left text-base/6 outline-none hover:bg-input disabled:opacity-60 sm:px-3 sm:py-1.5 sm:text-sm/6"
                       onClick={() => handleSelect(row.id)}
                     >
                       <QuestionIcon
@@ -152,7 +152,7 @@ export const MentionMenu: FC<MentionMenuProps> = ({
                       <span>{row.name}</span>
                     </div>
                   ))}
-                </>
+                </div>
               )}
             </div>
           ) : (

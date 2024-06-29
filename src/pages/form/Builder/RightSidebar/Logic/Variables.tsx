@@ -54,7 +54,7 @@ const VariableItem: FC<{ variable: Variable }> = ({ variable }) => {
   return (
     <li className="flex items-center gap-x-4">
       <div className="flex-1">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
           <QuestionIcon
             className="w-6 justify-center px-0"
             configs={VARIABLE_KIND_CONFIGS}
@@ -62,7 +62,7 @@ const VariableItem: FC<{ variable: Variable }> = ({ variable }) => {
           />
           <span className="text-sm/6 font-medium">{variable.name}</span>
         </div>
-        <div className="text-sm text-secondary">
+        <div className="text-xs/6 text-secondary">
           {t('form.builder.logic.variable.defaultValue')}: {variable.value}
         </div>
       </div>

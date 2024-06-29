@@ -58,7 +58,7 @@ const MemberItem: FC<{ member: MemberType }> = ({ member }) => {
         },
         confirmProps: {
           label: t('members.transfer.confirm'),
-          className: 'bg-error hover:bg-error'
+          className: 'bg-error hover:bg-error text-primary-light dark:text-primary'
         },
         fetch: async () => {
           await WorkspaceService.transfer(workspace.id, member.id)
@@ -83,7 +83,7 @@ const MemberItem: FC<{ member: MemberType }> = ({ member }) => {
         },
         confirmProps: {
           label: t('members.leave.confirm'),
-          className: 'bg-error hover:bg-error'
+          className: 'bg-error hover:bg-error text-primary-light dark:text-primary'
         },
         fetch: async () => {
           await WorkspaceService.leave(workspace.id)
@@ -101,7 +101,7 @@ const MemberItem: FC<{ member: MemberType }> = ({ member }) => {
         },
         confirmProps: {
           label: t('members.remove.confirm'),
-          className: 'bg-error hover:bg-error'
+          className: 'bg-error hover:bg-error text-primary-light dark:text-primary'
         },
         fetch: async () => {
           await WorkspaceService.removeMember(workspace.id, member.id)

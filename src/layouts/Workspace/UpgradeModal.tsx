@@ -63,7 +63,7 @@ const PlanItem: FC<PlanItemProps> = ({ plan, billingCycle }) => {
       },
       confirmProps: {
         label: t('billing.downgrade.confirm'),
-        className: 'bg-error hover:bg-error'
+        className: 'bg-error text-primary-light dark:text-primary hover:bg-error'
       },
       fetch: async () => {
         const { sessionUrl } = await PaymentService.payment({

@@ -1,12 +1,25 @@
 import { GOOGLE_FONTS, SYSTEM_FONTS, insertWebFont } from '@heyform-inc/form-renderer'
 import { FormTheme } from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
+import { useRequest } from 'ahooks'
+import { useForm as useRCForm } from 'rc-field-form'
 import { FC, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Button, ColorPicker, Form, ImagePicker, Input, PlanUpgrade, Select } from '@/components'
+import {
+  Button,
+  ColorPicker,
+  Form,
+  ImagePicker,
+  Input,
+  PlanUpgrade,
+  Select,
+  useToast
+} from '@/components'
 import { PlanGradeEnum } from '@/consts'
+import { FormService } from '@/services'
 import { useFormStore } from '@/store'
+import { nextTick, useParam } from '@/utils'
 
 import ImageBrightness, { ImageBrightnessProps } from '../Question/ImageBrightness'
 
@@ -36,7 +49,33 @@ const BackgroundImage: FC<Pick<ImageBrightnessProps, 'value' | 'onChange'>> = ({
 export default function Customize() {
   const { t } = useTranslation()
 
-  const { tempTheme, updateTempTheme } = useFormStore()
+  const { formId } = useParam()
+  const toast = useToast()
+  const [rcForm] = useRCForm()
+  const { tempTheme, updateTempTheme, revertTempTheme } = useFormStore()
+
+  const { loading, run } = useRequest(
+    async (theme: Any) => {
+      await FormService.updateTheme(formId, { ...theme })
+    },
+    {
+      refreshDeps: [formId],
+      manual: true,
+      onSuccess: () => {
+        toast({
+          title: t('form.builder.design.theme.success')
+        })
+      },
+      onError: (err: Any) => {
+        console.error(err)
+
+        toast({
+          title: t('form.builder.design.theme.failed'),
+          message: err.message
+        })
+      }
+    }
+  )
 
   const options = useMemo(
     () => [
@@ -68,6 +107,15 @@ export default function Customize() {
     [t]
   )
 
+  function handleRevert() {
+    revertTempTheme()
+
+    nextTick(() => {
+      rcForm.setFieldsValue(tempTheme)
+      rcForm.resetFields()
+    })
+  }
+
   function handleValuesChange(changes: FormTheme) {
     updateTempTheme(changes)
   }
@@ -78,9 +126,22 @@ export default function Customize() {
 
   return (
     <>
-      <Form initialValues={tempTheme} className="space-y-4 p-4" onValuesChange={handleValuesChange}>
+      <Form
+        form={rcForm}
+        initialValues={tempTheme}
+        className="space-y-4 p-4"
+        onValuesChange={handleValuesChange}
+        onFinish={run}
+      >
         <Form.Item name="fontFamily">
-          <Select className="w-full" options={options} />
+          <Select
+            className="w-full"
+            options={options}
+            contentProps={{
+              className: 'w-[17.25rem]',
+              position: 'popper'
+            }}
+          />
         </Form.Item>
 
         <div className="space-y-4">
@@ -192,8 +253,10 @@ export default function Customize() {
         </div>
 
         <div className="sticky bottom-4 flex items-center gap-x-4 border-t border-accent-light bg-foreground pt-4">
-          <Button.Ghost size="md">{t('components.revert')}</Button.Ghost>
-          <Button type="submit" size="md" className="flex-1">
+          <Button.Ghost size="md" onClick={handleRevert}>
+            {t('components.revert')}
+          </Button.Ghost>
+          <Button type="submit" size="md" className="flex-1" loading={loading}>
             {t('components.saveChanges')}
           </Button>
         </div>

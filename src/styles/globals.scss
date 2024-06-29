@@ -51,18 +51,12 @@ body {
 
       &:hover::-webkit-scrollbar-thumb {
         border: 3px solid transparent;
-        background-color: rgba(0, 0, 0, 0.2);
         background-clip: content-box;
+        @apply bg-black/20 hover:bg-black/[0.25] dark:bg-white/20 dark:hover:bg-white/[0.25];
       }
 
-      &::-webkit-scrollbar-track-piece {
-        background-color: transparent;
-      }
-
-      &::-webkit-scrollbar-corner {
-        background-color: transparent;
-      }
-
+      &::-webkit-scrollbar-track-piece,
+      &::-webkit-scrollbar-corner,
       &::-webkit-scrollbar-resizer {
         background-color: transparent;
       }
@@ -88,7 +82,7 @@ body {
   }
 
   .skeleton {
-    @apply bg-gradient-to-r from-background from-25% via-input via-40% to-background to-65%;
+    @apply bg-gradient-to-r from-background from-40% via-input via-50% to-background to-60% dark:from-input dark:from-40% dark:via-background/20 dark:via-50% dark:to-input dark:to-60%;
     background-size: 400% 100%;
     animation: skeleton 1.4s ease infinite;
   }

@@ -133,11 +133,14 @@ export default function BuilderNavBar() {
             </Button.Link>
           </Tooltip>
 
-          {window.heyform.device.mobile && (
-            <Button.Link size="md" iconOnly onClick={() => openModal('BuilderLeftSidebarModal')}>
-              <IconListDetails className="h-5 w-5" />
-            </Button.Link>
-          )}
+          <Button.Link
+            className="block sm:hidden"
+            size="md"
+            iconOnly
+            onClick={() => openModal('BuilderLeftSidebarModal')}
+          >
+            <IconListDetails className="h-5 w-5" />
+          </Button.Link>
 
           <Tooltip label={t('form.share.title')}>
             <Button.Link className="hidden sm:block" size="md" iconOnly onClick={handleShare}>

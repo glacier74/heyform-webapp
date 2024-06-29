@@ -90,7 +90,7 @@ export default function DeleteProjectModal() {
         fetch={fetch}
         refreshDeps={[workspaceId, payload?.id]}
         submitProps={{
-          className: 'px-5 w-full bg-error hover:bg-error',
+          className: 'px-5 w-full text-primary-light dark:text-primary bg-error hover:bg-error',
           size: 'md',
           label: t('project.delete.confirm')
         }}

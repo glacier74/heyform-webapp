@@ -1,3 +1,4 @@
+import { getTheme } from '@heyform-inc/form-renderer'
 import { FormTheme } from '@heyform-inc/shared-types-enums'
 import { useBoolean } from 'ahooks'
 import { FC } from 'react'
@@ -26,11 +27,11 @@ const ThemeItem: FC<{ theme: FormTheme }> = ({ theme }) => {
     setTrue()
 
     try {
-      await FormService.updateTheme(formId, {
-        theme
-      })
+      const newTheme = getTheme(theme)
 
-      updateTempTheme(theme)
+      await FormService.updateTheme(formId, newTheme)
+      updateTempTheme(newTheme)
+
       toast({
         title: t('form.builder.design.theme.success')
       })

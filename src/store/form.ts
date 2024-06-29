@@ -46,6 +46,7 @@ interface FormStoreType {
   updateTempSettings: (updates: Partial<TempSettings>) => void
   setTempTheme: (tempTheme?: FormTheme) => void
   updateTempTheme: (updates: Partial<FormTheme>) => void
+  revertTempTheme: () => void
   selectEmbedType: (embedType: string) => void
   updateEmbedConfig: (updates: Any) => void
   resetEmbedConfigs: () => void
@@ -183,6 +184,12 @@ export const useFormStore = create<FormStoreType>()(
             ...state.tempTheme,
             ...(updates as FormTheme)
           }
+        })
+      },
+
+      revertTempTheme: () => {
+        set(state => {
+          state.tempTheme = getTheme(state.form?.themeSettings?.theme)
         })
       },
 

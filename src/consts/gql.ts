@@ -915,6 +915,7 @@ export const SUBMISSIONS_GQL = gql`
           name
           value
         }
+        variables
         endAt
       }
     }

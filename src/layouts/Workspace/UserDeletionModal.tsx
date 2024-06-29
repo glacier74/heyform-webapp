@@ -68,7 +68,7 @@ export default function UserDeletionModal() {
         className="space-y-4"
         fetch={fetch}
         submitProps={{
-          className: 'px-5 w-full bg-error hover:bg-error',
+          className: 'px-5 w-full bg-error text-primary-light dark:text-primary hover:bg-error',
           size: 'md',
           label: t('user.deletion.button')
         }}

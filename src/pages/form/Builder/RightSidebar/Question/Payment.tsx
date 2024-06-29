@@ -126,7 +126,7 @@ export default function PaymentSettings({ field }: RequiredSettingsProps) {
       },
       confirmProps: {
         label: t('form.builder.settings.payment.headline'),
-        className: 'bg-error hover:bg-error'
+        className: 'bg-error text-primary-light dark:text-primary hover:bg-error'
       },
       onConfirm: authorizeRun,
       onCancel: setFalse,

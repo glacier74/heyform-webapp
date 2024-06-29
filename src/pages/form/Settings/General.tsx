@@ -1,11 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
-import { Form, Input, Switch } from '@/components'
-import { useFormStore } from '@/store'
+import { Form, Switch } from '@/components'
 
 export default function FormSettingsGeneral() {
   const { t } = useTranslation()
-  const { tempSettings } = useFormStore()
 
   return (
     <section id="general">
@@ -22,7 +20,7 @@ export default function FormSettingsGeneral() {
           <Switch />
         </Form.Item>
 
-        <div>
+        {/* <div>
           <Form.Item
             className="[&_[data-slot=content]]:pt-1.5"
             name="redirectOnCompletion"
@@ -50,7 +48,7 @@ export default function FormSettingsGeneral() {
               />
             </Form.Item>
           )}
-        </div>
+        </div> */}
 
         <Form.Item
           className="[&_[data-slot=content]]:pt-1.5"

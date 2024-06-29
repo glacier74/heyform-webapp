@@ -145,7 +145,7 @@ const UserAccount = () => {
         <div className="mt-3">
           <Button.Ghost
             size="md"
-            className="bg-error text-foreground hover:bg-error/70"
+            className="bg-error text-primary-light hover:bg-error/70 dark:text-primary"
             onClick={() => openModal('UserDeletionModal')}
           >
             {t('user.deletion.button')}

@@ -10,16 +10,16 @@ importers:
     dependencies:
       '@apollo/client':
         specifier: ^3.10.8
-        version: 3.10.8(@types/react@18.3.3)(graphql@15.8.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
+        version: 3.10.8(@types/react@18.3.3)(graphql@16.9.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
       '@heyform-inc/answer-utils':
         specifier: ^1.0.11
-        version: 1.0.11(@heyform-inc/shared-types-enums@1.1.6)(@heyform-inc/utils@1.0.9)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.3)(validator@13.12.0)
+        version: 1.0.11(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.0.9)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
       '@heyform-inc/form-renderer':
-        specifier: ^0.0.10
-        version: 0.0.10(3m7bdqn7rmskwbvgbfpm6d5vqa)
+        specifier: ^0.1.5
+        version: 0.1.5(xk4xsrdbxa7hgewsplot42pche)
       '@heyform-inc/shared-types-enums':
-        specifier: ^1.1.6
-        version: 1.1.6
+        specifier: ^1.1.8
+        version: 1.1.8
       '@heyform-inc/utils':
         specifier: ^1.0.9
         version: 1.0.9
@@ -61,10 +61,10 @@ importers:
         version: 3.8.0(react@19.0.0-rc-e684ca66ab-20240619)
       apollo-link-retry:
         specifier: ^2.2.16
-        version: 2.2.16(graphql@15.8.0)
+        version: 2.2.16(graphql@16.9.0)
       apollo-link-timeout:
         specifier: ^4.0.0
-        version: 4.0.0(@apollo/client@3.10.8(@types/react@18.3.3)(graphql@15.8.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619))
+        version: 4.0.0(@apollo/client@3.10.8(@types/react@18.3.3)(graphql@16.9.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619))
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -197,7 +197,7 @@ importers:
         version: 3.7.0(vite@5.3.2(@types/node@20.14.9)(sass@1.77.6))
       autoprefixer:
         specifier: ^10.4.19
-        version: 10.4.19(postcss@8.4.38)
+        version: 10.4.19(postcss@8.4.39)
       eslint:
         specifier: ~8.57.0
         version: 8.57.0
@@ -220,8 +220,8 @@ importers:
         specifier: ^15.2.7
         version: 15.2.7
       postcss:
-        specifier: ^8.4.38
-        version: 8.4.38
+        specifier: ^8.4.39
+        version: 8.4.39
       prettier-plugin-tailwindcss:
         specifier: ^0.5.14
         version: 0.5.14(@trivago/prettier-plugin-sort-imports@4.3.0(prettier@3.3.2))(prettier@3.3.2)
@@ -571,8 +571,8 @@ packages:
       libphonenumber-js: ^1.10.7
       validator: ^13.7.0
 
-  '@heyform-inc/form-renderer@0.0.10':
-    resolution: {integrity: sha512-SD71a/HJDKMt5sOMTbrU6Nmf8BmIxp0BF5qhRK9SyeN638ZLURNIS92mGkx3gVdIhipstD5Qg6dKtZOGmujN/A==}
+  '@heyform-inc/form-renderer@0.1.5':
+    resolution: {integrity: sha512-rJ0jlMXfFtDA+tAcKaor/rPFXKjsi0tk1bjYGcTNAwbRsLS6JUOsTYns6fjJH4o4uygVoppssgxuIgeyKtFYfA==}
     peerDependencies:
       '@heyform-inc/answer-utils': ^1.0.10
       '@heyform-inc/shared-types-enums': ^1.1.3
@@ -594,8 +594,8 @@ packages:
       signature_pad: ^5.0.1
       store2: ^2.13.2
 
-  '@heyform-inc/shared-types-enums@1.1.6':
-    resolution: {integrity: sha512-v2WfC7nS97qYl7lz737jKTrBjIo8Omh9ue3NX+xT8zjB/e0VFth/IV0Z+L5GHfZdnKUn8QAPyYF67agLyhS36g==}
+  '@heyform-inc/shared-types-enums@1.1.8':
+    resolution: {integrity: sha512-GdBeP8Mk6xBHw5RXVeGUPePneMkQGQrCbDhrPso1tBNG1nOpL6m0e2Pql+6ojVEfKMGQA45VRfj4xd8wEsU6OQ==}
     engines: {node: '>=12.0.0'}
 
   '@heyform-inc/utils@1.0.9':
@@ -2455,9 +2455,9 @@ packages:
     peerDependencies:
       graphql: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
 
-  graphql@15.8.0:
-    resolution: {integrity: sha512-5gghUc24tP9HRznNpV2+FIoq3xKkj5dTQqf4v0CpdPbFVwFkWoxOM+o+2OC9ZSvjEMTjfmG9QT+gcvggTwW1zw==}
-    engines: {node: '>= 10.x'}
+  graphql@16.9.0:
+    resolution: {integrity: sha512-GGTKBX4SD7Wdb8mqeDLni2oaRGYQWjWHGKPQ24ZMnUtKfcsVoiv4uX8+LJr1K6U5VW2Lu1BwJnj7uiori0YtRw==}
+    engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
 
   has-bigints@1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
@@ -2747,8 +2747,8 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
-  libphonenumber-js@1.11.3:
-    resolution: {integrity: sha512-RU0CTsLCu2v6VEzdP+W6UU2n5+jEpMDRkGxUeBgsAJgre3vKgm17eApISH9OQY4G0jZYJVIc8qXmz6CJFueAFg==}
+  libphonenumber-js@1.11.4:
+    resolution: {integrity: sha512-F/R50HQuWWYcmU/esP5jrH5LiWYaN7DpN0a/99U8+mnGGtnx8kmRE+649dQh3v+CowXXZc8vpkf5AmYkO0AQ7Q==}
 
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -3044,8 +3044,8 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.4.38:
-    resolution: {integrity: sha512-Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==}
+  postcss@8.4.39:
+    resolution: {integrity: sha512-0vzE+lAiG7hZl1/9I8yzKLx3aR9Xbof3fBHKunvMfOCYAtMhrsnccJY2iTURb9EZd5+pLuiNV9/c/GZJOHsgIw==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -3263,8 +3263,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-transition-state@1.1.5:
-    resolution: {integrity: sha512-ITY2mZqc2dWG2eitJkYNdcSFW8aKeOlkL2A/vowRrLL8GH3J6Re/SpD/BLvQzrVOTqjsP0b5S9N10vgNNzwMUQ==}
+  react-transition-state@2.1.1:
+    resolution: {integrity: sha512-kQx5g1FVu9knoz1T1WkapjUgFz08qQ/g1OmuWGi3/AoEFfS0kStxrPlZx81urjCXdz2d+1DqLpU6TyLW/Ro04Q==}
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
@@ -3825,14 +3825,14 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
-  '@apollo/client@3.10.8(@types/react@18.3.3)(graphql@15.8.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)':
+  '@apollo/client@3.10.8(@types/react@18.3.3)(graphql@16.9.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)':
     dependencies:
-      '@graphql-typed-document-node/core': 3.2.0(graphql@15.8.0)
+      '@graphql-typed-document-node/core': 3.2.0(graphql@16.9.0)
       '@wry/caches': 1.0.1
       '@wry/equality': 0.5.7
       '@wry/trie': 0.5.0
-      graphql: 15.8.0
-      graphql-tag: 2.12.6(graphql@15.8.0)
+      graphql: 16.9.0
+      graphql-tag: 2.12.6(graphql@16.9.0)
       hoist-non-react-statics: 3.3.2
       optimism: 0.18.0
       prop-types: 15.8.1
@@ -4118,24 +4118,24 @@ snapshots:
 
   '@floating-ui/utils@0.2.2': {}
 
-  '@graphql-typed-document-node/core@3.2.0(graphql@15.8.0)':
+  '@graphql-typed-document-node/core@3.2.0(graphql@16.9.0)':
     dependencies:
-      graphql: 15.8.0
+      graphql: 16.9.0
 
-  '@heyform-inc/answer-utils@1.0.11(@heyform-inc/shared-types-enums@1.1.6)(@heyform-inc/utils@1.0.9)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.3)(validator@13.12.0)':
+  '@heyform-inc/answer-utils@1.0.11(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.0.9)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)':
     dependencies:
-      '@heyform-inc/shared-types-enums': 1.1.6
+      '@heyform-inc/shared-types-enums': 1.1.8
       '@heyform-inc/utils': 1.0.9
       big.js: 6.2.1
       dayjs: 1.11.11
       html5parser: 2.0.2
-      libphonenumber-js: 1.11.3
+      libphonenumber-js: 1.11.4
       validator: 13.12.0
 
-  '@heyform-inc/form-renderer@0.0.10(3m7bdqn7rmskwbvgbfpm6d5vqa)':
+  '@heyform-inc/form-renderer@0.1.5(xk4xsrdbxa7hgewsplot42pche)':
     dependencies:
-      '@heyform-inc/answer-utils': 1.0.11(@heyform-inc/shared-types-enums@1.1.6)(@heyform-inc/utils@1.0.9)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.3)(validator@13.12.0)
-      '@heyform-inc/shared-types-enums': 1.1.6
+      '@heyform-inc/answer-utils': 1.0.11(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.0.9)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
+      '@heyform-inc/shared-types-enums': 1.1.8
       '@heyform-inc/utils': 1.0.9
       '@popperjs/core': 2.11.8
       '@radix-ui/react-tooltip': 1.1.2(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
@@ -4144,17 +4144,17 @@ snapshots:
       clsx: 2.1.1
       flag-icons: 7.2.3
       i18next: 23.11.5
-      libphonenumber-js: 1.11.3
+      libphonenumber-js: 1.11.4
       rc-field-form: 2.2.1(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
       react: 19.0.0-rc-e684ca66ab-20240619
       react-dom: 19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619)
       react-i18next: 14.1.2(i18next@23.11.5)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
       react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
-      react-transition-state: 1.1.5(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
+      react-transition-state: 2.1.1(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
       signature_pad: 5.0.2
       store2: 2.14.3
 
-  '@heyform-inc/shared-types-enums@1.1.6': {}
+  '@heyform-inc/shared-types-enums@1.1.8': {}
 
   '@heyform-inc/utils@1.0.9':
     dependencies:
@@ -5378,31 +5378,31 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
-  apollo-link-retry@2.2.16(graphql@15.8.0):
+  apollo-link-retry@2.2.16(graphql@16.9.0):
     dependencies:
       '@types/zen-observable': 0.8.0
-      apollo-link: 1.2.14(graphql@15.8.0)
+      apollo-link: 1.2.14(graphql@16.9.0)
       tslib: 1.14.1
     transitivePeerDependencies:
       - graphql
 
-  apollo-link-timeout@4.0.0(@apollo/client@3.10.8(@types/react@18.3.3)(graphql@15.8.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)):
+  apollo-link-timeout@4.0.0(@apollo/client@3.10.8(@types/react@18.3.3)(graphql@16.9.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)):
     dependencies:
-      '@apollo/client': 3.10.8(@types/react@18.3.3)(graphql@15.8.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
+      '@apollo/client': 3.10.8(@types/react@18.3.3)(graphql@16.9.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
 
-  apollo-link@1.2.14(graphql@15.8.0):
+  apollo-link@1.2.14(graphql@16.9.0):
     dependencies:
-      apollo-utilities: 1.3.4(graphql@15.8.0)
-      graphql: 15.8.0
+      apollo-utilities: 1.3.4(graphql@16.9.0)
+      graphql: 16.9.0
       ts-invariant: 0.4.4
       tslib: 1.14.1
       zen-observable-ts: 0.8.21
 
-  apollo-utilities@1.3.4(graphql@15.8.0):
+  apollo-utilities@1.3.4(graphql@16.9.0):
     dependencies:
       '@wry/equality': 0.1.11
       fast-json-stable-stringify: 2.1.0
-      graphql: 15.8.0
+      graphql: 16.9.0
       ts-invariant: 0.4.4
       tslib: 1.14.1
 
@@ -5481,14 +5481,14 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  autoprefixer@10.4.19(postcss@8.4.38):
+  autoprefixer@10.4.19(postcss@8.4.39):
     dependencies:
       browserslist: 4.23.0
       caniuse-lite: 1.0.30001621
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.1
-      postcss: 8.4.38
+      postcss: 8.4.39
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -6197,12 +6197,12 @@ snapshots:
     dependencies:
       lodash: 4.17.21
 
-  graphql-tag@2.12.6(graphql@15.8.0):
+  graphql-tag@2.12.6(graphql@16.9.0):
     dependencies:
-      graphql: 15.8.0
+      graphql: 16.9.0
       tslib: 2.6.3
 
-  graphql@15.8.0: {}
+  graphql@16.9.0: {}
 
   has-bigints@1.0.2: {}
 
@@ -6459,7 +6459,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  libphonenumber-js@1.11.3: {}
+  libphonenumber-js@1.11.4: {}
 
   lilconfig@2.1.0: {}
 
@@ -6705,28 +6705,28 @@ snapshots:
 
   possible-typed-array-names@1.0.0: {}
 
-  postcss-import@15.1.0(postcss@8.4.38):
+  postcss-import@15.1.0(postcss@8.4.39):
     dependencies:
-      postcss: 8.4.38
+      postcss: 8.4.39
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.8
 
-  postcss-js@4.0.1(postcss@8.4.38):
+  postcss-js@4.0.1(postcss@8.4.39):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.38
+      postcss: 8.4.39
 
-  postcss-load-config@4.0.2(postcss@8.4.38):
+  postcss-load-config@4.0.2(postcss@8.4.39):
     dependencies:
       lilconfig: 3.1.1
       yaml: 2.4.2
     optionalDependencies:
-      postcss: 8.4.38
+      postcss: 8.4.39
 
-  postcss-nested@6.0.1(postcss@8.4.38):
+  postcss-nested@6.0.1(postcss@8.4.39):
     dependencies:
-      postcss: 8.4.38
+      postcss: 8.4.39
       postcss-selector-parser: 6.1.0
 
   postcss-selector-parser@6.1.0:
@@ -6736,7 +6736,7 @@ snapshots:
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.4.38:
+  postcss@8.4.39:
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.0.1
@@ -6904,7 +6904,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.3
 
-  react-transition-state@1.1.5(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619):
+  react-transition-state@2.1.1(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619):
     dependencies:
       react: 19.0.0-rc-e684ca66ab-20240619
       react-dom: 19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619)
@@ -7212,11 +7212,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.1
-      postcss: 8.4.38
-      postcss-import: 15.1.0(postcss@8.4.38)
-      postcss-js: 4.0.1(postcss@8.4.38)
-      postcss-load-config: 4.0.2(postcss@8.4.38)
-      postcss-nested: 6.0.1(postcss@8.4.38)
+      postcss: 8.4.39
+      postcss-import: 15.1.0(postcss@8.4.39)
+      postcss-js: 4.0.1(postcss@8.4.39)
+      postcss-load-config: 4.0.2(postcss@8.4.39)
+      postcss-nested: 6.0.1(postcss@8.4.39)
       postcss-selector-parser: 6.1.0
       resolve: 1.22.8
       sucrase: 3.35.0
@@ -7384,7 +7384,7 @@ snapshots:
   vite@5.3.2(@types/node@20.14.9)(sass@1.77.6):
     dependencies:
       esbuild: 0.21.5
-      postcss: 8.4.38
+      postcss: 8.4.39
       rollup: 4.18.0
     optionalDependencies:
       '@types/node': 20.14.9

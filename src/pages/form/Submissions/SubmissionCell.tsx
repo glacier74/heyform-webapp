@@ -197,7 +197,7 @@ const MultipleChoiceItem: FC<SubmissionCellProps> = ({ answer, field, isTableCel
   return (
     <div className={cn('flex', isTableCell ? 'gap-x-2 py-2' : 'flex-wrap gap-2')}>
       {result.map(row => (
-        <Badge key={row.id} color="zinc">
+        <Badge key={row.id} color="zinc" className="text-primary">
           {row.label}
         </Badge>
       ))}
@@ -263,7 +263,7 @@ const SignatureItem: FC<SubmissionCellProps> = ({ answer, field }) => {
 }
 
 const TextItem: FC<SubmissionCellProps> = ({ answer, field }) => {
-  if (answer.kind !== field.kind || !helper.isString(answer.value)) {
+  if (answer.kind !== field.kind || !(helper.isString(answer.value) || helper.isNumber(answer.value))) {
     return null
   }
 

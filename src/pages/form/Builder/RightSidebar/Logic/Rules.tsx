@@ -69,11 +69,11 @@ const LogicItem: FC<LogicItemProps> = ({ fields, logic }) => {
   return (
     <li className="flex items-center gap-x-4">
       <div className="flex-1">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
           <QuestionIcon kind={field.kind} index={field.index} parentIndex={field.parent?.index} />
           <span className="text-sm/6 font-medium">{htmlUtils.plain(field.title as string)}</span>
         </div>
-        <div className="text-sm text-secondary">
+        <div className="text-xs/6 text-secondary">
           {t('form.builder.logic.rule.ruleCount', { count })}
         </div>
       </div>
@@ -119,7 +119,7 @@ export const Rules: FC = () => {
       </div>
 
       {helper.isValidArray(state.logics) ? (
-        <ul>
+        <ul className="space-y-4">
           {state.logics!.map(logic => (
             <LogicItem key={logic.fieldId} fields={state.fields} logic={logic} />
           ))}

@@ -2,10 +2,10 @@ import {
   FormField,
   FormKindEnum,
   FormStatusEnum,
+  FormTheme,
   HiddenField,
   InteractiveModeEnum,
   Logic,
-  ThemeSettings,
   Variable
 } from '@heyform-inc/shared-types-enums'
 
@@ -206,15 +206,12 @@ export class FormService {
     })
   }
 
-  static updateTheme(formId: string, themeOptions: ThemeSettings) {
-    const { themeId, theme } = themeOptions
-
+  static updateTheme(formId: string, theme: FormTheme) {
     return apollo.mutate({
       mutation: UPDATE_FORM_THEME_GQL,
       variables: {
         input: {
           formId,
-          themeId,
           theme
         }
       }

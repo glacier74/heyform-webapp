@@ -208,7 +208,7 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
             },
             confirmProps: {
               label: t('components.delete'),
-              className: 'bg-error hover:bg-error'
+              className: 'bg-error text-primary-light dark:text-primary hover:bg-error'
             },
             fetch: async () => {
               await FormService.delete(form.id)

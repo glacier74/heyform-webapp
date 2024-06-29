@@ -87,7 +87,7 @@ export default function WorkspaceDeletionModal() {
         fetch={fetch}
         refreshDeps={[payload?.id]}
         submitProps={{
-          className: 'px-5 w-full bg-error hover:bg-error',
+          className: 'px-5 w-full bg-error text-primary-light dark:text-primary hover:bg-error',
           size: 'md',
           label: t('settings.deletion.button')
         }}
