@@ -19,7 +19,7 @@ export const ProjectMemberItem: FC<ProjectMemberItemProps & DOMProps> = ({ membe
     <div className="py-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Avatar className="flex-shrink-0" src={member.avatar} fallback={member.id} />
+          <Avatar className="flex-shrink-0" src={member.avatar} fallback={member.name} />
           <div className="text-sm">
             <div className="font-medium">
               <span>{member.name}</span>
