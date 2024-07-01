@@ -1066,7 +1066,8 @@
         "qrcode": {
           "title": "Über QR-Code teilen",
           "headline": "Formular einbetten",
-          "subHeadline": "Hier sind einige Optionen, um Ihr Formular in Ihre Website zu integrieren."
+          "subHeadline": "Hier sind einige Optionen, um Ihr Formular in Ihre Website zu integrieren.",
+          "download": "Herunterladen"
         },
         "email": {
           "title": "Per E-Mail teilen",

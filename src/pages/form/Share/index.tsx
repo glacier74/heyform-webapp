@@ -57,7 +57,11 @@ export default function FormShare() {
     window.open(url)
   }
 
-  function handleShareQrcode() {}
+  function handleShareQrcode() {
+    openModal('QRCodeModal', {
+      url: shareLink
+    })
+  }
 
   function handleOpenEmbed(embedType: string) {
     selectEmbedType(embedType)

@@ -1066,7 +1066,8 @@
         "qrcode": {
           "title": "Udostępnij za pomocą kodu QR",
           "headline": "Osadź formularz",
-          "subHeadline": "Oto kilka opcji integracji formularza z Twoją stroną internetową."
+          "subHeadline": "Oto kilka opcji integracji formularza z Twoją stroną internetową.",
+          "download": "Pobierz"
         },
         "email": {
           "title": "Udostępnij przez e-mail",

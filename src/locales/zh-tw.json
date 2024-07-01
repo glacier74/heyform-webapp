@@ -1066,7 +1066,8 @@
         "qrcode": {
           "title": "通過二維碼分享",
           "headline": "嵌入表單",
-          "subHeadline": "以下是一些將表單集成到網站中的選項。"
+          "subHeadline": "以下是一些將表單集成到網站中的選項。",
+          "download": "下載"
         },
         "email": {
           "title": "通過電子郵件分享",

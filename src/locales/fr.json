@@ -1066,7 +1066,8 @@
         "qrcode": {
           "title": "Partager via QR Code",
           "headline": "Intégrer le formulaire",
-          "subHeadline": "Voici quelques options pour intégrer votre formulaire à votre site web."
+          "subHeadline": "Voici quelques options pour intégrer votre formulaire à votre site web.",
+          "download": "Télécharger"
         },
         "email": {
           "title": "Partager par email",

@@ -1066,7 +1066,8 @@
         "qrcode": {
           "title": "通过二维码分享",
           "headline": "嵌入表单",
-          "subHeadline": "以下是一些将表单集成到网站中的选项。"
+          "subHeadline": "以下是一些将表单集成到网站中的选项。",
+          "download": "下载"
         },
         "email": {
           "title": "通过电子邮件分享",

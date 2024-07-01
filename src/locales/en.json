@@ -1066,7 +1066,8 @@
         "qrcode": {
           "title": "Share via QR Code",
           "headline": "Embed form",
-          "subHeadline": "Here are some options to integrate your form into your website."
+          "subHeadline": "Here are some options to integrate your form into your website.",
+          "download": "Download"
         },
         "email": {
           "title": "Share via email",
