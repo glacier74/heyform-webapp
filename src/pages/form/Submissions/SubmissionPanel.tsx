@@ -4,9 +4,9 @@ import { FC } from 'react'
 
 import { Button, TableDetailRenderProps } from '@/components'
 import { SubmissionType } from '@/types'
+import { cn } from '@/utils'
 
 import SubmissionCell, { SubmissionHeaderCell } from './SubmissionCell'
-import { cn } from '@/utils'
 
 interface SubmissionPanelProps {
   submission: SubmissionType
@@ -45,7 +45,12 @@ export default function SubmissionPanel({
   isMaximized
 }: SubmissionPanelProps) {
   return (
-    <div className={cn("flex flex-col rounded-md border border-accent text-sm", isMaximized ? 'h-[calc(100vh-9rem)]' : 'h-[calc(100vh-23.45rem)]')}>
+    <div
+      className={cn(
+        'flex flex-col rounded-md border border-accent text-sm',
+        isMaximized ? 'h-[calc(100vh-9rem)]' : 'h-[calc(100vh-23.45rem)]'
+      )}
+    >
       <div className="flex items-center justify-between border-b border-accent-light px-4 py-2">
         <div className="flex items-center gap-x-1.5">
           <Button.Ghost

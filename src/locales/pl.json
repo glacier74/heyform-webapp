@@ -872,7 +872,8 @@
       "view": "Zobacz",
       "downloadCSV": "Pobierz CSV",
       "maximize": "Maksymalizuj tabelę",
-      "minimize": "Minimalizuj tabelę"
+      "minimize": "Minimalizuj tabelę",
+      "moveTo": "Przenieś do {{name}}"
     },
     "integrations": {
       "title": "Integracje",
@@ -1157,13 +1158,16 @@
         "countdown": {
           "headline": "Odliczanie",
           "subHeadline": "Możesz ustawić dozwolony czas tutaj, jeśli chcesz zablokować zgłoszenie po zakończeniu odliczania.",
+          "days": "Dni",
           "seconds": "Sekundy",
           "minutes": "Minuty",
           "hours": "Godziny"
         },
         "limitIP": {
           "headline": "Ogranicz częstotliwość przesyłania dla tego samego adresu IP",
-          "subHeadline": "Możesz to ustawić tutaj, jeśli chcesz ograniczyć liczbę przesłań z tego samego adresu IP w danym okresie."
+          "subHeadline": "Możesz to ustawić tutaj, jeśli chcesz ograniczyć liczbę przesłań z tego samego adresu IP w danym okresie.",
+          "times": "razy",
+          "inEvery": "w każdym"
         },
         "quotaLimit": {
           "headline": "Ogranicz liczbę zgłoszeń",

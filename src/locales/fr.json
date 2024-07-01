@@ -872,7 +872,8 @@
       "view": "Voir",
       "downloadCSV": "Télécharger CSV",
       "maximize": "Agrandir le tableau",
-      "minimize": "Réduire le tableau"
+      "minimize": "Réduire le tableau",
+      "moveTo": "Déplacer vers {{name}}"
     },
     "integrations": {
       "title": "Intégrations",
@@ -1157,13 +1158,16 @@
         "countdown": {
           "headline": "Compte à rebours",
           "subHeadline": "Vous pouvez définir un temps autorisé ici si vous souhaitez bloquer la soumission après la fin du compte à rebours.",
+          "days": "Jours",
           "seconds": "Secondes",
           "minutes": "Minutes",
           "hours": "Heures"
         },
         "limitIP": {
           "headline": "Limiter la fréquence des soumissions pour une même adresse IP",
-          "subHeadline": "Vous pouvez le définir ici si vous souhaitez limiter le nombre de fois qu'une même adresse IP peut soumettre dans une période."
+          "subHeadline": "Vous pouvez le définir ici si vous souhaitez limiter le nombre de fois qu'une même adresse IP peut soumettre dans une période.",
+          "times": "fois",
+          "inEvery": "dans chaque"
         },
         "quotaLimit": {
           "headline": "Limiter le nombre de soumissions",

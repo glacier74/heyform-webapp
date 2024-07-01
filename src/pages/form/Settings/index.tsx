@@ -34,9 +34,18 @@ export default function FormSettings() {
         delete settings.endDate
       }
 
-      if (settings.countdown) {
-        settings.timeLimit = toSecond([settings.countdown.value, settings.countdown.type].join(''))
-        delete settings.countdown
+      if (settings._timeLimit) {
+        settings.timeLimit = toSecond(
+          [settings._timeLimit.value, settings._timeLimit.type].join('')
+        )
+        delete settings._timeLimit
+      }
+
+      if (settings._ipLimitTime) {
+        settings.ipLimitTime = toSecond(
+          [settings._ipLimitTime.value, settings._ipLimitTime.type].join('')
+        )
+        delete settings._ipLimitTime
       }
 
       // Form status

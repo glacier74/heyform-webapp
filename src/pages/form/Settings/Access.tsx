@@ -39,6 +39,27 @@ export default function FormSettingsAccess() {
     [t]
   )
 
+  const ipLimitTimeItems = useMemo(
+    () => [
+      {
+        label: t('form.settings.access.countdown.days'),
+        value: 'd',
+        min: 1
+      },
+      {
+        label: t('form.settings.access.countdown.hours'),
+        value: 'h',
+        min: 1
+      },
+      {
+        label: t('form.settings.access.countdown.minutes'),
+        value: 'm',
+        min: 1
+      }
+    ],
+    [t]
+  )
+
   return (
     <section id="access" className="pt-10">
       <h2 className="text-lg font-semibold">{t('form.settings.access.title')}</h2>
@@ -66,7 +87,7 @@ export default function FormSettingsAccess() {
           </Form.Item>
 
           {tempSettings?.enableExpirationDate && (
-            <div className="flex items-center gap-x-2.5">
+            <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
               <Form.Item className="[&_[data-slot=content]]:pt-1.5" name="startDate">
                 <DatePicker
                   locale={i18n.language}
@@ -93,7 +114,7 @@ export default function FormSettingsAccess() {
 
               <Form.Item className="[&_[data-slot=content]]:pt-1.5" name="expirationTimeZone">
                 <Select.Native
-                  className="cursor-pointer appearance-none border-none bg-none px-0 py-2.5 text-secondary hover:text-primary focus:text-primary focus:outline-none focus:ring-0 sm:px-0"
+                  className="-mt-2 cursor-pointer appearance-none border-none bg-none px-0 py-2.5 text-secondary hover:text-primary focus:text-primary focus:outline-none focus:ring-0 sm:mt-0 sm:px-0"
                   options={timezoneItems}
                 />
               </Form.Item>
@@ -113,21 +134,44 @@ export default function FormSettingsAccess() {
           </Form.Item>
 
           {tempSettings?.enableTimeLimit && (
-            <Form.Item name="countdown">
+            <Form.Item name="_timeLimit">
               <Input.TypeNumber className="[&_[data-slot=number]]:w-16" options={countdownItems} />
             </Form.Item>
           )}
         </div>
 
-        <Form.Item
-          className="[&_[data-slot=content]]:pt-1.5"
-          name="enableIpLimit"
-          label={t('form.settings.access.limitIP.headline')}
-          description={t('form.settings.access.limitIP.subHeadline')}
-          isInline
-        >
-          <Switch />
-        </Form.Item>
+        <div>
+          <Form.Item
+            className="[&_[data-slot=content]]:pt-1.5"
+            name="enableIpLimit"
+            label={t('form.settings.access.limitIP.headline')}
+            description={t('form.settings.access.limitIP.subHeadline')}
+            isInline
+          >
+            <Switch />
+          </Form.Item>
+
+          {tempSettings?.enableIpLimit && (
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <Form.Item name="ipLimitCount">
+                <Input
+                  type="number"
+                  className="[&_[data-slot=number]]:w-16"
+                  trailing={t('form.settings.access.limitIP.times')}
+                />
+              </Form.Item>
+
+              <div>{t('form.settings.access.limitIP.inEvery')}</div>
+
+              <Form.Item name="_ipLimitTime">
+                <Input.TypeNumber
+                  className="[&_[data-slot=number]]:w-16"
+                  options={ipLimitTimeItems}
+                />
+              </Form.Item>
+            </div>
+          )}
+        </div>
 
         <div>
           <Form.Item
@@ -152,7 +196,7 @@ export default function FormSettingsAccess() {
                 }
               ]}
             >
-              <Input className="w-32" type="number" />
+              <Input className="w-full sm:w-32" type="number" />
             </Form.Item>
           )}
         </div>

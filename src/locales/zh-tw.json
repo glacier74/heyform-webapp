@@ -872,7 +872,8 @@
       "view": "查看",
       "downloadCSV": "下載 CSV",
       "maximize": "最大化表格",
-      "minimize": "最小化表格"
+      "minimize": "最小化表格",
+      "moveTo": "移動到 {{name}}"
     },
     "integrations": {
       "title": "集成應用程式",
@@ -1157,13 +1158,16 @@
         "countdown": {
           "headline": "倒計時",
           "subHeadline": "如果您希望在倒計時結束後阻止提交，可以在此設置允許的時間。",
+          "days": "天",
           "seconds": "秒",
           "minutes": "分鐘",
           "hours": "小時"
         },
         "limitIP": {
           "headline": "限制同一 IP 地址的提交頻率",
-          "subHeadline": "如果您希望限制同一 IP 地址在一段時間內的提交次數，可以在此設置。"
+          "subHeadline": "如果您希望限制同一 IP 地址在一段時間內的提交次數，可以在此設置。",
+          "times": "次數",
+          "inEvery": "每隔"
         },
         "quotaLimit": {
           "headline": "限制提交數量",

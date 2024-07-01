@@ -292,10 +292,19 @@ const TypeNumber: FC<TypeNumberProps> = ({ className, value, options, onChange }
     [onChange, options, value?.value]
   )
 
+  useEffect(() => {
+    if (helper.isEmpty(value)) {
+      onChange?.({
+        value: options[0].min || 1,
+        type: options[0].value
+      })
+    }
+  }, [])
+
   return (
-    <div className={cn('flex items-center', className)}>
+    <div className={cn('inline-flex w-full items-center sm:w-auto', className)}>
       <Input
-        className="[&_[data-slot=input]]:rounded-r-none [&_[data-slot=input]]:py-2 [&_[data-slot=input]]:sm:py-1.5"
+        className="flex-1 [&_[data-slot=input]]:rounded-r-none [&_[data-slot=input]]:py-2"
         data-slot="number"
         value={value?.value}
         type="number"
@@ -304,7 +313,7 @@ const TypeNumber: FC<TypeNumberProps> = ({ className, value, options, onChange }
         onChange={handleValueChange}
       />
       <Select
-        className="min-w-[6.25rem] gap-x-1 rounded-l-none border-l-0 [&_[data-slot=value]]:pl-0"
+        className="min-w-[6.25rem] gap-x-1 rounded-l-none border-l-0 sm:py-2 [&_[data-slot=value]]:pl-0"
         data-slot="select"
         value={option.value}
         options={options}

@@ -58,7 +58,7 @@ export default function FormSettingsProtection() {
           isInline
         >
           <Select
-            type="boolean"
+            type="number"
             className="w-full min-w-40 sm:w-auto [&_[data-slot=translated]]:hidden"
             options={options}
           />

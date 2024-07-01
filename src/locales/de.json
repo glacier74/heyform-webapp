@@ -872,7 +872,8 @@
       "view": "Ansehen",
       "downloadCSV": "CSV herunterladen",
       "maximize": "Tabelle maximieren",
-      "minimize": "Tabelle minimieren"
+      "minimize": "Tabelle minimieren",
+      "moveTo": "Verschieben nach {{name}}"
     },
     "integrations": {
       "title": "Integrationen",
@@ -1157,13 +1158,16 @@
         "countdown": {
           "headline": "Countdown",
           "subHeadline": "Sie können hier eine zulässige Zeit einstellen, wenn Sie die Einreichung nach Ablauf des Countdowns blockieren möchten.",
+          "days": "Tage",
           "seconds": "Sekunden",
           "minutes": "Minuten",
           "hours": "Stunden"
         },
         "limitIP": {
           "headline": "Häufigkeit der Einreichungen für dieselbe IP-Adresse begrenzen",
-          "subHeadline": "Sie können es hier einstellen, wenn Sie die Anzahl der Einreichungen von derselben IP-Adresse in einem Zeitraum begrenzen möchten."
+          "subHeadline": "Sie können es hier einstellen, wenn Sie die Anzahl der Einreichungen von derselben IP-Adresse in einem Zeitraum begrenzen möchten.",
+          "times": "Zeiten",
+          "inEvery": "in jeder"
         },
         "quotaLimit": {
           "headline": "Begrenzen Sie die Anzahl der Einsendungen",

@@ -872,7 +872,8 @@
       "view": "View",
       "downloadCSV": "Download CSV",
       "maximize": "Maximize table",
-      "minimize": "Minimize table"
+      "minimize": "Minimize table",
+      "moveTo": "Move to {{name}}"
     },
     "integrations": {
       "title": "Integrations",
@@ -1157,13 +1158,16 @@
         "countdown": {
           "headline": "Countdown",
           "subHeadline": "You can set an allowable time here if you want to block the submission after the countdown is over.",
+          "days": "Days",
           "seconds": "Seconds",
           "minutes": "Minutes",
           "hours": "Hours"
         },
         "limitIP": {
           "headline": "Limit the frequency of submitting for same IP address",
-          "subHeadline": "You can set it here if you want to limit the number of submitting times from a same IP address in a period."
+          "subHeadline": "You can set it here if you want to limit the number of submitting times from a same IP address in a period.",
+          "times": "times",
+          "inEvery": "in every"
         },
         "quotaLimit": {
           "headline": "Limit the number of submissions",

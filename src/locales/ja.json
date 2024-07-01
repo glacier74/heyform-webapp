@@ -872,7 +872,8 @@
       "view": "表示",
       "downloadCSV": "CSV をダウンロード",
       "maximize": "表を最大化",
-      "minimize": "表を最小化"
+      "minimize": "表を最小化",
+      "moveTo": "{{name}} に移動"
     },
     "integrations": {
       "title": "統合アプリケーション",
@@ -1157,13 +1158,16 @@
         "countdown": {
           "headline": "カウントダウン",
           "subHeadline": "カウントダウンが終了した後に提出をブロックしたい場合は、ここで許可される時間を設定できます。",
+          "days": "日",
           "seconds": "秒",
           "minutes": "分",
           "hours": "時間"
         },
         "limitIP": {
           "headline": "同一 IP アドレスの提出頻度制限",
-          "subHeadline": "同一 IP アドレスからの一定期間内の提出回数を制限したい場合は、ここで設定できます。"
+          "subHeadline": "同一 IP アドレスからの一定期間内の提出回数を制限したい場合は、ここで設定できます。",
+          "times": "回数",
+          "inEvery": "毎"
         },
         "quotaLimit": {
           "headline": "提出数の制限",

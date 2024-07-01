@@ -263,7 +263,10 @@ const SignatureItem: FC<SubmissionCellProps> = ({ answer, field }) => {
 }
 
 const TextItem: FC<SubmissionCellProps> = ({ answer, field }) => {
-  if (answer.kind !== field.kind || !(helper.isString(answer.value) || helper.isNumber(answer.value))) {
+  if (
+    answer.kind !== field.kind ||
+    !(helper.isString(answer.value) || helper.isNumber(answer.value))
+  ) {
     return null
   }
 

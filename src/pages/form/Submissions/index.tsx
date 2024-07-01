@@ -56,6 +56,14 @@ export default function FormSubmissions() {
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([])
   const [isMaximized, { toggle }] = useBoolean(false)
 
+  const targetCategory = useMemo(
+    () =>
+      category === SubmissionCategoryEnum.INBOX
+        ? SubmissionCategoryEnum.SPAM
+        : SubmissionCategoryEnum.INBOX,
+    [category]
+  )
+
   const { loading: deleteLoading, run: deleteRun } = useRequest(
     async () => {
       await SubmissionService.delete(formId, selectedRowKeys)
@@ -74,10 +82,7 @@ export default function FormSubmissions() {
       await SubmissionService.updateCategory({
         formId,
         submissionIds: selectedRowKeys,
-        category:
-          category === SubmissionCategoryEnum.INBOX
-            ? SubmissionCategoryEnum.SPAM
-            : SubmissionCategoryEnum.INBOX
+        category: targetCategory
       })
       await tableRef.current?.refresh()
 
@@ -85,7 +90,7 @@ export default function FormSubmissions() {
     },
     {
       manual: true,
-      refreshDeps: [formId, selectedRowKeys, category]
+      refreshDeps: [formId, selectedRowKeys, targetCategory]
     }
   )
 
@@ -113,7 +118,7 @@ export default function FormSubmissions() {
     }))
 
     return [submitDateField, ...questionFields, ...variables, ...hiddenFields] as FormField[]
-  }, [form?.drafts, form?.hiddenFields, t])
+  }, [form?.drafts, form?.hiddenFields, form?.variables, t])
 
   async function fetch({ current, pageSize }: TableFetchParams) {
     const { total, submissions } = await SubmissionService.submissions({
@@ -195,13 +200,17 @@ export default function FormSubmissions() {
 
           {selectedRowKeys.length > 0 && (
             <>
-              <Tooltip label={t('form.submissions.moveTo')}>
+              <Tooltip
+                label={t('form.submissions.moveTo', {
+                  name: t(`form.submissions.${targetCategory}`)
+                })}
+              >
                 <Button.Ghost size="md" loading={moveLoading} iconOnly onClick={moveRun}>
                   <IconMove className="h-5 w-5" />
                 </Button.Ghost>
               </Tooltip>
 
-              <Tooltip label={t('form.submissions.delete')}>
+              <Tooltip label={t('components.delete')}>
                 <Button.Ghost size="md" loading={deleteLoading} iconOnly onClick={deleteRun}>
                   <IconTrash className="h-5 w-5" />
                 </Button.Ghost>
@@ -286,7 +295,12 @@ export default function FormSubmissions() {
           isExpandable
           onSelectionChange={setSelectedRowKeys}
           detailRender={(submission, options) => (
-            <SubmissionPanel submission={submission} fields={fields} options={options} isMaximized={isMaximized} />
+            <SubmissionPanel
+              submission={submission}
+              fields={fields}
+              options={options}
+              isMaximized={isMaximized}
+            />
           )}
         />
       </div>
