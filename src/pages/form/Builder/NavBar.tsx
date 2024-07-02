@@ -44,6 +44,8 @@ export default function BuilderNavBar() {
         updateForm({
           canPublish: false
         })
+
+        router.push(`/workspace/${workspaceId}/project/${projectId}/form/${formId}/share`)
       }
     },
     {
