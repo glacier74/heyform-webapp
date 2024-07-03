@@ -66,6 +66,8 @@ const InputTableItem: FC<InputTableItemProps> = ({ columns, answers: rawAnswers 
 }
 
 const AnswerValue: FC<{ answer: AnyMap }> = ({ answer }) => {
+  const { t } = useTranslation()
+
   switch (answer.kind) {
     case FieldKindEnum.ADDRESS:
       return (
@@ -95,7 +97,7 @@ const AnswerValue: FC<{ answer: AnyMap }> = ({ answer }) => {
     case FieldKindEnum.SIGNATURE:
       return (
         <a href={`${answer.value}?attname=signature.jpg`} target="_blank" rel="noreferrer">
-          Signature
+          {t('form.builder.question.signature')}
         </a>
       )
 
@@ -174,7 +176,7 @@ export default function FormReportSubmissions({ response }: Any) {
           className="mt-2 border-t border-accent-light py-2 [&_[data-slot=info]]:text-secondary"
           total={total}
           page={page}
-          pageSize={5}
+          pageSize={10}
           buttonProps={{
             size: 'sm'
           }}
