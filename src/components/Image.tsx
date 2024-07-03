@@ -3,7 +3,7 @@ import { FC, ImgHTMLAttributes, SyntheticEvent, useMemo, useState } from 'react'
 
 import { cn, getDecoratedURL } from '@/utils'
 
-interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
+export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   resize?: {
     width?: number
     height?: number
@@ -80,8 +80,9 @@ const ImageComponent: FC<ImageProps> = ({
 
     if (helper.isNumber(width) || helper.isNumber(height)) {
       return getDecoratedURL(
-        rawSrc as string,
+        '/image',
         removeObjectNil({
+          url: rawSrc as string,
           w: width,
           h: height
         })

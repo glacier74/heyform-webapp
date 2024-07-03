@@ -2,9 +2,9 @@ import { FC, useState } from 'react'
 
 import { cn } from '@/utils'
 
-import { Image } from './Image'
+import { Image, ImageProps } from './Image'
 
-interface AvatarProps extends ComponentProps {
+interface AvatarProps extends ComponentProps, Pick<ImageProps, 'resize'> {
   src?: string
   fallback?: string
 }
@@ -22,7 +22,13 @@ function getFirstLetters(str: string) {
     .toUpperCase()
 }
 
-export const Avatar: FC<AvatarProps> = ({ src, fallback = '', className, ...restProps }) => {
+export const Avatar: FC<AvatarProps> = ({
+  className,
+  src,
+  fallback = '',
+  resize,
+  ...restProps
+}) => {
   const [isLoaded, setLoaded] = useState(false)
 
   return (
@@ -49,6 +55,7 @@ export const Avatar: FC<AvatarProps> = ({ src, fallback = '', className, ...rest
           data-loaded={isLoaded ? '' : undefined}
           src={src}
           alt={fallback}
+          resize={resize}
           onLoad={() => setLoaded(true)}
           onError={() => setLoaded(false)}
         />
