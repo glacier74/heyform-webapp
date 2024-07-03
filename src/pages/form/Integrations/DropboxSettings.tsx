@@ -39,6 +39,7 @@ export default function DropboxSetting({ app }: IntegrationSettingsFormProps) {
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
+          type="object"
           fetch={fetchFolders}
           refreshDeps={[isAuthorized]}
           labelKey="name"

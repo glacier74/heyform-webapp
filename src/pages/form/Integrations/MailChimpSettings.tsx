@@ -40,6 +40,7 @@ export default function MailChimpSettings({ app }: IntegrationSettingsFormProps)
       >
         <Select.Async
           className="w-full"
+          type="object"
           fetch={fetchAudiences}
           refreshDeps={[isAuthorized]}
           placeholder={t('form.integrations.mailChimp.audience.placeholder')}

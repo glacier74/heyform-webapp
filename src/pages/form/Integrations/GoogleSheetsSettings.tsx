@@ -1,6 +1,6 @@
 import { helper } from '@heyform-inc/utils'
 import { useRequest } from 'ahooks'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Form, Select } from '@/components'
@@ -18,7 +18,7 @@ export default function GoogleSheetsSettings({ app }: IntegrationSettingsFormPro
   const { formId } = useParam()
   const { formFields } = useFormStore()
 
-  const [isAuthorized, setAuthorized] = useState(false)
+  const [isAuthorized, setAuthorized] = useState(app.isAuthorized)
   const [drive, setDrive] = useState<string>()
   const [spreadsheet, setSpreadsheet] = useState<string>()
   const [worksheet, setWorksheet] = useState<string>()
@@ -83,6 +83,24 @@ export default function GoogleSheetsSettings({ app }: IntegrationSettingsFormPro
     }
   }
 
+  useEffect(() => {
+    const attributes = app?.integration?.attributes as AnyMap
+
+    if (helper.isValid(attributes)) {
+      if (attributes.drive) {
+        setDrive(attributes.drive.id)
+      }
+
+      if (attributes.spreadsheet) {
+        setSpreadsheet(attributes.spreadsheet.id)
+      }
+
+      if (attributes.worksheet) {
+        setWorksheet(attributes.worksheet)
+      }
+    }
+  }, [])
+
   if (!isAuthorized && !app.isAuthorized) {
     return <IntegrationAuthorization app={app} fetch={handleOAuth} />
   }
@@ -113,7 +131,11 @@ export default function GoogleSheetsSettings({ app }: IntegrationSettingsFormPro
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
+          type="object"
           refreshDeps={[isAuthorized]}
+          options={
+            app.integration?.attributes?.drive ? [app.integration.attributes.drive] : undefined
+          }
           fetch={fetchDrives}
           labelKey="name"
           valueKey="id"
@@ -129,7 +151,13 @@ export default function GoogleSheetsSettings({ app }: IntegrationSettingsFormPro
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
+          type="object"
           refreshDeps={[drive]}
+          options={
+            app.integration?.attributes?.spreadsheet
+              ? [app.integration.attributes.spreadsheet]
+              : undefined
+          }
           fetch={fetchSheets}
           labelKey="name"
           valueKey="id"
@@ -162,6 +190,7 @@ export default function GoogleSheetsSettings({ app }: IntegrationSettingsFormPro
         leftLabelKey="title"
         leftValueKey="id"
         leftPlaceholder={t('form.integrations.mapFields.leftPlaceholder')}
+        rightType="number"
         rightLoading={loading}
         rightOptions={sheetFields}
         rightLabelKey="name"

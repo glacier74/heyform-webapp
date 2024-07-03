@@ -1,5 +1,5 @@
 import { helper } from '@heyform-inc/utils'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Form, Select } from '@/components'
@@ -36,6 +36,16 @@ export default function GoogleDriveSettings({ app }: IntegrationSettingsFormProp
     }
   }
 
+  useEffect(() => {
+    const attributes = app?.integration?.attributes as AnyMap
+
+    if (helper.isValid(attributes)) {
+      if (attributes.drive) {
+        setDrive(attributes.drive.id)
+      }
+    }
+  }, [])
+
   if (!isAuthorized && !app.isAuthorized) {
     return <IntegrationAuthorization app={app} fetch={handleOAuth} />
   }
@@ -66,6 +76,7 @@ export default function GoogleDriveSettings({ app }: IntegrationSettingsFormProp
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
+          type="object"
           refreshDeps={[isAuthorized]}
           fetch={fetchDrives}
           labelKey="name"
@@ -83,6 +94,7 @@ export default function GoogleDriveSettings({ app }: IntegrationSettingsFormProp
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
+          type="object"
           refreshDeps={[drive]}
           fetch={fetchFolders}
           labelKey="name"

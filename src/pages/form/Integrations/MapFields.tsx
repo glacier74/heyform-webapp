@@ -3,7 +3,7 @@ import { IconArrowRight, IconPlus, IconX } from '@tabler/icons-react'
 import { FC, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Button, Form, Input, Select } from '@/components'
+import { Button, Form, Input, Select, SelectProps } from '@/components'
 
 interface MapFieldsProps {
   name: string
@@ -12,12 +12,14 @@ interface MapFieldsProps {
   required?: boolean
   footer?: ReactNode
 
+  leftType?: SelectProps['type']
   leftLoading?: boolean
   leftOptions?: Any[]
   leftValueKey?: string
   leftLabelKey?: string
   leftPlaceholder?: string
 
+  rightType?: SelectProps['type']
   rightLoading?: boolean
   rightOptions?: Any[]
   rightValueKey?: string
@@ -30,11 +32,13 @@ export const MapFields: FC<MapFieldsProps> = ({
   label,
   description,
   required = true,
+  leftType,
   leftLoading,
   leftOptions = [],
   leftValueKey,
   leftLabelKey,
   leftPlaceholder,
+  rightType,
   rightLoading,
   rightOptions,
   rightValueKey,
@@ -94,7 +98,7 @@ export const MapFields: FC<MapFieldsProps> = ({
               </div>
             )}
 
-            <div className="mt-2 space-y-1">
+            <div className="mt-2 space-y-4 divide-y divide-accent-light sm:space-y-1 sm:divide-y-0">
               {fields.map((field, index) => (
                 <Form.Field {...field} key={field.key}>
                   {({ value, onChange }) => {
@@ -111,44 +115,58 @@ export const MapFields: FC<MapFieldsProps> = ({
                     }
 
                     return (
-                      <div className="flex items-center gap-3">
-                        <div className="w-[calc(50%-2rem)] flex-1">
-                          <Select
-                            className="h-11 w-full sm:h-10"
-                            value={value[0]}
-                            options={leftOptions}
-                            valueKey={leftValueKey}
-                            labelKey={leftLabelKey}
-                            placeholder={t(leftPlaceholder as Any)}
-                            loading={leftLoading}
-                            disabled={leftLoading}
-                            onChange={handleLeftChange}
-                          />
-                        </div>
-
-                        <IconArrowRight className="h-5 w-5 text-secondary" />
-
-                        <div className="w-[calc(50%-2rem)] flex-1">
-                          {rightOptions ? (
+                      <div className="flex items-center pt-4 sm:pt-0">
+                        <div className="grid min-w-0 flex-1 grid-cols-1 gap-2 sm:grid-cols-[minmax(auto,_18rem)_2rem_minmax(auto,_18rem)] sm:gap-3">
+                          <div className="w-full">
                             <Select
-                              className="h-11 w-full sm:h-10"
-                              value={value[1]}
-                              options={rightOptions}
-                              valueKey={rightValueKey}
-                              labelKey={rightLabelKey}
-                              placeholder={rightPlaceholder}
-                              loading={rightLoading}
-                              disabled={rightLoading}
-                              onChange={handleRightChange}
+                              className="h-11 w-full sm:h-10 [&_[data-slot=value]]:block [&_[data-slot=value]]:text-left"
+                              contentProps={{
+                                position: 'popper',
+                                className: '[&_[data-slot=item]]:truncate'
+                              }}
+                              type={leftType}
+                              value={value[0]}
+                              options={leftOptions}
+                              valueKey={leftValueKey}
+                              labelKey={leftLabelKey}
+                              placeholder={t(leftPlaceholder as Any)}
+                              loading={leftLoading}
+                              disabled={leftLoading}
+                              onChange={handleLeftChange}
                             />
-                          ) : (
-                            <Input
-                              className="w-full"
-                              value={value[1]}
-                              placeholder={rightPlaceholder}
-                              onChange={handleRightChange}
-                            />
-                          )}
+                          </div>
+
+                          <div className="mx-1.5 hidden py-2.5 sm:block">
+                            <IconArrowRight className="h-5 w-5 text-secondary" />
+                          </div>
+
+                          <div className="w-full">
+                            {rightOptions ? (
+                              <Select
+                                className="h-11 w-full sm:h-10"
+                                contentProps={{
+                                  position: 'popper',
+                                  className: '[&_[data-slot=item]]:truncate'
+                                }}
+                                type={rightType}
+                                value={value[1]}
+                                options={rightOptions}
+                                valueKey={rightValueKey}
+                                labelKey={rightLabelKey}
+                                placeholder={rightPlaceholder}
+                                loading={rightLoading}
+                                disabled={rightLoading}
+                                onChange={handleRightChange}
+                              />
+                            ) : (
+                              <Input
+                                className="w-full"
+                                value={value[1]}
+                                placeholder={rightPlaceholder}
+                                onChange={handleRightChange}
+                              />
+                            )}
+                          </div>
                         </div>
 
                         {fields.length > 1 && (

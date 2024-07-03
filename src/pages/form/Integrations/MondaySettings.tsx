@@ -1,6 +1,6 @@
 import { helper } from '@heyform-inc/utils'
 import { useRequest } from 'ahooks'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Form, Select } from '@/components'
@@ -56,6 +56,16 @@ export default function MondaySettings({ app }: IntegrationSettingsFormProps) {
     }
   }
 
+  useEffect(() => {
+    const attributes = app?.integration?.attributes as AnyMap
+
+    if (helper.isValid(attributes)) {
+      if (attributes.board) {
+        setBoard(attributes.board.id)
+      }
+    }
+  }, [])
+
   if (!isAuthorized && !app.isAuthorized) {
     return <IntegrationAuthorization app={app} fetch={handleOAuth} />
   }
@@ -71,6 +81,7 @@ export default function MondaySettings({ app }: IntegrationSettingsFormProps) {
         <Select.Async
           className="h-11 w-full sm:h-10"
           refreshDeps={[isAuthorized]}
+          type="object"
           fetch={fetchBoards}
           labelKey="name"
           valueKey="id"
@@ -87,6 +98,7 @@ export default function MondaySettings({ app }: IntegrationSettingsFormProps) {
         <Select.Async
           className="h-11 w-full sm:h-10"
           refreshDeps={[board]}
+          type="object"
           fetch={fetchGroups}
           labelKey="title"
           disabled={helper.isNil(board)}

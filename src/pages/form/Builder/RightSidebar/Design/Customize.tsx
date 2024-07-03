@@ -138,7 +138,6 @@ export default function Customize() {
             className="w-full"
             options={options}
             contentProps={{
-              className: 'w-[17.25rem]',
               position: 'popper'
             }}
           />

@@ -149,6 +149,7 @@ export default function SupportPalSettings({ app }: IntegrationSettingsFormProps
         <Select.Async
           className="h-11 w-full sm:h-10"
           refreshDeps={[isAuthorized]}
+          type="object"
           fetch={fetchDepartments}
           labelKey="name"
           valueKey="id"
@@ -165,6 +166,7 @@ export default function SupportPalSettings({ app }: IntegrationSettingsFormProps
         <Select.Async
           className="h-11 w-full sm:h-10"
           refreshDeps={[isAuthorized, departmentId]}
+          type="object"
           fetch={fetchPriorities}
           labelKey="name"
           valueKey="id"
@@ -181,6 +183,7 @@ export default function SupportPalSettings({ app }: IntegrationSettingsFormProps
         <Select.Async
           className="h-11 w-full sm:h-10"
           refreshDeps={[isAuthorized]}
+          type="object"
           fetch={fetchStatus}
           labelKey="name"
           valueKey="id"

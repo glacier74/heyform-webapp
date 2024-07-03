@@ -31,7 +31,7 @@ export interface SelectOption {
 
 interface NativeSelectProps extends Omit<ComponentProps, 'onChange'> {
   // Radix-ui can only return string value
-  type?: 'string' | 'number' | 'boolean'
+  type?: 'string' | 'number' | 'boolean' | 'object'
   value?: Any
   options: SelectOption[]
   labelKey?: string
@@ -44,7 +44,7 @@ interface NativeSelectProps extends Omit<ComponentProps, 'onChange'> {
   onChange?: (value: Any) => void
 }
 
-interface SelectProps extends NativeSelectProps {
+export interface SelectProps extends NativeSelectProps {
   contentProps?: SelectContentProps
 }
 
@@ -53,18 +53,26 @@ interface MultiSelectProps extends Omit<SelectProps, 'value' | 'onChange'> {
   onChange?: (value: string[]) => void
 }
 
-interface AsyncSelectProps extends Omit<SelectProps, 'options'> {
+interface AsyncSelectProps extends Optional<SelectProps, 'options'> {
   refreshDeps?: Any[]
   fetch: () => Promise<SelectOption[]>
 }
 
-const transform = (value: string, type: NativeSelectProps['type']) => {
+const transform = (
+  value: string,
+  type: NativeSelectProps['type'],
+  options: SelectOption[],
+  valueKey: string
+) => {
   switch (type) {
     case 'number':
       return Number(value)
 
     case 'boolean':
       return toBool(value)
+
+    case 'object':
+      return options.find(row => row[valueKey] === value)
 
     default:
       return value
@@ -103,13 +111,13 @@ const NativeSelect: FC<NativeSelectProps> = ({
   )
 
   function handleChange(event: ChangeEvent<HTMLSelectElement>) {
-    onChange?.(transform(event.target.value, type))
+    onChange?.(transform(event.target.value, type, rawOptions, valueKey))
   }
 
   return (
     <select
       className={cn(
-        'inline-flex appearance-none items-center gap-x-4 rounded-lg border bg-foreground px-3.5 py-2 text-base/[1.4rem] placeholder:text-secondary focus:outline-none sm:px-3 sm:py-1.5 sm:text-sm/[1.4rem] [&_[data-slot=value]]:flex [&_[data-slot=value]]:flex-1 [&_[data-slot=value]]:items-center [&_[data-slot=value]]:gap-x-2.5 [&_[data-slot=value]]:pl-1 [&_[data-slot=value]]:sm:gap-x-2',
+        'inline-flex appearance-none items-center gap-x-4 rounded-lg border bg-transparent px-3.5 py-2 text-base/[1.4rem] placeholder:text-secondary focus:outline-none sm:px-3 sm:py-1.5 sm:text-sm/[1.4rem] [&_[data-slot=value]]:flex [&_[data-slot=value]]:flex-1 [&_[data-slot=value]]:items-center [&_[data-slot=value]]:gap-x-2.5 [&_[data-slot=value]]:pl-1 [&_[data-slot=value]]:sm:gap-x-2',
         hasError ? 'border-error' : 'border-input',
         className
       )}
@@ -130,7 +138,7 @@ const NativeSelect: FC<NativeSelectProps> = ({
 const SelectComponent: FC<SelectProps> = ({
   className,
   type,
-  value,
+  value: rawValue,
   options: rawOptions,
   labelKey = 'label',
   valueKey = 'value',
@@ -144,6 +152,14 @@ const SelectComponent: FC<SelectProps> = ({
   ...restProps
 }) => {
   const { t } = useTranslation()
+
+  const value = useMemo(() => {
+    if (helper.isEmpty(rawValue)) {
+      return
+    }
+
+    return type === 'object' ? String(rawValue[valueKey]) : String(rawValue)
+  }, [rawValue, type, valueKey])
 
   const options = useMemo(
     () =>
@@ -163,22 +179,25 @@ const SelectComponent: FC<SelectProps> = ({
 
   const handleChange = useCallback(
     (newValue: string) => {
-      onChange?.(transform(newValue, type))
+      onChange?.(transform(newValue, type, rawOptions, valueKey))
     },
-    [type, onChange]
+    [onChange, type, rawOptions, valueKey]
   )
 
   return (
-    <Root value={String(value)} disabled={loading || disabled} onValueChange={handleChange}>
+    <Root value={value} disabled={loading || disabled} onValueChange={handleChange}>
       <Trigger
         className={cn(
-          'inline-flex max-h-[22rem] appearance-none items-center gap-x-4 rounded-lg border bg-transparent px-3.5 py-2 text-base/[1.4rem] placeholder:text-secondary focus:outline-none sm:max-h-[20rem] sm:px-3 sm:py-1.5 sm:text-sm/[1.4rem] [&_[data-slot=value]]:flex [&_[data-slot=value]]:flex-1 [&_[data-slot=value]]:items-center [&_[data-slot=value]]:gap-x-2.5 [&_[data-slot=value]]:truncate [&_[data-slot=value]]:pl-1 [&_[data-slot=value]]:sm:gap-x-2',
+          'inline-flex max-h-[22rem] appearance-none items-center gap-x-4 rounded-lg border bg-transparent px-3.5 py-2 text-base/[1.4rem] focus:outline-none disabled:cursor-not-allowed disabled:bg-secondary-light sm:max-h-[20rem] sm:px-3 sm:py-1.5 sm:text-sm/[1.4rem] [&_[data-slot=placeholder]]:flex [&_[data-slot=placeholder]]:flex-1 [&_[data-slot=placeholder]]:items-center [&_[data-slot=placeholder]]:gap-x-2.5 [&_[data-slot=placeholder]]:truncate [&_[data-slot=placeholder]]:pl-1 [&_[data-slot=placeholder]]:text-secondary [&_[data-slot=value]]:flex [&_[data-slot=value]]:flex-1 [&_[data-slot=value]]:items-center [&_[data-slot=value]]:gap-x-2.5 [&_[data-slot=value]]:truncate [&_[data-slot=value]]:pl-1 [&_[data-slot=value]]:sm:gap-x-2',
           hasError ? 'border-error' : 'border-input',
           className
         )}
         {...restProps}
       >
-        <Value placeholder={placeholder} data-slot="value" />
+        <Value
+          placeholder={placeholder}
+          data-slot={helper.isValid(value) ? 'value' : 'placeholder'}
+        />
         <Icon data-slot="icon">
           {loading ? (
             <Loader className="h-[1.125rem] w-[1.125rem] animate-spin" />
@@ -197,7 +216,10 @@ const SelectComponent: FC<SelectProps> = ({
           {...contentProps}
           className={cn(
             'isolate z-10 max-h-[18.5rem] rounded-xl bg-foreground p-1 shadow-lg outline outline-1 outline-transparent ring-1 ring-accent-light focus:outline-none',
-            contentProps?.className
+            contentProps?.className,
+            {
+              [`w-[var(--radix-select-trigger-width)]`]: contentProps?.position === 'popper'
+            }
           )}
           data-slot="content"
         >
@@ -368,8 +390,14 @@ const MultiSelect: FC<MultiSelectProps> = ({
   )
 }
 
-const AsyncSelect: FC<AsyncSelectProps> = ({ disabled, fetch, refreshDeps = [], ...restProps }) => {
-  const [options, setOptions] = useState<Any[]>([])
+const AsyncSelect: FC<AsyncSelectProps> = ({
+  options: rawOptions = [],
+  disabled,
+  fetch,
+  refreshDeps = [],
+  ...restProps
+}) => {
+  const [options, setOptions] = useState<Any[]>(rawOptions)
 
   const { loading } = useRequest(
     async () => {
@@ -384,7 +412,18 @@ const AsyncSelect: FC<AsyncSelectProps> = ({ disabled, fetch, refreshDeps = [], 
     }
   )
 
-  return <Select {...restProps} options={options} loading={loading} disabled={disabled} />
+  return (
+    <Select
+      {...restProps}
+      contentProps={{
+        position: 'popper',
+        ...restProps.contentProps
+      }}
+      options={options}
+      loading={loading}
+      disabled={disabled}
+    />
+  )
 }
 
 export const Select = Object.assign(SelectComponent, {
