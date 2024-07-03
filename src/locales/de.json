@@ -401,7 +401,11 @@
     "save": "Speichern",
     "share": "Teilen",
     "saveChanges": "Änderungen speichern",
-    "pagination": "Seite {{page}} von {{maxPage}}",
+    "pagination": {
+      "title": "Seite {{page}} von {{maxPage}}",
+      "previous": "Zurück",
+      "next": "Weiter"
+    },
     "uploader": {
       "headline": "Datei hochladen oder hierher ziehen und ablegen",
       "subHeadline": "{{fileTypes}} bis zu {{maxSize}}",

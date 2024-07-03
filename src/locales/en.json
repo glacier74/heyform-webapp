@@ -401,7 +401,11 @@
     "save": "Save",
     "share": "Share",
     "saveChanges": "Save changes",
-    "pagination": "Page {{page}} to {{maxPage}}",
+    "pagination": {
+      "title": "Page {{page}} to {{maxPage}}",
+      "previous": "Previous",
+      "next": "Next"
+    },
     "uploader": {
       "headline": "Upload a file or drag and drop here",
       "subHeadline": "{{fileTypes}} up to {{maxSize}}",
@@ -950,7 +954,7 @@
         }
       },
       "googlesheets": {
-        "spreadsheet": "Select a preadsheet",
+        "spreadsheet": "Select a spreadsheet",
         "worksheet": "Select a worksheet"
       },
       "osticket": {

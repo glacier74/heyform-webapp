@@ -47,7 +47,7 @@ export const Pagination: FC<PaginationProps> = ({
       aria-label="pagination"
     >
       <div className="hidden text-sm/6 text-primary sm:block" data-slot="info">
-        {t('components.pagination', { page, maxPage })}
+        {t('components.pagination.title', { page, maxPage })}
       </div>
 
       <div className="flex flex-1 justify-between gap-x-3 sm:justify-end" data-slot="buttons">
@@ -58,7 +58,7 @@ export const Pagination: FC<PaginationProps> = ({
           disabled={page <= 1 || loading}
           onClick={handlePrevious}
         >
-          {t('components.previous')}
+          {t('components.pagination.previous')}
         </Button.Ghost>
         <Button.Ghost
           size="md"
@@ -67,7 +67,7 @@ export const Pagination: FC<PaginationProps> = ({
           disabled={page >= maxPage || loading}
           onClick={handleNext}
         >
-          {t('components.next')}
+          {t('components.pagination.next')}
         </Button.Ghost>
       </div>
     </nav>

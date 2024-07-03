@@ -401,7 +401,11 @@
     "save": "保存する",
     "share": "共有する",
     "saveChanges": "変更を保存する",
-    "pagination": "{{page}} ページ目 / 全 {{maxPage}} ページ",
+    "pagination": {
+      "title": "ページ {{page}} から {{maxPage}} まで",
+      "previous": "前へ",
+      "next": "次へ"
+    },
     "uploader": {
       "headline": "ファイルをアップロードまたはここにドラッグ＆ドロップしてください",
       "subHeadline": "{{fileTypes}}, 最大サイズ {{maxSize}} まで",

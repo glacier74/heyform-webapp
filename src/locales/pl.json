@@ -401,7 +401,11 @@
     "save": "Zapisz",
     "share": "Udostępnij",
     "saveChanges": "Zapisz zmiany",
-    "pagination": "Strona {{page}} z {{maxPage}}",
+    "pagination": {
+      "title": "Strona {{page}} z {{maxPage}}",
+      "previous": "Poprzednia",
+      "next": "Następna"
+    },
     "uploader": {
       "headline": "Prześlij plik lub przeciągnij i upuść tutaj",
       "subHeadline": "{{fileTypes}} do {{maxSize}}",
