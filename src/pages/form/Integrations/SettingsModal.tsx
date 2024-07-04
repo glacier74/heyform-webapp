@@ -101,7 +101,7 @@ const Settings: FC<{ app: IntegratedAppType }> = ({ app }) => {
           {app.description}{' '}
           <a
             className="underline hover:text-primary"
-            href={`https://docs.heyform.net/integrations/${app.uniqueId}`}
+            href={app.helpLinkUrl}
             target="_blank"
             rel="noreferrer"
           >

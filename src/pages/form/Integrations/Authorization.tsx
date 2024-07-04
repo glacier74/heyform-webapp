@@ -60,7 +60,12 @@ export default function IntegrationAuthorization({ app, fetch }: IntegrationAuth
       <div className="font-medium">{t('form.integrations.authorization.headline')}</div>
       <div className="mb-1 text-secondary">{t('form.integrations.authorization.subHeadline')}</div>
 
-      <Button className="mt-4 w-full gap-x-2" size="md" loading={loading} onClick={handleOauth}>
+      <Button.Ghost
+        className="mt-4 w-full gap-x-2"
+        size="md"
+        loading={loading}
+        onClick={handleOauth}
+      >
         {isGoogle ? (
           <IconGoogle className="h-5 w-5 rounded-full" />
         ) : (
@@ -71,7 +76,7 @@ export default function IntegrationAuthorization({ app, fetch }: IntegrationAuth
             name: isGoogle ? 'Google' : app?.name
           })}
         </span>
-      </Button>
+      </Button.Ghost>
 
       {error && !loading && <div className="mt-1.5 text-sm/6 text-error">{error.message}</div>}
     </div>
