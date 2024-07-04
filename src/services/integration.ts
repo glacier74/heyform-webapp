@@ -1,4 +1,7 @@
 import {
+  AIRTABLE_BASES_GQL,
+  AIRTABLE_OAUTH_GQL,
+  AIRTABLE_TABLES_GQL,
   DELETE_INTEGRATION_SETTINGS_GQL,
   DROPBOX_FOLDERS_GQL,
   DROPBOX_OAUTH_GQL,
@@ -107,6 +110,44 @@ export class IntegrationService {
         input: {
           formId,
           appId
+        }
+      }
+    })
+  }
+
+  static async airtableOauth(formId: string, appId: string, code: string) {
+    return apollo.mutate({
+      mutation: AIRTABLE_OAUTH_GQL,
+      variables: {
+        input: {
+          formId,
+          appId,
+          code
+        }
+      }
+    })
+  }
+
+  static async airtableBases(formId: string, appId: string) {
+    return apollo.mutate({
+      mutation: AIRTABLE_BASES_GQL,
+      variables: {
+        input: {
+          formId,
+          appId
+        }
+      }
+    })
+  }
+
+  static async airtableTables(formId: string, appId: string, baseId: string) {
+    return apollo.mutate({
+      mutation: AIRTABLE_TABLES_GQL,
+      variables: {
+        input: {
+          formId,
+          appId,
+          baseId
         }
       }
     })

@@ -1,7 +1,9 @@
-import { ButtonHTMLAttributes, FC, useState } from 'react'
+import { IconCheck } from '@tabler/icons-react'
+import { ButtonHTMLAttributes, FC, ReactNode, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { useTranslation } from 'react-i18next'
 
+import { Tooltip } from '@/components/Tooltip.tsx'
 import { cn } from '@/utils'
 
 import { Loader } from './Loader'
@@ -14,6 +16,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 interface CopyButtonProps extends Omit<ButtonProps, 'children'> {
   text: string
+  icon?: ReactNode
+  label?: string
   duration?: number
 }
 
@@ -79,6 +83,8 @@ const LinkButton: FC<ButtonProps> = ({ className, ...restProps }) => (
 export const CopyButton: FC<CopyButtonProps> = ({
   className,
   text,
+  icon,
+  label,
   duration = 3_000,
   ...restProps
 }) => {
@@ -93,9 +99,37 @@ export const CopyButton: FC<CopyButtonProps> = ({
     }, duration)
   }
 
+  if (icon) {
+    return (
+      <CopyToClipboard text={text} onCopy={handleCopy}>
+        <Button.Link
+          className={className}
+          iconOnly
+          onClick={e => e.preventDefault()}
+          {...restProps}
+        >
+          <Tooltip
+            label={label}
+            contentProps={{
+              sideOffset: 12
+            }}
+          >
+            <div className="flex h-full w-full items-center justify-center">
+              {copied ? <IconCheck className="h-5 w-5" /> : icon}
+            </div>
+          </Tooltip>
+        </Button.Link>
+      </CopyToClipboard>
+    )
+  }
+
   return (
     <CopyToClipboard text={text} onCopy={handleCopy}>
-      <Button className={cn('min-w-20', className)} {...restProps}>
+      <Button
+        className={cn('min-w-20', className)}
+        onClick={e => e.preventDefault()}
+        {...restProps}
+      >
         {copied ? t('components.copied') : t('components.copy')}
       </Button>
     </CopyToClipboard>

@@ -826,6 +826,7 @@
     "closed": "Closed",
     "duplicate": "{{name}} (Copy)",
     "moveToTrash": "Move to trash",
+    "copyLinkToShare": "Copy link to share",
     "creation": {
       "title": "Create Form",
       "headline": "Create a new form in the project <span>{{name}}</span>",

@@ -826,6 +826,7 @@
     "closed": "已關閉",
     "duplicate": "{{name}} (副本)",
     "moveToTrash": "移至回收站",
+    "copyLinkToShare": "複製連結以分享",
     "creation": {
       "title": "創建表單",
       "headline": "在項目 <span>{{name}}</span> 中創建一個新表單",

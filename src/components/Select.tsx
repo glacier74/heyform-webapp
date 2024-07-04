@@ -16,11 +16,21 @@ import {
 import { IconCheck, IconChevronDown, IconX } from '@tabler/icons-react'
 import { useRequest } from 'ahooks'
 import { Command } from 'cmdk'
-import { ChangeEvent, FC, MouseEvent, ReactNode, useCallback, useMemo, useState } from 'react'
+import {
+  ChangeEvent,
+  FC,
+  MouseEvent,
+  PointerEvent,
+  ReactNode,
+  useCallback,
+  useMemo,
+  useState
+} from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { cn } from '@/utils'
 
+import { Button } from './Button'
 import { Loader } from './Loader'
 
 export interface SelectOption {
@@ -45,6 +55,7 @@ interface NativeSelectProps extends Omit<ComponentProps, 'onChange'> {
 }
 
 export interface SelectProps extends NativeSelectProps {
+  allowClear?: boolean
   contentProps?: SelectContentProps
 }
 
@@ -147,6 +158,7 @@ const SelectComponent: FC<SelectProps> = ({
   placeholder,
   hasError,
   multiLanguage,
+  allowClear = false,
   contentProps,
   onChange,
   ...restProps
@@ -184,6 +196,12 @@ const SelectComponent: FC<SelectProps> = ({
     [onChange, type, rawOptions, valueKey]
   )
 
+  function handleClear(event: PointerEvent<HTMLButtonElement>) {
+    event.preventDefault()
+    event.stopPropagation()
+    onChange?.(undefined)
+  }
+
   return (
     <Root value={value} disabled={loading || disabled} onValueChange={handleChange}>
       <Trigger
@@ -198,6 +216,18 @@ const SelectComponent: FC<SelectProps> = ({
           placeholder={placeholder}
           data-slot={helper.isValid(value) ? 'value' : 'placeholder'}
         />
+
+        {allowClear && helper.isValid(value) && (
+          <Button.Link
+            className="-mr-4 text-secondary hover:text-primary"
+            size="sm"
+            iconOnly
+            onPointerDown={handleClear}
+          >
+            <IconX className="h-5 w-5" />
+          </Button.Link>
+        )}
+
         <Icon data-slot="icon">
           {loading ? (
             <Loader className="h-[1.125rem] w-[1.125rem] animate-spin" />
@@ -422,6 +452,7 @@ const AsyncSelect: FC<AsyncSelectProps> = ({
       options={options}
       loading={loading}
       disabled={disabled}
+      allowClear
     />
   )
 }

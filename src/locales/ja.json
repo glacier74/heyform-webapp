@@ -826,6 +826,7 @@
     "closed": "終了済み",
     "duplicate": "{{name}} (コピー)",
     "moveToTrash": "ゴミ箱に移動",
+    "copyLinkToShare": "共有リンクをコピー",
     "creation": {
       "title": "フォームの作成",
       "headline": "プロジェクト <span>{{name}}</span> に新しいフォームを作成する",

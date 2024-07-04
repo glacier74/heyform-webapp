@@ -22,10 +22,10 @@ export default function FormShare() {
 
   const { workspaceId, formId } = useParam()
   const { openModal } = useAppStore()
-  const { sharingURL } = useWorkspaceStore()
+  const { sharingURLPrefix } = useWorkspaceStore()
   const { form, selectEmbedType } = useFormStore()
 
-  const shareLink = useMemo(() => sharingURL + '/f/' + formId, [formId, sharingURL])
+  const shareLink = useMemo(() => sharingURLPrefix + '/f/' + formId, [formId, sharingURLPrefix])
 
   function handleShareEmail() {
     const url = getDecoratedURL('mailto:', {

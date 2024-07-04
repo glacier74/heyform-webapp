@@ -5,6 +5,7 @@ import { FC, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, NavLink } from 'react-router-dom'
 
+import IconLink from '@/assets/link.svg?react'
 import { Button, Skeleton, useAlert } from '@/components'
 import { FormService } from '@/services'
 import { useFormStore, useWorkspaceStore } from '@/store'
@@ -18,7 +19,7 @@ export const FormLayout: FC<LayoutProps> = ({ options, children }) => {
   const alert = useAlert()
   const router = useRouter()
   const { workspaceId, projectId, formId } = useParam()
-  const { project } = useWorkspaceStore()
+  const { project, sharingURLPrefix } = useWorkspaceStore()
   const { form, setForm } = useFormStore()
 
   const navigations = useMemo(
@@ -118,10 +119,20 @@ export const FormLayout: FC<LayoutProps> = ({ options, children }) => {
           </Skeleton>
         </div>
 
-        {/* Go to form edit page */}
-        <Button size="md" onClick={handleEdit}>
-          {t('form.editForm')}
-        </Button>
+        <div className="flex items-center gap-2 sm:flex-row">
+          <Button.Copy
+            size="md"
+            className="order-last sm:order-first"
+            text={`${sharingURLPrefix}/f/${formId}`}
+            label={t('form.copyLinkToShare')}
+            icon={<IconLink className="h-5 w-5" />}
+          />
+
+          {/* Go to form edit page */}
+          <Button size="md" onClick={handleEdit}>
+            {t('form.editForm')}
+          </Button>
+        </div>
       </div>
 
       {/* Navigation */}

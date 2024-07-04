@@ -826,6 +826,7 @@
     "closed": "Geschlossen",
     "duplicate": "{{name}} (Kopie)",
     "moveToTrash": "In den Papierkorb verschieben",
+    "copyLinkToShare": "Link zum Teilen kopieren",
     "creation": {
       "title": "Formular erstellen",
       "headline": "Erstellen Sie ein neues Formular im Projekt <span>{{name}}</span>",

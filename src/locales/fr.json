@@ -826,6 +826,7 @@
     "closed": "Fermé",
     "duplicate": "{{name}} (Copie)",
     "moveToTrash": "Mettre à la corbeille",
+    "copyLinkToShare": "Copier le lien pour partager",
     "creation": {
       "title": "Créer un formulaire",
       "headline": "Créer un nouveau formulaire dans le projet <span>{{name}}</span>",

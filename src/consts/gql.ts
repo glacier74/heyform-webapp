@@ -1063,6 +1063,35 @@ export const MAILCHIMP_AUDIENCES_GQL = gql`
   }
 `
 
+export const AIRTABLE_OAUTH_GQL = gql`
+  mutation airtableOauth($input: ThirdPartyOAuthInput!) {
+    airtableOauth(input: $input)
+  }
+`
+
+export const AIRTABLE_BASES_GQL = gql`
+  query airtableBases($input: ThirdPartyInput!) {
+    airtableBases(input: $input) {
+      id
+      name
+    }
+  }
+`
+
+export const AIRTABLE_TABLES_GQL = gql`
+  query airtableTables($input: AirtableTablesInput!) {
+    airtableTables(input: $input) {
+      id
+      name
+      fields {
+        id
+        name
+        type
+      }
+    }
+  }
+`
+
 export const GOOGLE_OAUTH_GQL = gql`
   mutation googleOauth($input: ThirdPartyOAuthInput!) {
     googleOauth(input: $input)

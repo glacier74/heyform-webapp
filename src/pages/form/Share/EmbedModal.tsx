@@ -333,7 +333,7 @@ const EmbedComponent = () => {
   const { formId } = useParam()
   const { openModal, closeModal } = useAppStore()
   const { embedType, embedConfig, selectEmbedType } = useFormStore()
-  const { sharingURL } = useWorkspaceStore()
+  const { sharingURLPrefix } = useWorkspaceStore()
 
   const sidebar = useMemo(() => {
     switch (embedType) {
@@ -361,14 +361,14 @@ const EmbedComponent = () => {
     return `<div
 \tdata-heyform-id="${formId}"
 \tdata-heyform-type="${embedType}"
-\tdata-heyform-custom-url="${sharingURL}/f/${formId}"
+\tdata-heyform-custom-url="${sharingURLPrefix}/f/${formId}"
 \t${attributes.join('\n\t')}
 >
   ${embedType === 'modal' ? `<button class="heyform__trigger-button" type="button" onclick="HeyForm.openModal('${formId}Modal')">${embedConfig.triggerText}</button>` : ''}
 </div>
 <script src="https://www.unpkg.com/@heyform-inc/embed@latest/dist/index.umd.js"></script>
 `
-  }, [embedConfig, embedType, formId, sharingURL])
+  }, [embedConfig, embedType, formId, sharingURLPrefix])
 
   const content = useMemo(() => FRAME_CONTENT.replace('{form}', code), [code])
 

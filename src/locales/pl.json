@@ -826,6 +826,7 @@
     "closed": "Zamknięty",
     "duplicate": "{{name}} (Kopia)",
     "moveToTrash": "Przenieś do kosza",
+    "copyLinkToShare": "Skopiuj link do udostępnienia",
     "creation": {
       "title": "Utwórz formularz",
       "headline": "Utwórz nowy formularz w projekcie <span>{{name}}</span>",

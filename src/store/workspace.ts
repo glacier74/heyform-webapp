@@ -40,7 +40,7 @@ type WorkspaceStoreType = {
 
 interface ComputedStoreType {
   workspace: WorkspaceType
-  sharingURL: string
+  sharingURLPrefix: string
   project?: ProjectType
   members: MemberType[]
   forms: FormType[]
@@ -50,7 +50,7 @@ const computeState = (state: WorkspaceStoreType): ComputedStoreType => {
   let project: ProjectType | undefined
   let members: MemberType[] = []
   let forms: FormType[] = []
-  let sharingURL = WEBSITE_URL
+  let sharingURLPrefix = WEBSITE_URL
 
   const workspace = state.workspaces.find(w => w.id === state.currentWorkspaceId)
 
@@ -68,7 +68,7 @@ const computeState = (state: WorkspaceStoreType): ComputedStoreType => {
       helper.isValid(workspace.customDomain) &&
       helper.isFQDN(workspace.customDomain as string)
     ) {
-      sharingURL = `https://${workspace!.customDomain}`
+      sharingURLPrefix = `https://${workspace!.customDomain}`
     }
   }
 
@@ -77,7 +77,7 @@ const computeState = (state: WorkspaceStoreType): ComputedStoreType => {
     project,
     members,
     forms,
-    sharingURL
+    sharingURLPrefix
   }
 }
 

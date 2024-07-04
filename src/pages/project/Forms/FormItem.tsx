@@ -12,8 +12,10 @@ import { FC, MouseEvent, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import IconLink from '@/assets/link.svg?react'
 import { Badge, Button, Dropdown, Tooltip, useAlert, usePrompt } from '@/components'
 import { FormService } from '@/services'
+import { useWorkspaceStore } from '@/store'
 import { FormType } from '@/types'
 import { timeFromNow, timeToNow, useRouter } from '@/utils'
 
@@ -75,6 +77,7 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
   const alert = useAlert()
   const prompt = usePrompt()
   const router = useRouter()
+  const { sharingURLPrefix } = useWorkspaceStore()
 
   const options = useMemo(
     () =>
@@ -276,11 +279,13 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
               </Button.Link>
             </Tooltip>
 
-            <Tooltip label={t('components.share')}>
-              <Button.Link size="sm" iconOnly onClick={handleShare}>
-                <IconShare className="h-5 w-5" />
-              </Button.Link>
-            </Tooltip>
+            <Button.Copy
+              size="sm"
+              className="order-last text-primary sm:order-first [&_svg]:h-[1.125rem] [&_svg]:w-[1.125rem]"
+              text={`${sharingURLPrefix}/f/${form.id}`}
+              label={t('form.copyLinkToShare')}
+              icon={<IconLink strokeWidth={2.2} />}
+            />
           </div>
         )}
 
