@@ -41,7 +41,7 @@ export interface SelectOption {
 
 interface NativeSelectProps extends Omit<ComponentProps, 'onChange'> {
   // Radix-ui can only return string value
-  type?: 'string' | 'number' | 'boolean' | 'object'
+  type?: 'string' | 'number' | 'boolean'
   value?: Any
   options: SelectOption[]
   labelKey?: string
@@ -56,6 +56,7 @@ interface NativeSelectProps extends Omit<ComponentProps, 'onChange'> {
 
 export interface SelectProps extends NativeSelectProps {
   allowClear?: boolean
+  returnOptionAsValue?: boolean
   contentProps?: SelectContentProps
 }
 
@@ -69,25 +70,24 @@ interface AsyncSelectProps extends Optional<SelectProps, 'options'> {
   fetch: () => Promise<SelectOption[]>
 }
 
-const transform = (
+const getValue = (
   value: string,
-  type: NativeSelectProps['type'],
-  options: SelectOption[],
-  valueKey: string
+  {
+    type,
+    valueKey,
+    returnOptionAsValue,
+    options
+  }: Pick<SelectProps, 'type' | 'valueKey' | 'returnOptionAsValue' | 'options'>
 ) => {
-  switch (type) {
-    case 'number':
-      return Number(value)
+  let newValue: Any = value
 
-    case 'boolean':
-      return toBool(value)
-
-    case 'object':
-      return options.find(row => row[valueKey] === value)
-
-    default:
-      return value
+  if (type === 'number') {
+    newValue = Number(value)
+  } else if (type === 'boolean') {
+    newValue = toBool(value)
   }
+
+  return returnOptionAsValue ? options.find(row => row[valueKey!] === newValue) : newValue
 }
 
 const NativeSelect: FC<NativeSelectProps> = ({
@@ -109,7 +109,7 @@ const NativeSelect: FC<NativeSelectProps> = ({
   const options = useMemo(
     () =>
       rawOptions.map(row => {
-        const value = row[valueKey]
+        const value = String(row[valueKey])
         const label = row[labelKey]
 
         return {
@@ -122,7 +122,13 @@ const NativeSelect: FC<NativeSelectProps> = ({
   )
 
   function handleChange(event: ChangeEvent<HTMLSelectElement>) {
-    onChange?.(transform(event.target.value, type, rawOptions, valueKey))
+    onChange?.(
+      getValue(event.target.value, {
+        type,
+        options: rawOptions,
+        valueKey
+      })
+    )
   }
 
   return (
@@ -151,6 +157,7 @@ const SelectComponent: FC<SelectProps> = ({
   type,
   value: rawValue,
   options: rawOptions,
+  returnOptionAsValue,
   labelKey = 'label',
   valueKey = 'value',
   loading,
@@ -170,13 +177,13 @@ const SelectComponent: FC<SelectProps> = ({
       return
     }
 
-    return type === 'object' ? String(rawValue[valueKey]) : String(rawValue)
-  }, [rawValue, type, valueKey])
+    return returnOptionAsValue ? String(rawValue[valueKey]) : String(rawValue)
+  }, [rawValue, returnOptionAsValue, valueKey])
 
   const options = useMemo(
     () =>
       rawOptions.map(row => {
-        const value = row[valueKey]
+        const value = String(row[valueKey])
         const label = row[labelKey]
 
         return {
@@ -191,9 +198,16 @@ const SelectComponent: FC<SelectProps> = ({
 
   const handleChange = useCallback(
     (newValue: string) => {
-      onChange?.(transform(newValue, type, rawOptions, valueKey))
+      onChange?.(
+        getValue(newValue, {
+          type,
+          options: rawOptions,
+          valueKey,
+          returnOptionAsValue
+        })
+      )
     },
-    [onChange, type, rawOptions, valueKey]
+    [onChange, type, rawOptions, valueKey, returnOptionAsValue]
   )
 
   function handleClear(event: PointerEvent<HTMLButtonElement>) {
@@ -216,7 +230,6 @@ const SelectComponent: FC<SelectProps> = ({
           placeholder={placeholder}
           data-slot={helper.isValid(value) ? 'value' : 'placeholder'}
         />
-
         {allowClear && helper.isValid(value) && (
           <Button.Link
             className="-mr-4 text-secondary hover:text-primary"
@@ -227,7 +240,6 @@ const SelectComponent: FC<SelectProps> = ({
             <IconX className="h-5 w-5" />
           </Button.Link>
         )}
-
         <Icon data-slot="icon">
           {loading ? (
             <Loader className="h-[1.125rem] w-[1.125rem] animate-spin" />
@@ -257,7 +269,7 @@ const SelectComponent: FC<SelectProps> = ({
             {options.map(row => (
               <Item
                 key={row.value}
-                value={String(row.value)}
+                value={row.value}
                 disabled={row.disabled}
                 className="grid cursor-pointer grid-cols-[theme(spacing.5),1fr] items-center gap-x-2.5 rounded-lg py-2.5 pl-2 pr-3.5 text-base/6 text-primary outline-none disabled:opacity-60 data-[disabled]:pointer-events-none data-[highlighted]:bg-accent-light data-[disabled]:opacity-50 sm:grid-cols-[theme(spacing.4),1fr] sm:py-1.5 sm:pl-1.5 sm:pr-3 sm:text-sm/6 [&_[data-slot=item]]:col-start-2 [&_[data-slot=item]]:flex [&_[data-slot=item]]:items-center [&_[data-slot=item]]:gap-x-2.5 [&_[data-slot=item]]:sm:gap-x-2"
               >

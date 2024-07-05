@@ -122,7 +122,7 @@ export const MapFields: FC<MapFieldsProps> = ({
                               className="h-11 w-full sm:h-10 [&_[data-slot=value]]:block [&_[data-slot=value]]:text-left"
                               contentProps={{
                                 position: 'popper',
-                                className: '[&_[data-slot=item]]:truncate'
+                                className: '[&_[data-slot=item]]:whitespace-pre-wrap'
                               }}
                               type={leftType}
                               value={value[0]}
@@ -146,7 +146,7 @@ export const MapFields: FC<MapFieldsProps> = ({
                                 className="h-11 w-full sm:h-10"
                                 contentProps={{
                                   position: 'popper',
-                                  className: '[&_[data-slot=item]]:truncate'
+                                  className: '[&_[data-slot=item]]:whitespace-pre-wrap'
                                 }}
                                 type={rightType}
                                 value={value[1]}

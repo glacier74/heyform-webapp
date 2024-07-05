@@ -15,7 +15,7 @@ export default function SupportPalSettings({ app }: IntegrationSettingsFormProps
   const { formId } = useParam()
   const { formFields } = useFormStore()
 
-  const [isAuthorized, setAuthorized] = useState(false)
+  const [isAuthorized, setAuthorized] = useState(app.isAuthorized)
   const [systemURL, setSystemURL] = useState<string | null>()
   const [token, setToken] = useState<string | null>()
   const [departmentId, setDepartmentId] = useState<number | null>()
@@ -88,6 +88,9 @@ export default function SupportPalSettings({ app }: IntegrationSettingsFormProps
       >
         <Select
           className="h-11 w-full sm:h-10"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
@@ -103,6 +106,9 @@ export default function SupportPalSettings({ app }: IntegrationSettingsFormProps
       >
         <Select
           className="h-11 w-full sm:h-10"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
@@ -118,6 +124,9 @@ export default function SupportPalSettings({ app }: IntegrationSettingsFormProps
       >
         <Select
           className="h-11 w-full sm:h-10"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
@@ -133,6 +142,9 @@ export default function SupportPalSettings({ app }: IntegrationSettingsFormProps
       >
         <Select
           className="h-11 w-full sm:h-10"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
@@ -149,7 +161,7 @@ export default function SupportPalSettings({ app }: IntegrationSettingsFormProps
         <Select.Async
           className="h-11 w-full sm:h-10"
           refreshDeps={[isAuthorized]}
-          type="object"
+          returnOptionAsValue
           fetch={fetchDepartments}
           labelKey="name"
           valueKey="id"
@@ -166,7 +178,7 @@ export default function SupportPalSettings({ app }: IntegrationSettingsFormProps
         <Select.Async
           className="h-11 w-full sm:h-10"
           refreshDeps={[isAuthorized, departmentId]}
-          type="object"
+          returnOptionAsValue
           fetch={fetchPriorities}
           labelKey="name"
           valueKey="id"
@@ -183,7 +195,7 @@ export default function SupportPalSettings({ app }: IntegrationSettingsFormProps
         <Select.Async
           className="h-11 w-full sm:h-10"
           refreshDeps={[isAuthorized]}
-          type="object"
+          returnOptionAsValue
           fetch={fetchStatus}
           labelKey="name"
           valueKey="id"

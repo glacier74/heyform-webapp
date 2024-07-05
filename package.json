@@ -7,7 +7,7 @@
     "build": "tsc && vite build",
     "lint": "eslint \"src/**/*.{ts,tsx,json}\" --max-warnings 0",
     "type-check": "tsc --noEmit",
-    "format": "prettier --write .",
+    "format": "prettier --write ./src",
     "prepare": "node .husky/install.mjs"
   },
   "lint-staged": {

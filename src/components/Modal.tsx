@@ -10,6 +10,7 @@ import {
   Root,
   Title
 } from '@radix-ui/react-dialog'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { IconX } from '@tabler/icons-react'
 import { Rule } from 'rc-field-form/es/interface'
 import { FC, ReactNode, useCallback } from 'react'
@@ -64,6 +65,12 @@ const ModalComponent: FC<ModalProps> = ({
             contentProps?.className
           )}
         >
+          <Title>
+            <VisuallyHidden />
+          </Title>
+          <Description>
+            <VisuallyHidden />
+          </Description>
           {open && children}
         </Content>
       </Portal>

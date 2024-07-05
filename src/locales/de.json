@@ -1003,17 +1003,11 @@
         }
       },
       "airtable": {
-        "apiKey": {
-          "headline": "API-Schlüssel",
-          "footer": "Airtable verwendet eine einfache tokenbasierte Authentifizierung. Um Ihren API-Schlüssel zu generieren oder zu verwalten, besuchen Sie Ihre Airtable-Kontoseite."
-        },
-        "baseId": {
-          "headline": "Basis-ID",
-          "footer": "Um die ID Ihrer Airtable-Basis zu erhalten, öffnen Sie die Airtable-API-Seite und klicken auf die Basis, die Sie verwenden möchten. Die ID Ihrer Basis finden Sie im Abschnitt Einführung."
+        "base": {
+          "headline": "Base"
         },
         "table": {
-          "headline": "Tabellenname",
-          "footer": "Es ist wichtig, den Tabellennamen genau so einzugeben, wie er in Ihrer Airtable-Basis erscheint, z.B. Tabelle 1.\nWenn Sie den Tabellennamen in Airtable ändern, aktualisieren Sie ihn bitte auch hier, sonst funktioniert die Integration nicht wie erwartet."
+          "headline": "Tabelle"
         }
       },
       "monday": {

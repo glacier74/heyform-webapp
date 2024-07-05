@@ -1003,17 +1003,11 @@
         }
       },
       "airtable": {
-        "apiKey": {
-          "headline": "Clé API",
-          "footer": "Airtable utilise une authentification simple basée sur des jetons. Pour générer ou gérer votre clé API, visitez la page de votre compte Airtable."
-        },
-        "baseId": {
-          "headline": "ID de base",
-          "footer": "Pour obtenir l'ID de votre base Airtable, ouvrez la page API d'Airtable et cliquez sur la base que vous souhaitez utiliser. Vous trouverez l'ID de votre base dans la section Introduction."
+        "base": {
+          "headline": "Base"
         },
         "table": {
-          "headline": "Nom de la table",
-          "footer": "Il est crucial de taper le nom exact de la table tel qu'il apparaît dans votre base Airtable, par exemple Table 1.\nSi vous changez le nom de la table sur Airtable, veuillez également le mettre à jour ici, sinon l'intégration ne fonctionnera pas comme prévu."
+          "headline": "Tableau"
         }
       },
       "monday": {

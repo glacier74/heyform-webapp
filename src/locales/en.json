@@ -974,7 +974,7 @@
           "headline": "Email address"
         },
         "phoneNumber": {
-          "headline": "Phone number <span>($t(components.optional))</span>"
+          "headline": "Phone number (optional)"
         },
         "subject": {
           "headline": "Subject"
@@ -988,12 +988,13 @@
           "headline": "Full name"
         },
         "jobTitle": {
-          "headline": "Job title <span>($t(components.optional))</span>"
+          "headline": "Job title (optional)"
         }
       },
       "mailChimp": {
         "audience": {
-          "headline": "Audience"
+          "headline": "Audience",
+          "placeholder": "Select an audience"
         },
         "subscriberEmail": {
           "headline": "Subscriber email"
@@ -1003,17 +1004,11 @@
         }
       },
       "airtable": {
-        "apiKey": {
-          "headline": "API key",
-          "footer": "Airtable uses simple token-based authentication. To generate or manage your API key, visit your Airtable account page."
-        },
-        "baseId": {
-          "headline": "Base ID",
-          "footer": "To obtain the ID of your Airtable base, open the Airtable API page and click on the base that you want to use. You will find the ID of your base in the Introduction section."
+        "base": {
+          "headline": "Base"
         },
         "table": {
-          "headline": "Table name",
-          "footer": "It's crucial to type the table name exactly as it appears in your Airtable base e.g. Table 1.\nIf you change the table name on Airtable, please update it here too, otherwise the integration won't work as expected."
+          "headline": "Table"
         }
       },
       "monday": {

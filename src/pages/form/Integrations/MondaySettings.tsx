@@ -18,7 +18,7 @@ export default function MondaySettings({ app }: IntegrationSettingsFormProps) {
   const { formId } = useParam()
   const { formFields } = useFormStore()
 
-  const [isAuthorized, setAuthorized] = useState(false)
+  const [isAuthorized, setAuthorized] = useState(app.isAuthorized)
   const [board, setBoard] = useState<number | string | undefined>()
 
   const { data: rightFields, loading } = useRequest(
@@ -37,7 +37,7 @@ export default function MondaySettings({ app }: IntegrationSettingsFormProps) {
   )
 
   async function handleOAuth(code: string) {
-    const result = await IntegrationService.googleOauth(formId, app?.id as string, code)
+    const result = await IntegrationService.mondayOauth(formId, app?.id as string, code)
 
     setAuthorized(result)
   }
@@ -81,7 +81,8 @@ export default function MondaySettings({ app }: IntegrationSettingsFormProps) {
         <Select.Async
           className="h-11 w-full sm:h-10"
           refreshDeps={[isAuthorized]}
-          type="object"
+          type="number"
+          returnOptionAsValue
           fetch={fetchBoards}
           labelKey="name"
           valueKey="id"
@@ -98,9 +99,10 @@ export default function MondaySettings({ app }: IntegrationSettingsFormProps) {
         <Select.Async
           className="h-11 w-full sm:h-10"
           refreshDeps={[board]}
-          type="object"
+          returnOptionAsValue
           fetch={fetchGroups}
           labelKey="title"
+          valueKey="id"
           disabled={helper.isNil(board)}
         />
       </Form.Item>
@@ -113,6 +115,9 @@ export default function MondaySettings({ app }: IntegrationSettingsFormProps) {
       >
         <Select
           className="w-full"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"

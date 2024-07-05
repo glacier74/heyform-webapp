@@ -1,6 +1,6 @@
 import { helper } from '@heyform-inc/utils'
 import { useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import { Form, Select } from '@/components'
 import { IntegrationService } from '@/services'
@@ -74,21 +74,12 @@ export default function AirtableSettings({ app }: IntegrationSettingsFormProps) 
       {/* Base */}
       <Form.Item
         name="base"
-        label={t('form.integrations.airtable.apiKey.headline')}
-        footer={
-          <Trans
-            t={t}
-            i18nKey="form.integrations.airtable.apiKey.footer"
-            components={{
-              a: <span className="text-primary" />
-            }}
-          />
-        }
+        label={t('form.integrations.airtable.base.headline')}
         rules={[{ required: true }]}
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
-          type="object"
+          returnOptionAsValue
           refreshDeps={[isAuthorized]}
           options={
             app.integration?.attributes?.base ? [app.integration.attributes.base] : undefined
@@ -103,28 +94,12 @@ export default function AirtableSettings({ app }: IntegrationSettingsFormProps) 
       {/* Table */}
       <Form.Item
         name="table"
-        label={t('form.integrations.airtable.baseId.headline')}
-        footer={
-          <Trans
-            t={t}
-            i18nKey="form.integrations.airtable.baseId.footer"
-            components={{
-              a: (
-                <a
-                  className="text-primary underline"
-                  href="https://docs.osticket.com/en/latest/Developer%20Documentation/API%20Docs.html"
-                  target="_blank"
-                  rel="noreferrer"
-                />
-              )
-            }}
-          />
-        }
+        label={t('form.integrations.airtable.table.headline')}
         rules={[{ required: true }]}
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
-          type="object"
+          returnOptionAsValue
           refreshDeps={[base]}
           options={
             app.integration?.attributes?.table ? [app.integration.attributes.table] : undefined

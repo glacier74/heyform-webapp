@@ -1003,17 +1003,11 @@
         }
       },
       "airtable": {
-        "apiKey": {
-          "headline": "API キー",
-          "footer": "Airtable はトークンベースのシンプルな認証を使用しています。API キーを生成または管理するには、Airtable アカウントページにアクセスしてください。"
-        },
-        "baseId": {
-          "headline": "ベース ID",
-          "footer": "Airtable ベース ID を取得するには、Airtable API ページを開き、使用したいベースをクリックします。概要セクションでベース ID が見つかります。"
+        "base": {
+          "headline": "ベース"
         },
         "table": {
-          "headline": "テーブル名",
-          "footer": "テーブル名は Airtable ベースに表示される通り正確に入力してください。例えば Table 1。\nもし Airtable 上でテーブル名を変更した場合はここも更新してください。そうしないと統合が正常に動作しません。"
+          "headline": "テーブル"
         }
       },
       "monday": {

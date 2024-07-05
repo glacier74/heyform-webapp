@@ -13,7 +13,7 @@ export default function GoogleDriveSettings({ app }: IntegrationSettingsFormProp
   const { t } = useTranslation()
 
   const { formId } = useParam()
-  const [isAuthorized, setAuthorized] = useState(false)
+  const [isAuthorized, setAuthorized] = useState(app.isAuthorized)
   const [drive, setDrive] = useState<string>()
 
   async function handleOAuth(code: string) {
@@ -76,7 +76,7 @@ export default function GoogleDriveSettings({ app }: IntegrationSettingsFormProp
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
-          type="object"
+          returnOptionAsValue
           refreshDeps={[isAuthorized]}
           fetch={fetchDrives}
           labelKey="name"
@@ -94,7 +94,7 @@ export default function GoogleDriveSettings({ app }: IntegrationSettingsFormProp
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
-          type="object"
+          returnOptionAsValue
           refreshDeps={[drive]}
           fetch={fetchFolders}
           labelKey="name"

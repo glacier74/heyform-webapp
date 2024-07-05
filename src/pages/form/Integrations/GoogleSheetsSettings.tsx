@@ -131,7 +131,7 @@ export default function GoogleSheetsSettings({ app }: IntegrationSettingsFormPro
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
-          type="object"
+          returnOptionAsValue
           refreshDeps={[isAuthorized]}
           options={
             app.integration?.attributes?.drive ? [app.integration.attributes.drive] : undefined
@@ -151,7 +151,7 @@ export default function GoogleSheetsSettings({ app }: IntegrationSettingsFormPro
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
-          type="object"
+          returnOptionAsValue
           refreshDeps={[drive]}
           options={
             app.integration?.attributes?.spreadsheet

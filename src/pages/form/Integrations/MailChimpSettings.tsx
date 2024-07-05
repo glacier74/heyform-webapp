@@ -13,7 +13,7 @@ export default function MailChimpSettings({ app }: IntegrationSettingsFormProps)
   const { t } = useTranslation()
 
   const { formId } = useParam()
-  const [isAuthorized, setAuthorized] = useState(false)
+  const [isAuthorized, setAuthorized] = useState(app.isAuthorized)
   const { formFields } = useFormStore()
 
   async function fetchAudiences() {
@@ -21,7 +21,7 @@ export default function MailChimpSettings({ app }: IntegrationSettingsFormProps)
   }
 
   async function handleOAuth(code: string) {
-    const result = await IntegrationService.hubspotOauth(formId, app?.id as string, code)
+    const result = await IntegrationService.mailchimpOauth(formId, app?.id as string, code)
 
     setAuthorized(result)
   }
@@ -40,7 +40,12 @@ export default function MailChimpSettings({ app }: IntegrationSettingsFormProps)
       >
         <Select.Async
           className="w-full"
-          type="object"
+          returnOptionAsValue
+          options={
+            app.integration?.attributes?.audience
+              ? [app.integration.attributes.audience]
+              : undefined
+          }
           fetch={fetchAudiences}
           refreshDeps={[isAuthorized]}
           placeholder={t('form.integrations.mailChimp.audience.placeholder')}
@@ -58,6 +63,9 @@ export default function MailChimpSettings({ app }: IntegrationSettingsFormProps)
       >
         <Select
           className="w-full"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
@@ -73,6 +81,9 @@ export default function MailChimpSettings({ app }: IntegrationSettingsFormProps)
       >
         <Select
           className="w-full"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
@@ -88,6 +99,9 @@ export default function MailChimpSettings({ app }: IntegrationSettingsFormProps)
       >
         <Select
           className="w-full"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
@@ -99,6 +113,9 @@ export default function MailChimpSettings({ app }: IntegrationSettingsFormProps)
       <Form.Item name="phoneNumber" label={t('form.integrations.osticket.phoneNumber.headline')}>
         <Select
           className="w-full"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"

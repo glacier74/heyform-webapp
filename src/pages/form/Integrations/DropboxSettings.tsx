@@ -12,7 +12,7 @@ export default function DropboxSetting({ app }: IntegrationSettingsFormProps) {
   const { t } = useTranslation()
 
   const { formId } = useParam()
-  const [isAuthorized, setAuthorized] = useState(false)
+  const [isAuthorized, setAuthorized] = useState(app.isAuthorized)
 
   async function fetchFolders() {
     return await IntegrationService.dropboxFolders(formId, app?.id as string)
@@ -39,7 +39,7 @@ export default function DropboxSetting({ app }: IntegrationSettingsFormProps) {
       >
         <Select.Async
           className="h-11 w-full sm:h-10"
-          type="object"
+          returnOptionAsValue
           fetch={fetchFolders}
           refreshDeps={[isAuthorized]}
           labelKey="name"

@@ -1003,17 +1003,11 @@
         }
       },
       "airtable": {
-        "apiKey": {
-          "headline": "API 密钥",
-          "footer": "Airtable 使用简单的基于令牌的身份验证。要生成或管理您的 API 密钥，请访问您的 Airtable 账户页面。"
-        },
-        "baseId": {
-          "headline": "基础 ID",
-          "footer": "要获取您的 Airtable 基础 ID，请打开 Airtable API 页面并点击您要使用的基础。您将在介绍部分找到基础 ID。"
+        "base": {
+          "headline": "集合"
         },
         "table": {
-          "headline": "表名",
-          "footer": "务必准确输入表名，如同它在您的 Airtable 基础中显示的那样，例如 Table 1。\n如果您在 Airtable 上更改了表名，请在此处更新，否则集成将无法正常工作。"
+          "headline": "表格"
         }
       },
       "monday": {

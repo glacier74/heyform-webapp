@@ -62,6 +62,9 @@ export default function OsticketSettings({ app }: IntegrationSettingsFormProps) 
       >
         <Select
           className="w-full"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
@@ -77,6 +80,9 @@ export default function OsticketSettings({ app }: IntegrationSettingsFormProps) 
       >
         <Select
           className="w-full"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
@@ -88,6 +94,9 @@ export default function OsticketSettings({ app }: IntegrationSettingsFormProps) 
       <Form.Item name="phone" label={t('form.integrations.osticket.phoneNumber.headline')}>
         <Select
           className="w-full"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
@@ -103,6 +112,9 @@ export default function OsticketSettings({ app }: IntegrationSettingsFormProps) 
       >
         <Select
           className="w-full"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
@@ -118,6 +130,9 @@ export default function OsticketSettings({ app }: IntegrationSettingsFormProps) 
       >
         <Select
           className="w-full"
+          contentProps={{
+            position: 'popper'
+          }}
           options={formFields}
           placeholder={t('form.integrations.mapFields.leftPlaceholder')}
           labelKey="title"
