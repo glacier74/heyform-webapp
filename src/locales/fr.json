@@ -923,6 +923,11 @@
         "invalid": "L'URL du webhook n'est pas valide",
         "footer": "Créez votre <a1>application Slack</a1>, activez les <a2>Webhooks entrants</a2>, puis collez l'URL du Webhook ici."
       },
+      "slack": {
+        "channel": {
+          "headline": "Canal"
+        }
+      },
       "lark": {
         "label": "URL du webhook",
         "invalid": "L'URL du webhook n'est pas valide",

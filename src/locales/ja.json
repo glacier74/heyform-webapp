@@ -923,6 +923,11 @@
         "invalid": "Webhook URLが無効です",
         "footer": "<a1>Slackアプリ</a1>を作成し、<a2>Incoming Webhooks</a2>を有効にしてから、この場所にWebhook URLを貼り付けてください。"
       },
+      "slack": {
+        "channel": {
+          "headline": "チャンネル"
+        }
+      },
       "lark": {
         "label": "Webhook URL",
         "invalid": "Webhook URLが無効です",

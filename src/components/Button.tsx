@@ -3,10 +3,10 @@ import { ButtonHTMLAttributes, FC, ReactNode, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { useTranslation } from 'react-i18next'
 
-import { Tooltip } from '@/components/Tooltip.tsx'
 import { cn } from '@/utils'
 
 import { Loader } from './Loader'
+import { Tooltip } from './Tooltip'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg'

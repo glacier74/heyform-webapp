@@ -923,6 +923,11 @@
         "invalid": "URL webhooka jest nieprawidłowy",
         "footer": "Utwórz swoją <a1>aplikację Slack</a1>, włącz <a2>Przychodzące Webhooki</a2>, a następnie wklej tutaj URL webhooka."
       },
+      "slack": {
+        "channel": {
+          "headline": "Kanał"
+        }
+      },
       "lark": {
         "label": "URL webhooka",
         "invalid": "URL webhooka jest nieprawidłowy",

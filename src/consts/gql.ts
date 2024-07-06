@@ -1346,6 +1346,21 @@ export const CONTACTS_GQL = gql`
   }
 `
 
+export const SLACK_OAUTH_GQL = gql`
+  mutation slackOauth($input: ThirdPartyOAuthInput!) {
+    slackOauth(input: $input)
+  }
+`
+
+export const SLACK_CHANNELS_GQL = gql`
+  query slackChannels($input: ThirdPartyInput!) {
+    slackChannels(input: $input) {
+      id
+      name
+    }
+  }
+`
+
 export const CREATE_CONTACT_GQL = gql`
   mutation createContact($input: CreateContactInput!) {
     createContact(input: $input)

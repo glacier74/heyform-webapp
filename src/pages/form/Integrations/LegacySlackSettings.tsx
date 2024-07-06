@@ -1,3 +1,4 @@
+import { IconAlertCircle } from '@tabler/icons-react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Form, Input } from '@/components'
@@ -9,6 +10,13 @@ export default function LegacySlackSettings({ app }: IntegrationSettingsFormProp
 
   return (
     <IntegrationSettingsForm app={app}>
+      <div className="-mt-6 mb-6 flex items-center gap-x-2 rounded-lg border border-error px-4 py-3 text-error">
+        <IconAlertCircle className="h-5 w-5" />
+        <p className="text-sm/6">
+          Migrate to the new Slack integration before it is deprecated in the next version.
+        </p>
+      </div>
+
       <Form.Item
         name="webhook"
         label={t('form.integrations.legacyslack.label')}

@@ -923,6 +923,11 @@
         "invalid": "Webhook URL 无效",
         "footer": "创建您的 <a1>Slack 应用</a1>，启用 <a2>Incoming Webhooks</a2>，然后在此处粘贴 Webhook URL。"
       },
+      "slack": {
+        "channel": {
+          "headline": "Channel"
+        }
+      },
       "lark": {
         "label": "Webhook URL",
         "invalid": "Webhook URL 无效",

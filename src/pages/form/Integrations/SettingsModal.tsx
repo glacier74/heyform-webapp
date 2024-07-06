@@ -20,6 +20,7 @@ import LegacySlackSettings from './LegacySlackSettings'
 import MailChimpSettings from './MailChimpSettings'
 import MondaySettings from './MondaySettings'
 import OsticketSettings from './OsticketSettings'
+import SlackSettings from './SlackSettings'
 import SupportPalSettings from './SupportPalSettings'
 import TelegramSettings from './TelegramSettings'
 import WebhookSettings from './WebhookSettings'
@@ -55,6 +56,9 @@ const Settings: FC<{ app: IntegratedAppType }> = ({ app }) => {
 
       case 'legacyslack':
         return <LegacySlackSettings app={app} />
+
+      case 'slack':
+        return <SlackSettings app={app} />
 
       case 'lark':
         return <LarkSettings app={app} />

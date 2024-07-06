@@ -30,6 +30,8 @@ import {
   MONDAY_FIELDS_GQL,
   MONDAY_GROUPS_GQL,
   MONDAY_OAUTH_GQL,
+  SLACK_CHANNELS_GQL,
+  SLACK_OAUTH_GQL,
   SUPPORTPAL_DEPARTMENTS_GQL,
   SUPPORTPAL_PRIORITIES_GQL,
   SUPPORTPAL_STATUS_GQL,
@@ -507,6 +509,31 @@ export class IntegrationService {
   static async dropboxFolders(formId: string, appId: string) {
     return apollo.query({
       query: DROPBOX_FOLDERS_GQL,
+      variables: {
+        input: {
+          formId,
+          appId
+        }
+      }
+    })
+  }
+
+  static async slackOauth(formId: string, appId: string, code: string) {
+    return apollo.mutate({
+      mutation: SLACK_OAUTH_GQL,
+      variables: {
+        input: {
+          formId,
+          appId,
+          code
+        }
+      }
+    })
+  }
+
+  static async slackChannels(formId: string, appId: string) {
+    return apollo.query({
+      query: SLACK_CHANNELS_GQL,
       variables: {
         input: {
           formId,

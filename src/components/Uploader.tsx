@@ -4,9 +4,10 @@ import { useRequest } from 'ahooks'
 import { ChangeEvent, DragEvent, FC, MouseEvent, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Loader } from '@/components/Loader'
 import { AppService, UserService, WorkspaceService } from '@/services'
 import { cn, useParam } from '@/utils'
+
+import { Loader } from './Loader'
 
 export interface UploaderProps extends Omit<ComponentProps, 'onChange'> {
   accept?: string[]

@@ -107,6 +107,11 @@ const IntegrationItem: FC<IntegrationItemProps> = ({ app }) => {
     }
   }, [app.status, handleConnect, handleOpenLink, t, deleteLoading])
 
+  // Migrate to the new Slack integration before it is deprecated in the next version.
+  if (app.uniqueId === 'legacyslack' && !app.isAuthorized) {
+    return null
+  }
+
   return (
     <li className="cursor-default rounded-lg border border-input px-4 py-6 text-sm">
       <div className="flex items-center justify-between">
