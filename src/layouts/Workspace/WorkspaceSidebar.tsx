@@ -35,7 +35,7 @@ const RESOURCE_LINKS = [
   {
     icon: IconLocation,
     title: 'workspace.sidebar.gettingStarted',
-    href: 'https://docs.heyform.net/create-your-first-heyform'
+    href: 'https://docs.heyform.net/quickstart'
   },
   {
     icon: IconHelp,
