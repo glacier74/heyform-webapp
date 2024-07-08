@@ -3,9 +3,15 @@ import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Modal } from '@/components'
-import { ALL_FIELD_CONFIGS, BLOCK_GROUPS, FIELD_WELCOME_CONFIG } from '@/consts'
+import {
+  ADD_QUESTION2_STORAGE_NAME,
+  ALL_FIELD_CONFIGS,
+  BLOCK_GROUPS,
+  FIELD_WELCOME_CONFIG
+} from '@/consts'
 import { useAppStore, useModal } from '@/store'
 
+import { useOnboardingStorage } from '../OnboardingBadge'
 import { useStoreContext } from '../store'
 import { getFieldFromKind } from '../utils'
 import { QuestionIcon } from './QuestionList'
@@ -27,6 +33,7 @@ const QuestionTypeItem: FC<QuestionTypeItemProps> = ({
 
   const { closeModal } = useAppStore()
   const { dispatch } = useStoreContext()
+  const { setItem } = useOnboardingStorage()
 
   const isDisabled =
     (config.kind === FieldKindEnum.WELCOME && isWelcomeDisabled) ||
@@ -37,6 +44,8 @@ const QuestionTypeItem: FC<QuestionTypeItemProps> = ({
     if (isDisabled) {
       return
     }
+
+    setItem(ADD_QUESTION2_STORAGE_NAME, true)
 
     closeModal('QuestionTypesModal')
     dispatch({

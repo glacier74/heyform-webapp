@@ -29,6 +29,7 @@ export const PLAN_NAMES = {
 export const USER_STORAGE_KEY = 'HEYFORM_USER'
 export const WORKSPACE_STORAGE_KEY = 'HEYFORM_WORKSPACE'
 export const APPEARANCE_STORAGE_KEY = 'HEYFORM_APPEARANCE'
+export const ONBOARDING_STORAGE_KEY = 'HEYFORM_ONBOARDING'
 
 export const DEFAULT_PROJECT_NAMES: AnyMap = {
   de: "{name}'s Projekt",

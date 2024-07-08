@@ -4,10 +4,12 @@ import { FC, useCallback, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { useToast } from '@/components'
+import { ADD_QUESTION2_STORAGE_NAME } from '@/consts'
 import { FormService } from '@/services'
 import { useFormStore } from '@/store'
 import { cn, useParam } from '@/utils'
 
+import { useOnboardingStorage } from '../OnboardingBadge'
 import { useStoreContext } from '../store'
 import { getFilteredFields, insertThemeStyle } from '../utils'
 import { Queue } from '../utils/queue'
@@ -183,6 +185,7 @@ export default function BuilderCompose() {
   const toast = useToast()
   const { state } = useStoreContext()
   const { form, tempTheme, updateForm } = useFormStore()
+  const { setItem } = useOnboardingStorage()
 
   const queue = useRef(new Queue()).current
 
@@ -223,6 +226,7 @@ export default function BuilderCompose() {
   // Auto save
   useEffect(() => {
     if (state.version > 0) {
+      setItem(ADD_QUESTION2_STORAGE_NAME, true)
       queue.add()
     }
   }, [state.version])

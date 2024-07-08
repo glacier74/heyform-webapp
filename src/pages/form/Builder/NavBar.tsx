@@ -12,11 +12,13 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { Button, Tooltip, useToast } from '@/components'
+import { ADD_QUESTION2_STORAGE_NAME, PUBLISH_FORM_STORAGE_NAME } from '@/consts'
 import { FormService } from '@/services'
 import { useAppStore, useFormStore, useWorkspaceStore } from '@/store'
 import { useParam, useRouter } from '@/utils'
 
 import WorkspaceAccount from '../../../layouts/Workspace/WorkspaceAccount'
+import { OnboardingBadge, useOnboardingStorage } from './OnboardingBadge'
 import { useStoreContext } from './store'
 import { getFilteredFields } from './utils'
 
@@ -25,6 +27,7 @@ export default function BuilderNavBar() {
 
   const router = useRouter()
   const toast = useToast()
+  const { setItem } = useOnboardingStorage()
 
   const { workspaceId, projectId, formId } = useParam()
   const { openModal } = useAppStore()
@@ -70,6 +73,11 @@ export default function BuilderNavBar() {
 
   function handleSettings() {
     router.push(`/workspace/${workspaceId}/project/${projectId}/form/${formId}/settings`)
+  }
+
+  function handlePublish() {
+    setItem(PUBLISH_FORM_STORAGE_NAME, true)
+    run()
   }
 
   return (
@@ -157,9 +165,17 @@ export default function BuilderNavBar() {
           </Tooltip>
         </div>
 
-        <Button size="md" disabled={!form?.canPublish} loading={loading} onClick={run}>
+        <Button size="md" disabled={!form?.canPublish} loading={loading} onClick={handlePublish}>
           <IconSend2 className="h-5 w-5" />
           {t('components.publish')}
+
+          {form?.canPublish && (
+            <OnboardingBadge
+              className="-right-1 -top-1"
+              name={PUBLISH_FORM_STORAGE_NAME}
+              precondition={ADD_QUESTION2_STORAGE_NAME}
+            />
+          )}
         </Button>
 
         <div className="hidden items-center gap-4 sm:flex">

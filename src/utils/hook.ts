@@ -117,7 +117,12 @@ export function useWindow(
   function openWindow(url: string, features = 'scrollbars=yes,resizable=yes,width=600,height=800') {
     const win = window.open(url, '', features)!
     const timer = setInterval(() => {
-      if (win.closed) {
+      if (!win) {
+        clearInterval(timer)
+      }
+
+      // Check if the window is closed every second
+      else if (win.closed) {
         clearInterval(timer)
         onClose?.()
       }

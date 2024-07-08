@@ -1200,3 +1200,7 @@ export const OPERATORS = [
     label: 'form.builder.logic.rule.assignment'
   }
 ]
+
+export const ADD_QUESTION_STORAGE_NAME = 'ADD_QUESTION'
+export const ADD_QUESTION2_STORAGE_NAME = 'ADD_QUESTION2'
+export const PUBLISH_FORM_STORAGE_NAME = 'PUBLISH_FORM'
