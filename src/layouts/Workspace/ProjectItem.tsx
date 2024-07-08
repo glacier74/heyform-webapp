@@ -2,7 +2,7 @@ import { IconDots } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 
-import { Button, Dropdown, usePrompt } from '@/components'
+import { Button, Dropdown, Tooltip, usePrompt } from '@/components'
 import { ProjectService } from '@/services'
 import { useAppStore, useWorkspaceStore } from '@/store'
 import { ProjectType } from '@/types'
@@ -104,7 +104,9 @@ export default function ProjectItem({ project }: ProjectItemProps) {
           size="sm"
           iconOnly
         >
-          <IconDots className="h-4 w-4 text-secondary" />
+          <Tooltip label={t('project.menuTip')}>
+            <IconDots className="h-4 w-4 text-secondary" />
+          </Tooltip>
         </Button.Link>
       </Dropdown>
     </NavLink>

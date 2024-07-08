@@ -2,7 +2,7 @@ import { IconDots } from '@tabler/icons-react'
 import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Avatar, Button, Dropdown, useAlert } from '@/components'
+import { Avatar, Button, Dropdown, Tooltip, useAlert } from '@/components'
 import { WorkspaceService } from '@/services'
 import { useUserStore, useWorkspaceStore } from '@/store'
 import { MemberType } from '@/types'
@@ -134,7 +134,9 @@ const MemberItem: FC<{ member: MemberType }> = ({ member }) => {
         onClick={handleClick}
       >
         <Button.Link className="data-[state=open]:bg-accent-light" size="sm" iconOnly>
-          <IconDots className="h-5 w-5 text-secondary" />
+          <Tooltip label={t('members.menuTip')}>
+            <IconDots className="h-5 w-5 text-secondary" />
+          </Tooltip>
         </Button.Link>
       </Dropdown>
     )

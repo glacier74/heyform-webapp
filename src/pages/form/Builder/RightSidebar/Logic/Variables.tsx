@@ -79,7 +79,9 @@ const VariableItem: FC<{ variable: Variable }> = ({ variable }) => {
         onClick={handleMenuClick}
       >
         <Button.Link size="sm" iconOnly>
-          <IconDots className="h-5 w-5 text-secondary" />
+          <Tooltip label={t('form.builder.logic.hiddenFields.menuTip')}>
+            <IconDots className="h-5 w-5 text-secondary" />
+          </Tooltip>
         </Button.Link>
       </Dropdown>
     </li>

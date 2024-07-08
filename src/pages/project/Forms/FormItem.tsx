@@ -310,7 +310,9 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
               iconOnly
               onClick={handleShare}
             >
-              <IconDots className="h-5 w-5" />
+              <Tooltip label={t('form.menuTip')}>
+                <IconDots className="h-5 w-5" />
+              </Tooltip>
             </Button.Link>
           </Dropdown>
         )}

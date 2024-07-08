@@ -8,9 +8,10 @@ import {
 import { helper } from '@heyform-inc/utils'
 import { IconCaretDownFilled, IconDotsVertical } from '@tabler/icons-react'
 import { FC, MouseEvent, useCallback, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ReactSortable } from 'react-sortablejs'
 
-import { Button, Dropdown } from '@/components'
+import { Button, Dropdown, Tooltip } from '@/components'
 import { ALL_FIELD_CONFIGS } from '@/consts'
 import { FormFieldType } from '@/types'
 import { cn } from '@/utils'
@@ -85,6 +86,7 @@ const Question: FC<QuestionProps> = ({
   parentField,
   isDeleteEnabled
 }) => {
+  const { t } = useTranslation()
   const { dispatch } = useStoreContext()
 
   const isSelected = useMemo(() => currentId === field.id, [currentId, field.id])
@@ -287,7 +289,9 @@ const Question: FC<QuestionProps> = ({
                 size="sm"
                 iconOnly
               >
-                <IconDotsVertical className="h-4 w-4 text-secondary" />
+                <Tooltip label={t('form.builder.question.menuTip')}>
+                  <IconDotsVertical className="h-4 w-4 text-secondary" />
+                </Tooltip>
               </Button.Link>
             </Dropdown>
           )}
