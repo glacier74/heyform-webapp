@@ -191,10 +191,12 @@ export default function BuilderCompose() {
 
   const sync = useCallback(async () => {
     try {
+      const { fields } = getFilteredFields(state.fields!)
+
       const result = await FormService.updateFormSchemas({
         formId,
         version: form?.version as number,
-        ...getFilteredFields(state.fields!)
+        drafts: fields
       })
 
       updateForm(result)

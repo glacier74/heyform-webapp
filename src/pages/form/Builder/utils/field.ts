@@ -280,7 +280,7 @@ export function getFieldFromKind(kind: FieldKindEnum | string): FormFieldType {
 
 export function getFilteredFields(fields?: FormFieldType[]) {
   const result = {
-    drafts: [] as FormFieldType[]
+    fields: [] as FormFieldType[]
   }
 
   if (helper.isValidArray(fields)) {
@@ -302,7 +302,7 @@ export function getFilteredFields(fields?: FormFieldType[]) {
         }
       }
 
-      result.drafts.push(field)
+      result.fields.push(field)
     }
   }
 

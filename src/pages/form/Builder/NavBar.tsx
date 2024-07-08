@@ -38,10 +38,12 @@ export default function BuilderNavBar() {
   const { loading, run } = useRequest(
     async () => {
       if (form?.version && form.version > 0) {
+        const { fields } = getFilteredFields(state.fields!)
+
         await FormService.publishForm({
           formId,
           version: form.version as number,
-          ...getFilteredFields(state.fields)
+          drafts: fields
         })
 
         updateForm({
