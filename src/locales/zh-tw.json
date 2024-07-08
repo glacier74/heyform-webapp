@@ -575,6 +575,7 @@
     "owner": "所有者",
     "member": "成員",
     "lastSeen": "最後上線",
+    "menuTip": "轉移、刪除等...",
     "remove": {
       "title": "移除",
       "headline": "您確定要把 {{name}} 從此工作區移除嗎？",
@@ -750,6 +751,7 @@
     }
   },
   "project": {
+    "menuTip": "重新命名、刪除等...",
     "forms": {
       "title": "表單",
       "headline": "項目中沒有表單"
@@ -813,7 +815,7 @@
     }
   },
   "form": {
-    "metadata_zero": "暫無提交 · 編輯於 {{date}}",
+    "menuTip": "重新命名、建立副本等...",
     "metadata_one": "{{count}} 條提交 · 編輯於 {{date}}",
     "metadata_other": "{{count}} 條提交 · 編輯於 {{date}}",
     "metadata2_zero": "暫無提交 · 剩餘 {{date}}",
@@ -1227,6 +1229,7 @@
     "builder": {
       "title": "建構器",
       "question": {
+        "menuTip": "建立副本、刪除等...",
         "title": "問題",
         "answer": "答案",
         "recommended": "推薦",
@@ -1359,7 +1362,7 @@
       "logic": {
         "title": "邏輯",
         "hiddenFields": {
-          "headline": "隱藏欄位",
+          "menuTip": "編輯、刪除等...",
           "subHeadline": "隱藏欄位使您能夠追蹤調查對象。它們對填寫表單的人是不可見的，但可以高效地收集和利用數據。",
           "addHiddenField": "添加隱藏欄位",
           "updateHiddenField": "更新隱藏欄位",

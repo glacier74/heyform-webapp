@@ -575,6 +575,7 @@
     "owner": "所有者",
     "member": "成员",
     "lastSeen": "最后在线",
+    "menuTip": "转移、删除等...",
     "remove": {
       "title": "移除",
       "headline": "您确定要把 {{name}} 从此工作区移除吗？",
@@ -750,6 +751,7 @@
     }
   },
   "project": {
+    "menuTip": "重命名、删除等...",
     "forms": {
       "title": "表单",
       "headline": "项目中没有表单"
@@ -813,7 +815,7 @@
     }
   },
   "form": {
-    "metadata_zero": "暂无提交 · 编辑于 {{date}}",
+    "menuTip": "重命名、创建副本等...",
     "metadata_one": "{{count}} 条提交 · 编辑于 {{date}}",
     "metadata_other": "{{count}} 条提交 · 编辑于 {{date}}",
     "metadata2_zero": "暂无提交 · 剩余 {{date}}",
@@ -1227,6 +1229,7 @@
     "builder": {
       "title": "构建器",
       "question": {
+        "menuTip": "创建副本、删除等...",
         "title": "问题",
         "answer": "答案",
         "recommended": "推荐",
@@ -1359,7 +1362,7 @@
       "logic": {
         "title": "逻辑",
         "hiddenFields": {
-          "headline": "隐藏字段",
+          "menuTip": "编辑、删除等...",
           "subHeadline": "隐藏字段使您能够跟踪调查对象。它们对填写表单的人是不可见的，但可以高效地收集和利用数据。",
           "addHiddenField": "添加隐藏字段",
           "updateHiddenField": "更新隐藏字段",

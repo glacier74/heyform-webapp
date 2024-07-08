@@ -575,6 +575,7 @@
     "owner": "Besitzer",
     "member": "Mitglied",
     "lastSeen": "Zuletzt gesehen",
+    "menuTip": "Übertragen, löschen und mehr...",
     "remove": {
       "title": "Entfernen",
       "headline": "Sind Sie sicher, dass Sie {{name}} aus diesem Arbeitsbereich entfernen möchten?",
@@ -750,6 +751,7 @@
     }
   },
   "project": {
+    "menuTip": "Umbenennen, löschen und mehr...",
     "forms": {
       "title": "Formulare",
       "headline": "Es gibt keine Formulare im Projekt"
@@ -813,6 +815,7 @@
     }
   },
   "form": {
+    "menuTip": "Umbenennen, duplizieren und mehr...",
     "metadata_zero": "Noch keine Einreichungen · Bearbeitet am {{date}}",
     "metadata_one": "{{count}} Einreichung · Bearbeitet am {{date}}",
     "metadata_other": "{{count}} Einreichungen · Bearbeitet am {{date}}",
@@ -1227,6 +1230,7 @@
     "builder": {
       "title": "Ersteller",
       "question": {
+        "menuTip": "Duplizieren, löschen und mehr...",
         "title": "Frage",
         "answer": "Antwort",
         "recommended": "Empfohlen",
@@ -1359,6 +1363,7 @@
       "logic": {
         "title": "Logik",
         "hiddenFields": {
+          "menuTip": "Bearbeiten, löschen und mehr...",
           "headline": "Versteckte Felder",
           "subHeadline": "Versteckte Felder ermöglichen es Ihnen, Untersuchungsobjekte zu verfolgen. Sie bleiben für jeden unsichtbar, der das Formular ausfüllt, erlauben jedoch eine effiziente Sammlung und Nutzung von Daten.",
           "addHiddenField": "Verstecktes Feld hinzufügen",

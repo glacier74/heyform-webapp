@@ -575,6 +575,7 @@
     "owner": "Owner",
     "member": "Member",
     "lastSeen": "Last Seen",
+    "menuTip": "Transfer, delete and more...",
     "remove": {
       "title": "Remove",
       "headline": "Are you sure you want to remove {{name}} from this workspace?",
@@ -609,7 +610,11 @@
     "planName": "{{name}} plan",
     "year": "year",
     "month": "month",
-    "cycles": ["Forever", "Monthly", "Annually"],
+    "cycles": [
+      "Forever",
+      "Monthly",
+      "Annually"
+    ],
     "save16": "Save 16%",
     "keepFreePlan": "Keep using the free plan",
     "plans": {
@@ -750,6 +755,7 @@
     }
   },
   "project": {
+    "menuTip": "Rename, delete and more...",
     "forms": {
       "title": "Forms",
       "headline": "There are no forms in the project"
@@ -813,6 +819,7 @@
     }
   },
   "form": {
+    "menuTip": "Rename, duplicate and more...",
     "metadata_zero": "No submissions yet · Edited {{date}}",
     "metadata_one": "{{count}} submission · Edited {{date}}",
     "metadata_other": "{{count}} submissions · Edited {{date}}",
@@ -1228,6 +1235,7 @@
     "builder": {
       "title": "Builder",
       "question": {
+        "menuTip": "Duplicate, delete and more...",
         "title": "Question",
         "answer": "Answer",
         "recommended": "Recommended",
@@ -1360,6 +1368,7 @@
       "logic": {
         "title": "Logic",
         "hiddenFields": {
+          "menuTip": "Edit, delete and more...",
           "headline": "Hidden fields",
           "subHeadline": "Hidden fields enable you to track subjects under investigation. They remain invisible to anyone filling out the form, yet allow for the efficient collection and utilization of data.",
           "addHiddenField": "Add hidden field",

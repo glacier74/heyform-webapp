@@ -575,6 +575,7 @@
     "owner": "所有者",
     "member": "メンバー",
     "lastSeen": "最後にオンライン",
+    "menuTip": "転送、削除、およびその他...",
     "remove": {
       "title": "削除",
       "headline": "{{name}} をこのワークスペースから削除してもよろしいですか？",
@@ -750,6 +751,7 @@
     }
   },
   "project": {
+    "menuTip": "名前を変更、削除、その他...",
     "forms": {
       "title": "フォーム",
       "headline": "プロジェクトにフォームがありません"
@@ -813,7 +815,7 @@
     }
   },
   "form": {
-    "metadata_zero": "提出なし · {{date}} に編集",
+    "menuTip": "名前の変更、複製など...",
     "metadata_one": "{{count}} 件の提出 · {{date}} に編集",
     "metadata_other": "{{count}} 件の提出 · {{date}} に編集",
     "metadata2_zero": "提出なし · 残り {{date}}",
@@ -1227,6 +1229,7 @@
     "builder": {
       "title": "ビルダー",
       "question": {
+        "menuTip": "複製、削除など...",
         "title": "質問",
         "answer": "回答",
         "recommended": "おすすめ",
@@ -1359,7 +1362,7 @@
       "logic": {
         "title": "ロジック",
         "hiddenFields": {
-          "headline": "隠しフィールド",
+          "menuTip": "編集、削除、その他...",
           "subHeadline": "隠しフィールドは調査対象を追跡するために使用できます。これらはフォーム記入者には見えませんが、データの収集と利用に効果的です。",
           "addHiddenField": "隠しフィールドを追加",
           "updateHiddenField": "隠しフィールドを更新",

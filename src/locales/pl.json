@@ -575,6 +575,7 @@
     "owner": "Właściciel",
     "member": "Członek",
     "lastSeen": "Ostatnio widziany",
+    "menuTip": "Przenieś, usuń i więcej...",
     "remove": {
       "title": "Usuń",
       "headline": "Czy na pewno chcesz usunąć {{name}} z tego miejsca pracy?",
@@ -750,6 +751,7 @@
     }
   },
   "project": {
+    "menuTip": "Zmień nazwę, usuń i więcej...",
     "forms": {
       "title": "Formularze",
       "headline": "Brak formularzy w projekcie"
@@ -813,6 +815,7 @@
     }
   },
   "form": {
+    "menuTip": "Zmień nazwę, zduplikuj i więcej...",
     "metadata_zero": "Brak zgłoszeń · Edytowano {{date}}",
     "metadata_one": "{{count}} zgłoszenie · Edytowano {{date}}",
     "metadata_other": "{{count}} zgłoszenia · Edytowano {{date}}",
@@ -1227,6 +1230,7 @@
     "builder": {
       "title": "Kreator",
       "question": {
+        "menuTip": "Duplikuj, usuń i więcej...",
         "title": "Pytanie",
         "answer": "Odpowiedź",
         "recommended": "Zalecane",
@@ -1359,6 +1363,7 @@
       "logic": {
         "title": "Logika",
         "hiddenFields": {
+          "menuTip": "Edytuj, usuń i więcej...",
           "headline": "Ukryte pola",
           "subHeadline": "Ukryte pola umożliwiają śledzenie badanych tematów. Pozostają niewidoczne dla osób wypełniających formularz, ale pozwalają na efektywne zbieranie i wykorzystanie danych.",
           "addHiddenField": "Dodaj ukryte pole",

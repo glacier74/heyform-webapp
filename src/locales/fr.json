@@ -575,6 +575,7 @@
     "owner": "Propriétaire",
     "member": "Membre",
     "lastSeen": "Dernière vue",
+    "menuTip": "Transférer, supprimer et plus encore...",
     "remove": {
       "title": "Supprimer",
       "headline": "Êtes-vous sûr de vouloir supprimer {{name}} de cet espace de travail ?",
@@ -750,6 +751,7 @@
     }
   },
   "project": {
+    "menuTip": "Renommer, supprimer et plus...",
     "forms": {
       "title": "Formulaires",
       "headline": "Il n'y a aucun formulaire dans le projet"
@@ -813,6 +815,7 @@
     }
   },
   "form": {
+    "menuTip": "Renommer, dupliquer et plus...",
     "metadata_zero": "Aucune soumission pour l'instant · Modifié {{date}}",
     "metadata_one": "{{count}} soumission · Modifié {{date}}",
     "metadata_other": "{{count}} soumissions · Modifié {{date}}",
@@ -1227,6 +1230,7 @@
     "builder": {
       "title": "Constructeur",
       "question": {
+        "menuTip": "Dupliquer, supprimer et plus...",
         "title": "Question",
         "answer": "Réponse",
         "recommended": "Recommandé",
@@ -1359,6 +1363,7 @@
       "logic": {
         "title": "Logique",
         "hiddenFields": {
+          "menuTip": "Éditer, supprimer et plus...",
           "headline": "Champs cachés",
           "subHeadline": "Les champs cachés vous permettent de suivre les sujets en cours d'investigation. Ils restent invisibles pour toute personne remplissant le formulaire, mais permettent une collecte et une utilisation efficaces des données.",
           "addHiddenField": "Ajouter un champ caché",
