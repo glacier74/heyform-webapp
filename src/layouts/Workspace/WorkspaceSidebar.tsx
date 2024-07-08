@@ -50,7 +50,7 @@ const RESOURCE_LINKS = [
   {
     icon: IconGift,
     title: 'workspace.sidebar.whatsNew',
-    href: 'https://docs.heyform.net/changelog'
+    href: 'https://heyform.net/changelog'
   }
 ]
 
