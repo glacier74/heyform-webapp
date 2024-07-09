@@ -1,4 +1,11 @@
-import { AuthLayout, FormLayout, ProjectLayout, WorkspaceGuard, WorkspaceLayout } from '@/layouts'
+import {
+  AuthLayout,
+  BaseLayout,
+  FormLayout,
+  ProjectLayout,
+  WorkspaceGuard,
+  WorkspaceLayout
+} from '@/layouts'
 import ForgotPassword from '@/pages/auth/ForgotPassword'
 import Login from '@/pages/auth/Login'
 import OAuth from '@/pages/auth/OAuth'
@@ -58,7 +65,7 @@ const routes = [
   {
     path: '/verify-email',
     component: VerifyEmail,
-    layout: AuthLayout,
+    layout: BaseLayout,
     options: {
       title: 'verifyEmail.title',
       loginRequired: true
@@ -67,7 +74,7 @@ const routes = [
   {
     path: '/oauth/authorize',
     component: OAuth,
-    layout: AuthLayout,
+    layout: BaseLayout,
     options: {
       title: 'oauth.title',
       loginRequired: true
@@ -88,7 +95,7 @@ const routes = [
   // Workspace
   {
     path: '/workspace/create',
-    layout: AuthLayout,
+    layout: BaseLayout,
     component: CreateWorkspace,
     options: {
       loginRequired: true
@@ -104,7 +111,7 @@ const routes = [
   },
   {
     path: '/workspace/:workspaceId/invitation/:code',
-    layout: AuthLayout,
+    layout: BaseLayout,
     component: WorkspaceInvitation,
     options: {
       loginRequired: true,

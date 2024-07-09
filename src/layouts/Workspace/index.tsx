@@ -7,8 +7,8 @@ import { FC, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 
+import Logo from '@/assets/logo.svg?react'
 import { Button, useAlert } from '@/components'
-import { AuthLayout } from '@/layouts'
 import { UserService, WorkspaceService } from '@/services'
 import { useAppStore, useUserStore, useWorkspaceStore } from '@/store'
 import { cn, useParam, useQuery, useRouter } from '@/utils'
@@ -183,6 +183,39 @@ export const WorkspaceGuard: FC<LayoutProps> = ({ options, children }) => {
   )
 }
 
+export const BaseLayout: FC<LayoutProps> = ({ options, children }) => {
+  const { t } = useTranslation()
+
+  useEffect(() => {
+    if (helper.isValid(options?.title)) {
+      document.title = `${t(options!.title)} - HeyForm`
+    }
+  }, [options, t])
+
+  return (
+    <LoginGuard>
+      <div className="flex min-h-screen flex-col bg-foreground">
+        <div className="sticky top-0 flex items-center justify-between bg-foreground p-4">
+          <a href="/" className="flex items-center gap-2" title="HeyForm">
+            <Logo className="h-8 w-auto" />
+            <span className="text-xl font-medium">HeyForm</span>
+          </a>
+
+          <WorkspaceAccount
+            className="!p-0 hover:!bg-transparent hover:!outline-none [&_[data-slot=avatar]]:h-9 [&_[data-slot=avatar]]:w-9"
+            containerClassName="!p-0 border-none flex items-center"
+            isNameVisible={false}
+          />
+        </div>
+
+        <div className="flex flex-1 flex-col justify-center p-4 lg:p-12">{children}</div>
+      </div>
+
+      <UserAccountModal />
+    </LoginGuard>
+  )
+}
+
 const LayoutComponent: FC<LayoutProps> = ({ options, children }) => {
   const { t } = useTranslation()
 
@@ -204,7 +237,7 @@ const LayoutComponent: FC<LayoutProps> = ({ options, children }) => {
 
   if (!workspaces.find(w => w.id === workspaceId)) {
     return (
-      <AuthLayout>
+      <BaseLayout>
         <div className="flex flex-grow items-center justify-center">
           <div className="text-center">
             <h1 className="mb-4 text-2xl font-semibold">{t('workspace.notExist')}</h1>
@@ -216,7 +249,7 @@ const LayoutComponent: FC<LayoutProps> = ({ options, children }) => {
             </p>
           </div>
         </div>
-      </AuthLayout>
+      </BaseLayout>
     )
   }
 
