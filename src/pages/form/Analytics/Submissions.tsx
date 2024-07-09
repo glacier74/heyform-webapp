@@ -82,24 +82,10 @@ const AnswerValue: FC<{ answer: AnyMap }> = ({ answer }) => {
       return answer.value && [answer.value.start, answer.value.end].filter(Boolean).join(' - ')
 
     case FieldKindEnum.FILE_UPLOAD:
-      return (
-        <a
-          href={`${answer.value?.cdnUrlPrefix}/${
-            answer.value?.cdnKey
-          }?attname=${encodeURIComponent(answer.value?.filename)}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {answer.value?.filename}
-        </a>
-      )
+      return <div>{answer.value?.filename}</div>
 
     case FieldKindEnum.SIGNATURE:
-      return (
-        <a href={`${answer.value}?attname=signature.jpg`} target="_blank" rel="noreferrer">
-          {t('form.builder.question.signature')}
-        </a>
-      )
+      return <div>{t('form.builder.question.signature')}</div>
 
     default:
       return answer.value
@@ -112,8 +98,13 @@ const SubmissionItem: FC<SubmissionItemProps> = ({ answers = [] }) => {
   return (
     <div className="divide-y divide-accent-light">
       {answers.map(row => (
-        <div className="flex items-center justify-between py-2 text-sm/6" key={row.submissionId}>
-          <AnswerValue answer={row} />
+        <div
+          className="flex items-center justify-between gap-4 py-2 text-sm/6"
+          key={row.submissionId}
+        >
+          <div className="min-w-0 flex-1 whitespace-pre-line">
+            <AnswerValue answer={row} />
+          </div>
           <div className="text-xs text-secondary">{timeFromNow(row.endAt, i18n.language)}</div>
         </div>
       ))}

@@ -2,10 +2,9 @@ import { IconPlus } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 
 import { Button, Tooltip } from '@/components'
+import { OnboardingBadge, useOnboardingStorage } from '@/components'
 import { ADD_QUESTION_STORAGE_NAME } from '@/consts'
 import { useAppStore } from '@/store'
-
-import { OnboardingBadge, useOnboardingStorage } from '../OnboardingBadge'
 
 export default function SidebarHeader() {
   const { t } = useTranslation()

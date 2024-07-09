@@ -79,15 +79,23 @@ const AddressItem: FC<SubmissionCellProps> = ({ answer, field, isTableCell }) =>
   )
 }
 
-const DateRangeItem: FC<SubmissionCellProps> = ({ answer, field }) => {
+const DateRangeItem: FC<SubmissionCellProps> = ({ answer, field, isTableCell }) => {
   if (answer.kind !== field.kind || !helper.isObject(answer.value)) {
     return null
   }
 
-  return <span>{[answer.value.start, answer.value.end].filter(Boolean).join(' - ')}</span>
+  return (
+    <div
+      className={cn({
+        truncate: isTableCell
+      })}
+    >
+      {[answer.value.start, answer.value.end].filter(Boolean).join(' - ')}
+    </div>
+  )
 }
 
-const FileUploadItem: FC<SubmissionCellProps> = ({ answer, field }) => {
+const FileUploadItem: FC<SubmissionCellProps> = ({ answer, field, isTableCell }) => {
   if (answer.kind !== field.kind || !helper.isObject(answer.value)) {
     return null
   }
@@ -95,25 +103,41 @@ const FileUploadItem: FC<SubmissionCellProps> = ({ answer, field }) => {
   const filename = encodeURIComponent(answer.value.filename)
   const downloadUrl = `${answer.value.cdnUrlPrefix}/${answer.value.cdnKey}?attname=${filename}`
 
-  return (
-    <a className="inline-flex text-nowrap" href={downloadUrl} target="_blank" rel="noreferrer">
-      <IconFile className="h-5 w-5 text-secondary" />
-      <div className="ml-1 flex-1 overflow-hidden text-ellipsis whitespace-nowrap">
-        {answer.value.filename}
+  if (isTableCell) {
+    return (
+      <div className="flex gap-1">
+        <IconFile className="h-5 w-5 text-secondary" />
+        <div className="flex-1 truncate">{answer.value.filename}</div>
       </div>
+    )
+  }
+
+  return (
+    <a
+      className="inline-flex gap-1 text-nowrap"
+      href={downloadUrl}
+      target="_blank"
+      rel="noreferrer"
+    >
+      <IconFile className="h-5 w-5 text-secondary" />
+      <div className="flex-1 whitespace-nowrap">{answer.value.filename}</div>
     </a>
   )
 }
 
-const FullNameItem: FC<SubmissionCellProps> = ({ answer, field }) => {
+const FullNameItem: FC<SubmissionCellProps> = ({ answer, field, isTableCell }) => {
   if (answer.kind !== field.kind || !helper.isObject(answer.value)) {
     return null
   }
 
   return (
-    <span className="text-nowrap">
+    <div
+      className={cn({
+        truncate: isTableCell
+      })}
+    >
       {[answer.value.firstName, answer.value.lastName].filter(Boolean).join(' ')}
-    </span>
+    </div>
   )
 }
 
@@ -136,12 +160,12 @@ const InputTableItem: FC<SubmissionCellProps> = ({ answer, field, isTableCell })
 
   if (isTableCell) {
     return (
-      <span>
+      <div className="truncate">
         {result
           .filter(helper.isValidArray)
           .map(row => row.join(', '))
           .join('|')}
-      </span>
+      </div>
     )
   }
 
@@ -205,15 +229,19 @@ const MultipleChoiceItem: FC<SubmissionCellProps> = ({ answer, field, isTableCel
   )
 }
 
-const OpinionScaleItem: FC<SubmissionCellProps> = ({ answer, field }) => {
+const OpinionScaleItem: FC<SubmissionCellProps> = ({ answer, field, isTableCell }) => {
   if (answer.kind !== field.kind || !helper.isNumeric(answer.value)) {
     return null
   }
 
   return (
-    <span className="text-nowrap">
+    <div
+      className={cn({
+        truncate: isTableCell
+      })}
+    >
       {answer.value}/{field.properties?.total}
-    </span>
+    </div>
   )
 }
 
@@ -262,7 +290,7 @@ const SignatureItem: FC<SubmissionCellProps> = ({ answer, field }) => {
   return <Image src={answer.value} width={80} height={40} />
 }
 
-const TextItem: FC<SubmissionCellProps> = ({ answer, field }) => {
+const TextItem: FC<SubmissionCellProps> = ({ answer, field, isTableCell }) => {
   if (
     answer.kind !== field.kind ||
     !(helper.isString(answer.value) || helper.isNumber(answer.value))
@@ -270,16 +298,20 @@ const TextItem: FC<SubmissionCellProps> = ({ answer, field }) => {
     return null
   }
 
-  return <span className="text-nowrap">{answer.value}</span>
+  return <div className={cn(isTableCell ? 'truncate' : 'whitespace-pre-line')}>{answer.value}</div>
 }
 
-const URLItem: FC<SubmissionCellProps> = ({ answer, field }) => {
+const URLItem: FC<SubmissionCellProps> = ({ answer, field, isTableCell }) => {
   if (answer.kind !== field.kind || !helper.isString(answer.value)) {
     return null
   }
 
+  if (isTableCell) {
+    return <div className="truncate">{answer.value}</div>
+  }
+
   return (
-    <a className="text-nowrap" href={answer.value} target="_blank" rel="noreferrer">
+    <a href={answer.value} target="_blank" rel="noreferrer">
       {answer.value}
     </a>
   )
@@ -288,7 +320,7 @@ const URLItem: FC<SubmissionCellProps> = ({ answer, field }) => {
 const SubmitDateItem: FC<SubmissionCellProps> = ({ answer }) => {
   const { i18n } = useTranslation()
 
-  return <span className="text-nowrap">{formatDay(unixDate(answer.value), i18n.language)}</span>
+  return <div className="truncate">{formatDay(unixDate(answer.value), i18n.language)}</div>
 }
 
 const CheckboxItem: FC<SubmissionCellProps> = ({ submission }) => {
@@ -359,7 +391,7 @@ export const SubmissionHeaderCell: FC<SubmissionHeaderCellProps & ComponentProps
         configs={ICON_CONFIGS}
         kind={field.kind}
       />
-      <span className="text-nowrap" data-slot="label">
+      <span className="flex-1 truncate" data-slot="label">
         {label}
       </span>
     </div>

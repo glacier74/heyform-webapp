@@ -392,6 +392,7 @@
     "permanentlyDelete": "永久刪除",
     "previous": "上一步",
     "publish": "發佈",
+    "print": "Print",
     "revert": "還原",
     "refresh": "刷新數據",
     "rename": "重新命名",
@@ -880,7 +881,11 @@
       "downloadCSV": "下載 CSV",
       "maximize": "最大化表格",
       "minimize": "最小化表格",
-      "moveTo": "移動到 {{name}}"
+      "moveTo": "移動到 {{name}}",
+      "detail": {
+        "headline": "提交詳情",
+        "menuTip": "列印及更多..."
+      }
     },
     "integrations": {
       "title": "集成應用程式",

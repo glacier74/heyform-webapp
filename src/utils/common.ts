@@ -80,6 +80,6 @@ export function getDecoratedURL(url: string, query: Record<string, string>) {
   return toURLQuery(query, url)
 }
 
-export function nextTick(callback: () => void) {
-  setTimeout(callback, 1_000 / 60)
+export function nextTick(callback: () => void, ms = 1_000) {
+  setTimeout(callback, ms / 60)
 }

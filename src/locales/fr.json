@@ -392,6 +392,7 @@
     "permanentlyDelete": "Supprimer définitivement",
     "previous": "Précédent",
     "publish": "Publier",
+    "print": "Print",
     "revert": "Rétablir",
     "refresh": "Actualiser",
     "rename": "Renommer",
@@ -881,7 +882,11 @@
       "downloadCSV": "Télécharger CSV",
       "maximize": "Agrandir le tableau",
       "minimize": "Réduire le tableau",
-      "moveTo": "Déplacer vers {{name}}"
+      "moveTo": "Déplacer vers {{name}}",
+      "detail": {
+        "headline": "Détail de la soumission",
+        "menuTip": "Imprimer et plus..."
+      }
     },
     "integrations": {
       "title": "Intégrations",

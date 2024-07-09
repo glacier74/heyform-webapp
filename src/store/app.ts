@@ -9,11 +9,11 @@ interface AppStoreType {
   closeModal: (name: string) => void
 }
 
-export function useModal(name: string) {
+export function useModal<T = Any>(name: string) {
   const { modals, openModal, closeModal } = useAppStore()
 
   const isOpen = useMemo(() => modals.has(name), [name, modals])
-  const payload = useMemo(() => modals.get(name), [name, modals])
+  const payload = useMemo(() => modals.get(name) as T, [name, modals])
 
   const open = useCallback(() => {
     openModal(name)
@@ -49,10 +49,6 @@ export const useAppStore = create<AppStoreType>()(
 
     openModal: (name, payload) => {
       set(state => {
-        if (state.modals.has(name)) {
-          state.modals.delete(name)
-        }
-
         state.modals.set(name, payload)
       })
     },

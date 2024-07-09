@@ -392,6 +392,7 @@
     "permanentlyDelete": "永久删除",
     "previous": "上一步",
     "publish": "Publish",
+    "print": "Print",
     "revert": "还原",
     "refresh": "刷新数据",
     "rename": "重命名",
@@ -880,7 +881,11 @@
       "downloadCSV": "下载 CSV",
       "maximize": "最大化表格",
       "minimize": "最小化表格",
-      "moveTo": "移动到 {{name}}"
+      "moveTo": "移动到 {{name}}",
+      "detail": {
+        "headline": "提交详情",
+        "menuTip": "打印及更多..."
+      }
     },
     "integrations": {
       "title": "集成应用",

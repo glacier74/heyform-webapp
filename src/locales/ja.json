@@ -392,6 +392,7 @@
     "permanentlyDelete": "完全に削除",
     "previous": "前へ",
     "publish": "公開する",
+    "print": "Print",
     "revert": "元に戻す",
     "refresh": "データを更新する",
     "rename": "名前を変更する",
@@ -880,7 +881,11 @@
       "downloadCSV": "CSV をダウンロード",
       "maximize": "表を最大化",
       "minimize": "表を最小化",
-      "moveTo": "{{name}} に移動"
+      "moveTo": "{{name}} に移動",
+      "detail": {
+        "headline": "提出の詳細",
+        "menuTip": "印刷など..."
+      }
     },
     "integrations": {
       "title": "統合アプリケーション",

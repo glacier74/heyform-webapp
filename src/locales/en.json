@@ -392,6 +392,7 @@
     "permanentlyDelete": "Permanently delete",
     "previous": "Previous",
     "publish": "Publish",
+    "print": "Print",
     "revert": "Revert",
     "refresh": "Refresh",
     "rename": "Rename",
@@ -610,11 +611,7 @@
     "planName": "{{name}} plan",
     "year": "year",
     "month": "month",
-    "cycles": [
-      "Forever",
-      "Monthly",
-      "Annually"
-    ],
+    "cycles": ["Forever", "Monthly", "Annually"],
     "save16": "Save 16%",
     "keepFreePlan": "Keep using the free plan",
     "plans": {
@@ -885,7 +882,11 @@
       "downloadCSV": "Download CSV",
       "maximize": "Maximize table",
       "minimize": "Minimize table",
-      "moveTo": "Move to {{name}}"
+      "moveTo": "Move to {{name}}",
+      "detail": {
+        "headline": "Submission detail",
+        "menuTip": "Print and more..."
+      }
     },
     "integrations": {
       "title": "Integrations",

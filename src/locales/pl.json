@@ -392,6 +392,7 @@
     "permanentlyDelete": "Usuń na stałe",
     "previous": "Poprzedni",
     "publish": "Opublikuj",
+    "print": "Print",
     "revert": "Cofnij",
     "refresh": "Odśwież",
     "rename": "Zmień nazwę",
@@ -881,7 +882,11 @@
       "downloadCSV": "Pobierz CSV",
       "maximize": "Maksymalizuj tabelę",
       "minimize": "Minimalizuj tabelę",
-      "moveTo": "Przenieś do {{name}}"
+      "moveTo": "Przenieś do {{name}}",
+      "detail": {
+        "headline": "Szczegóły zgłoszenia",
+        "menuTip": "Drukuj i więcej..."
+      }
     },
     "integrations": {
       "title": "Integracje",

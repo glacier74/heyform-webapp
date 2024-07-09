@@ -12,13 +12,13 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { Button, Tooltip, useToast } from '@/components'
+import { OnboardingBadge, useOnboardingStorage } from '@/components'
 import { ADD_QUESTION2_STORAGE_NAME, PUBLISH_FORM_STORAGE_NAME } from '@/consts'
 import { FormService } from '@/services'
 import { useAppStore, useFormStore, useWorkspaceStore } from '@/store'
 import { useParam, useRouter } from '@/utils'
 
 import WorkspaceAccount from '../../../layouts/Workspace/WorkspaceAccount'
-import { OnboardingBadge, useOnboardingStorage } from './OnboardingBadge'
 import { useStoreContext } from './store'
 import { getFilteredFields } from './utils'
 

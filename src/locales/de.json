@@ -392,6 +392,7 @@
     "permanentlyDelete": "Dauerhaft löschen",
     "previous": "Zurück",
     "publish": "Veröffentlichen",
+    "print": "Print",
     "revert": "Zurücksetzen",
     "refresh": "Aktualisieren",
     "rename": "Umbenennen",
@@ -881,7 +882,11 @@
       "downloadCSV": "CSV herunterladen",
       "maximize": "Tabelle maximieren",
       "minimize": "Tabelle minimieren",
-      "moveTo": "Verschieben nach {{name}}"
+      "moveTo": "Verschieben nach {{name}}",
+      "detail": {
+        "headline": "Einsendungsdetails",
+        "menuTip": "Drucken und mehr..."
+      }
     },
     "integrations": {
       "title": "Integrationen",

@@ -2,6 +2,7 @@ import { FieldKindEnum } from '@heyform-inc/shared-types-enums'
 import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { useOnboardingStorage } from '@/components'
 import { Modal } from '@/components'
 import {
   ADD_QUESTION2_STORAGE_NAME,
@@ -11,7 +12,6 @@ import {
 } from '@/consts'
 import { useAppStore, useModal } from '@/store'
 
-import { useOnboardingStorage } from '../OnboardingBadge'
 import { useStoreContext } from '../store'
 import { getFieldFromKind } from '../utils'
 import { QuestionIcon } from './QuestionList'

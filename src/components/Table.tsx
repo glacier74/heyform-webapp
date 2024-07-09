@@ -1,25 +1,20 @@
-import { helper } from '@heyform-inc/utils'
-import { IconArrowsDiagonal } from '@tabler/icons-react'
 import { useBoolean, usePagination } from 'ahooks'
-import { PaginationResult } from 'ahooks/lib/usePagination/types'
 import {
   ReactNode,
   Ref,
   TableHTMLAttributes,
   useCallback,
+  useEffect,
   useImperativeHandle,
   useMemo,
   useState
 } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { cn } from '@/utils'
 
 import { AsyncProps } from './Async'
-import { Button } from './Button'
 import { Checkbox } from './Checkbox'
 import { Pagination } from './Pagination'
-import { Tooltip } from './Tooltip'
 
 export interface TableColumn<T, K> {
   field: T
@@ -32,19 +27,17 @@ export interface TableFetchParams {
   pageSize: number
 }
 
-export interface TableDetailRenderProps {
+export interface TableRef<K> {
+  toNext: () => void
+  toPrevious: () => void
+  unexpand: () => void
+  refresh: () => Promise<{ total: number; list: K[] }>
+}
+
+export interface TableState {
   isNextDisabled: boolean
   isPreviousDisabled: boolean
   loading: boolean
-  toNext: () => void
-  toPrevious: () => void
-  closePanel: () => void
-}
-
-type TableDetailRender<K> = (record: K, props: TableDetailRenderProps) => ReactNode
-
-export interface TableRef<K> {
-  refresh: () => Promise<{ total: number; list: K[] }>
 }
 
 interface TableProps<T, K>
@@ -61,79 +54,49 @@ interface TableProps<T, K>
   }
   rowKey?: string
   isSelectable?: boolean
-  isExpandable?: boolean
   selectedRowKeys?: string[]
   columns: TableColumn<T, K>[]
   defaultPage?: number
   defaultPageSize?: number
   fetch: (params: TableFetchParams) => Promise<{ total: number; list: Any[] }>
-  detailRender?: TableDetailRender<K>
+  onExpandedChange?: (record: K, state: TableState) => void
   onSelectionChange?: (selectedRowKeys: string[]) => void
 }
 
-interface DetailPanelProps<K> {
-  className?: string
-  row: K
-  index?: number
-  count: number
-  loading: boolean
-  pagination: PaginationResult<Any, Any>['pagination']
-  detailRender: TableDetailRender<K>
-  onChange: (index?: number) => void
+interface TrProps<T, K> {
+  index: number
+  record: K & { _key: string }
+  columns: Array<TableColumn<T, K> & { _key: string }>
+  isSelected?: boolean
+  onClick: (index: number) => void
+  onSelect: (checked: boolean, key: string) => void
 }
 
-function DetailPanel<T>({
-  className,
-  row,
-  index = 0,
-  count,
-  loading,
-  pagination,
-  detailRender,
-  onChange
-}: DetailPanelProps<T>) {
-  const isPreviousDisabled = useMemo(
-    () => pagination.current <= 1 && index === 0,
-    [index, pagination]
-  )
-  const isNextDisabled = useMemo(
-    () => pagination.current >= pagination.total && index === count - 1,
-    [count, index, pagination]
-  )
+function Tr<T, K>({ index, record, columns, isSelected, onSelect, onClick }: TrProps<T, K>) {
+  function handleSelect(checked: boolean) {
+    onSelect(checked, record._key)
+  }
 
-  const toPrevious = useCallback(() => {
-    if (index <= 0) {
-      pagination.changeCurrent(pagination.current - 1)
-      onChange(0)
-    } else {
-      onChange(index - 1)
-    }
-  }, [index, onChange, pagination])
-
-  const toNext = useCallback(() => {
-    if (index >= count - 1) {
-      pagination.changeCurrent(pagination.current + 1)
-      onChange(count - 1)
-    } else {
-      onChange(index + 1)
-    }
-  }, [index, count, pagination, onChange])
-
-  function handleClose() {
-    onChange(undefined)
+  function handleClick() {
+    onClick(index)
   }
 
   return (
-    <div className={cn('w-[31.25rem]', className)}>
-      {detailRender(row, {
-        loading,
-        isPreviousDisabled,
-        isNextDisabled,
-        toNext,
-        toPrevious,
-        closePanel: handleClose
-      })}
-    </div>
+    <tr
+      className="cursor-pointer border-b border-accent hover:bg-primary/[2.5%] data-[selected]:bg-primary/[2.5%] [&:hover_[data-slot=expand]]:opacity-100"
+      data-selected={isSelected ? '' : undefined}
+      onClick={handleClick}
+    >
+      <td data-slot="select-row" onClick={e => e.stopPropagation()}>
+        <div className="flex items-center gap-x-1">
+          <Checkbox value={isSelected} onChange={handleSelect} />
+        </div>
+      </td>
+
+      {columns.map((col, index) => (
+        <td key={col._key}>{col.cellRender(col.field, record, index)}</td>
+      ))}
+    </tr>
   )
 }
 
@@ -143,27 +106,28 @@ export function Table<T, K>({
   classNames,
   rowKey = 'id',
   isSelectable = true,
-  isExpandable = false,
   selectedRowKeys = [],
-  columns,
+  columns: rawColumns,
   defaultPage: defaultCurrent = 1,
   defaultPageSize = 20,
   refreshDeps = [],
   fetch,
   loader,
-  detailRender,
   emptyRender,
   errorRender,
-  onSelectionChange
+  onSelectionChange,
+  onExpandedChange
 }: TableProps<T, K>) {
-  const { t } = useTranslation()
-
-  const [expandedIndex, setExpandedIndex] = useState<number>()
+  const [expandedIndex, setExpandedIndex] = useState<number>(-1)
   const [isRefreshing, { setTrue, setFalse }] = useBoolean(false)
 
-  const isExpanded = useMemo(
-    () => isExpandable && detailRender && !helper.isNil(expandedIndex) && expandedIndex! > -1,
-    [detailRender, expandedIndex, isExpandable]
+  const columns = useMemo(
+    () =>
+      rawColumns.map(c => ({
+        _key: (c.field as AnyMap)[rowKey],
+        ...c
+      })),
+    [rawColumns, rowKey]
   )
 
   const { data, loading, error, pagination, runAsync, params } = usePagination(fetch, {
@@ -186,6 +150,41 @@ export function Table<T, K>({
     [columns, isSelectable]
   )
 
+  const list = useMemo(
+    () =>
+      (data?.list || []).map(r => ({
+        _key: r[rowKey],
+        ...r
+      })),
+    [data?.list, rowKey]
+  )
+
+  const toPrevious = useCallback(() => {
+    let index: number
+
+    if (expandedIndex <= 0) {
+      pagination.changeCurrent(pagination.current - 1)
+      index = 0
+    } else {
+      index = expandedIndex - 1
+    }
+
+    setExpandedIndex(index)
+  }, [expandedIndex, pagination])
+
+  const toNext = useCallback(() => {
+    let index: number
+
+    if (expandedIndex >= list.length - 1) {
+      pagination.changeCurrent(pagination.current + 1)
+      index = list.length - 1
+    } else {
+      index = expandedIndex + 1
+    }
+
+    setExpandedIndex(index)
+  }, [expandedIndex, list, pagination])
+
   const handleSelectAll = useCallback(
     (selected: boolean) => {
       onSelectionChange?.(selected ? (data?.list || []).map(row => (row as AnyMap)[rowKey]) : [])
@@ -194,9 +193,9 @@ export function Table<T, K>({
   )
 
   const handleSelectRow = useCallback(
-    (selected: boolean, key: string) => {
+    (checked: boolean, key: string) => {
       onSelectionChange?.(
-        selected ? [...selectedRowKeys, key] : selectedRowKeys.filter(v => v !== key)
+        checked ? [...selectedRowKeys, key] : selectedRowKeys.filter(v => v !== key)
       )
     },
     [onSelectionChange, selectedRowKeys]
@@ -244,65 +243,32 @@ export function Table<T, K>({
           </tr>
         )
       } else {
-        return data?.list.map((record, index) => {
-          const key = (record as AnyMap)[rowKey]
-          const isSelected = selectedRowKeys.includes(key)
-
-          return (
-            <tr
-              key={key}
-              className="border-b border-accent hover:bg-primary/[2.5%] data-[selected]:bg-primary/[2.5%] [&:hover_[data-slot=expand]]:opacity-100 [&:hover_[data-slot=expand]]:opacity-100"
-              data-selected={isSelected ? '' : undefined}
-            >
-              <td data-slot="select-row">
-                <div className="flex items-center gap-x-1">
-                  <Checkbox
-                    value={isSelected}
-                    onChange={selected => handleSelectRow(selected, key)}
-                  />
-
-                  {isExpandable && (
-                    <Tooltip label={t('components.expand')}>
-                      <Button.Link
-                        className="!h-6 !w-6 text-secondary opacity-0 hover:text-primary"
-                        size="sm"
-                        iconOnly
-                        onClick={() => setExpandedIndex(index)}
-                        data-slot="expand"
-                      >
-                        <IconArrowsDiagonal className="h-4 w-4" />
-                      </Button.Link>
-                    </Tooltip>
-                  )}
-                </div>
-              </td>
-
-              {columns.map((col, index) => (
-                <td key={(col.field as AnyMap)[rowKey]}>
-                  {col.cellRender(col.field, record, index)}
-                </td>
-              ))}
-            </tr>
-          )
-        })
+        return list.map((record, index) => (
+          <Tr<T, K>
+            key={record._key}
+            index={index}
+            record={record}
+            columns={columns}
+            isSelected={selectedRowKeys?.includes(record._key)}
+            onSelect={handleSelectRow}
+            onClick={setExpandedIndex}
+          />
+        ))
       }
     }
   }, [
     isRefreshing,
+    pagination.total,
     loading,
     error,
     colSpanLength,
     loader,
     errorRender,
-    pagination.total,
     emptyRender,
     refresh,
-    data?.list,
-    rowKey,
-    selectedRowKeys,
-    isExpandable,
-    t,
+    list,
     columns,
+    selectedRowKeys,
     handleSelectRow
   ])
 
@@ -331,35 +297,41 @@ export function Table<T, K>({
   useImperativeHandle<TableRef<K>, TableRef<K>>(
     ref,
     () => ({
-      refresh
+      refresh,
+      toPrevious,
+      toNext,
+      unexpand: () => setExpandedIndex(-1)
     }),
-    [refresh]
+    [refresh, toNext, toPrevious]
   )
 
-  return (
-    <div className={cn({ 'flex gap-5': isExpanded }, className)}>
-      <div className={cn({ 'w-[calc(100%-30rem)]': isExpanded }, classNames?.tablePanel)}>
-        <div className={classNames?.container}>
-          <table className={classNames?.table}>
-            <thead className="border-b border-accent">{Thead}</thead>
-            <tbody>{TBody}</tbody>
-          </table>
-        </div>
-        {Footer}
-      </div>
+  useEffect(() => {
+    if (onExpandedChange && expandedIndex > -1) {
+      onExpandedChange?.(list[expandedIndex], {
+        isPreviousDisabled: pagination.current <= 1 && expandedIndex === 0,
+        isNextDisabled: pagination.current >= pagination.total && expandedIndex === list.length - 1,
+        loading: !isRefreshing && loading
+      })
+    }
+  }, [
+    onExpandedChange,
+    expandedIndex,
+    isRefreshing,
+    list,
+    loading,
+    pagination.current,
+    pagination.total
+  ])
 
-      {isExpanded && (
-        <DetailPanel
-          className={classNames?.detailPanel}
-          row={data?.list[expandedIndex as number]}
-          index={expandedIndex}
-          count={data?.list.length as number}
-          loading={!isRefreshing && loading}
-          pagination={pagination}
-          detailRender={detailRender!}
-          onChange={setExpandedIndex}
-        />
-      )}
+  return (
+    <div className={className}>
+      <div className={classNames?.container}>
+        <table className={classNames?.table}>
+          <thead className="border-b border-accent">{Thead}</thead>
+          <tbody>{TBody}</tbody>
+        </table>
+      </div>
+      {Footer}
     </div>
   )
 }

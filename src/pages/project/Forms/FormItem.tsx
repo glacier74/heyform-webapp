@@ -304,12 +304,7 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
             multiLanguage
             onClick={handleClick}
           >
-            <Button.Link
-              size="sm"
-              className="data-[state=open]:bg-accent-light"
-              iconOnly
-              onClick={handleShare}
-            >
+            <Button.Link size="sm" className="data-[state=open]:bg-accent-light" iconOnly>
               <Tooltip label={t('form.menuTip')}>
                 <IconDots className="h-5 w-5" />
               </Tooltip>
