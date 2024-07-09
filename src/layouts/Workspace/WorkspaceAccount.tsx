@@ -1,7 +1,7 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { IconCheck, IconChevronRight } from '@tabler/icons-react'
 import { useLocalStorageState } from 'ahooks'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Avatar, Button } from '@/components'
@@ -31,7 +31,8 @@ export default function WorkspaceAccount({
   const { openModal } = useAppStore()
 
   const [appearance, setAppearance] = useLocalStorageState(APPEARANCE_STORAGE_KEY, {
-    defaultValue: 'system'
+    defaultValue: 'system',
+    listenStorageChange: true
   })
 
   function handleLogout() {
@@ -41,12 +42,37 @@ export default function WorkspaceAccount({
     })
   }
 
+  const handleChange = useCallback(
+    ({ matches }: Any) => {
+      let value = appearance
+
+      if (appearance === 'system') {
+        value = matches ? 'dark' : 'light'
+      }
+
+      if (value === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    },
+    [appearance]
+  )
+
   useEffect(() => {
-    if (appearance === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+
+    mediaQuery.addEventListener('change', handleChange)
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange)
     }
+  }, [handleChange])
+
+  useEffect(() => {
+    handleChange({
+      matches: appearance === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches
+    })
   }, [appearance])
 
   return (
