@@ -1,5 +1,5 @@
 import { unixDate } from '@heyform-inc/utils'
-import { IconCheck, IconX } from '@tabler/icons-react'
+import { IconCheck } from '@tabler/icons-react'
 import dayjs from 'dayjs'
 import { FC, useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -284,14 +284,6 @@ export default function UpgradeModal() {
       onOpenChange={onOpenChange}
     >
       <UpgradeModalComponent isBillingPage={payload?.isBillingPage} />
-      <Button.Link
-        className="absolute right-4 top-4 text-secondary hover:text-primary"
-        size="sm"
-        iconOnly
-        onClick={() => onOpenChange(false)}
-      >
-        <IconX />
-      </Button.Link>
     </Modal>
   )
 }

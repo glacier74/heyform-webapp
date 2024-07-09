@@ -13,7 +13,7 @@ import {
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { IconX } from '@tabler/icons-react'
 import { Rule } from 'rc-field-form/es/interface'
-import { FC, ReactNode, useCallback } from 'react'
+import { FC, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { cn, useFormState } from '@/utils'
@@ -38,6 +38,11 @@ const ModalComponent: FC<ModalProps> = ({
   onOpenChange,
   children
 }) => {
+  const { t } = useTranslation()
+
+  const timerRef = useRef<Timeout>()
+  const [lazyOpen, setLazyOpen] = useState(open)
+
   const handleOpenChange = useCallback(
     (open: boolean) => {
       if (!loading) {
@@ -46,6 +51,18 @@ const ModalComponent: FC<ModalProps> = ({
     },
     [loading, onOpenChange]
   )
+
+  useEffect(() => {
+    if (open === false) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current)
+      }
+
+      timerRef.current = setTimeout(() => setLazyOpen(false), 200)
+    } else {
+      setLazyOpen(true)
+    }
+  }, [open])
 
   return (
     <Root open={open} onOpenChange={handleOpenChange}>
@@ -61,7 +78,7 @@ const ModalComponent: FC<ModalProps> = ({
           onCloseAutoFocus={e => e.preventDefault()}
           {...contentProps}
           className={cn(
-            'scrollbar fixed bottom-0 left-0 right-0 z-10 max-h-[80vh] w-full max-w-xl overflow-y-auto rounded-lg border border-input bg-foreground p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] shadow-lg duration-200 data-[state=closed]:duration-100 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-bottom-0 data-[state=open]:slide-in-from-bottom-[80%] sm:bottom-auto sm:left-[50%] sm:right-auto sm:top-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] data-[state=closed]:sm:zoom-out-95 data-[state=open]:sm:zoom-in-95 data-[state=closed]:sm:slide-out-to-left-1/2 data-[state=closed]:sm:slide-out-to-top-[48%] data-[state=open]:sm:slide-in-from-left-1/2 data-[state=open]:sm:slide-in-from-top-[48%]',
+            'scrollbar fixed bottom-0 left-0 right-0 z-10 max-h-[80vh] w-full max-w-xl overflow-y-auto rounded-lg border border-input bg-foreground p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-bottom-0 data-[state=open]:slide-in-from-bottom-[80%] sm:bottom-auto sm:left-[50%] sm:right-auto sm:top-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] data-[state=closed]:sm:zoom-out-95 data-[state=open]:sm:zoom-in-95 data-[state=closed]:sm:slide-out-to-left-1/2 data-[state=closed]:sm:slide-out-to-top-[48%] data-[state=open]:sm:slide-in-from-left-1/2 data-[state=open]:sm:slide-in-from-top-[48%] print:!fixed print:!bottom-[initial] print:!left-0 print:!right-[initial] print:!top-0 print:!h-auto print:!max-h-none print:!transform-none print:!border-0 print:!shadow-none',
             contentProps?.className
           )}
         >
@@ -71,7 +88,20 @@ const ModalComponent: FC<ModalProps> = ({
           <Description>
             <VisuallyHidden />
           </Description>
-          {open && children}
+
+          {lazyOpen && children}
+
+          <Close asChild>
+            <Button.Link
+              className="absolute right-2 top-2 text-secondary hover:text-primary"
+              size="sm"
+              iconOnly
+              onClick={() => handleOpenChange(false)}
+            >
+              <span className="sr-only">{t('components.close')}</span>
+              <IconX className="h-5 w-5" />
+            </Button.Link>
+          </Close>
         </Content>
       </Portal>
     </Root>
@@ -79,35 +109,13 @@ const ModalComponent: FC<ModalProps> = ({
 }
 
 interface SimpleModalProps extends ModalProps {
-  isCloseShow?: boolean
   title?: ReactNode
   description?: ReactNode
 }
 
-const SimpleModal: FC<SimpleModalProps> = ({
-  isCloseShow = false,
-  title,
-  description,
-  children,
-  ...restProps
-}) => {
-  const { t } = useTranslation()
-
+const SimpleModal: FC<SimpleModalProps> = ({ title, description, children, ...restProps }) => {
   return (
     <ModalComponent {...restProps}>
-      {isCloseShow && (
-        <Close asChild>
-          <Button.Link
-            className="absolute right-[1.2rem] top-[1.2rem]"
-            size="sm"
-            iconOnly
-            onClick={() => restProps?.onOpenChange?.(false)}
-          >
-            <span className="sr-only">{t('components.close')}</span>
-            <IconX className="h-6 w-6 sm:h-5 sm:w-5" />
-          </Button.Link>
-        </Close>
-      )}
       <Title className="text-balance text-xl/6 font-semibold text-primary sm:text-lg/6">
         {title}
       </Title>
@@ -119,7 +127,7 @@ const SimpleModal: FC<SimpleModalProps> = ({
   )
 }
 
-export interface AlertModalProps extends Omit<SimpleModalProps, 'isCloseShow' | 'children'> {
+export interface AlertModalProps extends Omit<SimpleModalProps, 'children'> {
   fetch?: () => Promise<void>
   showFetchError?: boolean
   cancelProps?: Omit<ButtonProps, 'onClick'> & {
@@ -233,7 +241,7 @@ const AlertModal: FC<AlertModalProps> = ({
   )
 }
 
-export interface PromptModalProps extends Omit<SimpleModalProps, 'isCloseShow' | 'children'> {
+export interface PromptModalProps extends Omit<SimpleModalProps, 'children'> {
   value?: Any
   fetch?: (values: Any) => Promise<void>
   showFetchError?: boolean

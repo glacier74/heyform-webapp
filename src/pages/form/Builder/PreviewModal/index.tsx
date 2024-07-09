@@ -1,9 +1,8 @@
 import { FormRenderer } from '@heyform-inc/form-renderer'
-import { IconX } from '@tabler/icons-react'
 import { FC, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Button, Modal, Tabs } from '@/components'
+import { Modal, Tabs } from '@/components'
 import { useFormStore, useModal } from '@/store'
 import { cn } from '@/utils'
 
@@ -11,7 +10,7 @@ interface PreviewComponentProps {
   onClose: () => void
 }
 
-const PreviewComponent: FC<PreviewComponentProps> = ({ onClose }) => {
+const PreviewComponent: FC<PreviewComponentProps> = () => {
   const { t } = useTranslation()
 
   const { form: rawForm } = useFormStore()
@@ -50,15 +49,6 @@ const PreviewComponent: FC<PreviewComponentProps> = ({ onClose }) => {
           defaultTab={platform}
           onChange={setPlatform}
         />
-
-        <Button.Link
-          className="text-secondary hover:text-primary"
-          size="sm"
-          iconOnly
-          onClick={onClose}
-        >
-          <IconX />
-        </Button.Link>
       </div>
 
       <div className="h-[calc(100vh-4rem)] bg-foreground lg:rounded-lg lg:shadow-sm lg:ring-1 lg:ring-primary/5">

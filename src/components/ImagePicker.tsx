@@ -134,7 +134,11 @@ export const ImagePicker: FC<ImagePickerProps> = ({
             defaultTab={defaultTab}
             action={
               <Close asChild>
-                <Button.Link className="-mt-2.5" size="sm" iconOnly>
+                <Button.Link
+                  className="-mt-2.5 text-secondary hover:text-primary"
+                  size="sm"
+                  iconOnly
+                >
                   <span className="sr-only">{t('components.close')}</span>
                   <IconX className="h-5 w-5" />
                 </Button.Link>
