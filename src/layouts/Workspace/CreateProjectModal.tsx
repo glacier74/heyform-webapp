@@ -82,6 +82,7 @@ const CreateProjectForm: FC<Pick<SimpleFormProps, 'onLoadingChange'>> = ({ onLoa
   const { closeModal } = useAppStore()
   const { user } = useUserStore()
   const { workspace, addProject } = useWorkspaceStore()
+  const { payload } = useModal('CreateProjectModal')
 
   async function fetch(values: ProjectType) {
     const result = await ProjectService.create(workspaceId, values.name, values.members)
@@ -92,7 +93,12 @@ const CreateProjectForm: FC<Pick<SimpleFormProps, 'onLoadingChange'>> = ({ onLoa
     })
 
     closeModal('CreateProjectModal')
-    router.push(`/workspace/${workspaceId}/project/${result}`)
+
+    if (payload?.callback) {
+      payload.callback(result)
+    } else {
+      router.push(`/workspace/${workspaceId}/project/${result}/`)
+    }
   }
 
   return (

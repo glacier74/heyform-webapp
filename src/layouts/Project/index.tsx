@@ -8,7 +8,6 @@ import { useAppStore, useWorkspaceStore } from '@/store'
 import { cn, useParam } from '@/utils'
 
 import { WorkspaceLayout } from '../Workspace'
-import CreateFormModal from './CreateFormModal'
 import ProjectMembers from './ProjectMembers'
 import ProjectMembersModal from './ProjectMembersModal'
 
@@ -73,7 +72,6 @@ export const ProjectLayout: FC<LayoutProps> = ({ options, children }) => {
       </WorkspaceLayout>
 
       <ProjectMembersModal />
-      <CreateFormModal />
     </>
   )
 }

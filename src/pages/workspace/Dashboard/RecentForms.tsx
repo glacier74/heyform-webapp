@@ -3,15 +3,19 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Async, EmptyState, Repeat } from '@/components'
-import FormItem from '@/pages/project/Forms/FormItem'
 import { WorkspaceService } from '@/services'
+import { useAppStore } from '@/store'
 import { FormType } from '@/types'
 import { useParam } from '@/utils'
 
-export default function RecentForms({ onClick }: ComponentProps) {
+import FormItem from '../../project/Forms/FormItem'
+
+export default function RecentForms() {
   const { t } = useTranslation()
 
   const { workspaceId } = useParam()
+  const { openModal } = useAppStore()
+
   const [data, setData] = useState<FormType[]>([])
 
   async function fetch() {
@@ -38,7 +42,7 @@ export default function RecentForms({ onClick }: ComponentProps) {
             headline={t('dashboard.noForms')}
             subHeadline={t('dashboard.pickTemplate')}
             buttonTitle={t('form.creation.title')}
-            onClick={onClick}
+            onClick={() => openModal('CreateFormModal')}
           />
         </div>
       )}

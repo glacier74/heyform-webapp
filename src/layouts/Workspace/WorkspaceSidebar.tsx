@@ -148,7 +148,12 @@ const WorkspaceSidebarComponent = () => {
             <h3>{t('workspace.sidebar.projects')}</h3>
             <Tooltip label={t('project.creation.title')}>
               <Button.Link
-                className="-mr-1 !h-6 !w-6 rounded text-secondary opacity-0 group-hover/projects:opacity-100"
+                className={cn(
+                  '-mr-1 !h-6 !w-6 rounded text-secondary opacity-0 group-hover/projects:opacity-100',
+                  {
+                    'opacity-100': helper.isEmpty(workspace?.projects)
+                  }
+                )}
                 size="sm"
                 iconOnly
                 onClick={() => openModal('CreateProjectModal')}

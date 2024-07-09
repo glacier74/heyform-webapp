@@ -67,7 +67,9 @@ export default function ProjectItem({ project }: ProjectItemProps) {
         return handleRename()
 
       case 'createForm':
-        return openModal('CreateFormModal', project)
+        return openModal('CreateFormModal', {
+          projectId: project.id
+        })
 
       case 'delete':
         return openModal('DeleteProjectModal', project)

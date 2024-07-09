@@ -6,7 +6,6 @@ import {
   UNSELECTABLE_FIELD_KINDS
 } from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
-import { useForm } from 'rc-field-form'
 import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -20,7 +19,7 @@ import { useStoreContext } from '../store'
 function LogicBulkEditComponent() {
   const { t } = useTranslation()
 
-  const [rcForm] = useForm()
+  const [rcForm] = Form.useForm()
   const { closeModal } = useAppStore()
   const { state, dispatch } = useStoreContext()
   const { fields: rawFields, logics, variables } = state

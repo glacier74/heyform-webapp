@@ -14,6 +14,7 @@ import { useAppStore, useUserStore, useWorkspaceStore } from '@/store'
 import { cn, useParam, useQuery, useRouter } from '@/utils'
 
 import ChangePasswordModal from './ChangePasswordModal'
+import CreateFormModal from './CreateFormModal'
 import CreateProjectModal from './CreateProjectModal'
 import CreateWorkspaceModal from './CreateWorkspaceModal'
 import DeleteProjectModal from './DeleteProjectModal'
@@ -294,6 +295,7 @@ const LayoutComponent: FC<LayoutProps> = ({ options, children }) => {
       <WorkspaceSidebarModal />
       <CreateWorkspaceModal />
       <CreateProjectModal />
+      <CreateFormModal />
       <DeleteProjectModal />
       <PaymentModal />
     </>

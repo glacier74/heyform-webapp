@@ -1,9 +1,8 @@
 import { htmlUtils } from '@heyform-inc/answer-utils'
-import { useForm } from 'rc-field-form'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Button, Modal } from '@/components'
+import { Button, Form, Modal } from '@/components'
 import { useAppStore, useModal } from '@/store'
 
 import { QuestionIcon } from '../LeftSidebar/QuestionList'
@@ -13,7 +12,7 @@ import { PayloadForm } from './PayloadForm'
 const LogicComponent = () => {
   const { t } = useTranslation()
 
-  const [rcForm] = useForm()
+  const [rcForm] = Form.useForm()
   const { closeModal } = useAppStore()
   const { state, dispatch } = useStoreContext()
   const { fields, currentField, logics } = state
