@@ -833,7 +833,11 @@
     "copyLinkToShare": "Link zum Teilen kopieren",
     "creation": {
       "title": "Formular erstellen",
-      "headline": "Erstellen Sie ein neues Formular im Projekt <span>{{name}}</span>",
+      "headline": "Ein neues Formular erstellen",
+      "project": {
+        "label": "Projekt",
+        "required": "Das Projekt darf nicht leer sein"
+      },
       "name": {
         "label": "Formularname",
         "required": "Der Formularname darf nicht leer sein"

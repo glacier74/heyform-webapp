@@ -833,7 +833,11 @@
     "copyLinkToShare": "Copy link to share",
     "creation": {
       "title": "Create Form",
-      "headline": "Create a new form in the project <span>{{name}}</span>",
+      "headline": "Create a new form",
+      "project": {
+        "label": "Project",
+        "required": "The project is not allow to be empty"
+      },
       "name": {
         "label": "Form name",
         "required": "The form name is not allow to be empty"

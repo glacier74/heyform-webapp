@@ -833,7 +833,11 @@
     "copyLinkToShare": "Skopiuj link do udostępnienia",
     "creation": {
       "title": "Utwórz formularz",
-      "headline": "Utwórz nowy formularz w projekcie <span>{{name}}</span>",
+      "headline": "Utwórz nowy formularz",
+      "project": {
+        "label": "Projekt",
+        "required": "Projekt nie może być pusty"
+      },
       "name": {
         "label": "Nazwa formularza",
         "required": "Nazwa formularza nie może być pusta"

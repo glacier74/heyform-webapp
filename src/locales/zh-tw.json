@@ -832,7 +832,11 @@
     "copyLinkToShare": "複製連結以分享",
     "creation": {
       "title": "創建表單",
-      "headline": "在項目 <span>{{name}}</span> 中創建一個新表單",
+      "headline": "創建一個新表單",
+      "project": {
+        "label": "專案",
+        "required": "專案不能為空"
+      },
       "name": {
         "label": "表單名稱",
         "required": "表單名稱不能為空"

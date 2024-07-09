@@ -832,7 +832,11 @@
     "copyLinkToShare": "共有リンクをコピー",
     "creation": {
       "title": "フォームの作成",
-      "headline": "プロジェクト <span>{{name}}</span> に新しいフォームを作成する",
+      "headline": "新しいフォームを作成",
+      "project": {
+        "label": "プロジェクト",
+        "required": "プロジェクトは空にできません"
+      },
       "name": {
         "label": "フォーム名",
         "required": "フォーム名は必須です"
