@@ -107,7 +107,7 @@ export default function WorkspaceAccount({
             align="start"
             sideOffset={8}
           >
-            <DropdownMenu.Item>
+            <DropdownMenu.Item className="focus-visible:outline-none">
               <Button.Link
                 className="w-full data-[highlighted]:bg-accent-light [&_[data-slot=button]]:justify-start"
                 size="md"
@@ -138,7 +138,7 @@ export default function WorkspaceAccount({
                   {LOCALE_OPTIONS.map(l => (
                     <DropdownMenu.Item
                       key={l.value}
-                      className="grid cursor-pointer grid-cols-[theme(spacing.5),1fr] items-center gap-x-2.5 rounded-lg px-3 py-2.5 text-base/6 text-primary outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accent-light data-[disabled]:opacity-50 sm:grid-cols-[theme(spacing.4),1fr] sm:px-2 sm:py-1.5 sm:text-sm/6"
+                      className="grid cursor-pointer grid-cols-[theme(spacing.5),1fr] items-center gap-x-2.5 rounded-lg px-3 py-2.5 text-base/6 text-primary outline-none focus-visible:outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accent-light data-[disabled]:opacity-50 sm:grid-cols-[theme(spacing.4),1fr] sm:px-2 sm:py-1.5 sm:text-sm/6"
                       onClick={() => i18n.changeLanguage(l.value)}
                     >
                       {i18n.language === l.value ? (
@@ -185,7 +185,7 @@ export default function WorkspaceAccount({
                   {APPEARANCE_OPTIONS.map(l => (
                     <DropdownMenu.Item
                       key={l.value}
-                      className="grid cursor-pointer grid-cols-[theme(spacing.5),1fr] items-center gap-x-2.5 rounded-lg px-3 py-2.5 text-base/6 text-primary outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accent-light data-[disabled]:opacity-50 sm:grid-cols-[theme(spacing.4),1fr] sm:px-2 sm:py-1.5 sm:text-sm/6"
+                      className="grid cursor-pointer grid-cols-[theme(spacing.5),1fr] items-center gap-x-2.5 rounded-lg px-3 py-2.5 text-base/6 text-primary outline-none focus-visible:outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accent-light data-[disabled]:opacity-50 sm:grid-cols-[theme(spacing.4),1fr] sm:px-2 sm:py-1.5 sm:text-sm/6"
                       onClick={() => setAppearance(l.value)}
                     >
                       {appearance === l.value ? (
@@ -203,7 +203,7 @@ export default function WorkspaceAccount({
               </DropdownMenu.Portal>
             </DropdownMenu.Sub>
 
-            <DropdownMenu.Item onClick={handleLogout}>
+            <DropdownMenu.Item className="focus-visible:outline-none" onClick={handleLogout}>
               <Button.Link className="w-full data-[highlighted]:bg-accent-light [&_[data-slot=button]]:justify-start">
                 {t('workspace.sidebar.logout')}
               </Button.Link>
@@ -211,7 +211,7 @@ export default function WorkspaceAccount({
 
             <DropdownMenu.Separator className="mx-2 mb-1 mt-2 h-px bg-accent-light sm:mx-2" />
 
-            <DropdownMenu.Item>
+            <DropdownMenu.Item className="focus-visible:outline-none">
               <div className="px-3 py-2.5 text-sm/6 text-secondary sm:px-2 sm:py-2">
                 {t('workspace.sidebar.version', { version: PACKAGE_VERSION })}
               </div>

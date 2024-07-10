@@ -41,7 +41,7 @@ const DropdownItem: FC<DropdownItemProps> = ({ option, onClick }) => {
   return (
     <Item
       key={option.value}
-      className="flex cursor-pointer items-center gap-x-2 rounded-lg border-0 px-3.5 py-2.5 text-left text-base/6 outline-none disabled:opacity-60 data-[highlighted]:bg-accent-light sm:px-3 sm:py-1.5 sm:text-sm/6"
+      className="flex cursor-pointer items-center gap-x-2 rounded-lg border-0 px-3.5 py-2.5 text-left text-base/6 outline-none focus-visible:outline-none disabled:opacity-60 data-[highlighted]:bg-accent-light sm:px-3 sm:py-1.5 sm:text-sm/6"
       data-slot="item"
       data-value={option.value}
       disabled={option.disabled}
