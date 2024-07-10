@@ -3,13 +3,23 @@ import { resolve } from 'path'
 import { ConfigEnv, loadEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
 import webfontDownload from 'vite-plugin-webfont-dl'
+import { analyzer } from 'vite-bundle-analyzer'
 
 export default ({ mode }: ConfigEnv) => {
   const env = loadEnv(mode, process.cwd())
+  const plugins = [
+    react(),
+    svgr(),
+    webfontDownload(['https://rsms.me/inter/inter.css'])
+  ]
+
+  if (process.env.ANALYZER) {
+    plugins.push(analyzer())
+  }
 
   return {
     assetsInclude: ['**/*.svg'],
-    plugins: [react(), svgr(), webfontDownload(['https://rsms.me/inter/inter.css'])],
+    plugins,
     define: {
       'import.meta.env.PACKAGE_VERSION': JSON.stringify(process.env.npm_package_version),
       'process.env': {
@@ -23,7 +33,45 @@ export default ({ mode }: ConfigEnv) => {
     },
     build: {
       target: 'es2015',
-      assetsDir: 'static'
+      assetsDir: 'static',
+      assetsInlineLimit: 0,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: [
+              'react',
+              'react-router-dom',
+              'react-dom',
+              'axios',
+              '@sentry/react',
+              'i18next',
+              'i18next-browser-languagedetector',
+              'react-i18next'
+            ],
+            ui: [
+              '@radix-ui/react-dialog',
+              '@radix-ui/react-dialog',
+              '@radix-ui/react-dropdown-menu',
+              '@radix-ui/react-popover',
+              '@radix-ui/react-select',
+              '@radix-ui/react-tabs',
+              '@radix-ui/react-toast',
+              '@radix-ui/react-tooltip',
+              '@radix-ui/react-visually-hidden',
+              'react-flow-renderer',
+              'react-resizable-panels',
+              'react-sortablejs',
+              'qrcode.react'
+            ],
+            heyform: [
+              '@heyooo-inc/react-router',
+              '@heyform-inc/answer-utils',
+              '@heyform-inc/shared-types-enums',
+              '@heyform-inc/utils'
+            ]
+          }
+        }
+      }
     },
     server: {
       port: 3000,
@@ -38,12 +86,12 @@ export default ({ mode }: ConfigEnv) => {
           // Remove `Secure` and `SameSite from proxyRes's `set-cookie`
           // https://vitejs.dev/config/#server-proxy
           configure: (proxy: any) => {
-            proxy.on('proxyReq', function (proxyReq: any) {
+            proxy.on('proxyReq', function(proxyReq: any) {
               proxyReq.setHeader('Authorization', 'Basic cm9vdDo2NjY=')
             })
 
             // https://github.com/http-party/node-http-proxy/pull/1166#issuecomment-328764776
-            proxy.on('proxyRes', function (proxyRes: any) {
+            proxy.on('proxyRes', function(proxyRes: any) {
               const removeSecure = (str: string) => str.replace(/; Secure|; SameSite=[^;]/gi, '')
               const set = proxyRes.headers['set-cookie']
 
@@ -61,7 +109,7 @@ export default ({ mode }: ConfigEnv) => {
           changeOrigin: true,
           // https://vitejs.dev/config/#server-proxy
           configure: (proxy: any) => {
-            proxy.on('proxyReq', function (proxyReq: any) {
+            proxy.on('proxyReq', function(proxyReq: any) {
               proxyReq.setHeader('Authorization', 'Basic cm9vdDo2NjY=')
             })
           }
