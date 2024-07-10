@@ -216,9 +216,6 @@ importers:
       eslint-plugin-react-hooks:
         specifier: ^4.6.2
         version: 4.6.2(eslint@8.57.0)
-      husky:
-        specifier: ^9.0.11
-        version: 9.0.11
       lint-staged:
         specifier: ^15.2.7
         version: 15.2.7
@@ -231,6 +228,9 @@ importers:
       sass:
         specifier: ^1.77.6
         version: 1.77.6
+      simple-git-hooks:
+        specifier: ^2.11.1
+        version: 2.11.1
       tailwindcss:
         specifier: ^3.4.4
         version: 3.4.4
@@ -2539,11 +2539,6 @@ packages:
   humanize-bytes@1.0.1:
     resolution: {integrity: sha512-OZMIHt5YhQM4S3R82KGoKnWv4vaNnWuEhPAK+u5v7rD2tRM3DU2NghYEHipAPYwyTR6+fMVZQ9ETpZIZeZUapQ==}
 
-  husky@9.0.11:
-    resolution: {integrity: sha512-AB6lFlbwwyIqMdHYhwPe+kjOC3Oc5P3nThEoW/AaO2BX3vJDjWPFxYLxokUZOo6RNX20He3AaT8sESs9NJcmEw==}
-    engines: {node: '>=18'}
-    hasBin: true
-
   i18next-browser-languagedetector@8.0.0:
     resolution: {integrity: sha512-zhXdJXTTCoG39QsrOCiOabnWj2jecouOqbchu3EfhtSHxIB5Uugnm9JaizenOy39h7ne3+fLikIjeW88+rgszw==}
 
@@ -3450,6 +3445,10 @@ packages:
 
   signature_pad@5.0.2:
     resolution: {integrity: sha512-FSseAwRWznAQg90CnrTbC570u1QYi8gijZiyboc18SK2IUx7sYVZhNPLnJRCnwhpyOpgdqXf91XAHL4Yg41yCg==}
+
+  simple-git-hooks@2.11.1:
+    resolution: {integrity: sha512-tgqwPUMDcNDhuf1Xf6KTUsyeqGdgKMhzaH4PAZZuzguOgTl5uuyeYe/8mWgAr6IBxB5V06uqEf6Dy37gIWDtDg==}
+    hasBin: true
 
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
@@ -6333,8 +6332,6 @@ snapshots:
     dependencies:
       bytes: 2.2.0
 
-  husky@9.0.11: {}
-
   i18next-browser-languagedetector@8.0.0:
     dependencies:
       '@babel/runtime': 7.24.6
@@ -7165,6 +7162,8 @@ snapshots:
   signal-exit@4.1.0: {}
 
   signature_pad@5.0.2: {}
+
+  simple-git-hooks@2.11.1: {}
 
   slash@3.0.0: {}
 
