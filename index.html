@@ -23,6 +23,10 @@
             padding: 0;
         }
 
+        html {
+            font-family: Inter, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
         #root:not(:empty) + #loading {
             display: none;
         }
@@ -100,6 +104,10 @@
         }
 
         .dark #loading .loading-icon {
+            color: rgb(255, 255, 255);
+        }
+
+        .dark #loading .loading-logo {
             color: rgb(255, 255, 255);
         }
 
