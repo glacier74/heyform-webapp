@@ -58,7 +58,7 @@ const resources = {
 }
 
 const SUPPORTED_LNGS = Object.keys(resources)
-export const DEFAULT_LNG = SUPPORTED_LNGS[0]
+export const DEFAULT_LNG = 'en'
 
 i18n
   .use(initReactI18next)
