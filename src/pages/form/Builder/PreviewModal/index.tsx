@@ -40,9 +40,7 @@ const PreviewComponent: FC<PreviewComponentProps> = () => {
 
   return (
     <div className="flex h-screen w-screen flex-col overflow-hidden px-2 pb-2">
-      <div className="flex h-14 items-center justify-between">
-        <div className="w-9"></div>
-
+      <div className="flex h-14 items-center justify-center">
         <Tabs.SegmentedControl
           className="hidden sm:flex [&_[data-slot=nav]]:h-9 [&_[data-slot=tablist]_button]:py-0.5"
           tabs={tabs}

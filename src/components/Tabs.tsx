@@ -97,7 +97,7 @@ const SegmentedControl: FC<TabsProps> = ({ className, tabs, defaultTab, action, 
           {tabs.map(t => (
             <Trigger
               key={t.value}
-              className="w-full flex-1 rounded-md px-3 py-1 text-sm/6 text-secondary hover:text-primary aria-selected:bg-foreground aria-selected:text-primary"
+              className="w-full flex-1 rounded-md px-3 py-1 text-sm/6 font-medium text-secondary hover:text-primary aria-selected:bg-foreground aria-selected:text-primary"
               data-slot="tab"
               data-tab={t.value}
               role="tab"
