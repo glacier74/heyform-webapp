@@ -54,7 +54,7 @@ const ResetPassword = () => {
         className="space-y-4"
         fetch={fetch}
         submitProps={{
-          label: t('forgotPassword.submit'),
+          label: t('components.continue'),
           className: 'w-full'
         }}
         onValuesChange={handleValuesChange}
