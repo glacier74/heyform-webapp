@@ -22,7 +22,7 @@ export default function FormShare() {
 
   const { workspaceId, formId } = useParam()
   const { openModal } = useAppStore()
-  const { sharingURLPrefix } = useWorkspaceStore()
+  const { workspace, sharingURLPrefix } = useWorkspaceStore()
   const { form, selectEmbedType } = useFormStore()
 
   const shareLink = useMemo(() => sharingURLPrefix + '/f/' + formId, [formId, sharingURLPrefix])
@@ -80,9 +80,11 @@ export default function FormShare() {
                 <Button.Copy className="rounded-l-none" text={shareLink} />
               </div>
 
-              <Link to={`/workspace/${workspaceId}/settings#branding`}>
-                {t('form.share.link.useCustomDomain')}
-              </Link>
+              {workspace.isOwner && (
+                <Link to={`/workspace/${workspaceId}/settings#branding`}>
+                  {t('form.share.link.useCustomDomain')}
+                </Link>
+              )}
             </div>
 
             <div className="mt-2 flex items-center gap-x-2">
