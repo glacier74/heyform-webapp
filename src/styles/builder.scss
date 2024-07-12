@@ -1333,3 +1333,8 @@ button.connect-stripe {
     @apply w-[80vw] overflow-x-hidden #{!important};
   }
 }
+
+// Preview
+.popup {
+  @apply pointer-events-auto;
+}

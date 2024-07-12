@@ -7,7 +7,6 @@ settings:
 overrides:
   react: 19.0.0-rc-e684ca66ab-20240619
   react-dom: 19.0.0-rc-e684ca66ab-20240619
-  react-transition-state: ^1.1.4
 
 importers:
 
@@ -20,8 +19,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.2.1)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
       '@heyform-inc/form-renderer':
-        specifier: ^0.1.12
-        version: 0.1.12(nu7hprfuii7kajjiz6gjmggbom)
+        specifier: ^0.1.13
+        version: 0.1.13(nu7hprfuii7kajjiz6gjmggbom)
       '@heyform-inc/shared-types-enums':
         specifier: ^1.1.8
         version: 1.1.8
@@ -585,8 +584,8 @@ packages:
       libphonenumber-js: ^1.10.7
       validator: ^13.7.0
 
-  '@heyform-inc/form-renderer@0.1.12':
-    resolution: {integrity: sha512-AbyMAYwgF2zIgEOFTKV9byZ2SGWsGAIl/Fkn0wrNRTQnZtb+0q0+QVnWt5GPDV3VH1d/QZXsGvfh7IaOlKnOLA==}
+  '@heyform-inc/form-renderer@0.1.13':
+    resolution: {integrity: sha512-1cvLPQJbPRkFSTEW7R3MXjj15zLE4whfjvawUVCCDKIg2n2bHbzWMH67xtPq5uNjUX21qi1oGMs9RhJq6pXsrA==}
     peerDependencies:
       '@heyform-inc/answer-utils': ^1.1.0
       '@heyform-inc/shared-types-enums': ^1.1.8
@@ -4187,7 +4186,7 @@ snapshots:
       libphonenumber-js: 1.11.4
       validator: 13.12.0
 
-  '@heyform-inc/form-renderer@0.1.12(nu7hprfuii7kajjiz6gjmggbom)':
+  '@heyform-inc/form-renderer@0.1.13(nu7hprfuii7kajjiz6gjmggbom)':
     dependencies:
       '@heyform-inc/answer-utils': 1.1.0(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.2.1)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
       '@heyform-inc/shared-types-enums': 1.1.8
