@@ -1075,6 +1075,7 @@
     },
     "share": {
       "title": "Teilen",
+      "unpublishedTip": "Dieses Formular enthält unveröffentlichte Änderungen. Bitte veröffentlichen Sie die neueste Version, bevor Sie das Formular teilen.",
       "link": {
         "headline": "Link teilen",
         "viaX": "Auf X teilen",

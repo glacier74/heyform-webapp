@@ -1074,6 +1074,7 @@
     },
     "share": {
       "title": "分享表單",
+      "unpublishedTip": "此表單有未發佈的變更。請先發佈最新版本再分享此表單。",
       "link": {
         "headline": "分享連結",
         "viaX": "分享到 X",

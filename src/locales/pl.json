@@ -1075,6 +1075,7 @@
     },
     "share": {
       "title": "Udostępnij",
+      "unpublishedTip": "Ten formularz ma nieopublikowane zmiany. Proszę opublikować najnowszą wersję przed udostępnieniem formularza.",
       "link": {
         "headline": "Link do udostępnienia",
         "viaX": "Udostępnij na X",

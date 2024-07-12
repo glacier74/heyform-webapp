@@ -2,6 +2,7 @@ import {
   IconBrandFacebook,
   IconBrandLinkedin,
   IconBrandX,
+  IconExclamationCircle,
   IconMail,
   IconQrcode
 } from '@tabler/icons-react'
@@ -71,6 +72,15 @@ export default function FormShare() {
   return (
     <>
       <div className="mt-10 space-y-10">
+        {form?.canPublish && (
+          <div className="flex items-center justify-center gap-x-2 rounded-lg border border-accent-light bg-yellow-50 py-2">
+            <IconExclamationCircle className="h-5 w-5 text-yellow-500" />
+            <span className="text-sm/6 font-medium text-yellow-700">
+              {t('form.share.unpublishedTip')}
+            </span>
+          </div>
+        )}
+
         <section id="link">
           <h2 className="text-base/6 font-semibold">{t('form.share.link.headline')}</h2>
           <div className="mt-4">

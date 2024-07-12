@@ -1076,6 +1076,7 @@
     },
     "share": {
       "title": "Share",
+      "unpublishedTip": "This form has unpublished changes. Please publish the latest version before sharing the form.",
       "link": {
         "headline": "Share Link",
         "viaX": "Share on X",
