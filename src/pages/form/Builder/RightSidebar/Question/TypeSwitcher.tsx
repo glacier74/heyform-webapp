@@ -74,6 +74,9 @@ export default function TypeSwitcher() {
     <div className="mb-4 border-b border-accent-light pb-4">
       <Select
         className="w-full"
+        contentProps={{
+          position: 'popper'
+        }}
         disabled={isDisabled}
         options={options}
         value={field.kind}

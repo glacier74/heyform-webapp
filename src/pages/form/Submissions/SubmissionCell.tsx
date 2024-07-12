@@ -219,9 +219,15 @@ const MultipleChoiceItem: FC<SubmissionCellProps> = ({ answer, field, isTableCel
   }
 
   return (
-    <div className={cn('flex', isTableCell ? 'gap-x-2 py-2' : 'flex-wrap gap-2')}>
+    <div className={cn('flex', isTableCell ? 'gap-x-2 overflow-hidden py-2' : 'flex-wrap gap-2')}>
       {result.map(row => (
-        <Badge key={row.id} color="zinc" className="text-primary">
+        <Badge
+          key={row.id}
+          color="zinc"
+          className={cn('text-primary', {
+            'text-nowrap': isTableCell
+          })}
+        >
           {row.label}
         </Badge>
       ))}
