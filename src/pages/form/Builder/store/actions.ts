@@ -107,7 +107,7 @@ export function addField(
   state: IState,
   { field, parentId: rawParentId }: AddFieldAction['payload']
 ): IState {
-  const fields = [...state.fields]
+  const fields = clone(state.fields)
   let parentId = rawParentId || state.parentId
 
   if (parentId) {
@@ -212,7 +212,7 @@ export function updateNestFields(
   state: IState,
   { id, nestedFields }: UpdateNestFieldsAction['payload']
 ): IState {
-  const fields = [...state.fields]
+  const fields = clone(state.fields)
   const index = fields.findIndex(f => f.id === id)
 
   if (index > -1) {
@@ -318,8 +318,8 @@ export function updateField(state: IState, { id, updates }: UpdateFieldAction['p
 }
 
 export function deleteField(state: IState, { id, parentId }: DeleteFieldAction['payload']): IState {
-  // eslint-disable-next-line prefer-const
-  let { currentId, fields } = state
+  let currentId = state.currentId
+  const fields = clone(state.fields)
 
   if (parentId) {
     const parentField = fields.find(f => f.id === parentId)

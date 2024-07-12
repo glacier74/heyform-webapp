@@ -14,7 +14,7 @@ import { ReactSortable } from 'react-sortablejs'
 import { Button, Dropdown, Tooltip } from '@/components'
 import { ALL_FIELD_CONFIGS } from '@/consts'
 import { FormFieldType } from '@/types'
-import { cn } from '@/utils'
+import { cn, nextTick } from '@/utils'
 
 import { useStoreContext } from '../store'
 
@@ -149,7 +149,7 @@ const Question: FC<QuestionProps> = ({
   const handleSortNestedFields = useCallback(
     (nestedFields: FormFieldType[], element: Any) => {
       if (element) {
-        setTimeout(() => {
+        nextTick(() => {
           dispatch({
             type: 'updateNestFields',
             payload: {
@@ -157,7 +157,7 @@ const Question: FC<QuestionProps> = ({
               nestedFields
             }
           })
-        }, 10)
+        })
       }
     },
     [dispatch, field.id]
@@ -218,6 +218,7 @@ const Question: FC<QuestionProps> = ({
         chosenClass="question-chosen"
         dragClass="question-dragging"
         fallbackClass="question-cloned"
+        handle=".question-handle"
         list={nestedFields}
         setList={handleSortNestedFields}
         onStart={handleSortStart}
@@ -228,7 +229,6 @@ const Question: FC<QuestionProps> = ({
         }}
         delay={10}
         animation={240}
-        swapThreshold={0.65}
         fallbackOnBody
       >
         {nestedFields.map(child => (
@@ -258,19 +258,18 @@ const Question: FC<QuestionProps> = ({
       )}
       data-active={isGroupSelected || isSelected}
     >
-      <div
-        className="question-item-body group flex h-12 items-center rounded-lg p-2"
-        onClick={handleClick}
-      >
-        {/* Icon */}
-        <QuestionIcon kind={field.kind} index={field.index} parentIndex={parentField?.index} />
+      <div className="question-item-body group flex h-12 rounded-lg" onClick={handleClick}>
+        <div className="question-handle flex h-full flex-1 items-center py-2 pl-2">
+          {/* Icon */}
+          <QuestionIcon kind={field.kind} index={field.index} parentIndex={parentField?.index} />
 
-        {/* Title */}
-        <div className="question-title ml-3 mr-1 line-clamp-2 flex-1 shrink basis-0 overflow-hidden break-words text-xs text-secondary group-hover:text-primary group-data-[active=true]/root:text-primary">
-          {htmlUtils.plain(field.title as string)}
+          {/* Title */}
+          <div className="question-title ml-3 mr-1 line-clamp-2 flex-1 shrink basis-0 overflow-hidden break-words text-xs text-secondary group-hover:text-primary group-data-[active=true]/root:text-primary">
+            {htmlUtils.plain(field.title as string)}
+          </div>
         </div>
 
-        <div className="flex items-center gap-x-1">
+        <div className="flex h-full items-center gap-x-1 px-2">
           {/* Dropdown */}
           {options.length > 0 && (
             <Dropdown
@@ -367,6 +366,7 @@ export default function QuestionList() {
         chosenClass="question-chosen"
         dragClass="question-dragging"
         fallbackClass="question-cloned"
+        handle=".question-handle"
         list={data.fields}
         setList={handleSortFields}
         onStart={handleSortStart}
