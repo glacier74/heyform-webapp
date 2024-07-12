@@ -18,16 +18,16 @@ importers:
         version: 3.10.8(@types/react@18.3.3)(graphql@16.9.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
       '@heyform-inc/answer-utils':
         specifier: ^1.1.0
-        version: 1.1.0(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.2.0)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
+        version: 1.1.0(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.2.1)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
       '@heyform-inc/form-renderer':
         specifier: ^0.1.12
-        version: 0.1.12(eiwkx5qtnjhebuabyveik6piue)
+        version: 0.1.12(nu7hprfuii7kajjiz6gjmggbom)
       '@heyform-inc/shared-types-enums':
         specifier: ^1.1.8
         version: 1.1.8
       '@heyform-inc/utils':
-        specifier: ^1.2.0
-        version: 1.2.0
+        specifier: ^1.2.1
+        version: 1.2.1
       '@heyooo-inc/react-router':
         specifier: ^0.0.4
         version: 0.0.4(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react-router-dom@6.24.1(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
@@ -612,8 +612,8 @@ packages:
     resolution: {integrity: sha512-GdBeP8Mk6xBHw5RXVeGUPePneMkQGQrCbDhrPso1tBNG1nOpL6m0e2Pql+6ojVEfKMGQA45VRfj4xd8wEsU6OQ==}
     engines: {node: '>=12.0.0'}
 
-  '@heyform-inc/utils@1.2.0':
-    resolution: {integrity: sha512-imeKho20Hijd8X0Fp9D36wrCtX382nJo0khh8bT7h0yuP+JjVhWx0IHIMC9sB9PuHeeEgLwGdEGEM1KVOLkKKQ==}
+  '@heyform-inc/utils@1.2.1':
+    resolution: {integrity: sha512-c1QNOWAxpA0WPyyXsQNt/4/oWJLnw3OZw1PlTgJq76huz7J8wrzFl5L+EWyFYIcWlbjUD7PoaV0ocQ/dkiqANQ==}
 
   '@heyooo-inc/react-router@0.0.4':
     resolution: {integrity: sha512-gt0URohv4/PjURXjiz73chwZ8+phJbhPHgokmcJb+qw56KE+39kU9mx/3gz864kd2/1hsuyzKA8Hfmz4u+zO2A==}
@@ -4177,21 +4177,21 @@ snapshots:
     dependencies:
       graphql: 16.9.0
 
-  '@heyform-inc/answer-utils@1.1.0(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.2.0)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)':
+  '@heyform-inc/answer-utils@1.1.0(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.2.1)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)':
     dependencies:
       '@heyform-inc/shared-types-enums': 1.1.8
-      '@heyform-inc/utils': 1.2.0
+      '@heyform-inc/utils': 1.2.1
       big.js: 6.2.1
       dayjs: 1.11.11
       html5parser: 2.0.2
       libphonenumber-js: 1.11.4
       validator: 13.12.0
 
-  '@heyform-inc/form-renderer@0.1.12(eiwkx5qtnjhebuabyveik6piue)':
+  '@heyform-inc/form-renderer@0.1.12(nu7hprfuii7kajjiz6gjmggbom)':
     dependencies:
-      '@heyform-inc/answer-utils': 1.1.0(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.2.0)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
+      '@heyform-inc/answer-utils': 1.1.0(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.2.1)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
       '@heyform-inc/shared-types-enums': 1.1.8
-      '@heyform-inc/utils': 1.2.0
+      '@heyform-inc/utils': 1.2.1
       '@popperjs/core': 2.11.8
       '@radix-ui/react-tooltip': 1.1.2(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
       '@tabler/icons-react': 3.10.0(react@19.0.0-rc-e684ca66ab-20240619)
@@ -4211,7 +4211,7 @@ snapshots:
 
   '@heyform-inc/shared-types-enums@1.1.8': {}
 
-  '@heyform-inc/utils@1.2.0':
+  '@heyform-inc/utils@1.2.1':
     dependencies:
       '@types/clone': 2.1.4
       '@types/mime-types': 2.1.4
