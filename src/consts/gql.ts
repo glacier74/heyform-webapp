@@ -193,6 +193,7 @@ export const WORKSPACE_RECENT_FORMS_GQL = gql`
       version
       isDraft
       canPublish
+      fieldsUpdatedAt
     }
   }
 `
@@ -555,6 +556,7 @@ export const FORMS_GQL = gql`
       version
       isDraft
       canPublish
+      fieldsUpdatedAt
       retentionAt
       suspended
       status
@@ -712,6 +714,7 @@ export const FORM_DETAIL_GQL = gql`
       version
       isDraft
       canPublish
+      fieldsUpdatedAt
       submissionCount
       status
       updatedAt

@@ -1,3 +1,4 @@
+import { helper } from '@heyform-inc/utils'
 import {
   IconChevronLeft,
   IconChevronRight,
@@ -8,11 +9,11 @@ import {
   IconShare
 } from '@tabler/icons-react'
 import { useRequest } from 'ahooks'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-import { Button, Tooltip, useToast } from '@/components'
-import { OnboardingBadge, useOnboardingStorage } from '@/components'
+import { Button, OnboardingBadge, Tooltip, useOnboardingStorage, useToast } from '@/components'
 import { ADD_QUESTION2_STORAGE_NAME, PUBLISH_FORM_STORAGE_NAME } from '@/consts'
 import { FormService } from '@/services'
 import { useAppStore, useFormStore, useWorkspaceStore } from '@/store'
@@ -37,12 +38,15 @@ export default function BuilderNavBar() {
 
   const { loading, run } = useRequest(
     async () => {
-      if (form?.version && form.version > 0) {
+      if (
+        (helper.isValid(form?.version) && form!.version > 0) ||
+        (form!.version === 0 && !form?.fieldsUpdatedAt)
+      ) {
         const { fields } = getFilteredFields(state.fields!)
 
         await FormService.publishForm({
           formId,
-          version: form.version as number,
+          version: form!.version as number,
           drafts: fields
         })
 
@@ -81,6 +85,12 @@ export default function BuilderNavBar() {
     setItem(PUBLISH_FORM_STORAGE_NAME, true)
     run()
   }
+
+  useEffect(() => {
+    if (form?.canPublish) {
+      setItem(ADD_QUESTION2_STORAGE_NAME, true)
+    }
+  }, [])
 
   return (
     <div className="flex h-14 items-center justify-between px-2">

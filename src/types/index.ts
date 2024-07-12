@@ -5,6 +5,7 @@ export type { SubmissionModel as SubmissionType } from '@heyform-inc/shared-type
 export interface FormType extends Omit<FormModel, 'fields'> {
   drafts?: FormField[]
   version: number
+  fieldsUpdatedAt: number
   isDraft: boolean
   canPublish: boolean
 }
