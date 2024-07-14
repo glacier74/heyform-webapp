@@ -19,8 +19,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.2.1)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
       '@heyform-inc/form-renderer':
-        specifier: ^0.1.13
-        version: 0.1.13(nu7hprfuii7kajjiz6gjmggbom)
+        specifier: ^0.1.15
+        version: 0.1.15(nu7hprfuii7kajjiz6gjmggbom)
       '@heyform-inc/shared-types-enums':
         specifier: ^1.1.8
         version: 1.1.8
@@ -584,12 +584,12 @@ packages:
       libphonenumber-js: ^1.10.7
       validator: ^13.7.0
 
-  '@heyform-inc/form-renderer@0.1.13':
-    resolution: {integrity: sha512-1cvLPQJbPRkFSTEW7R3MXjj15zLE4whfjvawUVCCDKIg2n2bHbzWMH67xtPq5uNjUX21qi1oGMs9RhJq6pXsrA==}
+  '@heyform-inc/form-renderer@0.1.15':
+    resolution: {integrity: sha512-6FkYRnbYuXd1rXxmjbDnE/Gwcyu2U5OaVGWYMD1c98tSHg6HvpkveSSmC5swi93GpaWdvUswDt/5t8q5ZQUwIQ==}
     peerDependencies:
       '@heyform-inc/answer-utils': ^1.1.0
       '@heyform-inc/shared-types-enums': ^1.1.8
-      '@heyform-inc/utils': ^1.2.0
+      '@heyform-inc/utils': ^1.2.1
       '@popperjs/core': ^2.11.8
       '@radix-ui/react-tooltip': ^1.1.2
       '@tabler/icons-react': ^3.10.0
@@ -603,7 +603,7 @@ packages:
       react-dom: 19.0.0-rc-e684ca66ab-20240619
       react-i18next: ^14.1.2
       react-popper: ^2.3.0
-      react-transition-state: ^1.1.4
+      react-transition-state: ^2.1.1
       signature_pad: ^5.0.1
       store2: ^2.13.2
 
@@ -4186,7 +4186,7 @@ snapshots:
       libphonenumber-js: 1.11.4
       validator: 13.12.0
 
-  '@heyform-inc/form-renderer@0.1.13(nu7hprfuii7kajjiz6gjmggbom)':
+  '@heyform-inc/form-renderer@0.1.15(nu7hprfuii7kajjiz6gjmggbom)':
     dependencies:
       '@heyform-inc/answer-utils': 1.1.0(@heyform-inc/shared-types-enums@1.1.8)(@heyform-inc/utils@1.2.1)(big.js@6.2.1)(dayjs@1.11.11)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
       '@heyform-inc/shared-types-enums': 1.1.8

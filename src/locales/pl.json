@@ -643,6 +643,7 @@
       "customize": "Uaktualnij do Basic, aby dostosować formularz",
       "exportData": "Uaktualnij do Basic, aby eksportować CSV",
       "theme": "Uaktualnij do Basic, aby ustawić motyw dla formularza",
+      "metadata": "Uaktualnij do Basic, aby skonfigurować ustawienia linków",
       "confirm": "Aktualizuj",
       "remaining_one": "Pozostał {{count}} dzień",
       "remaining_other": "Pozostało {{count}} dni",
@@ -1093,6 +1094,18 @@
           "body": "Będziemy bardzo wdzięczni, jeśli wypełnisz ten formularz: {{url}}. Dziękujemy."
         },
         "useCustomDomain": "Użyj niestandardowej domeny"
+      },
+      "settings": {
+        "headline": "Ustawienia linku",
+        "subHeadline": "Ustaw, jak twój formularz będzie wyglądał, gdy udostępnisz link na mediach społecznościowych.",
+        "title": "Tytuł",
+        "description": "Opis",
+        "preview": {
+          "headline": "Podgląd",
+          "subHeadline": "HeyForm automatycznie generuje obraz <a>Open Graph</a> dla ciebie. Możesz również <button>wgrać własny obraz</button>.",
+          "uploadTitle": "Wgraj własny obraz Open Graph",
+          "uploadDescription": "Zalecany rozmiar: 1200x630 | JPG, PNG."
+        }
       },
       "embed": {
         "title": "Osadź",

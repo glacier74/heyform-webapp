@@ -643,6 +643,7 @@
       "customize": "Passez au niveau Basic pour personnaliser le formulaire",
       "exportData": "Passez au niveau Basic pour exporter en CSV",
       "theme": "Passez au niveau Basic pour définir un thème pour le formulaire",
+      "metadata": "Passez au niveau Basic pour configurer les paramètres de lien",
       "confirm": "Passer",
       "remaining_one": "Il reste {{count}} jour",
       "remaining_other": "Il reste {{count}} jours",
@@ -1093,6 +1094,18 @@
           "body": "Nous vous serions très reconnaissants si vous remplissiez ce formulaire : {{url}}. Merci."
         },
         "useCustomDomain": "Utiliser un domaine personnalisé"
+      },
+      "settings": {
+        "headline": "Paramètres du lien",
+        "subHeadline": "Définissez comment votre formulaire apparaît lorsque vous partagez le lien sur les réseaux sociaux.",
+        "title": "Titre",
+        "description": "Description",
+        "preview": {
+          "headline": "Aperçu",
+          "subHeadline": "HeyForm génère automatiquement une image <a>Open Graph</a> pour vous. Vous pouvez également <button>télécharger votre propre image</button>.",
+          "uploadTitle": "Téléchargez votre propre image Open Graph",
+          "uploadDescription": "Taille recommandée : 1200x630 | JPG, PNG."
+        }
       },
       "embed": {
         "title": "Intégrer",

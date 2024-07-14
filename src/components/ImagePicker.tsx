@@ -26,6 +26,7 @@ type TabType = 'image' | 'unsplash'
 interface ImagePickerProps extends DOMProps {
   ref?: Ref<ImagePickerRef>
   tabs: TabType[]
+  tabConfigs?: AnyMap
   defaultTab?: TabType
   onOpenChange?: (open: boolean) => void
   onChange?: (value?: string) => void
@@ -64,6 +65,7 @@ export interface ImagePickerRef {
 export const ImagePicker: FC<ImagePickerProps> = ({
   ref,
   tabs: rawTabs,
+  tabConfigs = {},
   defaultTab,
   children,
   onOpenChange,
@@ -85,15 +87,21 @@ export const ImagePicker: FC<ImagePickerProps> = ({
       {
         value: 'image',
         label: t('components.imagePicker.image'),
-        content: <Uploader onChange={handleChange} />
+        content: <Uploader {...tabConfigs.image} onChange={handleChange} />
       },
       {
         value: 'unsplash',
         label: t('components.imagePicker.unsplash.title'),
-        content: <UnsplashPicker className="scrollbar h-full px-4 pt-4" onChange={handleChange} />
+        content: (
+          <UnsplashPicker
+            {...tabConfigs.unsplash}
+            className="scrollbar h-full px-4 pt-4"
+            onChange={handleChange}
+          />
+        )
       }
     ],
-    [handleChange, t]
+    [handleChange, t, tabConfigs.image, tabConfigs.unsplash]
   )
   const tabs = useMemo(
     () => configs.filter(tab => rawTabs.includes(tab.value as TabType)),

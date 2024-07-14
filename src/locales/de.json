@@ -643,6 +643,7 @@
       "customize": "Upgraden Sie auf Basic, um das Formular anzupassen",
       "exportData": "Upgraden Sie auf Basic, um CSV-Daten zu exportieren",
       "theme": "Upgraden Sie auf Basic, um ein Thema für das Formular festzulegen",
+      "metadata": "Upgraden Sie auf Basic, um Linkeinstellungen vorzunehmen",
       "confirm": "Upgrade",
       "remaining_one": "{{count}} Tag verbleibend",
       "remaining_other": "{{count}} Tage verbleibend",
@@ -1093,6 +1094,18 @@
           "body": "Wir würden es sehr schätzen, wenn Sie dieses Formular ausfüllen: {{url}}. Vielen Dank."
         },
         "useCustomDomain": "Benutzerdefinierte Domain verwenden"
+      },
+      "settings": {
+        "headline": "Linkeinstellungen",
+        "subHeadline": "Legen Sie fest, wie Ihr Formular erscheint, wenn Sie den Link in sozialen Medien teilen.",
+        "title": "Titel",
+        "description": "Beschreibung",
+        "preview": {
+          "headline": "Vorschau",
+          "subHeadline": "HeyForm generiert automatisch ein <a>Open Graph</a>-Bild für Sie. Sie können auch <button>Ihr eigenes Bild hochladen</button>.",
+          "uploadTitle": "Laden Sie Ihr eigenes Open Graph-Bild hoch",
+          "uploadDescription": "Empfohlene Größe: 1200x630 | JPG, PNG."
+        }
       },
       "embed": {
         "title": "Einbetten",

@@ -43,6 +43,7 @@ interface FormStoreType {
 
   setForm: (form?: FormType) => void
   updateForm: (updates: Partial<FormType>) => void
+  updateSettings: (settings: Partial<FormSettings>) => void
   setTempSettings: (tempSettings?: TempSettings) => void
   updateTempSettings: (updates: Partial<TempSettings>) => void
   setTempTheme: (tempTheme?: FormTheme) => void
@@ -159,6 +160,18 @@ export const useFormStore = create<FormStoreType>()(
             ...state.form,
             ...(updates as FormType)
           }
+        })
+      },
+
+      updateSettings: settings => {
+        set(state => {
+          state.form = {
+            ...state.form,
+            settings: {
+              ...state.form?.settings,
+              ...settings
+            }
+          } as FormType
         })
       },
 

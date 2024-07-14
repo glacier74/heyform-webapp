@@ -403,7 +403,7 @@ const TextArea: FC<TextAreaProps> = ({
       <textarea
         ref={ref}
         className={cn(
-          'block w-full appearance-none rounded-lg border bg-transparent px-3.5 py-2.5 text-base/[1.4rem] placeholder:text-secondary focus:outline-none sm:px-3 sm:py-2 sm:text-sm/[1.4rem]',
+          'scrollbar block w-full appearance-none rounded-lg border bg-transparent px-3.5 py-2.5 text-base/[1.4rem] placeholder:text-secondary focus:outline-none sm:px-3 sm:py-2 sm:text-sm/[1.4rem]',
           hasError ? 'border-error' : 'border-input'
         )}
         data-slot="textarea"
@@ -418,7 +418,7 @@ const TextArea: FC<TextAreaProps> = ({
 
       {isCountingEnabled && (
         <div
-          className="pointer-events-none absolute bottom-0 right-0 flex items-center gap-x-2 px-3.5 sm:px-3"
+          className="pointer-events-none absolute bottom-2 right-0 flex items-center gap-x-2 px-3.5 sm:px-3"
           data-slot="trailing"
         >
           <div className="text-sm text-secondary" data-slot="counting">

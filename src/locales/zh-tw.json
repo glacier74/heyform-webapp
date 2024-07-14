@@ -643,6 +643,7 @@
       "customize": "升級到基礎版以自定義表單",
       "exportData": "升級到基礎版以導出 CSV 數據",
       "theme": "升級到基礎版以設置表單主題",
+      "metadata": "升級到基礎版以設置鏈接設置",
       "confirm": "升级",
       "remaining_one": "剩餘 {{count}} 天",
       "remaining_other": "剩餘 {{count}} 天",
@@ -1092,6 +1093,18 @@
           "body": "如果您能填寫這個表單，我們將不勝感激：{{url}}。謝謝。"
         },
         "useCustomDomain": "使用自定義域名"
+      },
+      "settings": {
+        "headline": "連結設定",
+        "subHeadline": "設定當您在社交媒體上分享連結時，您的表單將如何顯示。",
+        "title": "標題",
+        "description": "描述",
+        "preview": {
+          "headline": "預覽",
+          "subHeadline": "HeyForm 自動為您生成一個<a>Open Graph</a>圖像。您也可以<button>上傳自己的圖像</button>。",
+          "uploadTitle": "上傳您自己的 Open Graph 圖像",
+          "uploadDescription": "建議大小：1200x630 | JPG, PNG。"
+        }
       },
       "embed": {
         "title": "嵌入",

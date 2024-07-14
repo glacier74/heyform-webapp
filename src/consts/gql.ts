@@ -689,6 +689,9 @@ export const FORM_DETAIL_GQL = gql`
         closedFormDescription
         redirectOnCompletion
         redirectUrl
+        metaTitle
+        metaDescription
+        metaOGImageUrl
       }
       drafts {
         id

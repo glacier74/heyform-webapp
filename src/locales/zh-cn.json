@@ -643,6 +643,7 @@
       "customize": "升级到基础版以自定义表单",
       "exportData": "升级到基础版以导出 CSV 数据",
       "theme": "升级到基础版以设置表单主题",
+      "metadata": "升级到基础版以设置链接选项",
       "confirm": "升级",
       "remaining_one": "剩余{{count}}天",
       "remaining_other": "剩余{{count}}天",
@@ -1092,6 +1093,18 @@
           "body": "如果您能填写这个表单，我们将不胜感激：{{url}}。谢谢。"
         },
         "useCustomDomain": "使用自定义域名"
+      },
+      "settings": {
+        "headline": "链接设置",
+        "subHeadline": "设置您的表单在社交媒体上分享时的显示方式。",
+        "title": "标题",
+        "description": "描述",
+        "preview": {
+          "headline": "预览",
+          "subHeadline": "HeyForm 自动为您生成一个<a>Open Graph</a> 图像，您也可以 <button>上传您自己的图像</button>。",
+          "uploadTitle": "上传您自己的 Open Graph 图像",
+          "uploadDescription": "推荐尺寸：1200x630 | JPG, PNG。"
+        }
       },
       "embed": {
         "title": "嵌入",

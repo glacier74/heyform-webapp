@@ -10,6 +10,8 @@ import { cn, useParam } from '@/utils'
 import { Loader } from './Loader'
 
 export interface UploaderProps extends Omit<ComponentProps, 'onChange'> {
+  title?: string
+  description?: string
   accept?: string[]
   maxSize?: string
   onChange?: (value?: string) => void
@@ -22,6 +24,8 @@ export const Uploader: FC<UploaderProps> = ({
   className,
   accept = ACCEPT_TYPES,
   maxSize = MAX_SIZE,
+  title,
+  description,
   onChange
 }) => {
   const { t } = useTranslation()
@@ -168,7 +172,7 @@ export const Uploader: FC<UploaderProps> = ({
                 {file.name} ({formatBytes(file!.size)})
               </span>
             ) : (
-              t('components.uploader.headline')
+              title || t('components.uploader.headline')
             )}
           </div>
 
@@ -180,7 +184,8 @@ export const Uploader: FC<UploaderProps> = ({
                 ? loading
                   ? t('components.uploader.uploading')
                   : t('components.uploader.reselectFile')
-                : t('components.uploader.subHeadline', {
+                : description ||
+                  t('components.uploader.subHeadline', {
                     fileTypes: accept.map(t => t.split('/')[1].toUpperCase()).join(', '),
                     maxSize
                   })}

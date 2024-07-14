@@ -643,6 +643,7 @@
       "customize": "Upgrade to Basic to customize the form",
       "exportData": "Upgrade to Basic to export CSV",
       "theme": "Upgrade to Basic to set a theme for the form",
+      "metadata": "Upgrade to Basic to set up link settings",
       "confirm": "Upgrade",
       "trialing": "Trial in progress",
       "remaining_one": "{{count}} day remaining",
@@ -1094,6 +1095,18 @@
           "body": "We would really appreciate it if you filled in this form: {{url}}. Thank you."
         },
         "useCustomDomain": "Use custom domain"
+      },
+      "settings": {
+        "headline": "Link settings",
+        "subHeadline": "Set how your form appears when you share the link on social media.",
+        "title": "Title",
+        "description": "Description",
+        "preview": {
+          "headline": "Preview",
+          "subHeadline": "HeyForm automatically generates an <a>Open Graph</a> image for you. You can also <button>upload your own image</button>.",
+          "uploadTitle": "Upload your own Open Graph image",
+          "uploadDescription": "Recommended size: 1200x630 | JPG, PNG."
+        }
       },
       "embed": {
         "title": "Embed",

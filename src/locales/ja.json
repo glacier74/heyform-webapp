@@ -643,6 +643,7 @@
       "customize": "フォームをカスタマイズするためにはベーシックプランへアップグレードしてください",
       "exportData": "CSV データを書き出すためにはベーシックプランへアップグレードしてください",
       "theme": "フォームテーマを設定するためにはベーシックプランへアップグレードしてください",
+      "metadata": "リンク設定を行うにはベーシックプランにアップグレードしてください",
       "confirm": " アップグレード",
       "remaining_one": "残り{{count}}日",
       "remaining_other": "残り{{count}}日",
@@ -1092,6 +1093,18 @@
           "body": "このフォームにご記入いただけると幸いです：{{url}}。ありがとうございます。"
         },
         "useCustomDomain": "カスタムドメインを使用する"
+      },
+      "settings": {
+        "headline": "リンク設定",
+        "subHeadline": "リンクをソーシャルメディアで共有する際に、フォームの表示方法を設定します。",
+        "title": "タイトル",
+        "description": "説明",
+        "preview": {
+          "headline": "プレビュー",
+          "subHeadline": "HeyFormは自動的に<a>Open Graph</a>画像を生成します。<button>独自の画像をアップロードする</button>こともできます。",
+          "uploadTitle": "独自のOpen Graph画像をアップロード",
+          "uploadDescription": "推奨サイズ: 1200x630 | JPG, PNG."
+        }
       },
       "embed": {
         "title": "埋め込み",

@@ -16,6 +16,7 @@ import { useAppStore, useFormStore, useWorkspaceStore } from '@/store'
 import { getDecoratedURL, useParam } from '@/utils'
 
 import EmbedModal from './EmbedModal'
+import LinkSettings from './LinkSettings'
 import QRCodeModal from './QRCodeModal'
 
 export default function FormShare() {
@@ -140,6 +141,8 @@ export default function FormShare() {
             </div>
           </div>
         </section>
+
+        <LinkSettings />
 
         <section id="embed">
           <h2 className="text-base/6 font-semibold">{t('form.share.embed.headline')}</h2>
