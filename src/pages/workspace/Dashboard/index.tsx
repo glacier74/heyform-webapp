@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
+import IconWavingHand from '@/assets/waving-hand.webp'
 import { useUserStore } from '@/store'
 import { getTimePeriod } from '@/utils'
 
@@ -13,7 +14,8 @@ export default function WorkspaceDashboard() {
   return (
     <>
       <div className="flex items-end justify-between gap-4">
-        <h1 className="text-2xl/8 font-semibold sm:text-xl/8">
+        <h1 className="flex items-center gap-2 text-2xl/8 font-semibold sm:text-xl/8">
+          <img className="-mt-2 h-9 w-9 sm:h-8 sm:w-8" src={IconWavingHand} />
           {t(`dashboard.${getTimePeriod()}`, { name: user.name })}
         </h1>
       </div>
