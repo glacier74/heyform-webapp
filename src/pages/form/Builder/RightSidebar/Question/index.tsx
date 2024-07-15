@@ -63,6 +63,10 @@ export default function Question() {
   const { t } = useTranslation()
   const { state } = useStoreContext()
 
+  if (!state.currentField) {
+    return null
+  }
+
   return (
     <div className="p-4">
       {/* Change question type */}
@@ -71,7 +75,7 @@ export default function Question() {
       {/* Settings */}
       <div className="mb-4 border-b border-accent-light pb-4">
         <div className="text-sm/6 font-medium">{t('form.builder.settings.title')}</div>
-        {state.currentField && <Settings field={state.currentField} />}
+        <Settings field={state.currentField} />
       </div>
 
       {/* Cover layout */}
