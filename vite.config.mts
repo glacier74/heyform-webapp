@@ -113,6 +113,17 @@ export default ({ mode }: ConfigEnv) => {
               proxyReq.setHeader('Authorization', 'Basic cm9vdDo2NjY=')
             })
           }
+        },
+        '/changelog': {
+          target: env.VITE_PROXY_TARGET,
+          secure: false,
+          changeOrigin: true,
+          // https://vitejs.dev/config/#server-proxy
+          configure: (proxy: any) => {
+            proxy.on('proxyReq', function(proxyReq: any) {
+              proxyReq.setHeader('Authorization', 'Basic cm9vdDo2NjY=')
+            })
+          }
         }
       }
     }

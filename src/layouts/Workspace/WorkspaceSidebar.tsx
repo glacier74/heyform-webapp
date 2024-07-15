@@ -3,7 +3,6 @@ import { Content, Description, Overlay, Portal, Root, Title } from '@radix-ui/re
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import {
   IconCreditCard,
-  IconGift,
   IconHelp,
   IconHome,
   IconLocation,
@@ -21,6 +20,7 @@ import { PlanGradeEnum } from '@/consts'
 import { useAppStore, useModal, useWorkspaceStore } from '@/store'
 import { cn, useParam } from '@/utils'
 
+import ChangelogButton from './ChangelogButton'
 import ProjectItem from './ProjectItem'
 import WorkspaceAccount from './WorkspaceAccount'
 import WorkspaceSwitcher from './WorkspaceSwitcher'
@@ -46,11 +46,6 @@ const RESOURCE_LINKS = [
     icon: IconStack2,
     title: 'workspace.sidebar.template',
     href: 'https://heyform.net/templates'
-  },
-  {
-    icon: IconGift,
-    title: 'workspace.sidebar.whatsNew',
-    href: 'https://heyform.net/changelog'
   }
 ]
 
@@ -193,6 +188,9 @@ const WorkspaceSidebarComponent = () => {
               <span className="truncate">{t(row.title)}</span>
             </a>
           ))}
+
+          {/* Changelog */}
+          <ChangelogButton />
         </nav>
       </div>
 

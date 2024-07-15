@@ -10,6 +10,13 @@ export interface FormType extends Omit<FormModel, 'fields'> {
   canPublish: boolean
 }
 
+export interface ChangelogType {
+  id: string
+  title: string
+  html: string
+  publishedAt: string
+}
+
 export * from './form'
 export * from './plan'
 export * from './user'

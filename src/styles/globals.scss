@@ -131,3 +131,37 @@ body {
     }
   }
 }
+
+// Changelog
+.changelog {
+  @apply mt-4 font-medium text-secondary;
+
+  h2 {
+    @apply mt-4 mb-1.5 text-base/6 text-primary font-bold;
+  }
+
+  p,
+  img {
+    @apply mb-4;
+  }
+
+  a {
+    @apply underline;
+
+    &:hover {
+      @apply text-primary;
+    }
+  }
+
+  img {
+    @apply mt-4 w-full h-auto shadow-lg rounded-lg;
+  }
+
+  figcaption {
+    @apply hidden;
+  }
+
+  ul {
+    @apply list-disc ml-4;
+  }
+}
