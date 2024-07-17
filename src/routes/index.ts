@@ -151,7 +151,7 @@ const routes = [
     component: WorkspaceSettings,
     options: {
       loginRequired: true,
-      title: 'settings.title'
+      title: 'form.settings.title'
     }
   },
 
