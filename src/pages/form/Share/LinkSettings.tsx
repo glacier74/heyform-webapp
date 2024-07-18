@@ -211,18 +211,18 @@ export default function LinkSettings() {
                     </div>
 
                     {/* Meta title or form name */}
-                    <div className="mt-3 line-clamp-2 text-sm/6 font-semibold leading-[1.25] text-primary">
+                    <div className="mt-3 line-clamp-2 text-sm/6 font-semibold leading-[1.25] text-[#09090b]">
                       {title}
                     </div>
 
                     {/* Meta description or question count */}
-                    <div className="mt-1 line-clamp-2 text-sm leading-[1.25] text-secondary">
+                    <div className="mt-1 line-clamp-2 text-sm leading-[1.25] text-[#71717a]">
                       {description}
                     </div>
 
                     {isBrandingShow && (
                       <div className="mt-4">
-                        <div className="flex items-center text-xs leading-[1.25] text-primary">
+                        <div className="flex items-center text-xs leading-[1.25] text-[#09090b]">
                           <span className="flex">Made with</span>
                           <LogoIcon className="ml-1 mr-0.5 h-4 w-4" />
                           <span>HeyForm</span>
