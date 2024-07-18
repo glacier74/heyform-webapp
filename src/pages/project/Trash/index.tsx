@@ -38,7 +38,7 @@ export default function ProjectTrash() {
             a: (
               <a
                 className="underline underline-offset-4 hover:text-primary"
-                href="https://docs.heyform.net/custom-domain"
+                href="https://docs.heyform.net/quickstart/how-to-retrieve-forms-from-trash"
                 target="_blank"
                 rel="noopener noreferrer"
               />
