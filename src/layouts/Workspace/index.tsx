@@ -213,6 +213,8 @@ export const BaseLayout: FC<LayoutProps> = ({ options, children }) => {
       </div>
 
       <UserAccountModal />
+      <UserDeletionModal />
+      <ChangePasswordModal />
     </LoginGuard>
   )
 }
