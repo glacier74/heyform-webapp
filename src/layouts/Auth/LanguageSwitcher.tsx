@@ -28,6 +28,10 @@ export default function LanguageSwitcher() {
   return (
     <Select
       className="[&_[data-slot=translated]]:hidden"
+      contentProps={{
+        className: '!w-48',
+        position: 'popper'
+      }}
       value={i18n.language}
       options={options}
       onChange={i18n.changeLanguage}
