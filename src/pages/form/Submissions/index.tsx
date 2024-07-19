@@ -302,7 +302,7 @@ export default function FormSubmissions() {
             columns={columns}
             loader={
               <Repeat count={20}>
-                <div className="-ml-4 flex h-10 items-center gap-x-8 border-b border-accent px-4">
+                <div className="flex h-10 items-center gap-x-8 border-b border-accent px-4">
                   <div className="skeleton h-4 w-4 rounded-md" />
                   <div className="skeleton h-4 w-20 rounded-md" />
                   <div className="skeleton h-4 w-60 rounded-md" />

@@ -145,11 +145,6 @@ export function Table<T, K>({
     return runAsync(params as Any)
   }, [params, runAsync, setTrue])
 
-  const colSpanLength = useMemo(
-    () => columns.length + (isSelectable ? 1 : 0),
-    [columns, isSelectable]
-  )
-
   const list = useMemo(
     () =>
       (data?.list || []).map(r => ({
@@ -222,54 +217,51 @@ export function Table<T, K>({
     )
   }, [columns, data?.list.length, handleSelectAll, isSelectable, rowKey, selectedRowKeys?.length])
 
-  const TBody = useMemo(() => {
+  const TBody = useMemo(
+    () =>
+      list.map((record, index) => (
+        <Tr<T, K>
+          key={record._key}
+          index={index}
+          record={record}
+          columns={columns}
+          isSelected={selectedRowKeys?.includes(record._key)}
+          onSelect={handleSelectRow}
+          onClick={setExpandedIndex}
+        />
+      )),
+    [list, columns, selectedRowKeys, handleSelectRow]
+  )
+
+  const Table = useMemo(() => {
     if (!(isRefreshing && pagination.total > 0) && loading) {
-      return (
-        <tr>
-          <td colSpan={colSpanLength}>{loader}</td>
-        </tr>
-      )
+      return loader
     } else if (error) {
-      return (
-        <tr>
-          <td colSpan={colSpanLength}>{errorRender?.(error)}</td>
-        </tr>
-      )
+      return errorRender?.(error)
     } else {
       if (pagination.total < 1) {
-        return (
-          <tr>
-            <td colSpan={colSpanLength}>{emptyRender?.({ refresh })}</td>
-          </tr>
-        )
+        return emptyRender?.({ refresh })
       } else {
-        return list.map((record, index) => (
-          <Tr<T, K>
-            key={record._key}
-            index={index}
-            record={record}
-            columns={columns}
-            isSelected={selectedRowKeys?.includes(record._key)}
-            onSelect={handleSelectRow}
-            onClick={setExpandedIndex}
-          />
-        ))
+        return (
+          <table className={classNames?.table}>
+            <thead className="border-b border-accent">{Thead}</thead>
+            <tbody>{TBody}</tbody>
+          </table>
+        )
       }
     }
   }, [
-    isRefreshing,
-    pagination.total,
-    loading,
-    error,
-    colSpanLength,
-    loader,
-    errorRender,
+    TBody,
+    Thead,
+    classNames?.table,
     emptyRender,
-    refresh,
-    list,
-    columns,
-    selectedRowKeys,
-    handleSelectRow
+    error,
+    errorRender,
+    isRefreshing,
+    loader,
+    loading,
+    pagination.total,
+    refresh
   ])
 
   const Footer = useMemo(() => {
@@ -325,12 +317,7 @@ export function Table<T, K>({
 
   return (
     <div className={className}>
-      <div className={classNames?.container}>
-        <table className={classNames?.table}>
-          <thead className="border-b border-accent">{Thead}</thead>
-          <tbody>{TBody}</tbody>
-        </table>
-      </div>
+      <div className={classNames?.container}>{Table}</div>
       {Footer}
     </div>
   )
