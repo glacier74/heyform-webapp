@@ -253,6 +253,11 @@ export const useFormStore = create<FormStoreType>()(
               ...state.integrations[index],
               ...updates
             }
+          } else {
+            state.integrations.push({
+              ...updates,
+              appId
+            } as IntegrationType)
           }
         })
       },

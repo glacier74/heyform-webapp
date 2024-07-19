@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Form } from '@/components'
+import { APP_STATUS_ENUM } from '@/consts'
 import { IntegrationService } from '@/services'
 import { useAppStore, useFormStore } from '@/store'
 import { IntegratedAppType } from '@/types'
@@ -28,7 +29,14 @@ const IntegrationSettingsForm: FC<IntegrationSettingsFormProps> = ({
       [app.uniqueId]: values
     })
 
-    updateIntegration(app.id, values)
+    updateIntegration(app.id, {
+      ...app.integration,
+      attributes: {
+        ...app.integration?.attributes,
+        ...values
+      },
+      status: app.integration?.status ?? APP_STATUS_ENUM.ACTIVE
+    })
     closeModal('IntegrationSettingsModal')
   }
 
