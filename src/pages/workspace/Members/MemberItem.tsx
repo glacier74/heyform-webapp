@@ -169,7 +169,7 @@ const MemberItem: FC<{ member: MemberType }> = ({ member }) => {
       </td>
 
       <td className="border-b border-accent p-4 sm:first:pl-1 sm:last:pr-1">
-        {member.lastSeenAt && timeFromNow(member.lastSeenAt, i18n.language)}
+        {member.lastSeenAt ? timeFromNow(member.lastSeenAt, i18n.language) : ''}
       </td>
 
       <td className="border-b border-accent p-4 sm:first:pl-1 sm:last:pr-1">{Action}</td>
