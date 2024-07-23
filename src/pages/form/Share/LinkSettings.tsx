@@ -167,7 +167,7 @@ export default function LinkSettings() {
                 <div className="group relative h-full w-full">
                   <Image
                     src={form!.settings!.metaOGImageUrl}
-                    className="aspect-[1200/600] rounded-lg"
+                    className="aspect-[1200/630] w-full rounded-lg"
                   />
 
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-100 group-hover:opacity-100">
@@ -187,7 +187,7 @@ export default function LinkSettings() {
                 </div>
               ) : (
                 <div
-                  className="aspect-[1200/600] rounded-lg px-4 py-2"
+                  className="aspect-[1200/630] rounded-lg px-4 py-2"
                   style={{
                     backgroundImage:
                       'radial-gradient(60% 100%,#fff,rgba(255,255,255,0.1)),radial-gradient(100% 30% at 50% 0px, #fff 60%, rgba(255,255,255,0.1)),linear-gradient(120.7deg,#fbddf0 10.68%,#c2f2ff 88.93%)'
