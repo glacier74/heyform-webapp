@@ -110,8 +110,8 @@ function getColorAlpha(color?: string) {
   if (color) {
     const rgba = colorToRgba(color)
 
-    if (rgba) {
-      return Math.round(rgba[3] * 100)
+    if (helper.isValidArray(rgba)) {
+      return Math.round((rgba as number[])[3] * 100)
     }
   }
 
