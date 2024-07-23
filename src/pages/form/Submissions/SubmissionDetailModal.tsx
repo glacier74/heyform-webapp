@@ -1,12 +1,6 @@
 import { FieldKindEnum, FormField } from '@heyform-inc/shared-types-enums'
 import { unixDate } from '@heyform-inc/utils'
-import {
-  IconCalendar,
-  IconChevronDown,
-  IconChevronUp,
-  IconDots,
-  IconRestore
-} from '@tabler/icons-react'
+import { IconCalendar, IconDots, IconRestore } from '@tabler/icons-react'
 import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -99,23 +93,23 @@ const SubmissionDetail: FC<SubmissionDetailProps> = () => {
         </div>
 
         <div className="flex gap-2 print:opacity-0">
-          <Button.Ghost
-            size="sm"
-            disabled={payload?.loading || payload?.isPreviousDisabled}
-            iconOnly
-            onClick={payload?.ref?.toPrevious}
-          >
-            <IconChevronUp className="h-5 w-5" />
-          </Button.Ghost>
+          {/*<Button.Ghost*/}
+          {/*  size="sm"*/}
+          {/*  disabled={payload?.loading || payload?.isPreviousDisabled}*/}
+          {/*  iconOnly*/}
+          {/*  onClick={payload?.ref?.toPrevious}*/}
+          {/*>*/}
+          {/*  <IconChevronUp className="h-5 w-5" />*/}
+          {/*</Button.Ghost>*/}
 
-          <Button.Ghost
-            size="sm"
-            disabled={payload?.loading || payload?.isNextDisabled}
-            iconOnly
-            onClick={payload?.ref?.toNext}
-          >
-            <IconChevronDown className="h-5 w-5" />
-          </Button.Ghost>
+          {/*<Button.Ghost*/}
+          {/*  size="sm"*/}
+          {/*  disabled={payload?.loading || payload?.isNextDisabled}*/}
+          {/*  iconOnly*/}
+          {/*  onClick={payload?.ref?.toNext}*/}
+          {/*>*/}
+          {/*  <IconChevronDown className="h-5 w-5" />*/}
+          {/*</Button.Ghost>*/}
 
           <Dropdown
             contentProps={{
