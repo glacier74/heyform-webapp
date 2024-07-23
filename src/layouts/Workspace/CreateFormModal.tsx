@@ -50,7 +50,7 @@ const CreateForm: FC<Pick<SimpleFormProps, 'onLoadingChange'>> = ({ onLoadingCha
       className="space-y-4"
       fetch={fetch}
       initialValues={{
-        projectId: projectId || payload?.projectId
+        projectId: projectId || payload?.projectId || workspace.projects[0]?.id
       }}
       submitProps={{
         className: 'px-5 min-w-24',

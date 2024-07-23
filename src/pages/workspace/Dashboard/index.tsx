@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next'
 
 import IconWavingHand from '@/assets/waving-hand.webp'
-import { useUserStore } from '@/store'
+import { Button } from '@/components'
+import { useAppStore, useUserStore } from '@/store'
 import { getTimePeriod } from '@/utils'
 
 import Overview from './Overview'
@@ -9,7 +10,9 @@ import RecentForms from './RecentForms'
 
 export default function WorkspaceDashboard() {
   const { t } = useTranslation()
+
   const { user } = useUserStore()
+  const { openModal } = useAppStore()
 
   return (
     <>
@@ -18,6 +21,10 @@ export default function WorkspaceDashboard() {
           <img className="-mt-2 h-9 w-9 sm:h-8 sm:w-8" src={IconWavingHand} />
           {t(`dashboard.${getTimePeriod()}`, { name: user.name })}
         </h1>
+
+        <Button size="md" onClick={() => openModal('CreateFormModal')}>
+          {t('form.creation.title')}
+        </Button>
       </div>
 
       {/* Overview */}
