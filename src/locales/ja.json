@@ -1010,7 +1010,8 @@
       },
       "mailChimp": {
         "audience": {
-          "headline": "オーディエンス"
+          "headline": "オーディエンス",
+          "placeholder": "オーディエンスを選択してください"
         },
         "subscriberEmail": {
           "headline": "購読者のメールアドレス"
@@ -1390,7 +1391,8 @@
           "addHiddenField": "隠しフィールドを追加",
           "updateHiddenField": "隠しフィールドを更新",
           "emptyState": "隠しフィールドがありません。「+」をクリックして作成できます。",
-          "name": "名前"
+          "name": "名前",
+          "headline": "非表示フィールド"
         },
         "variable": {
           "headline": "変数",
@@ -1455,7 +1457,8 @@
       "headline": "フォームが一時停止されました",
       "subHeadline": "一時停止に関する質問がある場合は、下のボタンをクリックしてお問い合わせください。",
       "contactUs": "お問い合わせ"
-    }
+    },
+    "metadata_zero": "まだ提出物がありません · 編集日 {{date}}"
   },
   "user": {
     "headline": "アカウント設定",

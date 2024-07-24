@@ -1011,7 +1011,8 @@
       },
       "mailChimp": {
         "audience": {
-          "headline": "Zielgruppe"
+          "headline": "Zielgruppe",
+          "placeholder": "Wählen Sie ein Publikum aus"
         },
         "subscriberEmail": {
           "headline": "Abonnenten-E-Mail"

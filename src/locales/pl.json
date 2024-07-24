@@ -1011,7 +1011,8 @@
       },
       "mailChimp": {
         "audience": {
-          "headline": "Odbiorcy"
+          "headline": "Odbiorcy",
+          "placeholder": "Wybierz odbiorców"
         },
         "subscriberEmail": {
           "headline": "E-mail subskrybenta"

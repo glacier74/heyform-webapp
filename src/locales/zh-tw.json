@@ -1010,7 +1010,8 @@
       },
       "mailChimp": {
         "audience": {
-          "headline": "受眾"
+          "headline": "受眾",
+          "placeholder": "選擇一個受眾"
         },
         "subscriberEmail": {
           "headline": "訂閱者信箱"
@@ -1390,7 +1391,8 @@
           "addHiddenField": "添加隱藏欄位",
           "updateHiddenField": "更新隱藏欄位",
           "emptyState": "沒有隱藏欄位。您可以點擊“+”來創建一個。",
-          "name": "名稱"
+          "name": "名稱",
+          "headline": "隱藏欄位"
         },
         "variable": {
           "headline": "變數",
@@ -1455,7 +1457,8 @@
       "headline": "表單已被暫停",
       "subHeadline": "如果您對暫停有疑問，請點擊下方按鈕聯繫我們。",
       "contactUs": "聯繫我們"
-    }
+    },
+    "metadata_zero": "尚未提交 · 編輯於 {{date}}"
   },
   "user": {
     "headline": "帳戶設定",

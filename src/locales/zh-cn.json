@@ -1010,7 +1010,8 @@
       },
       "mailChimp": {
         "audience": {
-          "headline": "受众"
+          "headline": "受众",
+          "placeholder": "选择一个受众群体"
         },
         "subscriberEmail": {
           "headline": "订阅者邮箱"
@@ -1390,7 +1391,8 @@
           "addHiddenField": "添加隐藏字段",
           "updateHiddenField": "更新隐藏字段",
           "emptyState": "没有隐藏字段。您可以点击“+”来创建一个。",
-          "name": "名称"
+          "name": "名称",
+          "headline": "隐藏字段"
         },
         "variable": {
           "headline": "变量",
@@ -1455,7 +1457,8 @@
       "headline": "表单已被暂停",
       "subHeadline": "如果您对暂停有任何疑问，请点击下方按钮联系我们。",
       "contactUs": "联系我们"
-    }
+    },
+    "metadata_zero": "尚无提交 · 编辑于 {{date}}"
   },
   "user": {
     "headline": "账户设置",

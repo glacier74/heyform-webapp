@@ -842,6 +842,10 @@
       "name": {
         "label": "Nom du formulaire",
         "required": "Le nom du formulaire ne doit pas être vide"
+      },
+      "project": {
+        "label": "Projet",
+        "required": "Le projet ne peut pas être vide"
       }
     },
     "rename": {
@@ -1011,7 +1015,8 @@
       },
       "mailChimp": {
         "audience": {
-          "headline": "Audience"
+          "headline": "Audience",
+          "placeholder": "Sélectionnez un public"
         },
         "subscriberEmail": {
           "headline": "E-mail de l'abonné"
