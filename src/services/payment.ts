@@ -47,12 +47,13 @@ export class PaymentService {
     })
   }
 
-  static freeTrial(teamId: string) {
+  static freeTrial(teamId: string, planId: string) {
     return apollo.mutate({
       mutation: FREE_TRIAL_GQL,
       variables: {
         input: {
-          teamId
+          teamId,
+          planId
         }
       }
     })

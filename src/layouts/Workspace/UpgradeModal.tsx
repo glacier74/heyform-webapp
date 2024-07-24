@@ -251,7 +251,7 @@ const UpgradeModalComponent: FC<{ isBillingPage?: boolean }> = ({ isBillingPage 
               {!isBillingPage && (
                 <div className="mt-10 flex items-center justify-center">
                   <Button.Link
-                    className="text-xs font-normal text-secondary/80"
+                    className="text-xs font-normal text-secondary/50"
                     size="sm"
                     onClick={() => closeModal('UpgradeModal')}
                   >

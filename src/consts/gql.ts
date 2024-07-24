@@ -354,7 +354,7 @@ export const ADD_ADDITIONAL_SEAT_GQL = gql`
 `
 
 export const FREE_TRIAL_GQL = gql`
-  mutation freeTrial($input: TeamDetailInput!) {
+  mutation freeTrial($input: FreeTrialInput!) {
     freeTrial(input: $input)
   }
 `
