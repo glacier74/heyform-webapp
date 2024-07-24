@@ -1,5 +1,6 @@
 import { unixDate } from '@heyform-inc/utils'
 import { IconCheck } from '@tabler/icons-react'
+import { useRequest } from 'ahooks'
 import dayjs from 'dayjs'
 import { FC, useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -33,6 +34,16 @@ const PlanItem: FC<PlanItemProps> = ({ plan, billingCycle }) => {
   const price = useMemo(
     () => plan.prices.find(price => price.billingCycle === billingCycle)?.price,
     [plan.prices, billingCycle]
+  )
+
+  const { loading, run } = useRequest(
+    async () => {
+      window.location.href = await PaymentService.freeTrial(workspaceId, plan.id)
+    },
+    {
+      refreshDeps: [workspaceId, plan.id],
+      manual: true
+    }
   )
 
   const handleUpgrade = useCallback(() => {
@@ -116,9 +127,21 @@ const PlanItem: FC<PlanItemProps> = ({ plan, billingCycle }) => {
     } else {
       if (plan.grade > grade!) {
         return (
-          <Button className="w-full" onClick={handleUpgrade}>
-            {t('billing.upgrade.confirm')}
-          </Button>
+          <>
+            <Button className="w-full" onClick={handleUpgrade}>
+              {t('billing.upgrade.confirm')}
+            </Button>
+
+            {!workspace.trialEndAt && (
+              <Button.Link
+                className="!p-0 underline hover:bg-transparent"
+                loading={loading}
+                onClick={run}
+              >
+                {t('workspace.trial.startTrial')}
+              </Button.Link>
+            )}
+          </>
         )
       } else if (plan.grade < grade!) {
         return (
