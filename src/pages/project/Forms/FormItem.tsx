@@ -25,6 +25,22 @@ interface FormItemLinkProps extends ComponentProps {
   isSuspended?: boolean
 }
 
+export const FormStatusBadge: FC<{ form?: FormType }> = ({ form }) => {
+  const { t } = useTranslation()
+
+  if (!form) {
+    return null
+  } else if (form.suspended) {
+    return <Badge color="red">{t('form.suspended')}</Badge>
+  } else if (form.isDraft) {
+    return <Badge color="zinc">{t('form.draft')}</Badge>
+  } else if (form.settings?.active) {
+    return <Badge color="green">{t('form.active')}</Badge>
+  } else {
+    return <Badge color="zinc">{t('form.closed')}</Badge>
+  }
+}
+
 const FormItemLink: FC<FormItemLinkProps> = ({
   to,
   isInTrash = false,
@@ -123,18 +139,6 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
           ],
     [isInTrash]
   )
-
-  const Status = useMemo(() => {
-    if (form.suspended) {
-      return <Badge color="red">{t('form.suspended')}</Badge>
-    } else if (form.isDraft) {
-      return <Badge color="zinc">{t('form.draft')}</Badge>
-    } else if (form.settings?.active) {
-      return <Badge color="green">{t('form.active')}</Badge>
-    } else {
-      return <Badge color="zinc">{t('form.closed')}</Badge>
-    }
-  }, [form.isDraft, form.settings?.active, form.suspended, t])
 
   function handleEdit(event?: MouseEvent<HTMLButtonElement>) {
     event?.preventDefault()
@@ -289,7 +293,7 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
           </div>
         )}
 
-        {Status}
+        <FormStatusBadge form={form} />
 
         {!form.suspended && (
           <Dropdown

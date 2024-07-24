@@ -11,6 +11,7 @@ import { FormService } from '@/services'
 import { useFormStore, useWorkspaceStore } from '@/store'
 import { cn, timeFromNow, useParam, useRouter } from '@/utils'
 
+import { FormStatusBadge } from '../../pages/project/Forms/FormItem'
 import { WorkspaceLayout } from '../Workspace'
 
 export const FormLayout: FC<LayoutProps> = ({ options, children }) => {
@@ -106,7 +107,10 @@ export const FormLayout: FC<LayoutProps> = ({ options, children }) => {
             className="h-8 [&_[data-slot=skeleton]]:h-5 [&_[data-slot=skeleton]]:w-44 [&_[data-slot=skeleton]]:sm:h-6"
             loading={loading}
           >
-            <h1 className="text-2xl/8 font-semibold sm:text-xl/8">{form?.name}</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="text-2xl/8 font-semibold sm:text-xl/8">{form?.name}</h1>
+              <FormStatusBadge form={form} />
+            </div>
           </Skeleton>
 
           <Skeleton className="[&_[data-slot=skeleton]]:w-64" loading={loading}>
