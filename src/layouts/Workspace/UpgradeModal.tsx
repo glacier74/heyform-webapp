@@ -192,7 +192,6 @@ const UpgradeModalComponent: FC<{ isBillingPage?: boolean }> = ({ isBillingPage 
   const { t } = useTranslation()
 
   const { workspace } = useWorkspaceStore()
-  const { closeModal } = useAppStore()
 
   const [plans, setPlans] = useState<PlanType[]>([])
   const [billingCycle, setBillingCycle] = useState<BillingCycleEnum>(
@@ -270,18 +269,6 @@ const UpgradeModalComponent: FC<{ isBillingPage?: boolean }> = ({ isBillingPage 
                   <PlanItem key={plan.id} plan={plan} billingCycle={billingCycle} />
                 ))}
               </div>
-
-              {!isBillingPage && (
-                <div className="mt-10 flex items-center justify-center">
-                  <Button.Link
-                    className="text-xs font-normal text-secondary/50"
-                    size="sm"
-                    onClick={() => closeModal('UpgradeModal')}
-                  >
-                    {t('billing.keepFreePlan')}
-                  </Button.Link>
-                </div>
-              )}
             </div>
           </Async>
         </div>
@@ -301,7 +288,7 @@ export default function UpgradeModal() {
       }}
       contentProps={{
         className:
-          'scrollbar max-w-screen max-h-screen w-screen h-screen bg-foreground focus:outline-none focus-visible:outline-none',
+          'scrollbar max-w-screen max-h-screen w-screen h-screen border-none rounded-none shadow-none bg-foreground focus:outline-none focus-visible:outline-none',
         forceMount: true
       }}
       onOpenChange={onOpenChange}
