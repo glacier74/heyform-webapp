@@ -1295,7 +1295,9 @@
       },
       "sidebar": {
         "questions": "質問",
-        "addQuestion": "質問を追加"
+        "addQuestion": "質問を追加",
+        "endings": "エンディング",
+        "addEndingTip": "新しいエンディングを追加します。複数のエンディングを作成し、どれを見るかを決定するロジックを実装できます。"
       },
       "compose": {
         "question": "質問を入力",

@@ -1,5 +1,10 @@
 import { flattenFieldsWithGroups } from '@heyform-inc/form-renderer'
-import { ActionEnum, Logic, UNSELECTABLE_FIELD_KINDS } from '@heyform-inc/shared-types-enums'
+import {
+  ActionEnum,
+  FieldKindEnum,
+  Logic,
+  UNSELECTABLE_FIELD_KINDS
+} from '@heyform-inc/shared-types-enums'
 import * as dagre from 'dagre'
 import { Edge, Node } from 'react-flow-renderer'
 
@@ -26,6 +31,8 @@ export function getLayoutedElements(nodes: Node[], edges: Edge[], direction = 'L
 
   dagre.layout(dagreGraph)
 
+  let prevThankYouNode: Node | undefined = undefined
+
   nodes.forEach(node => {
     const position = dagreGraph.node(node.id)
 
@@ -34,6 +41,17 @@ export function getLayoutedElements(nodes: Node[], edges: Edge[], direction = 'L
     node.position = {
       x: position.x - nodeWidth / 2,
       y: position.y - nodeHeight / 2
+    }
+
+    if (node.data.field.kind === FieldKindEnum.THANK_YOU) {
+      if (prevThankYouNode) {
+        node.position = {
+          x: prevThankYouNode.position.x,
+          y: prevThankYouNode.position.y + nodeHeight + 24
+        }
+      }
+
+      prevThankYouNode = node
     }
 
     return node

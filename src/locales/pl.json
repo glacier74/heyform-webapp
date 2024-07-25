@@ -1296,7 +1296,9 @@
       },
       "sidebar": {
         "questions": "Pytania",
-        "addQuestion": "Dodaj pytanie"
+        "addQuestion": "Dodaj pytanie",
+        "endings": "Zakończenia",
+        "addEndingTip": "Dodaj nowe zakończenie. Możesz stworzyć wiele zakończeń i wdrożyć logikę, aby określić, które z nich zobaczą ludzie."
       },
       "compose": {
         "question": "Wpisz pytanie",

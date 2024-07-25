@@ -28,7 +28,7 @@
   "dependencies": {
     "@apollo/client": "^3.11.0",
     "@heyform-inc/answer-utils": "^1.1.0",
-    "@heyform-inc/form-renderer": "^0.1.16",
+    "@heyform-inc/form-renderer": "^0.1.17",
     "@heyform-inc/shared-types-enums": "^1.1.10",
     "@heyform-inc/utils": "^1.2.2",
     "@heyooo-inc/react-router": "^0.0.4",

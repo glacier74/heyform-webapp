@@ -1296,7 +1296,9 @@
       },
       "sidebar": {
         "questions": "Fragen",
-        "addQuestion": "Frage hinzufügen"
+        "addQuestion": "Frage hinzufügen",
+        "endings": "Endungen",
+        "addEndingTip": "Fügen Sie ein neues Ende hinzu. Sie können mehrere Enden erstellen und eine Logik implementieren, um zu bestimmen, welches die Leute sehen werden."
       },
       "compose": {
         "question": "Geben Sie eine Frage ein",

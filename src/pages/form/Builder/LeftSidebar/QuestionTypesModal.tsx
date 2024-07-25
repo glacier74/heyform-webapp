@@ -2,8 +2,7 @@ import { FieldKindEnum } from '@heyform-inc/shared-types-enums'
 import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useOnboardingStorage } from '@/components'
-import { Modal } from '@/components'
+import { Modal, useOnboardingStorage } from '@/components'
 import {
   ADD_QUESTION2_STORAGE_NAME,
   ALL_FIELD_CONFIGS,
@@ -19,14 +18,12 @@ import { QuestionIcon } from './QuestionList'
 interface QuestionTypeItemProps {
   config: typeof FIELD_WELCOME_CONFIG
   isWelcomeDisabled?: boolean
-  isThankYouDisabled?: boolean
   isPaymentDisabled?: boolean
 }
 
 const QuestionTypeItem: FC<QuestionTypeItemProps> = ({
   config,
   isWelcomeDisabled,
-  isThankYouDisabled,
   isPaymentDisabled
 }) => {
   const { t } = useTranslation()
@@ -37,7 +34,6 @@ const QuestionTypeItem: FC<QuestionTypeItemProps> = ({
 
   const isDisabled =
     (config.kind === FieldKindEnum.WELCOME && isWelcomeDisabled) ||
-    (config.kind === FieldKindEnum.THANK_YOU && isThankYouDisabled) ||
     (config.kind === FieldKindEnum.PAYMENT && isPaymentDisabled)
 
   function handleClick() {
@@ -82,10 +78,6 @@ const QuestionTypesComponent = () => {
     () => state.fields.some(f => f.kind === FieldKindEnum.WELCOME),
     [state.fields]
   )
-  const isThankYouDisabled = useMemo(
-    () => state.fields.some(f => f.kind === FieldKindEnum.THANK_YOU),
-    [state.fields]
-  )
   const isPaymentDisabled = useMemo(
     () => state.fields.some(f => f.kind === FieldKindEnum.PAYMENT),
     [state.fields]
@@ -116,7 +108,6 @@ const QuestionTypesComponent = () => {
                       key={config.kind}
                       config={config}
                       isWelcomeDisabled={isWelcomeDisabled}
-                      isThankYouDisabled={isThankYouDisabled}
                       isPaymentDisabled={isPaymentDisabled}
                     />
                   ))}

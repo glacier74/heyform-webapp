@@ -12,10 +12,6 @@ import { FormFieldType } from '@/types'
 
 import { getValidLogics } from './logic'
 
-// TODO: remove in future
-const DISCARD_FIELD_KINDS = ['single_choice', 'dropdown']
-const FIELD_KINDS = [...DISCARD_FIELD_KINDS, ...FORM_FIELD_KINDS]
-
 export function serializeFields(rawFields: FormFieldType[]) {
   let questions: Partial<FormFieldType>[] = []
   let index = 1
@@ -66,16 +62,12 @@ export function serializeFields(rawFields: FormFieldType[]) {
 }
 
 export function initFields(rawFields?: FormFieldType[], rawLogics?: Logic[]) {
-  let list = rawFields?.filter(f => FIELD_KINDS.includes(f.kind)) || []
+  let list = rawFields?.filter(f => FORM_FIELD_KINDS.includes(f.kind)) || []
 
   if (list.length > 0) {
     list = list.map((f: Any) => {
       f.title = f.title
       delete f.titleSchema
-
-      if (DISCARD_FIELD_KINDS.includes(f.kind)) {
-        f.kind = FieldKindEnum.MULTIPLE_CHOICE
-      }
 
       return f
     })

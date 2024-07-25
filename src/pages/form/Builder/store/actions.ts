@@ -137,17 +137,10 @@ export function addField(
       index = fields.findIndex(f => f.id === state.currentId)
       selected = fields[index]
 
-      switch (selected?.kind) {
-        case FieldKindEnum.WELCOME:
-          index = 0
-          break
-
-        case FieldKindEnum.THANK_YOU:
-          index = fields.length - 1
-          break
-
-        default:
-          index += 1
+      if (field.kind === FieldKindEnum.THANK_YOU) {
+        index = selected?.kind === FieldKindEnum.THANK_YOU ? index + 1 : fields.length
+      } else {
+        index = selected?.kind === FieldKindEnum.WELCOME ? 0 : index + 1
       }
     }
 

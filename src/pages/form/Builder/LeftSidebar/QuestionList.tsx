@@ -1,14 +1,15 @@
 import { htmlUtils } from '@heyform-inc/answer-utils'
-import { questionNumber } from '@heyform-inc/form-renderer'
+import { numberToChar, questionNumber } from '@heyform-inc/form-renderer'
 import {
   FieldKindEnum,
   OTHER_FIELD_KINDS,
   QUESTION_FIELD_KINDS
 } from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
-import { IconCaretDownFilled, IconDotsVertical } from '@tabler/icons-react'
+import { IconCaretDownFilled, IconDotsVertical, IconPlus } from '@tabler/icons-react'
 import { FC, MouseEvent, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
 import { ReactSortable } from 'react-sortablejs'
 
 import { Button, Dropdown, Tooltip } from '@/components'
@@ -17,6 +18,7 @@ import { FormFieldType } from '@/types'
 import { cn, nextTick } from '@/utils'
 
 import { useStoreContext } from '../store'
+import { getFieldFromKind } from '../utils'
 
 interface QuestionIconProps extends ComponentProps {
   configs?: AnyMap[]
@@ -306,19 +308,25 @@ const Question: FC<QuestionProps> = ({
 }
 
 export default function QuestionList() {
+  const { t } = useTranslation()
   const { state, dispatch } = useStoreContext()
 
   const isDeleteEnabled = useMemo(() => state.questions.length > 1, [state.questions])
   const data = useMemo(() => {
     let welcome: FormFieldType | null = null
-    let thankYou: FormFieldType | null = null
+    let thankYouIndex = 1
+    const thankYous: FormFieldType[] = []
     const fields: FormFieldType[] = []
 
     for (const field of state.fields) {
       if (field.kind === FieldKindEnum.WELCOME) {
         welcome = field
       } else if (field.kind === FieldKindEnum.THANK_YOU) {
-        thankYou = field
+        thankYous.push({
+          ...field,
+          index: thankYouIndex
+        })
+        thankYouIndex += 1
       } else {
         fields.push(field)
       }
@@ -327,24 +335,41 @@ export default function QuestionList() {
     return {
       welcome,
       fields,
-      thankYou
+      thankYous
     }
   }, [state.fields])
 
-  function handleSortStart(event: Any) {
-    dispatch({
-      type: 'selectField',
-      payload: {
-        id: data.fields[event.oldIndex].id
-      }
-    })
-  }
+  const handleSortStart = useCallback(
+    (event: Any) => {
+      dispatch({
+        type: 'selectField',
+        payload: {
+          id: data.fields[event.oldIndex].id
+        }
+      })
+    },
+    [data.fields, dispatch]
+  )
 
-  function handleSortFields(fields: FormFieldType[]) {
+  const handleSortFields = useCallback(
+    (fields: FormFieldType[]) => {
+      dispatch({
+        type: 'setFields',
+        payload: {
+          fields: ([data.welcome, ...fields, ...data.thankYous] as FormFieldType[]).filter(
+            helper.isValid
+          )
+        }
+      })
+    },
+    [data.thankYous, data.welcome, dispatch]
+  )
+
+  function handleAddEnding() {
     dispatch({
-      type: 'setFields',
+      type: 'addField',
       payload: {
-        fields: [data.welcome, ...fields, data.thankYou].filter(helper.isValid) as FormFieldType[]
+        field: getFieldFromKind(FieldKindEnum.THANK_YOU)
       }
     })
   }
@@ -383,26 +408,56 @@ export default function QuestionList() {
   )
 
   return (
-    <div className="scrollbar h-full px-2 pb-2">
-      {data.welcome && (
-        <Question
-          className="mb-1"
-          field={data.welcome}
-          currentId={state.currentId}
-          isDeleteEnabled={isDeleteEnabled}
-        />
-      )}
+    <PanelGroup className="flex-1" direction="vertical">
+      <Panel defaultSize={70} maxSize={85}>
+        <div className="scrollbar h-full px-2">
+          {data.welcome && (
+            <Question
+              className="mb-1"
+              field={data.welcome}
+              currentId={state.currentId}
+              isDeleteEnabled={isDeleteEnabled}
+            />
+          )}
 
-      {Sortable}
+          {Sortable}
+        </div>
+      </Panel>
 
-      {data.thankYou && (
-        <Question
-          className="mb-2 mt-1"
-          field={data.thankYou}
-          currentId={state.currentId}
-          isDeleteEnabled={isDeleteEnabled}
-        />
-      )}
-    </div>
+      <PanelResizeHandle className="mx-2 border-t border-accent-light" />
+
+      <Panel className="flex flex-col" defaultSize={20} maxSize={65}>
+        <div className="flex items-center justify-between px-4 py-2">
+          <div className="text-sm/6 font-medium text-primary">
+            {t('form.builder.sidebar.endings')}
+          </div>
+
+          <div className="flex items-center">
+            <Tooltip
+              label={t('form.builder.sidebar.addEndingTip')}
+              contentProps={{
+                className: 'max-w-xs'
+              }}
+            >
+              <Button.Link className="-mr-2" size="sm" iconOnly onClick={handleAddEnding}>
+                <IconPlus className="h-5 w-5" />
+              </Button.Link>
+            </Tooltip>
+          </div>
+        </div>
+
+        <div className="scrollbar flex-1 px-2">
+          {data.thankYous.map(field => (
+            <Question
+              key={field.id}
+              className="mb-2 mt-1"
+              field={field}
+              currentId={state.currentId}
+              isDeleteEnabled={isDeleteEnabled}
+            />
+          ))}
+        </div>
+      </Panel>
+    </PanelGroup>
   )
 }

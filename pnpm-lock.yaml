@@ -19,8 +19,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(@heyform-inc/shared-types-enums@1.1.10)(@heyform-inc/utils@1.2.2)(big.js@6.2.1)(dayjs@1.11.12)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
       '@heyform-inc/form-renderer':
-        specifier: ^0.1.16
-        version: 0.1.16(nkd72u6zx6yim5cotvgaaplvtu)
+        specifier: ^0.1.17
+        version: 0.1.17(nkd72u6zx6yim5cotvgaaplvtu)
       '@heyform-inc/shared-types-enums':
         specifier: ^1.1.10
         version: 1.1.10
@@ -579,8 +579,8 @@ packages:
       libphonenumber-js: ^1.10.7
       validator: ^13.7.0
 
-  '@heyform-inc/form-renderer@0.1.16':
-    resolution: {integrity: sha512-xJFSc3CkDgSI0ChOGvwzIQ7k4fiw7g8SjjHB+T5UGZJXoLLlStaUSItTQ8MZ5uKObdfut1tc1XSZ1GWGTXBvrA==}
+  '@heyform-inc/form-renderer@0.1.17':
+    resolution: {integrity: sha512-lAD3i/FKCnfOgzS/xGNcsqn4NLNmfw5OnujRq7/Q9MbmFMLfpEpKiVkY+KvV8QHKQ1vfvJiqPfeW9EgCa0YP5g==}
     peerDependencies:
       '@heyform-inc/answer-utils': ^1.1.0
       '@heyform-inc/shared-types-enums': ^1.1.10
@@ -4253,7 +4253,7 @@ snapshots:
       libphonenumber-js: 1.11.4
       validator: 13.12.0
 
-  '@heyform-inc/form-renderer@0.1.16(nkd72u6zx6yim5cotvgaaplvtu)':
+  '@heyform-inc/form-renderer@0.1.17(nkd72u6zx6yim5cotvgaaplvtu)':
     dependencies:
       '@heyform-inc/answer-utils': 1.1.0(@heyform-inc/shared-types-enums@1.1.10)(@heyform-inc/utils@1.2.2)(big.js@6.2.1)(dayjs@1.11.12)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
       '@heyform-inc/shared-types-enums': 1.1.10

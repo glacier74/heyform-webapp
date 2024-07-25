@@ -1296,7 +1296,9 @@
       },
       "sidebar": {
         "questions": "Questions",
-        "addQuestion": "Add question"
+        "addQuestion": "Add question",
+        "endings": "Endings",
+        "addEndingTip": "Add a new ending. You can create multiple endings and implement logic to determine which one people will see."
       },
       "compose": {
         "question": "Type a question",
