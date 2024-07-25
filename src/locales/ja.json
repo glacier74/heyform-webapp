@@ -1257,8 +1257,6 @@
         "title": "質問",
         "answer": "回答",
         "recommended": "おすすめ",
-        "welcome": "ようこそ",
-        "thankYou": "ありがとうございます",
         "multipleChoice": "複数選択",
         "phoneNumber": "電話番号",
         "shortText": "短文",
@@ -1291,7 +1289,9 @@
         "legalConsent": "法的同意",
         "date": "日付",
         "payment": "支払い",
-        "string": "文字列"
+        "string": "文字列",
+        "welcome": "ウェルカム画面",
+        "thankYou": "終了画面"
       },
       "sidebar": {
         "questions": "質問",

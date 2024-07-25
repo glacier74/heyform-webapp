@@ -1258,8 +1258,6 @@
         "title": "Pytanie",
         "answer": "Odpowiedź",
         "recommended": "Zalecane",
-        "welcome": "Witamy",
-        "thankYou": "Dziękujemy",
         "multipleChoice": "Wielokrotny wybór",
         "phoneNumber": "Numer telefonu",
         "shortText": "Krótki tekst",
@@ -1292,7 +1290,9 @@
         "legalConsent": "Zgoda prawna",
         "date": "Data",
         "payment": "Płatność",
-        "string": "Ciąg znaków"
+        "string": "Ciąg znaków",
+        "welcome": "Ekran powitalny",
+        "thankYou": "Ekran końcowy"
       },
       "sidebar": {
         "questions": "Pytania",

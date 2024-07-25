@@ -1257,8 +1257,6 @@
         "title": "问题",
         "answer": "答案",
         "recommended": "推荐",
-        "welcome": "欢迎",
-        "thankYou": "谢谢",
         "multipleChoice": "多项选择",
         "phoneNumber": "电话号码",
         "shortText": "简短文本",
@@ -1291,7 +1289,9 @@
         "legalConsent": "法律同意",
         "date": "日期",
         "payment": "支付",
-        "string": "字符串"
+        "string": "字符串",
+        "welcome": "欢迎屏幕",
+        "thankYou": "结束屏幕"
       },
       "sidebar": {
         "questions": "问题",

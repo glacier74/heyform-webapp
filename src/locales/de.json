@@ -1258,8 +1258,6 @@
         "title": "Frage",
         "answer": "Antwort",
         "recommended": "Empfohlen",
-        "welcome": "Willkommen",
-        "thankYou": "Danke",
         "multipleChoice": "Mehrfachauswahl",
         "phoneNumber": "Telefonnummer",
         "shortText": "Kurztext",
@@ -1292,7 +1290,9 @@
         "legalConsent": "Rechtliches & Einwilligung",
         "date": "Datum",
         "payment": "Zahlung",
-        "string": "Textfeld"
+        "string": "Textfeld",
+        "welcome": "Willkommensbildschirm",
+        "thankYou": "Endbildschirm"
       },
       "sidebar": {
         "questions": "Fragen",

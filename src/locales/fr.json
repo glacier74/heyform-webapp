@@ -1262,8 +1262,6 @@
         "title": "Question",
         "answer": "Réponse",
         "recommended": "Recommandé",
-        "welcome": "Bienvenue",
-        "thankYou": "Merci",
         "multipleChoice": "Choix multiple",
         "phoneNumber": "Numéro de téléphone",
         "shortText": "Texte court",
@@ -1296,7 +1294,9 @@
         "legalConsent": "Légal et consentement",
         "date": "Date",
         "payment": "Paiement",
-        "string": "Texte"
+        "string": "Texte",
+        "welcome": "Écran de bienvenue",
+        "thankYou": "Écran de fin"
       },
       "sidebar": {
         "questions": "Questions",
