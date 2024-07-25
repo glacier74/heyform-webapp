@@ -60,12 +60,12 @@ const QuestionTypeItem: FC<QuestionTypeItemProps> = ({
     <li>
       <button
         type="button"
-        className="group flex w-full items-center gap-x-3 rounded-md px-2 py-1.5 text-sm/6 font-medium text-primary hover:bg-accent-light aria-disabled:pointer-events-none aria-disabled:opacity-60"
+        className="group flex w-full items-center gap-x-2 rounded-md px-2 py-1.5 text-sm/6 font-medium text-primary hover:bg-accent-light aria-disabled:pointer-events-none aria-disabled:opacity-60"
         aria-disabled={isDisabled}
         onClick={handleClick}
       >
         <QuestionIcon
-          className="h-6 w-6 justify-center px-0 [&_[data-slot=icon]]:ml-0 [&_[data-slot=icon]]:h-5 [&_[data-slot=icon]]:w-5"
+          className="h-6 w-6 justify-center border-none bg-transparent p-0 [&_[data-slot=icon]]:ml-0 [&_[data-slot=icon]]:h-5 [&_[data-slot=icon]]:w-5"
           kind={config.kind}
         />
         {t(config.label)}

@@ -25,15 +25,7 @@ export default function TypeSwitcher() {
 
     return configs.map(row => ({
       value: row.kind,
-      icon: (
-        <row.icon
-          className="h-6 w-6 rounded p-0.5"
-          style={{
-            background: row.backgroundColor,
-            color: row.textColor
-          }}
-        />
-      ),
+      icon: <row.icon className="h-6 w-6 rounded p-0.5" />,
       label: t(row.label),
       disabled:
         row.kind === FieldKindEnum.PAYMENT &&

@@ -393,7 +393,7 @@ export const SubmissionHeaderCell: FC<SubmissionHeaderCellProps & ComponentProps
   return (
     <div className={cn('flex items-center gap-x-1.5', className)}>
       <QuestionIcon
-        className="h-5 w-5 justify-center px-0 [&_[data-slot=icon]]:ml-0"
+        className="h-auto w-auto justify-center border-none bg-transparent px-0 [&_[data-slot=icon]]:ml-0 [&_[data-slot=icon]]:h-5 [&_[data-slot=icon]]:w-5"
         configs={ICON_CONFIGS}
         kind={field.kind}
       />

@@ -31,38 +31,29 @@ export const QuestionIcon: FC<QuestionIconProps> = ({
   kind,
   index,
   parentIndex,
-  style: rawStyle
+  style
 }) => {
   const config = useMemo(() => configs.find(c => c.kind === kind), [configs, kind])
+  const label = useMemo(() => {
+    if (index) {
+      if (kind === FieldKindEnum.THANK_YOU) {
+        return numberToChar(index).toUpperCase()
+      }
 
-  const style = useMemo(
-    () => ({
-      ...rawStyle,
-      backgroundColor: config?.backgroundColor,
-      color: config?.textColor
-    }),
-    [config?.backgroundColor, config?.textColor, rawStyle]
-  )
-
-  const iconStyle = useMemo(
-    () => ({
-      color: config?.textColor
-    }),
-    [config?.textColor]
-  )
-
-  const label = useMemo(() => questionNumber(index, parentIndex), [index, parentIndex])
+      return questionNumber(index, parentIndex)
+    }
+  }, [index, kind, parentIndex])
 
   return (
     <div
       className={cn(
-        'flex h-6 w-12 items-center justify-between rounded px-1.5 [&_[data-slot=icon]]:-ml-0.5 [&_[data-slot=icon]]:h-4 [&_[data-slot=icon]]:w-4 [&_[data-slot=index]]:text-xs [&_[data-slot=index]]:font-medium',
+        'flex h-6 w-12 items-center justify-between rounded border border-input bg-foreground px-1.5 [&_[data-slot=icon]]:-ml-0.5 [&_[data-slot=icon]]:h-4 [&_[data-slot=icon]]:w-4 [&_[data-slot=index]]:text-xs [&_[data-slot=index]]:font-medium',
         className
       )}
       style={style}
       data-slot="question-icon"
     >
-      {config?.icon && <config.icon data-slot="icon" style={iconStyle} />}
+      {config?.icon && <config.icon data-slot="icon" />}
       {helper.isValid(label) && (
         <span className="text-xs/6 font-medium" data-slot="index">
           {label}
