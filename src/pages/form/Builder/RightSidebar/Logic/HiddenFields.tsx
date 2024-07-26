@@ -1,11 +1,11 @@
 import { FieldKindEnum, HiddenField } from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
-import { IconDots, IconPlus } from '@tabler/icons-react'
+import { IconArrowUpRight, IconDots, IconPlus } from '@tabler/icons-react'
 import { FC, startTransition } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
-import { Button, Dropdown, Tooltip } from '@/components'
-import { CUSTOM_FIELDS_CONFIGS } from '@/consts'
+import { Button, Dropdown, PlanUpgrade, Tooltip } from '@/components'
+import { CUSTOM_FIELDS_CONFIGS, PlanGradeEnum } from '@/consts'
 import { useAppStore } from '@/store'
 
 import { QuestionIcon } from '../../LeftSidebar/QuestionList'
@@ -108,16 +108,21 @@ export const HiddenFields: FC = () => {
       <div className="flex items-center justify-between text-sm/6">
         <span className="font-medium">{t('form.builder.logic.hiddenFields.headline')}</span>
 
-        <Tooltip label={t('form.builder.logic.hiddenFields.addHiddenField')}>
-          <Button.Link
-            className="text-secondary hover:text-primary [&_[data-slot=button]]:gap-x-0"
-            size="sm"
-            iconOnly
-            onClick={handleClick}
-          >
-            <IconPlus className="h-5 w-5" />
-          </Button.Link>
-        </Tooltip>
+        <PlanUpgrade
+          minimalGrade={PlanGradeEnum.BASIC}
+          tooltipLabel={t('billing.upgrade.hiddenFields')}
+        >
+          <Tooltip label={t('form.builder.logic.hiddenFields.addHiddenField')}>
+            <Button.Link
+              className="text-secondary hover:text-primary [&_[data-slot=button]]:gap-x-0"
+              size="sm"
+              iconOnly
+              onClick={handleClick}
+            >
+              <IconPlus className="h-5 w-5" />
+            </Button.Link>
+          </Tooltip>
+        </PlanUpgrade>
       </div>
 
       {helper.isValidArray(state.hiddenFields) ? (
@@ -127,7 +132,24 @@ export const HiddenFields: FC = () => {
           ))}
         </ul>
       ) : (
-        <p className="text-sm text-secondary">{t('form.builder.logic.hiddenFields.emptyState')}</p>
+        <p className="text-sm text-secondary">
+          <Trans
+            t={t}
+            i18nKey="form.builder.logic.hiddenFields.emptyState"
+            components={{
+              a: (
+                <a
+                  key="a"
+                  className="underline underline-offset-4 hover:text-primary"
+                  href="https://docs.heyform.net/features/hidden-fields"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              ),
+              icon: <IconArrowUpRight key="icon" className="inline h-4 w-4" stroke={1.5} />
+            }}
+          />
+        </p>
       )}
     </div>
   )
