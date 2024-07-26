@@ -1,27 +1,45 @@
 import { LayoutProps } from '@heyooo-inc/react-router'
-import { IconChevronLeft } from '@tabler/icons-react'
+import { IconChevronLeft, IconCopy, IconDots, IconTag, IconTrash } from '@tabler/icons-react'
 import { useRequest } from 'ahooks'
 import { FC, useEffect, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link, NavLink } from 'react-router-dom'
 
 import IconLink from '@/assets/link.svg?react'
-import { Button, Skeleton, useAlert } from '@/components'
+import { Button, Dropdown, Skeleton, Tooltip, useAlert, usePrompt } from '@/components'
 import { FormService } from '@/services'
 import { useFormStore, useWorkspaceStore } from '@/store'
 import { cn, timeFromNow, useParam, useRouter } from '@/utils'
 
-import { FormStatusBadge } from '../../pages/project/Forms/FormItem'
 import { WorkspaceLayout } from '../Workspace'
+
+const DROPDOWN_OPTIONS = [
+  {
+    value: 'rename',
+    icon: <IconTag className="h-5 w-5" />,
+    label: 'components.rename'
+  },
+  {
+    value: 'duplicate',
+    icon: <IconCopy className="h-5 w-5" />,
+    label: 'components.duplicate'
+  },
+  {
+    value: 'trash',
+    icon: <IconTrash className="h-5 w-5" />,
+    label: 'components.delete'
+  }
+]
 
 export const FormLayout: FC<LayoutProps> = ({ options, children }) => {
   const { t, i18n } = useTranslation()
 
   const alert = useAlert()
+  const prompt = usePrompt()
   const router = useRouter()
   const { workspaceId, projectId, formId } = useParam()
   const { project, sharingURLPrefix } = useWorkspaceStore()
-  const { form, setForm } = useFormStore()
+  const { form, setForm, updateForm } = useFormStore()
 
   const navigations = useMemo(
     () => [
@@ -54,6 +72,18 @@ export const FormLayout: FC<LayoutProps> = ({ options, children }) => {
     [formId, projectId, workspaceId, t]
   )
 
+  const status = useMemo(() => {
+    if (form?.suspended) {
+      return 'suspended'
+    } else if (form?.isDraft) {
+      return 'draft'
+    } else if (form?.settings?.active) {
+      return 'active'
+    } else {
+      return 'closed'
+    }
+  }, [form])
+
   const { loading } = useRequest(
     async () => {
       setForm(await FormService.detail(formId))
@@ -65,6 +95,71 @@ export const FormLayout: FC<LayoutProps> = ({ options, children }) => {
 
   function handleEdit() {
     router.push(`/workspace/${workspaceId}/project/${projectId}/form/${formId}/create`)
+  }
+
+  function handleRename() {
+    prompt({
+      value: form,
+      title: t('project.rename.headline'),
+      inputProps: {
+        name: 'name',
+        label: t('project.rename.name.label'),
+        rules: [
+          {
+            required: true,
+            message: t('project.rename.name.required')
+          }
+        ]
+      },
+      submitProps: {
+        className: '!mt-4 px-5 min-w-24',
+        size: 'md',
+        label: t('components.save')
+      },
+      fetch: async values => {
+        await FormService.update(formId, values)
+        updateForm(values)
+      }
+    })
+  }
+
+  const { runAsync: handleDuplicate } = useRequest(
+    async () => {
+      const name = t('form.duplicate', { name: form?.name })
+      const id = await FormService.duplicate(formId, name)
+
+      router.push(`/workspace/${workspaceId}/project/${projectId}/form/${id}/create`)
+    },
+    {
+      refreshDeps: [workspaceId, projectId, formId, form?.name],
+      manual: true
+    }
+  )
+
+  const { runAsync: handleMoveToTrash } = useRequest(
+    async () => {
+      await FormService.moveToTrash(formId)
+      router.replace(`/workspace/${workspaceId}/project/${projectId}/`)
+    },
+    {
+      refreshDeps: [workspaceId, projectId, formId],
+      manual: true
+    }
+  )
+
+  async function handleClick(value: string) {
+    console.log(value)
+
+    switch (value) {
+      case 'rename':
+        return handleRename()
+
+      case 'duplicate':
+        return handleDuplicate()
+
+      case 'trash':
+        return handleMoveToTrash()
+    }
   }
 
   useEffect(() => {
@@ -109,16 +204,46 @@ export const FormLayout: FC<LayoutProps> = ({ options, children }) => {
           >
             <div className="flex items-center gap-2">
               <h1 className="text-2xl/8 font-semibold sm:text-xl/8">{form?.name}</h1>
-              <FormStatusBadge form={form} />
+
+              <Dropdown
+                contentProps={{
+                  className:
+                    'min-w-36 [&_[data-value=delete]]:text-error [&_[data-value=trash]]:text-error',
+                  side: 'bottom',
+                  sideOffset: 8,
+                  align: 'start'
+                }}
+                options={DROPDOWN_OPTIONS}
+                multiLanguage
+                onClick={handleClick}
+              >
+                <Button.Link
+                  size="sm"
+                  className="text-secondary hover:text-primary data-[state=open]:bg-accent-light"
+                  iconOnly
+                >
+                  <Tooltip label={t('form.menuTip')}>
+                    <IconDots className="h-5 w-5" />
+                  </Tooltip>
+                </Button.Link>
+              </Dropdown>
             </div>
           </Skeleton>
 
           <Skeleton className="[&_[data-slot=skeleton]]:w-64" loading={loading}>
             <div className="text-sm/6 text-secondary">
-              {t('form.metadata', {
-                count: form?.submissionCount || 0,
-                date: timeFromNow(form?.updatedAt || 0, i18n.language)
-              })}
+              <Trans
+                t={t}
+                i18nKey="form.metadata3"
+                components={{
+                  span: <span />
+                }}
+                values={{
+                  status: t(`form.${status}`),
+                  count: form?.submissionCount || 0,
+                  date: timeFromNow(form?.updatedAt || 0, i18n.language)
+                }}
+              />
             </div>
           </Skeleton>
         </div>

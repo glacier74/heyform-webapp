@@ -25,7 +25,7 @@ interface FormItemLinkProps extends ComponentProps {
   isSuspended?: boolean
 }
 
-export const FormStatusBadge: FC<{ form?: FormType }> = ({ form }) => {
+const FormStatus: FC<{ form?: FormType }> = ({ form }) => {
   const { t } = useTranslation()
 
   if (!form) {
@@ -293,7 +293,7 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
           </div>
         )}
 
-        <FormStatusBadge form={form} />
+        <FormStatus form={form} />
 
         {!form.suspended && (
           <Dropdown

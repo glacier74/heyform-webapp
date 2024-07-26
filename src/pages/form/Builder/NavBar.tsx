@@ -13,7 +13,14 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-import { Button, OnboardingBadge, Tooltip, useOnboardingStorage, useToast } from '@/components'
+import {
+  Button,
+  OnboardingBadge,
+  Tooltip,
+  useOnboardingStorage,
+  usePrompt,
+  useToast
+} from '@/components'
 import { ADD_QUESTION2_STORAGE_NAME, PUBLISH_FORM_STORAGE_NAME } from '@/consts'
 import { FormService } from '@/services'
 import { useAppStore, useFormStore, useWorkspaceStore } from '@/store'
@@ -28,6 +35,7 @@ export default function BuilderNavBar() {
 
   const router = useRouter()
   const toast = useToast()
+  const prompt = usePrompt()
   const { setItem } = useOnboardingStorage()
 
   const { workspaceId, projectId, formId } = useParam()
@@ -86,6 +94,32 @@ export default function BuilderNavBar() {
     run()
   }
 
+  function handleRename() {
+    prompt({
+      value: form,
+      title: t('project.rename.headline'),
+      inputProps: {
+        name: 'name',
+        label: t('project.rename.name.label'),
+        rules: [
+          {
+            required: true,
+            message: t('project.rename.name.required')
+          }
+        ]
+      },
+      submitProps: {
+        className: '!mt-4 px-5 min-w-24',
+        size: 'md',
+        label: t('components.save')
+      },
+      fetch: async values => {
+        await FormService.update(formId, values)
+        updateForm(values)
+      }
+    })
+  }
+
   useEffect(() => {
     if (form?.canPublish) {
       setItem(ADD_QUESTION2_STORAGE_NAME, true)
@@ -138,9 +172,14 @@ export default function BuilderNavBar() {
               </li>
 
               <li className="text-primary">
-                <span role="link" aria-disabled="true" aria-current="page" className="font-normal">
+                <button
+                  type="button"
+                  aria-current="page"
+                  className="font-normal underline-offset-4 hover:underline"
+                  onClick={handleRename}
+                >
                   {form?.name}
-                </span>
+                </button>
               </li>
             </>
           )}
