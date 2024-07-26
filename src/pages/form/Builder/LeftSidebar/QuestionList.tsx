@@ -140,8 +140,8 @@ const Question: FC<QuestionProps> = ({
   )
 
   const handleSortNestedFields = useCallback(
-    (nestedFields: FormFieldType[], element: Any) => {
-      if (element) {
+    (nestedFields: FormFieldType[], sortable: Any) => {
+      if (sortable) {
         nextTick(() => {
           dispatch({
             type: 'updateNestFields',
@@ -352,15 +352,17 @@ export default function QuestionList() {
   )
 
   const handleSortFields = useCallback(
-    (fields: FormFieldType[]) => {
-      dispatch({
-        type: 'setFields',
-        payload: {
-          fields: ([data.welcome, ...fields, ...data.thankYous] as FormFieldType[]).filter(
-            helper.isValid
-          )
-        }
-      })
+    (fields: FormFieldType[], sortable: Any) => {
+      if (sortable) {
+        dispatch({
+          type: 'setFields',
+          payload: {
+            fields: ([data.welcome, ...fields, ...data.thankYous] as FormFieldType[]).filter(
+              helper.isValid
+            )
+          }
+        })
+      }
     },
     [data.thankYous, data.welcome, dispatch]
   )
@@ -426,7 +428,7 @@ export default function QuestionList() {
 
       <PanelResizeHandle className="mx-2 border-t border-accent-light" />
 
-      <Panel className="flex flex-col" defaultSize={20} maxSize={65}>
+      <Panel className="flex flex-col" defaultSize={30} maxSize={65}>
         <div className="flex items-center justify-between px-4 py-2">
           <div className="text-sm/6 font-medium text-primary">
             {t('form.builder.sidebar.endings')}
