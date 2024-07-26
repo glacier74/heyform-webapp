@@ -1,10 +1,10 @@
 import { htmlUtils } from '@heyform-inc/answer-utils'
 import { Logic } from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
-import { IconChevronRight, IconDots } from '@tabler/icons-react'
+import { IconArrowUpRight, IconChevronRight, IconDots } from '@tabler/icons-react'
 import type { FC } from 'react'
 import { useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { Button, Dropdown } from '@/components'
 import { useAppStore } from '@/store'
@@ -125,7 +125,24 @@ export const Rules: FC = () => {
           ))}
         </ul>
       ) : (
-        <p className="text-sm text-secondary">{t('form.builder.logic.rule.emptyState')}</p>
+        <p className="text-sm text-secondary">
+          <Trans
+            t={t}
+            i18nKey="form.builder.logic.rule.emptyState"
+            components={{
+              a: (
+                <a
+                  key="a"
+                  className="underline underline-offset-4 hover:text-primary"
+                  href="https://docs.heyform.net/features/conditional-logic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              ),
+              icon: <IconArrowUpRight key="icon" className="inline h-4 w-4" stroke={1.5} />
+            }}
+          />
+        </p>
       )}
     </div>
   )

@@ -650,7 +650,8 @@
       "trialing": "试用中",
       "trialTip_zero": "{{name}} 试用期今天结束",
       "trialTip_one": "{{name}} 试用期将在 {{count}} 天后结束",
-      "trialTip_other": "{{name}} 试用期将在 {{count}} 天后结束"
+      "trialTip_other": "{{name}} 试用期将在 {{count}} 天后结束",
+      "hiddenFields": "升级到基础版以添加隐藏字段"
     },
     "payment": {
       "headline": "升级套餐",
@@ -818,8 +819,6 @@
   },
   "form": {
     "menuTip": "重命名、创建副本等...",
-    "metadata_one": "{{count}} 条提交 · 编辑于 {{date}}",
-    "metadata_other": "{{count}} 条提交 · 编辑于 {{date}}",
     "metadata2_zero": "暂无提交 · 剩余 {{date}}",
     "metadata2_one": "{{count}} 条提交 · 剩余 {{date}}",
     "metadata2_other": "{{count}} 条提交 · 剩余 {{date}}",
@@ -1392,19 +1391,19 @@
           "subHeadline": "隐藏字段使您能够跟踪调查对象。它们对填写表单的人是不可见的，但可以高效地收集和利用数据。",
           "addHiddenField": "添加隐藏字段",
           "updateHiddenField": "更新隐藏字段",
-          "emptyState": "没有隐藏字段。您可以点击“+”来创建一个。",
           "name": "名称",
-          "headline": "隐藏字段"
+          "headline": "隐藏字段",
+          "emptyState": "隐藏字段允许进行不可见的高效数据收集。 <a>了解更多 <icon /></a>"
         },
         "variable": {
           "headline": "变量",
           "subHeadline": "表单变量表示基于受访者响应的隐藏计算值。例如，它可以用于计算测验的分数。",
           "addVariable": "添加变量",
           "updateVariable": "更新变量",
-          "emptyState": "没有变量。您可以点击“+”来创建一个。",
           "type": "类型",
           "name": "名称",
-          "defaultValue": "默认值"
+          "defaultValue": "默认值",
+          "emptyState": "变量从响应中计算隐藏值。 <a>了解更多 <icon /></a>"
         },
         "rule": {
           "headline": "规则",
@@ -1416,7 +1415,6 @@
           "when": "当",
           "then": "则",
           "deleteRule": "删除规则",
-          "emptyState": "还没有规则。在左侧预览中选择一个问题并在弹出窗口中添加规则。您也可以点击“批量编辑”来批量编辑所有规则。",
           "singleRule": "已设置1条规则",
           "multipleRules": "已设置{{count}}条规则",
           "redirect": "完成后重定向",
@@ -1446,7 +1444,8 @@
           "division": "除 (÷)",
           "assignment": "赋值 (=)",
           "navigate": "跳转到",
-          "calculate": "计算"
+          "calculate": "计算",
+          "emptyState": "逻辑使表单能够对响应做出反应。 <a>了解更多 <icon /></a>"
         }
       },
       "preview": {
@@ -1460,7 +1459,12 @@
       "subHeadline": "如果您对暂停有任何疑问，请点击下方按钮联系我们。",
       "contactUs": "联系我们"
     },
-    "metadata_zero": "尚无提交 · 编辑于 {{date}}"
+    "metadata_zero": "尚无提交 · 编辑于 {{date}}",
+    "metadata_one": "{{count}} 次提交 · 编辑于 {{date}}",
+    "metadata_other": "{{count}} 次提交 · 编辑于 {{date}}",
+    "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
   },
   "user": {
     "headline": "账户设置",

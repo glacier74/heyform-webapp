@@ -1,8 +1,8 @@
 import { FieldKindEnum, Variable } from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
-import { IconDots, IconPlus } from '@tabler/icons-react'
+import { IconArrowUpRight, IconDots, IconPlus } from '@tabler/icons-react'
 import { FC, startTransition } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { Button, Dropdown, Tooltip } from '@/components'
 import { VARIABLE_KIND_CONFIGS } from '@/consts'
@@ -130,7 +130,24 @@ export const Variables: FC = () => {
           ))}
         </ul>
       ) : (
-        <p className="text-sm text-secondary">{t('form.builder.logic.variable.emptyState')}</p>
+        <p className="text-sm text-secondary">
+          <Trans
+            t={t}
+            i18nKey="form.builder.logic.variable.emptyState"
+            components={{
+              a: (
+                <a
+                  key="a"
+                  className="underline underline-offset-4 hover:text-primary"
+                  href="https://docs.heyform.net/features/variable"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+              ),
+              icon: <IconArrowUpRight key="icon" className="inline h-4 w-4" stroke={1.5} />
+            }}
+          />
+        </p>
       )}
     </div>
   )

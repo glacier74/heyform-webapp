@@ -650,7 +650,8 @@
       "trialing": "Okres próbny w toku",
       "trialTip_zero": "Okres próbny {{name}} kończy się dzisiaj",
       "trialTip_one": "Okres próbny {{name}} kończy się za {{count}} dzień",
-      "trialTip_other": "Okres próbny {{name}} kończy się za {{count}} dni"
+      "trialTip_other": "Okres próbny {{name}} kończy się za {{count}} dni",
+      "hiddenFields": "Ulepsz do Basic, aby dodać ukryte pole"
     },
     "payment": {
       "headline": "Zmień plan",
@@ -818,9 +819,6 @@
   },
   "form": {
     "menuTip": "Zmień nazwę, zduplikuj i więcej...",
-    "metadata_zero": "Brak zgłoszeń · Edytowano {{date}}",
-    "metadata_one": "{{count}} zgłoszenie · Edytowano {{date}}",
-    "metadata_other": "{{count}} zgłoszenia · Edytowano {{date}}",
     "metadata2_zero": "Brak zgłoszeń · Pozostało {{date}}",
     "metadata2_one": "{{count}} zgłoszenie · Pozostało {{date}}",
     "metadata2_other": "{{count}} zgłoszenia · Pozostało {{date}}",
@@ -1394,18 +1392,18 @@
           "subHeadline": "Ukryte pola umożliwiają śledzenie badanych tematów. Pozostają niewidoczne dla osób wypełniających formularz, ale pozwalają na efektywne zbieranie i wykorzystanie danych.",
           "addHiddenField": "Dodaj ukryte pole",
           "updateHiddenField": "Zaktualizuj ukryte pole",
-          "emptyState": "Ukryte pole umożliwia niewidoczne, efektywne zbieranie danych.",
-          "name": "Nazwa"
+          "name": "Nazwa",
+          "emptyState": "Ukryte pole umożliwia niewidoczne i efektywne zbieranie danych. <a>Przeczytaj więcej <icon /></a>"
         },
         "variable": {
           "headline": "Zmienne",
           "subHeadline": "Zmienna formularza reprezentuje ukrytą obliczoną wartość na podstawie odpowiedzi respondentów w Twoim formularzu. Na przykład może być używana do obliczania wyniku quizu.",
           "addVariable": "Dodaj zmienną",
           "updateVariable": "Zaktualizuj zmienną",
-          "emptyState": "Zmienna oblicza ukryte wartości z odpowiedzi.",
           "type": "Typ",
           "name": "Nazwa",
-          "defaultValue": "Domyślna wartość"
+          "defaultValue": "Domyślna wartość",
+          "emptyState": "Zmienna oblicza ukryte wartości z odpowiedzi. <a>Przeczytaj więcej <icon /></a>"
         },
         "rule": {
           "headline": "Zasady",
@@ -1417,7 +1415,6 @@
           "when": "Kiedy",
           "then": "Wtedy",
           "deleteRule": "Usuń zasadę",
-          "emptyState": "Logika umożliwia formularzom reagowanie na odpowiedzi.",
           "singleRule": "Ustawiono 1 zasadę",
           "multipleRules": "Ustawiono {{count}} reguł",
           "redirect": "Przekierowanie po zakończeniu",
@@ -1447,7 +1444,8 @@
           "division": "Podziel (÷)",
           "assignment": "Przypisz (=)",
           "navigate": "Skocz do",
-          "calculate": "Oblicz"
+          "calculate": "Oblicz",
+          "emptyState": "Logika pozwala formularzom reagować na odpowiedzi. <a>Przeczytaj więcej <icon /></a>"
         }
       },
       "preview": {
@@ -1460,7 +1458,13 @@
       "headline": "Formularz został zawieszony",
       "subHeadline": "Jeśli masz pytania dotyczące zawieszenia, kliknij poniższy przycisk, aby się z nami skontaktować.",
       "contactUs": "Skontaktuj się z nami"
-    }
+    },
+    "metadata_zero": "Brak zgłoszeń · Edytowano {{date}}",
+    "metadata_one": "{{count}} zgłoszenie · Edytowano {{date}}",
+    "metadata_other": "{{count}} zgłoszenia · Edytowano {{date}}",
+    "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
   },
   "user": {
     "headline": "Ustawienia konta",

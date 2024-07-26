@@ -650,7 +650,8 @@
       "trialing": "Testversion läuft",
       "trialTip_zero": "{{name}} Testversion endet heute",
       "trialTip_one": "{{name}} Testversion endet in {{count}} Tag",
-      "trialTip_other": "{{name}} Testversion endet in {{count}} Tagen"
+      "trialTip_other": "{{name}} Testversion endet in {{count}} Tagen",
+      "hiddenFields": "Upgrade auf Basic, um ein verstecktes Feld hinzuzufügen"
     },
     "payment": {
       "headline": "Plan upgraden",
@@ -818,9 +819,6 @@
   },
   "form": {
     "menuTip": "Umbenennen, duplizieren und mehr...",
-    "metadata_zero": "Noch keine Einreichungen · Bearbeitet am {{date}}",
-    "metadata_one": "{{count}} Einreichung · Bearbeitet am {{date}}",
-    "metadata_other": "{{count}} Einreichungen · Bearbeitet am {{date}}",
     "metadata2_zero": "Noch keine Einreichungen · Noch {{date}} übrig",
     "metadata2_one": "{{count}} Einreichung · Noch {{date}} übrig",
     "metadata2_other": "{{count}} Einreichungen · Noch {{date}} übrig",
@@ -1394,18 +1392,18 @@
           "subHeadline": "Versteckte Felder ermöglichen es Ihnen, Untersuchungsobjekte zu verfolgen. Sie bleiben für jeden unsichtbar, der das Formular ausfüllt, erlauben jedoch eine effiziente Sammlung und Nutzung von Daten.",
           "addHiddenField": "Verstecktes Feld hinzufügen",
           "updateHiddenField": "Verstecktes Feld aktualisieren",
-          "emptyState": "Ein verstecktes Feld ermöglicht eine unsichtbare und effiziente Datenerfassung.",
-          "name": "Name"
+          "name": "Name",
+          "emptyState": "Versteckte Felder ermöglichen eine unsichtbare und effiziente Datenerfassung. <a>Mehr erfahren <icon /></a>"
         },
         "variable": {
           "headline": "Variablen",
           "subHeadline": "Eine Formularvariable repräsentiert einen versteckten berechneten Wert, der auf den Antworten Ihrer Befragten in Ihrem Formular basiert. Zum Beispiel kann sie verwendet werden, um die Punktzahl eines Quiz zu berechnen.",
           "addVariable": "Variable hinzufügen",
           "updateVariable": "Variable aktualisieren",
-          "emptyState": "Die Variable berechnet versteckte Werte aus den Antworten.",
           "type": "Typ",
           "name": "Name",
-          "defaultValue": "Standardwert"
+          "defaultValue": "Standardwert",
+          "emptyState": "Variablen berechnen versteckte Werte aus den Antworten. <a>Mehr erfahren <icon /></a>"
         },
         "rule": {
           "headline": "Regeln",
@@ -1417,7 +1415,6 @@
           "when": "Wenn",
           "then": "Dann",
           "deleteRule": "Regel löschen",
-          "emptyState": "Logik ermöglicht es Formularen, auf Antworten zu reagieren.",
           "singleRule": "1 Regel wurde festgelegt",
           "multipleRules": "{{count}} Regeln wurden festgelegt",
           "redirect": "Weiterleitung bei Abschluss",
@@ -1447,7 +1444,8 @@
           "division": "Dividieren (÷)",
           "assignment": "Zuweisen (=)",
           "navigate": "Springen zu",
-          "calculate": "Berechnen"
+          "calculate": "Berechnen",
+          "emptyState": "Logik ermöglicht es Formularen, auf Antworten zu reagieren. <a>Mehr erfahren <icon /></a>"
         }
       },
       "preview": {
@@ -1460,7 +1458,13 @@
       "headline": "Das Formular wurde ausgesetzt",
       "subHeadline": "Wenn Sie Fragen zur Aussetzung haben, klicken Sie auf die Schaltfläche unten, um uns zu kontaktieren.",
       "contactUs": "Kontaktieren Sie uns"
-    }
+    },
+    "metadata_zero": "Noch keine Einsendungen · Bearbeitet am {{date}}",
+    "metadata_one": "{{count}} Einsendung · Bearbeitet am {{date}}",
+    "metadata_other": "{{count}} Einsendungen · Bearbeitet am {{date}}",
+    "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
   },
   "user": {
     "headline": "Kontoeinstellungen",

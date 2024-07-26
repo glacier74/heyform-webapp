@@ -650,7 +650,8 @@
       "trialing": "試用中",
       "trialTip_zero": "{{name}} 試用期今天結束",
       "trialTip_one": "{{name}} 試用期在 {{count}} 天後結束",
-      "trialTip_other": "{{name}} 試用期在 {{count}} 天後結束"
+      "trialTip_other": "{{name}} 試用期在 {{count}} 天後結束",
+      "hiddenFields": "升級到基本版以新增隱藏欄位"
     },
     "payment": {
       "headline": "升級套餐",
@@ -818,8 +819,6 @@
   },
   "form": {
     "menuTip": "重新命名、建立副本等...",
-    "metadata_one": "{{count}} 條提交 · 編輯於 {{date}}",
-    "metadata_other": "{{count}} 條提交 · 編輯於 {{date}}",
     "metadata2_zero": "暫無提交 · 剩餘 {{date}}",
     "metadata2_one": "{{count}} 條提交 · 剩餘 {{date}}",
     "metadata2_other": "{{count}} 條提交 · 剩餘 {{date}}",
@@ -1392,19 +1391,19 @@
           "subHeadline": "隱藏欄位使您能夠追蹤調查對象。它們對填寫表單的人是不可見的，但可以高效地收集和利用數據。",
           "addHiddenField": "添加隱藏欄位",
           "updateHiddenField": "更新隱藏欄位",
-          "emptyState": "沒有隱藏欄位。您可以點擊“+”來創建一個。",
           "name": "名稱",
-          "headline": "隱藏欄位"
+          "headline": "隱藏欄位",
+          "emptyState": "隱藏欄位允許進行不可見的高效數據收集。 <a>了解更多 <icon /></a>"
         },
         "variable": {
           "headline": "變數",
           "subHeadline": "表單變數表示基於受訪者回應的隱藏計算值。例如，它可以用於計算測驗的分數。",
           "addVariable": "添加變數",
           "updateVariable": "更新變數",
-          "emptyState": "沒有變數。您可以點擊“+”來創建一個。",
           "type": "類型",
           "name": "名稱",
-          "defaultValue": "預設值"
+          "defaultValue": "預設值",
+          "emptyState": "變量從回應中計算隱藏值。 <a>了解更多 <icon /></a>"
         },
         "rule": {
           "headline": "規則",
@@ -1416,7 +1415,6 @@
           "when": "當",
           "then": "則",
           "deleteRule": "刪除規則",
-          "emptyState": "還沒有規則。在左側預覽中選擇一個問題並在彈出窗口中添加規則。您也可以點擊“批次編輯”來批量編輯所有規則。",
           "singleRule": "已設定1條規則",
           "multipleRules": "已設定{{count}}條規則",
           "redirect": "完成後重新導向",
@@ -1446,7 +1444,8 @@
           "division": "除 (÷)",
           "assignment": "賦值 (=)",
           "navigate": "跳轉到",
-          "calculate": "計算"
+          "calculate": "計算",
+          "emptyState": "邏輯使表單能對回應做出反應。 <a>了解更多 <icon /></a>"
         }
       },
       "preview": {
@@ -1460,7 +1459,12 @@
       "subHeadline": "如果您對暫停有疑問，請點擊下方按鈕聯繫我們。",
       "contactUs": "聯繫我們"
     },
-    "metadata_zero": "尚未提交 · 編輯於 {{date}}"
+    "metadata_zero": "尚無提交 · 編輯於 {{date}}",
+    "metadata_one": "{{count}} 次提交 · 編輯於 {{date}}",
+    "metadata_other": "{{count}} 次提交 · 編輯於 {{date}}",
+    "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
   },
   "user": {
     "headline": "帳戶設定",

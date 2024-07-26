@@ -650,7 +650,8 @@
       "trialing": "試用中",
       "trialTip_zero": "{{name}} のトライアルは本日終了します",
       "trialTip_one": "{{name}} のトライアルはあと {{count}} 日で終了します",
-      "trialTip_other": "{{name}} のトライアルはあと {{count}} 日で終了します"
+      "trialTip_other": "{{name}} のトライアルはあと {{count}} 日で終了します",
+      "hiddenFields": "隠しフィールドを追加するにはベーシックプランにアップグレードしてください"
     },
     "payment": {
       "headline": "プランをアップグレード",
@@ -818,8 +819,6 @@
   },
   "form": {
     "menuTip": "名前の変更、複製など...",
-    "metadata_one": "{{count}} 件の提出 · {{date}} に編集",
-    "metadata_other": "{{count}} 件の提出 · {{date}} に編集",
     "metadata2_zero": "提出なし · 残り {{date}}",
     "metadata2_one": "{{count}} 件の提出 · 残り {{date}}",
     "metadata2_other": "{{count}} 件の提出 · 残り {{date}}",
@@ -1392,19 +1391,19 @@
           "subHeadline": "隠しフィールドは調査対象を追跡するために使用できます。これらはフォーム記入者には見えませんが、データの収集と利用に効果的です。",
           "addHiddenField": "隠しフィールドを追加",
           "updateHiddenField": "隠しフィールドを更新",
-          "emptyState": "隠しフィールドがありません。「+」をクリックして作成できます。",
           "name": "名前",
-          "headline": "非表示フィールド"
+          "headline": "非表示フィールド",
+          "emptyState": "隠しフィールドは見えない効率的なデータ収集を可能にします。 <a>詳細はこちら <icon /></a>"
         },
         "variable": {
           "headline": "変数",
           "subHeadline": "フォームの変数は、回答者の応答に基づいた非表示の計算値を表します。例えば、クイズのスコアを計算するために使用できます。",
           "addVariable": "変数を追加",
           "updateVariable": "変数を更新",
-          "emptyState": "変数がありません。「+」をクリックして作成できます。",
           "type": "タイプ",
           "name": "名前",
-          "defaultValue": "デフォルト値"
+          "defaultValue": "デフォルト値",
+          "emptyState": "変数は回答から隠れた値を計算します。 <a>詳細はこちら <icon /></a>"
         },
         "rule": {
           "headline": "ルール",
@@ -1416,7 +1415,6 @@
           "when": "条件が満たされたとき",
           "then": "その場合は",
           "deleteRule": "ルールを削除する",
-          "emptyState": "まだルールがありません。左側のプレビューで質問を選択し、ポップアップウィンドウでルールを追加してください。また、「一括編集」をクリックしてすべてのルールをまとめて編集することもできます。",
           "singleRule": "1つのルールが設定されています",
           "multipleRules": "{{count}}個のルールが設定されています",
           "redirect": "完了後にリダイレクト",
@@ -1446,7 +1444,8 @@
           "division": "除算 (÷)",
           "assignment": "代入 (=)",
           "navigate": "移動する",
-          "calculate": "計算する"
+          "calculate": "計算する",
+          "emptyState": "ロジックは回答に応じてフォームが反応するようにします。 <a>詳細はこちら <icon /></a>"
         }
       },
       "preview": {
@@ -1460,7 +1459,12 @@
       "subHeadline": "一時停止に関する質問がある場合は、下のボタンをクリックしてお問い合わせください。",
       "contactUs": "お問い合わせ"
     },
-    "metadata_zero": "まだ提出物がありません · 編集日 {{date}}"
+    "metadata_zero": "まだ提出はありません · 編集日 {{date}}",
+    "metadata_one": "{{count}} 件の提出 · 編集日 {{date}}",
+    "metadata_other": "{{count}} 件の提出 · 編集日 {{date}}",
+    "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
   },
   "user": {
     "headline": "アカウント設定",

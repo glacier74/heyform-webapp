@@ -650,7 +650,8 @@
       "trialing": "Essai en cours",
       "trialTip_zero": "L'essai de {{name}} se termine aujourd'hui",
       "trialTip_one": "L'essai de {{name}} se termine dans {{count}} jour",
-      "trialTip_other": "L'essai de {{name}} se termine dans {{count}} jours"
+      "trialTip_other": "L'essai de {{name}} se termine dans {{count}} jours",
+      "hiddenFields": "Passez à la version Basic pour ajouter un champ caché"
     },
     "payment": {
       "headline": "Mettre à niveau le plan",
@@ -818,9 +819,6 @@
   },
   "form": {
     "menuTip": "Renommer, dupliquer et plus...",
-    "metadata_zero": "Aucune soumission pour l'instant · Modifié {{date}}",
-    "metadata_one": "{{count}} soumission · Modifié {{date}}",
-    "metadata_other": "{{count}} soumissions · Modifié {{date}}",
     "metadata2_zero": "Aucune soumission pour l'instant · {{date}} restant(e)s",
     "metadata2_one": "{{count}} soumission · {{date}} restant(e)",
     "metadata2_other": "{{count}} soumissions · {{date}} restant(e)s",
@@ -1398,18 +1396,18 @@
           "subHeadline": "Les champs cachés vous permettent de suivre les sujets en cours d'investigation. Ils restent invisibles pour toute personne remplissant le formulaire, mais permettent une collecte et une utilisation efficaces des données.",
           "addHiddenField": "Ajouter un champ caché",
           "updateHiddenField": "Mettre à jour le champ caché",
-          "emptyState": "Le champ caché permet une collecte de données invisible et efficace.",
-          "name": "Nom"
+          "name": "Nom",
+          "emptyState": "Le champ caché permet une collecte de données invisible et efficace. <a>En savoir plus <icon /></a>"
         },
         "variable": {
           "headline": "Variables",
           "subHeadline": "Une variable de formulaire représente une valeur calculée cachée basée sur les réponses de vos répondants dans votre formulaire. Par exemple, elle peut être utilisée pour calculer le score d'un quiz.",
           "addVariable": "Ajouter une variable",
           "updateVariable": "Mettre à jour la variable",
-          "emptyState": "La variable calcule des valeurs cachées à partir des réponses.",
           "type": "Type",
           "name": "Nom",
-          "defaultValue": "Valeur par défaut"
+          "defaultValue": "Valeur par défaut",
+          "emptyState": "La variable calcule des valeurs cachées à partir des réponses. <a>En savoir plus <icon /></a>"
         },
         "rule": {
           "headline": "Règles",
@@ -1421,7 +1419,6 @@
           "when": "Quand",
           "then": "Alors",
           "deleteRule": "Supprimer la règle",
-          "emptyState": "La logique permet aux formulaires de réagir aux réponses.",
           "singleRule": "1 règle a été définie",
           "multipleRules": "{{count}} règles ont été définies",
           "redirect": "Rediriger à la fin",
@@ -1451,7 +1448,8 @@
           "division": "Diviser (÷)",
           "assignment": "Attribuer (=)",
           "navigate": "Aller à",
-          "calculate": "Calculer"
+          "calculate": "Calculer",
+          "emptyState": "La logique permet aux formulaires de réagir aux réponses. <a>En savoir plus <icon /></a>"
         }
       },
       "preview": {
@@ -1464,7 +1462,13 @@
       "headline": "Le formulaire a été suspendu",
       "subHeadline": "Si vous avez des questions concernant la suspension, cliquez sur le bouton ci-dessous pour nous contacter.",
       "contactUs": "Contactez-nous"
-    }
+    },
+    "metadata_zero": "Aucune soumission pour le moment · Modifié le {{date}}",
+    "metadata_one": "{{count}} soumission · Modifié le {{date}}",
+    "metadata_other": "{{count}} soumissions · Modifié le {{date}}",
+    "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
   },
   "user": {
     "headline": "Paramètres du compte",
