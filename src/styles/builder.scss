@@ -1285,6 +1285,10 @@ button.connect-stripe {
   @apply mx-auto py-16;
   max-width: 22.5rem;
 
+  &.template-preview {
+    @apply py-0;
+  }
+
   .heyform-root {
     @apply shadow-lg;
   }
