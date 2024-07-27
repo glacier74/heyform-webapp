@@ -1,4 +1,4 @@
-import { IconDots } from '@tabler/icons-react'
+import { IconDots, IconTag, IconTrash } from '@tabler/icons-react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 
@@ -15,14 +15,12 @@ interface ProjectItemProps {
 const PROJECT_ACTIONS = [
   {
     label: 'components.rename',
+    icon: <IconTag className="h-4 w-4" />,
     value: 'rename'
   },
   {
-    label: 'form.creation.title',
-    value: 'createForm'
-  },
-  {
     label: 'components.delete',
+    icon: <IconTrash className="h-4 w-4" />,
     value: 'delete'
   }
 ]
@@ -65,11 +63,6 @@ export default function ProjectItem({ project }: ProjectItemProps) {
     switch (value) {
       case 'rename':
         return handleRename()
-
-      case 'createForm':
-        return openModal('CreateFormModal', {
-          projectId: project.id
-        })
 
       case 'delete':
         return openModal('DeleteProjectModal', project)
