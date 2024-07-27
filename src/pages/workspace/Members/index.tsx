@@ -22,7 +22,7 @@ export default function WorkspaceMembers() {
 
   return (
     <>
-      <div className="flex items-end justify-between gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <h1 className="text-2xl/8 font-semibold sm:text-xl/8">{t('members.title')}</h1>
         <Button size="md" onClick={() => openModal('InvitationModal')}>
           {t('members.invite.title')}
