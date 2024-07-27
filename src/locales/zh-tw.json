@@ -433,7 +433,8 @@
       "title": "發生錯誤",
       "message": "請稍候再試。如果錯誤持續發生，請聯絡我們。",
       "retry": "重試"
-    }
+    },
+    "moveto": "移動到"
   },
   "login": {
     "title": "登入",
@@ -815,6 +816,12 @@
         "required": "驗證碼不能為空"
       },
       "confirm": "刪除專案"
+    },
+    "moveto": {
+      "headline": "將 '{{name}}' 移動到",
+      "project": {
+        "required": "專案不可為空"
+      }
     }
   },
   "form": {
@@ -840,7 +847,20 @@
       "name": {
         "label": "表單名稱",
         "required": "表單名稱不能為空"
-      }
+      },
+      "scratch": {
+        "headline": "從頭開始",
+        "subHeadline": "獲取一個空白畫布，從可用的問題類型中構建"
+      },
+      "template": {
+        "headline": "選擇範本",
+        "subHeadline": "從精心設計的範本中選擇，即刻開始使用"
+      },
+      "ai": {
+        "headline": "使用 AI 創建",
+        "subHeadline": "在幾秒鐘內生成自訂問題"
+      },
+      "defaultName": "未命名"
     },
     "rename": {
       "headline": "重新命名此表單",
@@ -1464,7 +1484,52 @@
     "metadata_other": "{{count}} 次提交 · 編輯於 {{date}}",
     "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
     "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
-    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)",
+    "template": {
+      "headline": "範本",
+      "categories": [
+        "調查問卷",
+        "潛在客戶生成",
+        "客戶支援",
+        "回饋意見",
+        "員工/工作申請",
+        "預訂與訂單",
+        "行銷推廣",
+        "註冊",
+        "教育",
+        "活動",
+        "醫療保健",
+        "申請",
+        "問卷與測驗",
+        "遠端工作",
+        "聯絡方式",
+        "商業",
+        "COVID-19 疫情相關資訊",
+        "投票",
+        "請求",
+        "銀行與金融",
+        "捐款與慈善"
+      ],
+      "use": "使用此範本"
+    },
+    "ai": {
+      "topic": {
+        "label": "您想要創建什麼？",
+        "description": "請盡可能詳細地提供您希望創建的表單資訊。",
+        "ideasForYou": "給您的點子",
+        "examples": [
+          "建立一個工作申請表來收集候選人的詳細資料和履歷。",
+          "顧客滿意度調查，以評估產品質量和顧客服務。",
+          "給我一個活動註冊表來收集參加者信息。"
+        ],
+        "required": "此欄位不可為空"
+      },
+      "reference": {
+        "label": "參考資料（選填）",
+        "description": "提供參考資料後，AI 將嚴格根據所指定的範圍生成問題和選項。"
+      },
+      "submit": "生成問題"
+    }
   },
   "user": {
     "headline": "帳戶設定",

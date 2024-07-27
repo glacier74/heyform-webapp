@@ -433,7 +433,8 @@
       "title": "发生错误",
       "message": "请稍候再试。如果错误仍然存在，请联系我们。",
       "retry": "重试"
-    }
+    },
+    "moveto": "移动到"
   },
   "login": {
     "title": "登录",
@@ -815,6 +816,12 @@
         "required": "验证码不能为空"
       },
       "confirm": "删除项目"
+    },
+    "moveto": {
+      "headline": "将 '{{name}}' 移动到",
+      "project": {
+        "required": "项目不能为空"
+      }
     }
   },
   "form": {
@@ -840,7 +847,20 @@
       "name": {
         "label": "表单名称",
         "required": "表单名称不能为空"
-      }
+      },
+      "scratch": {
+        "headline": "从头开始",
+        "subHeadline": "从可用的问题类型中获取一个空白画布进行构建"
+      },
+      "template": {
+        "headline": "选择模板",
+        "subHeadline": "从精心制作的模板中选择，立即开始使用"
+      },
+      "ai": {
+        "headline": "使用 AI 创建",
+        "subHeadline": "在几秒钟内生成自定义问题"
+      },
+      "defaultName": "未命名"
     },
     "rename": {
       "headline": "重命名此表单",
@@ -1464,7 +1484,52 @@
     "metadata_other": "{{count}} 次提交 · 编辑于 {{date}}",
     "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
     "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
-    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)",
+    "template": {
+      "headline": "模板",
+      "categories": [
+        "调查问卷",
+        "潜在客户生成",
+        "客户支持",
+        "反馈意见",
+        "员工/工作相关",
+        "预订与订单",
+        "市场营销",
+        "注册",
+        "教育",
+        "活动",
+        "医疗保健",
+        "申请",
+        "问卷与测验",
+        "远程工作",
+        "联系",
+        "商业",
+        "新冠疫情 (COVID-19) ",
+        "投票",
+        "请求",
+        "银行与金融",
+        "捐赠与慈善"
+      ],
+      "use": "使用此模板"
+    },
+    "ai": {
+      "topic": {
+        "label": "你想创建什么？",
+        "description": "请尽可能详细地提供您想要创建的表单信息。",
+        "ideasForYou": "为你推荐的创意",
+        "examples": [
+          "创建一个求职申请表，以收集候选人的详细信息和简历。",
+          "客户满意度调查，用于评估产品质量和客户服务。",
+          "给我一个活动注册表，以收集参与者的信息。"
+        ],
+        "required": "此字段不能为空"
+      },
+      "reference": {
+        "label": "参考（可选）",
+        "description": "提供参考后，AI 将严格在参考范围内生成问题和选项。"
+      },
+      "submit": "生成问题"
+    }
   },
   "user": {
     "headline": "账户设置",

@@ -433,7 +433,8 @@
       "title": "エラーが発生しました",
       "message": "少し時間を置いて再試行してください。エラーが続く場合は、お問い合わせください。",
       "retry": "再試行する"
-    }
+    },
+    "moveto": "移動する"
   },
   "login": {
     "title": "ログイン",
@@ -815,6 +816,12 @@
         "required": "確認コードは空欄にできません"
       },
       "confirm": "プロジェクトを削除"
+    },
+    "moveto": {
+      "headline": "'{{name}}' を移動する",
+      "project": {
+        "required": "プロジェクトは空にできません"
+      }
     }
   },
   "form": {
@@ -840,7 +847,20 @@
       "name": {
         "label": "フォーム名",
         "required": "フォーム名は必須です"
-      }
+      },
+      "scratch": {
+        "headline": "ゼロから始める",
+        "subHeadline": "利用可能な質問タイプから構築するための白紙キャンバスを取得します"
+      },
+      "template": {
+        "headline": "テンプレートを選択する",
+        "subHeadline": "手作りのテンプレートから選んで、すぐに開始できます"
+      },
+      "ai": {
+        "headline": "AI で作成する",
+        "subHeadline": "数秒で AI によってカスタム質問を生成します"
+      },
+      "defaultName": "無題"
     },
     "rename": {
       "headline": "このフォームの名前を変更する",
@@ -1464,7 +1484,52 @@
     "metadata_other": "{{count}} 件の提出 · 編集日 {{date}}",
     "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
     "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
-    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)",
+    "template": {
+      "headline": "テンプレート",
+      "categories": [
+        "アンケート",
+        "リードジェネレーション",
+        "カスタマーサポート",
+        "フィードバック",
+        "従業員/仕事",
+        "予約と注文",
+        "マーケティング",
+        "登録",
+        "教育",
+        "イベント",
+        "医療",
+        "申請書",
+        "アンケート & クイズ",
+        "リモートワーク",
+        "連絡先",
+        "ビジネス",
+        "COVID-19（新型コロナウイルス）",
+        "投票",
+        "リクエスト",
+        "銀行・金融",
+        "寄付・慈善"
+      ],
+      "use": "このテンプレートを使用する"
+    },
+    "ai": {
+      "topic": {
+        "label": "何を作成したいですか？",
+        "description": "作成したいフォームについて、できるだけ詳しくご提供ください。",
+        "ideasForYou": "あなたへのアイデア",
+        "examples": [
+          "候補者の詳細と履歴書を収集するための求人応募フォームを作成します。",
+          "製品品質と顧客サービスを評価するための顧客満足度調査。",
+          "参加者情報を収集するためのイベント登録フォームが欲しいです。"
+        ],
+        "required": "このフィールドは空にすることはできません"
+      },
+      "reference": {
+        "label": "参考（任意）",
+        "description": "参考を提供した後、AIは指定された範囲内で質問と選択肢を生成します。"
+      },
+      "submit": "質問を生成"
+    }
   },
   "user": {
     "headline": "アカウント設定",

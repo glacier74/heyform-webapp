@@ -433,7 +433,8 @@
       "title": "Une erreur s'est produite",
       "message": "Prenez un moment et réessayez. Si l'erreur persiste, veuillez nous contacter.",
       "retry": "Réessayer"
-    }
+    },
+    "moveto": "Déplacer vers"
   },
   "login": {
     "title": "Connexion",
@@ -815,6 +816,12 @@
         "required": "Le code de vérification ne doit pas être vide"
       },
       "confirm": "Supprimer le projet"
+    },
+    "moveto": {
+      "headline": "Déplacer '{{name}}' vers",
+      "project": {
+        "required": "Le projet ne peut pas être vide"
+      }
     }
   },
   "form": {
@@ -844,7 +851,20 @@
       "project": {
         "label": "Projet",
         "required": "Le projet ne peut pas être vide"
-      }
+      },
+      "scratch": {
+        "headline": "Commencer de zéro",
+        "subHeadline": "Obtenez une toile vierge pour construire à partir des types de questions disponibles"
+      },
+      "template": {
+        "headline": "Sélectionner un modèle",
+        "subHeadline": "Choisissez parmi des modèles faits à la main pour commencer immédiatement"
+      },
+      "ai": {
+        "headline": "Créer avec l'IA",
+        "subHeadline": "Générez des questions personnalisées avec l'IA en quelques secondes"
+      },
+      "defaultName": "Sans titre"
     },
     "rename": {
       "headline": "Renommer ce formulaire",
@@ -1468,7 +1488,52 @@
     "metadata_other": "{{count}} soumissions · Modifié le {{date}}",
     "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
     "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
-    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)",
+    "template": {
+      "headline": "Modèles",
+      "categories": [
+        "Enquête",
+        "Génération de leads",
+        "Support client",
+        "Retour d'information",
+        "Employé/Emploi",
+        "Réservation & Commande",
+        "Marketing",
+        "Inscription",
+        "Éducation",
+        "Événement",
+        "Soins de santé",
+        "Application",
+        "Questionnaire & Quiz",
+        "Télétravail",
+        "Contact",
+        "Affaires",
+        "COVID-19",
+        "Sondage",
+        "Demande",
+        "Banque et Finance",
+        "Donations et Charité"
+      ],
+      "use": "Utilisez ce modèle"
+    },
+    "ai": {
+      "topic": {
+        "label": "Que voulez-vous créer ?",
+        "description": "Veuillez fournir autant de détails que possible sur le formulaire que vous souhaitez créer.",
+        "ideasForYou": "Idées pour vous",
+        "examples": [
+          "Créer un formulaire de candidature pour collecter les informations des candidats et leurs CVs.",
+          "Enquête de satisfaction client pour évaluer la qualité du produit et le service client.",
+          "Donnez-moi un formulaire d'inscription à un événement pour recueillir les informations des participants."
+        ],
+        "required": "Ce champ ne doit pas être vide"
+      },
+      "reference": {
+        "label": "Référence (facultatif)",
+        "description": "Après avoir fourni la Référence, l'IA générera des questions et des options strictement dans le cadre spécifié par la Référence."
+      },
+      "submit": "Générer des questions"
+    }
   },
   "user": {
     "headline": "Paramètres du compte",

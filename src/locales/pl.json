@@ -433,7 +433,8 @@
       "title": "Coś poszło nie tak",
       "message": "Zrób chwilę przerwy i spróbuj ponownie. Jeśli błąd będzie się powtarzał, skontaktuj się z nami.",
       "retry": "Spróbuj ponownie"
-    }
+    },
+    "moveto": "Przenieś do"
   },
   "login": {
     "title": "Logowanie",
@@ -815,6 +816,12 @@
         "required": "Kod weryfikacyjny nie może być pusty"
       },
       "confirm": "Usuń projekt"
+    },
+    "moveto": {
+      "headline": "Przenieś '{{name}}' do",
+      "project": {
+        "required": "Projekt nie może być pusty"
+      }
     }
   },
   "form": {
@@ -840,7 +847,20 @@
       "name": {
         "label": "Nazwa formularza",
         "required": "Nazwa formularza nie może być pusta"
-      }
+      },
+      "scratch": {
+        "headline": "Zacznij od zera",
+        "subHeadline": "Uzyskaj pustą kartkę, aby budować z dostępnych typów pytań"
+      },
+      "template": {
+        "headline": "Wybierz szablon",
+        "subHeadline": "Wybierz spośród ręcznie wykonanych szablonów, aby rozpocząć natychmiast"
+      },
+      "ai": {
+        "headline": "Twórz za pomocą AI",
+        "subHeadline": "Generuj niestandardowe pytania za pomocą AI w kilka sekund"
+      },
+      "defaultName": "Bez tytułu"
     },
     "rename": {
       "headline": "Zmień nazwę tego formularza",
@@ -1464,7 +1484,52 @@
     "metadata_other": "{{count}} zgłoszenia · Edytowano {{date}}",
     "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
     "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
-    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)",
+    "template": {
+      "headline": "Szablony",
+      "categories": [
+        "Ankieta",
+        "Generowanie leadów",
+        "Wsparcie klienta",
+        "Opinie",
+        "Pracownik/Praca",
+        "Rezerwacja i zamówienie",
+        "Marketing",
+        "Rejestracja",
+        "Edukacja",
+        "Wydarzenie",
+        "Opieka zdrowotna",
+        "Aplikacja",
+        "Ankieta i Quiz",
+        "Praca zdalna",
+        "Kontakt",
+        "Biznes",
+        "COVID-19",
+        "Sondaż",
+        "Prośba",
+        "Bankowość i Finanse",
+        "Darowizna i Charytatywność"
+      ],
+      "use": "Użyj tego szablonu"
+    },
+    "ai": {
+      "topic": {
+        "label": "Co chcesz stworzyć?",
+        "description": "Podaj jak najwięcej szczegółów dotyczących formularza, który chcesz utworzyć.",
+        "ideasForYou": "Pomysły dla Ciebie",
+        "examples": [
+          "Stwórz formularz aplikacyjny do pracy, aby zbierać dane kandydatów i CV.",
+          "Ankieta satysfakcji klienta w celu oceny jakości produktu i obsługi klienta.",
+          "Daj mi formularz rejestracji na wydarzenie, aby zebrać informacje o uczestnikach."
+        ],
+        "required": "To pole nie może być puste"
+      },
+      "reference": {
+        "label": "Referencja (opcjonalnie)",
+        "description": "Po podaniu Referencji, AI wygeneruje pytania i opcje ściśle w zakresie określonym przez Referencję."
+      },
+      "submit": "Generuj pytania"
+    }
   },
   "user": {
     "headline": "Ustawienia konta",

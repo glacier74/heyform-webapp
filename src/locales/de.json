@@ -433,7 +433,8 @@
       "title": "Etwas ist schief gelaufen",
       "message": "Nehmen Sie sich einen Moment Zeit und versuchen Sie es erneut. Wenn der Fehler weiterhin besteht, kontaktieren Sie uns bitte.",
       "retry": "Erneut versuchen"
-    }
+    },
+    "moveto": "Verschieben nach"
   },
   "login": {
     "title": "Anmelden",
@@ -815,6 +816,12 @@
         "required": "Der Bestätigungscode darf nicht leer sein"
       },
       "confirm": "Projekt löschen"
+    },
+    "moveto": {
+      "headline": "Verschiebe '{{name}}' nach",
+      "project": {
+        "required": "Das Projekt darf nicht leer sein"
+      }
     }
   },
   "form": {
@@ -840,7 +847,20 @@
       "name": {
         "label": "Formularname",
         "required": "Der Formularname darf nicht leer sein"
-      }
+      },
+      "scratch": {
+        "headline": "Von Grund auf neu beginnen",
+        "subHeadline": "Erhalten Sie eine leere Leinwand, um aus verfügbaren Fragetypen zu erstellen"
+      },
+      "template": {
+        "headline": "Wählen Sie eine Vorlage aus",
+        "subHeadline": "Wählen Sie aus handgefertigten Vorlagen, um sofort loszulegen"
+      },
+      "ai": {
+        "headline": "Mit KI erstellen",
+        "subHeadline": "Generieren Sie benutzerdefinierte Fragen mit KI in Sekunden"
+      },
+      "defaultName": "Unbenannt"
     },
     "rename": {
       "headline": "Dieses Formular umbenennen",
@@ -1464,7 +1484,52 @@
     "metadata_other": "{{count}} Einsendungen · Bearbeitet am {{date}}",
     "metadata3_zero": "<span>{{status}}</span> · $t(form.metadata)",
     "metadata3_one": "<span>{{status}}</span> · $t(form.metadata)",
-    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)"
+    "metadata3_other": "<span>{{status}}</span> · $t(form.metadata)",
+    "template": {
+      "headline": "Vorlagen",
+      "categories": [
+        "Umfrage",
+        "Lead-Generierung",
+        "Kundensupport",
+        "Feedback",
+        "Mitarbeiter/Job",
+        "Buchung & Bestellung",
+        "Marketing",
+        "Registrierung",
+        "Bildung",
+        "Veranstaltung",
+        "Gesundheitswesen",
+        "Anwendung",
+        "Fragebogen & Quiz",
+        "Fernarbeit",
+        "Kontakt",
+        "Geschäftlich",
+        "COVID-19",
+        "Umfrage",
+        "Anfrage",
+        "Bankwesen & Finanzen",
+        "Spende & Wohltätigkeit"
+      ],
+      "use": "Diese Vorlage verwenden"
+    },
+    "ai": {
+      "topic": {
+        "label": "Was möchten Sie erstellen?",
+        "description": "Bitte geben Sie so viele Details wie möglich zu dem Formular an, das Sie erstellen möchten.",
+        "ideasForYou": "Ideen für Sie",
+        "examples": [
+          "Erstellen Sie ein Bewerbungsformular, um Kandidatendetails und Lebensläufe zu sammeln.",
+          "Kundenzufriedenheitsumfrage zur Bewertung der Produktqualität und des Kundenservice.",
+          "Geben Sie mir ein Anmeldeformular für Veranstaltungen, um Teilnehmerinformationen zu sammeln."
+        ],
+        "required": "Dieses Feld darf nicht leer sein"
+      },
+      "reference": {
+        "label": "Referenz (optional)",
+        "description": "Nach Angabe der Referenz wird die KI Fragen und Optionen ausschließlich im durch die Referenz festgelegten Rahmen generieren."
+      },
+      "submit": "Fragen generieren"
+    }
   },
   "user": {
     "headline": "Kontoeinstellungen",
