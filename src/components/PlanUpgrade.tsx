@@ -1,5 +1,14 @@
+import { stopEvent } from '@heyform-inc/form-renderer'
 import { IconCircleArrowUp } from '@tabler/icons-react'
-import { FC, ReactElement, ReactNode, cloneElement, isValidElement, useCallback } from 'react'
+import {
+  FC,
+  MouseEvent,
+  ReactElement,
+  ReactNode,
+  cloneElement,
+  isValidElement,
+  useCallback
+} from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { PlanGradeEnum } from '@/consts'
@@ -33,7 +42,13 @@ export const PlanUpgrade: FC<UpgradeProps> = ({
   const { openModal } = useAppStore()
   const isAllowed = usePlanGrade(minimalGrade)
 
-  const openUpgradeModal = useCallback(() => openModal('UpgradeModal'), [openModal])
+  const openUpgradeModal = useCallback(
+    (event?: MouseEvent<HTMLButtonElement>) => {
+      event && stopEvent(event)
+      openModal('UpgradeModal')
+    },
+    [openModal]
+  )
 
   if (isAllowed) {
     return isValidElement(children)
@@ -47,6 +62,7 @@ export const PlanUpgrade: FC<UpgradeProps> = ({
   return isUpgradeShow ? (
     <Tooltip label={tooltipLabel}>
       <button
+        type="button"
         className="flex cursor-pointer items-center gap-x-1 rounded-md border border-blue-600 px-2 py-1 text-sm/5 text-blue-600 sm:text-xs"
         onClick={openUpgradeModal}
       >
