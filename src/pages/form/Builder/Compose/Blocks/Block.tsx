@@ -109,7 +109,7 @@ export const Block: FC<BlockProps> = ({
                     number: questionNumber(field.index, parentField?.index),
                     lng: locale
                   })}{' '}
-                  {field.validations?.required && '*'}
+                  {field.validations?.required && <span className="text-error">*</span>}
                 </label>
               )}
               <RichText

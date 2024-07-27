@@ -410,7 +410,7 @@ export default function QuestionList() {
   )
 
   return (
-    <PanelGroup className="flex-1" direction="vertical">
+    <PanelGroup className="!h-[calc(80vh-3.125rem)] sm:!h-full sm:flex-1" direction="vertical">
       <Panel defaultSize={70} maxSize={85}>
         <div className="scrollbar h-full px-2">
           {data.welcome && (
