@@ -1,7 +1,9 @@
 import { helper } from '@heyform-inc/utils'
 import {
+  IconBolt,
   IconChevronLeft,
   IconChevronRight,
+  IconDatabase,
   IconListDetails,
   IconPlayerPlay,
   IconSend2,
@@ -81,12 +83,8 @@ export default function BuilderNavBar() {
     openModal('PreviewModal')
   }
 
-  function handleShare() {
-    router.push(`/workspace/${workspaceId}/project/${projectId}/form/${formId}/share`)
-  }
-
-  function handleSettings() {
-    router.push(`/workspace/${workspaceId}/project/${projectId}/form/${formId}/settings`)
+  function handleNavigateTo(route: string) {
+    router.push(`/workspace/${workspaceId}/project/${projectId}/form/${formId}/${route}`)
   }
 
   function handlePublish() {
@@ -204,13 +202,45 @@ export default function BuilderNavBar() {
           </Button.Link>
 
           <Tooltip label={t('form.share.title')}>
-            <Button.Link className="hidden sm:block" size="md" iconOnly onClick={handleShare}>
+            <Button.Link
+              className="hidden sm:block"
+              size="md"
+              iconOnly
+              onClick={() => handleNavigateTo('share')}
+            >
               <IconShare className="h-5 w-5" />
             </Button.Link>
           </Tooltip>
 
+          <Tooltip label={t('form.integrations.title')}>
+            <Button.Link
+              className="hidden sm:block"
+              size="md"
+              iconOnly
+              onClick={() => handleNavigateTo('integrations')}
+            >
+              <IconBolt className="h-5 w-5" />
+            </Button.Link>
+          </Tooltip>
+
+          <Tooltip label={t('form.submissions.title')}>
+            <Button.Link
+              className="hidden sm:block"
+              size="md"
+              iconOnly
+              onClick={() => handleNavigateTo('submissions')}
+            >
+              <IconDatabase className="h-5 w-5" />
+            </Button.Link>
+          </Tooltip>
+
           <Tooltip label={t('form.settings.title')}>
-            <Button.Link className="hidden sm:block" size="md" iconOnly onClick={handleSettings}>
+            <Button.Link
+              className="hidden sm:block"
+              size="md"
+              iconOnly
+              onClick={() => handleNavigateTo('settings')}
+            >
               <IconSettings className="h-5 w-5" />
             </Button.Link>
           </Tooltip>
