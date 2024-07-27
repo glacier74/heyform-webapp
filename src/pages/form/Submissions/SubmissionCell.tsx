@@ -152,11 +152,13 @@ const InputTableItem: FC<SubmissionCellProps> = ({ answer, field, isTableCell })
     return null
   }
 
-  const result = answer.value.map((row: AnyMap) => {
-    if (helper.isObject(row)) {
-      return columns.map(c => row[c.id])
-    }
-  }) as string[][]
+  const result = answer.value
+    .map((row: AnyMap) => {
+      if (helper.isObject(row)) {
+        return columns.map(c => row[c.id])
+      }
+    })
+    .filter(Boolean) as string[][]
 
   if (isTableCell) {
     return (
@@ -350,6 +352,7 @@ export default function SubmissionCell(props: SubmissionCellProps) {
 
     case FieldKindEnum.MULTIPLE_CHOICE:
     case FieldKindEnum.PICTURE_CHOICE:
+    case FieldKindEnum.YES_NO:
       return <MultipleChoiceItem {...props} />
 
     case FieldKindEnum.RATING:
