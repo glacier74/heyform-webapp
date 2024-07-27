@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import IconLink from '@/assets/link.svg?react'
+import IconMoveTo from '@/assets/move-to.svg?react'
 import { Badge, Button, Dropdown, Tooltip, useAlert, usePrompt } from '@/components'
 import { FormService } from '@/services'
 import { useWorkspaceStore } from '@/store'
@@ -84,7 +85,7 @@ const FormItemLink: FC<FormItemLinkProps> = ({
 interface FormItemProps {
   form: FormType
   isInTrash?: boolean
-  onChange?: (type: 'rename' | 'trash' | 'restore' | 'delete', form: FormType) => void
+  onChange?: (type: 'rename' | 'trash' | 'restore' | 'delete' | 'move', form: FormType) => void
 }
 
 const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
@@ -93,7 +94,7 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
   const alert = useAlert()
   const prompt = usePrompt()
   const router = useRouter()
-  const { sharingURLPrefix } = useWorkspaceStore()
+  const { workspace, sharingURLPrefix } = useWorkspaceStore()
 
   const options = useMemo(
     () =>
@@ -101,39 +102,44 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
         ? [
             {
               value: 'restore',
-              icon: <IconRestore className="h-5 w-5" />,
+              icon: <IconRestore className="h-4 w-4" />,
               label: 'components.restore'
             },
             {
               value: 'delete',
-              icon: <IconTrash className="h-5 w-5" />,
+              icon: <IconTrash className="h-4 w-4" />,
               label: 'components.permanentlyDelete'
             }
           ]
         : [
             {
               value: 'edit',
-              icon: <IconPencil className="h-5 w-5" />,
+              icon: <IconPencil className="h-4 w-4" />,
               label: 'components.edit'
             },
             {
               value: 'rename',
-              icon: <IconTag className="h-5 w-5" />,
+              icon: <IconTag className="h-4 w-4" />,
               label: 'components.rename'
             },
             {
               value: 'share',
-              icon: <IconShare className="h-5 w-5" />,
+              icon: <IconShare className="h-4 w-4" />,
               label: 'components.share'
             },
             {
               value: 'duplicate',
-              icon: <IconCopy className="h-5 w-5" />,
+              icon: <IconCopy className="h-4 w-4" />,
               label: 'components.duplicate'
             },
             {
+              value: 'moveto',
+              icon: <IconMoveTo className="h-4 w-4" />,
+              label: 'components.moveto'
+            },
+            {
               value: 'trash',
-              icon: <IconTrash className="h-5 w-5" />,
+              icon: <IconTrash className="h-4 w-4" />,
               label: 'components.delete'
             }
           ],
@@ -193,6 +199,43 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
     })
   }
 
+  function handleMoveTo() {
+    prompt({
+      value: {
+        projectId: form.projectId
+      },
+      title: t('project.moveto.headline', { name: form.name }),
+      selectProps: {
+        className: 'w-full',
+        name: 'projectId',
+        rules: [
+          {
+            required: true,
+            message: t('project.moveto.project.required')
+          }
+        ],
+        options: workspace.projects || [],
+        labelKey: 'name',
+        valueKey: 'id'
+      },
+      submitProps: {
+        className: '!mt-4 px-5 min-w-24',
+        size: 'md',
+        label: t('components.save')
+      },
+      submitOnChangedOnly: true,
+      fetch: async values => {
+        const result = await FormService.moveToProject(form.id, values.projectId)
+
+        if (result) {
+          router.replace(
+            `/workspace/${form.teamId}/project/${values.projectId}/form/${form.id}/analytics`
+          )
+        }
+      }
+    })
+  }
+
   const { runAsync } = useRequest(
     async (type: string) => {
       switch (type) {
@@ -245,6 +288,9 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
       case 'duplicate':
         return handleDuplicate()
 
+      case 'moveto':
+        return handleMoveTo()
+
       case 'trash':
       case 'restore':
       case 'delete':
@@ -279,7 +325,7 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
           <div className="flex hidden items-center group-hover:block">
             <Tooltip label={t('components.edit')}>
               <Button.Link size="sm" iconOnly onClick={handleEdit}>
-                <IconPencil className="h-5 w-5" />
+                <IconPencil className="h-4 w-4" />
               </Button.Link>
             </Tooltip>
 
@@ -310,7 +356,7 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
           >
             <Button.Link size="sm" className="data-[state=open]:bg-accent-light" iconOnly>
               <Tooltip label={t('form.menuTip')}>
-                <IconDots className="h-5 w-5" />
+                <IconDots className="h-4 w-4" />
               </Tooltip>
             </Button.Link>
           </Dropdown>

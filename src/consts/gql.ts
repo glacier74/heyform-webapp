@@ -872,6 +872,12 @@ export const DELETE_FORM_GQL = gql`
   }
 `
 
+export const MOVE_FORM_TO_PROJECT_GQL = gql`
+  mutation moveForm($input: MoveFormInput!) {
+    moveForm(input: $input)
+  }
+`
+
 export const APPS_GQL = gql`
   query apps {
     apps {

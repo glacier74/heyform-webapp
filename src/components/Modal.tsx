@@ -1,4 +1,4 @@
-import { excludeObject } from '@heyform-inc/utils'
+import { deepEqual, excludeObject, helper, pickObject } from '@heyform-inc/utils'
 import {
   Close,
   Content,
@@ -21,6 +21,7 @@ import { cn, useFormState } from '@/utils'
 import { Button, ButtonProps } from './Button'
 import { Form } from './Form'
 import { Input, InputProps } from './Input'
+import { Select, SelectProps } from './Select'
 
 interface ModalProps extends DOMProps {
   open?: boolean
@@ -78,7 +79,7 @@ const ModalComponent: FC<ModalProps> = ({
           onCloseAutoFocus={e => e.preventDefault()}
           {...contentProps}
           className={cn(
-            'scrollbar fixed bottom-0 left-0 right-0 z-10 max-h-[80vh] w-full max-w-xl overflow-y-auto rounded-lg border border-input bg-foreground p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-bottom-0 data-[state=open]:slide-in-from-bottom-[80%] sm:bottom-auto sm:left-[50%] sm:right-auto sm:top-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] data-[state=closed]:sm:zoom-out-95 data-[state=open]:sm:zoom-in-95 data-[state=closed]:sm:slide-out-to-left-1/2 data-[state=closed]:sm:slide-out-to-top-[48%] data-[state=open]:sm:slide-in-from-left-1/2 data-[state=open]:sm:slide-in-from-top-[48%] print:!fixed print:!bottom-[initial] print:!left-0 print:!right-[initial] print:!top-0 print:!h-auto print:!max-h-none print:!transform-none print:!border-0 print:!shadow-none',
+            'scrollbar fixed bottom-0 left-0 right-0 z-10 max-h-[80vh] w-full max-w-xl overflow-y-auto rounded-b-none rounded-t-lg border border-input bg-foreground p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-bottom-0 data-[state=open]:slide-in-from-bottom-[80%] sm:bottom-auto sm:left-[50%] sm:right-auto sm:top-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-b-lg data-[state=closed]:sm:zoom-out-95 data-[state=open]:sm:zoom-in-95 data-[state=closed]:sm:slide-out-to-left-1/2 data-[state=closed]:sm:slide-out-to-top-[48%] data-[state=open]:sm:slide-in-from-left-1/2 data-[state=open]:sm:slide-in-from-top-[48%] print:!fixed print:!bottom-[initial] print:!left-0 print:!right-[initial] print:!top-0 print:!h-auto print:!max-h-none print:!transform-none print:!border-0 print:!shadow-none',
             contentProps?.className
           )}
         >
@@ -250,9 +251,15 @@ export interface PromptModalProps extends Omit<SimpleModalProps, 'children'> {
     label?: string
     rules?: Rule[]
   }
+  selectProps?: SelectProps & {
+    name: string
+    label?: string
+    rules?: Rule[]
+  }
   submitProps?: Omit<ButtonProps, 'onClick'> & {
     label: string
   }
+  submitOnChangedOnly?: boolean
   onConfirm?: () => void
   onChange?: (values: Any) => void
 }
@@ -264,13 +271,22 @@ const PromptModal: FC<PromptModalProps> = ({
   showFetchError = true,
   description,
   inputProps,
+  selectProps,
   submitProps,
+  submitOnChangedOnly = false,
   contentProps,
   onConfirm,
   onChange,
   ...restProps
 }) => {
   const [loading, error, { setTrue, setFalse, setError }] = useFormState()
+  const [disabled, setDisabled] = useState(submitOnChangedOnly)
+
+  function handleValuesChange(_: Any, values: Any) {
+    if (submitOnChangedOnly) {
+      setDisabled(deepEqual(value, values) && helper.isValid(value))
+    }
+  }
 
   const handleFinish = useCallback(
     async (values: Any) => {
@@ -309,10 +325,23 @@ const PromptModal: FC<PromptModalProps> = ({
         {description}
       </Description>
 
-      <Form className="mt-4" initialValues={value} onFinish={handleFinish}>
-        <Form.Item name={inputProps?.name} label={inputProps?.label} rules={inputProps?.rules}>
-          <Input {...excludeObject(inputProps as AnyMap, ['name', 'label', 'rules'])} />
-        </Form.Item>
+      <Form
+        className="mt-4"
+        initialValues={value}
+        onValuesChange={handleValuesChange}
+        onFinish={handleFinish}
+      >
+        {inputProps && (
+          <Form.Item {...pickObject(inputProps, ['name', 'label', 'rules'])}>
+            <Input {...excludeObject(inputProps, ['name', 'label', 'rules'])} />
+          </Form.Item>
+        )}
+
+        {selectProps && (
+          <Form.Item {...pickObject(selectProps, ['name', 'label', 'rules'])}>
+            <Select {...(excludeObject(selectProps, ['name', 'label', 'rules']) as Any)} />
+          </Form.Item>
+        )}
 
         {showFetchError && error && !loading && (
           <div className="text-sm/6 text-error" data-slot="form-error">
@@ -323,8 +352,9 @@ const PromptModal: FC<PromptModalProps> = ({
         <Button
           size="md"
           type="submit"
-          loading={loading}
           {...excludeObject(submitProps as AnyMap, ['label'])}
+          loading={loading}
+          disabled={disabled}
         >
           {submitProps?.label}
         </Button>

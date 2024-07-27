@@ -74,6 +74,7 @@ export const Dropdown: FC<DropdownProps> = ({
         return {
           value,
           label: multiLanguage ? t(label) : label,
+          icon: row.icon,
           disabled: row.disabled
         }
       }),

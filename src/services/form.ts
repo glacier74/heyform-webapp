@@ -22,6 +22,7 @@ import {
   FORM_REPORT_GQL,
   FORM_SUMMARY_GQL,
   IMPORT_FORM_GQL,
+  MOVE_FORM_TO_PROJECT_GQL,
   MOVE_FORM_TO_TRASH_GQL,
   PUBLISH_FORM_SQL,
   RESTORE_FORM_GQL,
@@ -312,6 +313,18 @@ export class FormService {
       variables: {
         input: {
           formId
+        }
+      }
+    })
+  }
+
+  static moveToProject(formId: string, targetProjectId: string) {
+    return apollo.mutate({
+      mutation: MOVE_FORM_TO_PROJECT_GQL,
+      variables: {
+        input: {
+          formId,
+          targetProjectId
         }
       }
     })

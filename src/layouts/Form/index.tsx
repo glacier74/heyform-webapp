@@ -6,6 +6,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Link, NavLink } from 'react-router-dom'
 
 import IconLink from '@/assets/link.svg?react'
+import IconMoveTo from '@/assets/move-to.svg?react'
 import { Button, Dropdown, Skeleton, Tooltip, useAlert, usePrompt } from '@/components'
 import { FormService } from '@/services'
 import { useFormStore, useWorkspaceStore } from '@/store'
@@ -16,17 +17,22 @@ import { WorkspaceLayout } from '../Workspace'
 const DROPDOWN_OPTIONS = [
   {
     value: 'rename',
-    icon: <IconTag className="h-5 w-5" />,
+    icon: <IconTag className="h-4 w-4" />,
     label: 'components.rename'
   },
   {
     value: 'duplicate',
-    icon: <IconCopy className="h-5 w-5" />,
+    icon: <IconCopy className="h-4 w-4" />,
     label: 'components.duplicate'
   },
   {
+    value: 'moveto',
+    icon: <IconMoveTo className="h-4 w-4" />,
+    label: 'components.moveto'
+  },
+  {
     value: 'trash',
-    icon: <IconTrash className="h-5 w-5" />,
+    icon: <IconTrash className="h-4 w-4" />,
     label: 'components.delete'
   }
 ]
@@ -38,7 +44,7 @@ export const FormLayout: FC<LayoutProps> = ({ options, children }) => {
   const prompt = usePrompt()
   const router = useRouter()
   const { workspaceId, projectId, formId } = useParam()
-  const { project, sharingURLPrefix } = useWorkspaceStore()
+  const { workspace, project, sharingURLPrefix } = useWorkspaceStore()
   const { form, setForm, updateForm } = useFormStore()
 
   const navigations = useMemo(
@@ -147,15 +153,53 @@ export const FormLayout: FC<LayoutProps> = ({ options, children }) => {
     }
   )
 
-  async function handleClick(value: string) {
-    console.log(value)
+  function handleMoveTo() {
+    prompt({
+      value: {
+        projectId
+      },
+      title: t('project.moveto.headline', { name: form?.name }),
+      selectProps: {
+        className: 'w-full',
+        name: 'projectId',
+        rules: [
+          {
+            required: true,
+            message: t('project.moveto.project.required')
+          }
+        ],
+        options: workspace.projects || [],
+        labelKey: 'name',
+        valueKey: 'id'
+      },
+      submitProps: {
+        className: '!mt-4 px-5 min-w-24',
+        size: 'md',
+        label: t('components.save')
+      },
+      submitOnChangedOnly: true,
+      fetch: async values => {
+        const result = await FormService.moveToProject(formId, values.projectId)
 
+        if (result) {
+          router.replace(
+            `/workspace/${workspaceId}/project/${values.projectId}/form/${formId}/analytics`
+          )
+        }
+      }
+    })
+  }
+
+  async function handleClick(value: string) {
     switch (value) {
       case 'rename':
         return handleRename()
 
       case 'duplicate':
         return handleDuplicate()
+
+      case 'moveto':
+        return handleMoveTo()
 
       case 'trash':
         return handleMoveToTrash()
