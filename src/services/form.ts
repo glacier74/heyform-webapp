@@ -1,3 +1,4 @@
+import { EventStreamContentType, fetchEventSource } from '@fortaine/fetch-event-source'
 import {
   FormField,
   FormKindEnum,
@@ -8,10 +9,15 @@ import {
   Logic,
   Variable
 } from '@heyform-inc/shared-types-enums'
+import { parse } from 'best-effort-json-parser'
 
 import {
+  CREATE_FIELDS_WITH_AI_GQL,
   CREATE_FORM_FIELD_GQL,
   CREATE_FORM_GQL,
+  CREATE_FORM_LOGICS_WITH_AI_GQL,
+  CREATE_FORM_THEME_WITH_AI_GQL,
+  CREATE_FORM_WITH_AI_GQL,
   DELETE_FORM_FIELD_GQL,
   DELETE_FORM_GQL,
   DUPLICATE_FORM_GQL,
@@ -27,6 +33,8 @@ import {
   PUBLISH_FORM_SQL,
   RESTORE_FORM_GQL,
   SEARCH_FORM_GQL,
+  TEMPLATES_GQL,
+  TEMPLATE_DETAILS_GQL,
   UPDATE_FORM_ARCHIVE_GQL,
   UPDATE_FORM_FIELD_GQL,
   UPDATE_FORM_GQL,
@@ -35,9 +43,17 @@ import {
   UPDATE_FORM_LOGICS_GQL,
   UPDATE_FORM_SCHEMAS_GQL,
   UPDATE_FORM_THEME_GQL,
-  UPDATE_FORM_VARIABLES_GQL
+  UPDATE_FORM_VARIABLES_GQL,
+  USE_TEMPLATE_GQL
 } from '@/consts'
-import { apollo } from '@/utils'
+import { TemplateType } from '@/types'
+import { apollo, clearAuthState } from '@/utils'
+
+interface ChatOptions {
+  onMessage: (data: AnyMap) => void
+  onError: (error: string) => void
+  onClose: () => void
+}
 
 export class FormService {
   static async forms(projectId: string, status = FormStatusEnum.NORMAL) {
@@ -64,6 +80,52 @@ export class FormService {
       mutation: CREATE_FORM_GQL,
       variables: {
         input
+      }
+    })
+  }
+
+  static createWithAI(input: { projectId: string; topic: string; reference?: string }) {
+    return apollo.mutate({
+      mutation: CREATE_FORM_WITH_AI_GQL,
+      variables: {
+        input
+      }
+    })
+  }
+
+  static createFieldsWithAI(formId: string, prompt: string) {
+    return apollo.mutate({
+      mutation: CREATE_FIELDS_WITH_AI_GQL,
+      variables: {
+        input: {
+          formId,
+          prompt
+        }
+      }
+    })
+  }
+
+  static createLogicsWithAI(formId: string, prompt: string) {
+    return apollo.mutate({
+      mutation: CREATE_FORM_LOGICS_WITH_AI_GQL,
+      variables: {
+        input: {
+          formId,
+          prompt
+        }
+      }
+    })
+  }
+
+  static createThemesWithAI(formId: string, prompt: string, theme: string) {
+    return apollo.mutate({
+      mutation: CREATE_FORM_THEME_WITH_AI_GQL,
+      variables: {
+        input: {
+          formId,
+          prompt,
+          theme
+        }
       }
     })
   }
@@ -339,5 +401,110 @@ export class FormService {
         }
       }
     })
+  }
+
+  static templates(): Promise<TemplateType[]> {
+    return apollo.query({
+      query: TEMPLATES_GQL,
+      fetchPolicy: 'cache-first',
+      variables: {
+        input: {
+          limit: 0
+        }
+      }
+    })
+  }
+
+  static templateDetail(templateId: string) {
+    return apollo.query({
+      query: TEMPLATE_DETAILS_GQL,
+      variables: {
+        input: {
+          templateId
+        }
+      }
+    })
+  }
+
+  static useTemplate(projectId: string, templateId: string) {
+    return apollo.mutate({
+      mutation: USE_TEMPLATE_GQL,
+      variables: {
+        input: {
+          projectId,
+          templateId
+        }
+      }
+    })
+  }
+
+  static async chat(formId: string, prompt: string, { onMessage, onError, onClose }: ChatOptions) {
+    const controller = new AbortController()
+    const requestTimeoutId = setTimeout(() => controller.abort(), 30_000)
+    let responseText = ''
+
+    await fetchEventSource('/api/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        formId,
+        prompt
+      }),
+      signal: controller.signal,
+      credentials: 'include',
+
+      async onopen(res) {
+        clearTimeout(requestTimeoutId)
+
+        if (res.status === 401) {
+          clearAuthState()
+          window.location.href = '/logout'
+          return
+        }
+
+        const contentType = res.headers.get('content-type')
+
+        if (!res.ok || res.status !== 200 || !contentType?.startsWith(EventStreamContentType)) {
+          const json = await res.clone().json()
+
+          controller.abort()
+          onError(json.message)
+        }
+      },
+
+      onmessage({ event, data }) {
+        responseText += data
+
+        if (event === 'error') {
+          return onError(data)
+        } else if (data.includes('[ERROR]')) {
+          return onError(data.replace('[ERROR]', '').trim())
+        }
+
+        try {
+          onMessage(parse(responseText))
+        } catch {}
+      },
+
+      onclose() {
+        controller.abort()
+
+        try {
+          onMessage(parse(responseText))
+        } catch {}
+
+        onClose()
+      },
+
+      onerror(err) {
+        onError(err.message)
+      },
+
+      openWhenHidden: true
+    })
+
+    return controller
   }
 }

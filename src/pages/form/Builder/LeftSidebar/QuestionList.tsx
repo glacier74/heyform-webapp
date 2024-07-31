@@ -257,7 +257,7 @@ const Question: FC<QuestionProps> = ({
           <QuestionIcon kind={field.kind} index={field.index} parentIndex={parentField?.index} />
 
           {/* Title */}
-          <div className="question-title ml-3 mr-1 line-clamp-2 flex-1 shrink basis-0 overflow-hidden break-words text-xs text-secondary group-hover:text-primary group-data-[active=true]/root:text-primary">
+          <div className="question-title ml-3 mr-1 line-clamp-2 flex-1 shrink basis-0 overflow-hidden break-words text-xs font-semibold text-secondary group-hover:text-primary group-data-[active=true]/root:text-primary">
             {htmlUtils.plain(field.title as string)}
           </div>
         </div>

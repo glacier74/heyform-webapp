@@ -15,6 +15,9 @@ importers:
       '@apollo/client':
         specifier: ^3.11.0
         version: 3.11.0(@types/react@18.3.3)(graphql@16.9.0)(react-dom@19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619))(react@19.0.0-rc-e684ca66ab-20240619)
+      '@fortaine/fetch-event-source':
+        specifier: ^3.0.6
+        version: 3.0.6
       '@heyform-inc/answer-utils':
         specifier: ^1.1.0
         version: 1.1.0(@heyform-inc/shared-types-enums@1.1.10)(@heyform-inc/utils@1.2.2)(big.js@6.2.1)(dayjs@1.11.12)(html5parser@2.0.2)(libphonenumber-js@1.11.4)(validator@13.12.0)
@@ -72,6 +75,9 @@ importers:
       axios:
         specifier: ^1.7.2
         version: 1.7.2
+      best-effort-json-parser:
+        specifier: ^1.1.2
+        version: 1.1.2
       big.js:
         specifier: ^6.2.1
         version: 6.2.1
@@ -562,6 +568,10 @@ packages:
 
   '@floating-ui/utils@0.2.4':
     resolution: {integrity: sha512-dWO2pw8hhi+WrXq1YJy2yCuWoL20PddgGaqTgVe4cOS9Q6qklXCiA1tJEqX6BEwRNSCP84/afac9hd4MS+zEUA==}
+
+  '@fortaine/fetch-event-source@3.0.6':
+    resolution: {integrity: sha512-621GAuLMvKtyZQ3IA6nlDWhV1V/7PGOTNIGLUifxt0KzM+dZIweJ6F3XvQF3QnqeNfS1N7WQ0Kil1Di/lhChEw==}
+    engines: {node: '>=16.15'}
 
   '@graphql-typed-document-node/core@3.2.0':
     resolution: {integrity: sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==}
@@ -1959,6 +1969,9 @@ packages:
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+
+  best-effort-json-parser@1.1.2:
+    resolution: {integrity: sha512-RD7tyk24pNCDwEKFACauR6Lqp5m6BHUrehwyhN/pA8V3QYWq8Y+hk9vHZvKiThZsdEFTaUqN49duVsamgCd8/g==}
 
   big.js@6.2.1:
     resolution: {integrity: sha512-bCtHMwL9LeDIozFn+oNhhFoq+yQ3BNdnsLSASUxLciOb1vgvpHsIO1dsENiGMgbb4SkP5TrzWzRiLddn8ahVOQ==}
@@ -3888,6 +3901,11 @@ packages:
     engines: {node: '>= 14'}
     hasBin: true
 
+  yaml@2.5.0:
+    resolution: {integrity: sha512-2wWLbGbYDiSqqIKoPjar3MPgB94ErzCtrNE1FdqGuaO0pi2JGjmE8aW8TDZwzU7vuxcGRdL/4gPQwQ7hD5AMSw==}
+    engines: {node: '>= 14'}
+    hasBin: true
+
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
@@ -4238,6 +4256,8 @@ snapshots:
       react-dom: 19.0.0-rc-e684ca66ab-20240619(react@19.0.0-rc-e684ca66ab-20240619)
 
   '@floating-ui/utils@0.2.4': {}
+
+  '@fortaine/fetch-event-source@3.0.6': {}
 
   '@graphql-typed-document-node/core@3.2.0(graphql@16.9.0)':
     dependencies:
@@ -5670,6 +5690,8 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
+  best-effort-json-parser@1.1.2: {}
+
   big.js@6.2.1: {}
 
   binary-extensions@2.3.0: {}
@@ -6918,7 +6940,7 @@ snapshots:
   postcss-load-config@4.0.2(postcss@8.4.39):
     dependencies:
       lilconfig: 3.1.2
-      yaml: 2.4.5
+      yaml: 2.5.0
     optionalDependencies:
       postcss: 8.4.39
 
@@ -7697,6 +7719,8 @@ snapshots:
   yallist@3.1.1: {}
 
   yaml@2.4.5: {}
+
+  yaml@2.5.0: {}
 
   yocto-queue@0.1.0: {}
 

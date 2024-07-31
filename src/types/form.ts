@@ -1,4 +1,4 @@
-import { FormField, Property } from '@heyform-inc/shared-types-enums'
+import { FormField, FormModel, Property } from '@heyform-inc/shared-types-enums'
 
 import { APP_STATUS_ENUM } from '@/consts'
 
@@ -33,4 +33,21 @@ export interface FormFieldType extends FormField {
   properties?: Omit<Property, 'fields'> & {
     fields?: FormField[]
   }
+}
+
+export interface TemplateType extends FormModel {
+  category: string
+}
+
+export interface TemplateGroupType {
+  id: string
+  category: string
+  templates: TemplateType[]
+}
+
+export interface ChatMessageType {
+  id: string
+  type: 'text' | 'notification'
+  content: string
+  isUser?: boolean
 }

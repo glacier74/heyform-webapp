@@ -909,6 +909,14 @@
       },
       "submit": "Generate questions"
     },
+    "chat": {
+      "title": "HeyForm AI Assistant",
+      "welcome": "Welcome to HeyForm's AI Assistant! This is an innovative feature powered by cutting-edge AI technology, designed to help you create form questions and logics.",
+      "compose": "Ask me anything...",
+      "fieldsUpdated": "Questions have been updated.",
+      "logicUpdated": "Logics have been updated.",
+      "themeUpdated": "Theme has been updated."
+    },
     "rename": {
       "headline": "Rename this form",
       "name": {

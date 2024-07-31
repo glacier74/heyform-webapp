@@ -23,6 +23,7 @@ import {
   SelectFieldAction,
   SelectHiddenFieldAction,
   SelectVariableAction,
+  SetActiveDesignTabNameAction,
   SetActiveTabNameAction,
   SetFieldsAction,
   UpdateFieldAction,
@@ -437,6 +438,17 @@ export function setActiveTabName(
   return {
     ...state,
     activeTabName
+  }
+}
+
+export function setActiveDesignTabName(
+  state: IState,
+  { activeDesignTabName }: SetActiveDesignTabNameAction['payload']
+): IState {
+  return {
+    ...state,
+    activeTabName: 'design',
+    activeDesignTabName
   }
 }
 

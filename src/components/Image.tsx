@@ -37,8 +37,9 @@ const Background: FC<BackgroundProps> = ({
 
     if (helper.isNumber(width) || helper.isNumber(height)) {
       return getDecoratedURL(
-        rawSrc as string,
+        '/api/image',
         removeObjectNil({
+          url: rawSrc as string,
           w: width,
           h: height
         })
@@ -80,7 +81,7 @@ const ImageComponent: FC<ImageProps> = ({
 
     if (helper.isNumber(width) || helper.isNumber(height)) {
       return getDecoratedURL(
-        '/image',
+        '/api/image',
         removeObjectNil({
           url: rawSrc as string,
           w: width,

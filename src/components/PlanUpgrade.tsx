@@ -7,7 +7,8 @@ import {
   ReactNode,
   cloneElement,
   isValidElement,
-  useCallback
+  useCallback,
+  useMemo
 } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -24,9 +25,23 @@ interface UpgradeProps extends ComponentProps {
 }
 
 export const usePlanGrade = (minimalGrade: PlanGradeEnum) => {
+  const { openModal } = useAppStore()
   const { workspace } = useWorkspaceStore()
 
-  return (workspace?.plan.grade || PlanGradeEnum.FREE) >= minimalGrade
+  const isAllowed = useMemo(
+    () => (workspace?.plan.grade || PlanGradeEnum.FREE) >= minimalGrade,
+    [minimalGrade, workspace?.plan.grade]
+  )
+  const openUpgrade = useCallback(() => {
+    if (!isAllowed) {
+      openModal('UpgradeModal')
+    }
+  }, [isAllowed, openModal])
+
+  return {
+    isAllowed,
+    openUpgrade
+  }
 }
 
 export const PlanUpgrade: FC<UpgradeProps> = ({
@@ -38,16 +53,14 @@ export const PlanUpgrade: FC<UpgradeProps> = ({
   ...restProps
 }) => {
   const { t } = useTranslation()
-
-  const { openModal } = useAppStore()
-  const isAllowed = usePlanGrade(minimalGrade)
+  const { isAllowed, openUpgrade } = usePlanGrade(minimalGrade)
 
   const openUpgradeModal = useCallback(
     (event?: MouseEvent<HTMLButtonElement>) => {
       event && stopEvent(event)
-      openModal('UpgradeModal')
+      openUpgrade()
     },
-    [openModal]
+    [openUpgrade]
   )
 
   if (isAllowed) {

@@ -1,3 +1,4 @@
+import { preventDefault } from '@heyform-inc/form-renderer'
 import { deepEqual, excludeObject, helper, pickObject } from '@heyform-inc/utils'
 import {
   Close,
@@ -75,8 +76,8 @@ const ModalComponent: FC<ModalProps> = ({
           )}
         />
         <Content
-          onOpenAutoFocus={e => e.preventDefault()}
-          onCloseAutoFocus={e => e.preventDefault()}
+          onOpenAutoFocus={preventDefault}
+          onCloseAutoFocus={preventDefault}
           {...contentProps}
           className={cn(
             'scrollbar fixed bottom-0 left-0 right-0 z-10 max-h-[80vh] w-full max-w-xl overflow-y-auto rounded-b-none rounded-t-lg border border-input bg-foreground p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-bottom-0 data-[state=open]:slide-in-from-bottom-[80%] sm:bottom-auto sm:left-[50%] sm:right-auto sm:top-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-b-lg data-[state=closed]:sm:zoom-out-95 data-[state=open]:sm:zoom-in-95 data-[state=closed]:sm:slide-out-to-left-1/2 data-[state=closed]:sm:slide-out-to-top-[48%] data-[state=open]:sm:slide-in-from-left-1/2 data-[state=open]:sm:slide-in-from-top-[48%] print:!fixed print:!bottom-[initial] print:!left-0 print:!right-[initial] print:!top-0 print:!h-auto print:!max-h-none print:!transform-none print:!border-0 print:!shadow-none',

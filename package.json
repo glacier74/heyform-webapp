@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.11.0",
+    "@fortaine/fetch-event-source": "^3.0.6",
     "@heyform-inc/answer-utils": "^1.1.0",
     "@heyform-inc/form-renderer": "^0.1.17",
     "@heyform-inc/shared-types-enums": "^1.1.10",
@@ -46,6 +47,7 @@
     "apollo-link-retry": "^2.2.16",
     "apollo-link-timeout": "^4.0.0",
     "axios": "^1.7.2",
+    "best-effort-json-parser": "^1.1.2",
     "big.js": "^6.2.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",

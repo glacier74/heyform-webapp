@@ -121,6 +121,10 @@ export default function Customize() {
   }
 
   useEffect(() => {
+    rcForm.resetFields()
+  }, [rcForm, tempTheme])
+
+  useEffect(() => {
     insertWebFont(GOOGLE_FONTS)
   }, [])
 

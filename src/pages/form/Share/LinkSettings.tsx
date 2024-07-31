@@ -19,18 +19,17 @@ import {
 } from '@/components'
 import { PlanGradeEnum } from '@/consts'
 import { FormService } from '@/services'
-import { useAppStore, useFormStore, useWorkspaceStore } from '@/store'
+import { useFormStore, useWorkspaceStore } from '@/store'
 import { useParam } from '@/utils'
 
 export default function LinkSettings() {
   const { t } = useTranslation()
 
   const { formId } = useParam()
-  const { openModal } = useAppStore()
   const { workspace } = useWorkspaceStore()
   const { form, updateSettings } = useFormStore()
 
-  const isAllowed = usePlanGrade(PlanGradeEnum.BASIC)
+  const { isAllowed, openUpgrade } = usePlanGrade(PlanGradeEnum.BASIC)
   const imagePickerRef = useRef<ImagePickerRef | null>(null)
 
   const { title, description, isBrandingShow } = useMemo(() => {
@@ -53,7 +52,7 @@ export default function LinkSettings() {
   const { run } = useRequest(
     async (name: string, value?: string | null) => {
       if (!isAllowed) {
-        return handleUpgrade()
+        return openUpgrade()
       }
 
       const updates = {
@@ -70,15 +69,9 @@ export default function LinkSettings() {
     }
   )
 
-  function handleUpgrade() {
-    if (!isAllowed) {
-      openModal('UpgradeModal')
-    }
-  }
-
   function handleUpload() {
     if (!isAllowed) {
-      return handleUpgrade()
+      return openUpgrade()
     }
 
     imagePickerRef.current?.open()
@@ -111,7 +104,7 @@ export default function LinkSettings() {
               id="meta-title"
               maxLength={70}
               value={title}
-              onFocus={handleUpgrade}
+              onFocus={openUpgrade}
               onChange={value => run('metaTitle', value)}
             />
           </div>
@@ -130,7 +123,7 @@ export default function LinkSettings() {
               rows={6}
               maxLength={156}
               value={form?.settings?.metaDescription}
-              onFocus={handleUpgrade}
+              onFocus={openUpgrade}
               onChange={value => run('metaDescription', value)}
             />
           </div>

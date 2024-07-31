@@ -1,3 +1,4 @@
+import { preventDefault } from '@heyform-inc/form-renderer'
 import { IconCheck } from '@tabler/icons-react'
 import { ButtonHTMLAttributes, FC, ReactNode, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
@@ -102,12 +103,7 @@ export const CopyButton: FC<CopyButtonProps> = ({
   if (icon) {
     return (
       <CopyToClipboard text={text} onCopy={handleCopy}>
-        <Button.Link
-          className={className}
-          iconOnly
-          onClick={e => e.preventDefault()}
-          {...restProps}
-        >
+        <Button.Link className={className} iconOnly onClick={preventDefault} {...restProps}>
           <Tooltip
             label={label}
             contentProps={{
@@ -125,11 +121,7 @@ export const CopyButton: FC<CopyButtonProps> = ({
 
   return (
     <CopyToClipboard text={text} onCopy={handleCopy}>
-      <Button
-        className={cn('min-w-20', className)}
-        onClick={e => e.preventDefault()}
-        {...restProps}
-      >
+      <Button className={cn('min-w-20', className)} onClick={preventDefault} {...restProps}>
         {copied ? t('components.copied') : t('components.copy')}
       </Button>
     </CopyToClipboard>

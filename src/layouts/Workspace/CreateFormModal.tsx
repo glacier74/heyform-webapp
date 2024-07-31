@@ -1,124 +1,137 @@
 import { FormKindEnum, InteractiveModeEnum } from '@heyform-inc/shared-types-enums'
-import { helper } from '@heyform-inc/utils'
-import { IconPlus } from '@tabler/icons-react'
-import { useBoolean } from 'ahooks'
-import { FC } from 'react'
+import { IconPlus, IconStack2 } from '@tabler/icons-react'
+import { useRequest } from 'ahooks'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Button, Form, Input, Modal, Select, SimpleFormProps } from '@/components'
+import IconAI from '@/assets/ai.svg?react'
+import { Button, Modal, usePlanGrade } from '@/components'
+import { PlanGradeEnum } from '@/consts'
 import { FormService } from '@/services'
-import { useAppStore, useModal, useWorkspaceStore } from '@/store'
-import { FormType } from '@/types'
-import { nextTick, useParam, useRouter } from '@/utils'
+import { useModal } from '@/store'
+import { useParam, useRouter } from '@/utils'
 
-const CreateForm: FC<Pick<SimpleFormProps, 'onLoadingChange'>> = ({ onLoadingChange }) => {
+import CreateWithAIModel from './CreateWithAIModel'
+import TemplatesModel from './TemplatesModel'
+
+const FORM_TYPES = [
+  {
+    id: 'ai',
+    headline: 'form.creation.ai.headline',
+    subHeadline: 'form.creation.ai.subHeadline',
+    icon: IconAI
+  },
+  {
+    id: 'scratch',
+    headline: 'form.creation.scratch.headline',
+    subHeadline: 'form.creation.scratch.subHeadline',
+    icon: IconPlus
+  },
+  {
+    id: 'template',
+    headline: 'form.creation.template.headline',
+    subHeadline: 'form.creation.template.subHeadline',
+    icon: IconStack2
+  }
+]
+
+const CreateFormComponent = () => {
   const { t } = useTranslation()
 
   const router = useRouter()
   const { workspaceId, projectId } = useParam()
-  const [rcForm] = Form.useForm()
-  const { openModal, closeModal } = useAppStore()
-  const { workspace } = useWorkspaceStore()
-  const { payload } = useModal('CreateFormModal')
+  const { isAllowed, openUpgrade } = usePlanGrade(PlanGradeEnum.BASIC)
 
-  async function fetch(values: FormType) {
-    const result = await FormService.create({
-      projectId: values.projectId,
-      name: values.name,
-      nameSchema: [],
-      interactiveMode: InteractiveModeEnum.GENERAL,
-      kind: FormKindEnum.SURVEY
-    })
+  const [activeName, setActiveName] = useState<string>()
 
-    closeModal('CreateFormModal')
-    router.push(`/workspace/${workspaceId}/project/${values.projectId}/form/${result}/create`)
-  }
+  const { loading, run } = useRequest(
+    async () => {
+      const formId = await FormService.create({
+        projectId,
+        name: t('form.creation.defaultName'),
+        nameSchema: [],
+        interactiveMode: InteractiveModeEnum.GENERAL,
+        kind: FormKindEnum.SURVEY
+      })
 
-  function handleCreateProject() {
-    openModal('CreateProjectModal', {
-      callback: (newProjectId: string) => {
-        nextTick(() => {
-          rcForm.setFieldValue('projectId', newProjectId)
-        })
-      }
-    })
-  }
-
-  return (
-    <Form.Simple
-      form={rcForm}
-      className="space-y-4"
-      fetch={fetch}
-      initialValues={{
-        projectId: projectId || payload?.projectId || workspace.projects[0]?.id
-      }}
-      submitProps={{
-        className: 'px-5 min-w-24',
-        size: 'md',
-        label: t('components.continue')
-      }}
-      onLoadingChange={onLoadingChange}
-    >
-      <Form.Item
-        name="projectId"
-        label={t('form.creation.project.label')}
-        rules={[
-          {
-            required: true,
-            message: t('form.creation.project.required')
-          }
-        ]}
-      >
-        {helper.isValidArray(workspace.projects) ? (
-          <Select
-            className="h-11 w-full sm:h-10"
-            options={workspace.projects}
-            labelKey="name"
-            valueKey="id"
-          />
-        ) : (
-          <Button.Ghost
-            className="w-full [&_[data-slot=button]]:justify-start"
-            onClick={handleCreateProject}
-          >
-            <IconPlus className="h-5 w-5" />
-            <span>{t('project.creation.headline')}</span>
-          </Button.Ghost>
-        )}
-      </Form.Item>
-      <Form.Item
-        name="name"
-        label={t('form.creation.name.label')}
-        rules={[
-          {
-            required: true,
-            message: t('form.creation.name.required')
-          }
-        ]}
-      >
-        <Input autoComplete="off" />
-      </Form.Item>
-    </Form.Simple>
+      router.push(`/workspace/${workspaceId}/project/${projectId}/form/${formId}/create`)
+    },
+    {
+      refreshDeps: [projectId, t],
+      manual: true
+    }
   )
+
+  function handleClick(name: string) {
+    switch (name) {
+      case 'scratch':
+        run()
+        break
+
+      case 'ai':
+        isAllowed ? setActiveName(name) : openUpgrade()
+        break
+
+      default:
+        setActiveName(name)
+        break
+    }
+  }
+
+  function handleBack() {
+    setActiveName(undefined)
+  }
+
+  // Create with template
+  if (activeName === 'template') {
+    return <TemplatesModel onBack={handleBack} />
+  }
+
+  // Create with AI
+  else if (activeName === 'ai') {
+    return <CreateWithAIModel onBack={handleBack} />
+  }
+
+  // Create from scratch
+  else {
+    return (
+      <>
+        <h2 className="text-balance text-xl/6 font-semibold text-primary sm:text-lg/6">
+          {t('form.creation.headline')}
+        </h2>
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:w-[42rem] sm:grid-cols-3">
+          {FORM_TYPES.map(row => (
+            <Button.Link
+              key={row.id}
+              className="flex h-auto border border-input py-8 sm:aspect-square sm:h-auto sm:py-0 [&_[data-slot=button]]:h-full [&_[data-slot=button]]:flex-col"
+              loading={row.id === 'scratch' && loading}
+              disabled={loading}
+              onClick={() => handleClick(row.id)}
+            >
+              <row.icon className="non-scaling-stroke h-9 w-9" />
+              <div className="mt-2 text-sm/6 font-semibold">{t(row.headline)}</div>
+              <div className="mt-1 text-xs text-secondary">{t(row.subHeadline)}</div>
+            </Button.Link>
+          ))}
+        </div>
+      </>
+    )
+  }
 }
 
 export default function CreateFormModal() {
-  const { t } = useTranslation()
-
   const { isOpen, onOpenChange } = useModal('CreateFormModal')
-  const [loading, { set }] = useBoolean(false)
 
   return (
-    <Modal.Simple
+    <Modal
       open={isOpen}
       contentProps={{
-        className: 'max-w-lg'
+        id: 'create-form-modal',
+        className: 'sm:max-w-full sm:max-h-[90vh] w-auto'
       }}
-      title={t('form.creation.headline')}
-      loading={loading}
       onOpenChange={onOpenChange}
     >
-      <CreateForm onLoadingChange={set} />
-    </Modal.Simple>
+      <CreateFormComponent />
+    </Modal>
   )
 }

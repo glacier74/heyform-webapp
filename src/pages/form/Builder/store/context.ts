@@ -32,6 +32,7 @@ export interface IState {
   selectedHiddenField?: HiddenField
 
   activeTabName?: string
+  activeDesignTabName?: string
 }
 
 export interface SetFieldsAction {
@@ -145,6 +146,13 @@ export interface SetActiveTabNameAction {
   }
 }
 
+export interface SetActiveDesignTabNameAction {
+  type: 'setActiveDesignTabName'
+  payload: {
+    activeDesignTabName: string
+  }
+}
+
 export interface CreateHiddenFieldAction {
   type: 'createHiddenField'
   payload: HiddenField
@@ -196,6 +204,7 @@ export type IAction =
   | DeleteLogicAction
   | ClearLogicAction
   | SetActiveTabNameAction
+  | SetActiveDesignTabNameAction
   | CreateHiddenFieldAction
   | SelectHiddenFieldAction
   | EditHiddenFieldAction
@@ -242,6 +251,7 @@ export const storeReducer = (state: IState, action: IAction) => {
     case 'updateVariable':
     case 'deleteVariable':
     case 'setActiveTabName':
+    case 'setActiveDesignTabName':
     case 'createHiddenField':
     case 'selectHiddenField':
     case 'editHiddenField':

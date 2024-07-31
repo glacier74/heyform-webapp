@@ -7,9 +7,11 @@ import {
   InputHTMLAttributes,
   KeyboardEvent,
   ReactNode,
+  Ref,
   TextareaHTMLAttributes,
   useCallback,
   useEffect,
+  useImperativeHandle,
   useMemo,
   useRef,
   useState
@@ -30,7 +32,13 @@ export interface TextAreaProps
   onBlur?: () => void
 }
 
+export interface InputRef {
+  clear: () => void
+  submit: () => void
+}
+
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  ref?: Ref<InputRef>
   autoFocus?: boolean
   hasError?: boolean
   leading?: ReactNode
@@ -63,6 +71,7 @@ interface TypeNumberProps
 }
 
 const InputComponent: FC<InputProps> = ({
+  ref,
   className,
   type = 'text',
   min,
@@ -79,7 +88,7 @@ const InputComponent: FC<InputProps> = ({
   ...restProps
 }) => {
   const lock = useRef(false)
-  const ref = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
   const isCountingEnabled = maxLength && maxLength > 0
 
   const [value, setValue] = useState<Any>(rawValue as Any)
@@ -152,21 +161,36 @@ const InputComponent: FC<InputProps> = ({
   }
 
   function handleMouseUp() {
-    ref.current?.focus()
+    inputRef.current?.focus()
   }
+
+  useImperativeHandle<InputRef, InputRef>(
+    ref,
+    () => ({
+      clear() {
+        setValue('')
+      },
+      submit() {
+        onEnter?.(inputRef.current?.value)
+      }
+    }),
+    []
+  )
 
   useEffect(() => {
     if (rawValue !== value) {
       lock.current = false
+
       setValue(rawValue as Any)
+      setLength((rawValue as Any).length)
     }
   }, [rawValue])
 
   useEffect(() => {
-    if (ref.current && autoFocus) {
-      ref.current.focus()
+    if (inputRef.current && autoFocus) {
+      inputRef.current.focus()
     }
-  }, [ref])
+  }, [inputRef])
 
   return (
     <div
@@ -184,10 +208,10 @@ const InputComponent: FC<InputProps> = ({
       )}
 
       <input
-        ref={ref}
+        ref={inputRef}
         className={cn(
-          'block w-full appearance-none rounded-lg border bg-transparent px-3.5 py-2.5 text-base/[1.4rem] placeholder:text-secondary focus:outline-none data-[type=number]:pr-0.5 sm:px-3 sm:py-2 sm:text-sm/[1.4rem] data-[type=number]:sm:pr-0.5',
-          hasError ? 'border-error' : 'border-input'
+          'block w-full appearance-none rounded-lg border bg-transparent px-3.5 py-2.5 text-base/[1.4rem] ring-0 placeholder:text-secondary focus:border-input focus:shadow-none focus:outline-none focus:ring-0 data-[type=number]:pr-0.5 sm:px-3 sm:py-2 sm:text-sm/[1.4rem] data-[type=number]:sm:pr-0.5',
+          hasError ? 'border-error focus:border-error' : 'border-input focus:border-input'
         )}
         type={type}
         value={value}
@@ -335,7 +359,7 @@ const TextArea: FC<TextAreaProps> = ({
   ...restProps
 }) => {
   const lock = useRef(false)
-  const ref = useRef<HTMLTextAreaElement>(null)
+  const inputRef = useRef<HTMLTextAreaElement>(null)
   const isCountingEnabled = maxLength && maxLength > 0
 
   const [value, setValue] = useState<Any>(rawValue as Any)
@@ -382,29 +406,31 @@ const TextArea: FC<TextAreaProps> = ({
   }
 
   function handleMouseUp() {
-    ref.current?.focus()
+    inputRef.current?.focus()
   }
 
   useEffect(() => {
     if (rawValue !== value) {
       lock.current = false
+
       setValue(rawValue as Any)
+      setLength((rawValue as Any).length)
     }
   }, [rawValue])
 
   useEffect(() => {
-    if (ref.current && autoFocus) {
-      ref.current.focus()
+    if (inputRef.current && autoFocus) {
+      inputRef.current.focus()
     }
-  }, [ref])
+  }, [inputRef])
 
   return (
     <div className={cn('relative', className)} onMouseUp={handleMouseUp}>
       <textarea
-        ref={ref}
+        ref={inputRef}
         className={cn(
-          'scrollbar block w-full appearance-none rounded-lg border bg-transparent px-3.5 py-2.5 text-base/[1.4rem] placeholder:text-secondary focus:outline-none sm:px-3 sm:py-2 sm:text-sm/[1.4rem]',
-          hasError ? 'border-error' : 'border-input'
+          'scrollbar block w-full appearance-none rounded-lg border bg-transparent px-3.5 py-2.5 text-base/[1.4rem] ring-0 placeholder:text-secondary focus:border-input focus:shadow-none focus:outline-none focus:ring-0 sm:px-3 sm:py-2 sm:text-sm/[1.4rem]',
+          hasError ? 'border-error focus:border-error' : 'border-input focus:border-input'
         )}
         data-slot="textarea"
         value={value}

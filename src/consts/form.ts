@@ -1205,3 +1205,27 @@ export const ADD_QUESTION_STORAGE_NAME = 'ADD_QUESTION'
 export const ADD_QUESTION2_STORAGE_NAME = 'ADD_QUESTION2'
 export const PUBLISH_FORM_STORAGE_NAME = 'PUBLISH_FORM'
 export const MAXIMIZE_TABLE_STORAGE_NAME = 'MAXIMIZE_TABLE'
+
+export const TEMPLATE_CATEGORIES = [
+  'Survey',
+  'Lead Generation',
+  'Customer Support',
+  'Feedback',
+  'Employee/Job',
+  'Booking & Order',
+  'Marketing',
+  'Registration',
+  'Education',
+  'Event',
+  'Healthcare',
+  'Application',
+  'Questionnaire & Quiz',
+  'Remote Working',
+  'Contact',
+  'Business',
+  'COVID-19',
+  'Poll',
+  'Request',
+  'Banking & Finance',
+  'Donation & Charity'
+]

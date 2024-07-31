@@ -402,10 +402,7 @@ export const TEMPLATES_GQL = gql`
       id
       category
       name
-      thumbnail
-      description
-      interactiveMode
-      kind
+      usedCount
       themeSettings {
         theme
       }
@@ -413,15 +410,10 @@ export const TEMPLATES_GQL = gql`
   }
 `
 
-export const TEMPLATE_DETAIL_GQL = gql`
+export const TEMPLATE_DETAILS_GQL = gql`
   query templateDetail($input: TemplateDetailInput!) {
     templateDetail(input: $input) {
       id
-      category
-      name
-      description
-      interactiveMode
-      kind
       fields {
         id
         title
@@ -430,13 +422,6 @@ export const TEMPLATE_DETAIL_GQL = gql`
         validations
         properties
       }
-      hiddenFields {
-        id
-        name
-      }
-      themeSettings {
-        theme
-      }
     }
   }
 `
@@ -444,19 +429,6 @@ export const TEMPLATE_DETAIL_GQL = gql`
 export const USE_TEMPLATE_GQL = gql`
   mutation useTemplate($input: UseTemplateInput!) {
     useTemplate(input: $input)
-  }
-`
-
-export const PROJECTS_GQL = gql`
-  query projects($input: ProjectsInput!) {
-    projects(input: $input) {
-      id
-      teamId
-      name
-      ownerId
-      avatar
-      isOwner
-    }
   }
 `
 
@@ -731,6 +703,18 @@ export const CREATE_FORM_GQL = gql`
   }
 `
 
+export const CREATE_FORM_WITH_AI_GQL = gql`
+  mutation createFormWithAI($input: CreateFormWithAIInput!) {
+    createFormWithAI(input: $input)
+  }
+`
+
+export const CREATE_FIELDS_WITH_AI_GQL = gql`
+  mutation createFieldsWithAI($input: CreateFieldsWithAIInput!) {
+    createFieldsWithAI(input: $input)
+  }
+`
+
 export const IMPORT_FORM_GQL = gql`
   query importExternalForm($input: ImportExternalFormInput!) {
     importExternalForm(input: $input)
@@ -767,6 +751,18 @@ export const PUBLISH_FORM_SQL = gql`
 export const UPDATE_FORM_LOGICS_GQL = gql`
   mutation ($input: UpdateFormLogicsInput!) {
     updateFormLogics(input: $input)
+  }
+`
+
+export const CREATE_FORM_LOGICS_WITH_AI_GQL = gql`
+  mutation createFormLogicsWithAI($input: CreateFieldsWithAIInput!) {
+    createFormLogicsWithAI(input: $input)
+  }
+`
+
+export const CREATE_FORM_THEME_WITH_AI_GQL = gql`
+  mutation createFormThemeWithAI($input: CreateFormThemeWithAIInput!) {
+    createFormThemeWithAI(input: $input)
   }
 `
 

@@ -8,6 +8,7 @@ import '@/styles/builder.scss'
 import { FormType } from '@/types'
 import { useParam } from '@/utils'
 
+import AIChat from './AIChat'
 import BuilderCompose from './Compose'
 import HiddenFieldsModal from './HiddenFieldsModal'
 import BuilderLeftSidebar, { BuilderLeftSidebarModal } from './LeftSidebar'
@@ -49,7 +50,7 @@ const Builder: FC<IBuilderProps> = ({ form }) => {
 
   return (
     <StoreContext.Provider value={store}>
-      <div className="flex h-screen flex-col bg-background ">
+      <div className="flex h-screen flex-col bg-background">
         <BuilderNavBar />
 
         <main className="flex h-[calc(100vh-3.5rem)] flex-1 sm:gap-2 sm:px-2 sm:pb-2">
@@ -65,6 +66,7 @@ const Builder: FC<IBuilderProps> = ({ form }) => {
         </main>
       </div>
 
+      <AIChat />
       <BuilderLeftSidebarModal />
       <QuestionTypesModal />
       <PreviewModal />

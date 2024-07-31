@@ -1,3 +1,4 @@
+import { preventDefault } from '@heyform-inc/form-renderer'
 import { LayoutProps } from '@heyooo-inc/react-router'
 import { IconChevronLeft, IconCopy, IconDots, IconTag, IconTrash } from '@tabler/icons-react'
 import { useRequest } from 'ahooks'
@@ -212,9 +213,9 @@ export const FormLayout: FC<LayoutProps> = ({ options, children }) => {
         title: t('form.suspend.headline'),
         description: t('form.suspend.subHeadline'),
         contentProps: {
-          onPointerDownOutside: e => e.preventDefault(),
-          onEscapeKeyDown: e => e.preventDefault(),
-          onInteractOutside: e => e.preventDefault()
+          onPointerDownOutside: preventDefault,
+          onEscapeKeyDown: preventDefault,
+          onInteractOutside: preventDefault
         },
         confirmProps: {
           label: t('form.suspend.contactUs')
