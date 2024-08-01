@@ -862,6 +862,14 @@
       },
       "defaultName": "Unbenannt"
     },
+    "chat": {
+      "title": "HeyForm KI-Assistent",
+      "welcome": "Willkommen beim HeyForm KI-Assistenten! Dies ist eine innovative Funktion, die von modernster KI-Technologie unterstützt wird und Ihnen hilft, Formularfragen und -logiken zu erstellen.",
+      "compose": "Fragen Sie mich alles...",
+      "fieldsUpdated": "Die Fragen Ihres Formulars wurden aktualisiert.",
+      "logicUpdated": "Die Logik Ihres Formulars wurde aktualisiert.",
+      "themeUpdated": "Das Thema Ihres Formulars wurde aktualisiert."
+    },
     "rename": {
       "headline": "Dieses Formular umbenennen",
       "name": {

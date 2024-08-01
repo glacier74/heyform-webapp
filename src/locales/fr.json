@@ -866,6 +866,14 @@
       },
       "defaultName": "Sans titre"
     },
+    "chat": {
+      "title": "Assistant IA HeyForm",
+      "welcome": "Bienvenue dans l'Assistant IA de HeyForm ! Il s'agit d'une fonctionnalité innovante alimentée par une technologie IA de pointe, conçue pour vous aider à créer des questions et des logiques de formulaire.",
+      "compose": "Demandez-moi n'importe quoi...",
+      "fieldsUpdated": "Les questions de votre formulaire ont été mises à jour.",
+      "logicUpdated": "La logique de votre formulaire a été mise à jour.",
+      "themeUpdated": "Le thème de votre formulaire a été mis à jour."
+    },
     "rename": {
       "headline": "Renommer ce formulaire",
       "name": {

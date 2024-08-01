@@ -862,6 +862,14 @@
       },
       "defaultName": "未命名"
     },
+    "chat": {
+      "title": "HeyForm AI 助手",
+      "welcome": "欢迎使用 HeyForm 的 AI 助手！这是一个由最先进的 AI 技术驱动的创新功能，旨在帮助您创建表单问题和逻辑。",
+      "compose": "问我任何问题...",
+      "fieldsUpdated": "您的表单问题已更新。",
+      "logicUpdated": "您的表单逻辑已更新。",
+      "themeUpdated": "您的表单主题已更新。"
+    },
     "rename": {
       "headline": "重命名此表单",
       "name": {

@@ -862,6 +862,14 @@
       },
       "defaultName": "無題"
     },
+    "chat": {
+      "title": "HeyForm AI アシスタント",
+      "welcome": "HeyFormのAIアシスタントへようこそ！これは最先端のAI技術によって支えられた革新的な機能で、フォームの質問やロジックを作成するのに役立ちます。",
+      "compose": "何でも聞いてください...",
+      "fieldsUpdated": "フォームの質問が更新されました。",
+      "logicUpdated": "フォームのロジックが更新されました。",
+      "themeUpdated": "フォームのテーマが更新されました。"
+    },
     "rename": {
       "headline": "このフォームの名前を変更する",
       "name": {
