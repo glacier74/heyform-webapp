@@ -330,6 +330,12 @@
     color: var(--heyform-question-color);
   }
 
+  .heyform-statement {
+    .heyform-block-title {
+      @apply mb-4;
+    }
+  }
+
   .heyform-block-description {
     @apply text-lg;
     min-height: 1.75rem;
