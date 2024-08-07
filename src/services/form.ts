@@ -438,7 +438,12 @@ export class FormService {
     })
   }
 
-  static async chat(formId: string, prompt: string, { onMessage, onError, onClose }: ChatOptions) {
+  static async chat(
+    formId: string,
+    prompt: string,
+    language: string,
+    { onMessage, onError, onClose }: ChatOptions
+  ) {
     const controller = new AbortController()
     const requestTimeoutId = setTimeout(() => controller.abort(), 30_000)
     let responseText = ''
@@ -450,7 +455,8 @@ export class FormService {
       },
       body: JSON.stringify({
         formId,
-        prompt
+        prompt,
+        language
       }),
       signal: controller.signal,
       credentials: 'include',

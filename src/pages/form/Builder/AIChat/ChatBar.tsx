@@ -12,7 +12,7 @@ import { useStoreContext } from '../store'
 import { useChatStore } from './ChatStore'
 
 export default function ChatBar() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const { formId } = useParam()
   const { addMessage, updateMessage, status, setStatus } = useChatStore()
@@ -125,7 +125,7 @@ export default function ChatBar() {
     let messageId: string | null = null
     setStatus('loading')
 
-    await FormService.chat(formId, content, {
+    await FormService.chat(formId, content, i18n.language, {
       onMessage: data => {
         if (data?.message) {
           setStatus('pending')
