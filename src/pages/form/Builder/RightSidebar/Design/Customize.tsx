@@ -23,7 +23,7 @@ import { nextTick, useParam } from '@/utils'
 
 import ImageBrightness, { ImageBrightnessProps } from '../Question/ImageBrightness'
 
-const BackgroundImage: FC<Pick<ImageBrightnessProps, 'value' | 'onChange'>> = ({
+export const BackgroundImage: FC<Pick<ImageBrightnessProps, 'value' | 'onChange'>> = ({
   value,
   onChange
 }) => {
@@ -119,10 +119,6 @@ export default function Customize() {
   function handleValuesChange(changes: FormTheme) {
     updateTempTheme(changes)
   }
-
-  useEffect(() => {
-    rcForm.resetFields()
-  }, [rcForm, tempTheme])
 
   useEffect(() => {
     insertWebFont(GOOGLE_FONTS)
@@ -224,7 +220,7 @@ export default function Customize() {
           </Form.Item>
         </div>
 
-        {helper.isURL(tempTheme?.backgroundImage) && (
+        {helper.isValid(tempTheme?.backgroundImage) && (
           <div className="border-t border-accent-light pt-4">
             <Form.Item name="backgroundBrightness">
               <ImageBrightness imageURL={tempTheme?.backgroundImage} />
