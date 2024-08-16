@@ -21,7 +21,7 @@ const MessageLoader = () => {
       </div>
 
       <div className="mt-2 flex">
-        <div className="inline-flex h-[2.25rem] items-center rounded-lg bg-primary px-3 py-2 text-sm text-white">
+        <div className="inline-flex h-[2.25rem] items-center rounded-lg bg-accent px-3 py-2 text-sm text-primary">
           <Loader.ThreeDot />
         </div>
       </div>
@@ -46,7 +46,7 @@ const MessageItem: FC<ChatMessageType> = ({ content, isUser }) => {
             <IconLogo className="h-4 w-4" />
           </div>
         )}
-        <span className="text-sm/6 font-semibold">{isUser ? 'You' : 'HeyForm'}</span>
+        <span className="text-sm/6 font-semibold">{isUser ? 'You' : 'HeyForm AI'}</span>
       </div>
 
       <div
@@ -54,12 +54,7 @@ const MessageItem: FC<ChatMessageType> = ({ content, isUser }) => {
           'justify-end': isUser
         })}
       >
-        <div
-          className={cn(
-            'inline-block max-w-[20rem] whitespace-pre-line break-words rounded-lg px-3 py-2 text-sm',
-            isUser ? 'bg-accent text-primary' : 'bg-primary text-white'
-          )}
-        >
+        <div className="inline-block max-w-[20rem] whitespace-pre-line break-words rounded-lg bg-accent px-3 py-2 text-sm text-primary">
           {content}
         </div>
       </div>
