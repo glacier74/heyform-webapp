@@ -13,6 +13,7 @@ import { parse } from 'best-effort-json-parser'
 
 import {
   CREATE_FIELDS_WITH_AI_GQL,
+  CREATE_FORM_CUSTOM_REPORT_GQL,
   CREATE_FORM_FIELD_GQL,
   CREATE_FORM_GQL,
   CREATE_FORM_LOGICS_WITH_AI_GQL,
@@ -36,6 +37,7 @@ import {
   TEMPLATES_GQL,
   TEMPLATE_DETAILS_GQL,
   UPDATE_FORM_ARCHIVE_GQL,
+  UPDATE_FORM_CUSTOM_REPORT_GQL,
   UPDATE_FORM_FIELD_GQL,
   UPDATE_FORM_GQL,
   UPDATE_FORM_HIDDEN_FIELDS_GQL,
@@ -512,5 +514,30 @@ export class FormService {
     })
 
     return controller
+  }
+
+  static createCustomReport(formId: string) {
+    return apollo.mutate({
+      mutation: CREATE_FORM_CUSTOM_REPORT_GQL,
+      variables: {
+        input: {
+          formId
+        }
+      }
+    })
+  }
+
+  static updateCustomReport(input: {
+    formId: string
+    hiddenFields?: string[]
+    theme?: AnyMap
+    enablePublicAccess?: boolean
+  }) {
+    return apollo.mutate({
+      mutation: UPDATE_FORM_CUSTOM_REPORT_GQL,
+      variables: {
+        input
+      }
+    })
   }
 }

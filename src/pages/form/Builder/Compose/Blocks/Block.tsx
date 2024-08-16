@@ -33,7 +33,8 @@ export const Block: FC<BlockProps> = ({
   const descriptionRef = useRef<HTMLDivElement>()
 
   const isLabelShow = QUESTION_FIELD_KINDS.includes(field.kind)
-  const isCoverShow = helper.isURL(field.layout?.mediaUrl)
+  const isCoverShow = helper.isValid(field.layout?.mediaUrl)
+  const isImageCover = helper.isURL(field.layout?.mediaUrl)
 
   function handleTitleChange(title: string) {
     dispatch({
@@ -128,7 +129,15 @@ export const Block: FC<BlockProps> = ({
 
             {isCoverShow && field.layout?.align === FieldLayoutAlignEnum.INLINE && (
               <div className="heyform-block-image">
-                <img src={field.layout?.mediaUrl} />
+                {isImageCover ? (
+                  <img src={field.layout?.mediaUrl} />
+                ) : (
+                  <div
+                    style={{
+                      backgroundImage: field.layout?.mediaUrl
+                    }}
+                  ></div>
+                )}
               </div>
             )}
 

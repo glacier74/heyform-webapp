@@ -8,6 +8,12 @@ export interface FormType extends Omit<FormModel, 'fields'> {
   fieldsUpdatedAt: number
   isDraft: boolean
   canPublish: boolean
+  customReport: {
+    id: string
+    hiddenFields: string[]
+    theme: AnyMap
+    enablePublicAccess: boolean
+  }
 }
 
 export interface ChangelogType {

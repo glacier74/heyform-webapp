@@ -38,24 +38,24 @@ const InputTableItem: FC<InputTableItemProps> = ({ columns, answers: rawAnswers 
           {columns.map(c => (
             <th
               key={c.id}
-              className="border-b border-accent-light py-2 text-sm/6 font-medium text-secondary"
+              className="heyform-report-border border-b py-2 text-sm/6 font-medium text-secondary"
             >
               {c.label}
             </th>
           ))}
-          <th className="border-b border-accent-light"></th>
+          <th className="heyform-report-border border-b"></th>
         </tr>
       </thead>
 
-      <tbody className="divide-y divide-accent-light">
+      <tbody className="heyform-report-divide divide-y">
         {answers.map((row: Any, index: number) => (
           <tr key={index}>
             {columns.map(c => (
-              <td key={c.id} className="whitespace-nowrap py-2 text-sm/6">
+              <td key={c.id} className="heyform-report-input-value">
                 {row.value[c.id]}
               </td>
             ))}
-            <td className="whitespace-nowrap py-2 text-right text-xs/6 text-secondary">
+            <td className="heyform-report-input-datetime">
               {timeFromNow(row.endAt, i18n.language)}
             </td>
           </tr>
@@ -96,16 +96,13 @@ const SubmissionItem: FC<SubmissionItemProps> = ({ answers = [] }) => {
   const { i18n } = useTranslation()
 
   return (
-    <div className="divide-y divide-accent-light">
+    <div className="heyform-report-divide divide-y">
       {answers.map(row => (
-        <div
-          className="flex items-center justify-between gap-4 py-2 text-sm/6"
-          key={row.submissionId}
-        >
-          <div className="min-w-0 flex-1 whitespace-pre-line">
+        <div className="heyform-report-answer" key={row.submissionId}>
+          <div className="heyform-report-value">
             <AnswerValue answer={row} />
           </div>
-          <div className="text-xs text-secondary">{timeFromNow(row.endAt, i18n.language)}</div>
+          <div className="heyform-report-datetime">{timeFromNow(row.endAt, i18n.language)}</div>
         </div>
       ))}
     </div>
@@ -164,7 +161,7 @@ export default function FormReportSubmissions({ response }: Any) {
 
       {total > 10 && (
         <Pagination
-          className="mt-2 border-t border-accent-light py-2 [&_[data-slot=info]]:text-secondary"
+          className="heyform-report-pagination"
           total={total}
           page={page}
           pageSize={10}

@@ -98,7 +98,7 @@ const InputComponent: FC<InputProps> = ({
     let newValue = getValue(event)
 
     if (isCountingEnabled) {
-      let newLength = newValue.toString().length
+      let newLength = helper.isNil(newValue) ? 0 : String(newValue).length
 
       if (newLength > maxLength) {
         newLength = maxLength
@@ -182,7 +182,7 @@ const InputComponent: FC<InputProps> = ({
       lock.current = false
 
       setValue(rawValue as Any)
-      setLength((rawValue as Any).length)
+      setLength((rawValue as Any)?.length || 0)
     }
   }, [rawValue])
 
@@ -414,7 +414,7 @@ const TextArea: FC<TextAreaProps> = ({
       lock.current = false
 
       setValue(rawValue as Any)
-      setLength((rawValue as Any).length)
+      setLength((rawValue as Any)?.length || 0)
     }
   }, [rawValue])
 

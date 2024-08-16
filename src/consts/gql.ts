@@ -438,6 +438,18 @@ export const CREATE_PROJECT_GQL = gql`
   }
 `
 
+export const CREATE_FORM_CUSTOM_REPORT_GQL = gql`
+  mutation createFormCustomReport($input: FormDetailInput!) {
+    createFormCustomReport(input: $input)
+  }
+`
+
+export const UPDATE_FORM_CUSTOM_REPORT_GQL = gql`
+  mutation updateFormCustomReport($input: UpdateFormCustomReportInput!) {
+    updateFormCustomReport(input: $input)
+  }
+`
+
 export const RENAME_PROJECT_GQL = gql`
   mutation renameProject($input: RenameProjectInput!) {
     renameProject(input: $input)
@@ -691,6 +703,12 @@ export const FORM_DETAIL_GQL = gql`
       canPublish
       fieldsUpdatedAt
       submissionCount
+      customReport {
+        id
+        hiddenFields
+        theme
+        enablePublicAccess
+      }
       status
       updatedAt
     }

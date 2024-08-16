@@ -29,6 +29,7 @@ interface ModalProps extends DOMProps {
   loading?: boolean
   overlayProps?: DialogOverlayProps
   contentProps?: DialogContentProps
+  isCloseButtonShow?: boolean
   onOpenChange?: (open: boolean) => void
 }
 
@@ -37,6 +38,7 @@ const ModalComponent: FC<ModalProps> = ({
   loading,
   overlayProps,
   contentProps,
+  isCloseButtonShow = true,
   onOpenChange,
   children
 }) => {
@@ -93,17 +95,19 @@ const ModalComponent: FC<ModalProps> = ({
 
           {lazyOpen && children}
 
-          <Close asChild>
-            <Button.Link
-              className="absolute right-2 top-2 text-secondary hover:text-primary"
-              size="sm"
-              iconOnly
-              onClick={() => handleOpenChange(false)}
-            >
-              <span className="sr-only">{t('components.close')}</span>
-              <IconX className="h-5 w-5" />
-            </Button.Link>
-          </Close>
+          {isCloseButtonShow && (
+            <Close asChild>
+              <Button.Link
+                className="absolute right-2 top-2 text-secondary hover:text-primary"
+                size="sm"
+                iconOnly
+                onClick={() => handleOpenChange(false)}
+              >
+                <span className="sr-only">{t('components.close')}</span>
+                <IconX className="h-5 w-5" />
+              </Button.Link>
+            </Close>
+          )}
         </Content>
       </Portal>
     </Root>

@@ -424,6 +424,9 @@
         "title": "Unsplash",
         "search": "Suche Unsplash-Bilder",
         "emptyState": "Keine Ergebnisse gefunden"
+      },
+      "gradient": {
+        "title": "Verlauf"
       }
     },
     "datePicker": {
@@ -1537,6 +1540,21 @@
         "description": "Nach Angabe der Referenz wird die KI Fragen und Optionen ausschließlich im durch die Referenz festgelegten Rahmen generieren."
       },
       "submit": "Fragen generieren"
+    },
+    "customReport": {
+      "chart": "Diagramm",
+      "background": "Hintergrund",
+      "title": "Benutzerdefinierter Bericht",
+      "metadata_zero": "Noch keine Übermittlungen",
+      "metadata_one": "{{count}} Übermittlung",
+      "metadata_other": "{{count}} Übermittlungen",
+      "enablePublicAccess": "Öffentlichen Zugriff aktivieren",
+      "copyLink": "Bericht-Link kopieren",
+      "theme": "Thema",
+      "heading": "Überschrift",
+      "question": "Frage",
+      "showQuestion": "Frage anzeigen",
+      "hideQuestion": "Frage verbergen"
     }
   },
   "user": {

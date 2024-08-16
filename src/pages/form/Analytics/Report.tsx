@@ -5,18 +5,25 @@ import {
   QUESTION_FIELD_KINDS
 } from '@heyform-inc/shared-types-enums'
 import { helper, pickValidValues } from '@heyform-inc/utils'
-import { useCallback, useState } from 'react'
+import { useRequest } from 'ahooks'
+import { FC, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Async, EmptyState, PlanUpgrade, Repeat } from '@/components'
+import { Async, Button, EmptyState, PlanUpgrade, Repeat } from '@/components'
 import { PlanGradeEnum } from '@/consts'
 import { FormService } from '@/services'
-import { useFormStore } from '@/store'
+import { useAppStore, useFormStore } from '@/store'
 import { useParam } from '@/utils'
 
 import FormReportItem from './ReportItem'
 
-const ReportComponent = () => {
+interface ReportListProps {
+  isHideFieldEnabled?: boolean
+}
+
+export const ReportList: FC<ReportListProps> = ({ isHideFieldEnabled }) => {
+  const { t } = useTranslation()
+
   const { formId } = useParam()
   const { form } = useFormStore()
 
@@ -96,9 +103,23 @@ const ReportComponent = () => {
       }
       refreshDeps={[form?.drafts, formId]}
     >
-      <ol className="mt-4 space-y-8">
+      {isHideFieldEnabled && (
+        <>
+          <h2 className="heyform-report-heading">{form?.name}</h2>
+          <p className="heyform-report-subheading">
+            {t('form.customReport.metadata', { count: form?.submissionCount || 0 })}
+          </p>
+        </>
+      )}
+
+      <ol className="heyform-report-items mt-4 space-y-8">
         {responses.map((row, index) => (
-          <FormReportItem key={index} index={index + 1} response={row} />
+          <FormReportItem
+            key={index}
+            index={index + 1}
+            response={row}
+            isHideFieldEnabled={isHideFieldEnabled}
+          />
         ))}
       </ol>
     </Async>
@@ -108,9 +129,55 @@ const ReportComponent = () => {
 export default function FormAnalyticsReport() {
   const { t } = useTranslation()
 
+  const { openModal } = useAppStore()
+  const { form, updateForm } = useFormStore()
+
+  const { loading, run } = useRequest(
+    async () => {
+      if (!form?.id) {
+        return
+      }
+
+      if (helper.isEmpty(form.customReport)) {
+        const result = await FormService.createCustomReport(form!.id)
+
+        updateForm({
+          customReport: {
+            id: result,
+            hiddenFields: [],
+            theme: {},
+            enablePublicAccess: true
+          }
+        })
+      }
+
+      openModal('CustomReportModal')
+    },
+    {
+      refreshDeps: [form?.customReport, form?.id],
+      manual: true
+    }
+  )
+
   return (
     <>
-      <h2 className="mt-14 text-base/6 font-semibold">{t('form.analytics.report.headline')}</h2>
+      <div className="mt-14 flex items-center justify-between">
+        <h2 className="text-base/6 font-semibold">{t('form.analytics.report.headline')}</h2>
+
+        <PlanUpgrade
+          minimalGrade={PlanGradeEnum.BASIC}
+          isUpgradeShow={false}
+          fallback={openUpgradeModal => (
+            <Button size="md" onClick={openUpgradeModal}>
+              {t('form.customReport.title')}
+            </Button>
+          )}
+        >
+          <Button size="md" loading={loading} onClick={run}>
+            {t('form.customReport.title')}
+          </Button>
+        </PlanUpgrade>
+      </div>
 
       <PlanUpgrade
         minimalGrade={PlanGradeEnum.BASIC}
@@ -125,7 +192,9 @@ export default function FormAnalyticsReport() {
           </div>
         )}
       >
-        <ReportComponent />
+        <div className="heyform-report">
+          <ReportList />
+        </div>
       </PlanUpgrade>
     </>
   )

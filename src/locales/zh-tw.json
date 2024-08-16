@@ -424,6 +424,9 @@
         "title": "Unsplash",
         "search": "搜索 Unsplash 圖片",
         "emptyState": "未找到結果"
+      },
+      "gradient": {
+        "title": "漸層"
       }
     },
     "datePicker": {
@@ -1537,6 +1540,21 @@
         "description": "提供參考資料後，AI 將嚴格根據所指定的範圍生成問題和選項。"
       },
       "submit": "生成問題"
+    },
+    "customReport": {
+      "title": "自訂報告",
+      "metadata_zero": "尚無提交",
+      "metadata_one": "{{count}} 次提交",
+      "metadata_other": "{{count}} 次提交",
+      "enablePublicAccess": "啟用公開訪問",
+      "copyLink": "複製報告連結",
+      "theme": "主題",
+      "heading": "標題字句",
+      "question": "問題",
+      "chart": "圖表",
+      "background": "背景",
+      "showQuestion": "顯示問題",
+      "hideQuestion": "隱藏問題"
     }
   },
   "user": {

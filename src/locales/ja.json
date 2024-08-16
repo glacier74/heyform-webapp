@@ -424,6 +424,9 @@
         "title": "Unsplash",
         "search": "Unsplash 画像を検索",
         "emptyState": "結果が見つかりませんでした"
+      },
+      "gradient": {
+        "title": "グラデーション"
       }
     },
     "datePicker": {
@@ -1537,6 +1540,21 @@
         "description": "参考を提供した後、AIは指定された範囲内で質問と選択肢を生成します。"
       },
       "submit": "質問を生成"
+    },
+    "customReport": {
+      "title": "カスタムレポート",
+      "metadata_zero": "まだ提出がありません",
+      "metadata_one": "{{count}} 件の提出物",
+      "metadata_other": "{{count}} 件の提出物",
+      "enablePublicAccess": "公開アクセスを有効にする",
+      "copyLink": "レポートリンクをコピーする",
+      "theme": "テーマ",
+      "heading": "見出し",
+      "question": "質問",
+      "chart": "チャート",
+      "background": "背景",
+      "showQuestion": "質問を表示",
+      "hideQuestion": "質問を非表示"
     }
   },
   "user": {

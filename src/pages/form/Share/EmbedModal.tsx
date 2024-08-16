@@ -460,6 +460,7 @@ export default function EmbedModal() {
           className:
             'p-0 w-screen max-w-screen max-h-screen overflow-hidden h-screen bg-foreground focus:outline-none focus-visible:outline-none'
         }}
+        isCloseButtonShow={false}
         onOpenChange={onOpenChange}
       >
         <EmbedComponent />

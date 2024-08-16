@@ -1,5 +1,5 @@
 import { preventDefault } from '@heyform-inc/form-renderer'
-import { IconCheck } from '@tabler/icons-react'
+import { IconCheck, IconCopy } from '@tabler/icons-react'
 import { ButtonHTMLAttributes, FC, ReactNode, useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { useTranslation } from 'react-i18next'
@@ -128,8 +128,36 @@ export const CopyButton: FC<CopyButtonProps> = ({
   )
 }
 
+export const CopyButton2: FC<Omit<CopyButtonProps, 'icon'>> = ({
+  className,
+  text,
+  label,
+  duration = 3_000,
+  ...restProps
+}) => {
+  const [copied, setCopied] = useState(false)
+
+  function handleCopy() {
+    setCopied(true)
+
+    setTimeout(() => {
+      setCopied(false)
+    }, duration)
+  }
+
+  return (
+    <CopyToClipboard text={text} onCopy={handleCopy}>
+      <Button className={className} onClick={preventDefault} {...restProps}>
+        {copied ? <IconCheck className="h-5 w-5" /> : <IconCopy className="h-5 w-5" />}
+        <span>{label}</span>
+      </Button>
+    </CopyToClipboard>
+  )
+}
+
 export const Button = Object.assign(ButtonComponent, {
   Ghost: GhostButton,
   Link: LinkButton,
-  Copy: CopyButton
+  Copy: CopyButton,
+  Copy2: CopyButton2
 })

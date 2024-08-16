@@ -57,6 +57,7 @@ interface FormStoreType {
   updateIntegration: (appId: string, updates: Partial<IntegrationType>) => void
   deleteIntegration: (appId: string) => void
   setPreviewMode: (mode: 'desktop' | 'mobile') => void
+  updateCustomReport: (updates: Partial<FormType['customReport']>) => void
 }
 
 interface ComputedStoreType {
@@ -271,6 +272,17 @@ export const useFormStore = create<FormStoreType>()(
       setPreviewMode: mode => {
         set(state => {
           state.previewMode = mode
+        })
+      },
+
+      updateCustomReport: updates => {
+        set(state => {
+          if (state.form) {
+            state.form.customReport = {
+              ...state.form.customReport,
+              ...updates
+            } as Any
+          }
         })
       }
     })),

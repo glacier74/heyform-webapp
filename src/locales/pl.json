@@ -424,6 +424,9 @@
         "title": "Unsplash",
         "search": "Szukaj obrazów Unsplash",
         "emptyState": "Nie znaleziono wyników"
+      },
+      "gradient": {
+        "title": "Gradient"
       }
     },
     "datePicker": {
@@ -1537,6 +1540,21 @@
         "description": "Po podaniu Referencji, AI wygeneruje pytania i opcje ściśle w zakresie określonym przez Referencję."
       },
       "submit": "Generuj pytania"
+    },
+    "customReport": {
+      "title": "Raport niestandardowy",
+      "metadata_zero": "Brak jeszcze zgłoszeń",
+      "metadata_one": "{{count}} zgłoszenie",
+      "metadata_other": "{{count}} zgłoszenia",
+      "enablePublicAccess": "Włącz dostęp publiczny",
+      "copyLink": "Skopiuj link do raportu",
+      "theme": "Motyw",
+      "heading": "Nagłówek",
+      "question": "Pytanie",
+      "chart": "Wykres",
+      "background": "Tło",
+      "showQuestion": "Pokaż pytanie",
+      "hideQuestion": "Ukryj pytanie"
     }
   },
   "user": {

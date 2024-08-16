@@ -425,6 +425,9 @@
         "title": "Unsplash",
         "search": "Search Unsplash images",
         "emptyState": "No results found"
+      },
+      "gradient": {
+        "title": "Gradient"
       }
     },
     "datePicker": {
@@ -949,6 +952,21 @@
         "submission2_one": "{{count}} submission · {{average}} average",
         "submission2_other": "{{count}} submissions · {{average}} average"
       }
+    },
+    "customReport": {
+      "title": "Custom report",
+      "metadata_zero": "No submissions yet",
+      "metadata_one": "{{count}} submission",
+      "metadata_other": "{{count}} submissions",
+      "enablePublicAccess": "Enable public access",
+      "copyLink": "Copy report link",
+      "theme": "Theme",
+      "heading": "Heading",
+      "question": "Question",
+      "showQuestion": "Show question",
+      "hideQuestion": "Hide question",
+      "chart": "Chart",
+      "background": "Background"
     },
     "submissions": {
       "title": "Submissions",

@@ -424,6 +424,9 @@
         "title": "Unsplash",
         "search": "搜索 Unsplash 图片",
         "emptyState": "未找到结果"
+      },
+      "gradient": {
+        "title": "渐变"
       }
     },
     "datePicker": {
@@ -1537,6 +1540,21 @@
         "description": "提供参考后，AI 将严格在参考范围内生成问题和选项。"
       },
       "submit": "生成问题"
+    },
+    "customReport": {
+      "title": "自定义报告",
+      "metadata_zero": "尚无提交",
+      "metadata_one": "{{count}} 次提交",
+      "metadata_other": "{{count}} 次提交",
+      "enablePublicAccess": "启用公共访问权限",
+      "copyLink": "复制报告链接",
+      "theme": "主题",
+      "heading": "标题",
+      "question": "问题",
+      "chart": "图表",
+      "background": "背景",
+      "showQuestion": "显示问题",
+      "hideQuestion": "隐藏问题"
     }
   },
   "user": {
