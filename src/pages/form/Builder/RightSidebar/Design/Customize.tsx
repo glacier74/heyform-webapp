@@ -31,7 +31,7 @@ const BackgroundImage: FC<Pick<ImageBrightnessProps, 'value' | 'onChange'>> = ({
 
   return (
     <div className="flex items-center gap-2">
-      <ImagePicker tabs={['image', 'unsplash']} onChange={onChange}>
+      <ImagePicker tabs={['image', 'gradient', 'unsplash']} onChange={onChange}>
         <Button.Ghost size="sm">
           {t(helper.isURL(value) ? 'components.change' : 'components.add')}
         </Button.Ghost>

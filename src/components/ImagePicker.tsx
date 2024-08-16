@@ -14,6 +14,7 @@ import { IconX } from '@tabler/icons-react'
 import { FC, Ref, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { GradientPicker } from '@/components/GradientPicker.tsx'
 import { cn } from '@/utils'
 
 import { Avatar } from './Avatar'
@@ -22,7 +23,7 @@ import { Tabs } from './Tabs'
 import { UnsplashPicker } from './UnsplashPicker'
 import { Uploader } from './Uploader'
 
-type TabType = 'image' | 'unsplash'
+type TabType = 'image' | 'unsplash' | 'gradient'
 
 interface ImagePickerProps extends DOMProps {
   ref?: Ref<ImagePickerRef>
@@ -89,6 +90,17 @@ export const ImagePicker: FC<ImagePickerProps> = ({
         value: 'image',
         label: t('components.imagePicker.image'),
         content: <Uploader {...tabConfigs.image} onChange={handleChange} />
+      },
+      {
+        value: 'gradient',
+        label: t('components.imagePicker.gradient.title'),
+        content: (
+          <GradientPicker
+            {...tabConfigs.gradient}
+            className="scrollbar h-full px-4 pt-4"
+            onChange={handleChange}
+          />
+        )
       },
       {
         value: 'unsplash',
