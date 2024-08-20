@@ -1,7 +1,7 @@
 import { IconX } from '@tabler/icons-react'
 import { useRequest } from 'ahooks'
 import Big from 'big.js'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Button, Form, Input, Modal } from '@/components'
@@ -11,11 +11,11 @@ import { useModal, useWorkspaceStore } from '@/store'
 import { PlacePriceType } from '@/types'
 import { useParam } from '@/utils'
 
-export default function PaymentModal() {
+const PaymentComponent = () => {
   const { t } = useTranslation()
 
   const { workspaceId } = useParam()
-  const { isOpen, payload, onOpenChange } = useModal('PaymentModal')
+  const { isOpen, payload, update, onOpenChange } = useModal('PaymentModal')
   const { updateWorkspace } = useWorkspaceStore()
 
   const [discount, setDiscount] = useState<Big | null>(null)
@@ -90,12 +90,18 @@ export default function PaymentModal() {
     }
   )
 
+  useEffect(() => {
+    update({
+      loading: couponLoading || paymentLoading
+    })
+  }, [couponLoading, paymentLoading])
+
   return (
     <Modal
       open={isOpen}
-      loading={couponLoading || paymentLoading}
       contentProps={{
-        className: 'max-w-md'
+        className: 'max-w-md',
+        forceMount: true
       }}
       onOpenChange={onOpenChange}
     >
@@ -130,7 +136,8 @@ export default function PaymentModal() {
                 submitProps={{
                   className:
                     'absolute top-1/2 font-normal right-1.5 h-8 sm:h-7 -translate-y-1/2 px-1.5 sm:px-1.5 bg-transparent text-primary hover:bg-accent-light',
-                  label: t('billing.payment.apply')
+                  label: t('billing.payment.apply'),
+                  loading: couponLoading
                 }}
                 onFinish={applyCoupon}
               >
@@ -187,6 +194,24 @@ export default function PaymentModal() {
           <div className="mt-1 text-error">{paymentError.message}</div>
         )}
       </div>
+    </Modal>
+  )
+}
+
+export default function PaymentModal() {
+  const { isOpen, payload, onOpenChange } = useModal('PaymentModal')
+
+  return (
+    <Modal
+      open={isOpen}
+      loading={payload?.loading}
+      contentProps={{
+        className: 'max-w-md',
+        forceMount: true
+      }}
+      onOpenChange={onOpenChange}
+    >
+      <PaymentComponent />
     </Modal>
   )
 }
