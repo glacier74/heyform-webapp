@@ -655,7 +655,8 @@
       "trialTip_zero": "{{name}} 试用期今天结束",
       "trialTip_one": "{{name}} 试用期将在 {{count}} 天后结束",
       "trialTip_other": "{{name}} 试用期将在 {{count}} 天后结束",
-      "hiddenFields": "升级到基础版以添加隐藏字段"
+      "hiddenFields": "升级到基础版以添加隐藏字段",
+      "brandKit": "升级到高级版本以设置品牌包"
     },
     "payment": {
       "headline": "升级套餐",
@@ -710,11 +711,25 @@
     "title": "工作区设置",
     "branding": {
       "title": "品牌",
-      "name": "名称",
-      "logo": "标志",
-      "pickLogo": "为您的工作区选择一个标志。",
       "removeBrandingHeadline": "移除 HeyForm 品牌",
-      "removeBrandingSubHeadline": "为了让 HeyForm 完全属于您的品牌，移除表单页脚中的 HeyForm 标志。"
+      "removeBrandingSubHeadline": "为了让 HeyForm 完全属于您的品牌，移除表单页脚中的 HeyForm 标志。",
+      "viewBrandKit": "查看",
+      "logo": {
+        "title": "标志（Logo）",
+        "required": "标志不能为空",
+        "invalid": "该标志不是有效的URL"
+      },
+      "theme": "主题",
+      "presetThemes": "预设主题",
+      "brandKitHeadline": "品牌工具包",
+      "brandKitSubHeadline": "使用品牌工具包将工作区的视觉资产无缝应用到您的表单中。上传您的标志并创建每个成员都可以使用的主题。",
+      "brandKitPreview": {
+        "number": "问题 1",
+        "title": "你的名字是什么？",
+        "description": "在这里输入你的名字",
+        "input": "在此输入你的答案",
+        "next": "下一步"
+      }
     },
     "customDomain": {
       "headline": "自定义域名",
@@ -755,6 +770,12 @@
         "label": "输入发送到 <strong>{{email}}</strong> 的删除验证码。",
         "required": "验证码不能为空"
       }
+    },
+    "general": {
+      "title": "通用",
+      "name": "名称",
+      "logo": "标志（Logo）",
+      "pickLogo": "为您的工作区选择一个标志。"
     }
   },
   "project": {

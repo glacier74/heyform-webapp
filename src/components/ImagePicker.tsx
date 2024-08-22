@@ -14,18 +14,19 @@ import { IconX } from '@tabler/icons-react'
 import { FC, Ref, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { GradientPicker } from '@/components/GradientPicker.tsx'
 import { cn } from '@/utils'
 
 import { Avatar } from './Avatar'
 import { Button } from './Button'
+import { GradientPicker } from './GradientPicker'
+import { ImageProps } from './Image'
 import { Tabs } from './Tabs'
 import { UnsplashPicker } from './UnsplashPicker'
 import { Uploader } from './Uploader'
 
 type TabType = 'image' | 'unsplash' | 'gradient'
 
-interface ImagePickerProps extends DOMProps {
+interface ImagePickerProps extends Pick<ImageProps, 'resize'>, DOMProps {
   ref?: Ref<ImagePickerRef>
   tabs: TabType[]
   tabConfigs?: AnyMap
@@ -45,13 +46,14 @@ export const ImageFormPicker: FC<ImageFormPickerProps> = ({
   value,
   fallback,
   tabs = ['image'],
+  resize,
   ...restProps
 }) => {
   const { t } = useTranslation()
 
   return (
     <div className={cn('flex items-center gap-x-3', className)}>
-      <Avatar src={value} fallback={fallback} />
+      <Avatar src={value} fallback={fallback} resize={resize} data-slot="avatar" />
       <ImagePicker tabs={tabs} {...restProps}>
         <Button.Ghost size="sm">{t('components.change')}</Button.Ghost>
       </ImagePicker>

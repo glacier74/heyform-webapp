@@ -655,7 +655,8 @@
       "trialTip_zero": "Okres próbny {{name}} kończy się dzisiaj",
       "trialTip_one": "Okres próbny {{name}} kończy się za {{count}} dzień",
       "trialTip_other": "Okres próbny {{name}} kończy się za {{count}} dni",
-      "hiddenFields": "Ulepsz do Basic, aby dodać ukryte pole"
+      "hiddenFields": "Ulepsz do Basic, aby dodać ukryte pole",
+      "brandKit": "Uaktualnij do Premium, aby skonfigurować zestaw markowy"
     },
     "payment": {
       "headline": "Zmień plan",
@@ -710,11 +711,25 @@
     "title": "Ustawienia miejsca pracy",
     "branding": {
       "title": "Branding",
-      "name": "Nazwa",
-      "logo": "Logo",
-      "pickLogo": "Wybierz logo dla swojego miejsca pracy.",
       "removeBrandingHeadline": "Usuń branding HeyForm",
-      "removeBrandingSubHeadline": "Aby HeyForm wyglądał jak całkowicie należący do Twojej marki, usuń logo HeyForm w stopce formularza."
+      "removeBrandingSubHeadline": "Aby HeyForm wyglądał jak całkowicie należący do Twojej marki, usuń logo HeyForm w stopce formularza.",
+      "viewBrandKit": "Zobacz",
+      "logo": {
+        "title": "Logo",
+        "required": "Logo nie może być puste",
+        "invalid": "Adres URL loga jest nieprawidłowy"
+      },
+      "theme": "Motyw",
+      "presetThemes": "Wstępnie ustawione motywy",
+      "brandKitHeadline": "Zestaw Marki",
+      "brandKitSubHeadline": "Bezproblemowo stosuj elementy wizualne swojego środowiska pracy do formularzy za pomocą zestawu marki. Prześlij swoje logo i stwórz motyw, z którego każdy członek twojego zespołu może korzystać.",
+      "brandKitPreview": {
+        "number": "Pytanie 1",
+        "title": "Jak masz na imię?",
+        "description": "Wpisz swoje imię tutaj",
+        "input": "Twoja odpowiedź tutaj",
+        "next": "Dalej"
+      }
     },
     "customDomain": {
       "headline": "Niestandardowa domena",
@@ -755,6 +770,12 @@
         "label": "Wprowadź kod usunięcia wysłany na <strong>{{email}}</strong>.",
         "required": "Kod weryfikacyjny nie może być pusty"
       }
+    },
+    "general": {
+      "title": "Ogólne",
+      "name": "Nazwa",
+      "logo": "Logo",
+      "pickLogo": "Wybierz logo dla swojego miejsca pracy."
     }
   },
   "project": {

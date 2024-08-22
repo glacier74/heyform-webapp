@@ -31,11 +31,7 @@ const Background: FC<BackgroundProps> = ({
   const { width, height } = resize
 
   const src = useMemo(() => {
-    if (!helper.isURL(rawSrc)) {
-      return
-    }
-
-    if (helper.isNumber(width) || helper.isNumber(height)) {
+    if (helper.isURL(rawSrc) && (helper.isNumber(width) || helper.isNumber(height))) {
       return getDecoratedURL(
         '/api/image',
         removeObjectNil({
@@ -49,12 +45,14 @@ const Background: FC<BackgroundProps> = ({
     return rawSrc
   }, [rawSrc, height, width])
 
+  const isImage = useMemo(() => helper.isURL(src), [src])
+
   return (
     <Tag
       className={className}
       style={{
         ...style,
-        backgroundImage: src ? `url(${src})` : undefined
+        backgroundImage: isImage ? `url(${src})` : src
       }}
       {...restProps}
     >
@@ -105,6 +103,7 @@ const ImageComponent: FC<ImageProps> = ({
 
   return (
     <img
+      key={src}
       className={cn('bg-accent object-cover data-[loaded]:bg-transparent', className)}
       data-loaded={isLoaded ? '' : undefined}
       src={src}

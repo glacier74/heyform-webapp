@@ -17,7 +17,7 @@ export default function ChatBar() {
   const { formId } = useParam()
   const { addMessage, updateMessage, status, setStatus } = useChatStore()
   const { dispatch } = useStoreContext()
-  const { tempTheme, updateTempTheme } = useFormStore()
+  const { themeSettings, updateThemeSettings } = useFormStore()
 
   const inputRef = useRef<InputRef | null>(null)
   const loading = useMemo(() => status === 'loading' || status === 'pending', [status])
@@ -77,10 +77,16 @@ export default function ChatBar() {
   }
 
   async function handleTheme(prompt: string) {
-    const theme = await FormService.createThemesWithAI(formId, prompt, JSON.stringify(tempTheme))
+    const theme = await FormService.createThemesWithAI(
+      formId,
+      prompt,
+      JSON.stringify(themeSettings?.theme)
+    )
 
     if (theme) {
-      updateTempTheme(theme)
+      updateThemeSettings({
+        theme
+      })
 
       addMessage({
         id: nanoid(12),

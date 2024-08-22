@@ -325,7 +325,7 @@ const FormItem: FC<FormItemProps> = ({ form, isInTrash, onChange }) => {
           <div className="flex hidden items-center group-hover:block">
             <Tooltip label={t('components.edit')}>
               <Button.Link size="sm" iconOnly onClick={handleEdit}>
-                <IconPencil className="h-4 w-4" />
+                <IconPencil className="h-5 w-5" />
               </Button.Link>
             </Tooltip>
 

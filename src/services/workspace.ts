@@ -1,5 +1,6 @@
 import {
   ADD_CUSTOM_DOMAIN_GQL,
+  CREATE_BRAND_KIT_GQL,
   CREATE_WORKSPACE_GQL,
   DISSOLVE_WORKSPACE_CODE_GQL,
   DISSOLVE_WORKSPACE_GQL,
@@ -11,6 +12,7 @@ import {
   REMOVE_WORKSPACE_MEMBER_GQL,
   RESET_WORKSPACE_INVITE_CODE_GQL,
   TRANSFER_WORKSPACE_GQL,
+  UPDATE_BRAND_KIT_GQL,
   UPDATE_WORKSPACE_GQL,
   WORKSPACES_GQL,
   WORKSPACE_CDN_TOKEN_GQL,
@@ -18,6 +20,7 @@ import {
   WORKSPACE_RECENT_FORMS_GQL,
   WORKSPACE_SUBSCRIPTION_GQL
 } from '@/consts'
+import { BrandKitType } from '@/types'
 import { apollo } from '@/utils'
 
 export class WorkspaceService {
@@ -224,6 +227,24 @@ export class WorkspaceService {
         input: {
           teamId
         }
+      }
+    })
+  }
+
+  static createBrandKit(input: { teamId: string } & Omit<BrandKitType, 'id'>) {
+    return apollo.mutate({
+      mutation: CREATE_BRAND_KIT_GQL,
+      variables: {
+        input
+      }
+    })
+  }
+
+  static updateBrandKit(input: { teamId: string } & Partial<BrandKitType>) {
+    return apollo.mutate({
+      mutation: UPDATE_BRAND_KIT_GQL,
+      variables: {
+        input
       }
     })
   }

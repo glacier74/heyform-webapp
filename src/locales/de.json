@@ -655,7 +655,8 @@
       "trialTip_zero": "{{name}} Testversion endet heute",
       "trialTip_one": "{{name}} Testversion endet in {{count}} Tag",
       "trialTip_other": "{{name}} Testversion endet in {{count}} Tagen",
-      "hiddenFields": "Upgrade auf Basic, um ein verstecktes Feld hinzuzufügen"
+      "hiddenFields": "Upgrade auf Basic, um ein verstecktes Feld hinzuzufügen",
+      "brandKit": "Upgrade auf Premium, um das Marken-Kit einzurichten"
     },
     "payment": {
       "headline": "Plan upgraden",
@@ -710,11 +711,25 @@
     "title": "Arbeitsbereich-Einstellungen",
     "branding": {
       "title": "Branding",
-      "name": "Name",
-      "logo": "Logo",
-      "pickLogo": "Wählen Sie ein Logo für Ihren Arbeitsbereich aus.",
       "removeBrandingHeadline": "HeyForm-Branding entfernen",
-      "removeBrandingSubHeadline": "Um HeyForm vollständig an Ihre Marke anzupassen, entfernen Sie das HeyForm-Logo im Formularfuß."
+      "removeBrandingSubHeadline": "Um HeyForm vollständig an Ihre Marke anzupassen, entfernen Sie das HeyForm-Logo im Formularfuß.",
+      "viewBrandKit": "Ansehen",
+      "logo": {
+        "title": "Logo",
+        "required": "Das Logo darf nicht leer sein.",
+        "invalid": "Die URL des Logos ist ungültig."
+      },
+      "theme": "Thema",
+      "presetThemes": "Voreingestellte Themen",
+      "brandKitHeadline": "Marken-Kit",
+      "brandKitSubHeadline": "Wenden Sie visuelle Elemente Ihres Arbeitsbereichs nahtlos auf Ihre Formulare mit dem Marken-Kit an. Laden Sie Ihr Logo hoch und erstellen Sie ein Thema, das jedes Mitglied in Ihrem Arbeitsbereich nutzen kann.",
+      "brandKitPreview": {
+        "number": "Frage 1",
+        "title": "Wie lautet Ihr Name?",
+        "description": "Geben Sie hier Ihren Namen ein",
+        "input": "Ihre Antwort kommt hier hin",
+        "next": "Weiter"
+      }
     },
     "customDomain": {
       "headline": "Eigene Domain",
@@ -755,6 +770,12 @@
         "label": "Geben Sie den Löschcode ein, der an <strong>{{email}}</strong> gesendet wurde.",
         "required": "Der Bestätigungscode darf nicht leer sein"
       }
+    },
+    "general": {
+      "title": "Allgemein",
+      "name": "Name",
+      "logo": "Logo",
+      "pickLogo": "Wählen Sie ein Logo für Ihren Arbeitsbereich aus."
     }
   },
   "project": {

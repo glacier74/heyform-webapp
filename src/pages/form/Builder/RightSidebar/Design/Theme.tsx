@@ -1,5 +1,6 @@
 import { getTheme } from '@heyform-inc/form-renderer'
 import { FormTheme } from '@heyform-inc/shared-types-enums'
+import { helper } from '@heyform-inc/utils'
 import { useBoolean } from 'ahooks'
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -7,15 +8,15 @@ import { useTranslation } from 'react-i18next'
 import { Image, Loader, useToast } from '@/components'
 import { FORM_THEMES } from '@/consts'
 import { FormService } from '@/services'
-import { useFormStore } from '@/store'
+import { useFormStore, useWorkspaceStore } from '@/store'
 import { useParam } from '@/utils'
 
-const ThemeItem: FC<{ theme: FormTheme }> = ({ theme }) => {
+const ThemeItem: FC<{ theme: FormTheme; logo?: string }> = ({ theme, logo }) => {
   const { t } = useTranslation()
 
   const { formId } = useParam()
   const toast = useToast()
-  const { updateTempTheme } = useFormStore()
+  const { updateThemeSettings } = useFormStore()
 
   const [loading, { setTrue, setFalse }] = useBoolean(false)
 
@@ -29,8 +30,16 @@ const ThemeItem: FC<{ theme: FormTheme }> = ({ theme }) => {
     try {
       const newTheme = getTheme(theme)
 
-      await FormService.updateTheme(formId, newTheme)
-      updateTempTheme(newTheme)
+      await FormService.updateTheme({
+        formId,
+        theme: newTheme,
+        logo
+      })
+
+      updateThemeSettings({
+        logo,
+        theme: newTheme
+      })
 
       toast({
         title: t('form.builder.design.theme.success')
@@ -78,6 +87,12 @@ const ThemeItem: FC<{ theme: FormTheme }> = ({ theme }) => {
         }}
       />
 
+      {logo && (
+        <div className="absolute right-4 top-4">
+          <img src={logo} alt="" className="block h-5 w-auto" />
+        </div>
+      )}
+
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center rounded-md bg-slate-900 bg-opacity-50">
           <Loader className="text-foreground" />
@@ -88,13 +103,32 @@ const ThemeItem: FC<{ theme: FormTheme }> = ({ theme }) => {
 }
 
 export default function Theme() {
+  const { workspace } = useWorkspaceStore()
+  const { t } = useTranslation()
+
   return (
-    <div className="p-4">
-      <ul className="space-y-4">
-        {FORM_THEMES.map((theme, index) => (
-          <ThemeItem key={index} theme={theme} />
-        ))}
-      </ul>
+    <div className="space-y-6 p-4">
+      {helper.isValid(workspace?.brandKits) && (
+        <div>
+          <h3 className="text-sm/6 font-medium">{t('settings.branding.brandKitHeadline')}</h3>
+
+          <ul className="mt-1.5 space-y-4">
+            {workspace?.brandKits?.map((brandKit, index) => (
+              <ThemeItem key={index} theme={brandKit.theme} logo={brandKit.logo} />
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div>
+        <h3 className="text-sm/6 font-medium">{t('settings.branding.presetThemes')}</h3>
+
+        <ul className="mt-1.5 space-y-4">
+          {FORM_THEMES.map((theme, index) => (
+            <ThemeItem key={index} theme={theme} />
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

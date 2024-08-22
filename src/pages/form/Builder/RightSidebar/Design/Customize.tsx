@@ -33,11 +33,11 @@ export const BackgroundImage: FC<Pick<ImageBrightnessProps, 'value' | 'onChange'
     <div className="flex items-center gap-2">
       <ImagePicker tabs={['image', 'gradient', 'unsplash']} onChange={onChange}>
         <Button.Ghost size="sm">
-          {t(helper.isURL(value) ? 'components.change' : 'components.add')}
+          {t(helper.isValid(value) ? 'components.change' : 'components.add')}
         </Button.Ghost>
       </ImagePicker>
 
-      {helper.isURL(value) && (
+      {helper.isValid(value) && (
         <Button.Ghost size="sm" onClick={() => onChange?.(undefined)}>
           {t('components.remove')}
         </Button.Ghost>
@@ -52,14 +52,18 @@ export default function Customize() {
   const { formId } = useParam()
   const toast = useToast()
   const [rcForm] = useRCForm()
-  const { tempTheme, updateTempTheme, revertTempTheme } = useFormStore()
+  const { themeSettings, updateThemeSettings, revertThemeSettings } = useFormStore()
 
   const { loading, run } = useRequest(
     async (theme: Any) => {
-      await FormService.updateTheme(formId, { ...theme })
+      await FormService.updateTheme({
+        formId,
+        theme,
+        logo: themeSettings?.logo
+      })
     },
     {
-      refreshDeps: [formId],
+      refreshDeps: [formId, themeSettings?.logo],
       manual: true,
       onSuccess: () => {
         toast({
@@ -108,16 +112,19 @@ export default function Customize() {
   )
 
   function handleRevert() {
-    revertTempTheme()
+    revertThemeSettings()
 
     nextTick(() => {
-      rcForm.setFieldsValue(tempTheme)
+      rcForm.setFieldsValue(themeSettings?.theme)
       rcForm.resetFields()
     })
   }
 
-  function handleValuesChange(changes: FormTheme) {
-    updateTempTheme(changes)
+  function handleValuesChange(_: AnyMap, theme: FormTheme) {
+    console.log(theme)
+    updateThemeSettings({
+      theme
+    })
   }
 
   useEffect(() => {
@@ -128,7 +135,7 @@ export default function Customize() {
     <>
       <Form
         form={rcForm}
-        initialValues={tempTheme}
+        initialValues={themeSettings?.theme}
         className="space-y-4 p-4"
         onValuesChange={handleValuesChange}
         onFinish={run}
@@ -220,10 +227,10 @@ export default function Customize() {
           </Form.Item>
         </div>
 
-        {helper.isValid(tempTheme?.backgroundImage) && (
+        {helper.isValid(themeSettings?.theme?.backgroundImage) && (
           <div className="border-t border-accent-light pt-4">
             <Form.Item name="backgroundBrightness">
-              <ImageBrightness imageURL={tempTheme?.backgroundImage} />
+              <ImageBrightness imageURL={themeSettings?.theme?.backgroundImage} />
             </Form.Item>
           </div>
         )}

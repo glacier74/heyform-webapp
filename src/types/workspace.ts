@@ -1,4 +1,4 @@
-import { FormModel } from '@heyform-inc/shared-types-enums'
+import { FormModel, FormTheme } from '@heyform-inc/shared-types-enums'
 
 import { BillingCycleEnum, SubscriptionStatusEnum } from '@/consts'
 
@@ -28,6 +28,12 @@ export interface ProjectType {
   forms: FormModel
 }
 
+export interface BrandKitType {
+  id: string
+  logo: string
+  theme: FormTheme
+}
+
 export interface WorkspaceType {
   id: string
   name: string
@@ -44,6 +50,7 @@ export interface WorkspaceType {
   additionalSeats: number
   contactCount: number
   subscription: SubscriptionType
+  brandKits: BrandKitType[]
   plan: PlanType
   trialEndAt: number
   isOwner?: boolean

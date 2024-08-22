@@ -640,6 +640,7 @@
       "headline": "Upgrade your plan",
       "subHeadline": "You've reached the limit of your current plan or are trying to access an advanced feature. Please upgrade to unlock it.",
       "removeBranding": "Upgrade to Premium to remove HeyForm branding",
+      "brandKit": "Upgrade to Premium to set up brand kit",
       "customDomain": "Upgrade to Premium to set up custom domain",
       "translations": "Upgrade to Premium to translate form questions",
       "customCSS": "Upgrade to Premium to set up custom CSS",
@@ -708,13 +709,33 @@
   },
   "settings": {
     "title": "Workspace Settings",
-    "branding": {
-      "title": "Branding",
+    "general": {
+      "title": "General",
       "name": "Name",
       "logo": "Logo",
-      "pickLogo": "Pick a logo for your workspace.",
+      "pickLogo": "Pick a logo for your workspace."
+    },
+    "branding": {
+      "title": "Branding",
       "removeBrandingHeadline": "Remove HeyForm branding",
-      "removeBrandingSubHeadline": "To make HeyForm feel like it's completely owned by your brand, remove the HeyForm Logo in the form footer."
+      "removeBrandingSubHeadline": "To make HeyForm feel like it's completely owned by your brand, remove the HeyForm Logo in the form footer.",
+      "viewBrandKit": "View",
+      "logo": {
+        "title": "Logo",
+        "required": "The logo is not allowed to be empty",
+        "invalid": "The logo is not a valid URL"
+      },
+      "theme": "Theme",
+      "presetThemes": "Preset themes",
+      "brandKitHeadline": "Brand Kit",
+      "brandKitSubHeadline": "Seamlessly apply your workspace's visual assets to your forms using the Brand kit. Upload your logo and create theme that every member in your workspace can utilize.",
+      "brandKitPreview": {
+        "number": "Question 1",
+        "title": "What's your name?",
+        "description": "Type your name here",
+        "input": "Your answer goes here",
+        "next": "Next"
+      }
     },
     "customDomain": {
       "headline": "Custom domain",

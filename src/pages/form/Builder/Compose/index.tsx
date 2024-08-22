@@ -3,11 +3,10 @@ import { FieldKindEnum } from '@heyform-inc/shared-types-enums'
 import { FC, useCallback, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { useOnboardingStorage } from '@/components'
-import { useToast } from '@/components'
+import { useOnboardingStorage, useToast } from '@/components'
 import { ADD_QUESTION2_STORAGE_NAME } from '@/consts'
 import { FormService } from '@/services'
-import { useFormStore } from '@/store'
+import { useFormStore, useWorkspaceStore } from '@/store'
 import { cn, useParam } from '@/utils'
 
 import { useStoreContext } from '../store'
@@ -184,7 +183,8 @@ export default function BuilderCompose() {
   const { formId } = useParam()
   const toast = useToast()
   const { state } = useStoreContext()
-  const { form, tempTheme, updateForm } = useFormStore()
+  const { workspace } = useWorkspaceStore()
+  const { form, themeSettings, updateForm } = useFormStore()
   const { setItem } = useOnboardingStorage()
 
   const queue = useRef(new Queue()).current
@@ -221,9 +221,9 @@ export default function BuilderCompose() {
   })
 
   useEffect(() => {
-    insertWebFont(tempTheme?.fontFamily)
-    insertThemeStyle(tempTheme)
-  }, [tempTheme])
+    insertWebFont(themeSettings?.theme?.fontFamily)
+    insertThemeStyle(themeSettings?.theme)
+  }, [themeSettings?.theme])
 
   // Auto save
   useEffect(() => {
@@ -247,6 +247,19 @@ export default function BuilderCompose() {
     >
       <div className="heyform-root">
         <div className="heyform-wrapper">
+          <div className="heyform-header">
+            <div className="heyform-header-wrapper">
+              <div className="heyform-header-left">
+                {workspace?.plan?.whitelabelBranding && themeSettings?.logo && (
+                  <div className="heyform-logo">
+                    <img src={themeSettings.logo} alt="" />
+                  </div>
+                )}
+              </div>
+              <div className="heyform-header-right"></div>
+            </div>
+          </div>
+
           <div className="compose-container heyform-body">
             <Fields />
           </div>

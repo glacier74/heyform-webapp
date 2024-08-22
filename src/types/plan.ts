@@ -21,6 +21,7 @@ export interface PlanType {
   customThankYouPage: boolean
   removeBranding: boolean
   fileExport: boolean
+  whitelabelBranding: boolean
   grade: PlanGradeEnum
   prices: PlacePriceType[]
 }

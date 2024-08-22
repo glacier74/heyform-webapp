@@ -3,7 +3,7 @@ import { FC, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Modal, Tabs } from '@/components'
-import { useFormStore, useModal } from '@/store'
+import { useFormStore, useModal, useWorkspaceStore } from '@/store'
 import { cn } from '@/utils'
 
 interface PreviewComponentProps {
@@ -13,15 +13,20 @@ interface PreviewComponentProps {
 const PreviewComponent: FC<PreviewComponentProps> = () => {
   const { t } = useTranslation()
 
+  const { workspace } = useWorkspaceStore()
   const { form: rawForm } = useFormStore()
   const [platform, setPlatform] = useState('mobile')
 
   const form: Any = useMemo(
     () => ({
       ...rawForm,
-      fields: rawForm?.drafts || []
+      fields: rawForm?.drafts || [],
+      settings: {
+        ...rawForm?.settings,
+        whitelabelBranding: workspace?.plan?.whitelabelBranding
+      }
     }),
-    [rawForm]
+    [rawForm, workspace?.plan?.whitelabelBranding]
   )
 
   const tabs = useMemo(

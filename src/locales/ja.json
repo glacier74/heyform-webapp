@@ -655,7 +655,8 @@
       "trialTip_zero": "{{name}} のトライアルは本日終了します",
       "trialTip_one": "{{name}} のトライアルはあと {{count}} 日で終了します",
       "trialTip_other": "{{name}} のトライアルはあと {{count}} 日で終了します",
-      "hiddenFields": "隠しフィールドを追加するにはベーシックプランにアップグレードしてください"
+      "hiddenFields": "隠しフィールドを追加するにはベーシックプランにアップグレードしてください",
+      "brandKit": "ブランドキットを設定するにはプレミアムにアップグレードしてください"
     },
     "payment": {
       "headline": "プランをアップグレード",
@@ -710,11 +711,25 @@
     "title": "ワークスペース設定",
     "branding": {
       "title": "ブランディング",
-      "name": "名前",
-      "logo": "ロゴ",
-      "pickLogo": "ワークスペース用のロゴを選択してください。",
       "removeBrandingHeadline": "HeyFormブランドを削除",
-      "removeBrandingSubHeadline": "HeyFormを完全にあなたのブランドにするために、フォームのフッターからHeyFormロゴを削除します。"
+      "removeBrandingSubHeadline": "HeyFormを完全にあなたのブランドにするために、フォームのフッターからHeyFormロゴを削除します。",
+      "viewBrandKit": "表示する",
+      "logo": {
+        "title": "ロゴ",
+        "required": "ロゴは空白にできません",
+        "invalid": "有効なURLではありませんが、無効として設定されています。トップページビューと体験もご覧いただけます。\"}内容をご確認し、調整してください\":\"ブラディングテーマ"
+      },
+      "presetThemes": "プリセットテーマ",
+      "brandKitHeadline": "ブランドキット",
+      "brandKitSubHeadline": "ブランドキットを使用して、ワークスペースのビジュアル資産をフォームにシームレスに適用できます。ロゴをアップロードし、ワークスペースのすべてのメンバーが利用できるテーマを作成しましょう。",
+      "theme": "テーマ",
+      "brandKitPreview": {
+        "number": "質問 1",
+        "title": "お名前は？",
+        "description": "ここに名前を入力してください",
+        "input": "あなたの回答をここに記入してください",
+        "next": "次へ"
+      }
     },
     "customDomain": {
       "headline": "カスタムドメイン",
@@ -755,6 +770,12 @@
         "label": "<strong>{{email}}</strong> に送信された削除コードを入力してください。",
         "required": "検証コードは空にできません"
       }
+    },
+    "general": {
+      "title": "一般",
+      "name": "名前",
+      "logo": "ロゴ",
+      "pickLogo": "ワークスペースのためのロゴを選んでください。"
     }
   },
   "project": {

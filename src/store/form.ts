@@ -1,6 +1,6 @@
 import { htmlUtils } from '@heyform-inc/answer-utils'
 import { getTheme } from '@heyform-inc/form-renderer'
-import { FormSettings, FormTheme } from '@heyform-inc/shared-types-enums'
+import { FormSettings, ThemeSettings } from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
 import { type Dayjs } from 'dayjs'
 import { create } from 'zustand'
@@ -32,7 +32,7 @@ interface FormStoreType {
   isFormLoaded?: boolean
   embedConfigs: EmbedConfigs
   embedType: EmbedType
-  tempTheme?: FormTheme
+  themeSettings?: ThemeSettings
 
   // Integrations
   apps: AppType[]
@@ -46,9 +46,9 @@ interface FormStoreType {
   updateSettings: (settings: Partial<FormSettings>) => void
   setTempSettings: (tempSettings?: TempSettings) => void
   updateTempSettings: (updates: Partial<TempSettings>) => void
-  setTempTheme: (tempTheme?: FormTheme) => void
-  updateTempTheme: (updates: Partial<FormTheme>) => void
-  revertTempTheme: () => void
+  setThemeSettings: (themeSettings?: ThemeSettings) => void
+  updateThemeSettings: (updates: Partial<ThemeSettings>) => void
+  revertThemeSettings: () => void
   selectEmbedType: (embedType: string) => void
   updateEmbedConfig: (updates: Any) => void
   resetEmbedConfigs: () => void
@@ -151,7 +151,11 @@ export const useFormStore = create<FormStoreType>()(
             state.tempSettings = tempSettings
           }
 
-          state.tempTheme = getTheme(form?.themeSettings?.theme)
+          state.themeSettings = {
+            ...form?.themeSettings,
+            theme: getTheme(form?.themeSettings?.theme)
+          }
+          console.log(state.themeSettings)
         })
       },
 
@@ -191,24 +195,28 @@ export const useFormStore = create<FormStoreType>()(
         })
       },
 
-      setTempTheme: tempTheme => {
+      setThemeSettings: themeSettings => {
         set(state => {
-          state.tempTheme = tempTheme
+          state.themeSettings = themeSettings
         })
       },
 
-      updateTempTheme: updates => {
+      updateThemeSettings: updates => {
         set(state => {
-          state.tempTheme = {
-            ...state.tempTheme,
-            ...(updates as FormTheme)
+          state.themeSettings = {
+            ...state.themeSettings,
+            ...updates,
+            theme: getTheme(updates.theme)
           }
         })
       },
 
-      revertTempTheme: () => {
+      revertThemeSettings: () => {
         set(state => {
-          state.tempTheme = getTheme(state.form?.themeSettings?.theme)
+          state.themeSettings = {
+            ...state.themeSettings,
+            theme: getTheme(state.form?.themeSettings?.theme)
+          }
         })
       },
 

@@ -92,6 +92,11 @@ export const WORKSPACES_GQL = gql`
         formCount
         isOwner
       }
+      brandKits {
+        id
+        logo
+        theme
+      }
       plan {
         id
         name
@@ -104,6 +109,7 @@ export const WORKSPACES_GQL = gql`
         apiAccessLimit
         multiLanguage
         customDomain
+        whitelabelBranding
         grade
       }
       subscription {
@@ -249,6 +255,18 @@ export const EXPORT_WORKSPACE_DATA_GQL = gql`
 export const INVITE_MEMBERS_GQL = gql`
   mutation inviteMember($input: InviteMemberInput!) {
     inviteMember(input: $input)
+  }
+`
+
+export const CREATE_BRAND_KIT_GQL = gql`
+  mutation createBrandKit($input: CreateBrandKitInput!) {
+    createBrandKit(input: $input)
+  }
+`
+
+export const UPDATE_BRAND_KIT_GQL = gql`
+  mutation updateBrandKit($input: UpdateBrandKitInput!) {
+    updateBrandKit(input: $input)
   }
 `
 
@@ -694,6 +712,7 @@ export const FORM_DETAIL_GQL = gql`
       logics
       variables
       themeSettings {
+        logo
         theme
       }
       retentionAt

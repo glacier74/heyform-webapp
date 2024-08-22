@@ -166,6 +166,14 @@
     }
   }
 
+  .heyform-logo {
+    @apply pt-2 pl-2;
+
+    img {
+      @apply block h-10 w-auto sm:h-8;
+    }
+  }
+
   // ----------------------------------------------------------------------------
   // Radio
   .heyform-radio {
@@ -1287,6 +1295,10 @@ button.connect-stripe {
   }
 }
 
+.heyform-root {
+  @apply rounded-xl;
+}
+
 .form-preview-mobile {
   @apply mx-auto py-16;
   max-width: 22.5rem;
@@ -1306,7 +1318,8 @@ button.connect-stripe {
 
   .heyform-root,
   .heyform-layout,
-  .heyform-theme-background {
+  .heyform-theme-background,
+  .heyform-theme-background:before {
     @apply rounded-xl;
   }
 

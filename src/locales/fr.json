@@ -655,7 +655,8 @@
       "trialTip_zero": "L'essai de {{name}} se termine aujourd'hui",
       "trialTip_one": "L'essai de {{name}} se termine dans {{count}} jour",
       "trialTip_other": "L'essai de {{name}} se termine dans {{count}} jours",
-      "hiddenFields": "Passez à la version Basic pour ajouter un champ caché"
+      "hiddenFields": "Passez à la version Basic pour ajouter un champ caché",
+      "brandKit": "Mettez à niveau vers Premium pour configurer le kit de marque"
     },
     "payment": {
       "headline": "Mettre à niveau le plan",
@@ -710,11 +711,25 @@
     "title": "Paramètres de l'espace de travail",
     "branding": {
       "title": "Marque",
-      "name": "Nom",
-      "logo": "Logo",
-      "pickLogo": "Choisissez un logo pour votre espace de travail.",
       "removeBrandingHeadline": "Supprimer la marque HeyForm",
-      "removeBrandingSubHeadline": "Pour que HeyForm donne l'impression d'appartenir entièrement à votre marque, retirez le logo HeyForm dans le pied de page du formulaire."
+      "removeBrandingSubHeadline": "Pour que HeyForm donne l'impression d'appartenir entièrement à votre marque, retirez le logo HeyForm dans le pied de page du formulaire.",
+      "viewBrandKit": "Voir",
+      "logo": {
+        "title": "Logo",
+        "required": "Le logo ne doit pas être vide",
+        "invalid": "Le logo n'est pas une URL valide"
+      },
+      "theme": "Thème",
+      "presetThemes": "Thèmes prédéfinis",
+      "brandKitHeadline": "Trousse de marque",
+      "brandKitSubHeadline": "Appliquez facilement les éléments visuels de votre espace de travail à vos formulaires avec la trousse de marque. Téléchargez votre logo et créez un thème que chaque membre de votre espace peut utiliser.",
+      "brandKitPreview": {
+        "number": "Question 1 en français",
+        "title": "Quel est votre nom ?",
+        "description": "Tapez votre nom ici",
+        "input": "Votre réponse va ici",
+        "next": "Suivant"
+      }
     },
     "customDomain": {
       "headline": "Domaine personnalisé",
@@ -755,6 +770,12 @@
         "label": "Entrez le code de suppression envoyé à <strong>{{email}}</strong>.",
         "required": "Le code de vérification ne doit pas être vide"
       }
+    },
+    "general": {
+      "title": "Général",
+      "name": "Nom",
+      "logo": "Logo",
+      "pickLogo": "Choisissez un logo pour votre espace de travail."
     }
   },
   "project": {
