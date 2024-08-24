@@ -1504,6 +1504,12 @@
         "title": "Vorschau",
         "desktop": "Desktop",
         "mobile": "Mobilgerät"
+      },
+      "mention": {
+        "mention": "Eine Frage erwähnen",
+        "hiddenfield": "Ein verstecktes Feld erwähnen",
+        "variable": "Eine Variable erwähnen",
+        "emptyState": "Keine Ergebnisse gefunden."
       }
     },
     "suspend": {

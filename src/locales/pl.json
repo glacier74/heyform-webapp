@@ -1504,6 +1504,12 @@
         "title": "Podgląd",
         "desktop": "Komputer",
         "mobile": "Telefon komórkowy"
+      },
+      "mention": {
+        "mention": "Wspomnij o pytaniu",
+        "hiddenfield": "Wspomnij o ukrytym polu",
+        "variable": "Wspomnij o zmiennej",
+        "emptyState": "Nie znaleziono wyników."
       }
     },
     "suspend": {

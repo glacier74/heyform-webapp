@@ -1504,6 +1504,12 @@
         "title": "預覽",
         "desktop": "桌面版",
         "mobile": "手機版"
+      },
+      "mention": {
+        "mention": "提及問題",
+        "hiddenfield": "提及隱藏欄位",
+        "variable": "提及變數",
+        "emptyState": "未找到結果。"
       }
     },
     "suspend": {

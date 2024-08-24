@@ -1504,6 +1504,12 @@
         "title": "プレビュー",
         "desktop": "デスクトップ版",
         "mobile": "モバイル版"
+      },
+      "mention": {
+        "mention": "質問に言及",
+        "hiddenfield": "隠しフィールドに言及",
+        "variable": "変数に言及",
+        "emptyState": "結果が見つかりませんでした。"
       }
     },
     "suspend": {

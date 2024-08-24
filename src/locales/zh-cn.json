@@ -1504,6 +1504,12 @@
         "title": "预览",
         "desktop": "桌面版",
         "mobile": "手机版"
+      },
+      "mention": {
+        "mention": "提及一个问题",
+        "hiddenfield": "提及一个隐藏字段",
+        "variable": "提及一个变量",
+        "emptyState": "未找到结果。"
       }
     },
     "suspend": {

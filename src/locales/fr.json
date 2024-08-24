@@ -1508,6 +1508,12 @@
         "title": "Aperçu",
         "desktop": "Bureau",
         "mobile": "Mobile"
+      },
+      "mention": {
+        "mention": "Mentionner une question",
+        "hiddenfield": "Mentionner un champ caché",
+        "variable": "Mentionner une variable",
+        "emptyState": "Aucun résultat trouvé."
       }
     },
     "suspend": {

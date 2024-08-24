@@ -1406,6 +1406,12 @@
         "payment": "Payment",
         "string": "String"
       },
+      "mention": {
+        "mention": "Mention a question",
+        "hiddenfield": "Mention a hidden field",
+        "variable": "Mention a variable",
+        "emptyState": "No results found."
+      },
       "sidebar": {
         "questions": "Questions",
         "addQuestion": "Add question",
