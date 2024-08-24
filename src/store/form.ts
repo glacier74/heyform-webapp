@@ -155,7 +155,6 @@ export const useFormStore = create<FormStoreType>()(
             ...form?.themeSettings,
             theme: getTheme(form?.themeSettings?.theme)
           }
-          console.log(state.themeSettings)
         })
       },
 

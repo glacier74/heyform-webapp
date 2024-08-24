@@ -121,7 +121,6 @@ export default function Customize() {
   }
 
   function handleValuesChange(_: AnyMap, theme: FormTheme) {
-    console.log(theme)
     updateThemeSettings({
       theme
     })
