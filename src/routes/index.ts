@@ -3,6 +3,7 @@ import {
   BaseLayout,
   FormLayout,
   ProjectLayout,
+  TemplateLayout,
   WorkspaceGuard,
   WorkspaceLayout
 } from '@/layouts'
@@ -20,6 +21,7 @@ import FormShare from '@/pages/form/Share'
 import FormSubmissions from '@/pages/form/Submissions'
 import ProjectForms from '@/pages/project/Forms'
 import ProjectTrash from '@/pages/project/Trash'
+import Template from '@/pages/user/Template'
 import WorkspaceBilling from '@/pages/workspace/Billing'
 import CreateWorkspace from '@/pages/workspace/Create'
 import WorkspaceDashboard from '@/pages/workspace/Dashboard'
@@ -232,6 +234,17 @@ const routes = [
     options: {
       loginRequired: true,
       title: 'form.builder.title'
+    }
+  },
+
+  // Template
+  {
+    path: '/template/:templateId',
+    layout: TemplateLayout,
+    component: Template,
+    options: {
+      loginRequired: true,
+      title: 'template.use.title'
     }
   }
 ]

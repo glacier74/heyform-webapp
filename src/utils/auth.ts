@@ -12,6 +12,12 @@ export function getCookie(key: string) {
   return cookies.get(key)
 }
 
+export function clearCookie(key: string) {
+  setCookie(key, '', {
+    expires: 0
+  })
+}
+
 export function getAuthState() {
   const value = getCookie(LOGGED_COOKIE_NAME)
   return helper.isTrue(value)
@@ -26,9 +32,7 @@ export function clearAuthState() {
   })
 
   // Clear logged in cookie
-  setCookie(LOGGED_COOKIE_NAME, '', {
-    expires: 0
-  })
+  clearCookie(LOGGED_COOKIE_NAME)
 }
 
 export function getDeviceId() {

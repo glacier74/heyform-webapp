@@ -1625,5 +1625,15 @@
         "cancel": "取消排程刪除"
       }
     }
+  },
+  "template": {
+    "use": {
+      "title": "範本",
+      "workspace": "工作區",
+      "createWorkspace": "建立工作區",
+      "project": "專案",
+      "createProject": "建立專案",
+      "submit": "從此範本開始使用"
+    }
   }
 }

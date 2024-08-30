@@ -14,12 +14,12 @@ import {
 } from 'react-router-dom'
 
 import { Toaster } from '@/components'
-import { IS_PROD, PACKAGE_VERSION, SENTRY_DSN } from '@/consts'
+import { IS_PROD, PACKAGE_VERSION, REDIRECT_COOKIE_NAME, SENTRY_DSN } from '@/consts'
 import '@/i18n'
 import { AuthLayout } from '@/layouts'
 import routes from '@/routes'
 import '@/styles/globals.scss'
-import { getAuthState, getDecoratedURL, getDeviceId, setDeviceId } from '@/utils'
+import { getAuthState, getDeviceId, setCookie, setDeviceId } from '@/utils'
 
 if (IS_PROD) {
   Sentry.init({
@@ -67,10 +67,10 @@ const App = () => {
 
     if (options?.loginRequired) {
       if (!isLoggedIn) {
-        const redirect_uri = window.location.pathname + window.location.search
-        const nextUrl = getDecoratedURL('/login', { redirect_uri })
+        const redirectUri = window.location.pathname + window.location.search
 
-        return <Navigate to={nextUrl} replace />
+        setCookie(REDIRECT_COOKIE_NAME, redirectUri, {})
+        return <Navigate to="/login" replace />
       }
     } else {
       if (isLoggedIn) {

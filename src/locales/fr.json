@@ -1629,5 +1629,15 @@
         "cancel": "Annuler la suppression programmée"
       }
     }
+  },
+  "template": {
+    "use": {
+      "title": "Modèle",
+      "workspace": "Espace de travail",
+      "createWorkspace": "Créer un espace de travail",
+      "project": "Projet",
+      "createProject": "Créer un projet",
+      "submit": "Commencer avec ce modèle"
+    }
   }
 }

@@ -1580,6 +1580,16 @@
       "contactUs": "Contact us"
     }
   },
+  "template": {
+    "use": {
+      "title": "Template",
+      "workspace": "Workspace",
+      "createWorkspace": "Create a workspace",
+      "project": "Project",
+      "createProject": "Create a project",
+      "submit": "Start with this template"
+    }
+  },
   "user": {
     "headline": "Account settings",
     "subHeadline": "Changes to account settings will apply to all of your workspaces.",

@@ -1625,5 +1625,15 @@
         "cancel": "取消安排删除"
       }
     }
+  },
+  "template": {
+    "use": {
+      "title": "模板",
+      "workspace": "工作区",
+      "createWorkspace": "创建一个工作区",
+      "project": "项目",
+      "createProject": "创建一个项目",
+      "submit": "从这个模板开始"
+    }
   }
 }

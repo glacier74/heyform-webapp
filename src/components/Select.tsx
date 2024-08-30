@@ -58,6 +58,8 @@ export interface SelectProps extends NativeSelectProps {
   allowClear?: boolean
   returnOptionAsValue?: boolean
   contentProps?: SelectContentProps
+  header?: ReactNode
+  footer?: ReactNode
 }
 
 interface MultiSelectProps extends Omit<SelectProps, 'value' | 'onChange'> {
@@ -166,6 +168,8 @@ const SelectComponent: FC<SelectProps> = ({
   hasError,
   multiLanguage,
   allowClear = false,
+  header,
+  footer,
   contentProps,
   onChange,
   ...restProps
@@ -266,6 +270,8 @@ const SelectComponent: FC<SelectProps> = ({
           data-slot="content"
         >
           <Viewport>
+            {header}
+
             {options.map(row => (
               <Item
                 key={row.value}
@@ -282,6 +288,8 @@ const SelectComponent: FC<SelectProps> = ({
                 </ItemText>
               </Item>
             ))}
+
+            {footer}
           </Viewport>
         </Content>
       </Portal>

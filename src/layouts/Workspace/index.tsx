@@ -9,9 +9,10 @@ import { Link, useLocation } from 'react-router-dom'
 
 import Logo from '@/assets/logo.svg?react'
 import { Button, useAlert } from '@/components'
+import { REDIRECT_COOKIE_NAME } from '@/consts'
 import { UserService, WorkspaceService } from '@/services'
 import { useAppStore, useUserStore, useWorkspaceStore } from '@/store'
-import { cn, useParam, useQuery, useRouter } from '@/utils'
+import { clearCookie, cn, getCookie, useParam, useRouter } from '@/utils'
 
 import ChangePasswordModal from './ChangePasswordModal'
 import ChangelogsModal from './ChangelogsModal'
@@ -20,6 +21,7 @@ import CreateProjectModal from './CreateProjectModal'
 import CreateWorkspaceModal from './CreateWorkspaceModal'
 import DeleteProjectModal from './DeleteProjectModal'
 import PaymentModal from './PaymentModal'
+import SearchModal from './SearchModal'
 import UpgradeModal from './UpgradeModal'
 import UserAccountModal from './UserAccountModal'
 import UserDeletionModal from './UserDeletionModal'
@@ -78,8 +80,8 @@ export const WorkspaceGuard: FC<LayoutProps> = ({ options, children }) => {
 
   const router = useRouter()
   const location = useLocation()
-  const { redirect_uri } = useQuery()
   const { workspaceId, projectId } = useParam()
+  const redirectUri = getCookie(REDIRECT_COOKIE_NAME) as string
 
   const {
     workspaces: wsCache,
@@ -100,8 +102,8 @@ export const WorkspaceGuard: FC<LayoutProps> = ({ options, children }) => {
 
     // If users enter from the invitation link, they will be redirected to the invitation page
     // even if they don't have any workspaces.
-    if (INVITATION_URL_REGEX.test(redirect_uri)) {
-      return router.redirect(redirect_uri)
+    if (INVITATION_URL_REGEX.test(redirectUri)) {
+      return router.redirect(redirectUri)
     }
 
     if (helper.isEmpty(result)) {
@@ -116,6 +118,10 @@ export const WorkspaceGuard: FC<LayoutProps> = ({ options, children }) => {
 
     if (helper.isEmpty(wsCache)) {
       workspaces = await fetch()
+
+      if (helper.isNil(workspaces)) {
+        return
+      }
     } else {
       fetch()
     }
@@ -123,8 +129,10 @@ export const WorkspaceGuard: FC<LayoutProps> = ({ options, children }) => {
     setMounted(true)
 
     if (options?.isHomePage) {
-      if (helper.isValid(redirect_uri)) {
-        return router.redirect(redirect_uri, {
+      if (helper.isValid(redirectUri)) {
+        clearCookie(REDIRECT_COOKIE_NAME)
+
+        return router.redirect(redirectUri, {
           extend: false
         })
       }
@@ -180,6 +188,7 @@ export const WorkspaceGuard: FC<LayoutProps> = ({ options, children }) => {
       <UserDeletionModal />
       <ChangePasswordModal />
       <UpgradeModal />
+      <SearchModal />
     </LoginGuard>
   )
 }

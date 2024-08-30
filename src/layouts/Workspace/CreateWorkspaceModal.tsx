@@ -1,12 +1,13 @@
+import { helper } from '@heyform-inc/utils'
 import { useBoolean } from 'ahooks'
 import { FC, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Form, ImageFormPicker, Input, Modal, SimpleFormProps } from '@/components'
-import { DEFAULT_PROJECT_NAMES } from '@/consts'
+import { DEFAULT_PROJECT_NAMES, REDIRECT_COOKIE_NAME } from '@/consts'
 import { WorkspaceService } from '@/services'
 import { useModal, useUserStore } from '@/store'
-import { useRouter } from '@/utils'
+import { clearCookie, getCookie, useRouter } from '@/utils'
 
 export const CreateWorkspaceForm: FC<Pick<SimpleFormProps, 'onLoadingChange'>> = ({
   onLoadingChange
@@ -16,6 +17,7 @@ export const CreateWorkspaceForm: FC<Pick<SimpleFormProps, 'onLoadingChange'>> =
   const router = useRouter()
   const { user } = useUserStore()
 
+  const redirectUri = getCookie(REDIRECT_COOKIE_NAME) as string
   const [name, setName] = useState<string>('H')
 
   async function fetch(values: Any) {
@@ -28,6 +30,14 @@ export const CreateWorkspaceForm: FC<Pick<SimpleFormProps, 'onLoadingChange'>> =
       ...values,
       projectName
     })
+
+    if (helper.isValid(redirectUri)) {
+      clearCookie(REDIRECT_COOKIE_NAME)
+
+      return router.redirect(redirectUri, {
+        extend: false
+      })
+    }
 
     // Navigate to new created workspace page
     router.replace(`/workspace/${result}/trial`)

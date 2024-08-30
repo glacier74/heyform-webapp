@@ -1,6 +1,7 @@
 export const DEVICEID_COOKIE_NAME = 'HEYFORM_USER_ID'
 export const LOGGED_COOKIE_NAME = 'HEYFORM_LOGGED_IN'
 export const LOCALE_COOKIE_NAME = 'HEYFORM_LOCALE'
+export const REDIRECT_COOKIE_NAME = 'HEYFORM_REDIRECT'
 
 export const WEBSITE_URL = import.meta.env.VITE_WEBSITE_URL as string
 export const DASHBOARD_URL = import.meta.env.VITE_DASHBOARD_URL as string
