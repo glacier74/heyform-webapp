@@ -2,7 +2,7 @@ import { NumberPrice } from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
 import { IconArrowUpRight } from '@tabler/icons-react'
 import { useBoolean, useRequest } from 'ahooks'
-import { startTransition, useCallback, useMemo } from 'react'
+import { startTransition, useCallback, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Button, Input, Select, useAlert } from '@/components'
@@ -37,7 +37,9 @@ export default function PaymentSettings({ field }: RequiredSettingsProps) {
   const { formId } = useParam()
   const { dispatch } = useStoreContext()
   const { form, updateForm } = useFormStore()
+
   const [connectLoading, { setTrue, setFalse }] = useBoolean(false)
+  const [error, setError] = useState<Error>()
 
   const price = useMemo(() => {
     let value = 0
@@ -57,15 +59,19 @@ export default function PaymentSettings({ field }: RequiredSettingsProps) {
       win.close()
 
       if (payload.state && payload.code) {
-        const stripeAccount = await PaymentService.connectStripe(
-          formId,
-          payload.state,
-          payload.code
-        )
+        try {
+          const stripeAccount = await PaymentService.connectStripe(
+            formId,
+            payload.state,
+            payload.code
+          )
 
-        updateForm({
-          stripeAccount
-        })
+          updateForm({
+            stripeAccount
+          })
+        } catch (err: Any) {
+          setError(err)
+        }
 
         setFalse()
       }
@@ -103,6 +109,8 @@ export default function PaymentSettings({ field }: RequiredSettingsProps) {
 
   function handleConnect() {
     setTrue()
+    setError(undefined)
+
     alert({
       loading: authorizeLoading,
       title: t('form.builder.settings.payment.headline'),
@@ -188,6 +196,8 @@ export default function PaymentSettings({ field }: RequiredSettingsProps) {
           {t('form.builder.settings.payment.headline')}
           <IconArrowUpRight className="inline h-5 w-5" />
         </Button>
+
+        {error && <div className="text-sm/6 text-error">{error.message}</div>}
       </div>
     )
   }
