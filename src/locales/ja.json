@@ -570,7 +570,18 @@
     "storage": "ストレージ",
     "recentForms": "最近のフォーム",
     "noForms": "ワークスペースにフォームがありません",
-    "pickTemplate": "テンプレートを選択するか、空白のフォームから始めてください。"
+    "pickTemplate": "テンプレートを選択するか、空白のフォームから始めてください。",
+    "search": {
+      "actions": "アクション",
+      "navigation": "ナビゲーション",
+      "newWorkspace": "新しいワークスペース",
+      "newProject": "新しいプロジェクト",
+      "newForm": "新しいフォーム",
+      "forms": "フォーム",
+      "selectProject": "プロジェクトでフォームを作成する",
+      "placeholder": "フォームとヘルプドキュメントを検索する",
+      "emptyState": "結果が見つかりませんでした。"
+    }
   },
   "members": {
     "title": "メンバー管理",

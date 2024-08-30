@@ -1,7 +1,7 @@
 import { LayoutProps } from '@heyooo-inc/react-router'
-import { FC, useMemo } from 'react'
+import { FC, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 import { Button } from '@/components'
 import { useAppStore, useWorkspaceStore } from '@/store'
@@ -14,6 +14,7 @@ import ProjectMembersModal from './ProjectMembersModal'
 export const ProjectLayout: FC<LayoutProps> = ({ options, children }) => {
   const { t } = useTranslation()
 
+  const location = useLocation()
   const { workspaceId, projectId } = useParam()
   const { openModal } = useAppStore()
   const { project } = useWorkspaceStore()
@@ -33,6 +34,19 @@ export const ProjectLayout: FC<LayoutProps> = ({ options, children }) => {
     ],
     [projectId, workspaceId, t]
   )
+
+  useEffect(() => {
+    if (location.state?.isCreateModalOpen) {
+      window.history.replaceState({}, '')
+      openModal('CreateFormModal')
+    }
+  }, [location.state?.isCreateModalOpen])
+
+  useEffect(() => {
+    return () => {
+      window.history.replaceState({}, '')
+    }
+  }, [])
 
   return (
     <>

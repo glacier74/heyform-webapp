@@ -1,6 +1,7 @@
 import { FormModel, FormTheme } from '@heyform-inc/shared-types-enums'
 
 import { BillingCycleEnum, SubscriptionStatusEnum } from '@/consts'
+import { FormType } from '@/types/index.ts'
 
 import { PlanType } from './plan'
 import { UserType } from './user'
@@ -68,4 +69,15 @@ export interface MemberType {
   isOwner: boolean
   isYou: boolean
   lastSeenAt?: number
+}
+
+export interface DocumentType {
+  id: string
+  title: string
+  description: string
+}
+
+export interface SearchResultType {
+  forms: FormType[]
+  docs: DocumentType[]
 }

@@ -570,7 +570,18 @@
     "storage": "Speicher",
     "recentForms": "Kürzlich verwendete Formulare",
     "noForms": "Es gibt keine Formulare im Arbeitsbereich",
-    "pickTemplate": "Wählen Sie einfach eine Vorlage oder beginnen Sie von Grund auf neu."
+    "pickTemplate": "Wählen Sie einfach eine Vorlage oder beginnen Sie von Grund auf neu.",
+    "search": {
+      "actions": "Aktionen",
+      "navigation": "Navigation",
+      "newWorkspace": "Neuer Arbeitsbereich",
+      "newProject": "Neues Projekt",
+      "newForm": "Neues Formular",
+      "forms": "Formulare",
+      "selectProject": "Erstelle ein Formular im Projekt",
+      "placeholder": "Suche nach Formularen und Hilfedokumenten",
+      "emptyState": "Keine Ergebnisse gefunden."
+    }
   },
   "members": {
     "title": "Mitglieder",

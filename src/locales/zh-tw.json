@@ -570,7 +570,18 @@
     "storage": "儲存空間",
     "recentForms": "最近的表單",
     "noForms": "工作區中沒有表單",
-    "pickTemplate": "只需選擇一個模板或從空白表單開始。"
+    "pickTemplate": "只需選擇一個模板或從空白表單開始。",
+    "search": {
+      "actions": "操作項目",
+      "navigation": "導航",
+      "newWorkspace": "新工作區",
+      "newProject": "新專案",
+      "newForm": "新增表單",
+      "forms": "表單列表",
+      "selectProject": "在專案中創建表單",
+      "placeholder": "搜尋表單和幫助文件",
+      "emptyState": "未找到結果。"
+    }
   },
   "members": {
     "title": "成員管理",

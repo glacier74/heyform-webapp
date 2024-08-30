@@ -570,7 +570,18 @@
     "storage": "Stockage",
     "recentForms": "Formulaires récents",
     "noForms": "Il n'y a pas de formulaires dans l'espace de travail",
-    "pickTemplate": "Choisissez simplement un modèle ou commencez à partir de zéro."
+    "pickTemplate": "Choisissez simplement un modèle ou commencez à partir de zéro.",
+    "search": {
+      "actions": "Actions",
+      "navigation": "Navigation",
+      "newWorkspace": "Nouvel espace de travail",
+      "newProject": "Nouveau projet",
+      "newForm": "Nouveau formulaire",
+      "forms": "Formulaires",
+      "selectProject": "Créer un formulaire dans le projet",
+      "placeholder": "Rechercher des formulaires et des documents d'aide",
+      "emptyState": "Aucun résultat trouvé."
+    }
   },
   "members": {
     "title": "Membres",

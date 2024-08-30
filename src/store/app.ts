@@ -20,16 +20,24 @@ export function useModal<T = Any>(name: string) {
     openModal(name)
   }, [name, openModal])
 
+  const close = useCallback(() => {
+    closeModal(name)
+  }, [name, closeModal])
+
+  const toggle = useCallback(() => {
+    if (isOpen) {
+      close()
+    } else {
+      open()
+    }
+  }, [close, isOpen, open])
+
   const update = useCallback(
     (updates: AnyMap) => {
       updateModal(name, updates)
     },
     [name, updateModal]
   )
-
-  const close = useCallback(() => {
-    closeModal(name)
-  }, [name, closeModal])
 
   const onOpenChange = useCallback(
     (isOpen: boolean) => {
@@ -47,6 +55,7 @@ export function useModal<T = Any>(name: string) {
     payload,
     open,
     close,
+    toggle,
     update,
     onOpenChange
   }

@@ -270,6 +270,32 @@ export const UPDATE_BRAND_KIT_GQL = gql`
   }
 `
 
+export const SEARCH_WORKSPACE_GQL = gql`
+  query searchTeam($input: SearchTeamInput!) {
+    searchTeam(input: $input) {
+      forms {
+        id
+        teamId
+        projectId
+        name
+        interactiveMode
+        kind
+        memberId
+        suspended
+        status
+        updatedAt
+        isDraft
+        version
+      }
+      docs {
+        id
+        title
+        description
+      }
+    }
+  }
+`
+
 export const PLANS_GQL = gql`
   query plans {
     plans {

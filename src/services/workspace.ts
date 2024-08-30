@@ -11,6 +11,7 @@ import {
   PUBLIC_WORKSPACE_DETAIL_GQL,
   REMOVE_WORKSPACE_MEMBER_GQL,
   RESET_WORKSPACE_INVITE_CODE_GQL,
+  SEARCH_WORKSPACE_GQL,
   TRANSFER_WORKSPACE_GQL,
   UPDATE_BRAND_KIT_GQL,
   UPDATE_WORKSPACE_GQL,
@@ -245,6 +246,18 @@ export class WorkspaceService {
       mutation: UPDATE_BRAND_KIT_GQL,
       variables: {
         input
+      }
+    })
+  }
+
+  static search(teamId: string, query: string) {
+    return apollo.query({
+      query: SEARCH_WORKSPACE_GQL,
+      variables: {
+        input: {
+          teamId,
+          query
+        }
       }
     })
   }

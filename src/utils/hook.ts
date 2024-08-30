@@ -27,6 +27,7 @@ export function useParam() {
 
 interface UseRouterOptions {
   query?: AnyMap
+  state?: Any
   exclude?: string[]
   extend?: boolean
 }
@@ -43,7 +44,9 @@ export function useRouter() {
     (url: string, options?: UseRouterOptions) => {
       const query = { ...(options?.extend === false ? {} : rawQuery), ...options?.query }
 
-      navigate(getRouterURL(url, query, options?.exclude))
+      navigate(getRouterURL(url, query, options?.exclude), {
+        state: options?.state
+      })
     },
     [navigate, rawQuery]
   )
@@ -53,7 +56,8 @@ export function useRouter() {
       const query = { ...(options?.extend === false ? {} : rawQuery), ...options?.query }
 
       navigate(getRouterURL(url, query, options?.exclude), {
-        replace: true
+        replace: true,
+        state: options?.state
       })
     },
     [navigate, rawQuery]

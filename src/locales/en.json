@@ -570,7 +570,18 @@
     "storage": "Storage",
     "recentForms": "Recent forms",
     "noForms": "There are no forms in the workspace",
-    "pickTemplate": "Simply pick a template or start from scratch."
+    "pickTemplate": "Simply pick a template or start from scratch.",
+    "search": {
+      "actions": "Actions",
+      "navigation": "Navigation",
+      "newWorkspace": "New workspace",
+      "newProject": "New project",
+      "newForm": "New form",
+      "forms": "Forms",
+      "selectProject": "Create a form in project",
+      "placeholder": "Search for forms and help documents",
+      "emptyState": "No results found."
+    }
   },
   "members": {
     "title": "Members",

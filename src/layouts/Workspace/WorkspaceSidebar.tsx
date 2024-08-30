@@ -7,6 +7,7 @@ import {
   IconHome,
   IconLocation,
   IconPlus,
+  IconSearch,
   IconSettings,
   IconStack2,
   IconUsers
@@ -16,7 +17,7 @@ import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 
 import { Button, PlanUpgrade, Tooltip } from '@/components'
-import { PlanGradeEnum } from '@/consts'
+import { HELP_CENTER_URL, PlanGradeEnum, TEMPLATES_URL } from '@/consts'
 import { useAppStore, useModal, useWorkspaceStore } from '@/store'
 import { cn, useParam } from '@/utils'
 
@@ -35,17 +36,17 @@ const RESOURCE_LINKS = [
   {
     icon: IconLocation,
     title: 'workspace.sidebar.gettingStarted',
-    href: 'https://docs.heyform.net/quickstart'
+    href: `${HELP_CENTER_URL}/quickstart`
   },
   {
     icon: IconHelp,
     title: 'workspace.sidebar.help',
-    href: 'https://docs.heyform.net'
+    href: HELP_CENTER_URL
   },
   {
     icon: IconStack2,
     title: 'workspace.sidebar.template',
-    href: 'https://heyform.net/templates'
+    href: TEMPLATES_URL
   }
 ]
 
@@ -89,11 +90,16 @@ const WorkspaceSidebarComponent = () => {
           <Link to={`/workspace/${workspaceId}/`} icon={IconHome} label={t('dashboard.title')} />
 
           {/* Search */}
-          {/*<Link*/}
-          {/*  to={`/workspace/${workspaceId}/search`}*/}
-          {/*  icon={IconSearch}*/}
-          {/*  label={t('workspace.sidebar.search')}*/}
-          {/*/>*/}
+          <button
+            className="group flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium hover:bg-primary/5 sm:px-2 sm:py-1.5 lg:py-2"
+            onClick={() => openModal('SearchModal')}
+          >
+            <IconSearch
+              className="h-5 w-5 stroke-secondary group-hover:stroke-primary"
+              data-slot="icon"
+            />
+            <span className="truncate">{t('workspace.sidebar.search')}</span>
+          </button>
 
           {/* Members */}
           <PlanUpgrade

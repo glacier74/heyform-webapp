@@ -570,7 +570,18 @@
     "storage": "Przechowywanie",
     "recentForms": "Ostatnie formularze",
     "noForms": "W przestrzeni roboczej nie ma żadnych formularzy",
-    "pickTemplate": "Po prostu wybierz szablon lub zacznij od zera."
+    "pickTemplate": "Po prostu wybierz szablon lub zacznij od zera.",
+    "search": {
+      "actions": "Akcje",
+      "navigation": "Nawigacja",
+      "newWorkspace": "Nowa przestrzeń robocza",
+      "newProject": "Nowy projekt",
+      "newForm": "Nowy formularz",
+      "forms": "Formularze",
+      "selectProject": "Utwórz formularz w projekcie",
+      "placeholder": "Szukaj formularzy i dokumentów pomocy",
+      "emptyState": "Nie znaleziono wyników."
+    }
   },
   "members": {
     "title": "Członkowie",
