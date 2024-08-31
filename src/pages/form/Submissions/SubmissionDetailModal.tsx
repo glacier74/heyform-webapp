@@ -1,6 +1,6 @@
 import { FieldKindEnum, FormField } from '@heyform-inc/shared-types-enums'
 import { unixDate } from '@heyform-inc/utils'
-import { IconCalendar, IconDots, IconRestore } from '@tabler/icons-react'
+import { IconCalendar, IconDots, IconPrinter } from '@tabler/icons-react'
 import { FC, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -64,7 +64,7 @@ const SubmissionDetail: FC<SubmissionDetailProps> = () => {
   const options = [
     {
       value: 'print',
-      icon: <IconRestore className="h-5 w-5" />,
+      icon: <IconPrinter className="h-5 w-5" />,
       label: 'components.print'
     }
   ]
