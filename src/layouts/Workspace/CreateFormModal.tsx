@@ -8,7 +8,7 @@ import IconAI from '@/assets/ai.svg?react'
 import { Button, Modal, usePlanGrade } from '@/components'
 import { PlanGradeEnum } from '@/consts'
 import { FormService } from '@/services'
-import { useModal } from '@/store'
+import { useAppStore, useModal } from '@/store'
 import { useParam, useRouter } from '@/utils'
 
 import CreateWithAIModel from './CreateWithAIModel'
@@ -41,6 +41,7 @@ const CreateFormComponent = () => {
   const router = useRouter()
   const { workspaceId, projectId } = useParam()
   const { isAllowed, openUpgrade } = usePlanGrade(PlanGradeEnum.BASIC)
+  const { closeModal } = useAppStore()
 
   const [activeName, setActiveName] = useState<string>()
 
@@ -54,6 +55,7 @@ const CreateFormComponent = () => {
         kind: FormKindEnum.SURVEY
       })
 
+      closeModal('CreateFormModal')
       router.push(`/workspace/${workspaceId}/project/${projectId}/form/${formId}/create`)
     },
     {

@@ -441,15 +441,12 @@ export const REVOKE_STRIPE_ACCOUNT_GQL = gql`
 `
 
 export const TEMPLATES_GQL = gql`
-  query templates($input: TemplatesInput!) {
-    templates(input: $input) {
+  query templates {
+    templates {
       id
       category
       name
-      usedCount
-      themeSettings {
-        theme
-      }
+      thumbnail
     }
   }
 `
@@ -465,6 +462,9 @@ export const TEMPLATE_DETAILS_GQL = gql`
         kind
         validations
         properties
+      }
+      themeSettings {
+        theme
       }
     }
   }

@@ -4,17 +4,19 @@ import { useTranslation } from 'react-i18next'
 
 import { Async, EmptyState, Repeat } from '@/components'
 import { WorkspaceService } from '@/services'
-import { useAppStore } from '@/store'
+import { useAppStore, useWorkspaceStore } from '@/store'
 import { FormType } from '@/types'
-import { useParam } from '@/utils'
+import { useParam, useRouter } from '@/utils'
 
 import FormItem from '../../project/Forms/FormItem'
 
 export default function RecentForms() {
   const { t } = useTranslation()
 
+  const router = useRouter()
   const { workspaceId } = useParam()
   const { openModal } = useAppStore()
+  const { workspace } = useWorkspaceStore()
 
   const [data, setData] = useState<FormType[]>([])
 
@@ -23,6 +25,18 @@ export default function RecentForms() {
 
     setData(result)
     return helper.isValid(result)
+  }
+
+  function handleCreateForm() {
+    if (helper.isValidArray(workspace?.projects)) {
+      router.push(`/workspace/${workspaceId}/project/${workspace.projects[0].id}/`, {
+        state: {
+          isCreateModalOpen: true
+        }
+      })
+    } else {
+      openModal('CreateProjectModal')
+    }
   }
 
   return (
@@ -42,7 +56,7 @@ export default function RecentForms() {
             headline={t('dashboard.noForms')}
             subHeadline={t('dashboard.pickTemplate')}
             buttonTitle={t('form.creation.title')}
-            onClick={() => openModal('CreateFormModal')}
+            onClick={handleCreateForm}
           />
         </div>
       )}

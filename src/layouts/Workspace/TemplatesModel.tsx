@@ -74,9 +74,9 @@ const TemplatePreview: FC<TemplatePreviewProps> = ({ template: rawTemplate, onBa
   }
 
   useEffect(() => {
-    insertWebFont(rawTemplate.themeSettings?.theme?.fontFamily)
-    insertThemeStyle(rawTemplate.themeSettings?.theme)
-  }, [rawTemplate.themeSettings?.theme])
+    insertWebFont(template?.themeSettings?.theme?.fontFamily)
+    insertThemeStyle(template?.themeSettings?.theme)
+  }, [template?.themeSettings?.theme])
 
   return (
     <div className="h-[calc(90vh-3.125rem)] w-[90vw]">
@@ -211,7 +211,7 @@ export default function TemplatesModel({ onBack }: TemplatesModelProps) {
                   >
                     <Image
                       className="aspect-video w-full rounded-t-lg"
-                      src={template.themeSettings?.theme?.backgroundImage}
+                      src={(template as AnyMap).thumbnail}
                       resize={{
                         width: 480,
                         height: 280
