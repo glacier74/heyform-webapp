@@ -121,6 +121,14 @@ export default function Customize() {
   }
 
   function handleValuesChange(_: AnyMap, theme: FormTheme) {
+    if (helper.isEmpty(theme.backgroundImage)) {
+      theme.backgroundBrightness = 0
+
+      nextTick(() => {
+        rcForm.setFieldValue('backgroundBrightness', 0)
+      })
+    }
+
     updateThemeSettings({
       theme
     })
