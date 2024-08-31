@@ -20,7 +20,12 @@ export class UserService {
     })
   }
 
-  static update(input: { name?: string; avatar?: string; restoreGravatar?: boolean }) {
+  static update(input: {
+    name?: string
+    avatar?: string
+    restoreGravatar?: boolean
+    isOnboarded?: boolean
+  }) {
     return apollo.mutate({
       mutation: UPDATE_USER_DETAIL_GQL,
       variables: {

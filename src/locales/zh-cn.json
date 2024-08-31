@@ -509,6 +509,9 @@
       "检索您的 HeyForm 账户信息"
     ]
   },
+  "onboarding": {
+    "title": "入门"
+  },
   "workspace": {
     "notExist": "该工作区不存在。",
     "backHome": "返回 HeyForm",

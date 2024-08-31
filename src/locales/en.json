@@ -509,6 +509,9 @@
       "Retrieve your HeyForm account information"
     ]
   },
+  "onboarding": {
+    "title": "Onboarding"
+  },
   "workspace": {
     "notExist": "This workspace does not exist.",
     "backHome": "Back to HeyForm",

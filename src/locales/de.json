@@ -509,6 +509,9 @@
       "Abrufen Ihrer HeyForm-Kontoinformationen"
     ]
   },
+  "onboarding": {
+    "title": "Einführung"
+  },
   "workspace": {
     "notExist": "Dieser Arbeitsbereich existiert nicht.",
     "backHome": "Zurück zu HeyForm",

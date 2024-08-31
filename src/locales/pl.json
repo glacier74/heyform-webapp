@@ -509,6 +509,9 @@
       "Pobierz informacje o swoim koncie HeyForm"
     ]
   },
+  "onboarding": {
+    "title": "Wprowadzenie"
+  },
   "workspace": {
     "notExist": "To miejsce pracy nie istnieje.",
     "backHome": "Powrót do HeyForm",

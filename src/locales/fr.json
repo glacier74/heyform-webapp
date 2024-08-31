@@ -509,6 +509,9 @@
       "Récupérer les informations de votre compte HeyForm"
     ]
   },
+  "onboarding": {
+    "title": "Intégration"
+  },
   "workspace": {
     "notExist": "Cet espace de travail n'existe pas.",
     "backHome": "Retour à HeyForm",

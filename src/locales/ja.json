@@ -509,6 +509,9 @@
       "HeyForm アカウント情報を取得する"
     ]
   },
+  "onboarding": {
+    "title": "オンボーディング"
+  },
   "workspace": {
     "notExist": "このワークスペースは存在しません。",
     "backHome": "HeyForm に戻る",

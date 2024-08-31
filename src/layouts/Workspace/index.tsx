@@ -28,7 +28,7 @@ import UserDeletionModal from './UserDeletionModal'
 import WorkspaceAccount from './WorkspaceAccount'
 import WorkspaceSidebar, { WorkspaceSidebarModal } from './WorkspaceSidebar'
 
-export const LoginGuard: FC<LayoutProps> = ({ children }) => {
+export const LoginGuard: FC<LayoutProps> = ({ options, children }) => {
   const { t } = useTranslation()
 
   const alert = useAlert()
@@ -40,7 +40,11 @@ export const LoginGuard: FC<LayoutProps> = ({ children }) => {
     setUser(user)
 
     if (!user.isEmailVerified) {
-      router.replace('/verify-email')
+      return router.replace('/verify-email')
+    }
+
+    if (!options?.isOnboardingPage && !user.isOnboarded) {
+      return router.redirect('/onboarding')
     }
   }, [])
 
@@ -69,6 +73,12 @@ export const LoginGuard: FC<LayoutProps> = ({ children }) => {
       })
     }
   }, [user.deletionScheduledAt, user.isDeletionScheduled])
+
+  useEffect(() => {
+    if (helper.isValid(options?.title)) {
+      document.title = `${t(options!.title)} - HeyForm`
+    }
+  }, [options, t])
 
   return <>{children}</>
 }

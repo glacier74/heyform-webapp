@@ -32,7 +32,7 @@ const InputOTP: FC<InputOTPProps> = ({
     >
       {children}
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-foreground">
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-foreground">
           <Loader />
         </div>
       )}

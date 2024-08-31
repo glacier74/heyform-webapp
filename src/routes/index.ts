@@ -2,6 +2,7 @@ import {
   AuthLayout,
   BaseLayout,
   FormLayout,
+  LoginGuard,
   ProjectLayout,
   TemplateLayout,
   WorkspaceGuard,
@@ -21,6 +22,7 @@ import FormShare from '@/pages/form/Share'
 import FormSubmissions from '@/pages/form/Submissions'
 import ProjectForms from '@/pages/project/Forms'
 import ProjectTrash from '@/pages/project/Trash'
+import Onboarding from '@/pages/user/Onboarding'
 import Template from '@/pages/user/Template'
 import WorkspaceBilling from '@/pages/workspace/Billing'
 import CreateWorkspace from '@/pages/workspace/Create'
@@ -80,6 +82,18 @@ const routes = [
     options: {
       title: 'oauth.title',
       loginRequired: true
+    }
+  },
+
+  /* Onboarding */
+  {
+    path: '/onboarding',
+    layout: LoginGuard,
+    component: Onboarding,
+    options: {
+      loginRequired: true,
+      isOnboardingPage: true,
+      title: 'onboarding.title'
     }
   },
 

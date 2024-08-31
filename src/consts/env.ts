@@ -21,6 +21,8 @@ export const STRIPE_PORTAL_URL = import.meta.env.VITE_STRIPE_PORTAL_URL as strin
 export const TEMPLATES_URL = import.meta.env.VITE_TEMPLATES_URL as string
 export const HELP_CENTER_URL = import.meta.env.VITE_HELP_CENTER_URL as string
 
+export const ONBOARDING_FORM_URL = import.meta.env.VITE_ONBOARDING_FORM_URL as string
+
 export const IS_PROD = import.meta.env.NODE_ENV === 'production'
 export const PACKAGE_VERSION = import.meta.env.PACKAGE_VERSION
 

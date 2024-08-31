@@ -29,6 +29,7 @@ export default function VerifyEmail() {
       await UserService.emailVerificationCode()
     },
     {
+      refreshDeps: [user.isEmailVerified],
       onError: err => {
         toast({
           title: t('components.error.title'),
@@ -41,7 +42,7 @@ export default function VerifyEmail() {
   const { loading: verifyLoading, run: verifyRun } = useRequest(
     async (code: string) => {
       await UserService.verifyEmail(code)
-      router.redirect('/')
+      router.redirect('/onboarding')
     },
     {
       manual: true

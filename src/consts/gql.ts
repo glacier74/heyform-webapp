@@ -1055,6 +1055,7 @@ export const USER_DETAILS_GQL = gql`
       isSocialAccount
       isDeletionScheduled
       deletionScheduledAt
+      isOnboarded
     }
   }
 `
