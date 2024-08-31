@@ -670,7 +670,8 @@
       "trialTip_one": "L'essai de {{name}} se termine dans {{count}} jour",
       "trialTip_other": "L'essai de {{name}} se termine dans {{count}} jours",
       "hiddenFields": "Passez à la version Basic pour ajouter un champ caché",
-      "brandKit": "Mettez à niveau vers Premium pour configurer le kit de marque"
+      "brandKit": "Mettez à niveau vers Premium pour configurer le kit de marque",
+      "redirect": "Passez à Basic pour configurer la redirection"
     },
     "payment": {
       "headline": "Mettre à niveau le plan",

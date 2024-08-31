@@ -670,7 +670,8 @@
       "trialTip_one": "Okres próbny {{name}} kończy się za {{count}} dzień",
       "trialTip_other": "Okres próbny {{name}} kończy się za {{count}} dni",
       "hiddenFields": "Ulepsz do Basic, aby dodać ukryte pole",
-      "brandKit": "Uaktualnij do Premium, aby skonfigurować zestaw markowy"
+      "brandKit": "Uaktualnij do Premium, aby skonfigurować zestaw markowy",
+      "redirect": "Uaktualnij do Basic, aby ustawić przekierowanie"
     },
     "payment": {
       "headline": "Zmień plan",

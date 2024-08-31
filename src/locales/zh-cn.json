@@ -670,7 +670,8 @@
       "trialTip_one": "{{name}} 试用期将在 {{count}} 天后结束",
       "trialTip_other": "{{name}} 试用期将在 {{count}} 天后结束",
       "hiddenFields": "升级到基础版以添加隐藏字段",
-      "brandKit": "升级到高级版本以设置品牌包"
+      "brandKit": "升级到高级版本以设置品牌包",
+      "redirect": "升级到基础版以设置重定向"
     },
     "payment": {
       "headline": "升级套餐",

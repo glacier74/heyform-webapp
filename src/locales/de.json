@@ -670,7 +670,8 @@
       "trialTip_one": "{{name}} Testversion endet in {{count}} Tag",
       "trialTip_other": "{{name}} Testversion endet in {{count}} Tagen",
       "hiddenFields": "Upgrade auf Basic, um ein verstecktes Feld hinzuzufügen",
-      "brandKit": "Upgrade auf Premium, um das Marken-Kit einzurichten"
+      "brandKit": "Upgrade auf Premium, um das Marken-Kit einzurichten",
+      "redirect": "Upgrade auf Basic, um die Umleitung einzurichten"
     },
     "payment": {
       "headline": "Plan upgraden",

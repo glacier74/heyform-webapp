@@ -1,7 +1,8 @@
 import { startTransition, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Input, Switch } from '@/components'
+import { Input, PlanUpgrade, Switch } from '@/components'
+import { PlanGradeEnum } from '@/consts'
 
 import { useStoreContext } from '../../store'
 import { RequiredSettingsProps } from './Required'
@@ -37,20 +38,27 @@ export default function ThankYou({ field }: RequiredSettingsProps) {
           {t('form.builder.settings.redirect')}
         </label>
 
-        <Switch
-          value={field.properties?.redirectOnCompletion}
-          onChange={value => handleChange('redirectOnCompletion', value)}
-        />
+        <PlanUpgrade
+          minimalGrade={PlanGradeEnum.BASIC}
+          tooltipLabel={t('billing.upgrade.redirect')}
+        >
+          <Switch
+            value={field.properties?.redirectOnCompletion}
+            onChange={value => handleChange('redirectOnCompletion', value)}
+          />
+        </PlanUpgrade>
       </div>
 
-      {field.properties?.redirectOnCompletion && (
-        <Input
-          placeholder="https://example.com"
-          type="url"
-          value={field.properties?.redirectUrl}
-          onChange={value => handleChange('redirectUrl', value)}
-        />
-      )}
+      <PlanUpgrade minimalGrade={PlanGradeEnum.BASIC} isUpgradeShow={false} fallback={() => null}>
+        {field.properties?.redirectOnCompletion && (
+          <Input
+            placeholder="https://example.com"
+            type="url"
+            value={field.properties?.redirectUrl}
+            onChange={value => handleChange('redirectUrl', value)}
+          />
+        )}
+      </PlanUpgrade>
     </div>
   )
 }

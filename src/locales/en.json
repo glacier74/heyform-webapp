@@ -670,7 +670,8 @@
       "remaining_other": "{{count}} days remaining",
       "trialTip_zero": "{{name}} trial ends today",
       "trialTip_one": "{{name}} trial ends in {{count}} day",
-      "trialTip_other": "{{name}} trial ends in {{count}} days"
+      "trialTip_other": "{{name}} trial ends in {{count}} days",
+      "redirect": "Upgrade to Basic to set up redirection"
     },
     "payment": {
       "headline": "Upgrade plan",
