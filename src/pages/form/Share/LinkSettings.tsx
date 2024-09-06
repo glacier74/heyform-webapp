@@ -6,7 +6,7 @@ import { useRequest } from 'ahooks'
 import { useMemo, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import LogoIcon from '@/assets/logo.svg?react'
+import OgIcon from '@/assets/og.svg?react'
 import {
   Button,
   Image,
@@ -19,35 +19,38 @@ import {
 } from '@/components'
 import { PlanGradeEnum } from '@/consts'
 import { FormService } from '@/services'
-import { useFormStore, useWorkspaceStore } from '@/store'
+import { useFormStore } from '@/store'
 import { useParam } from '@/utils'
 
 export default function LinkSettings() {
   const { t } = useTranslation()
 
   const { formId } = useParam()
-  const { workspace } = useWorkspaceStore()
   const { form, updateSettings } = useFormStore()
 
   const { isAllowed, openUpgrade } = usePlanGrade(PlanGradeEnum.BASIC)
   const imagePickerRef = useRef<ImagePickerRef | null>(null)
 
-  const { title, description, isBrandingShow } = useMemo(() => {
+  const { title, description } = useMemo(() => {
     if (form) {
       const fieldsCount = flattenFields(form.drafts).filter(
         f => !UNSELECTABLE_FIELD_KINDS.includes(f.kind)
       ).length
-      const description = fieldsCount <= 1 ? `1 question` : `${fieldsCount} questions`
+      let description = fieldsCount <= 1 ? `1 question` : `${fieldsCount} questions`
+
+      const timeToComplete = Math.round(1.2 * (Math.log(fieldsCount) / Math.log(2)))
+      const unit = !isNaN(timeToComplete) && timeToComplete > 1 ? 'mins' : 'min'
+
+      description += `, ${timeToComplete} ${unit} to complete`
 
       return {
-        title: form.settings?.metaTitle || form.name,
-        description: form.settings?.metaDescription || description,
-        isBrandingShow: !workspace.removeBranding
+        title: form.name,
+        description
       }
     }
 
     return {}
-  }, [form, workspace.removeBranding])
+  }, [form])
 
   const { run } = useRequest(
     async (name: string, value?: string | null) => {
@@ -179,49 +182,25 @@ export default function LinkSettings() {
                   </div>
                 </div>
               ) : (
-                <div
-                  className="aspect-[1200/630] rounded-lg px-4 py-2"
-                  style={{
-                    backgroundImage:
-                      'radial-gradient(60% 100%,#fff,rgba(255,255,255,0.1)),radial-gradient(100% 30% at 50% 0px, #fff 60%, rgba(255,255,255,0.1)),linear-gradient(120.7deg,#fbddf0 10.68%,#c2f2ff 88.93%)'
-                  }}
-                >
-                  <div className="flex h-full w-full flex-col justify-center">
-                    {/* Workspace logo */}
-                    <div className="flex w-full">
-                      {workspace.avatar ? (
-                        <Image
-                          className="h-8 w-8 rounded-full"
-                          src={workspace.avatar}
-                          resize={{
-                            width: 100,
-                            height: 100
-                          }}
-                        />
-                      ) : (
-                        <LogoIcon className="h-8 w-8" />
-                      )}
-                    </div>
+                <div className="relative aspect-[1200/630] select-none rounded-lg bg-white">
+                  <OgIcon className="h-full w-full rounded-lg" />
 
-                    {/* Meta title or form name */}
-                    <div className="mt-3 line-clamp-2 text-sm/6 font-semibold leading-[1.25] text-[#09090b]">
-                      {title}
-                    </div>
-
-                    {/* Meta description or question count */}
-                    <div className="mt-1 line-clamp-2 text-sm leading-[1.25] text-[#71717a]">
-                      {description}
-                    </div>
-
-                    {isBrandingShow && (
-                      <div className="mt-4">
-                        <div className="flex items-center text-xs leading-[1.25] text-[#09090b]">
-                          <span className="flex">Made with</span>
-                          <LogoIcon className="ml-1 mr-0.5 h-4 w-4" />
-                          <span>HeyForm</span>
-                        </div>
+                  <div className="absolute inset-0 text-black">
+                    <div className="mx-[28px] mt-[25px]">
+                      <div className="inline-block h-[28px] rounded-[6px] border border-[rgba(15,23,42,0.3)] px-[25px] text-sm font-medium leading-[28px]">
+                        {description}
                       </div>
-                    )}
+                    </div>
+                    <div className="mx-[28px] flex h-[100px] items-center">
+                      <div
+                        className="text-[22px] font-bold leading-[26px]"
+                        style={{
+                          lineClamp: 2
+                        }}
+                      >
+                        {title}
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
