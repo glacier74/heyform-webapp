@@ -41,7 +41,7 @@ export const Avatar: FC<AvatarProps> = ({
     >
       {!isLoaded && (
         <span
-          className="flex h-full w-full items-center justify-center rounded-full bg-accent text-primary"
+          className="flex h-full w-full items-center justify-center rounded-full bg-accent text-primary dark:text-zinc-950"
           data-slot="fallback"
         >
           {getFirstLetters(fallback)}

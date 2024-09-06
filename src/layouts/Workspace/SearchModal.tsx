@@ -242,7 +242,7 @@ const SearchModalComponent = () => {
           <>
             <IconSearch className="h-5 w-5 text-secondary" />
             <Command.Input
-              className="flex-1 border-none p-0 text-sm/6 text-primary outline-none focus:outline-none focus:ring-0"
+              className="flex-1 border-none bg-transparent p-0 text-sm/6 text-primary outline-none focus:outline-none focus:ring-0"
               placeholder={t('dashboard.search.placeholder')}
               autoFocus
               onValueChange={handleQueryChange}
@@ -277,7 +277,7 @@ const SearchModalComponent = () => {
                 {g.items.map(row => (
                   <Command.Item
                     key={row.value}
-                    className="mx-2 cursor-pointer rounded-lg aria-selected:bg-accent"
+                    className="mx-2 cursor-pointer rounded-lg aria-selected:bg-accent-light"
                     value={JSON.stringify({ type: g.type, value: row.value })}
                     onSelect={handleSelect}
                   >

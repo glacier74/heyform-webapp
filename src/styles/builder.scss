@@ -1377,6 +1377,20 @@ button.connect-stripe {
   --heyform-report-button-text: rgb(255, 255, 255);
 }
 
+.dark {
+  .heyform-report {
+    --heyform-report-heading: rgb(255, 255, 255);
+    --heyform-report-heading-a60: rgba(255, 255, 255, 0.6);
+    --heyform-report-question: rgb(255, 255, 255);
+    --heyform-report-question-a60: rgba(255, 255, 255, 0.6);
+    --heyform-report-question-a05: rgba(255, 255, 255, 0.05);
+    --heyform-report-chart: rgb(37, 99, 235);
+    --heyform-report-chart-a15: rgba(37, 99, 235, 0.15);
+    --heyform-report-chart-a025: rgba(37, 99, 235, 0.025);
+    --heyform-report-button-text: rgb(9, 9, 11);
+  }
+}
+
 .heyform-report-heading {
   @apply text-3xl font-bold;
   color: var(--heyform-report-heading);
