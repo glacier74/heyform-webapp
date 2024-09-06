@@ -55,7 +55,7 @@ const FormItem: FC<FormItemProps> = ({
             className={className}
             data-slot="item"
             data-name={name}
-            data-error={true ? '' : undefined}
+            data-error={hasError ? '' : undefined}
           >
             <div
               className={cn('w-full', isInline ? 'flex gap-x-8' : 'space-y-1')}
