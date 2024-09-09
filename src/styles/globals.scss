@@ -140,6 +140,14 @@ body {
     @apply mb-1.5 mt-4 text-base/6 font-bold text-primary;
   }
 
+  h3 {
+    @apply mb-1 mt-2 text-sm/6 font-bold text-primary;
+  }
+
+  hr {
+    @apply my-4;
+  }
+
   p,
   img {
     @apply mb-4;
