@@ -1428,7 +1428,12 @@
         "multipleChoice": {
           "unlimited": "Nieograniczony",
           "exactNumber": "Dokładna liczba",
-          "range": "Zakres"
+          "range": "Zakres",
+          "badge": {
+            "title": "Odznaka",
+            "letter": "Litera",
+            "number": "Numer"
+          }
         }
       },
       "design": {

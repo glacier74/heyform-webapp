@@ -1496,7 +1496,12 @@
         "multipleChoice": {
           "unlimited": "Unlimited",
           "exactNumber": "Exact number",
-          "range": "Range"
+          "range": "Range",
+          "badge": {
+            "title": "Badge",
+            "letter": "Letter",
+            "number": "Number"
+          }
         }
       },
       "design": {

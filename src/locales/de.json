@@ -1428,7 +1428,12 @@
         "multipleChoice": {
           "unlimited": "Unbegrenzt",
           "exactNumber": "Genaue Anzahl",
-          "range": "Bereich"
+          "range": "Bereich",
+          "badge": {
+            "title": "Abzeichen",
+            "letter": "Buchstabe",
+            "number": "Nummer"
+          }
         }
       },
       "design": {

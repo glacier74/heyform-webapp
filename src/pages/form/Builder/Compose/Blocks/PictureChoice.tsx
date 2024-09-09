@@ -1,5 +1,5 @@
-import { Button, CHAR_A_KEY_CODE, Input } from '@heyform-inc/form-renderer'
-import type { Choice } from '@heyform-inc/shared-types-enums'
+import { Button, Input, getChoiceKeyName } from '@heyform-inc/form-renderer'
+import { Choice, ChoiceBadgeEnum } from '@heyform-inc/shared-types-enums'
 import { clone, helper, nanoid } from '@heyform-inc/utils'
 import {
   IconPencil,
@@ -22,6 +22,7 @@ interface PictureChoiceItemProps {
   index: number
   choice: Choice
   isOther?: boolean
+  badge?: ChoiceBadgeEnum
   enableRemove?: boolean
   onLabelChange?: (id: string, label: string) => void
   onSelectImage?: (id: string) => void
@@ -33,6 +34,7 @@ const PictureChoiceItem: FC<PictureChoiceItemProps> = ({
   choice,
   index,
   isOther,
+  badge = ChoiceBadgeEnum.LETTER,
   enableRemove,
   onLabelChange,
   onSelectImage,
@@ -90,7 +92,7 @@ const PictureChoiceItem: FC<PictureChoiceItemProps> = ({
         )}
 
         <div className="heyform-radio-content">
-          <div className="heyform-radio-hotkey">{String.fromCharCode(CHAR_A_KEY_CODE + index)}</div>
+          <div className="heyform-radio-hotkey">{getChoiceKeyName(badge, index)}</div>
           <div className="heyform-radio-label">
             {isOther ? (
               <div className="heyform-radio-label-other">{choice.label}</div>
@@ -271,6 +273,7 @@ export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) =
             key={choice.id}
             index={index}
             choice={choice}
+            badge={field.properties!.badge}
             enableRemove={field.properties!.choices!.length > 1}
             onLabelChange={handleLabelChangeCallback}
             onSelectImage={handleSelectImageCallback}
@@ -288,6 +291,7 @@ export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) =
                 label: t('form.builder.compose.otherChoice')
               } as Choice
             }
+            badge={field.properties!.badge}
             isOther={true}
             enableRemove={field.properties!.choices!.length > 1}
             onRemove={handleChoiceRemoveCallback}

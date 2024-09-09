@@ -1,11 +1,11 @@
 import {
   Button,
-  CHAR_A_KEY_CODE,
   Input,
   InputRef,
+  getChoiceKeyName,
   preventDefault
 } from '@heyform-inc/form-renderer'
-import { Choice } from '@heyform-inc/shared-types-enums'
+import { Choice, ChoiceBadgeEnum } from '@heyform-inc/shared-types-enums'
 import { clone, helper, nanoid } from '@heyform-inc/utils'
 import { IconX } from '@tabler/icons-react'
 import { FC, KeyboardEvent, Ref, useCallback, useRef, useState } from 'react'
@@ -22,6 +22,7 @@ interface MultipleChoiceItemProps {
   index: number
   choice: Choice
   isOther?: boolean
+  badge?: ChoiceBadgeEnum
   enableRemove?: boolean
   onRemove: (id: string) => void
   onChange?: (id: string, label: string) => void
@@ -35,6 +36,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
   index,
   choice,
   isOther,
+  badge = ChoiceBadgeEnum.LETTER,
   enableRemove,
   onRemove,
   onChange,
@@ -87,7 +89,7 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
     <div className="heyform-radio">
       <div className="heyform-radio-container">
         <div className="heyform-radio-content">
-          <div className="heyform-radio-hotkey">{String.fromCharCode(CHAR_A_KEY_CODE + index)}</div>
+          <div className="heyform-radio-hotkey">{getChoiceKeyName(badge, index)}</div>
           <div className="heyform-radio-label">
             {isOther ? (
               <div className="heyform-radio-label-other cursor-default">{choice.label}</div>
@@ -256,6 +258,7 @@ export const MultipleChoice: FC<BlockProps> = ({ field, locale, ...restProps }) 
             key={choice.id}
             index={index}
             choice={choice}
+            badge={field.properties!.badge}
             enableRemove={field.properties!.choices!.length > 1}
             onRemove={handleChoiceRemoveCallback}
             onChange={handleLabelChangeCallback}
@@ -274,6 +277,7 @@ export const MultipleChoice: FC<BlockProps> = ({ field, locale, ...restProps }) 
                 label: t('form.builder.compose.otherChoice')
               } as Choice
             }
+            badge={field.properties!.badge}
             isOther={true}
             enableRemove={field.properties!.choices!.length > 1}
             onRemove={handleChoiceRemoveCallback}

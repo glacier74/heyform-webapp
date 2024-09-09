@@ -1428,7 +1428,12 @@
         "multipleChoice": {
           "unlimited": "無制限",
           "exactNumber": "正確な数",
-          "range": "範囲"
+          "range": "範囲",
+          "badge": {
+            "title": "バッジ",
+            "letter": "文字",
+            "number": "番号"
+          }
         }
       },
       "design": {

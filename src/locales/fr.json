@@ -1432,7 +1432,12 @@
         "multipleChoice": {
           "unlimited": "Illimité",
           "exactNumber": "Nombre exact",
-          "range": "Plage"
+          "range": "Plage",
+          "badge": {
+            "title": "Badge",
+            "letter": "Lettre",
+            "number": "Numéro"
+          }
         }
       },
       "design": {

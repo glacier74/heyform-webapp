@@ -1428,7 +1428,12 @@
         "multipleChoice": {
           "unlimited": "不限",
           "exactNumber": "確切數量",
-          "range": "範圍"
+          "range": "範圍",
+          "badge": {
+            "title": "徽章",
+            "letter": "字母",
+            "number": "數字"
+          }
         }
       },
       "design": {

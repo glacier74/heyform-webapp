@@ -1,4 +1,4 @@
-import { Validation } from '@heyform-inc/shared-types-enums'
+import { ChoiceBadgeEnum, Validation } from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
 import { FC, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -33,6 +33,17 @@ const RANGE_OPTIONS = [
   {
     value: RangeTypeEnum.RANGE,
     label: 'form.builder.settings.multipleChoice.range'
+  }
+]
+
+const BADGE_OPTIONS = [
+  {
+    value: ChoiceBadgeEnum.LETTER,
+    label: 'form.builder.settings.multipleChoice.badge.letter'
+  },
+  {
+    value: ChoiceBadgeEnum.NUMBER,
+    label: 'form.builder.settings.multipleChoice.badge.number'
   }
 ]
 
@@ -246,6 +257,18 @@ export default function MultipleChoiceSettings({ field }: RequiredSettingsProps)
         <Switch
           value={field.properties?.allowOther}
           onChange={value => handleChange('allowOther', value)}
+        />
+      </div>
+
+      <div className="flex items-center justify-between">
+        <label className="text-sm/6" htmlFor="#">
+          {t('form.builder.settings.multipleChoice.badge.title')}
+        </label>
+        <Select
+          value={field.properties?.badge || ChoiceBadgeEnum.LETTER}
+          options={BADGE_OPTIONS}
+          multiLanguage
+          onChange={value => handleChange('badge', value)}
         />
       </div>
     </>

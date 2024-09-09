@@ -1,5 +1,6 @@
 import { htmlUtils } from '@heyform-inc/answer-utils'
 import {
+  ChoiceBadgeEnum,
   FORM_FIELD_KINDS,
   FieldKindEnum,
   Logic,
@@ -94,6 +95,7 @@ export function getPropertiesFromKind(properties: Property, newKind: FieldKindEn
     case FieldKindEnum.MULTIPLE_CHOICE:
     case FieldKindEnum.PICTURE_CHOICE:
       if (!helper.isArray(props.choices)) {
+        props.badge = ChoiceBadgeEnum.LETTER
         props.choices = [
           {
             id: nanoid(12),
