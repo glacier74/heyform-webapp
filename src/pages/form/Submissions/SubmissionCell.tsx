@@ -217,7 +217,10 @@ const MultipleChoiceItem: FC<SubmissionCellProps> = ({ answer, field, isTableCel
   const result = choices.filter(c => answer.value.value.includes(c.id))
 
   if (answer.value.other) {
-    result.push(answer.value.other)
+    result.push({
+      id: answer.value.other,
+      label: answer.value.other
+    })
   }
 
   return (
