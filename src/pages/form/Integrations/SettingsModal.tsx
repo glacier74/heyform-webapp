@@ -19,6 +19,7 @@ import LarkSettings from './LarkSettings'
 import LegacySlackSettings from './LegacySlackSettings'
 import MailChimpSettings from './MailChimpSettings'
 import MondaySettings from './MondaySettings'
+import NotionSettings from './NotionSettings'
 import OsticketSettings from './OsticketSettings'
 import SlackSettings from './SlackSettings'
 import SupportPalSettings from './SupportPalSettings'
@@ -80,6 +81,9 @@ const Settings: FC<{ app: IntegratedAppType }> = ({ app }) => {
 
       case 'webhook':
         return <WebhookSettings app={app} />
+
+      case 'notion':
+        return <NotionSettings app={app} />
     }
   }, [app])
 

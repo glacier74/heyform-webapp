@@ -30,6 +30,8 @@ import {
   MONDAY_FIELDS_GQL,
   MONDAY_GROUPS_GQL,
   MONDAY_OAUTH_GQL,
+  NOTION_DATABASES_GQL,
+  NOTION_OAUTH_GQL,
   SLACK_CHANNELS_GQL,
   SLACK_OAUTH_GQL,
   SUPPORTPAL_DEPARTMENTS_GQL,
@@ -534,6 +536,31 @@ export class IntegrationService {
   static async slackChannels(formId: string, appId: string) {
     return apollo.query({
       query: SLACK_CHANNELS_GQL,
+      variables: {
+        input: {
+          formId,
+          appId
+        }
+      }
+    })
+  }
+
+  static async notionOauth(formId: string, appId: string, code: string) {
+    return apollo.mutate({
+      mutation: NOTION_OAUTH_GQL,
+      variables: {
+        input: {
+          formId,
+          appId,
+          code
+        }
+      }
+    })
+  }
+
+  static async notionDatabases(formId: string, appId: string) {
+    return apollo.query({
+      query: NOTION_DATABASES_GQL,
       variables: {
         input: {
           formId,

@@ -1433,6 +1433,26 @@ export const SLACK_CHANNELS_GQL = gql`
   }
 `
 
+export const NOTION_OAUTH_GQL = gql`
+  mutation notionOauth($input: ThirdPartyOAuthInput!) {
+    notionOauth(input: $input)
+  }
+`
+
+export const NOTION_DATABASES_GQL = gql`
+  query notionDatabases($input: ThirdPartyInput!) {
+    notionDatabases(input: $input) {
+      id
+      name
+      fields {
+        id
+        name
+        type
+      }
+    }
+  }
+`
+
 export const CREATE_CONTACT_GQL = gql`
   mutation createContact($input: CreateContactInput!) {
     createContact(input: $input)

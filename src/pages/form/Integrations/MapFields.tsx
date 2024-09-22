@@ -25,6 +25,12 @@ interface MapFieldsProps {
   rightValueKey?: string
   rightLabelKey?: string
   rightPlaceholder?: string
+
+  filter?: (
+    value: Any,
+    leftOptions: Any[],
+    rightOptions: Any[]
+  ) => { leftOptions: Any[]; rightOptions: Any[] }
 }
 
 export const MapFields: FC<MapFieldsProps> = ({
@@ -40,10 +46,11 @@ export const MapFields: FC<MapFieldsProps> = ({
   leftPlaceholder,
   rightType,
   rightLoading,
-  rightOptions,
+  rightOptions = [],
   rightValueKey,
   rightLabelKey,
-  rightPlaceholder
+  rightPlaceholder,
+  filter
 }) => {
   const { t } = useTranslation()
 
@@ -114,9 +121,20 @@ export const MapFields: FC<MapFieldsProps> = ({
                       remove(index)
                     }
 
+                    const options = (() => {
+                      if (!filter) {
+                        return {
+                          leftOptions,
+                          rightOptions
+                        }
+                      }
+
+                      return filter(value, leftOptions, rightOptions)
+                    })()
+
                     return (
                       <div className="flex items-center pt-4 sm:pt-0">
-                        <div className="grid min-w-0 flex-1 grid-cols-1 gap-2 sm:grid-cols-[minmax(auto,_18rem)_2rem_minmax(auto,_18rem)] sm:gap-3">
+                        <div className="grid min-w-0 flex-1 grid-cols-1 gap-2 sm:grid-cols-[16rem_2rem_16rem] sm:gap-3">
                           <div className="w-full">
                             <Select
                               className="h-11 w-full sm:h-10 [&_[data-slot=value]]:block [&_[data-slot=value]]:text-left"
@@ -126,7 +144,7 @@ export const MapFields: FC<MapFieldsProps> = ({
                               }}
                               type={leftType}
                               value={value[0]}
-                              options={leftOptions}
+                              options={options.leftOptions}
                               valueKey={leftValueKey}
                               labelKey={leftLabelKey}
                               placeholder={t(leftPlaceholder as Any)}
@@ -150,7 +168,7 @@ export const MapFields: FC<MapFieldsProps> = ({
                                 }}
                                 type={rightType}
                                 value={value[1]}
-                                options={rightOptions}
+                                options={options.rightOptions}
                                 valueKey={rightValueKey}
                                 labelKey={rightLabelKey}
                                 placeholder={rightPlaceholder}
