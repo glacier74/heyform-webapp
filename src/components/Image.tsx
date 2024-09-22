@@ -61,6 +61,8 @@ const Background: FC<BackgroundProps> = ({
   )
 }
 
+const isURL = (url: string) => /^https?:\/\//i.test(url)
+
 const ImageComponent: FC<ImageProps> = ({
   className,
   src: rawSrc,
@@ -73,7 +75,7 @@ const ImageComponent: FC<ImageProps> = ({
   const { width, height } = resize
 
   const src = useMemo(() => {
-    if (!helper.isURL(rawSrc)) {
+    if (!isURL(rawSrc as string)) {
       return
     }
 
