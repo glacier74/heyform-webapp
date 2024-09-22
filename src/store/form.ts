@@ -1,6 +1,10 @@
 import { htmlUtils } from '@heyform-inc/answer-utils'
 import { getTheme } from '@heyform-inc/form-renderer'
-import { FormSettings, ThemeSettings } from '@heyform-inc/shared-types-enums'
+import {
+  FormSettings,
+  ThemeSettings,
+  UNSELECTABLE_FIELD_KINDS
+} from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
 import { type Dayjs } from 'dayjs'
 import { create } from 'zustand'
@@ -89,12 +93,15 @@ const computeState = (state: FormStoreType): ComputedStoreType => {
   return {
     embedConfig,
     integratedApps: integratedApps as IntegratedAppType[],
-    formFields: (state.form?.drafts || []).map(field => ({
-      id: field.id,
-      title: helper.isArray(field.title)
-        ? htmlUtils.plain(htmlUtils.serialize(field.title as Any))
-        : field.title
-    }))
+    formFields: (state.form?.drafts || [])
+      .filter(f => !UNSELECTABLE_FIELD_KINDS.includes(f.kind))
+      .map(f => ({
+        id: f.id,
+        kind: f.kind,
+        title: helper.isArray(f.title)
+          ? htmlUtils.plain(htmlUtils.serialize(f.title as Any))
+          : f.title
+      }))
   }
 }
 

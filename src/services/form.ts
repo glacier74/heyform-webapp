@@ -425,14 +425,11 @@ export class FormService {
     })
   }
 
-  static useTemplate(projectId: string, templateId: string) {
+  static useTemplate(input: { projectId: string; templateId: string; recordId: string }) {
     return apollo.mutate({
       mutation: USE_TEMPLATE_GQL,
       variables: {
-        input: {
-          projectId,
-          templateId
-        }
+        input
       }
     })
   }

@@ -8,13 +8,14 @@ import { Button, Form, Loader, Select } from '@/components'
 import { WEBSITE_URL } from '@/consts'
 import { FormService } from '@/services'
 import { useAppStore, useWorkspaceStore } from '@/store'
-import { nextTick, useParam, useRouter } from '@/utils'
+import { nextTick, useParam, useQuery, useRouter } from '@/utils'
 
 export default function Template() {
   const { t } = useTranslation()
 
   const router = useRouter()
   const { templateId } = useParam()
+  const { recordId } = useQuery()
   const [rcForm] = Form.useForm()
   const { openModal } = useAppStore()
   const { workspaces } = useWorkspaceStore()
@@ -52,14 +53,18 @@ export default function Template() {
   const { error, loading, run } = useRequest(
     async (values: AnyMap) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const formId = await FormService.useTemplate(values.projectId, templateId)
+      const formId = await FormService.useTemplate({
+        projectId: values.projectId,
+        templateId,
+        recordId
+      })
 
       router.push(
         `/workspace/${values.workspaceId}/project/${values.projectId}/form/${formId}/create`
       )
     },
     {
-      refreshDeps: [templateId],
+      refreshDeps: [templateId, recordId],
       manual: true
     }
   )

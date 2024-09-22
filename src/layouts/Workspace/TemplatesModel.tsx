@@ -48,7 +48,11 @@ const TemplatePreview: FC<TemplatePreviewProps> = ({ template: rawTemplate, onBa
   const { loading, run } = useRequest(
     async () => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const formId = await FormService.useTemplate(projectId, rawTemplate.id)
+      const formId = await FormService.useTemplate({
+        projectId,
+        templateId: rawTemplate.id,
+        recordId: rawTemplate.recordId as string
+      })
 
       closeModal('CreateFormModal')
       router.push(`/workspace/${workspaceId}/project/${projectId}/form/${formId}/create`)
@@ -211,7 +215,7 @@ export default function TemplatesModel({ onBack }: TemplatesModelProps) {
                   >
                     <Image
                       className="aspect-video w-full rounded-t-lg"
-                      src={(template as AnyMap).thumbnail}
+                      src={(template as Any).thumbnail}
                       resize={{
                         width: 480,
                         height: 280

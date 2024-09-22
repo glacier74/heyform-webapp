@@ -444,6 +444,7 @@ export const TEMPLATES_GQL = gql`
   query templates {
     templates {
       id
+      recordId
       category
       name
       thumbnail
