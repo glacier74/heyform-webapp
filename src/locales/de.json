@@ -629,7 +629,11 @@
     "planName": "{{name}}-Plan",
     "year": "Jahr",
     "month": "Monat",
-    "cycles": ["Für immer", "Monatlich", "Jährlich"],
+    "cycles": [
+      "Für immer",
+      "Monatlich",
+      "Jährlich"
+    ],
     "save16": "Sparen Sie 16%",
     "keepFreePlan": "Weiterhin den kostenlosen Plan nutzen",
     "plans": {
@@ -1138,6 +1142,11 @@
         "status": {
           "headline": "Status"
         }
+      },
+      "notion": {
+        "database": {
+          "headline": "Datenbank"
+        }
       }
     },
     "share": {
@@ -1433,7 +1442,8 @@
             "title": "Abzeichen",
             "letter": "Buchstabe",
             "number": "Nummer"
-          }
+          },
+          "verticalAlignment": "Vertikale Ausrichtung"
         }
       },
       "design": {

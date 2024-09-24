@@ -629,7 +629,11 @@
     "planName": "Plan {{name}}",
     "year": "année",
     "month": "mois",
-    "cycles": ["Pour toujours", "Mensuel", "Annuel"],
+    "cycles": [
+      "Pour toujours",
+      "Mensuel",
+      "Annuel"
+    ],
     "save16": "Économisez 16%",
     "keepFreePlan": "Continuer à utiliser le plan gratuit",
     "plans": {
@@ -1142,6 +1146,11 @@
         "status": {
           "headline": "Statut"
         }
+      },
+      "notion": {
+        "database": {
+          "headline": "Base de données"
+        }
       }
     },
     "share": {
@@ -1437,7 +1446,8 @@
             "title": "Badge",
             "letter": "Lettre",
             "number": "Numéro"
-          }
+          },
+          "verticalAlignment": "Alignement vertical"
         }
       },
       "design": {

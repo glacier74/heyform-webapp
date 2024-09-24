@@ -8,6 +8,7 @@ import {
 import { Choice, ChoiceBadgeEnum } from '@heyform-inc/shared-types-enums'
 import { clone, helper, nanoid } from '@heyform-inc/utils'
 import { IconX } from '@tabler/icons-react'
+import { clsx } from 'clsx'
 import { FC, KeyboardEvent, Ref, useCallback, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -251,7 +252,11 @@ export const MultipleChoice: FC<BlockProps> = ({ field, locale, ...restProps }) 
 
   return (
     <Block className="heyform-multiple-choice" field={field} locale={locale} {...restProps}>
-      <div className="heyform-multiple-choice-list">
+      <div
+        className={clsx('heyform-multiple-choice-list', {
+          'heyform-multiple-choice-horizontal': helper.isFalse(field.properties!.verticalAlignment)
+        })}
+      >
         {field.properties?.choices?.map((choice, index) => (
           <MultipleChoiceItem
             ref={ref => (refs[choice.id] = ref)}

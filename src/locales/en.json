@@ -1200,6 +1200,11 @@
         "status": {
           "headline": "Status"
         }
+      },
+      "notion": {
+        "database": {
+          "headline": "Database"
+        }
       }
     },
     "share": {
@@ -1501,7 +1506,8 @@
             "title": "Badge",
             "letter": "Letter",
             "number": "Number"
-          }
+          },
+          "verticalAlignment": "Vertical alignment"
         }
       },
       "design": {

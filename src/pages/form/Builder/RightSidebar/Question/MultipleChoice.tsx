@@ -262,6 +262,16 @@ export default function MultipleChoiceSettings({ field }: RequiredSettingsProps)
 
       <div className="flex items-center justify-between">
         <label className="text-sm/6" htmlFor="#">
+          {t('form.builder.settings.verticalAlignment')}
+        </label>
+        <Switch
+          value={!helper.isFalse(field.properties?.verticalAlignment)}
+          onChange={value => handleChange('verticalAlignment', value)}
+        />
+      </div>
+
+      <div className="flex items-center justify-between">
+        <label className="text-sm/6" htmlFor="#">
           {t('form.builder.settings.multipleChoice.badge.title')}
         </label>
         <Select

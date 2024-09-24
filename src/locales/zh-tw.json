@@ -629,7 +629,11 @@
     "planName": "{{name}} 套餐",
     "year": "年",
     "month": "月",
-    "cycles": ["永久", "每月", "每年"],
+    "cycles": [
+      "永久",
+      "每月",
+      "每年"
+    ],
     "save16": "節省 16%",
     "keepFreePlan": "繼續使用免費套餐",
     "plans": {
@@ -1138,6 +1142,11 @@
         "status": {
           "headline": "狀態"
         }
+      },
+      "notion": {
+        "database": {
+          "headline": "資料庫"
+        }
       }
     },
     "share": {
@@ -1433,7 +1442,8 @@
             "title": "徽章",
             "letter": "字母",
             "number": "數字"
-          }
+          },
+          "verticalAlignment": "垂直對齊"
         }
       },
       "design": {

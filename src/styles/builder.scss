@@ -494,6 +494,26 @@
         @apply visible opacity-100;
       }
     }
+
+    &.heyform-multiple-choice-horizontal {
+      @apply sm:w-full sm:flex-row sm:flex-wrap sm:gap-2;
+
+      .heyform-radio {
+        @apply sm:flex-1 sm:max-w-[calc(33.33%-0.5rem)] sm:mb-0 sm:self-stretch;
+      }
+
+      .heyform-radio-container {
+        @apply sm:h-full;
+      }
+
+      .heyform-radio-hotkey {
+        @apply sm:self-start;
+      }
+
+      .heyform-radio-label {
+        @apply sm:leading-[1.2];
+      }
+    }
   }
 
   .heyform-radio-label {
@@ -588,8 +608,7 @@
         border-width: 1.5rem;
         border-style: solid;
         border-image: initial;
-        border-color: var(--heyform-answer-color) var(--heyform-answer-color) transparent
-          transparent;
+        border-color: var(--heyform-answer-color) var(--heyform-answer-color) transparent transparent;
         border-radius: 0.25rem;
       }
     }
@@ -1213,9 +1232,8 @@
 
 .flow-custom-node {
   @apply h-28 w-56 rounded-lg border border-accent-light bg-foreground p-4 text-sm text-primary transition-all;
-  box-shadow:
-    rgba(0, 0, 0, 0.08) 0 0.125rem 0.25rem,
-    rgba(0, 0, 0, 0.06) 0 0.125rem 0.75rem;
+  box-shadow: rgba(0, 0, 0, 0.08) 0 0.125rem 0.25rem,
+  rgba(0, 0, 0, 0.06) 0 0.125rem 0.75rem;
 }
 
 .react-flow__node-customNode {
@@ -1293,6 +1311,10 @@ button.connect-stripe {
   .heyform-body {
     @apply lg:rounded-lg;
   }
+
+  .heyform-radio-label {
+    @apply break-all;
+  }
 }
 
 .heyform-root {
@@ -1328,6 +1350,10 @@ button.connect-stripe {
   .heyform-layout-float_right,
   .heyform-layout-split_right {
     @apply rounded-b-none;
+  }
+
+  .heyform-multiple-choice .heyform-radio-group.heyform-radio-group-horizontal {
+    @apply flex-col;
   }
 }
 
