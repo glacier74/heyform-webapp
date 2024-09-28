@@ -27,6 +27,8 @@ const RIGHT_TO_LEFT_MAP: AnyMap = {
   url: [FieldKindEnum.URL],
   file: [FieldKindEnum.FILE_UPLOAD],
   title: [
+    FieldKindEnum.MULTIPLE_CHOICE,
+    FieldKindEnum.PICTURE_CHOICE,
     FieldKindEnum.SHORT_TEXT,
     FieldKindEnum.LONG_TEXT,
     FieldKindEnum.FULL_NAME,
@@ -37,6 +39,8 @@ const RIGHT_TO_LEFT_MAP: AnyMap = {
     FieldKindEnum.URL
   ],
   rich_text: [
+    FieldKindEnum.MULTIPLE_CHOICE,
+    FieldKindEnum.PICTURE_CHOICE,
     FieldKindEnum.SHORT_TEXT,
     FieldKindEnum.LONG_TEXT,
     FieldKindEnum.FULL_NAME,
