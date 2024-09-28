@@ -134,7 +134,7 @@ export const MapFields: FC<MapFieldsProps> = ({
 
                     return (
                       <div className="flex items-center pt-4 sm:pt-0">
-                        <div className="grid min-w-0 flex-1 grid-cols-1 gap-2 sm:grid-cols-[16rem_2rem_16rem] sm:gap-3">
+                        <div className="grid min-w-0 flex-1 grid-cols-1 gap-2 sm:grid-cols-[17.5rem_2rem_17.5rem] sm:gap-3">
                           <div className="w-full">
                             <Select
                               className="h-11 w-full sm:h-10 [&_[data-slot=value]]:block [&_[data-slot=value]]:text-left"

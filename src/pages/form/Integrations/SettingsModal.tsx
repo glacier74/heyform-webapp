@@ -139,7 +139,8 @@ export default function IntegrationSettingsModal() {
     <Modal
       open={isOpen}
       contentProps={{
-        className: 'max-w-2xl'
+        className: 'max-w-2xl',
+        forceMount: true
       }}
       onOpenChange={onOpenChange}
     >

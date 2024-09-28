@@ -51,8 +51,8 @@ const RIGHT_TO_LEFT_MAP: AnyMap = {
 const LEFT_TO_RIGHT_MAP: AnyMap = {
   [FieldKindEnum.YES_NO]: ['select'],
   [FieldKindEnum.LEGAL_TERMS]: ['select'],
-  [FieldKindEnum.MULTIPLE_CHOICE]: ['select', 'multi_select'],
-  [FieldKindEnum.PICTURE_CHOICE]: ['select', 'multi_select'],
+  [FieldKindEnum.MULTIPLE_CHOICE]: ['select', 'multi_select', 'title', 'rich_text'],
+  [FieldKindEnum.PICTURE_CHOICE]: ['select', 'multi_select', 'title', 'rich_text'],
   [FieldKindEnum.NUMBER]: ['number'],
   [FieldKindEnum.RATING]: ['number'],
   [FieldKindEnum.OPINION_SCALE]: ['number'],
@@ -75,7 +75,7 @@ export default function NotionSettings({ app }: IntegrationSettingsFormProps) {
   const { formId } = useParam()
   const { formFields } = useFormStore()
 
-  const [isAuthorized, setAuthorized] = useState(true || app.isAuthorized)
+  const [isAuthorized, setAuthorized] = useState(app.isAuthorized)
   const [database, setDatabase] = useState<AnyMap>()
 
   async function fetchDatabases() {
