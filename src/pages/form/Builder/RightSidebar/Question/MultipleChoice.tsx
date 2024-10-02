@@ -262,7 +262,7 @@ export default function MultipleChoiceSettings({ field }: RequiredSettingsProps)
 
       <div className="flex items-center justify-between">
         <label className="text-sm/6" htmlFor="#">
-          {t('form.builder.settings.verticalAlignment')}
+          {t('form.builder.settings.multipleChoice.verticalAlignment')}
         </label>
         <Switch
           value={!helper.isFalse(field.properties?.verticalAlignment)}
