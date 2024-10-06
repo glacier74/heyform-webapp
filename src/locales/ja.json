@@ -629,11 +629,7 @@
     "planName": "{{name}} プラン",
     "year": "年",
     "month": "月",
-    "cycles": [
-      "永久",
-      "毎月",
-      "毎年"
-    ],
+    "cycles": ["永久", "毎月", "毎年"],
     "save16": "16% 節約",
     "keepFreePlan": "無料プランを続ける",
     "plans": {
@@ -1017,7 +1013,8 @@
       },
       "email": {
         "label": "メールアドレス",
-        "invalid": "無効なメールアドレスです"
+        "invalid": "無効なメールアドレスです",
+        "deprecation": "この統合は廃止されました。<a>フォーム設定</a>で設定してください。"
       },
       "facebookpixel": {
         "label": "ピクセルID",

@@ -711,6 +711,7 @@ export const FORM_DETAIL_GQL = gql`
         enableProgress
         enableQuestionList
         enableNavigationArrows
+        enableEmailNotification
         locale
         languages
         enableClosedMessage

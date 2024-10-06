@@ -629,11 +629,7 @@
     "planName": "{{name}} 套餐",
     "year": "year",
     "month": "月",
-    "cycles": [
-      "永久",
-      "每月",
-      "每年"
-    ],
+    "cycles": ["永久", "每月", "每年"],
     "save16": "节省 16%",
     "keepFreePlan": "继续使用免费套餐",
     "plans": {
@@ -1017,7 +1013,8 @@
       },
       "email": {
         "label": "电子邮件地址",
-        "invalid": "电子邮件地址无效"
+        "invalid": "电子邮件地址无效",
+        "deprecation": "此集成都已弃用。请在<a>表单设置</a>中进行设置。"
       },
       "facebookpixel": {
         "label": "Pixel ID",

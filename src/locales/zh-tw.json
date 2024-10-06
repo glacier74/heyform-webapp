@@ -629,11 +629,7 @@
     "planName": "{{name}} 套餐",
     "year": "年",
     "month": "月",
-    "cycles": [
-      "永久",
-      "每月",
-      "每年"
-    ],
+    "cycles": ["永久", "每月", "每年"],
     "save16": "節省 16%",
     "keepFreePlan": "繼續使用免費套餐",
     "plans": {
@@ -1017,7 +1013,8 @@
       },
       "email": {
         "label": "電子郵件地址",
-        "invalid": "無效的電子郵件地址"
+        "invalid": "無效的電子郵件地址",
+        "deprecation": "此整合功能已被淘汰，請改在<a>表單設定</a>中設置。"
       },
       "facebookpixel": {
         "label": "Pixel ID",

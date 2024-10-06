@@ -10,6 +10,7 @@ import { useFormStore } from '@/store'
 import { useParam } from '@/utils'
 
 import FormSettingsAccess from './Access'
+import FormSettingsEmailNotification from './EmailNotification'
 import FormSettingsGeneral from './General'
 import FormSettingsProtection from './Protection'
 import FormSettingsTranslations from './Translations'
@@ -101,13 +102,13 @@ export default function FormSettings() {
                 value: 'access'
               },
               {
+                label: t('form.settings.emailNotification.title'),
+                value: 'emailNotification'
+              },
+              {
                 label: t('form.settings.translations.title'),
                 value: 'translations'
               },
-              // {
-              //   label: t('form.settings.emailNotification.title'),
-              //   value: 'emailNotification'
-              // },
               {
                 label: t('form.settings.protection.title'),
                 value: 'protection'
@@ -126,8 +127,8 @@ export default function FormSettings() {
           >
             <FormSettingsGeneral />
             <FormSettingsAccess />
+            <FormSettingsEmailNotification />
             <FormSettingsTranslations />
-            {/*<FormSettingsEmailNotifications />*/}
             <FormSettingsProtection />
 
             <div className="sticky bottom-0 mt-10 flex items-center justify-end gap-x-4 border-t border-accent bg-foreground py-6">

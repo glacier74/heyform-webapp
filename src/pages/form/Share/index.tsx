@@ -74,9 +74,9 @@ export default function FormShare() {
     <>
       <div className="mt-10 space-y-10">
         {form?.canPublish && (
-          <div className="flex items-center justify-center gap-x-2 rounded-lg border border-accent-light bg-yellow-50 py-2">
-            <IconExclamationCircle className="h-5 w-5 text-yellow-500" />
-            <span className="text-sm/6 font-medium text-yellow-700">
+          <div className="flex items-center justify-center gap-x-2 rounded-lg border border-accent-light bg-red-50 py-2">
+            <IconExclamationCircle className="h-5 w-5 text-red-700" />
+            <span className="text-sm/6 font-medium text-red-700">
               {t('form.share.unpublishedTip')}
             </span>
           </div>

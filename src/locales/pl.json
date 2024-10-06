@@ -629,11 +629,7 @@
     "planName": "Plan {{name}}",
     "year": "rok",
     "month": "miesiąc",
-    "cycles": [
-      "Na zawsze",
-      "Miesięcznie",
-      "Rocznie"
-    ],
+    "cycles": ["Na zawsze", "Miesięcznie", "Rocznie"],
     "save16": "Oszczędź 16%",
     "keepFreePlan": "Kontynuuj korzystanie z darmowego planu",
     "plans": {
@@ -1017,7 +1013,8 @@
       },
       "email": {
         "label": "Adres e-mail",
-        "invalid": "Adres e-mail jest nieprawidłowy"
+        "invalid": "Adres e-mail jest nieprawidłowy",
+        "deprecation": "Integracja ta jest przestarzała. Proszę skonfigurować ją w <a>Ustawieniach formularza</a>."
       },
       "facebookpixel": {
         "label": "ID Piksela",

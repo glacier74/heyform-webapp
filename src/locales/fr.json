@@ -629,11 +629,7 @@
     "planName": "Plan {{name}}",
     "year": "année",
     "month": "mois",
-    "cycles": [
-      "Pour toujours",
-      "Mensuel",
-      "Annuel"
-    ],
+    "cycles": ["Pour toujours", "Mensuel", "Annuel"],
     "save16": "Économisez 16%",
     "keepFreePlan": "Continuer à utiliser le plan gratuit",
     "plans": {
@@ -1021,7 +1017,8 @@
       },
       "email": {
         "label": "Adresse e-mail",
-        "invalid": "L'adresse e-mail n'est pas valide"
+        "invalid": "L'adresse e-mail n'est pas valide",
+        "deprecation": "Cette intégration est obsolète. Veuillez la configurer dans les <a>Paramètres du formulaire</a> à la place."
       },
       "facebookpixel": {
         "label": "ID de Pixel",

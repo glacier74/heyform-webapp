@@ -1075,7 +1075,8 @@
       },
       "email": {
         "label": "Email address",
-        "invalid": "The email address is not valid"
+        "invalid": "The email address is not valid",
+        "deprecation": "This integration is deprecated. Please set it up in the <a>Form settings</a> instead."
       },
       "facebookpixel": {
         "label": "Pixel ID",

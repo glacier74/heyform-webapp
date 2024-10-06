@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Form, Switch } from '@/components'
 
-export default function FormSettingsEmailNotifications() {
+export default function FormSettingsEmailNotification() {
   const { t } = useTranslation()
 
   return (

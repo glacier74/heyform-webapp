@@ -629,11 +629,7 @@
     "planName": "{{name}}-Plan",
     "year": "Jahr",
     "month": "Monat",
-    "cycles": [
-      "Für immer",
-      "Monatlich",
-      "Jährlich"
-    ],
+    "cycles": ["Für immer", "Monatlich", "Jährlich"],
     "save16": "Sparen Sie 16%",
     "keepFreePlan": "Weiterhin den kostenlosen Plan nutzen",
     "plans": {
@@ -1017,7 +1013,8 @@
       },
       "email": {
         "label": "E-Mail-Adresse",
-        "invalid": "Die E-Mail-Adresse ist nicht gültig"
+        "invalid": "Die E-Mail-Adresse ist nicht gültig",
+        "deprecation": "Diese Integration ist veraltet. Bitte richten Sie sie stattdessen in den <a>Formulareinstellungen</a> ein."
       },
       "facebookpixel": {
         "label": "Pixel-ID",
