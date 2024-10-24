@@ -49,7 +49,7 @@ const PaymentComponent = () => {
       })
 
       if (amountOff) {
-        setDiscount(new Big(amountOff))
+        setDiscount(new Big(amountOff).div(100))
       } else if (percentOff) {
         setDiscount(new Big(percentOff).div(100).times(price))
       }
@@ -89,6 +89,20 @@ const PaymentComponent = () => {
       refreshDeps: [workspaceId, payload?.plan.id, payload?.billingCycle, couponCode]
     }
   )
+
+  const total = useMemo(() => {
+    if (discount) {
+      const t = price.minus(discount)
+
+      if (t.toNumber() > 0) {
+        return t.toFixed(2)
+      } else {
+        return '0.00'
+      }
+    } else {
+      return price.toFixed(2)
+    }
+  }, [discount, price])
 
   useEffect(() => {
     update({
@@ -178,11 +192,7 @@ const PaymentComponent = () => {
         <div className="mt-3 space-y-6">
           <div className="flex justify-between border-t border-accent-light pt-3">
             <span>{t('billing.payment.total')}</span>
-            {discount ? (
-              <span>${price.minus(discount).toFixed(2)}</span>
-            ) : (
-              <span>${price.toFixed(2)}</span>
-            )}
+            <span>${total}</span>
           </div>
 
           <Button className="w-full" loading={paymentLoading} onClick={makePayment}>
