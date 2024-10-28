@@ -1,6 +1,6 @@
 import { Button, Input, getChoiceKeyName } from '@heyform-inc/form-renderer'
 import { Choice, ChoiceBadgeEnum } from '@heyform-inc/shared-types-enums'
-import { clone, helper, nanoid } from '@heyform-inc/utils'
+import { clone, excludeObject, helper, nanoid } from '@heyform-inc/utils'
 import {
   IconPencil,
   IconPhoto,
@@ -9,10 +9,12 @@ import {
   IconTrash,
   IconX
 } from '@tabler/icons-react'
-import { FC, useCallback, useRef, useState } from 'react'
+import { FC, useCallback, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { ReactSortable } from 'react-sortablejs'
 
 import { ImagePicker, ImagePickerRef } from '@/components'
+import { cn } from '@/utils'
 
 import { useStoreContext } from '../../store'
 import type { BlockProps } from './Block'
@@ -92,7 +94,14 @@ const PictureChoiceItem: FC<PictureChoiceItemProps> = ({
         )}
 
         <div className="heyform-radio-content">
-          <div className="heyform-radio-hotkey">{getChoiceKeyName(badge, index)}</div>
+          <div
+            className={cn(
+              'heyform-radio-hotkey',
+              isOther ? null : 'heyform-multiple-choice-handle cursor-move'
+            )}
+          >
+            {getChoiceKeyName(badge, index)}
+          </div>
           <div className="heyform-radio-label">
             {isOther ? (
               <div className="heyform-radio-label-other">{choice.label}</div>
@@ -265,41 +274,97 @@ export const PictureChoice: FC<BlockProps> = ({ field, locale, ...restProps }) =
   const handleRemoveImageCallback = useCallback(handleRemoveImage, [field.properties])
   const handleImageChangeCallback = useCallback(handleImageChange, [field.properties, choiceId])
 
+  const choices = useMemo(
+    () => (helper.isValidArray(field.properties?.choices) ? clone(field.properties!.choices!) : []),
+    [field.properties]
+  )
+
+  const handleSetList = useCallback(
+    (newChoices: Choice[], sortable: Any) => {
+      if (sortable) {
+        dispatch({
+          type: 'updateField',
+          payload: {
+            id: field.id,
+            updates: {
+              properties: {
+                ...field.properties,
+                choices: newChoices.map(c => excludeObject(c, ['chosen', 'selected'])) as Choice[]
+              }
+            }
+          }
+        })
+      }
+    },
+    [field.id, field.properties]
+  )
+
   return (
     <Block className="heyform-picture-choice" field={field} locale={locale} {...restProps}>
-      <div className="heyform-picture-choice-list">
-        {field.properties?.choices?.map((choice, index) => (
-          <PictureChoiceItem
-            key={choice.id}
-            index={index}
-            choice={choice}
-            badge={field.properties!.badge}
-            enableRemove={field.properties!.choices!.length > 1}
-            onLabelChange={handleLabelChangeCallback}
-            onSelectImage={handleSelectImageCallback}
-            onRemoveImage={handleRemoveImageCallback}
-            onRemove={handleChoiceRemoveCallback}
-          />
-        ))}
+      <ReactSortable
+        className="heyform-picture-choice-list"
+        ghostClass="heyform-multiple-choice-ghost"
+        chosenClass="heyform-multiple-choice-chosen"
+        dragClass="heyform-multiple-choice-dragging"
+        fallbackClass="heyform-multiple-choice-cloned"
+        handle=".heyform-multiple-choice-handle"
+        list={choices}
+        setList={handleSetList}
+        delay={10}
+        animation={240}
+        fallbackOnBody
+      >
+        {field.properties?.allowOther ? (
+          <>
+            {field.properties?.choices?.map((choice, index) => (
+              <PictureChoiceItem
+                key={choice.id}
+                index={index}
+                choice={choice}
+                badge={field.properties!.badge}
+                enableRemove={field.properties!.choices!.length > 1}
+                onLabelChange={handleLabelChangeCallback}
+                onSelectImage={handleSelectImageCallback}
+                onRemoveImage={handleRemoveImageCallback}
+                onRemove={handleChoiceRemoveCallback}
+              />
+            ))}
+            <PictureChoiceItem
+              key="other"
+              index={field.properties!.choices!.length}
+              choice={
+                {
+                  id: 'other',
+                  label: t('form.builder.compose.otherChoice')
+                } as Choice
+              }
+              badge={field.properties!.badge}
+              isOther={true}
+              enableRemove={field.properties!.choices!.length > 1}
+              onRemove={handleChoiceRemoveCallback}
+            />
 
-        {field.properties?.allowOther && (
-          <PictureChoiceItem
-            index={field.properties!.choices!.length}
-            choice={
-              {
-                id: 'other',
-                label: t('form.builder.compose.otherChoice')
-              } as Choice
-            }
-            badge={field.properties!.badge}
-            isOther={true}
-            enableRemove={field.properties!.choices!.length > 1}
-            onRemove={handleChoiceRemoveCallback}
-          />
+            <AddPictureChoice key="add-choice" onClick={handleAddChoiceCallback} />
+          </>
+        ) : (
+          <>
+            {field.properties?.choices?.map((choice, index) => (
+              <PictureChoiceItem
+                key={choice.id}
+                index={index}
+                choice={choice}
+                badge={field.properties!.badge}
+                enableRemove={field.properties!.choices!.length > 1}
+                onLabelChange={handleLabelChangeCallback}
+                onSelectImage={handleSelectImageCallback}
+                onRemoveImage={handleRemoveImageCallback}
+                onRemove={handleChoiceRemoveCallback}
+              />
+            ))}
+            <AddPictureChoice key="add-choice" onClick={handleAddChoiceCallback} />
+          </>
         )}
-
-        <AddPictureChoice onClick={handleAddChoiceCallback} />
-      </div>
+      </ReactSortable>
 
       <ImagePicker
         ref={imagePickerRef}

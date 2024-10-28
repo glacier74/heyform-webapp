@@ -182,7 +182,7 @@ export default function BuilderCompose() {
 
   const { formId } = useParam()
   const toast = useToast()
-  const { state } = useStoreContext()
+  const { state, dispatch } = useStoreContext()
   const { workspace } = useWorkspaceStore()
   const { form, themeSettings, updateForm } = useFormStore()
   const { setItem } = useOnboardingStorage()
@@ -211,11 +211,23 @@ export default function BuilderCompose() {
   queue.on(event => {
     switch (event) {
       case 'start':
+        dispatch({
+          type: 'setSyncing',
+          payload: {
+            isSyncing: true
+          }
+        })
         queue.sync(sync)
         break
 
       case 'complete':
       case 'failed':
+        dispatch({
+          type: 'setSyncing',
+          payload: {
+            isSyncing: false
+          }
+        })
         break
     }
   })

@@ -1,18 +1,19 @@
 import {
+  AutoResizeTextarea,
   Button,
-  Input,
   InputRef,
   getChoiceKeyName,
   preventDefault
 } from '@heyform-inc/form-renderer'
 import { Choice, ChoiceBadgeEnum } from '@heyform-inc/shared-types-enums'
-import { clone, helper, nanoid } from '@heyform-inc/utils'
+import { clone, excludeObject, helper, nanoid } from '@heyform-inc/utils'
 import { IconX } from '@tabler/icons-react'
 import { clsx } from 'clsx'
-import { FC, KeyboardEvent, Ref, useCallback, useRef, useState } from 'react'
+import { FC, KeyboardEvent, Ref, useCallback, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { ReactSortable } from 'react-sortablejs'
 
-import { nextTick } from '@/utils'
+import { cn, nextTick } from '@/utils'
 
 import { useStoreContext } from '../../store'
 import type { BlockProps } from './Block'
@@ -64,14 +65,15 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
     setIsFocused(true)
   }
 
-  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>, isCompositionStart: boolean) {
+  function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>, isCompositionStart: boolean) {
     if (!isCompositionStart) {
       switch (event.key) {
         case 'Enter':
+          preventDefault(event)
           return onEnter?.(choice.id)
 
         case 'Backspace':
-          if ((event.target as HTMLInputElement).value === '') {
+          if ((event.target as HTMLTextAreaElement).value === '') {
             preventDefault(event)
             handleRemove()
           }
@@ -90,12 +92,19 @@ const MultipleChoiceItem: FC<MultipleChoiceItemProps> = ({
     <div className="heyform-radio">
       <div className="heyform-radio-container">
         <div className="heyform-radio-content">
-          <div className="heyform-radio-hotkey">{getChoiceKeyName(badge, index)}</div>
+          <div
+            className={cn(
+              'heyform-radio-hotkey',
+              isOther ? null : 'heyform-multiple-choice-handle cursor-move'
+            )}
+          >
+            {getChoiceKeyName(badge, index)}
+          </div>
           <div className="heyform-radio-label">
             {isOther ? (
               <div className="heyform-radio-label-other cursor-default">{choice.label}</div>
             ) : (
-              <Input
+              <AutoResizeTextarea
                 ref={ref}
                 value={choice.label}
                 placeholder={isFocused ? t('form.builder.compose.choicePlaceholder') : undefined}
@@ -250,45 +259,103 @@ export const MultipleChoice: FC<BlockProps> = ({ field, locale, ...restProps }) 
   const handleUpCallback = useCallback(handleUp, [field.properties])
   const handleDownCallback = useCallback(handleDown, [field.properties])
 
+  const choices = useMemo(
+    () => (helper.isValidArray(field.properties?.choices) ? clone(field.properties!.choices!) : []),
+    [field.properties]
+  )
+
+  const handleSetList = useCallback(
+    (newChoices: Choice[], sortable: Any) => {
+      if (sortable) {
+        dispatch({
+          type: 'updateField',
+          payload: {
+            id: field.id,
+            updates: {
+              properties: {
+                ...field.properties,
+                choices: newChoices.map(c => excludeObject(c, ['chosen', 'selected'])) as Choice[]
+              }
+            }
+          }
+        })
+      }
+    },
+    [field.id, field.properties]
+  )
+
   return (
     <Block className="heyform-multiple-choice" field={field} locale={locale} {...restProps}>
-      <div
-        className={clsx('heyform-multiple-choice-list', {
-          'heyform-multiple-choice-horizontal': helper.isFalse(field.properties!.verticalAlignment)
-        })}
-      >
-        {field.properties?.choices?.map((choice, index) => (
-          <MultipleChoiceItem
-            ref={ref => (refs[choice.id] = ref)}
-            key={choice.id}
-            index={index}
-            choice={choice}
-            badge={field.properties!.badge}
-            enableRemove={field.properties!.choices!.length > 1}
-            onRemove={handleChoiceRemoveCallback}
-            onChange={handleLabelChangeCallback}
-            onEnter={handleEnterCallback}
-            onUp={handleUpCallback}
-            onDown={handleDownCallback}
-          />
-        ))}
+      {field.properties && (
+        <ReactSortable
+          className={clsx('heyform-multiple-choice-list', {
+            'heyform-multiple-choice-horizontal': helper.isFalse(
+              field.properties!.verticalAlignment
+            )
+          })}
+          ghostClass="heyform-multiple-choice-ghost"
+          chosenClass="heyform-multiple-choice-chosen"
+          dragClass="heyform-multiple-choice-dragging"
+          fallbackClass="heyform-multiple-choice-cloned"
+          handle=".heyform-multiple-choice-handle"
+          list={choices}
+          setList={handleSetList}
+          delay={10}
+          animation={240}
+          fallbackOnBody
+        >
+          {field.properties?.allowOther ? (
+            <>
+              {choices.map((choice, index) => (
+                <MultipleChoiceItem
+                  ref={ref => (refs[choice.id] = ref)}
+                  key={choice.id}
+                  index={index}
+                  choice={choice}
+                  badge={field.properties!.badge}
+                  enableRemove={choices.length > 1}
+                  onRemove={handleChoiceRemoveCallback}
+                  onChange={handleLabelChangeCallback}
+                  onEnter={handleEnterCallback}
+                  onUp={handleUpCallback}
+                  onDown={handleDownCallback}
+                />
+              ))}
+              <MultipleChoiceItem
+                key="other"
+                index={choices.length}
+                choice={
+                  {
+                    id: 'other',
+                    label: t('form.builder.compose.otherChoice')
+                  } as Choice
+                }
+                badge={field.properties!.badge}
+                isOther={true}
+                enableRemove={choices.length > 1}
+                onRemove={handleChoiceRemoveCallback}
+              />
+            </>
+          ) : (
+            choices.map((choice, index) => (
+              <MultipleChoiceItem
+                ref={ref => (refs[choice.id] = ref)}
+                key={choice.id}
+                index={index}
+                choice={choice}
+                badge={field.properties!.badge}
+                enableRemove={choices.length > 1}
+                onRemove={handleChoiceRemoveCallback}
+                onChange={handleLabelChangeCallback}
+                onEnter={handleEnterCallback}
+                onUp={handleUpCallback}
+                onDown={handleDownCallback}
+              />
+            ))
+          )}
+        </ReactSortable>
+      )}
 
-        {field.properties?.allowOther && (
-          <MultipleChoiceItem
-            index={field.properties!.choices!.length}
-            choice={
-              {
-                id: 'other',
-                label: t('form.builder.compose.otherChoice')
-              } as Choice
-            }
-            badge={field.properties!.badge}
-            isOther={true}
-            enableRemove={field.properties!.choices!.length > 1}
-            onRemove={handleChoiceRemoveCallback}
-          />
-        )}
-      </div>
       <div className="heyform-add-choice">
         <Button.Link className="heyform-add-column" onClick={() => handleAddChoiceCallback()}>
           {t('form.builder.compose.addChoice')}
