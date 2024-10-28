@@ -1537,6 +1537,9 @@
         "hiddenfield": "提及隱藏欄位",
         "variable": "提及變數",
         "emptyState": "未找到結果。"
+      },
+      "navbar": {
+        "syncing": "儲存問題中..."
       }
     },
     "suspend": {

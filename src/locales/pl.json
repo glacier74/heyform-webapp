@@ -1537,6 +1537,9 @@
         "hiddenfield": "Wspomnij o ukrytym polu",
         "variable": "Wspomnij o zmiennej",
         "emptyState": "Nie znaleziono wyników."
+      },
+      "navbar": {
+        "syncing": "Zapisywanie pytań..."
       }
     },
     "suspend": {

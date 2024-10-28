@@ -1541,6 +1541,9 @@
         "hiddenfield": "Mentionner un champ caché",
         "variable": "Mentionner une variable",
         "emptyState": "Aucun résultat trouvé."
+      },
+      "navbar": {
+        "syncing": "Enregistrement des questions..."
       }
     },
     "suspend": {

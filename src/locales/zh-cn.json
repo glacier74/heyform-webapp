@@ -1537,6 +1537,9 @@
         "hiddenfield": "提及一个隐藏字段",
         "variable": "提及一个变量",
         "emptyState": "未找到结果。"
+      },
+      "navbar": {
+        "syncing": "正在保存问题..."
       }
     },
     "suspend": {

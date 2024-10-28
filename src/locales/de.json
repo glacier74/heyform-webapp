@@ -1537,6 +1537,9 @@
         "hiddenfield": "Ein verstecktes Feld erwähnen",
         "variable": "Eine Variable erwähnen",
         "emptyState": "Keine Ergebnisse gefunden."
+      },
+      "navbar": {
+        "syncing": "Fragen werden gespeichert..."
       }
     },
     "suspend": {

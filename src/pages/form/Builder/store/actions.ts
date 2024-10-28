@@ -26,6 +26,7 @@ import {
   SetActiveDesignTabNameAction,
   SetActiveTabNameAction,
   SetFieldsAction,
+  SetSyncingAction,
   UpdateFieldAction,
   UpdateNestFieldsAction,
   UpdateVariableAction
@@ -497,4 +498,11 @@ export function deleteHiddenField(
     state,
     (state.hiddenFields || []).filter(h => h.id !== id)
   )
+}
+
+export function setSyncing(state: IState, { isSyncing }: SetSyncingAction['payload']): IState {
+  return {
+    ...state,
+    isSyncing
+  }
 }

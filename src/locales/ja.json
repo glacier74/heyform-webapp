@@ -1537,6 +1537,9 @@
         "hiddenfield": "隠しフィールドに言及",
         "variable": "変数に言及",
         "emptyState": "結果が見つかりませんでした。"
+      },
+      "navbar": {
+        "syncing": "質問を保存中…"
       }
     },
     "suspend": {

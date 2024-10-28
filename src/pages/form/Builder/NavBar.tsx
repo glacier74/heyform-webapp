@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom'
 
 import {
   Button,
+  Loader,
   OnboardingBadge,
   Tooltip,
   useOnboardingStorage,
@@ -134,7 +135,7 @@ export default function BuilderNavBar() {
                 role="link"
                 aria-disabled="true"
                 aria-current="page"
-                className="flex items-center gap-x-2"
+                className="line-clamp-1 flex h-6 max-w-40 items-center gap-x-2 sm:h-auto sm:max-w-max"
                 to={`/workspace/${workspaceId}/project/${projectId}/`}
               >
                 <IconChevronLeft className="h-5 w-5" />
@@ -186,6 +187,12 @@ export default function BuilderNavBar() {
 
       <div className="flex h-9 items-center gap-4">
         <div className="flex items-center gap-1">
+          {state.isSyncing && (
+            <Tooltip label={t('form.builder.navbar.syncing')}>
+              <Loader className="h-5 w-5" />
+            </Tooltip>
+          )}
+
           <Tooltip label={t('form.builder.preview.title')}>
             <Button.Link size="md" iconOnly onClick={handlePreview}>
               <IconPlayerPlay className="h-5 w-5" />
@@ -246,7 +253,12 @@ export default function BuilderNavBar() {
           </Tooltip>
         </div>
 
-        <Button size="md" disabled={!form?.canPublish} loading={loading} onClick={handlePublish}>
+        <Button
+          size="md"
+          disabled={!form?.canPublish || state.isSyncing}
+          loading={loading}
+          onClick={handlePublish}
+        >
           <IconSend2 className="h-5 w-5" />
           {t('components.publish')}
 

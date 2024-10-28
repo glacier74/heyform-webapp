@@ -33,6 +33,8 @@ export interface IState {
 
   activeTabName?: string
   activeDesignTabName?: string
+
+  isSyncing?: boolean
 }
 
 export interface SetFieldsAction {
@@ -175,6 +177,13 @@ export interface DeleteHiddenFieldAction {
   payload: Pick<HiddenField, 'id'>
 }
 
+export interface SetSyncingAction {
+  type: 'setSyncing'
+  payload: {
+    isSyncing: boolean
+  }
+}
+
 export interface IContext {
   state: IState
   dispatch: (action: IAction) => void
@@ -209,6 +218,7 @@ export type IAction =
   | SelectHiddenFieldAction
   | EditHiddenFieldAction
   | DeleteHiddenFieldAction
+  | SetSyncingAction
 
 const SYNC_ACTIONS = [
   'setFields',
@@ -256,6 +266,7 @@ export const storeReducer = (state: IState, action: IAction) => {
     case 'selectHiddenField':
     case 'editHiddenField':
     case 'deleteHiddenField':
+    case 'setSyncing':
       return handleAction(state, action)
 
     default:
