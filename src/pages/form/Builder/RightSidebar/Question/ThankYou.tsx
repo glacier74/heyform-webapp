@@ -51,12 +51,24 @@ export default function ThankYou({ field }: RequiredSettingsProps) {
 
       <PlanUpgrade minimalGrade={PlanGradeEnum.BASIC} isUpgradeShow={false} fallback={() => null}>
         {field.properties?.redirectOnCompletion && (
-          <Input
-            placeholder="https://example.com"
-            type="url"
-            value={field.properties?.redirectUrl}
-            onChange={value => handleChange('redirectUrl', value)}
-          />
+          <>
+            <Input
+              placeholder="https://example.com"
+              type="url"
+              value={field.properties?.redirectUrl}
+              onChange={value => handleChange('redirectUrl', value)}
+            />
+
+            <Input
+              className="mt-2"
+              trailing={t('form.share.embed.secondsDelay')}
+              type="number"
+              defaultValue={0}
+              min={0}
+              value={field.properties?.redirectDelay || 0}
+              onChange={value => handleChange('redirectDelay', value)}
+            />
+          </>
         )}
       </PlanUpgrade>
     </div>
