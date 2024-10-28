@@ -31,6 +31,10 @@ module.exports = {
           light: 'rgba(var(--hf-accent-light))'
         },
         error: 'rgba(var(--hf-error))'
+      },
+      screens: {
+        'builder-md': '1230px',
+        'builder-lg': '1440px'
       }
     }
   },

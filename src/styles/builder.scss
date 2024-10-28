@@ -484,8 +484,25 @@
   // ----------------------------------------------------------------------------
   // Multiple choice
   .heyform-multiple-choice-list {
-    @apply inline-flex flex-col;
+    @apply inline-flex flex-col max-w-full;
     min-width: 10rem;
+
+    .heyform-radio {
+      @apply h-auto;
+    }
+
+    .heyform-autoresize-textarea {
+      @apply p-0 border-none text-lg resize-none;
+    }
+
+    .heyform-radio-content,
+    .heyform-radio-label {
+      @apply min-w-0;
+    }
+
+    .heyform-radio-label {
+      @apply sm:leading-[1];
+    }
 
     .heyform-radio-container:hover {
       background-color: var(--heyform-answer-opacity-10-color);
@@ -499,7 +516,7 @@
       @apply sm:w-full sm:flex-row sm:flex-wrap sm:gap-2;
 
       .heyform-radio {
-        @apply sm:flex-1 sm:max-w-[calc(33.33%-0.5rem)] sm:mb-0 sm:self-stretch;
+        @apply w-full sm:flex-1 builder-md:max-w-[calc(50%-0.5rem)] builder-lg:max-w-[calc(33.33%-0.5rem)] sm:mb-0 sm:self-stretch;
       }
 
       .heyform-radio-container {
@@ -508,10 +525,6 @@
 
       .heyform-radio-hotkey {
         @apply sm:self-start;
-      }
-
-      .heyform-radio-label {
-        @apply sm:leading-[1.2];
       }
     }
   }
@@ -567,7 +580,7 @@
     }
 
     .heyform-radio {
-      @apply mb-2 w-1/4 px-1;
+      @apply mb-2 w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 px-1;
       height: 12rem;
 
       &:hover {
