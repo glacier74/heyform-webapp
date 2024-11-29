@@ -1,7 +1,8 @@
 import { HiddenField, Variable } from '@heyform-inc/shared-types-enums'
 import { helper } from '@heyform-inc/utils'
 import type { CSSProperties, ClipboardEvent, FC, KeyboardEvent, RefObject } from 'react'
-import { startTransition, useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import debounce from 'lodash/debounce'
 
 import { FormFieldType } from '@/types'
 import { cn } from '@/utils'
@@ -43,13 +44,13 @@ export const RichText: FC<RichTextProps> = ({
   const [triggerSelection, setTriggerSelection] = useState<RichTextTriggerSelection>()
   const [toolbarRange, setToolbarRange] = useState<Range>()
 
-  function handleUpdate() {
-    startTransition(() => {
-      onChange?.(innerRef.current!.innerHTML)
-    })
-  }
-
-  const handleUpdateCallback = useCallback(handleUpdate, [])
+  const handleUpdateCallback = useMemo(
+    () =>
+      debounce(() => {
+        onChange?.(innerRef.current!.innerHTML)
+      }, 300),
+    []
+  )
 
   function handleComposition(event: Any) {
     switch (event.type) {
