@@ -2,6 +2,7 @@ import {
   APPLY_COUPON_GQL,
   BillingCycleEnum,
   CONNECT_STRIPE_GQL,
+  CUSTOMER_PORTAL_GQL,
   FREE_TRIAL_GQL,
   PAYMENT_GQL,
   PLANS_GQL,
@@ -89,6 +90,16 @@ export class PaymentService {
       variables: {
         input: {
           formId
+        }
+      }
+    })
+  }
+  static customerPortal(teamId: string) {
+    return apollo.mutate({
+      mutation: CUSTOMER_PORTAL_GQL,
+      variables: {
+        input: {
+          teamId
         }
       }
     })

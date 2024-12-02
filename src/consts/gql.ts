@@ -440,6 +440,12 @@ export const REVOKE_STRIPE_ACCOUNT_GQL = gql`
   }
 `
 
+export const CUSTOMER_PORTAL_GQL = gql`
+  mutation stripeCustomerPortal($input: TeamDetailInput!) {
+    stripeCustomerPortal(input: $input)
+  }
+`
+
 export const TEMPLATES_GQL = gql`
   query templates {
     templates {

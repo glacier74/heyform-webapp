@@ -16,8 +16,6 @@ export const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN as string
 export const CUSTOM_DOMAIN_CNAME_VALUE = import.meta.env.VITE_CUSTOM_DOMAIN_CNAME_VALUE as string
 export const CUSTOM_DOMAIN_ANAME_VALUE = import.meta.env.VITE_CUSTOM_DOMAIN_ANAME_VALUE as string
 
-export const STRIPE_PORTAL_URL = import.meta.env.VITE_STRIPE_PORTAL_URL as string
-
 export const TEMPLATES_URL = import.meta.env.VITE_TEMPLATES_URL as string
 export const HELP_CENTER_URL = import.meta.env.VITE_HELP_CENTER_URL as string
 

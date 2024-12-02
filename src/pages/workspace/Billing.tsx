@@ -1,9 +1,11 @@
 import { unixDate } from '@heyform-inc/utils'
+import { useRequest } from 'ahooks'
 import { useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Button } from '@/components'
-import { PlanGradeEnum, STRIPE_PORTAL_URL } from '@/consts'
+import { PlanGradeEnum } from '@/consts'
+import { PaymentService } from '@/services'
 import { useAppStore, useWorkspaceStore } from '@/store'
 import { formatDay } from '@/utils'
 
@@ -12,7 +14,7 @@ export default function WorkspaceBilling() {
 
   const { openModal } = useAppStore()
   const {
-    workspace: { plan, subscription }
+    workspace: { id: workspaceId, plan, subscription }
   } = useWorkspaceStore()
 
   const isSubscribed = useMemo(() => plan.grade > PlanGradeEnum.FREE, [plan.grade])
@@ -48,9 +50,17 @@ export default function WorkspaceBilling() {
     })
   }
 
-  function handleManageSubscription() {
-    window.location.href = STRIPE_PORTAL_URL
-  }
+  const { loading, run } = useRequest(
+    async () => {
+      const url = await PaymentService.customerPortal(workspaceId)
+
+      window.location.href = url
+    },
+    {
+      refreshDeps: [workspaceId],
+      manual: true
+    }
+  )
 
   return (
     <>
@@ -81,7 +91,8 @@ export default function WorkspaceBilling() {
               <Button.Ghost
                 className="w-full !px-2 !py-1 lg:w-auto"
                 size="md"
-                onClick={handleManageSubscription}
+                loading={loading}
+                onClick={run}
               >
                 {t('billing.subscription.manage')}
               </Button.Ghost>
@@ -101,7 +112,8 @@ export default function WorkspaceBilling() {
                 button: (
                   <Button.Link
                     className="!bg-transparent !px-0 !py-0 text-secondary underline hover:text-primary"
-                    onClick={handleManageSubscription}
+                    loading={loading}
+                    onClick={run}
                   />
                 )
               }}
