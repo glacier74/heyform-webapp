@@ -31,6 +31,7 @@ import WorkspaceInvitation from '@/pages/workspace/Invitation'
 import WorkspaceMembers from '@/pages/workspace/Members'
 import WorkspaceSettings from '@/pages/workspace/Settings'
 import WorkspaceTrial from '@/pages/workspace/Trial'
+import BillingSuccess from '@/pages/workspace/BillingSuccess'
 
 const routes = [
   // Auth
@@ -150,6 +151,15 @@ const routes = [
     options: {
       loginRequired: true,
       title: 'billing.title'
+    }
+  },
+  {
+    path: '/workspace/:workspaceId/billing/success',
+    layout: BaseLayout,
+    component: BillingSuccess,
+    options: {
+      loginRequired: true,
+      title: 'billing.success.title'
     }
   },
   {

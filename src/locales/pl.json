@@ -629,7 +629,11 @@
     "planName": "Plan {{name}}",
     "year": "rok",
     "month": "miesiąc",
-    "cycles": ["Na zawsze", "Miesięcznie", "Rocznie"],
+    "cycles": [
+      "Na zawsze",
+      "Miesięcznie",
+      "Rocznie"
+    ],
     "save16": "Oszczędź 16%",
     "keepFreePlan": "Kontynuuj korzystanie z darmowego planu",
     "plans": {
@@ -720,6 +724,11 @@
         "Brak prowizji od płatności",
         "Brak limitu rozmiaru przesyłanych plików"
       ]
+    },
+    "success": {
+      "title": "Płatność zakończona sukcesem",
+      "description": "Dziękujemy za płatność. Twoje zamówienie jest w trakcie realizacji.",
+      "button": "Powrót do pulpitu"
     }
   },
   "settings": {

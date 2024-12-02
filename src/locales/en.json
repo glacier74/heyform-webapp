@@ -720,6 +720,11 @@
         "No commission on payments",
         "No size limit on file upload"
       ]
+    },
+    "success": {
+      "title": "Payment successful",
+      "description": "Thank you for your payment. Your order is being processed.",
+      "button": "Back to dashboard"
     }
   },
   "settings": {

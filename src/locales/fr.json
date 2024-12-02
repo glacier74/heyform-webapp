@@ -629,7 +629,11 @@
     "planName": "Plan {{name}}",
     "year": "année",
     "month": "mois",
-    "cycles": ["Pour toujours", "Mensuel", "Annuel"],
+    "cycles": [
+      "Pour toujours",
+      "Mensuel",
+      "Annuel"
+    ],
     "save16": "Économisez 16%",
     "keepFreePlan": "Continuer à utiliser le plan gratuit",
     "plans": {
@@ -720,6 +724,11 @@
         "Aucune commission sur les paiements",
         "Aucune limite de taille pour le téléchargement des fichiers"
       ]
+    },
+    "success": {
+      "title": "Paiement réussi",
+      "description": "Merci pour votre paiement. Votre commande est en cours de traitement.",
+      "button": "Retour au tableau de bord"
     }
   },
   "settings": {

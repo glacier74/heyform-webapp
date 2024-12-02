@@ -1,10 +1,11 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 
 import { cn } from '@/utils'
 
 import { Button } from './Button'
 
 interface EmptyStateProps extends ComponentProps {
+  icon?: ReactNode
   headline: string
   subHeadline?: string
   buttonTitle?: string
@@ -12,6 +13,7 @@ interface EmptyStateProps extends ComponentProps {
 
 export const EmptyState: FC<EmptyStateProps> = ({
   className,
+  icon,
   headline,
   subHeadline,
   buttonTitle,
@@ -19,6 +21,8 @@ export const EmptyState: FC<EmptyStateProps> = ({
 }) => {
   return (
     <div className={cn('flex flex-col items-center text-center', className)}>
+      {icon && <div className="mb-6">{icon}</div>}
+
       <h3 className="text-xl/8 font-semibold sm:text-lg/8" data-slot="headline">
         {headline}
       </h3>

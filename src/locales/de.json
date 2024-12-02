@@ -629,7 +629,11 @@
     "planName": "{{name}}-Plan",
     "year": "Jahr",
     "month": "Monat",
-    "cycles": ["Für immer", "Monatlich", "Jährlich"],
+    "cycles": [
+      "Für immer",
+      "Monatlich",
+      "Jährlich"
+    ],
     "save16": "Sparen Sie 16%",
     "keepFreePlan": "Weiterhin den kostenlosen Plan nutzen",
     "plans": {
@@ -720,6 +724,11 @@
         "Keine Provision auf Zahlungen",
         "Keine Größenbeschränkung für Datei-Uploads"
       ]
+    },
+    "success": {
+      "title": "Zahlung erfolgreich",
+      "description": "Vielen Dank für Ihre Zahlung. Ihre Bestellung wird bearbeitet.",
+      "button": "Zurück zum Dashboard"
     }
   },
   "settings": {

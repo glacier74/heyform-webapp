@@ -629,7 +629,11 @@
     "planName": "{{name}} 套餐",
     "year": "year",
     "month": "月",
-    "cycles": ["永久", "每月", "每年"],
+    "cycles": [
+      "永久",
+      "每月",
+      "每年"
+    ],
     "save16": "节省 16%",
     "keepFreePlan": "继续使用免费套餐",
     "plans": {
@@ -720,6 +724,11 @@
         "支付无佣金",
         "文件上传无大小限制"
       ]
+    },
+    "success": {
+      "title": "付款成功",
+      "description": "感谢您的付款。您的订单正在处理中。",
+      "button": "返回仪表盘"
     }
   },
   "settings": {
